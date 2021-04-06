@@ -18,7 +18,9 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ff9a7dea-1369-4e48-ab37-81feeebfbb22" name="Default Changelist" comment="" />
+    <list default="true" id="ff9a7dea-1369-4e48-ab37-81feeebfbb22" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -41,6 +43,15 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="Vcs.Log.Tabs.Properties">
@@ -54,5 +65,15 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="575" y="219" key="#Project_Structure" timestamp="1617351809594">
+      <screen x="0" y="25" width="2048" height="1167" />
+    </state>
+    <state x="575" y="219" key="#Project_Structure/0.25.2048.1167@0.25.2048.1167" timestamp="1617351809594" />
+    <state x="807" y="585" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1617351871894">
+      <screen x="0" y="25" width="2048" height="1167" />
+    </state>
+    <state x="807" y="585" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.25.2048.1167@0.25.2048.1167" timestamp="1617351871894" />
   </component>
 </project>
