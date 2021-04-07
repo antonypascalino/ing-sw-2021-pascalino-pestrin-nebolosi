@@ -4,6 +4,7 @@ import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class WareHouse
 {
@@ -100,6 +101,29 @@ public class WareHouse
             return true;
         else
             return false;
+    }
+
+    public Boolean checkSpace(int level, Resource res)
+    {
+        Resource[] currentLevel;
+        for(int i=0; i < levels.size(); i++)
+        {
+            currentLevel=levels.get(i);
+            //If the level doesn't contain any empty space
+            if(i==level && !(Arrays.stream(currentLevel).anyMatch(null)))
+                return false;
+
+            for( int j=0 ; j< currentLevel.length; j++)
+            {
+                //If there's the same resource on another level
+                if(currentLevel[j].equals(res) && i != level)
+                    return false;
+                //If the level contains different resources
+                if(i==level && currentLevel[j]!= null && !currentLevel[j].equals(res))
+                    return false;
+            }
+        }
+        return true;
     }
 
 
