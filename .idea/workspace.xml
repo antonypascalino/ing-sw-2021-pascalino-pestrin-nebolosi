@@ -82,6 +82,10 @@
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="created the addResource metod" />
+    <option name="LAST_COMMIT_MESSAGE" value="created the addResource metod" />
+  </component>
   <component name="WindowStateProjectService">
     <state x="575" y="219" key="#Project_Structure" timestamp="1617788777155">
       <screen x="0" y="25" width="2048" height="1167" />
@@ -91,5 +95,9 @@
       <screen x="0" y="25" width="2048" height="1167" />
     </state>
     <state x="807" y="585" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.25.2048.1167@0.25.2048.1167" timestamp="1617351871894" />
+    <state x="689" y="291" width="670" height="676" key="search.everywhere.popup" timestamp="1617790482887">
+      <screen x="0" y="0" width="2048" height="1280" />
+    </state>
+    <state x="689" y="291" width="670" height="676" key="search.everywhere.popup/0.0.2048.1280@0.0.2048.1280" timestamp="1617790482887" />
   </component>
 </project>
