@@ -33,16 +33,21 @@ public class FaithPath {
             return false;
     }
 
-    
+    //could be improved
     public boolean checkVaticanSection()
     {
         if (checkPopeSpace() == true)
         {
-            if
+            if(advancement > 4 && advancement < 9)
+                return true;
+            else if (advancement > 11 && advancement < 17)
+                return true;
+            else if (advancement > 18)
+                return true;
+            else
+                return false;
         }
-
-
-
+        return false;
 
     }
 
