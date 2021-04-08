@@ -4,15 +4,11 @@ import java.util.ArrayList;
 
 public class Slot
 {
-    private ArrayList<DevCard[]> slots;
+    private ArrayList<DevCard[]> slots = new ArrayList<DevCard[]>();
 
-    public Slot()
-    {
-       slots = new ArrayList<DevCard[]>();
+    DevCard devCard;
 
-    }
-
-    public void purchaseDevCard(DevCard card, int slot)
+     public void purchaseDevCard(DevCard card, int slot)
     {
         //if checkSpace is true
         DevCard[] currSlot = slots.get(slot);

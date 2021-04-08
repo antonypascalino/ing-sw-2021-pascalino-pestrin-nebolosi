@@ -1,16 +1,20 @@
 package model;
 
+import jdk.internal.icu.text.UnicodeSet;
+
 import java.util.ArrayList;
 
 public class StrongBox
 
 {
 
-    ArrayList<Resource> resources;
+    ArrayList<Resource> resources = new ArrayList<Resource>();
 
-    public StrongBox()
+    Resource resource;
+
+    public Resource getResource()
     {
-        resources = new ArrayList<Resource>();
+        return resource;
     }
 
     public void addResource(Resource res)
@@ -38,8 +42,6 @@ public class StrongBox
     {
         return resources.contains(res);
     }
-
-
 
 
 }

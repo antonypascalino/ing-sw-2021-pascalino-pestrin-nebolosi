@@ -4,17 +4,24 @@ import java.util.ArrayList;
 
 public class TempBox
 {
+    ArrayList<Resource> tempRes = new ArrayList<Resource>();
+    private Resource resource;
+
+    public Resource getResource()
+    {
+        return resource;
+    }
     //adds the resource to an ArrayList
     public void addResource(Resource res)
     {
-        ArrayList<Resource> resources = new ArrayList<Resource>();
-        resources.add(res);
+        tempRes.add(res);
     }
 
-    //TO DO
+
     //puts the resources back to the strongbox
     public void endTurn()
     {
+        StrongBox.addResources
 
     }
 }
