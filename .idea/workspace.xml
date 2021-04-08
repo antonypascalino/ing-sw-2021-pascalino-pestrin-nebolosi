@@ -4,30 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="BranchesTreeState">
-    <expand>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-    </expand>
+    <expand />
     <select>
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ff9a7dea-1369-4e48-ab37-81feeebfbb22" name="Default Changelist" comment="Created more methods">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/WareHouse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/WareHouse.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,6 +74,26 @@
         </entry>
       </map>
     </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/Pes" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/antony" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
@@ -95,17 +102,19 @@
     <option name="LAST_COMMIT_MESSAGE" value="Created more methods" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="575" y="219" key="#Project_Structure" timestamp="1617788777155">
-      <screen x="0" y="25" width="2048" height="1167" />
+    <state x="575" y="213" key="#Project_Structure" timestamp="1617877712665">
+      <screen x="0" y="0" width="2048" height="1280" />
     </state>
+    <state x="575" y="213" key="#Project_Structure/0.0.2048.1280@0.0.2048.1280" timestamp="1617877712665" />
     <state x="575" y="219" key="#Project_Structure/0.25.2048.1167@0.25.2048.1167" timestamp="1617788777155" />
     <state x="624" y="364" key="Vcs.Push.Dialog.v2" timestamp="1617791658059">
       <screen x="0" y="0" width="2048" height="1280" />
     </state>
     <state x="624" y="364" key="Vcs.Push.Dialog.v2/0.0.2048.1280@0.0.2048.1280" timestamp="1617791658059" />
-    <state x="807" y="585" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1617351871894">
-      <screen x="0" y="25" width="2048" height="1167" />
+    <state x="807" y="614" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1617878034496">
+      <screen x="0" y="0" width="2048" height="1280" />
     </state>
+    <state x="807" y="614" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2048.1280@0.0.2048.1280" timestamp="1617878034496" />
     <state x="807" y="585" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.25.2048.1167@0.25.2048.1167" timestamp="1617351871894" />
     <state x="689" y="291" width="670" height="676" key="search.everywhere.popup" timestamp="1617790482887">
       <screen x="0" y="0" width="2048" height="1280" />
