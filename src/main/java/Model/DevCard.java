@@ -16,9 +16,8 @@ public class DevCard {
 
     private ArrayList<Resource> price;
 
-    /*
-    Gets all the information from the controller and istantiate a new card to be set on the game table
-     */
+
+    //Gets all the information from the controller and istantiate a new card to be set on the game table
     public DevCard(String col, int lev, int vp, ArrayList<Resource> req, ArrayList<Resource> pro, ArrayList<Resource> pri)
     {
         color=col;
@@ -35,16 +34,33 @@ public class DevCard {
     }
 
     /*
-        When used gives back the resources
-        @result an arrayList containing all the resources
-         */
+    When used gives back the resources
+    @result an arrayList containing all the resources
+     */
     public ArrayList<Resource> use()
     {
-        owner.getResources(requires.clone());
+        owner.removeResources((ArrayList<Resource>) requires.clone());
 
         //Needs to be casted
         return (ArrayList<Resource>) produces.clone();
+    }
 
+    //@result true if the card is on top and enabled
+    public boolean canBeUsed()
+    {
+        return isEnable;
+    }
+
+    //used when the card is covered and it can't be used anymore
+    public void disable()
+    {
+        isEnable=false;
+    }
+
+    //Used when the card is bought and set on top
+    public void enable()
+    {
+        isEnable=true;
     }
 
 
