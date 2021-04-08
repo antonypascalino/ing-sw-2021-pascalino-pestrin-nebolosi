@@ -2,8 +2,8 @@ package model;
 
 public class Discount implements LeaderCard {
 
-    private DevCard[] requires = new DevCard[2]; //deve essere sistemata la richiesta delle carte, in quanto non
-                                                // vengono richiesete delle DevCard in particolare ma soltanto determinati colori
+    private String color1;
+    private String color2;
     private Resource discount;
     private int victoryPoints;
     private boolean isEnable;
@@ -35,7 +35,15 @@ public class Discount implements LeaderCard {
 
     public boolean canBePlayed()
     {
-        return player.getBoard().getSlot().getDevCards().containsAll(requires);
+        boolean secondColor = false;
+        boolean firstColor = false;
+
+        for ( DevCard card : player.getBoard().getSlot().getDevCards())
+        {
+            if (card.getColor().equals(color1)) firstColor = true;
+            if (card.getColor().equals(color2)) secondColor = true ;
+        }
+        return (firstColor && secondColor);
     }
 
 

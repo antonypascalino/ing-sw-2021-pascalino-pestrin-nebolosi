@@ -46,6 +46,7 @@ public class Player {
         int slot;
 
         card = Table.buyDev(color, level);
+        card.setOwner(this);
         //richiesta al giocatore in quale slot mettere la card
         purchaseCard(card,slot);
     }
