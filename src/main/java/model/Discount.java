@@ -2,13 +2,14 @@ package model;
 
 public class Discount implements LeaderCard {
 
-    private DevCard[] requires = new DevCard[2];
+    private DevCard[] requires = new DevCard[2]; //deve essere sistemata la richiesta delle carte, in quanto non
+                                                // vengono richiesete delle DevCard in particolare ma soltanto determinati colori
     private Resource discount;
     private int victoryPoints;
     private boolean isEnable;
     private Player player;
 
-    public void Discount() 
+    public Discount()
     {
         //legge da Json discount, victoryPoints, requires
     }

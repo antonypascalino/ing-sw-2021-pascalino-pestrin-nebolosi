@@ -18,9 +18,9 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ff9a7dea-1369-4e48-ab37-81feeebfbb22" name="Default Changelist" comment="">
+    <list default="true" id="ff9a7dea-1369-4e48-ab37-81feeebfbb22" name="Default Changelist" comment="Class Discount">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Discount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Discount.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,8 +31,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -77,8 +77,16 @@
       <updated>1617871468766</updated>
       <workItem from="1617871475788" duration="71000" />
       <workItem from="1617871556472" duration="12000" />
-      <workItem from="1617871585881" duration="3109000" />
+      <workItem from="1617871585881" duration="6073000" />
     </task>
+    <task id="LOCAL-00001" summary="Class Discount">
+      <created>1617875415692</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1617875415692</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -92,7 +100,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="Pes" />
+                        <option value="antony" />
                       </list>
                     </value>
                   </entry>
@@ -124,5 +132,9 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Class Discount" />
+    <option name="LAST_COMMIT_MESSAGE" value="Class Discount" />
   </component>
 </project>
