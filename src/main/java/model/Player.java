@@ -6,9 +6,9 @@ public class Player {
     private String nickName;
     private int victoryPoints;
     private int faithPoint;
-    ArrayList<Resource> discounts; //Dovrebbe essere friendly
-    ArrayList<Resource> emptyValue; //Dovrebbe essere friendly
-    private boolean hasChange; //Se non sbaglio lo avevamo tolto e usavamo emptyValue però nell'UML c'è ancora
+    ArrayList<Resource> discounts = new ArrayList<Resource>();  //Dovrebbe essere friendly
+    ArrayList<Resource> emptyValue;                             //Dovrebbe essere friendly
+    private boolean hasChange;          //Se non sbaglio lo avevamo tolto e usavamo emptyValue però nell'UML c'è ancora
     private Board board;
     private ArrayList<LeaderCard> leaderCards;
 
@@ -27,7 +27,7 @@ public class Player {
         return victoryPoints;
     }
 
-    public getFromMarket(ArrayList<Resource> res)
+    public void getFromMarket(ArrayList<Resource> res)
     {
 
         // Una volta ricevute le risorse (biglie) dal mercato, vanno messe nel WareHouse;
@@ -49,4 +49,19 @@ public class Player {
         //richiesta al giocatore in quale slot mettere la card
         purchaseCard(card,slot);
     }
+
+    public Board getBoard() {
+        return board;
+    }
+
+    public void addLeaderCard(LeaderCard card)
+    {
+        leaderCards.add(card);
+    }
+
+    public void addVictoryPoints (int victoryPoints)
+    {
+        this.victoryPoints += victoryPoints;
+    }
+
 }
