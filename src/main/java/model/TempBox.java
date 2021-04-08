@@ -5,12 +5,10 @@ import java.util.ArrayList;
 public class TempBox
 {
     ArrayList<Resource> tempRes = new ArrayList<Resource>();
-    private Resource resource;
+   // private Resource resource;
+    StrongBox sb = new StrongBox();
 
-    public Resource getResource()
-    {
-        return resource;
-    }
+
     //adds the resource to an ArrayList
     public void addResource(Resource res)
     {
@@ -21,8 +19,7 @@ public class TempBox
     //puts the resources back to the strongbox
     public void endTurn()
     {
-        StrongBox.addResources
-
+        sb.resources.addAll(tempRes);
     }
 }
 

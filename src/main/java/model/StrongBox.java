@@ -10,12 +10,12 @@ public class StrongBox
 
     ArrayList<Resource> resources = new ArrayList<Resource>();
 
-    Resource resource;
+    //Resource resource;
 
-    public Resource getResource()
+   /* public Resource getResource()
     {
         return resource;
-    }
+    }*/
 
     public void addResource(Resource res)
     {

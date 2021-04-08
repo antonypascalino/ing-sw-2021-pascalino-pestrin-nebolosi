@@ -20,7 +20,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ff9a7dea-1369-4e48-ab37-81feeebfbb22" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Slot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Slot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Board.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/StrongBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/StrongBox.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/TempBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/TempBox.java" afterDir="false" />
     </list>
@@ -84,7 +84,7 @@
       <workItem from="1617736160921" duration="156000" />
       <workItem from="1617737496814" duration="1376000" />
       <workItem from="1617803890635" duration="759000" />
-      <workItem from="1617875729641" duration="19754000" />
+      <workItem from="1617875729641" duration="21142000" />
     </task>
     <servers />
   </component>
