@@ -18,9 +18,8 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ff9a7dea-1369-4e48-ab37-81feeebfbb22" name="Default Changelist" comment="Class Discount">
+    <list default="true" id="ff9a7dea-1369-4e48-ab37-81feeebfbb22" name="Default Changelist" comment="Class ExtraDeposit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Discount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Discount.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +76,7 @@
       <updated>1617871468766</updated>
       <workItem from="1617871475788" duration="71000" />
       <workItem from="1617871556472" duration="12000" />
-      <workItem from="1617871585881" duration="6073000" />
+      <workItem from="1617871585881" duration="7623000" />
     </task>
     <task id="LOCAL-00001" summary="Class Discount">
       <created>1617875415692</created>
@@ -86,7 +85,14 @@
       <option name="project" value="LOCAL" />
       <updated>1617875415692</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Class ExtraDeposit">
+      <created>1617878942161</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1617878942162</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -135,6 +141,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Class Discount" />
-    <option name="LAST_COMMIT_MESSAGE" value="Class Discount" />
+    <MESSAGE value="Class ExtraDeposit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Class ExtraDeposit" />
   </component>
 </project>
