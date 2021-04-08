@@ -1,6 +1,8 @@
 package model;
 
-public class FaithPath {
+public class FaithPath
+
+{
     private int advancement;
     private int newPoints;
 
@@ -16,7 +18,6 @@ public class FaithPath {
            advancement = advancement + steps;
 
     }
-
 
     public int checkVictoryPoints(int oldPosition)
     {

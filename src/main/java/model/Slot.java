@@ -69,13 +69,17 @@ public class Slot
 
     public DevCard[] getFrontCards()
     {
+        //looks at the last element of each slot
         DevCard[] currSlot;
         DevCard[] frontCards = new DevCard[3];
         for(int i = 0; i < slots.size(); i++)
         {
+            //frontCards is updated if either there's a card or the index is null
             currSlot = slots.get(i);
             for (int j = 0; j < currSlot.length; j++)
             {
+                //if one of the 3 indexes of frontCards is null it means that in a slot
+                //there are no cards
                 if(currSlot[j+1] == null)
                 {
                     frontCards[j] = currSlot[j];
@@ -89,6 +93,7 @@ public class Slot
 
     public ArrayList<DevCard> getAllCards()
     {
+        //searches through all the slots and returns all the cards
         ArrayList<DevCard> allCards = new ArrayList<DevCard>();
         DevCard[] currSlot;
         for (int i = 0; i< slots.size(); i++)
