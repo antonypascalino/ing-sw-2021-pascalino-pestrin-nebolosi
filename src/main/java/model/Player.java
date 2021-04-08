@@ -7,7 +7,7 @@ public class Player {
     private int victoryPoints;
     private int faithPoint;
     ArrayList<Resource> discounts = new ArrayList<Resource>();  //Dovrebbe essere friendly
-    ArrayList<Resource> emptyValue;                             //Dovrebbe essere friendly
+    ArrayList<Resource> emptyValue = new ArrayList<Resource>();                             //Dovrebbe essere friendly
     private boolean hasChange;          //Se non sbaglio lo avevamo tolto e usavamo emptyValue però nell'UML c'è ancora
     private Board board;
     private ArrayList<LeaderCard> leaderCards;
@@ -55,7 +55,7 @@ public class Player {
         return board;
     }
 
-    public void addLeaderCard(LeaderCard card)
+    public void addLeaderCard (LeaderCard card)
     {
         leaderCards.add(card);
     }
