@@ -13,11 +13,7 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ff9a7dea-1369-4e48-ab37-81feeebfbb22" name="Default Changelist" comment="Compleeted a first implementation of the devCards">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Model/Market.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Resource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Resource.java" afterDir="false" />
-    </list>
+    <list default="true" id="ff9a7dea-1369-4e48-ab37-81feeebfbb22" name="Default Changelist" comment="Completed the Market class" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -103,7 +99,8 @@
     <MESSAGE value="Created more methods" />
     <MESSAGE value="Created some table classes" />
     <MESSAGE value="Compleeted a first implementation of the devCards" />
-    <option name="LAST_COMMIT_MESSAGE" value="Compleeted a first implementation of the devCards" />
+    <MESSAGE value="Completed the Market class" />
+    <option name="LAST_COMMIT_MESSAGE" value="Completed the Market class" />
   </component>
   <component name="WindowStateProjectService">
     <state x="575" y="213" key="#Project_Structure" timestamp="1617877712665">
@@ -131,10 +128,10 @@
       <screen x="0" y="0" width="2048" height="1280" />
     </state>
     <state width="2006" height="371" key="GridCell.Tab.0.right/0.0.2048.1280@0.0.2048.1280" timestamp="1617914956077" />
-    <state x="624" y="364" key="Vcs.Push.Dialog.v2" timestamp="1617914951894">
+    <state x="624" y="364" key="Vcs.Push.Dialog.v2" timestamp="1617918561387">
       <screen x="0" y="0" width="2048" height="1280" />
     </state>
-    <state x="624" y="364" key="Vcs.Push.Dialog.v2/0.0.2048.1280@0.0.2048.1280" timestamp="1617914951894" />
+    <state x="624" y="364" key="Vcs.Push.Dialog.v2/0.0.2048.1280@0.0.2048.1280" timestamp="1617918561387" />
     <state x="807" y="614" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1617878034496">
       <screen x="0" y="0" width="2048" height="1280" />
     </state>
