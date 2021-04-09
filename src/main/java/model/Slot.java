@@ -1,5 +1,10 @@
 package model;
 
+
+public class Slot {
+
+
+
 import java.util.ArrayList;
 
 public class Slot

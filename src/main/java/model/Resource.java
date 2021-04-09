@@ -1,6 +1,10 @@
 package model;
 
 public enum Resource {
+
+
+    Gold, Shield, Servant, Faith, Empty
+
     GOLD,
     SHIELD,
     SERVANT,
@@ -9,4 +13,5 @@ public enum Resource {
     EMPTY;
 
     private String color;
+
 }
