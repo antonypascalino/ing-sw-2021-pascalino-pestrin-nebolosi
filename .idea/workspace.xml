@@ -4,22 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="BranchesTreeState">
-    <expand>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-    </expand>
+    <expand />
     <select>
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ff9a7dea-1369-4e48-ab37-81feeebfbb22" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/FaithPath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/FaithPath.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,12 +22,16 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MavenImportPreferences">
@@ -51,28 +48,6 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-  </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
-  <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="ff9a7dea-1369-4e48-ab37-81feeebfbb22" name="Default Changelist" comment="" />
-      <created>1617351772746</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1617351772746</updated>
-      <workItem from="1617351774423" duration="133000" />
-      <workItem from="1617736160921" duration="156000" />
-      <workItem from="1617737496814" duration="1376000" />
-      <workItem from="1617803890635" duration="759000" />
-      <workItem from="1617875729641" duration="21142000" />
-      <workItem from="1617960038196" duration="5156000" />
-    </task>
-    <servers />
-  </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
@@ -86,31 +61,28 @@
         </entry>
       </map>
     </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/Pes" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/antony" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
-  <component name="WindowStateProjectService">
-    <state x="393" y="169" key="#Notifications" timestamp="1617804777909">
-      <screen x="0" y="0" width="1280" height="689" />
-    </state>
-    <state x="393" y="169" key="#Notifications/0.0.1280.689/1920.0.1280.994@0.0.1280.689" timestamp="1617804777909" />
-    <state x="2377" y="411" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1617351884805">
-      <screen x="1920" y="0" width="1280" height="994" />
-    </state>
-    <state x="2377" y="411" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.689/1920.0.1280.994@1920.0.1280.994" timestamp="1617351884805" />
-    <state x="91" y="6" key="new project wizard" timestamp="1617736311101">
-      <screen x="0" y="0" width="1280" height="689" />
-    </state>
-    <state x="91" y="6" key="new project wizard/0.0.1280.689/1920.0.1280.994@0.0.1280.689" timestamp="1617736311101" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/model/StrongBox.java</url>
-          <line>41</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+
   </component>
 </project>
