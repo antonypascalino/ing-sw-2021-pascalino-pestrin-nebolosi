@@ -6,7 +6,7 @@ public class FaithPath
     private int advancement;
     private int newPoints;
 
-    //a few booleans needed to check pope tiles
+    //a few booleans needed to check pope tiles (for the view)
 
     public FaithPath()
     {
