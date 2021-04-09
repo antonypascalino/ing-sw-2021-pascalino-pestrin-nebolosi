@@ -12,6 +12,7 @@ import static Model.Costants.MARKETROWS;
 
 
 public class Market {
+
     private Resource[][] actualSituation; //Market disposition
     private Resource freeOne; //Free resource
 

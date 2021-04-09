@@ -29,10 +29,20 @@ public class DevCard {
         isEnable=false;
     }
 
-    public void setOwner(Player owner) {
+    public void setOwner(Player owner)
+    {
         this.owner = owner;
     }
 
+    public String getColor()
+    {
+        return color;
+    }
+
+    public int getLevel()
+    {
+        return level;
+    }
     /*
     When used gives back the resources
     @result an arrayList containing all the resources
