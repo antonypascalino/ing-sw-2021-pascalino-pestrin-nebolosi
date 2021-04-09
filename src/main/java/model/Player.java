@@ -1,17 +1,25 @@
 package model;
-import java.util.;
+import java.util.ArrayList;
 
 public class Player {
 
     private String nickName;
     private int victoryPoints;
     private int faithPoint;
-    ArrayList<Resource> discounts = new ArrayList<Resource>();  //Dovrebbe essere friendly
-    ArrayList<Resource> emptyValue = new ArrayList<Resource>();                             //Dovrebbe essere friendly
-    private boolean hasChange;          //Se non sbaglio lo avevamo tolto e usavamo emptyValue però nell'UML c'è ancora
+    ArrayList<Resource> discounts;  //Dovrebbe essere friendly
+    ArrayList<Resource> emptyValue;                             //Dovrebbe essere friendly
     private Board board;
     private ArrayList<LeaderCard> leaderCards;
 
+    public Player()
+    {
+        board = new Board();
+        discounts = new ArrayList<Resource>();
+        emptyValue = new ArrayList<Resource>();
+        leaderCards = new ArrayList<LeaderCard>();
+        faithPoint = 0;
+        victoryPoints = 0;
+    }
 
     public void setNickName(String nickName) {
         this.nickName = nickName;
@@ -27,19 +35,7 @@ public class Player {
         return victoryPoints;
     }
 
-    public void getFromMarket(ArrayList<Resource> res)
-    {
-
-        // Una volta ricevute le risorse (biglie) dal mercato, vanno messe nel WareHouse;
-
-        //Chiama la View per chiedere al giocatore in quale livello vuole mettere le risorse,
-
-        WareHouse.addResources(/*metodo view che restitusice livello*/, res);
-
-        //Bisogna vedere dove inserire la chiamata a switchLevels nel caso in cui fosse necessario spostare le risorse
-
-    }
-    //when player chooses the card this method buys the card and set the card into the slot
+    //when player chooses the card, this method buys the card and set the card into the slot
     public void getDevCard(String color, int level)
     {
         DevCard card;
@@ -48,7 +44,7 @@ public class Player {
         card = Table.buyDev(color, level);
         card.setOwner(this);
         //richiesta al giocatore in quale slot mettere la card
-        purchaseCard(card,slot);
+        board.getSlot().purchaseCard(card,slot);
     }
 
     public Board getBoard() {

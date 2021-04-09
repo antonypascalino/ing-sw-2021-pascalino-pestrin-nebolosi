@@ -12,9 +12,12 @@ public class ChangeResource implements LeaderCard
     private String color2;
     private Resource change;
 
-    public ChangeResource()
-    {
-        //legge da Json bla bla bla..e anche color1 e color2
+    public ChangeResource(int victoryPoints, ArrayList<DevCard> requires, String color1, String color2, Resource change) {
+        this.victoryPoints = victoryPoints;
+        this.requires = requires;
+        this.color1 = color1;
+        this.color2 = color2;
+        this.change = change;
     }
 
     public boolean isEnable() {

@@ -2,16 +2,20 @@ package model;
 
 public class Discount implements LeaderCard {
 
+    private int victoryPoints;
+    private DevCard[] requires = new DevCard[2] ;
+    private Resource discount;
     private String color1;
     private String color2;
-    private Resource discount;
-    private int victoryPoints;
     private boolean isEnable;
     private Player player;
 
-    public Discount()
-    {
-        //legge da Json discount, victoryPoints, requires
+    public Discount(int victoryPoints, DevCard[] requires, Resource discount, String color1, String color2) {
+        this.victoryPoints = victoryPoints;
+        this.requires = requires;
+        this.discount = discount;
+        this.color1 = color1;
+        this.color2 = color2;
     }
 
     public void assignTo (Player player)
@@ -19,32 +23,34 @@ public class Discount implements LeaderCard {
         this.player = player;
     }
 
-    public boolean isEnable() {
-        return isEnable;
+    public boolean isEnable() { return isEnable; }
+
+    public void addDevCard(DevCard card)
+    {
+        for (int i=0;  i < requires.length; i++)
+        {
+            if (requires[i] == null) requires[i] = card;
+            break;
+        }
     }
 
-    public void playCard()
+    public boolean isEnable()
     {
-        if(canBePlayed())
-        {
-            player.discounts.add(discount);
-            isEnable = true;
-            player.addVictoryPoints(victoryPoints);
-        }
+        return enable;
     }
 
     public boolean canBePlayed()
     {
-        boolean secondColor = false;
-        boolean firstColor = false;
-
-        for ( DevCard card : player.getBoard().getSlot().getDevCards())
-        {
-            if (card.getColor().equals(color1)) firstColor = true;
-            if (card.getColor().equals(color2)) secondColor = true ;
-        }
-        return (firstColor && secondColor);
+        return Slot.getDevCards().containsAll(requires);
     }
+
+    public void playCard()
+    {
+        enable = true;
+        Player.discounts.add(discount);
+
+    }
+
 
 
 

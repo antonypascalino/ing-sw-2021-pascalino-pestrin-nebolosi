@@ -10,9 +10,11 @@ public class ExtraProd implements LeaderCard {
     private String requires;
     private Resource prodResource;
 
-    public ExtraProd()
+    public ExtraProd(int victoryPoints, String requires, Resource prodResource)
     {
-        //legge da json victoryPoints, requires, prodResource
+        this.prodResource = prodResource;
+        this.requires = requires;
+        this.victoryPoints = victoryPoints;
     }
 
     public void assignTo (Player player)
@@ -75,5 +77,10 @@ public class ExtraProd implements LeaderCard {
             player.getBoard().getStrongBox().addResources(choice);
             player.getBoard().getFaithPath().moveForward(1);
         }
+    }
+
+    public void scazzaPlauyer()
+    {
+        player.getVictoryPoints() = 5;
     }
 }

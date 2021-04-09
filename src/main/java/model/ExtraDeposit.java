@@ -12,13 +12,11 @@ public class ExtraDeposit implements LeaderCard {
     private Resource depositableRes;
 
 
-    public ExtraDeposit() {
-
-        //legge da file Json quale risorsa ha come richiesta
-        //legge da file Json quale risorsa si può depositare nel deposito aggiuntivo
-
-        //aggiunge a requires 5 Resource di tipo required, in modo da poter verificare dopo il loro possesso da parte del Player
-        //con una semplice containsAll()
+    public ExtraDeposit(int victoryPoints, Resource requires, Resource depositableRes)
+    {
+        this.victoryPoints = victoryPoints;
+        this.requires = requires;
+        this.depositableRes = depositableRes;
     }
 
     public void assignTo (Player player)
@@ -44,7 +42,7 @@ public class ExtraDeposit implements LeaderCard {
     public boolean canBePlayed()
     {
         return (Collections.frequency(player.getBoard().getWarehouse().getResources(), requires) +
-                (Collections.frequency(player.getBoard().getWarehouse().getResources(), requires)) >= 5;
+                (Collections.frequency(player.getBoard().getStrongBox().getResources(), requires)) >= 5;
     }
 
 
