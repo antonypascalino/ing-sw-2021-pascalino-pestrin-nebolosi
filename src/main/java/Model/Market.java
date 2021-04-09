@@ -106,7 +106,7 @@ public class Market {
      */
     public Resource getFreeOne()
     {
-        return new Resource(freeOne);
+        return freeOne;
     }
 
     //Return a matrix that rappresent the actual market situation

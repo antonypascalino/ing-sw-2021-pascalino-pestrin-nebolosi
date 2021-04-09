@@ -17,6 +17,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Model/DevCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/DevCard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Model/Market.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Market.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Model/Table.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Table.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -106,7 +107,8 @@
     <MESSAGE value="Compleeted a first implementation of the devCards" />
     <MESSAGE value="Completed the Market class" />
     <MESSAGE value="Added a costants static class" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added a costants static class" />
+    <MESSAGE value="Finished a first implementation of the table class which handle the devCard disposition" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finished a first implementation of the table class which handle the devCard disposition" />
   </component>
   <component name="WindowStateProjectService">
     <state x="575" y="213" key="#Project_Structure" timestamp="1617877712665">
@@ -114,30 +116,30 @@
     </state>
     <state x="575" y="213" key="#Project_Structure/0.0.2048.1280@0.0.2048.1280" timestamp="1617877712665" />
     <state x="575" y="219" key="#Project_Structure/0.25.2048.1167@0.25.2048.1167" timestamp="1617788777155" />
-    <state x="770" y="353" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1617914796963">
+    <state x="770" y="353" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1617965437060">
       <screen x="0" y="0" width="2048" height="1280" />
     </state>
-    <state x="770" y="353" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.2048.1280@0.0.2048.1280" timestamp="1617914796963" />
-    <state width="2006" height="371" key="GridCell.Tab.0.bottom" timestamp="1617918752749">
+    <state x="770" y="353" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.2048.1280@0.0.2048.1280" timestamp="1617965437060" />
+    <state width="2006" height="371" key="GridCell.Tab.0.bottom" timestamp="1617965444209">
       <screen x="0" y="0" width="2048" height="1280" />
     </state>
-    <state width="2006" height="371" key="GridCell.Tab.0.bottom/0.0.2048.1280@0.0.2048.1280" timestamp="1617918752749" />
-    <state width="2006" height="371" key="GridCell.Tab.0.center" timestamp="1617918752748">
+    <state width="2006" height="371" key="GridCell.Tab.0.bottom/0.0.2048.1280@0.0.2048.1280" timestamp="1617965444209" />
+    <state width="2006" height="371" key="GridCell.Tab.0.center" timestamp="1617965444208">
       <screen x="0" y="0" width="2048" height="1280" />
     </state>
-    <state width="2006" height="371" key="GridCell.Tab.0.center/0.0.2048.1280@0.0.2048.1280" timestamp="1617918752748" />
-    <state width="2006" height="371" key="GridCell.Tab.0.left" timestamp="1617918752747">
+    <state width="2006" height="371" key="GridCell.Tab.0.center/0.0.2048.1280@0.0.2048.1280" timestamp="1617965444208" />
+    <state width="2006" height="371" key="GridCell.Tab.0.left" timestamp="1617965444208">
       <screen x="0" y="0" width="2048" height="1280" />
     </state>
-    <state width="2006" height="371" key="GridCell.Tab.0.left/0.0.2048.1280@0.0.2048.1280" timestamp="1617918752747" />
-    <state width="2006" height="371" key="GridCell.Tab.0.right" timestamp="1617918752748">
+    <state width="2006" height="371" key="GridCell.Tab.0.left/0.0.2048.1280@0.0.2048.1280" timestamp="1617965444208" />
+    <state width="2006" height="371" key="GridCell.Tab.0.right" timestamp="1617965444209">
       <screen x="0" y="0" width="2048" height="1280" />
     </state>
-    <state width="2006" height="371" key="GridCell.Tab.0.right/0.0.2048.1280@0.0.2048.1280" timestamp="1617918752748" />
-    <state x="624" y="364" key="Vcs.Push.Dialog.v2" timestamp="1617918627346">
+    <state width="2006" height="371" key="GridCell.Tab.0.right/0.0.2048.1280@0.0.2048.1280" timestamp="1617965444209" />
+    <state x="624" y="364" key="Vcs.Push.Dialog.v2" timestamp="1617958712920">
       <screen x="0" y="0" width="2048" height="1280" />
     </state>
-    <state x="624" y="364" key="Vcs.Push.Dialog.v2/0.0.2048.1280@0.0.2048.1280" timestamp="1617918627346" />
+    <state x="624" y="364" key="Vcs.Push.Dialog.v2/0.0.2048.1280@0.0.2048.1280" timestamp="1617958712920" />
     <state x="807" y="614" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1617954171978">
       <screen x="0" y="0" width="2048" height="1280" />
     </state>

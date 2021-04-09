@@ -49,7 +49,7 @@ public class DevCard {
      */
     public ArrayList<Resource> use()
     {
-        owner.removeResources((ArrayList<Resource>) requires.clone());
+        owner.getBoard().removeResources((ArrayList<Resource>) requires.clone());
 
         //Needs to be casted
         return (ArrayList<Resource>) produces.clone();
@@ -72,6 +72,7 @@ public class DevCard {
     {
         isEnable=true;
     }
+
 
 
 }

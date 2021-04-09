@@ -12,6 +12,7 @@ public class Table {
      */
     public Table(ArrayList<DevCard> gameCards)
     {
+        //MESCOLARE LE CARTE PRIMA DI PASSRLE QUA
         int row, col;
         stack=new int[4][3]; //Counters used for memorizing the indexs, initializated to 0 by default
         int cordinates[]; //Cordinates of the card that is being inserted
@@ -85,7 +86,7 @@ public class Table {
         //Select the correct row
         switch(color)
         {
-            case "gree":
+            case "green":
                 result[0]=0;
             case "blue":
                 result[0]=1;
@@ -100,4 +101,5 @@ public class Table {
 
         return result;
     }
+
 }
