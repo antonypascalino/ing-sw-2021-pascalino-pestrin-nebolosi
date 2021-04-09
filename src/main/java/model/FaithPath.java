@@ -31,6 +31,7 @@ public class FaithPath
     //A Pope Space is located every 8 steps
     public boolean checkPopeSpace()
     {
+        //we need to mark each pope space differently in order to call correctly check vatican section
         if (advancement % 8 == 0)
             return true;
         else
