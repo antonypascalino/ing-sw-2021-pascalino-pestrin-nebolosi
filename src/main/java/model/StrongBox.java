@@ -22,6 +22,11 @@ public class StrongBox
         resources.add(res);
     }
 
+    public void addResource(ArrayList<Resource> res)
+    {
+        resources.addAll(res);
+    }
+
     public ArrayList<Resource> getResources()
     {
         return resources;

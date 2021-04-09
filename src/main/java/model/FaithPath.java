@@ -6,6 +6,8 @@ public class FaithPath
     private int advancement;
     private int newPoints;
 
+    //crea tessere favore papale boolean
+
     public FaithPath()
     {
         advancement = 0;
@@ -16,6 +18,7 @@ public class FaithPath
     public void moveForward(int steps)
     {
            advancement = advancement + steps;
+
 
     }
 
@@ -34,8 +37,8 @@ public class FaithPath
             return false;
     }
 
-    //could be improved
-    public boolean checkVaticanSection()
+    //receives one of the three pope spaces etc
+    public boolean checkVaticanSection(int pope)
     {
         if (checkPopeSpace() == true)
         {

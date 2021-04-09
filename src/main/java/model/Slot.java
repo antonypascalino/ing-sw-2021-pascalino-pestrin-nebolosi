@@ -6,7 +6,7 @@ public class Slot
 {
     private ArrayList<DevCard[]> slots = new ArrayList<DevCard[]>();
 
-    DevCard devCard;
+    //DevCard devCard;
 
      public void purchaseDevCard(DevCard card, int slot)
     {
@@ -51,7 +51,7 @@ public class Slot
                 if(currSlot[i] != null)
                 {
                     currCard = currSlot[i];
-                    if(card.level == currCard.level-1)
+                    if(card.level == currCard.level+1)
                     {
                         return true;
                     }

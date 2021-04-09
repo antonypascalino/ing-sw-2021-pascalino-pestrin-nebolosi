@@ -9,6 +9,11 @@ public class Board
   private TempBox tempBox;
   private FaithPath faithPath;
 
+    public Board()
+    {
+        strongBox = new StrongBox();
+
+    }
     public WareHouse getWareHouse() {
         return wareHouse;
     }
