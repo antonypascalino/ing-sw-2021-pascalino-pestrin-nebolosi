@@ -15,10 +15,6 @@
   <component name="ChangeListManager">
     <list default="true" id="ff9a7dea-1369-4e48-ab37-81feeebfbb22" name="Default Changelist" comment="Added a costants static class">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/DevCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/DevCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Market.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Market.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Table.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Table.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
