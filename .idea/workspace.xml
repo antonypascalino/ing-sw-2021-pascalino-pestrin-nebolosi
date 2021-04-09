@@ -24,7 +24,6 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/model/FaithPath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/FaithPath.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/Slot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Slot.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/StrongBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/StrongBox.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/TempBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/TempBox.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +73,7 @@
       <workItem from="1617737496814" duration="1376000" />
       <workItem from="1617803890635" duration="759000" />
       <workItem from="1617875729641" duration="21142000" />
-      <workItem from="1617960038196" duration="3514000" />
+      <workItem from="1617960038196" duration="4430000" />
     </task>
     <servers />
   </component>
@@ -106,5 +105,16 @@
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="91" y="6" key="new project wizard/0.0.1280.689/1920.0.1280.994@0.0.1280.689" timestamp="1617736311101" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/model/StrongBox.java</url>
+          <line>41</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

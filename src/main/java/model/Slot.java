@@ -4,9 +4,14 @@ import java.util.ArrayList;
 
 public class Slot
 {
-    private ArrayList<DevCard[]> slots = new ArrayList<DevCard[]>();
+    private ArrayList<DevCard[]> slots;
 
     //DevCard devCard;
+
+    public Slot()
+    {
+        slots = new ArrayList<DevCard[]>();
+    }
 
      public void purchaseDevCard(DevCard card, int slot)
     {

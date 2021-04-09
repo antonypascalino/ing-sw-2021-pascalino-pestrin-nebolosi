@@ -11,7 +11,11 @@ public class Board
 
     public Board()
     {
+        wareHouse = new WareHouse();
         strongBox = new StrongBox();
+        slot = new Slot();
+        tempBox = new TempBox(strongBox);
+        faithPath = new FaithPath();
 
     }
     public WareHouse getWareHouse() {
@@ -33,4 +37,6 @@ public class Board
     public FaithPath getFaithPath() {
         return faithPath;
     }
+
+    //remove resource and check resources methods needed here
 }

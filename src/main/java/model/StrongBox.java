@@ -8,7 +8,8 @@ public class StrongBox
 
 {
 
-    ArrayList<Resource> resources = new ArrayList<Resource>();
+    ArrayList<Resource> resources;
+
 
     //Resource resource;
 
@@ -16,6 +17,11 @@ public class StrongBox
     {
         return resource;
     }*/
+
+    public StrongBox()
+    {
+        resources = new ArrayList<Resource>();
+    }
 
     public void addResource(Resource res)
     {
@@ -34,7 +40,10 @@ public class StrongBox
 
     public boolean removeResource(Resource res)
     {
+        if (checkAvailability(resources) == true)
         return resources.remove(res);
+        else
+            return false;
     }
 
     public boolean checkAvailability(ArrayList<Resource> res)
