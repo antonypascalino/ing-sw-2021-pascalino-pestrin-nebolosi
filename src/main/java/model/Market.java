@@ -1,14 +1,10 @@
-package Model;
+package model;
 
-import sun.text.normalizer.NormalizerImpl;
-
-import javax.print.DocFlavor;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 
-import static Model.Costants.MARKETCOLS;
-import static Model.Costants.MARKETROWS;
+import static model.Costants.MARKETCOLS;
+import static model.Costants.MARKETROWS;
 
 
 public class Market {

@@ -1,4 +1,4 @@
-package Model;
+package model;
 
 public class Costants {
     public static final int MARKETROWS=4;

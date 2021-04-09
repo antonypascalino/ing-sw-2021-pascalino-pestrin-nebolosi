@@ -41,8 +41,8 @@ public class ExtraDeposit implements LeaderCard {
 
     public boolean canBePlayed()
     {
-        return (Collections.frequency(player.getBoard().getWarehouse().getResources(), requires) +
-                (Collections.frequency(player.getBoard().getStrongBox().getResources(), requires)) >= 5;
+        return (Collections.frequency(player.getBoard().getWareHouse().getResources(), requires) +
+                (Collections.frequency(player.getBoard().getStrongBox().getResources(), requires)) >= 5);
     }
 
 

@@ -1,9 +1,10 @@
-package Model;
+package model;
 
 import java.util.ArrayList;
 
 public class BasicDevSpace {
-    Board br;
+
+    private Board br;
     public BasicDevSpace(Board board)
     {
         br = board;
@@ -15,7 +16,7 @@ public class BasicDevSpace {
         tmp.add(res1);
         tmp.add(res2);
         if(canBeUsed(res1,res2))
-            br.removeResources(tmp);
+        br.removeResources(tmp);
         return View.chooseRes();
     }
 

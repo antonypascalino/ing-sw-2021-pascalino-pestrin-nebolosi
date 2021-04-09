@@ -1,10 +1,4 @@
 package model;
-
-
-public class Slot {
-
-
-
 import java.util.ArrayList;
 
 public class Slot
@@ -15,10 +9,17 @@ public class Slot
 
     public Slot()
     {
+        //Create three empty slot for three stacks
         slots = new ArrayList<DevCard[]>();
+        DevCard[] tmp = new DevCard[3];
+        slots.add(tmp);
+        tmp = new DevCard[3];
+        slots.add(tmp);
+        tmp = new DevCard[3];
+        slots.add(tmp);
     }
 
-     public void purchaseDevCard(DevCard card, int slot)
+    public void purchaseCard(DevCard card, int slot)
     {
         //if checkSpace is true
         DevCard[] currSlot = slots.get(slot);

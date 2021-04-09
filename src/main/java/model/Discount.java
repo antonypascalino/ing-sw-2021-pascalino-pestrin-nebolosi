@@ -23,7 +23,6 @@ public class Discount implements LeaderCard {
         this.player = player;
     }
 
-    public boolean isEnable() { return isEnable; }
 
     public void addDevCard(DevCard card)
     {
@@ -36,7 +35,7 @@ public class Discount implements LeaderCard {
 
     public boolean isEnable()
     {
-        return enable;
+        return isEnable;
     }
 
     public boolean canBePlayed()
@@ -46,12 +45,9 @@ public class Discount implements LeaderCard {
 
     public void playCard()
     {
-        enable = true;
-        Player.discounts.add(discount);
+        isEnable = true;
+        Player.discount.add(discount);
 
     }
-
-
-
 
 }

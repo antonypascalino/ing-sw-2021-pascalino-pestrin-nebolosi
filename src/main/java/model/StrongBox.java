@@ -38,12 +38,12 @@ public class StrongBox
         return resources;
     }
 
-    public boolean removeResource(Resource res)
+    public boolean removeResource(Resource res) throws Exception
     {
         if (checkAvailability(resources) == true)
         return resources.remove(res);
         else
-            return false;
+            throw new ResourceNotAvaible;
     }
 
     public boolean checkAvailability(ArrayList<Resource> res)

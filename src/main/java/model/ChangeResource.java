@@ -34,7 +34,7 @@ public class ChangeResource implements LeaderCard
         int secondColor = 0;
         boolean firstColor = false;
 
-        for( DevCard card : player.getBoard().getSlot().getDevCards())
+        for( DevCard card : player.getBoard().getSlot().getAllCards())
         {
             if (card.getColor().equals(color1)) firstColor = true;
             if (card.getColor().equals(color2)) secondColor++ ;

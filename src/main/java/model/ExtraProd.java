@@ -2,7 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
-public class ExtraProd implements LeaderCard {
+public class ExtraProd  extends DevCard implements LeaderCard{
 
     private int victoryPoints;
     private boolean isEnable;
@@ -12,6 +12,7 @@ public class ExtraProd implements LeaderCard {
 
     public ExtraProd(int victoryPoints, String requires, Resource prodResource)
     {
+        super();
         this.prodResource = prodResource;
         this.requires = requires;
         this.victoryPoints = victoryPoints;
@@ -29,7 +30,7 @@ public class ExtraProd implements LeaderCard {
 
     public boolean canBePlayed()
     {
-        for(DevCard card : player.getBoard().getSlot().getDevCards() )
+        for(DevCard card : player.getBoard().getSlot().getAllCards() )
         {
             if (card.getColor().equals(requires) && card.getLevel()==2) return true;
         }
@@ -55,11 +56,13 @@ public class ExtraProd implements LeaderCard {
             if (player.getBoard().getWareHouse().getResources().contains(prodResource)) return true;
             if (player.getBoard().getStrongBox().getResources().contains(prodResource)) return true;
         }
-        return false
+        return false;
     }
 
-    public ArrayList<Resource> produce(Resource choice)
+    public ArrayList<Resource> produce()
     {
+        //Chiedere tramite la view quale risorsa produrre
+        Resource choice; //Risultato dalla view
         if (canProduce())
         {
             //chiedere al player da dove vuole prendere la risorsa per produrre
@@ -74,13 +77,9 @@ public class ExtraProd implements LeaderCard {
             }
 
             //add resource to StrongBox and a move in FaithPath
-            player.getBoard().getStrongBox().addResources(choice);
+            player.getBoard().getStrongBox().addResource(choice);
             player.getBoard().getFaithPath().moveForward(1);
         }
     }
 
-    public void scazzaPlauyer()
-    {
-        player.getVictoryPoints() = 5;
-    }
 }
