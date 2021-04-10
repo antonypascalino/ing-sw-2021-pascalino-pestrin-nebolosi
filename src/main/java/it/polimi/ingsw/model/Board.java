@@ -50,10 +50,17 @@ public class Board
     /*
     Remove the resources asking through the view where to get them
     @result removed resources from either the strongBox or the wareHouse only if the player has them
+    @signal throws an exception if the player doesn't have the resources
      */
-    public void removeResources(ArrayList<Resource> toRem)
+    public void removeResources(ArrayList<Resource> toRem) throws ResourceNotAvaible
     {
-        if(hasResources(toRem))
+        //If the player doesn't have the resources throw a new exception
+        if(!hasResources(toRem))
+        {
+            throw new ResourceNotAvaible();
+        }
+        //Othetwise the resources have to be there and the player can choose where to get them
+        else
         {
             for(Resource r: toRem)
             {
@@ -64,7 +71,7 @@ public class Board
                         strongBox.removeResource(r);
                     }
                     //If the resource is not in the strongbox it has to be in the warehouse
-                    catch(Exception ex)
+                    catch(ResourceNotAvaible ex)
                     {
                         View.print("The resource is not available here, I'm getting it from the warehouse");
                         wareHouse.removeResource(r);
@@ -77,17 +84,10 @@ public class Board
                         wareHouse.removeResource(r);
                     }
                     //If the resource is not in the strongbox it has to be in the warehouse
-                    catch(Exception ex)
+                    catch(ResourceNotAvaible exc)
                     {
                         View.print("The resource is not available here, I'm getting it from the strongbox");
-                        try
-                        {
-                            strongBox.removeResource(r);
-                        }
-                        catch (Exception exc)
-                        {
-
-                        }
+                        strongBox.removeResource(r);
                     }
                 }
             }

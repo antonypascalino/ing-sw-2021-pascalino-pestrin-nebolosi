@@ -1,7 +1,5 @@
 package it.polimi.ingsw.model;
 
-import jdk.internal.icu.text.UnicodeSet;
-
 import java.util.ArrayList;
 
 public class StrongBox
@@ -38,12 +36,12 @@ public class StrongBox
         return resources;
     }
 
-    public boolean removeResource(Resource res) throws Exception
+    public boolean removeResource(Resource res) throws ResourceNotAvaible
     {
         if (checkAvailability(resources) == true)
-        return resources.remove(res);
+            return resources.remove(res);
         else
-            throw new ResourceNotAvaible;
+            throw new ResourceNotAvaible();
     }
 
     public boolean checkAvailability(ArrayList<Resource> res)

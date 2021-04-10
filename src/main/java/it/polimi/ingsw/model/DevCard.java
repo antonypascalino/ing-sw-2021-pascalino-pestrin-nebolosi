@@ -57,9 +57,15 @@ public class DevCard {
     When used gives back the resources
     @result an arrayList containing all the resources
      */
-    public ArrayList<Resource> produce() {
+    public ArrayList<Resource> produce()
+    {
+        try{
+            owner.getBoard().removeResources((ArrayList<Resource>) requires.clone());
+        }
+        catch(ResourceNotAvaible ex)
+        {
 
-        owner.getBoard().removeResources((ArrayList<Resource>) requires.clone());
+        }
 
         //Needs to be casted
         return (ArrayList<Resource>) produces.clone();

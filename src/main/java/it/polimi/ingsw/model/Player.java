@@ -41,6 +41,7 @@ public class Player {
         DevCard card;
         int slot;
 
+        //Dev'essere cambiato in modo che sia gestito in qualche modo dal game, tipo assegnando al giocatore un riferimento al game in cui si trova
         card = Table.buyDev(color, level);
         card.setOwner(this);
         //richiesta al giocatore in quale slot mettere la card

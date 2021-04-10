@@ -57,10 +57,11 @@ public class WareHouse
     }
 
     //remove the resource
-    public Boolean removeResource(Resource res)
+    public Boolean removeResource(Resource res) throws ResourceNotAvaible
     {
+        //If the resource cannot be removed throw an exception
         if(!checkAvailability(res))
-            return false;
+            throw new ResourceNotAvaible();
 
         //Else return true after removing the first occurancy of the resource
         Resource[] currentLevel;
