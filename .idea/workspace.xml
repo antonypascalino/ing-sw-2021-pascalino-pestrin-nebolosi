@@ -13,17 +13,26 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ff9a7dea-1369-4e48-ab37-81feeebfbb22" name="Default Changelist" comment="Fixed some errors post merge while calling">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/DevCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/DevCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Discount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Discount.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/ExtraDeposit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/ExtraDeposit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/ExtraProd.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/ExtraProd.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/LeaderCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/LeaderCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Market.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Market.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Slot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Slot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/WareHouse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/WareHouse.java" afterDir="false" />
+    <list default="true" id="ff9a7dea-1369-4e48-ab37-81feeebfbb22" name="Default Changelist" comment="Added exception">
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/BasicDevSpace.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/it/polimi/ingsw/model/BasicDevSpace.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/it/polimi/ingsw/model/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/ChangeResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/it/polimi/ingsw/model/ChangeResource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Costants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/it/polimi/ingsw/model/Costants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/DevCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/it/polimi/ingsw/model/DevCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Discount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/it/polimi/ingsw/model/Discount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/ExtraDeposit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/it/polimi/ingsw/model/ExtraDeposit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/ExtraProd.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/it/polimi/ingsw/model/ExtraProd.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/FaithPath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/it/polimi/ingsw/model/FaithPath.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/LeaderCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/it/polimi/ingsw/model/LeaderCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Market.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/it/polimi/ingsw/model/Market.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/it/polimi/ingsw/model/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Resource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/it/polimi/ingsw/model/Resource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/ResourceNotAvaible.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/it/polimi/ingsw/model/ResourceNotAvaible.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Slot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/it/polimi/ingsw/model/Slot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/StrongBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/it/polimi/ingsw/model/StrongBox.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Table.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/it/polimi/ingsw/model/Table.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/TempBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/it/polimi/ingsw/model/TempBox.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/WareHouse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/it/polimi/ingsw/model/WareHouse.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,6 +79,9 @@
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="it.polimi.ingsw" />
+    </key>
     <key name="CreateClassDialog.RecentsKey">
       <recent name="model" />
     </key>
@@ -119,7 +131,8 @@
     <MESSAGE value="Added a costants static class" />
     <MESSAGE value="Finished a first implementation of the table class which handle the devCard disposition" />
     <MESSAGE value="Fixed some errors post merge while calling" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed some errors post merge while calling" />
+    <MESSAGE value="Added exception" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added exception" />
   </component>
   <component name="WindowStateProjectService">
     <state x="575" y="213" key="#Project_Structure" timestamp="1617877712665">
@@ -127,6 +140,18 @@
     </state>
     <state x="575" y="213" key="#Project_Structure/0.0.2048.1280@0.0.2048.1280" timestamp="1617877712665" />
     <state x="575" y="219" key="#Project_Structure/0.25.2048.1167@0.25.2048.1167" timestamp="1617788777155" />
+    <state x="1018" y="500" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1618050994527">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state x="1018" y="500" key="#com.intellij.ide.util.PackageChooserDialog/0.0.2560.1440/-1792.0.1792.1120@0.0.2560.1440" timestamp="1618050994527" />
+    <state x="791" y="638" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1618050986956">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state x="791" y="638" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.2560.1440/-1792.0.1792.1120@0.0.2560.1440" timestamp="1618050986956" />
+    <state x="1058" y="605" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages" timestamp="1618050997129">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state x="1058" y="605" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/0.0.2560.1440/-1792.0.1792.1120@0.0.2560.1440" timestamp="1618050997129" />
     <state x="770" y="353" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1617965437060">
       <screen x="0" y="0" width="2048" height="1280" />
     </state>
@@ -151,11 +176,12 @@
     </state>
     <state width="2006" height="371" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1617989722586" />
     <state width="2006" height="371" key="GridCell.Tab.0.right/0.0.2048.1280@0.0.2048.1280" timestamp="1617965444209" />
-    <state x="585" y="307" key="Vcs.Push.Dialog.v2" timestamp="1617978733131">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state x="780" y="409" key="Vcs.Push.Dialog.v2" timestamp="1618050675038">
+      <screen x="0" y="0" width="2560" height="1440" />
     </state>
     <state x="585" y="307" key="Vcs.Push.Dialog.v2/0.0.1920.1080/-1792.441.1792.1120@0.0.1920.1080" timestamp="1617978733131" />
     <state x="624" y="364" key="Vcs.Push.Dialog.v2/0.0.2048.1280@0.0.2048.1280" timestamp="1617958712920" />
+    <state x="780" y="409" key="Vcs.Push.Dialog.v2/0.0.2560.1440/-1792.0.1792.1120@0.0.2560.1440" timestamp="1618050675038" />
     <state x="807" y="614" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1617954171978">
       <screen x="0" y="0" width="2048" height="1280" />
     </state>

@@ -1,4 +1,4 @@
-package model;
+package it.polimi.ingsw.model;
 
 import jdk.internal.icu.text.UnicodeSet;
 

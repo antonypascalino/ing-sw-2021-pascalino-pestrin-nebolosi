@@ -1,10 +1,7 @@
-package model;
+package it.polimi.ingsw.model;
 
 import java.util.ArrayList;
 import java.util.Random;
-
-import static model.Costants.MARKETCOLS;
-import static model.Costants.MARKETROWS;
 
 
 public class Market {
@@ -18,7 +15,7 @@ public class Market {
      */
     public Market(ArrayList<Resource> gameRes)
     {
-        actualSituation = new Resource[MARKETROWS][MARKETCOLS];
+        actualSituation = new Resource[Costants.MARKETROWS][Costants.MARKETCOLS];
         Random rnd = new Random();
         int i;
 
@@ -28,8 +25,8 @@ public class Market {
            System.out.println("Not enough resources");
         }
 
-        for (int r=0; r<MARKETROWS; r++)
-            for(int c=0; c<MARKETCOLS; c++)
+        for (int r = 0; r< Costants.MARKETROWS; r++)
+            for(int c = 0; c< Costants.MARKETCOLS; c++)
             {
 
                 //Gets a new random passing the size of the array
@@ -55,7 +52,7 @@ public class Market {
     {
         ArrayList<Resource> result = new ArrayList<Resource>();
         Resource tmp;
-        for(int r = 0; r< MARKETROWS; r++)
+        for(int r = 0; r< Costants.MARKETROWS; r++)
         {
             tmp=new Resource(actualSituation[r][col]); //I want to return a new resource that looks like the one i have but it's not the same
             result.add(tmp);
@@ -63,11 +60,11 @@ public class Market {
 
         //Once the result array is ready move the market resources
         tmp=actualSituation[0][col];
-        for(int r = 0; r< MARKETROWS-1; r++)
+        for(int r = 0; r< Costants.MARKETROWS-1; r++)
         {
            actualSituation[r][col] = actualSituation[r+1][col];
         }
-        actualSituation[MARKETROWS-1][col]=freeOne;
+        actualSituation[Costants.MARKETROWS-1][col]=freeOne;
         freeOne=tmp;
         return result;
     }
@@ -80,7 +77,7 @@ public class Market {
     {
         ArrayList<Resource> result = new ArrayList<Resource>();
         Resource tmp;
-        for(int c = 0; c< MARKETCOLS; c++)
+        for(int c = 0; c< Costants.MARKETCOLS; c++)
         {
             tmp=new Resource(actualSituation[row][c]);
             result.add(tmp);
@@ -88,11 +85,11 @@ public class Market {
 
         //Once the result array is ready move the market resources
         tmp=actualSituation[row][0];
-        for(int c = 0; c< MARKETCOLS-1; c++)
+        for(int c = 0; c< Costants.MARKETCOLS-1; c++)
         {
             actualSituation[row][c] = actualSituation[row][c+1];
         }
-        actualSituation[row][MARKETCOLS-1]=freeOne;
+        actualSituation[row][Costants.MARKETCOLS-1]=freeOne;
         freeOne=tmp;
         return result;
     }

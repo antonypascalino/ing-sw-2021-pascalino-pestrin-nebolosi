@@ -1,4 +1,4 @@
-package model;
+package it.polimi.ingsw.model;
 
 public class Costants {
     public static final int MARKETROWS=4;

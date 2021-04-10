@@ -1,6 +1,5 @@
-package model;
+package it.polimi.ingsw.model;
 
-import java.util.ArrayList;
 import java.util.Collections;
 
 public class ExtraDeposit implements LeaderCard {
