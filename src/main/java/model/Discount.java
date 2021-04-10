@@ -40,7 +40,7 @@ public class Discount implements LeaderCard {
 
     public boolean canBePlayed()
     {
-        return Slot.getDevCards().containsAll(requires);
+        return Slot.getALLCards().containsAll(requires);
     }
 
     public void playCard()

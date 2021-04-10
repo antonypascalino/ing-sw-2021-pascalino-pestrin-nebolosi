@@ -57,7 +57,7 @@ public class Market {
         Resource tmp;
         for(int r = 0; r< MARKETROWS; r++)
         {
-            tmp=new Resource(actualSituation[r][col]);
+            tmp=new Resource(actualSituation[r][col]); //I want to return a new resource that looks like the one i have but it's not the same
             result.add(tmp);
         }
 

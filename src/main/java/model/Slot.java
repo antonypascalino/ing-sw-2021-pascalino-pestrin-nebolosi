@@ -35,6 +35,14 @@ public class Slot
         }
     }
 
+    public void addExternalCard(DevCard dev)
+    {
+        DevCard[] tmp = new DevCard[1];
+        tmp[0]=dev;
+        slots.add(tmp);
+
+    }
+
     public boolean checkSpace(DevCard card, int slot)
     {
         //gets the array of cards on the address "slot"
@@ -43,7 +51,7 @@ public class Slot
         DevCard currCard;
 
         //checks if the slot is empty or not
-        if(card.level == 1)
+        if(card.getLevel() == 1)
         {
            for(int i = 0; i < currSlot.length; i++ )
            {
@@ -62,7 +70,7 @@ public class Slot
                 if(currSlot[i] != null)
                 {
                     currCard = currSlot[i];
-                    if(card.level == currCard.level+1)
+                    if(card.getLevel() == currCard.getLevel()+1)
                     {
                         return true;
                     }

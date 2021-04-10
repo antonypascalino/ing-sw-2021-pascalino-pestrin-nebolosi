@@ -7,26 +7,30 @@ public class ExtraProd  extends DevCard implements LeaderCard{
     private int victoryPoints;
     private boolean isEnable;
     private Player player;
-    private String requires;
-    private Resource prodResource;
+    private String requires; //WHat it needs to be played
+    private Resource prodResource;  //What it needs for producing
 
     public ExtraProd(int victoryPoints, String requires, Resource prodResource)
     {
-        super();
+        super(prodResource);
+        //Un po' di rindondanza, forze basta il super anche per gli enable
         this.prodResource = prodResource;
         this.requires = requires;
         this.victoryPoints = victoryPoints;
     }
 
-    public void assignTo (Player player)
+    public void assignTo(Player player)
     {
         this.player = player;
     }
 
+    /*
     public boolean isEnable()
     {
         return isEnable;
     }
+     */
+
 
     public boolean canBePlayed()
     {
@@ -44,11 +48,12 @@ public class ExtraProd  extends DevCard implements LeaderCard{
         {
             isEnable = true;
             player.addVictoryPoints(victoryPoints);
-            player.getBoard().getExtraProdSlot().addCard(this);
+            player.getBoard().getSlot().addExternalCard(this);
         }
 
     }
 
+    /*
     public boolean canProduce()
     {
         if (isEnable)
@@ -58,28 +63,25 @@ public class ExtraProd  extends DevCard implements LeaderCard{
         }
         return false;
     }
+     */
+
 
     public ArrayList<Resource> produce()
     {
         //Chiedere tramite la view quale risorsa produrre
-        Resource choice; //Risultato dalla view
+        Resource choice=new Resource(); //Risultato dalla view
         if (canProduce())
         {
-            //chiedere al player da dove vuole prendere la risorsa per produrre
+            owner.getBoard().removeResources((ArrayList<Resource>) super.requires);
 
-            if(/*il giocatore ha scelto Warehouse*/)
-            {
-                player.getBoard().getWareHouse().removeResource(prodResource);
-            }
-            if(/*il giocatore ha scelto StrongBox*/)
-            {
-                player.getBoard().getStrongBox().removeResource(prodResource);
-            }
+            //Needs to be casted
+
 
             //add resource to StrongBox and a move in FaithPath
-            player.getBoard().getStrongBox().addResource(choice);
             player.getBoard().getFaithPath().moveForward(1);
+            return (ArrayList<Resource>) choice;
         }
+        return null;
     }
 
 }

@@ -8,10 +8,10 @@ public class DevCard {
     private int level;
     private int victoryPoint;
     private boolean isEnable;
-    private Player owner;
+    protected Player owner;
 
     //What it needs and what it produces
-    private ArrayList<Resource> requires;
+    ArrayList<Resource> requires;
     private ArrayList<Resource> produces;
 
     private ArrayList<Resource> price;
@@ -37,8 +37,8 @@ public class DevCard {
         level = 0;
         victoryPoint = 0;
         requires = tmp;
-        produces = pro;
-        price = pri;
+        produces = null;
+        price = null;
         isEnable = false;
     }
 
@@ -59,15 +59,21 @@ public class DevCard {
     @result an arrayList containing all the resources
      */
     public ArrayList<Resource> produce() {
+
         owner.getBoard().removeResources((ArrayList<Resource>) requires.clone());
 
         //Needs to be casted
         return (ArrayList<Resource>) produces.clone();
     }
 
+    public boolean canProduce()
+    {
+        return owner.getBoard().hasResources(requires);
+    }
+
     //@result true if the card is on top and enabled
     public boolean canBeUsed() {
-        return isEnable;
+            return isEnable;
     }
 
     //used when the card is covered and it can't be used anymore
