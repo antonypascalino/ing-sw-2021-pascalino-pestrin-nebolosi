@@ -24,9 +24,9 @@ public class ChangeResource implements LeaderCard
         return isEnable;
     }
 
-    public void assignTo (Player player)
-    {
+    public void assignTo(Player player) {
         this.player = player;
+        player.addLeaderCard(this);
     }
 
     public boolean canBePlayed()

@@ -18,9 +18,9 @@ public class ExtraDeposit implements LeaderCard {
         this.depositableRes = depositableRes;
     }
 
-    public void assignTo(Player player)
-    {
+    public void assignTo(Player player) {
         this.player = player;
+        player.addLeaderCard(this);
     }
 
     public boolean isEnable()

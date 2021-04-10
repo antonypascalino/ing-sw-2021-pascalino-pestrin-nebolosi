@@ -19,9 +19,9 @@ public class ExtraProd  extends DevCard implements LeaderCard{
         this.victoryPoints = victoryPoints;
     }
 
-    public void assignTo(Player player)
-    {
+    public void assignTo(Player player) {
         this.player = player;
+        player.addLeaderCard(this);
     }
 
     /*
