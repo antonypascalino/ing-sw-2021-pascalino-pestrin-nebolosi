@@ -5,8 +5,6 @@ public class Slot
 {
     private ArrayList<DevCard[]> slots;
 
-    //DevCard devCard;
-
     public Slot()
     {
         //Create three empty slot for three stacks
