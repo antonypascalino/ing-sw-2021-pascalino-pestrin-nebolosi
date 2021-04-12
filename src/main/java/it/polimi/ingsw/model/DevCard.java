@@ -41,6 +41,7 @@ public class DevCard {
         isEnable = false;
     }
 
+    //When bought set their owner
     public void setOwner(Player owner) {
         this.owner = owner;
     }

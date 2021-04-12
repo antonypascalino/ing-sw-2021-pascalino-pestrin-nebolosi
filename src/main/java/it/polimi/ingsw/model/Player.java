@@ -5,7 +5,6 @@ public class Player {
 
     private String nickName;
     private int victoryPoints;
-    private int faithPoint;
     ArrayList<Resource> discounts;  //Dovrebbe essere friendly
     ArrayList<Resource> emptyValue;                             //Dovrebbe essere friendly
     private Board board;
@@ -17,7 +16,6 @@ public class Player {
         discounts = new ArrayList<Resource>();
         emptyValue = new ArrayList<Resource>();
         leaderCards = new ArrayList<LeaderCard>();
-        faithPoint = 0;
         victoryPoints = 0;
     }
 
