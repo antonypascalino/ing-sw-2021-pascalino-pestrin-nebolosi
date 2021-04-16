@@ -45,6 +45,10 @@ public class ChangeResource implements LeaderCard
 
     public void playCard()
     {
+        Resource tmp = new ChangeResource(player, change);
+
+        //Add the new powered player in substitition to the actual one if the game references
+        player.getGame().updatePlayer(player,tmp);
         if(canBePlayed()) player.emptyValue.add(change);
     }
 }
