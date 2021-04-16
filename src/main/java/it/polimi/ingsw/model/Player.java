@@ -41,6 +41,8 @@ public class Player {
 
         //Dev'essere cambiato in modo che sia gestito in qualche modo dal game, tipo assegnando al giocatore un riferimento al game in cui si trova
         card = Table.buyDev(color, level);
+        if(board.hasResources(card.getPrice()))
+
         card.setOwner(this);
         //richiesta al giocatore in quale slot mettere la card
         board.getSlot().purchaseCard(card,slot);

@@ -15,9 +15,17 @@ public class BasicDevSpace {
         ArrayList<Resource> tmp= new ArrayList<Resource>();
         tmp.add(res1);
         tmp.add(res2);
-        if(canBeUsed(res1,res2))
-        br.removeResources(tmp);
-        return View.chooseRes();
+        //if(canBeUsed(res1,res2))
+        try
+        {
+                br.removeResources(tmp);
+        }
+        catch (ResourceNotAvaible ex)
+        {
+            System.out.println("Risorsa non disponibile");
+        }
+       return Resource.SHIELD;
+        //return View.chooseRes();
     }
 
     public boolean canBeUsed(Resource res1, Resource res2)

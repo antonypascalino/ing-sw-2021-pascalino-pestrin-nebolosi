@@ -92,4 +92,7 @@ public class DevCard {
         isEnable = true;
     }
 
+    public ArrayList<Resource> getPrice() {
+        return price;
+    }
 }
