@@ -1,6 +1,9 @@
 package it.polimi.ingsw.model.Player;
+import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.model.Board.Board;
 import it.polimi.ingsw.model.Cards.LeaderCard;
+
+import java.util.ArrayList;
 
 /**
  * The type Player.
@@ -48,6 +51,8 @@ public abstract class Player {
         return original.getBoard();
     }
 
+    public Game getGame() { return original.getGame(); }
+
     /**
      * Add leader card.
      *
@@ -78,5 +83,24 @@ public abstract class Player {
     public void getFromMarket()
     {
         original.getFromMarket();
+    }
+
+
+    public ArrayList<LeaderCard> getLeaderCards()
+    {
+        return original.getLeaderCards();
+    }
+
+    /*
+    Gets all the production powers
+     */
+    public void getProduction()
+    {
+        original.getProduction();
+    }
+
+    public void produce()
+    {
+        original.produce();
     }
 }

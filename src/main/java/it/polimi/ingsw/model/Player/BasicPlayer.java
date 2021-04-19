@@ -69,6 +69,11 @@ public class BasicPlayer extends Player {
         return board;
     }
 
+    public ArrayList<LeaderCard> getLeaderCards()
+    {
+        return leaderCards;
+    }
+
     public void addLeaderCard (LeaderCard card)
     {
         leaderCards.add(card);
@@ -77,5 +82,19 @@ public class BasicPlayer extends Player {
     public void addVictoryPoints (int victoryPoints)
     {
         this.victoryPoints += victoryPoints;
+    }
+
+    public void getProduction()
+    {
+        for (DevCard dev : board.getSlot().getFrontCards())
+            //Used for giving the power of all cards to the view
+            //dev.getPower();
+            System.out.println("Debug");
+    }
+
+    public void produce()
+    {
+        //per ogni richiesta di produzione (dalla connection) attiva la giusta carta e salva la produzione
+        //nel forziere del giocatore
     }
 }

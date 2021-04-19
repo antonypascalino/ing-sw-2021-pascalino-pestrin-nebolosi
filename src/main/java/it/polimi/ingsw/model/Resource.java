@@ -29,7 +29,9 @@ public enum Resource {
     /**
      * Empty resource.
      */
-    EMPTY;
+    EMPTY,
+
+    CHOICE;
 
     private String color;
 

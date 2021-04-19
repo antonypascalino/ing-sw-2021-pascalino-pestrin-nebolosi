@@ -1,5 +1,6 @@
 package it.polimi.ingsw.model.Cards;
 
+import it.polimi.ingsw.model.Player.ExtraProdPlayer;
 import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Resource;
 
@@ -8,7 +9,7 @@ import java.util.ArrayList;
 /**
  * The type Extra prod.
  */
-public class ExtraProd  extends DevCard implements LeaderCard {
+public class ExtraProd implements LeaderCard {
 
     private int victoryPoints;
     private boolean isEnable;
@@ -25,7 +26,6 @@ public class ExtraProd  extends DevCard implements LeaderCard {
      */
     public ExtraProd(int victoryPoints, String requires, Resource prodResource)
     {
-        super(prodResource);
         //Un po' di rindondanza, forze basta il super anche per gli enable
         this.prodResource = prodResource;
         this.requires = requires;
@@ -61,40 +61,18 @@ public class ExtraProd  extends DevCard implements LeaderCard {
         {
             isEnable = true;
             player.addVictoryPoints(victoryPoints);
-            player.getBoard().getSlot().addExternalCard(this);
+            Player tmp =new ExtraProdPlayer(player, prodResource );
+            player.getGame().changePlayer(player, tmp);
+            for (LeaderCard card : player.getLeaderCards())
+            {
+                card.assignTo(tmp);
+            }
         }
-
     }
 
-    /*
-    public boolean canProduce()
-    {
-        if (isEnable)
-        {
-            if (player.getBoard().getWareHouse().getResources().contains(prodResource)) return true;
-            if (player.getBoard().getStrongBox().getResources().contains(prodResource)) return true;
-        }
-        return false;
-    }
-     */
 
 
-    public ArrayList<Resource> produce()
-    {
-        //Chiedere tramite la view quale risorsa produrre
-        Resource choice=new Resource(); //Risultato dalla view
-        if (canProduce())
-        {
-            owner.getBoard().removeResources((ArrayList<Resource>) super.requires);
-
-            //Needs to be casted
 
 
-            //add resource to StrongBox and a move in FaithPath
-            player.getBoard().getFaithPath().moveForward(1);
-            return (ArrayList<Resource>) choice;
-        }
-        return null;
-    }
 
 }
