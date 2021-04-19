@@ -100,29 +100,29 @@ public class FaithPath
         if(pope == pope1)
         {
             // checks the advancement first
-           if(advancement < 5)
-           {
-               tile1 = false;
-               return false;
-           }
-           //checks if the special tile is true or false
-           if(tile1 == false)
-               return false;
-           else
-               return true;
+            if(advancement < 5)
+            {
+                tile1 = false;
+                return false;
+            }
+            //checks if the special tile is true or false
+            if(tile1 == false)
+                return false;
+            else
+                return true;
 
         }
         else if(pope == pope2)
         {
-           if(advancement < 12)
-           {
-               tile2 = false;
-               return false;
-           }
+            if(advancement < 12)
+            {
+                tile2 = false;
+                return false;
+            }
             if(tile2 == false)
                 return false;
-           else
-               return true;
+            else
+                return true;
         }
         else if(pope == pope3)
         {

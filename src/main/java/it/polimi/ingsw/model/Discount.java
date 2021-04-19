@@ -24,7 +24,6 @@ public class Discount implements LeaderCard {
 
     public void playCard() {
         if (canBePlayed()) {
-            player.discounts.add(discount);
             isEnable = true;
             player.addVictoryPoints(victoryPoints);
         }

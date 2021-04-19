@@ -1,65 +1,44 @@
 package it.polimi.ingsw.model;
 import java.util.ArrayList;
 
-public class Player {
-
-    private String nickName;
-    private int victoryPoints;
-    ArrayList<Resource> discounts;  //Dovrebbe essere friendly
-    ArrayList<Resource> emptyValue;                             //Dovrebbe essere friendly
-    private Board board;
-    private ArrayList<LeaderCard> leaderCards;
-
-    public Player()
+public abstract class Player {
+    private Player original;
+    public void setNickName(String newNick)
     {
-        board = new Board();
-        discounts = new ArrayList<Resource>();
-        emptyValue = new ArrayList<Resource>();
-        leaderCards = new ArrayList<LeaderCard>();
-        victoryPoints = 0;
-    }
-
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
+        original.setNickName(newNick);
     }
 
     public String getNickName()
     {
-        return nickName;
+        return original.getNickName();
     }
 
     public int getVictoryPoints()
     {
-        return victoryPoints;
+        return original.getVictoryPoints();
     }
 
-    //when player chooses the card, this method buys the card and set the card into the slot
-    public void getDevCard(String color, int level)
+    public Board getBoard()
     {
-        DevCard card;
-        int slot;
-
-        //Dev'essere cambiato in modo che sia gestito in qualche modo dal game, tipo assegnando al giocatore un riferimento al game in cui si trova
-        card = Table.buyDev(color, level);
-        if(board.hasResources(card.getPrice()))
-
-        card.setOwner(this);
-        //richiesta al giocatore in quale slot mettere la card
-        board.getSlot().purchaseCard(card,slot);
+        return original.getBoard();
     }
 
-    public Board getBoard() {
-        return board;
-    }
-
-    public void addLeaderCard (LeaderCard card)
+    /*
+    Used in the start game phase when the player chooses two out of the four leader cards
+    @param a leader card that needs to be added to the player
+     */
+    public void addLeaderCard(LeaderCard card)
     {
-        leaderCards.add(card);
+        original.addLeaderCard(card);
     }
 
-    public void addVictoryPoints (int victoryPoints)
+    public void addVictoryPoints(int vp)
     {
-        this.victoryPoints += victoryPoints;
+        original.addVictoryPoints(vp);
     }
 
+    public void getFromMarket()
+    {
+        original.getFromMarket();
+    }
 }
