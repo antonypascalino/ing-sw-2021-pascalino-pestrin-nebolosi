@@ -1,4 +1,8 @@
-package it.polimi.ingsw.model;
+package it.polimi.ingsw.model.Player;
+
+import it.polimi.ingsw.model.Cards.DevCard;
+import it.polimi.ingsw.model.Resource;
+import it.polimi.ingsw.model.Table.Table;
 
 import java.util.ArrayList;
 
@@ -24,18 +28,23 @@ public class DiscountedPlayer extends Player
      */
     public DiscountedPlayer(Player ori, ArrayList<Resource> dis)
     {
-        original=ori;
-        //super(original);
-        discount=dis;
+        original = ori;
+        discount = new ArrayList<Resource>();
+        discount.addAll(dis);
+        //If the original already had a discount it counts its discounts as well
+        if(original instanceof DiscountedPlayer)
+        {
+            discount.addAll(((DiscountedPlayer) original).getDiscount());
+        }
     }
 
     /**
      * Gets dev card.
-     *
+     *@Override
      * @param color the color
      * @param level the level
      */
-    @Override
+
     public void getDevCard(String color, int level)
     {
         DevCard card;
@@ -48,5 +57,10 @@ public class DiscountedPlayer extends Player
             card.setOwner(this);
         //richiesta al giocatore in quale slot mettere la card
         super.getBoard().getSlot().purchaseCard(card,slot);
+    }
+
+    public ArrayList<Resource> getDiscount()
+    {
+        return discount;
     }
 }

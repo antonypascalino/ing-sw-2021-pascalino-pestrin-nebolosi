@@ -1,4 +1,9 @@
-package it.polimi.ingsw.model;
+package it.polimi.ingsw.model.Player;
+
+import it.polimi.ingsw.model.Board.Board;
+import it.polimi.ingsw.model.Cards.DevCard;
+import it.polimi.ingsw.model.Cards.LeaderCard;
+import it.polimi.ingsw.model.Table.Table;
 
 import java.util.ArrayList;
 
@@ -10,13 +15,15 @@ public class BasicPlayer extends Player {
     private Board board;
     private ArrayList<LeaderCard> leaderCards;
     private int victoryPoints;
+    private Table table;
     private Player original; //Even if this attribute is in the Player class for not rewriting all the code, it's never being used in this class
 
     /**
      * Instantiates a new Basic player.
      */
-    public BasicPlayer()
+    public BasicPlayer(Table tb)
     {
+        table = tb;
         original=null;
         board = new Board();
         leaderCards = new ArrayList<LeaderCard>();
@@ -47,10 +54,10 @@ public class BasicPlayer extends Player {
     public void getDevCard(String color, int level)
     {
         DevCard card;
-        int slot;
+        int slot=2;
 
         //Dev'essere cambiato in modo che sia gestito in qualche modo dal game, tipo assegnando al giocatore un riferimento al game in cui si trova
-        card = Table.buyDev(color, level);
+        card = table.buyDev(color, level);
         if(board.hasResources(card.getPrice()))
 
             card.setOwner(this);

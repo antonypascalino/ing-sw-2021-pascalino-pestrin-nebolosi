@@ -1,4 +1,8 @@
-package it.polimi.ingsw.model;
+package it.polimi.ingsw.model.Cards;
+
+import it.polimi.ingsw.model.Player.Player;
+import it.polimi.ingsw.model.Resource;
+import it.polimi.ingsw.model.ResourceNotAvaible;
 
 import java.util.ArrayList;
 
@@ -35,7 +39,7 @@ public class DevCard {
      * @param pro the pro
      * @param pri the pri
      */
-//Gets all the information from the controller and istantiate a new card to be set on the game table
+//Gets all the information from the it.polimi.ingsw.controller and istantiate a new card to be set on the game table
     public DevCard(String col, int lev, int vp, ArrayList<Resource> req, ArrayList<Resource> pro, ArrayList<Resource> pri) {
         color = col;
         level = lev;

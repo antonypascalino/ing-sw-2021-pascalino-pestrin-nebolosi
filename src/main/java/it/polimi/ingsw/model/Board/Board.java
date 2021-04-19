@@ -1,4 +1,7 @@
-package it.polimi.ingsw.model;
+package it.polimi.ingsw.model.Board;
+
+import it.polimi.ingsw.connection.Connection;
+import it.polimi.ingsw.model.*;
 
 import java.util.ArrayList;
 
@@ -108,7 +111,7 @@ public class Board
         {
             for(Resource r: toRem)
             {
-                String place=View.askWhere(r);
+                String place= Connection.askWhere(r);
                 if(place.equals("strongbox"))
                 {
                     try {
@@ -117,7 +120,7 @@ public class Board
                     //If the resource is not in the strongbox it has to be in the warehouse
                     catch(ResourceNotAvaible ex)
                     {
-                        View.print("The resource is not available here, I'm getting it from the warehouse");
+                        Connection.print("The resource is not available here, I'm getting it from the warehouse");
                         wareHouse.removeResource(r);
                     }
                 }
@@ -130,7 +133,7 @@ public class Board
                     //If the resource is not in the strongbox it has to be in the warehouse
                     catch(ResourceNotAvaible exc)
                     {
-                        View.print("The resource is not available here, I'm getting it from the strongbox");
+                        Connection.print("The resource is not available here, I'm getting it from the strongbox");
                         strongBox.removeResource(r);
                     }
                 }

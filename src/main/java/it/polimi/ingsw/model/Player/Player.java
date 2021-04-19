@@ -1,11 +1,12 @@
-package it.polimi.ingsw.model;
-import java.util.ArrayList;
+package it.polimi.ingsw.model.Player;
+import it.polimi.ingsw.model.Board.Board;
+import it.polimi.ingsw.model.Cards.LeaderCard;
 
 /**
  * The type Player.
  */
 public abstract class Player {
-    private Player original;
+    Player original;
 
     /**
      * Sets nick name.

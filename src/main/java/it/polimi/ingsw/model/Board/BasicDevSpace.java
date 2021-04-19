@@ -1,4 +1,8 @@
-package it.polimi.ingsw.model;
+package it.polimi.ingsw.model.Board;
+
+import it.polimi.ingsw.model.Board.Board;
+import it.polimi.ingsw.model.Resource;
+import it.polimi.ingsw.model.ResourceNotAvaible;
 
 import java.util.ArrayList;
 

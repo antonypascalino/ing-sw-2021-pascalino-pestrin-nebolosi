@@ -1,4 +1,7 @@
-package it.polimi.ingsw.model;
+package it.polimi.ingsw.model.Board;
+
+import it.polimi.ingsw.model.Resource;
+import it.polimi.ingsw.model.ResourceNotAvaible;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -33,6 +36,10 @@ public class WareHouse
         levels.add(level2);
         levels.add(level3);
         discount= new ArrayList<Resource>();
+    }
+
+    public ArrayList<Resource[]> getLevels(){
+        return levels;
     }
 
     /**

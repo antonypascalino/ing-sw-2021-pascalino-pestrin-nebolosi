@@ -1,4 +1,7 @@
-package it.polimi.ingsw.model;
+package it.polimi.ingsw.model.Cards;
+
+import it.polimi.ingsw.model.Player.Player;
+import it.polimi.ingsw.model.Resource;
 
 import java.util.Collections;
 
@@ -49,7 +52,7 @@ public class ExtraDeposit implements LeaderCard {
         {
             isEnable = true;
             player.addVictoryPoints(victoryPoints);
-            player.getBoard().getWareHouse().levels.add(new Resource[2]);
+            player.getBoard().getWareHouse().getLevels().add(new Resource[2]);
         }
     }
 

@@ -1,11 +1,14 @@
-package it.polimi.ingsw.model;
+package it.polimi.ingsw.model.Cards;
+
+import it.polimi.ingsw.model.Player.Player;
+import it.polimi.ingsw.model.Resource;
 
 import java.util.ArrayList;
 
 /**
  * The type Extra prod.
  */
-public class ExtraProd  extends DevCard implements LeaderCard{
+public class ExtraProd  extends DevCard implements LeaderCard {
 
     private int victoryPoints;
     private boolean isEnable;
