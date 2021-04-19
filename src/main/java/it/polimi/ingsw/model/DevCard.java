@@ -2,21 +2,40 @@ package it.polimi.ingsw.model;
 
 import java.util.ArrayList;
 
+/**
+ * The type Dev card.
+ */
 public class DevCard {
     private String color;
     private int level;
     private int victoryPoint;
     private boolean isEnable;
+    /**
+     * The Owner.
+     */
     protected Player owner;
 
-    //What it needs and what it produces
+    /**
+     * The Requires.
+     */
+//What it needs and what it produces
     ArrayList<Resource> requires;
     private ArrayList<Resource> produces;
 
     private ArrayList<Resource> price;
 
 
-    //Gets all the information from the controller and istantiate a new card to be set on the game table
+    /**
+     * Instantiates a new Dev card.
+     *
+     * @param col the col
+     * @param lev the lev
+     * @param vp  the vp
+     * @param req the req
+     * @param pro the pro
+     * @param pri the pri
+     */
+//Gets all the information from the controller and istantiate a new card to be set on the game table
     public DevCard(String col, int lev, int vp, ArrayList<Resource> req, ArrayList<Resource> pro, ArrayList<Resource> pri) {
         color = col;
         level = lev;
@@ -27,7 +46,12 @@ public class DevCard {
         isEnable = false;
     }
 
-    //Constructor used by subclasses
+    /**
+     * Instantiates a new Dev card.
+     *
+     * @param res the res
+     */
+//Constructor used by subclasses
     public DevCard(Resource res)
     {
         ArrayList<Resource> tmp= new ArrayList<>();
@@ -41,20 +65,40 @@ public class DevCard {
         isEnable = false;
     }
 
-    //When bought set their owner
+    /**
+     * Sets owner.
+     *
+     * @param owner the owner
+     */
+//When bought set their owner
     public void setOwner(Player owner) {
         this.owner = owner;
     }
 
+    /**
+     * Gets color.
+     *
+     * @return the color
+     */
     public String getColor() {
         return color;
     }
 
+    /**
+     * Gets level.
+     *
+     * @return the level
+     */
     public int getLevel() {
         return level;
     }
 
-    /*
+    /**
+     * Produce array list.
+     *
+     * @return the array list
+     */
+/*
     When used gives back the resources
     @result an arrayList containing all the resources
      */
@@ -72,26 +116,47 @@ public class DevCard {
         return (ArrayList<Resource>) produces.clone();
     }
 
+    /**
+     * Can produce boolean.
+     *
+     * @return the boolean
+     */
     public boolean canProduce()
     {
         return owner.getBoard().hasResources(requires);
     }
 
-    //@result true if the card is on top and enabled
+    /**
+     * Can be used boolean.
+     *
+     * @return the boolean
+     */
+//@result true if the card is on top and enabled
     public boolean canBeUsed() {
             return isEnable;
     }
 
-    //used when the card is covered and it can't be used anymore
+    /**
+     * Disable.
+     */
+//used when the card is covered and it can't be used anymore
     public void disable() {
         isEnable = false;
     }
 
-    //Used when the card is bought and set on top
+    /**
+     * Enable.
+     */
+//Used when the card is bought and set on top
     public void enable() {
         isEnable = true;
     }
 
+    /**
+     * Gets price.
+     *
+     * @return the price
+     */
     public ArrayList<Resource> getPrice() {
         return price;
     }

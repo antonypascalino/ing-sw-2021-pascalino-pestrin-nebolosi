@@ -1,5 +1,8 @@
 package it.polimi.ingsw.model;
 
+/**
+ * The type Faith path.
+ */
 public class FaithPath
 {
     private int advancement;
@@ -14,6 +17,9 @@ public class FaithPath
     private boolean tile2;
     private boolean tile3;
 
+    /**
+     * Instantiates a new Faith path.
+     */
     public FaithPath()
     {
         advancement = 0;
@@ -25,12 +31,22 @@ public class FaithPath
         tile3 = true;
     }
 
+    /**
+     * Sets player.
+     *
+     * @param player the player
+     */
     public void setPlayer(Player player)
     {
         this.player = player;
     }
 
-    // updates the advancement in the faith path
+    /**
+     * Move forward.
+     *
+     * @param steps the steps
+     */
+// updates the advancement in the faith path
     public void moveForward(int steps)
     {
         if(steps != 0)
@@ -42,7 +58,12 @@ public class FaithPath
 
     }
 
-    //could be improved
+    /**
+     * Check victory points.
+     *
+     * @param a the a
+     */
+//could be improved
     //if advancement % 3 == 0, addVictoryPoints is called. The argument is the amount of VP written on
     //faith path
     public void checkVictoryPoints(int a)
@@ -65,7 +86,13 @@ public class FaithPath
             player.addVictoryPoints(20);
     }
 
-    //A Pope Space is located every 8 steps
+    /**
+     * Check pope space boolean.
+     *
+     * @param a the a
+     * @return the boolean
+     */
+//A Pope Space is located every 8 steps
     public boolean checkPopeSpace(int a)
     {
         if (a == pope1)
@@ -88,7 +115,13 @@ public class FaithPath
 
     }
 
-    /*
+    /**
+     * Check vatican section boolean.
+     *
+     * @param pope the pope
+     * @return the boolean
+     */
+/*
     if the tile is true and the advancement is more than the threshold, it means it's the first time
     a player passes that particular pope space. If another player (that was behind) passes that
     same pope space later in the game, checkVaticanSection is still called but the tile remains false

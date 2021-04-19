@@ -2,6 +2,9 @@ package it.polimi.ingsw.model;
 
 import java.util.ArrayList;
 
+/**
+ * The type Extra prod.
+ */
 public class ExtraProd  extends DevCard implements LeaderCard{
 
     private int victoryPoints;
@@ -10,6 +13,13 @@ public class ExtraProd  extends DevCard implements LeaderCard{
     private String requires; //WHat it needs to be played
     private Resource prodResource;  //What it needs for producing
 
+    /**
+     * Instantiates a new Extra prod.
+     *
+     * @param victoryPoints the victory points
+     * @param requires      the requires
+     * @param prodResource  the prod resource
+     */
     public ExtraProd(int victoryPoints, String requires, Resource prodResource)
     {
         super(prodResource);

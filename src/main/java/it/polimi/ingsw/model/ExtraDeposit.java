@@ -2,6 +2,9 @@ package it.polimi.ingsw.model;
 
 import java.util.Collections;
 
+/**
+ * The type Extra deposit.
+ */
 public class ExtraDeposit implements LeaderCard {
 
     private int victoryPoints;
@@ -11,6 +14,13 @@ public class ExtraDeposit implements LeaderCard {
     private Resource depositableRes;
 
 
+    /**
+     * Instantiates a new Extra deposit.
+     *
+     * @param victoryPoints  the victory points
+     * @param requires       the requires
+     * @param depositableRes the depositable res
+     */
     public ExtraDeposit(int victoryPoints, Resource requires, Resource depositableRes)
     {
         this.victoryPoints = victoryPoints;
@@ -23,6 +33,11 @@ public class ExtraDeposit implements LeaderCard {
         player.addLeaderCard(this);
     }
 
+    /**
+     * Is enable boolean.
+     *
+     * @return the boolean
+     */
     public boolean isEnable()
     {
         return isEnable;

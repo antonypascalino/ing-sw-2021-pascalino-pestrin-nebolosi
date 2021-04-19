@@ -2,6 +2,9 @@ package it.polimi.ingsw.model;
 
 import java.util.ArrayList;
 
+/**
+ * The type Basic player.
+ */
 public class BasicPlayer extends Player {
     private String nickName;
     private Board board;
@@ -9,6 +12,9 @@ public class BasicPlayer extends Player {
     private int victoryPoints;
     private Player original; //Even if this attribute is in the Player class for not rewriting all the code, it's never being used in this class
 
+    /**
+     * Instantiates a new Basic player.
+     */
     public BasicPlayer()
     {
         original=null;
@@ -31,7 +37,13 @@ public class BasicPlayer extends Player {
         return victoryPoints;
     }
 
-    //when player chooses the card, this method buys the card and set the card into the slot
+    /**
+     * Gets dev card.
+     *
+     * @param color the color
+     * @param level the level
+     */
+//when player chooses the card, this method buys the card and set the card into the slot
     public void getDevCard(String color, int level)
     {
         DevCard card;

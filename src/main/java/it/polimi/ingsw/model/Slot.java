@@ -1,10 +1,16 @@
 package it.polimi.ingsw.model;
 import java.util.ArrayList;
 
+/**
+ * The type Slot.
+ */
 public class Slot
 {
     private ArrayList<DevCard[]> slots;
 
+    /**
+     * Instantiates a new Slot.
+     */
     public Slot()
     {
         //Create three empty slot for three stacks
@@ -17,6 +23,12 @@ public class Slot
         slots.add(tmp);
     }
 
+    /**
+     * Purchase card.
+     *
+     * @param card the card
+     * @param slot the slot
+     */
     public void purchaseCard(DevCard card, int slot)
     {
         //if checkSpace is true
@@ -33,6 +45,11 @@ public class Slot
         }
     }
 
+    /**
+     * Add external card.
+     *
+     * @param dev the dev
+     */
     public void addExternalCard(DevCard dev)
     {
         DevCard[] tmp = new DevCard[1];
@@ -41,6 +58,13 @@ public class Slot
 
     }
 
+    /**
+     * Check space boolean.
+     *
+     * @param card the card
+     * @param slot the slot
+     * @return the boolean
+     */
     public boolean checkSpace(DevCard card, int slot)
     {
         //gets the array of cards on the address "slot"
@@ -80,6 +104,11 @@ public class Slot
 
     }
 
+    /**
+     * Get front cards dev card [ ].
+     *
+     * @return the dev card [ ]
+     */
     public DevCard[] getFrontCards()
     {
         //looks at the last element of each slot
@@ -104,6 +133,11 @@ public class Slot
 
     }
 
+    /**
+     * Gets all cards.
+     *
+     * @return the all cards
+     */
     public ArrayList<DevCard> getAllCards()
     {
         //searches through all the slots and returns all the cards

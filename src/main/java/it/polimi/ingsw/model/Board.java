@@ -2,6 +2,9 @@ package it.polimi.ingsw.model;
 
 import java.util.ArrayList;
 
+/**
+ * The type Board.
+ */
 public class Board
 {
     //references to all the classes mentioned below
@@ -11,6 +14,9 @@ public class Board
   private TempBox tempBox;
   private FaithPath faithPath;
 
+    /**
+     * Instantiates a new Board.
+     */
     public Board()
     {
         wareHouse = new WareHouse();
@@ -19,26 +25,58 @@ public class Board
         tempBox = new TempBox(strongBox);
         faithPath = new FaithPath();
     }
+
+    /**
+     * Gets ware house.
+     *
+     * @return the ware house
+     */
     public WareHouse getWareHouse() {
         return wareHouse;
     }
 
+    /**
+     * Gets strong box.
+     *
+     * @return the strong box
+     */
     public StrongBox getStrongBox() {
         return strongBox;
     }
 
+    /**
+     * Gets slot.
+     *
+     * @return the slot
+     */
     public Slot getSlot() {
         return slot;
     }
 
+    /**
+     * Gets temp box.
+     *
+     * @return the temp box
+     */
     public TempBox getTempBox() {
         return tempBox;
     }
 
+    /**
+     * Gets faith path.
+     *
+     * @return the faith path
+     */
     public FaithPath getFaithPath() {
         return faithPath;
     }
 
+    /**
+     * Has resources boolean.
+     *
+     * @param needed the needed
+     * @return the boolean
+     */
     public boolean hasResources(ArrayList<Resource> needed)
     {
         ArrayList<Resource> tmp = new ArrayList<Resource>();
@@ -47,7 +85,13 @@ public class Board
         return tmp.containsAll(needed);
     }
 
-    /*
+    /**
+     * Remove resources.
+     *
+     * @param toRem the to rem
+     * @throws ResourceNotAvaible the resource not avaible
+     */
+/*
     Remove the resources asking through the view where to get them
     @result removed resources from either the strongBox or the wareHouse only if the player has them
     @signal throws an exception if the player doesn't have the resources

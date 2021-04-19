@@ -4,12 +4,20 @@ import java.util.ArrayList;
 import java.util.Random;
 
 
+/**
+ * The type Market.
+ */
 public class Market {
 
     private Resource[][] actualSituation; //Market disposition
     private Resource freeOne; //Free resource
 
-    /*
+    /**
+     * Instantiates a new Market.
+     *
+     * @param gameRes the game res
+     */
+/*
     Recives the 13 resources that are gonna be in the market for this game
     @result Puts 12 of them in a matrix in a Random order and one of them in the freeSpot
      */
@@ -44,7 +52,13 @@ public class Market {
         freeOne = gameRes.get(0);
     }
 
-    /*
+    /**
+     * Gets columns.
+     *
+     * @param col the col
+     * @return the columns
+     */
+/*
     Select all the resources from a col and shift the col and insert the free resource
     @result an arrayList with the resources of the required column
      */
@@ -69,7 +83,13 @@ public class Market {
         return result;
     }
 
-    /*
+    /**
+     * Gets row.
+     *
+     * @param row the row
+     * @return the row
+     */
+/*
     Select all the resources from a row and shift the col and insert the free resource
     @result an arrayList with the resources of the required row
      */
@@ -94,7 +114,12 @@ public class Market {
         return result;
     }
 
-    /*
+    /**
+     * Gets free one.
+     *
+     * @return the free one
+     */
+/*
     Returns the free resource
      */
     public Resource getFreeOne()
@@ -102,7 +127,12 @@ public class Market {
         return freeOne;
     }
 
-    //Return a matrix that rappresent the actual market situation
+    /**
+     * Get market resource [ ] [ ].
+     *
+     * @return the resource [ ] [ ]
+     */
+//Return a matrix that rappresent the actual market situation
     public Resource[][] getMarket()
     {
         return actualSituation.clone();

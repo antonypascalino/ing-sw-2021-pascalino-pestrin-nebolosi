@@ -2,12 +2,26 @@ package it.polimi.ingsw.model;
 
 import java.util.ArrayList;
 
+/**
+ * The type Table.
+ */
 public class Table {
     private DevCard[][][] avaibleDev;
+    /**
+     * The Stack.
+     */
     int stack[][]; //Contains for each position the number of cards that are in that stack
+    /**
+     * The Market.
+     */
     public Market market;
 
-    /*
+    /**
+     * Instantiates a new Table.
+     *
+     * @param gameCards the game cards
+     */
+/*
     The array list sorts all the dev cards recived dividing them by level and color
      */
     public Table(ArrayList<DevCard> gameCards)
@@ -27,7 +41,12 @@ public class Table {
         }
     }
 
-    //Gives all the top card for each stack, that one in the 0 index
+    /**
+     * Get top dev card [ ] [ ].
+     *
+     * @return the dev card [ ] [ ]
+     */
+//Gives all the top card for each stack, that one in the 0 index
     public DevCard[][] getTop()
     {
         DevCard[][] result = new DevCard[4][3];
@@ -47,7 +66,14 @@ public class Table {
     }
 
 
-    /*
+    /**
+     * Buy dev dev card.
+     *
+     * @param color the color
+     * @param level the level
+     * @return the dev card
+     */
+/*
     Used when the player needs to buy a devCard knowing the color and the level
     @result returns the card and the removes it from the table updating the stack value
      */

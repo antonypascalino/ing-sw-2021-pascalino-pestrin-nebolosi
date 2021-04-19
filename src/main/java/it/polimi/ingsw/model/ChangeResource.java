@@ -2,6 +2,9 @@ package it.polimi.ingsw.model;
 
 import java.util.ArrayList;
 
+/**
+ * The type Change resource.
+ */
 public class ChangeResource implements LeaderCard
 {
     private int victoryPoints;
@@ -12,6 +15,15 @@ public class ChangeResource implements LeaderCard
     private String color2;
     private Resource change;
 
+    /**
+     * Instantiates a new Change resource.
+     *
+     * @param victoryPoints the victory points
+     * @param requires      the requires
+     * @param color1        the color 1
+     * @param color2        the color 2
+     * @param change        the change
+     */
     public ChangeResource(int victoryPoints, ArrayList<DevCard> requires, String color1, String color2, Resource change) {
         this.victoryPoints = victoryPoints;
         this.requires = requires;
@@ -20,6 +32,11 @@ public class ChangeResource implements LeaderCard
         this.change = change;
     }
 
+    /**
+     * Is enable boolean.
+     *
+     * @return the boolean
+     */
     public boolean isEnable() {
         return isEnable;
     }

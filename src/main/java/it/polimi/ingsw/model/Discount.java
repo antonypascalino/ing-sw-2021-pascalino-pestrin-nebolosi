@@ -1,5 +1,8 @@
 package it.polimi.ingsw.model;
 
+/**
+ * The type Discount.
+ */
 public class Discount implements LeaderCard {
 
     private String color1;
@@ -9,6 +12,9 @@ public class Discount implements LeaderCard {
     private boolean isEnable;
     private Player player;
 
+    /**
+     * Instantiates a new Discount.
+     */
     public Discount() {
         //legge da Json discount, victoryPoints, requires
     }
@@ -18,6 +24,11 @@ public class Discount implements LeaderCard {
         player.addLeaderCard(this);
     }
 
+    /**
+     * Is enable boolean.
+     *
+     * @return the boolean
+     */
     public boolean isEnable() {
         return isEnable;
     }

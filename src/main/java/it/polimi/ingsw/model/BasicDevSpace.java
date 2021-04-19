@@ -2,14 +2,30 @@ package it.polimi.ingsw.model;
 
 import java.util.ArrayList;
 
+/**
+ * The type Basic dev space.
+ */
 public class BasicDevSpace {
 
     private Board br;
+
+    /**
+     * Instantiates a new Basic dev space.
+     *
+     * @param board the board
+     */
     public BasicDevSpace(Board board)
     {
         br = board;
     }
 
+    /**
+     * Use resource.
+     *
+     * @param res1 the res 1
+     * @param res2 the res 2
+     * @return the resource
+     */
     public Resource use(Resource res1, Resource res2)
     {
         ArrayList<Resource> tmp= new ArrayList<Resource>();
@@ -28,6 +44,13 @@ public class BasicDevSpace {
         //return View.chooseRes();
     }
 
+    /**
+     * Can be used boolean.
+     *
+     * @param res1 the res 1
+     * @param res2 the res 2
+     * @return the boolean
+     */
     public boolean canBeUsed(Resource res1, Resource res2)
     {
         ArrayList<Resource> tmp= new ArrayList<Resource>();

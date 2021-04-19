@@ -2,11 +2,26 @@ package it.polimi.ingsw.model;
 
 import java.util.ArrayList;
 
+/**
+ * The type Discounted player.
+ */
 public class DiscountedPlayer extends Player
 {
+    /**
+     * The Discount.
+     */
     ArrayList<Resource> discount;
+    /**
+     * The Original.
+     */
     Player original;
 
+    /**
+     * Instantiates a new Discounted player.
+     *
+     * @param ori the ori
+     * @param dis the dis
+     */
     public DiscountedPlayer(Player ori, ArrayList<Resource> dis)
     {
         original=ori;
@@ -14,6 +29,12 @@ public class DiscountedPlayer extends Player
         discount=dis;
     }
 
+    /**
+     * Gets dev card.
+     *
+     * @param color the color
+     * @param level the level
+     */
     @Override
     public void getDevCard(String color, int level)
     {

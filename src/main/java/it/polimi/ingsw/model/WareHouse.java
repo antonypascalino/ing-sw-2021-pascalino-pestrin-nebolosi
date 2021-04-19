@@ -3,15 +3,27 @@ package it.polimi.ingsw.model;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * The type Ware house.
+ */
 public class WareHouse
 {
     private Resource level1[];
     private Resource level2[];
     private Resource level3[];
+    /**
+     * The Discount.
+     */
     ArrayList<Resource> discount; //If a player has a discount it's contained here
+    /**
+     * The Levels.
+     */
     ArrayList<Resource[]> levels; //Contains all the possible levels, including the leader cards ones.
 
-    //Default without any leaderCard
+    /**
+     * Instantiates a new Ware house.
+     */
+//Default without any leaderCard
     public WareHouse()
     {
         level1 = new Resource[1];
@@ -23,7 +35,13 @@ public class WareHouse
         discount= new ArrayList<Resource>();
     }
 
-    //Add res in the level. Already checked space avaibilty
+    /**
+     * Add resource.
+     *
+     * @param level the level
+     * @param res   the res
+     */
+//Add res in the level. Already checked space avaibilty
     public void addResource(int level, Resource res)
     {
         Resource[] current;
@@ -40,7 +58,12 @@ public class WareHouse
         }
     }
 
-    //doesn't remove resource, it only gives all the resources
+    /**
+     * Gets resources.
+     *
+     * @return the resources
+     */
+//doesn't remove resource, it only gives all the resources
     public ArrayList<Resource> getResources()
     {
         ArrayList<Resource> result=new ArrayList<Resource>();
@@ -56,7 +79,14 @@ public class WareHouse
         return result;
     }
 
-    //remove the resource
+    /**
+     * Remove resource boolean.
+     *
+     * @param res the res
+     * @return the boolean
+     * @throws ResourceNotAvaible the resource not avaible
+     */
+//remove the resource
     public Boolean removeResource(Resource res) throws ResourceNotAvaible
     {
         //If the resource cannot be removed throw an exception
@@ -81,6 +111,12 @@ public class WareHouse
         return false;
     }
 
+    /**
+     * Check availability boolean.
+     *
+     * @param res the res
+     * @return the boolean
+     */
     public Boolean checkAvailability(Resource res)
     {
         if(this.getResources().contains(res))
@@ -89,6 +125,12 @@ public class WareHouse
             return false;
     }
 
+    /**
+     * Check availability boolean.
+     *
+     * @param resources the resources
+     * @return the boolean
+     */
     public Boolean checkAvailability(ArrayList<Resource> resources)
     {
         //First remove, if there's any, the resource rappresenting the discount
@@ -101,6 +143,13 @@ public class WareHouse
             return false;
     }
 
+    /**
+     * Check space boolean.
+     *
+     * @param level the level
+     * @param res   the res
+     * @return the boolean
+     */
     public Boolean checkSpace(int level, Resource res)
     {
         Resource[] currentLevel;
