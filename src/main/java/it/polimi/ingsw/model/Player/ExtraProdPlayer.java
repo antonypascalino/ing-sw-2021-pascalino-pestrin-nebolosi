@@ -1,6 +1,5 @@
 package it.polimi.ingsw.model.Player;
 
-import com.sun.org.apache.bcel.internal.generic.ARRAYLENGTH;
 import it.polimi.ingsw.connection.ProduceRequest;
 import it.polimi.ingsw.model.Cards.DevCard;
 import it.polimi.ingsw.model.Resource;
