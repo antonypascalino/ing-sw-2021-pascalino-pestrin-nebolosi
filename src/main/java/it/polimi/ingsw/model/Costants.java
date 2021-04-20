@@ -1,5 +1,7 @@
 package it.polimi.ingsw.model;
 
+import it.polimi.ingsw.model.Table.Table;
+
 /**
  * The type Costants.
  */
@@ -12,4 +14,5 @@ public class Costants {
      * The constant MARKETCOLS.
      */
     public static final int MARKETCOLS=3;
+    
 }

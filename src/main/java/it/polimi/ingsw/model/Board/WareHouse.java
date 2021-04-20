@@ -38,6 +38,11 @@ public class WareHouse
         discount= new ArrayList<Resource>();
     }
 
+    /**
+     * Get levels array list.
+     *
+     * @return the array list
+     */
     public ArrayList<Resource[]> getLevels(){
         return levels;
     }

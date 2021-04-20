@@ -21,6 +21,8 @@ public class BasicPlayer extends Player {
 
     /**
      * Instantiates a new Basic player.
+     *
+     * @param tb the tb
      */
     public BasicPlayer(Table tb)
     {
@@ -93,6 +95,11 @@ public class BasicPlayer extends Player {
             System.out.println("Debug");
     }
 
+    /**
+     * Produce.
+     *
+     * @param requests the requests
+     */
     public void produce(ArrayList<ProduceRequest> requests)
     {
         //for (ProduceRequest r : requests )

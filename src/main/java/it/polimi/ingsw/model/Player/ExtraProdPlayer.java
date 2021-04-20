@@ -7,10 +7,19 @@ import it.polimi.ingsw.model.Resource;
 
 import java.util.ArrayList;
 
+/**
+ * The type Extra prod player.
+ */
 public class ExtraProdPlayer extends Player{
     private Resource requires;
     private ArrayList<Resource> produce;
 
+    /**
+     * Instantiates a new Extra prod player.
+     *
+     * @param player       the player
+     * @param prodResource the prod resource
+     */
     public ExtraProdPlayer(Player player, Resource prodResource) {
         ArrayList<Resource> tmp= new ArrayList<Resource>();
         tmp.add(Resource.FAITH);
@@ -20,7 +29,12 @@ public class ExtraProdPlayer extends Player{
         original = player;
     }
 
-    /*
+    /**
+     * Produce.
+     *
+     * @param requests the requests
+     */
+/*
     @override
      */
     public void produce(ArrayList<ProduceRequest> requests)

@@ -12,8 +12,12 @@ public class ChangeResPlayer extends Player{
      * The Possible resource in which a white resource can be turned into
      */
     ArrayList<Resource> change;
+
     /**
      * The Original.
+     *
+     * @param or  the or
+     * @param res the res
      */
 
     public ChangeResPlayer(Player or, Resource res)

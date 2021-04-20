@@ -40,11 +40,11 @@ public class DiscountedPlayer extends Player
 
     /**
      * Gets dev card.
-     *@Override
+     *
      * @param color the color
      * @param level the level
+     * @Override
      */
-
     public void getDevCard(String color, int level)
     {
         DevCard card;
@@ -59,6 +59,11 @@ public class DiscountedPlayer extends Player
         super.getBoard().getSlot().purchaseCard(card,slot);
     }
 
+    /**
+     * Gets discount.
+     *
+     * @return the discount
+     */
     public ArrayList<Resource> getDiscount()
     {
         return discount;

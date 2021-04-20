@@ -9,6 +9,9 @@ import java.util.ArrayList;
  * The type Player.
  */
 public abstract class Player {
+    /**
+     * The Original.
+     */
     Player original;
 
     /**
@@ -51,6 +54,11 @@ public abstract class Player {
         return original.getBoard();
     }
 
+    /**
+     * Gets game.
+     *
+     * @return the game
+     */
     public Game getGame() { return original.getGame(); }
 
     /**
@@ -86,12 +94,20 @@ public abstract class Player {
     }
 
 
+    /**
+     * Gets leader cards.
+     *
+     * @return the leader cards
+     */
     public ArrayList<LeaderCard> getLeaderCards()
     {
         return original.getLeaderCards();
     }
 
-    /*
+    /**
+     * Gets production.
+     */
+/*
     Gets all the production powers
      */
     public void getProduction()
@@ -99,6 +115,9 @@ public abstract class Player {
         original.getProduction();
     }
 
+    /**
+     * Produce.
+     */
     public void produce()
     {
         original.produce();
