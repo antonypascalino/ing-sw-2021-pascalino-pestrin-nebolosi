@@ -1,5 +1,6 @@
 package it.polimi.ingsw.model.Player;
 
+import it.polimi.ingsw.connection.ProduceRequest;
 import it.polimi.ingsw.model.Board.Board;
 import it.polimi.ingsw.model.Cards.DevCard;
 import it.polimi.ingsw.model.Cards.LeaderCard;
@@ -92,8 +93,11 @@ public class BasicPlayer extends Player {
             System.out.println("Debug");
     }
 
-    public void produce()
+    public void produce(ArrayList<ProduceRequest> requests)
     {
+        //for (ProduceRequest r : requests )
+            //if(getBoard().getSlot().getFrontCards().contains(r.getCard());
+            //ALlora lo usa sostituendo a ogni richiesta un valore di r.getChoiche
         //per ogni richiesta di produzione (dalla connection) attiva la giusta carta e salva la produzione
         //nel forziere del giocatore
     }

@@ -1,6 +1,7 @@
 package it.polimi.ingsw.model.Player;
 
 import com.sun.org.apache.bcel.internal.generic.ARRAYLENGTH;
+import it.polimi.ingsw.connection.ProduceRequest;
 import it.polimi.ingsw.model.Cards.DevCard;
 import it.polimi.ingsw.model.Resource;
 
@@ -22,8 +23,9 @@ public class ExtraProdPlayer extends Player{
     /*
     @override
      */
-    public void produce()
+    public void produce(ArrayList<ProduceRequest> requests)
     {
+
         //per ogni richiesta di produzione (dalla connection) attiva la giusta carta e salva la produzione
         //nel forziere del giocatore
         //TIENE CONTO ANCHE DEL PRODUCE
