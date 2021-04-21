@@ -5,7 +5,8 @@ import it.polimi.ingsw.model.Resource;
 import java.util.ArrayList;
 
 /**
- * The type Change res player.
+ * The type Change Resource player (it extends {@link Player}).
+ * It's the player with the change resource leader card.
  */
 public class ChangeResPlayer extends Player{
     /**

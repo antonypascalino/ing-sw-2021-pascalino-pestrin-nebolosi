@@ -9,7 +9,8 @@ import it.polimi.ingsw.model.Table.Table;
 import java.util.ArrayList;
 
 /**
- * The type Basic player.
+ * The type Basic player (it extends {@link Player})
+ * It's the player without any leader card.
  */
 public class BasicPlayer extends Player {
     private String nickName;
@@ -22,7 +23,7 @@ public class BasicPlayer extends Player {
     /**
      * Instantiates a new Basic player.
      *
-     * @param tb the tb
+     * @param tb the game table assigned to the player
      */
     public BasicPlayer(Table tb)
     {
@@ -48,12 +49,12 @@ public class BasicPlayer extends Player {
     }
 
     /**
-     * Gets dev card.
+     * When player chooses a card, this method buys the card and sets the card into the given slot
      *
-     * @param color the color
-     * @param level the level
+     * @param color dev card color
+     * @param level dev card level
      */
-//when player chooses the card, this method buys the card and set the card into the slot
+
     public void getDevCard(String color, int level)
     {
         DevCard card;
@@ -96,9 +97,9 @@ public class BasicPlayer extends Player {
     }
 
     /**
-     * Produce.
+     * Produces the resources (work in progress)
      *
-     * @param requests the requests
+     * @param requests the produce requests as an array list
      */
     public void produce(ArrayList<ProduceRequest> requests)
     {

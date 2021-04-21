@@ -10,14 +10,14 @@ import java.util.ArrayList;
  */
 public abstract class Player {
     /**
-     * The Original.
+     * The original player abstract class.
      */
     Player original;
 
     /**
      * Sets nick name.
      *
-     * @param newNick the new nick
+     * @param newNick the new nickname inserted at the start of the game.
      */
     public void setNickName(String newNick)
     {
@@ -25,9 +25,9 @@ public abstract class Player {
     }
 
     /**
-     * Gets nick name.
+     * Gets nickname.
      *
-     * @return the nick name
+     * @return the nickname
      */
     public String getNickName()
     {
@@ -45,9 +45,9 @@ public abstract class Player {
     }
 
     /**
-     * Gets board.
+     * Gets {@link Board}.
      *
-     * @return the board
+     * @return {@link Board}.
      */
     public Board getBoard()
     {
@@ -55,16 +55,18 @@ public abstract class Player {
     }
 
     /**
-     * Gets game.
+     * Gets {@link Game}.
      *
-     * @return the game
+     * @return the {@link Game}.
      */
     public Game getGame() { return original.getGame(); }
 
     /**
-     * Add leader card.
+     * Adds {@link LeaderCard}.
+     * called at the beginning of the match.
+     * The player chooses two out of the four leader cards.
      *
-     * @param card the card
+     * @param card the card that needs to be added to the player.
      */
 /*
     Used in the start game phase when the player chooses two out of the four leader cards
@@ -78,7 +80,7 @@ public abstract class Player {
     /**
      * Add victory points.
      *
-     * @param vp the vp
+     * @param vp the victory points added throughout the game
      */
     public void addVictoryPoints(int vp)
     {
@@ -86,7 +88,7 @@ public abstract class Player {
     }
 
     /**
-     * Gets from market.
+     * Gets resources from {@link it.polimi.ingsw.model.Table.Market}.
      */
     public void getFromMarket()
     {
@@ -95,7 +97,7 @@ public abstract class Player {
 
 
     /**
-     * Gets leader cards.
+     * Gets {@link LeaderCard}.
      *
      * @return the leader cards
      */
@@ -105,18 +107,16 @@ public abstract class Player {
     }
 
     /**
-     * Gets production.
+     * Gets all the production powers.
      */
-/*
-    Gets all the production powers
-     */
+
     public void getProduction()
     {
         original.getProduction();
     }
 
     /**
-     * Produce.
+     * Production method of the original player
      */
     public void produce()
     {

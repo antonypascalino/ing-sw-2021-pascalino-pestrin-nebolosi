@@ -10,34 +10,35 @@ import java.util.ArrayList;
 public class Table {
     private DevCard[][][] avaibleDev;
     /**
-     * The Stack.
+     * The Stack which contains a number of cards in each position.
      */
-    int stack[][]; //Contains for each position the number of cards that are in that stack
+    int stack[][];
     /**
-     * The Market.
+     * Market reference.
      */
     public Market market;
 
     /**
      * Instantiates a new Table.
+     * This method sorts the dev cards in the array list by level and colour.
      *
-     * @param gameCards the game cards
+     * @param gameCards array list of dev cards
      */
 /*
-    The array list sorts all the dev cards recived dividing them by level and color
+
      */
     public Table(ArrayList<DevCard> gameCards)
     {
-        //MESCOLARE LE CARTE PRIMA DI PASSRLE QUA
+        //MESCOLARE LE CARTE PRIMA DI PASSARLE QUA
         int row, col;
-        stack=new int[4][3]; //Counters used for memorizing the indexs, initializated to 0 by default
-        int cordinates[]; //Cordinates of the card that is being inserted
+        stack=new int[4][3]; //
+        int coordinates[]; //Coordinates of the card that is being inserted
         avaibleDev = new DevCard[4][3][4];
         for(DevCard dev:gameCards)
         {
-            cordinates = getCordinate(dev.getColor(), dev.getLevel());
-            row = cordinates[0];
-            col = cordinates[1];
+            coordinates = getCoordinate(dev.getColor(), dev.getLevel());
+            row = coordinates[0];
+            col = coordinates[1];
             avaibleDev[row][col][stack[row][col]]=dev;
             stack[row][col]++;
         }
@@ -69,22 +70,19 @@ public class Table {
 
 
     /**
-     * Buy dev dev card.
+     * Called when the player needs to buy a devCard knowing color and level parameters
      *
      * @param color the color
      * @param level the level
-     * @return the dev card
+     * @return the dev card and then it removes it from the table updating the stack
      */
-/*
-    Used when the player needs to buy a devCard knowing the color and the level
-    @result returns the card and the removes it from the table updating the stack value
-     */
+
     public DevCard buyDev(String color, int level)
     {
         DevCard result;
-        int cordinates[] = getCordinate(color, level);
-        int row = cordinates[0];
-        int col = cordinates[1];
+        int[] coordinates = getCoordinate(color, level);
+        int row = coordinates[0];
+        int col = coordinates[1];
         //If the stack for that type is empty return a null pointer
         if(stack[row][col]==0)
             return null;
@@ -108,7 +106,7 @@ public class Table {
     Used for determating the cordinates on the map of a card based on his color and level
     @result an array where the first position is the row and the second is the columns
      */
-    private static int[] getCordinate(String color, int level)
+    private static int[] getCoordinate(String color, int level)
     {
         int[] result=new int[2];
         //Select the correct row
