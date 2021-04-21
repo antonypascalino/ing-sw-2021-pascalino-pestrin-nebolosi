@@ -4,14 +4,14 @@ import it.polimi.ingsw.model.Cards.DevCard;
 import java.util.ArrayList;
 
 /**
- * The type Slot.
+ * Contains an ArrayList of Arrays with all the Development Cards in possessions by the player.
  */
 public class Slot
 {
     private ArrayList<DevCard[]> slots;
 
     /**
-     * Instantiates a new Slot.
+     * Instantiates the ArrayList with the 3 Slots: every one of the 3 slots is an array of 3 Development Cards
      */
     public Slot()
     {
@@ -26,10 +26,10 @@ public class Slot
     }
 
     /**
-     * Purchase card.
+     * Receive a {@link DevCard} from the market and add it in the first empty space in the slot chosen by the {@link it.polimi.ingsw.model.Player.Player}.
      *
-     * @param card the card
-     * @param slot the slot
+     * @param card the {@link DevCard} to add into the Slot.
+     * @param slot the slot in which add the {@link DevCard}
      */
     public void purchaseCard(DevCard card, int slot)
     {
@@ -57,15 +57,14 @@ public class Slot
         DevCard[] tmp = new DevCard[1];
         tmp[0]=dev;
         slots.add(tmp);
-
     }
 
     /**
-     * Check space boolean.
+     * Check if the {@link DevCard} it wants to add can be add in the chosen slot according to the Slot's rules.
      *
-     * @param card the card
-     * @param slot the slot
-     * @return the boolean
+     * @param card the {@link DevCard} it wants to add.
+     * @param slot the slot where wants add the {@link DevCard}.
+     * @return true if the {@link DevCard} can be add in the chosen slot, false otherwise.
      */
     public boolean checkSpace(DevCard card, int slot)
     {
@@ -99,17 +98,15 @@ public class Slot
                         return true;
                     }
                 }
-
             }
             return false;
         }
-
     }
 
     /**
-     * Get front cards dev card [ ].
+     * Get an array with the {@link DevCard} on the top of every slot: the only usable to produce.
      *
-     * @return the dev card [ ]
+     * @return an Array with all the {@link DevCard} usable to produce;
      */
     public DevCard[] getFrontCards()
     {
@@ -130,15 +127,14 @@ public class Slot
                 }
             }
         }
-
         return frontCards;
-
     }
 
     /**
-     * Gets all cards.
+     * Get an array with all the {@link DevCard} in possession by the {@link it.polimi.ingsw.model.Player.Player} (even if not usable to produce).
+     * It may be called by some {@link it.polimi.ingsw.model.Cards.LeaderCard}s to check if they can be activated.
      *
-     * @return the all cards
+     * @return An ArrayList with all the {@link DevCard} in possession by the {@link it.polimi.ingsw.model.Player.Player}.
      */
     public ArrayList<DevCard> getAllCards()
     {
@@ -152,8 +148,6 @@ public class Slot
                 if(currSlot[j] != null)
                     allCards.add(currSlot[j]);
         }
-
         return allCards;
-
     }
 }

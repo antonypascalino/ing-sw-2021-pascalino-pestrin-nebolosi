@@ -3,7 +3,7 @@ package it.polimi.ingsw.model.Board;
 import it.polimi.ingsw.model.Player.Player;
 
 /**
- * The type Faith path.
+ * The Faith Path of one single {@link Player}: every player has his own Faith Path
  */
 public class FaithPath
 {
@@ -20,7 +20,7 @@ public class FaithPath
     private boolean tile3;
 
     /**
-     * Instantiates a new Faith path.
+     * Instantiates a new Faith path setting the advancement attribute to 0.
      */
     public FaithPath()
     {
@@ -34,9 +34,9 @@ public class FaithPath
     }
 
     /**
-     * Sets player.
+     * Set the reference of the {@link Player}.
      *
-     * @param player the player
+     * @param player the {@link Player} to which the Faith Path belongs.
      */
     public void setPlayer(Player player)
     {
@@ -44,11 +44,10 @@ public class FaithPath
     }
 
     /**
-     * Move forward.
+     * Receive an <em>int</em> and move the move the player on his {@link FaithPath} of <em>int</em> steps.
      *
-     * @param steps the steps
+     * @param steps the number of steps the {@link Player} have to do on his Faith Path.
      */
-// updates the advancement in the faith path
     public void moveForward(int steps)
     {
         if(steps != 0)
@@ -57,15 +56,17 @@ public class FaithPath
             checkPopeSpace(advancement);
             checkVictoryPoints(advancement);
         }
-
     }
 
     /**
-     * Check victory points.
+     * Check if player's advancement reaches some <em>checkpoints</em> and gives him some Victory Points.
+     * <p>
+     * This method check, after every single move of the player on the {@link FaithPath}, if the player reached any <em>checkpoint</em>.
+     * If yes, the method call the {@link it.polimi.ingsw.model.Player.Player#addVictoryPoints(int)} method passing the respective VictoryPoints.
      *
-     * @param a the a
+     * @param a the current advancement of the {@link Player} on his {@link FaithPath}.
      */
-//could be improved
+    //could be improved
     //if advancement % 3 == 0, addVictoryPoints is called. The argument is the amount of VP written on
     //faith path
     public void checkVictoryPoints(int a)
@@ -89,12 +90,12 @@ public class FaithPath
     }
 
     /**
-     * Check pope space boolean.
+     * Check if the current {@link Player}'s advancement has reached or passed a Pope Space
      *
-     * @param a the a
-     * @return the boolean
+     * @param a the current advancement of the {@link Player}
+     * @return true if the player has reached or passed a Pope Space, false otherwise
      */
-//A Pope Space is located every 8 steps
+    //A Pope Space is located every 8 steps
     public boolean checkPopeSpace(int a)
     {
         if (a == pope1)
@@ -118,15 +119,15 @@ public class FaithPath
     }
 
     /**
-     * Check vatican section boolean.
+     * When a {@link Player} has reached or passed a Pope Space, this method is called by {@link #checkPopeSpace(int)}.
+     * Check if the current player's advancements is in the corresponding Vatican Section.
+     * <p>
+     * If the tile is true and the advancement is more than the threshold, it means it's the first time
+     * a player passes that particular pope space. If another player (that was behind) passes that
+     * same pope space later in the game, checkVaticanSection is still called but the tile remains false
      *
-     * @param pope the pope
-     * @return the boolean
-     */
-/*
-    if the tile is true and the advancement is more than the threshold, it means it's the first time
-    a player passes that particular pope space. If another player (that was behind) passes that
-    same pope space later in the game, checkVaticanSection is still called but the tile remains false
+     * @param pope the Pope Space just reached;
+     * @return true if the player advancement is in the Vatican Section of the corresponding Pope Space just reached, false otherwise
      */
     public boolean checkVaticanSection(int pope)
     {
@@ -174,6 +175,7 @@ public class FaithPath
         else
             return false;
     }
+
 
 
 }

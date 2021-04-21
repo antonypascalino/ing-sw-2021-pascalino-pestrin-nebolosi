@@ -2,7 +2,7 @@ package it.polimi.ingsw.model.Cards;
 
 import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Resource;
-import it.polimi.ingsw.model.ResourceNotAvaible;
+import it.polimi.ingsw.model.ResourceNotAvailable;
 
 import java.util.ArrayList;
 
@@ -111,7 +111,7 @@ public class DevCard {
         try{
             owner.getBoard().removeResources((ArrayList<Resource>) requires.clone());
         }
-        catch(ResourceNotAvaible ex)
+        catch(ResourceNotAvailable ex)
         {
 
         }
