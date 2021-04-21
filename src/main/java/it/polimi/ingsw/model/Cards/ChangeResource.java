@@ -43,6 +43,10 @@ public class ChangeResource implements LeaderCard
         player.addLeaderCard(this);
     }
 
+    /**
+     * Check if the player can play the card
+     * @return true if he has one card of the first color e two card of the second color
+     */
     public boolean canBePlayed()
     {
         int secondColor = 0;
@@ -61,6 +65,8 @@ public class ChangeResource implements LeaderCard
     {
         if (canBePlayed())
         {
+            player.addVictoryPoints(victoryPoints);
+            isEnable= true;
             Player tmp = new ChangeResPlayer(player, change);
             //Add the new powered player in substitition to the actual one if the game references
             player.getGame().changePlayer(player, tmp );

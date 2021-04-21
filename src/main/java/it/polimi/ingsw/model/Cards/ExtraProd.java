@@ -21,15 +21,15 @@ public class ExtraProd implements LeaderCard {
      * Instantiates a new Extra prod.
      *
      * @param victoryPoints the victory points
-     * @param requires      the requires
+     * @param requires      the color of the required card
      * @param prodResource  the prod resource
      */
     public ExtraProd(int victoryPoints, String requires, Resource prodResource)
     {
-        //Un po' di rindondanza, forze basta il super anche per gli enable
         this.prodResource = prodResource;
         this.requires = requires;
         this.victoryPoints = victoryPoints;
+        isEnable = false;
     }
 
     public void assignTo(Player player) {
@@ -37,16 +37,15 @@ public class ExtraProd implements LeaderCard {
         player.addLeaderCard(this);
     }
 
-    /*
+
     public boolean isEnable()
     {
         return isEnable;
     }
-     */
-
 
     public boolean canBePlayed()
     {
+        if(isEnable) return false; //It can't be played twice
         for(DevCard card : player.getBoard().getSlot().getAllCards() )
         {
             if (card.getColor().equals(requires) && card.getLevel()==2) return true;
@@ -69,10 +68,4 @@ public class ExtraProd implements LeaderCard {
             }
         }
     }
-
-
-
-
-
-
 }

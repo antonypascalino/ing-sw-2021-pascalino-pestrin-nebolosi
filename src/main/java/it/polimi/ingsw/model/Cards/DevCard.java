@@ -20,7 +20,7 @@ public class DevCard {
     protected Player owner;
 
     /**
-     * The Requires.
+     * The Requires for production
      */
     ArrayList<Resource> requires;
     private ArrayList<Resource> produces;
@@ -29,8 +29,9 @@ public class DevCard {
 
 
     /**
-     * Instantiates a new Dev card.
-     *
+     * Instantiates a new Dev card and set its enable to false
+     * Gets all the information from the it.polimi.ingsw.controller which deserializes from the json
+     * the  and istantiate a new card to be set on the game table
      * @param col the color
      * @param lev the level
      * @param vp  the victory points
@@ -38,7 +39,7 @@ public class DevCard {
      * @param pro the resource produced by the card
      * @param pri the price for buying the card
      */
-//Gets all the information from the it.polimi.ingsw.controller and istantiate a new card to be set on the game table
+//
     public DevCard(String col, int lev, int vp, ArrayList<Resource> req, ArrayList<Resource> pro, ArrayList<Resource> pri) {
         color = col;
         level = lev;
@@ -50,30 +51,10 @@ public class DevCard {
     }
 
     /**
-     * Instantiates a new Dev card.
-     *
-     * @param res the res
-     */
-//Constructor used by subclasses
-    public DevCard(Resource res)
-    {
-        ArrayList<Resource> tmp= new ArrayList<>();
-        tmp.add(res);
-        color = "grey";
-        level = 0;
-        victoryPoint = 0;
-        requires = tmp;
-        produces = null;
-        price = null;
-        isEnable = false;
-    }
-
-    /**
-     * Sets owner.
+     * Sets owner when the player buys a card
      *
      * @param owner the owner
      */
-//When bought set their owner
     public void setOwner(Player owner) {
         this.owner = owner;
     }
@@ -97,14 +78,13 @@ public class DevCard {
     }
 
     /**
-     * Produce array list.
+     * When used gives back the resources and remove the resources
+     * from the strongBox or from the wareHouse
      *
-     * @return the array list
+     * @param the map cointaing the place where to remove each resource
+     * @return the array list of the produced resourced
      */
-/*
-    When used gives back the resources
-    @result an arrayList containing all the resources
-     */
+    //PLACE IT IN THE STRONGBOX
     public ArrayList<Resource> produce()
     {
         try{
@@ -122,7 +102,7 @@ public class DevCard {
     /**
      * Can produce boolean.
      *
-     * @return the boolean
+     * @return the true if the player has the resource for using the card
      */
     public boolean canProduce()
     {
@@ -132,33 +112,31 @@ public class DevCard {
     /**
      * Can be used boolean.
      *
-     * @return the boolean
+     * @return true if the card is enabled
      */
-//@result true if the card is on top and enabled
     public boolean canBeUsed() {
             return isEnable;
     }
 
     /**
+     * Used when the card is covered and it gets disabled
      * Disable.
      */
-//used when the card is covered and it can't be used anymore
     public void disable() {
         isEnable = false;
     }
 
     /**
-     * Enable.
+     * Used when the card is bought and set on top
      */
-//Used when the card is bought and set on top
     public void enable() {
         isEnable = true;
     }
 
     /**
-     * Gets price.
+     * Gets price
      *
-     * @return the price
+     * @return the price that the player needs to pay the card
      */
     public ArrayList<Resource> getPrice() {
         return price;
