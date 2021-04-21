@@ -6,23 +6,18 @@ import it.polimi.ingsw.model.Resource;
 import java.util.ArrayList;
 
 /**
- * The type Temp box.
+ * Used to place all the {@link Resource} produced by the {@link it.polimi.ingsw.model.Player.Player} in the current production
+ * turn. It is created to avoid the use of just-produced {@link Resource}s to activate other production powers using them in the same turn
  */
 public class TempBox
 {
-    /**
-     * The Temp res.
-     */
-    ArrayList<Resource> tempRes;
-    /**
-     * The Sb.
-     */
-    StrongBox sb;
+    private ArrayList<Resource> tempRes;
+    private StrongBox sb;
 
     /**
-     * Instantiates a new Temp box.
+     * Instantiates a new {@link TempBox} adding the {@link StrongBox} references.
      *
-     * @param strongBox the strong box
+     * @param strongBox the {@link StrongBox} to whom save the reference.
      */
     public TempBox(StrongBox strongBox)
     {
@@ -31,21 +26,18 @@ public class TempBox
     }
 
     /**
-     * Add resource.
+     * Add a single (why only one?) {@link Resource} to the {@link StrongBox}.
      *
-     * @param res the res
+     * @param res the {@link Resource} to add.
      */
-//adds the resource to an ArrayList
     public void addResource(Resource res)
     {
         tempRes.add(res);
     }
 
-
     /**
-     * End turn.
+     * At the end of the production turn puts all the {@link Resource}s from the {@link TempBox} into the {@link StrongBox}.
      */
-//puts the resources back to the strongbox
     public void endTurn()
     {
         sb.addResource(tempRes);

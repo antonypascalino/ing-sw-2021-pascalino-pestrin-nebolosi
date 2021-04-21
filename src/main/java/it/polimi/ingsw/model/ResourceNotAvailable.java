@@ -3,19 +3,19 @@ package it.polimi.ingsw.model;
 /**
  * The type Resource not avaible.
  */
-public class ResourceNotAvaible extends Exception
+public class ResourceNotAvailable extends Exception
 {
     /**
      * Instantiates a new Resource not avaible.
      */
-    public ResourceNotAvaible() { super("Risorse terminate"); }
+    public ResourceNotAvailable() { super("Risorse terminate"); }
 
     /**
      * Instantiates a new Resource not avaible.
      *
      * @param message the message
      */
-    public ResourceNotAvaible(String message) { super(message); }
+    public ResourceNotAvailable(String message) { super(message); }
 
     /**
      * Instantiates a new Resource not avaible.
@@ -23,13 +23,13 @@ public class ResourceNotAvaible extends Exception
      * @param message the message
      * @param cause   the cause
      */
-    public ResourceNotAvaible(String message, Throwable cause) { super(message, cause); }
+    public ResourceNotAvailable(String message, Throwable cause) { super(message, cause); }
 
     /**
      * Instantiates a new Resource not avaible.
      *
      * @param cause the cause
      */
-    public ResourceNotAvaible(Throwable cause) { super(cause); }
+    public ResourceNotAvailable(Throwable cause) { super(cause); }
 
 }

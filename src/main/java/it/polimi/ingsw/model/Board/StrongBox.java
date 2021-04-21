@@ -1,32 +1,20 @@
 package it.polimi.ingsw.model.Board;
 
+import it.polimi.ingsw.model.Cards.DevCard;
 import it.polimi.ingsw.model.Resource;
-import it.polimi.ingsw.model.ResourceNotAvaible;
+import it.polimi.ingsw.model.ResourceNotAvailable;
 
 import java.util.ArrayList;
 
 /**
- * The type Strong box.
+ * Contains all the resources produced by the player. Together with the {@link WareHouse} is the only place where
+ * the {@link it.polimi.ingsw.model.Player.Player} keeps their {@link Resource}s.
  */
-public class StrongBox
-
-{
-
-    /**
-     * The Resources.
-     */
-    ArrayList<Resource> resources;
-
-
-    //Resource resource;
-
-   /* public Resource getResource()
-    {
-        return resource;
-    }*/
+public class StrongBox {
+    private ArrayList<Resource> resources;
 
     /**
-     * Instantiates a new Strong box.
+     * Instantiates a new {@link StrongBox} creating a new ArrayList of {@link Resource}.
      */
     public StrongBox()
     {
@@ -34,19 +22,16 @@ public class StrongBox
     }
 
     /**
-     * Add resource.
+     * Add {@link Resource} to the {@link StrongBox}.
      *
-     * @param res the res
+     * @param res the {@link Resource} to add in the {@link StrongBox}.
      */
-    public void addResource(Resource res)
-    {
-        resources.add(res);
-    }
+    public void addResource(Resource res) { resources.add(res); }
 
     /**
-     * Add resource.
+     * Add {@link Resource}s to the {@link StrongBox}.
      *
-     * @param res the res
+     * @param res ArrayList conteining all the {@link Resource}s to add in the {@link StrongBox}.
      */
     public void addResource(ArrayList<Resource> res)
     {
@@ -54,9 +39,9 @@ public class StrongBox
     }
 
     /**
-     * Gets resources.
+     * Gets the all the {@link Resource}s contained in the {@link StrongBox}.
      *
-     * @return the resources
+     * @return an ArrayList containing all the {@link Resource}s in the {@link StrongBox}.
      */
     public ArrayList<Resource> getResources()
     {
@@ -64,34 +49,34 @@ public class StrongBox
     }
 
     /**
-     * Remove resource boolean.
+     * Remove a single {@link Resource} from the {@link StrongBox}.
      *
-     * @param res the res
-     * @return the boolean
-     * @throws ResourceNotAvaible the resource not avaible
+     * @param res the {@link Resource} to be removed.
+     * @return true if the {@link Resource} was in the {@link StrongBox} and has been successfully removed from it.
+     * @throws ResourceNotAvailable if the {@link Resource} is not available in the {@link StrongBox}.
      */
-    public boolean removeResource(Resource res) throws ResourceNotAvaible
+    public boolean removeResource(Resource res) throws ResourceNotAvailable
     {
         if (checkAvailability(resources) == true)
             return resources.remove(res);
         else
-            throw new ResourceNotAvaible();
+            throw new ResourceNotAvailable();
     }
 
     /**
-     * Check availability boolean.
+     * Receives an ArrayList of {@link Resource}s and checks if all of them are in the {@link StrongBox}.
      *
-     * @param res the res
-     * @return the boolean
+     * @param res the ArrayList containing the {@link Resource}s to check.
+     * @return true if the {@link StrongBox} contains every {@link Resource} in <em>res</em>, false otherwise.
      */
     public boolean checkAvailability(ArrayList<Resource> res)
     {
-        return resources.retainAll(res);
+        return resources.containsAll(res);
     }
 
 
     /**
-     * Check availability market boolean.
+     * Serviva per controllare se ci fossero le risorse per comprare una carta dal mercato tenendo conto dello sconto, ma forse lo trattiamo in modo diverso.
      *
      * @param res the res
      * @return the boolean

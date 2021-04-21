@@ -6,7 +6,7 @@ import it.polimi.ingsw.model.*;
 import java.util.ArrayList;
 
 /**
- * The type Board.
+ * The player's Board with the references to player's {@link WareHouse}, {@link StrongBox}, {@link Slot}, {@link FaithPath}, {@link BasicDevSpace}
  */
 public class Board
 {
@@ -16,9 +16,10 @@ public class Board
   private Slot slot;
   private TempBox tempBox;
   private FaithPath faithPath;
+  private BasicDevSpace basicDevSpace;
 
     /**
-     * Instantiates a new Board.
+     * Instantiates a new Board building the objects it needs: {@link WareHouse}, {@link StrongBox}, {@link Slot}, {@link FaithPath}, {@link BasicDevSpace}, {@link TempBox}.
      */
     public Board()
     {
@@ -27,58 +28,59 @@ public class Board
         slot = new Slot();
         tempBox = new TempBox(strongBox);
         faithPath = new FaithPath();
+        basicDevSpace = new BasicDevSpace(this);
     }
 
     /**
-     * Gets ware house.
+     * Gets the {@link WareHouse}.
      *
-     * @return the ware house
+     * @return the reference to the {@link WareHouse} of the board
      */
     public WareHouse getWareHouse() {
         return wareHouse;
     }
 
     /**
-     * Gets strong box.
+     * Gets the {@link StrongBox}.
      *
-     * @return the strong box
+     * @return the reference to the {@link StrongBox} of the board
      */
     public StrongBox getStrongBox() {
         return strongBox;
     }
 
     /**
-     * Gets slot.
+     * Gets the {@link Slot}.
      *
-     * @return the slot
+     * @return the reference to the {@link Slot} of the board
      */
     public Slot getSlot() {
         return slot;
     }
 
     /**
-     * Gets temp box.
+     * Gets the {@link TempBox}.
      *
-     * @return the temp box
+     * @return the reference to the {@link TempBox} of the board
      */
     public TempBox getTempBox() {
         return tempBox;
     }
 
     /**
-     * Gets faith path.
+     * Gets the {@link FaithPath}.
      *
-     * @return the faith path
+     * @return the reference to the {@link FaithPath} of the board.
      */
     public FaithPath getFaithPath() {
         return faithPath;
     }
 
     /**
-     * Has resources boolean.
-     *
-     * @param needed the needed
-     * @return the boolean
+     * Check if player has all the resources received as parameters, watching in both {@link WareHouse} and {@link StrongBox}
+     * Use {@link StrongBox#getResources()} and {@link WareHouse#getResources()} to build an ArrayList with all player's resources.
+     * @param needed the ArrayList with all the resources to check
+     * @return true if the player has all needed resources, false otherwise.
      */
     public boolean hasResources(ArrayList<Resource> needed)
     {
@@ -89,22 +91,23 @@ public class Board
     }
 
     /**
-     * Remove resources.
+     * Remove the resources after check his availability, asking through the Connection where to get them.
+     * <p>
+     * First of all, check if player actually has the resources to remove.
+     * Then, for every resource in toRem, ask him from where remove it:
+     * • He choose to take it from WareHouse -> check if there's it -> if yes remove it, if no automatically remove it from StrongBox
+     * • He choose to take it from StrongBox -> check if there's it -> if yes remove it, if no automatically remove it from WareHouse
+     * The automatic remove is possible because the method previously checked the player's possession.
      *
-     * @param toRem the to rem
-     * @throws ResourceNotAvaible the resource not avaible
+     * @param toRem the ArrayList with the resources to remove.
+     * @throws ResourceNotAvailable if the not all the resources in toRem aren't in the player's possession.
      */
-/*
-    Remove the resources asking through the view where to get them
-    @result removed resources from either the strongBox or the wareHouse only if the player has them
-    @signal throws an exception if the player doesn't have the resources
-     */
-    public void removeResources(ArrayList<Resource> toRem) throws ResourceNotAvaible
+    public void removeResources(ArrayList<Resource> toRem) throws ResourceNotAvailable
     {
         //If the player doesn't have the resources throw a new exception
         if(!hasResources(toRem))
         {
-            throw new ResourceNotAvaible();
+            throw new ResourceNotAvailable();
         }
         //Othetwise the resources have to be there and the player can choose where to get them
         else
@@ -118,7 +121,7 @@ public class Board
                         strongBox.removeResource(r);
                     }
                     //If the resource is not in the strongbox it has to be in the warehouse
-                    catch(ResourceNotAvaible ex)
+                    catch(ResourceNotAvailable ex)
                     {
                         Connection.print("The resource is not available here, I'm getting it from the warehouse");
                         wareHouse.removeResource(r);
@@ -131,7 +134,7 @@ public class Board
                         wareHouse.removeResource(r);
                     }
                     //If the resource is not in the strongbox it has to be in the warehouse
-                    catch(ResourceNotAvaible exc)
+                    catch(ResourceNotAvailable exc)
                     {
                         Connection.print("The resource is not available here, I'm getting it from the strongbox");
                         strongBox.removeResource(r);
