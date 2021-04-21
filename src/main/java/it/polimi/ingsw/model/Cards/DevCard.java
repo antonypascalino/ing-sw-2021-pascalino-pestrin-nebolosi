@@ -39,7 +39,6 @@ public class DevCard {
      * @param pro the resource produced by the card
      * @param pri the price for buying the card
      */
-//
     public DevCard(String col, int lev, int vp, ArrayList<Resource> req, ArrayList<Resource> pro, ArrayList<Resource> pri) {
         color = col;
         level = lev;
