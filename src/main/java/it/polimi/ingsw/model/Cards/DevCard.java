@@ -22,7 +22,6 @@ public class DevCard {
     /**
      * The Requires.
      */
-//What it needs and what it produces
     ArrayList<Resource> requires;
     private ArrayList<Resource> produces;
 
@@ -32,12 +31,12 @@ public class DevCard {
     /**
      * Instantiates a new Dev card.
      *
-     * @param col the col
-     * @param lev the lev
-     * @param vp  the vp
-     * @param req the req
-     * @param pro the pro
-     * @param pri the pri
+     * @param col the color
+     * @param lev the level
+     * @param vp  the victory points
+     * @param req the requires needed for producing
+     * @param pro the resource produced by the card
+     * @param pri the price for buying the card
      */
 //Gets all the information from the it.polimi.ingsw.controller and istantiate a new card to be set on the game table
     public DevCard(String col, int lev, int vp, ArrayList<Resource> req, ArrayList<Resource> pro, ArrayList<Resource> pri) {

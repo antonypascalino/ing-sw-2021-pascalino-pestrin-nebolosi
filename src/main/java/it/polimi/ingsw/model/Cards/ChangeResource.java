@@ -7,40 +7,33 @@ import it.polimi.ingsw.model.Resource;
 import java.util.ArrayList;
 
 /**
- * The type Change resource.
+ * The leader card that gives the player the possibility to change a resource
  */
 public class ChangeResource implements LeaderCard
 {
     private int victoryPoints;
     private boolean isEnable;
     private Player player;
-    private ArrayList<DevCard> requires;
     private String color1;
     private String color2;
     private Resource change;
 
     /**
-     * Instantiates a new Change resource.
+     * Instantiates a new Change resource and sets the enable to false
      *
-     * @param victoryPoints the victory points
-     * @param requires      the requires
-     * @param color1        the color 1
-     * @param color2        the color 2
-     * @param change        the change
+     * @param victoryPoints the victory points the card gives to the player
+     * @param color1        the color of the first card required for being played
+     * @param color2        the color of the second card required for being played
+     * @param change        the resource in which the new player turns the white resource
      */
-    public ChangeResource(int victoryPoints, ArrayList<DevCard> requires, String color1, String color2, Resource change) {
+    public ChangeResource(int victoryPoints, String color1, String color2, Resource change) {
         this.victoryPoints = victoryPoints;
-        this.requires = requires;
         this.color1 = color1;
         this.color2 = color2;
         this.change = change;
+        isEnable=false;
     }
 
-    /**
-     * Is enable boolean.
-     *
-     * @return the boolean
-     */
     public boolean isEnable() {
         return isEnable;
     }
