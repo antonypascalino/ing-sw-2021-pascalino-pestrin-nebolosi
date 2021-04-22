@@ -1,5 +1,6 @@
 package it.polimi.ingsw.model.Board;
 
+import it.polimi.ingsw.connection.Connection;
 import it.polimi.ingsw.model.Resource;
 import it.polimi.ingsw.model.Cards.LeaderCard;
 import it.polimi.ingsw.model.Player.Player;
@@ -158,5 +159,15 @@ public class WareHouse {
             }
         }
         return true;
+    }
+
+    public void switchLevels(Resource resource, int originLevel, int destLevel ) {
+        try {
+            this.removeResource(resource);
+        }
+        catch (ResourceNotAvailable e) {
+            Connection.print("Non c'è questa risorsa qua");
+        }
+        this.addResource(destLevel, resource);
     }
 }
