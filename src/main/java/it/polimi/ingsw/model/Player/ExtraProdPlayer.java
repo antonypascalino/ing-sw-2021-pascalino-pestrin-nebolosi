@@ -7,7 +7,8 @@ import it.polimi.ingsw.model.Resource;
 import java.util.ArrayList;
 
 /**
- * The type Extra prod player.
+ * The type Extra Production player (it extends {@link Player}).
+ * It's the player with an extra production leader card.
  */
 public class ExtraProdPlayer extends Player{
     private Resource requires;
@@ -17,7 +18,7 @@ public class ExtraProdPlayer extends Player{
      * Instantiates a new Extra prod player.
      *
      * @param player       the player
-     * @param prodResource the prod resource
+     * @param prodResource a resource needed to start the production
      */
     public ExtraProdPlayer(Player player, Resource prodResource) {
         ArrayList<Resource> tmp= new ArrayList<Resource>();

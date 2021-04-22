@@ -7,7 +7,8 @@ import it.polimi.ingsw.model.Table.Table;
 import java.util.ArrayList;
 
 /**
- * The type Discounted player.
+ * The type Discounted player (it extends {@link Player}).
+ * It's the player with a discount leader card.
  */
 public class DiscountedPlayer extends Player
 {
@@ -16,15 +17,15 @@ public class DiscountedPlayer extends Player
      */
     ArrayList<Resource> discount;
     /**
-     * The Original.
+     * reference to the original {@link Player} abstract class.
      */
     Player original;
 
     /**
      * Instantiates a new Discounted player.
      *
-     * @param ori the ori
-     * @param dis the dis
+     * @param ori original player (without "mods")
+     * @param dis array list of resources indicating the discount
      */
     public DiscountedPlayer(Player ori, ArrayList<Resource> dis)
     {
@@ -41,9 +42,9 @@ public class DiscountedPlayer extends Player
     /**
      * Gets dev card.
      *
-     * @param color the color
-     * @param level the level
-     * @Override
+     * @param color dev card color
+     * @param level dev card level
+     *
      */
     public void getDevCard(String color, int level)
     {
@@ -60,7 +61,7 @@ public class DiscountedPlayer extends Player
     }
 
     /**
-     * Gets discount.
+     * Gets discount
      *
      * @return the discount
      */
