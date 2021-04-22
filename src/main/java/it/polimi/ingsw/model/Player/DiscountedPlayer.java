@@ -27,11 +27,11 @@ public class DiscountedPlayer extends Player
      * @param ori original player (without "mods")
      * @param dis array list of resources indicating the discount
      */
-    public DiscountedPlayer(Player ori, ArrayList<Resource> dis)
+    public DiscountedPlayer(Player ori, Resource dis)
     {
         original = ori;
         discount = new ArrayList<Resource>();
-        discount.addAll(dis);
+        discount.add(dis);
         //If the original already had a discount it counts its discounts as well
         if(original instanceof DiscountedPlayer)
         {
