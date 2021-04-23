@@ -35,7 +35,7 @@ public class ProduceRequest implements Request {
     }
 
 
-    public void activate()
+    public void handle()
     {
         //Chiama il game dicendo chi fa cosa
     }

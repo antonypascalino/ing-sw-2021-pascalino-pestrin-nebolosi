@@ -9,5 +9,5 @@ public interface Request {
 
     //The player trying to request
     Player player = null;
-    public void activate();
+    public void handle();
 }
