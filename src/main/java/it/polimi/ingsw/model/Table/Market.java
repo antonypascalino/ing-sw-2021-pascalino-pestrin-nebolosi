@@ -44,7 +44,7 @@ public class Market {
                 i = rnd.nextInt(gameRes.size());
 
                 //Saves the random element in the array and delete it from the original arraylist
-                currentSituation[r][c]=gameRes.get(i);
+                currentSituation[r][c] = gameRes.get(i);
                 gameRes.remove(i);
             }
 
@@ -68,7 +68,7 @@ public class Market {
         Resource tmp;
         for(int r = 0; r< Costants.MARKETROWS; r++)
         {
-            tmp=new Resource(currentSituation[r][col]); //I want to return a new resource that looks like the one i have but it's not the same
+            tmp=currentSituation[r][col];
             result.add(tmp);
         }
 
@@ -96,7 +96,7 @@ public class Market {
         Resource tmp;
         for(int c = 0; c< Costants.MARKETCOLS; c++)
         {
-            tmp = new Resource(currentSituation[row][c]);
+            tmp = currentSituation[row][c];
             result.add(tmp);
         }
 

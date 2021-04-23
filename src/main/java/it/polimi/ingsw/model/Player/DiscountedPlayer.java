@@ -49,15 +49,22 @@ public class DiscountedPlayer extends Player
     public void getDevCard(String color, int level)
     {
         DevCard card;
-        int slot;
+        int slot=2;
+        //Setted to 2 for debug purposes
 
-        //Dev'essere cambiato in modo che sia gestito in qualche modo dal game, tipo assegnando al giocatore un riferimento al game in cui si trova
-        card = Table.buyDev(color, level);
-        if(super.getBoard().hasResources(card.getPrice().remove(discount)))
+        card = original.getGame().getTable().buyDev(color, level);
+        ArrayList<Resource> tmp ;
+        tmp = card.getPrice();
 
+        //Remove the discount
+        for (Resource r: discount)
+            tmp.remove(r);
+        if(original.getBoard().hasResources(tmp))
+        {
             card.setOwner(this);
-        //richiesta al giocatore in quale slot mettere la card
-        super.getBoard().getSlot().purchaseCard(card,slot);
+            original.getBoard().getSlot().purchaseCard(card,slot);
+        }
+
     }
 
     /**
