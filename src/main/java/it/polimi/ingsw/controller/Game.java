@@ -1,6 +1,7 @@
 package it.polimi.ingsw.controller;
 
 import it.polimi.ingsw.model.Player.Player;
+import it.polimi.ingsw.model.Table.Table;
 
 import java.util.ArrayList;
 
@@ -14,6 +15,8 @@ public class Game {
      */
     ArrayList<Player> players;
 
+    //Return the player
+    Table table;
     /**
      * Change player.
      *
@@ -29,5 +32,10 @@ public class Game {
     {
         int pos = players.indexOf(original);
         players.set(pos, newPlayer);
+    }
+
+    public Table getTable()
+    {
+        return table;
     }
 }
