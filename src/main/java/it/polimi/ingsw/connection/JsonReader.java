@@ -19,6 +19,7 @@ public class JsonReader{
 
         ArrayList<Resource> tmp = new ArrayList<Resource>();
         tmp.add(Resource.GOLD);
+        tmp.add(Resource.FAITH);
         DevCard dev = new DevCard("Green", 2, 2, tmp, tmp, tmp) ;
 
         String jsonString = gson.toJson(dev);
