@@ -47,6 +47,7 @@ public class DevCard {
         produces = pro;
         price = pri;
         isEnable = false;
+        owner = null;
     }
 
     /**

@@ -1,4 +1,4 @@
-import it.polimi.ingsw.controller.JsonReader;
+import it.polimi.ingsw.connection.JsonReader;
 import org.junit.Test;
 
 public class TestProvaJSon{

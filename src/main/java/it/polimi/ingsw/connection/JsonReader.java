@@ -1,4 +1,4 @@
-package it.polimi.ingsw.controller;
+package it.polimi.ingsw.connection;
 
 import com.google.gson.*;
 import it.polimi.ingsw.model.Cards.DevCard;
