@@ -16,6 +16,7 @@ public class Discount implements LeaderCard {
     private int victoryPoints;
     private boolean isEnable;
     private Player player;
+    private final String className;
 
     /**
      * Instantiates a new Discount.
@@ -26,6 +27,7 @@ public class Discount implements LeaderCard {
      */
     public Discount(String color1, String color2, Resource dis, int vp)
     {
+        className = this.getClass().getName();
         this.color1 = color1;
         this.color2 = color2;
         discount = dis;
@@ -45,6 +47,11 @@ public class Discount implements LeaderCard {
      */
     public boolean isEnable() {
         return isEnable;
+    }
+
+    @Override
+    public String getClassName() {
+        return className;
     }
 
     public void playCard()

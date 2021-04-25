@@ -17,7 +17,7 @@ public class ExtraDeposit implements LeaderCard {
     private Player player;
     private Resource requires;
     private Resource depositableRes;
-
+    private final String className;
 
     /**
      * Instantiates a new Extra deposit.
@@ -28,6 +28,7 @@ public class ExtraDeposit implements LeaderCard {
      */
     public ExtraDeposit(int victoryPoints, Resource requires, Resource depositableRes)
     {
+        className = this.getClass().getName();
         this.victoryPoints = victoryPoints;
         this.requires = requires;
         this.depositableRes = depositableRes;
@@ -75,5 +76,9 @@ public class ExtraDeposit implements LeaderCard {
                 (Collections.frequency(player.getBoard().getStrongBox().getResources(), requires)) >= 5);
     }
 
+    public String getClassName()
+    {
+        return className;
+    }
 
 }

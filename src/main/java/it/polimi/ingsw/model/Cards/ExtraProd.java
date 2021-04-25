@@ -16,6 +16,7 @@ public class ExtraProd implements LeaderCard {
     private Player player;
     private String requires; //WHat it needs to be played
     private Resource prodResource;  //What it needs for producing
+    private final String className;
 
     /**
      * Instantiates a new Extra prod.
@@ -26,6 +27,7 @@ public class ExtraProd implements LeaderCard {
      */
     public ExtraProd(int victoryPoints, String requires, Resource prodResource)
     {
+        className = this.getClass().getName();
         this.prodResource = prodResource;
         this.requires = requires;
         this.victoryPoints = victoryPoints;
@@ -52,6 +54,11 @@ public class ExtraProd implements LeaderCard {
         }
         return false;
 
+    }
+
+    public String getClassName()
+    {
+        return className;
     }
 
     public void playCard()

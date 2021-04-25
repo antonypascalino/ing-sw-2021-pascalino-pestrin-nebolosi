@@ -7,6 +7,12 @@ import it.polimi.ingsw.model.Player.Player;
  */
 public interface LeaderCard {
 
+
+    /**
+     * Helper method used for deserializing a gson String containing a list of leaderCards
+     * @return the class name
+     */
+    String getClassName();
     /**
      * Play card, which means setting it to enable
      * Wrapping the player with a new player that correctly implements the
