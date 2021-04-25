@@ -5,14 +5,10 @@ import it.polimi.ingsw.model.Player.Player;
 /**
  * The interface Leader card implemented by all the leader cards
  */
-public interface LeaderCard {
+public interface LeaderCard extends Convertable {
 
 
-    /**
-     * Helper method used for deserializing a gson String containing a list of leaderCards
-     * @return the class name
-     */
-    String getClassName();
+
     /**
      * Play card, which means setting it to enable
      * Wrapping the player with a new player that correctly implements the
