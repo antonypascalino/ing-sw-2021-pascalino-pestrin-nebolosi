@@ -34,7 +34,7 @@ public class ChangeResPlayer extends Player{
     }
 
     /**
-     * @override
+     *
      * Gets from market considering the possibility to change resource
      *
      */

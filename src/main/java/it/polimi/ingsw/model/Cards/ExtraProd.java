@@ -25,6 +25,7 @@ public class ExtraProd implements LeaderCard {
      * @param victoryPoints the victory points
      * @param requires      the color of the required card
      * @param prodResource  the prod resource
+     * @param cardID the unique id for the card
      */
     public ExtraProd(int victoryPoints, String requires, Resource prodResource, String cardID)
     {

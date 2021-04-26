@@ -95,8 +95,8 @@ public class Board
      * <p>
      * First of all, check if player actually has the resources to remove.
      * Then, for every resource in toRem, ask him from where remove it:
-     * • He choose to take it from WareHouse -> check if there's it -> if yes remove it, if no automatically remove it from StrongBox
-     * • He choose to take it from StrongBox -> check if there's it -> if yes remove it, if no automatically remove it from WareHouse
+     * • He choose to take it from WareHouse - check if there's it - if yes remove it, if no automatically remove it from StrongBox
+     * • He choose to take it from StrongBox - check if there's it - if yes remove it, if no automatically remove it from WareHouse
      * The automatic remove is possible because the method previously checked the player's possession.
      *
      * @param toRem the ArrayList with the resources to remove.

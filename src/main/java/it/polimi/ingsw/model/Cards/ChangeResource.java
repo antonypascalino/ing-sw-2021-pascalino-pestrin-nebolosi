@@ -26,6 +26,7 @@ public class ChangeResource implements LeaderCard
      * @param color1        the color of the first card required for being played
      * @param color2        the color of the second card required for being played
      * @param change        the resource in which the new player turns the white resource
+     * @param cardID the unique id for the card
      */
     public ChangeResource(int victoryPoints, String color1, String color2, Resource change, String cardID)
     {

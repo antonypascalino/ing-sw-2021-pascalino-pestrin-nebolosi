@@ -25,6 +25,8 @@ public class Discount implements LeaderCard {
      * @param color1 : the color of the first card needed to play the card
      * @param color2 : the color of the second card needed to play the card
      * @param dis : the resource rappresenting the discount given to the player
+     * @param cardID the unique id for the card
+     * @param vp  the victory points the card is gonna give to the player
      */
     public Discount(String color1, String color2, Resource dis, int vp, String cardID)
     {

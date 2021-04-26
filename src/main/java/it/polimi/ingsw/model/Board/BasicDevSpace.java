@@ -49,7 +49,7 @@ public class BasicDevSpace {
     }
 
     /**
-     * Checks if player has the two chosen resources to pay, uses {@link Board hasResource(ArrayList<Resource>)}
+     * Checks if player has the two chosen resources to pay, uses Board.hasResource
      * to check into all player's resources
      *
      * @param res1 the first resource to check

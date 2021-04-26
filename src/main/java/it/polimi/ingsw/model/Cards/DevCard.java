@@ -1,5 +1,6 @@
 package it.polimi.ingsw.model.Cards;
 
+import it.polimi.ingsw.controller.MappedResource;
 import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Resource;
 import it.polimi.ingsw.model.ResourceNotAvailable;
@@ -81,11 +82,11 @@ public class DevCard {
      * When used gives back the resources and remove the resources
      * from the strongBox or from the wareHouse
      *
-     * @param the map cointaing the place where to remove each resource
+     * @param mappedResources the map cointaing the place where to remove each resource
      * @return the array list of the produced resourced
      */
     //PLACE IT IN THE STRONGBOX
-    public ArrayList<Resource> produce()
+    public ArrayList<Resource> produce(ArrayList<MappedResource> mappedResources)
     {
         try{
             owner.getBoard().removeResources((ArrayList<Resource>) requires.clone());

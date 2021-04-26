@@ -26,6 +26,7 @@ public class ExtraDeposit implements LeaderCard {
      * @param victoryPoints  the victory points
      * @param requires       the requires for being played
      * @param depositableRes the depositable res
+     * @param cardID the unique id for the card
      */
     public ExtraDeposit(int victoryPoints, Resource requires, Resource depositableRes, String cardID)
     {
