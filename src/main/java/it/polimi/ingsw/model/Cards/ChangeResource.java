@@ -18,7 +18,7 @@ public class ChangeResource implements LeaderCard
     private String color2;
     private Resource change;
     private final String className;
-
+    public String cardID;
     /**
      * Instantiates a new Change resource and sets the enable to false
      *
@@ -27,7 +27,9 @@ public class ChangeResource implements LeaderCard
      * @param color2        the color of the second card required for being played
      * @param change        the resource in which the new player turns the white resource
      */
-    public ChangeResource(int victoryPoints, String color1, String color2, Resource change) {
+    public ChangeResource(int victoryPoints, String color1, String color2, Resource change, String cardID)
+    {
+        this.cardID = cardID;
         className = this.getClass().getName();
         this.victoryPoints = victoryPoints;
         this.color1 = color1;
@@ -38,6 +40,16 @@ public class ChangeResource implements LeaderCard
 
     public boolean isEnable() {
         return isEnable;
+    }
+
+    @Override
+    public Boolean equals(LeaderCard compare) {
+        return this.cardID.equals(compare.getID());
+    }
+
+    @Override
+    public String getID() {
+        return cardID;
     }
 
     public void assignTo(Player player) {

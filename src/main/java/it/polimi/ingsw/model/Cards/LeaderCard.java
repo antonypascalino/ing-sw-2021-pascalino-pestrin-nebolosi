@@ -8,8 +8,6 @@ import it.polimi.ingsw.model.Player.Player;
  */
 public interface LeaderCard extends Convertable {
 
-
-
     /**
      * Play card, which means setting it to enable
      * Wrapping the player with a new player that correctly implements the
@@ -38,4 +36,8 @@ public interface LeaderCard extends Convertable {
      * @return true if the card is enabled
      */
     public boolean isEnable();
+    
+    public Boolean equals(LeaderCard compare);
+
+    public String getID();
 }

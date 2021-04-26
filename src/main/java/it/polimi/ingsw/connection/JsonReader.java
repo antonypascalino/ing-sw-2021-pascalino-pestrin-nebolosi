@@ -35,7 +35,7 @@ public class JsonReader{
      * @param input the string containing the input information for deserialize
      * @return an array list with the deserialized requests
      */
-    public static void readRequest(String input)
+    public static ArrayList<Request> readRequest(String input)
     {
         //Gson gson = new Gson();
         GsonBuilder builder = new GsonBuilder();
@@ -45,7 +45,7 @@ public class JsonReader{
 
 
         Type listType = new TypeToken<ArrayList<Request>>(){}.getType();
-        ArrayList<Convertable> empObject = gson.fromJson(input, listType );
-        //return (ArrayList<Request>)empObject;
+        ArrayList<Request> empObject = gson.fromJson(input, listType );
+        return empObject;
     }
 }

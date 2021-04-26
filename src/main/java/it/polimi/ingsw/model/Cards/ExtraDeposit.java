@@ -18,6 +18,7 @@ public class ExtraDeposit implements LeaderCard {
     private Resource requires;
     private Resource depositableRes;
     private final String className;
+    private String cardID;
 
     /**
      * Instantiates a new Extra deposit.
@@ -26,8 +27,9 @@ public class ExtraDeposit implements LeaderCard {
      * @param requires       the requires for being played
      * @param depositableRes the depositable res
      */
-    public ExtraDeposit(int victoryPoints, Resource requires, Resource depositableRes)
+    public ExtraDeposit(int victoryPoints, Resource requires, Resource depositableRes, String cardID)
     {
+        this.cardID = cardID;
         className = this.getClass().getName();
         this.victoryPoints = victoryPoints;
         this.requires = requires;
@@ -81,4 +83,16 @@ public class ExtraDeposit implements LeaderCard {
         return className;
     }
 
+    @Override
+    public Boolean equals(LeaderCard compare)
+    {
+        return this.cardID.equals(compare.getID());
+
+    }
+
+    @Override
+    public String getID()
+    {
+        return cardID;
+    }
 }

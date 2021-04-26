@@ -17,6 +17,7 @@ public class Discount implements LeaderCard {
     private boolean isEnable;
     private Player player;
     private final String className;
+    private String cardID;
 
     /**
      * Instantiates a new Discount.
@@ -25,8 +26,9 @@ public class Discount implements LeaderCard {
      * @param color2 : the color of the second card needed to play the card
      * @param dis : the resource rappresenting the discount given to the player
      */
-    public Discount(String color1, String color2, Resource dis, int vp)
+    public Discount(String color1, String color2, Resource dis, int vp, String cardID)
     {
+        this.cardID = cardID;
         className = this.getClass().getName();
         this.color1 = color1;
         this.color2 = color2;
@@ -47,6 +49,16 @@ public class Discount implements LeaderCard {
      */
     public boolean isEnable() {
         return isEnable;
+    }
+
+    @Override
+    public Boolean equals(LeaderCard compare) {
+        return this.cardID.equals(compare.getID());
+    }
+
+    @Override
+    public String getID() {
+        return cardID;
     }
 
     @Override

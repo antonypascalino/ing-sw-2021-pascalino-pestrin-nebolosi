@@ -10,6 +10,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class TestProvaJSon{
 
@@ -19,8 +20,8 @@ public class TestProvaJSon{
         ArrayList<Resource> tmp = new ArrayList<Resource>();
         tmp.add(Resource.GOLD);
         tmp.add(Resource.FAITH);
-        ExtraProd card = new ExtraProd(3, "Green", Resource.GOLD) ;
-        ExtraDeposit card2 = new ExtraDeposit(2, Resource.SERVANT, Resource.STONE);
+        ExtraProd card = new ExtraProd(3, "Green", Resource.GOLD, "prod01") ;
+        ExtraDeposit card2 = new ExtraDeposit(2, Resource.SERVANT, Resource.STONE, "extra01");
         ArrayList<LeaderCard> nonFuzionaMaSeFunziona = new ArrayList<LeaderCard>();
         nonFuzionaMaSeFunziona.add(card);
         nonFuzionaMaSeFunziona.add(card2);
@@ -30,7 +31,7 @@ public class TestProvaJSon{
         String jsonString = gson.toJson(nonFuzionaMaSeFunziona);
         System.out.println(jsonString);
         ArrayList<LeaderCard> risultato = JsonReader.readLeaderCard(jsonString);
-        assertEquals(risultato.get(0), nonFuzionaMaSeFunziona.get(0));
+        assertTrue(risultato.get(0).equals(nonFuzionaMaSeFunziona.get(0)));
     }
 
 

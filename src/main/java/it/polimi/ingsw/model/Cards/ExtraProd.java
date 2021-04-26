@@ -17,6 +17,7 @@ public class ExtraProd implements LeaderCard {
     private String requires; //WHat it needs to be played
     private Resource prodResource;  //What it needs for producing
     private final String className;
+    private String cardID;
 
     /**
      * Instantiates a new Extra prod.
@@ -25,8 +26,9 @@ public class ExtraProd implements LeaderCard {
      * @param requires      the color of the required card
      * @param prodResource  the prod resource
      */
-    public ExtraProd(int victoryPoints, String requires, Resource prodResource)
+    public ExtraProd(int victoryPoints, String requires, Resource prodResource, String cardID)
     {
+        this.cardID = cardID;
         className = this.getClass().getName();
         this.prodResource = prodResource;
         this.requires = requires;
@@ -44,6 +46,8 @@ public class ExtraProd implements LeaderCard {
     {
         return isEnable;
     }
+
+
 
     public boolean canBePlayed()
     {
@@ -74,5 +78,18 @@ public class ExtraProd implements LeaderCard {
                 card.assignTo(tmp);
             }
         }
+    }
+
+    @Override
+    public Boolean equals(LeaderCard compare)
+    {
+        return this.cardID.equals(compare.getID());
+
+    }
+
+    @Override
+    public String getID()
+    {
+        return cardID;
     }
 }
