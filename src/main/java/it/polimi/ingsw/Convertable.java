@@ -1,4 +1,4 @@
-package it.polimi.ingsw.model.Cards;
+package it.polimi.ingsw;
 
 //Class used for converting cards from json
 public interface Convertable {

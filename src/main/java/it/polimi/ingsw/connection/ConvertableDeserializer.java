@@ -6,19 +6,21 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonPrimitive;
-import it.polimi.ingsw.model.Cards.Convertable;
+import it.polimi.ingsw.Convertable;
 import it.polimi.ingsw.model.Cards.LeaderCard;
 
 import java.lang.reflect.Type;
 
-public class ConvertableDeserializer<T extends Convertable> implements JsonDeserializer<T> {
+/**
+ * Classe used for deserialize any type of interface that extends the convertable interface
+ * @param <T> The interface that needs to be deserialized
+ */
+class ConvertableDeserializer<T extends Convertable> implements JsonDeserializer<T> {
 
     private static final String CLASSNAME = "className";
 
-    public T deserialize(final JsonElement jsonElement, final Type type,
-                         final JsonDeserializationContext deserializationContext
-    ) throws JsonParseException {
-
+    public T deserialize(final JsonElement jsonElement, final Type type, final JsonDeserializationContext deserializationContext) throws JsonParseException
+    {
         final JsonObject jsonObject = jsonElement.getAsJsonObject();
         final JsonPrimitive prim = (JsonPrimitive) jsonObject.get(CLASSNAME);
         final String className = prim.getAsString();

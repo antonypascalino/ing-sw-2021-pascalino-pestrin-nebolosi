@@ -10,6 +10,8 @@ import java.util.ArrayList;
 //Per ogni richiesta crea un elemento decodificando il gson
 //Questo elemento avrò un id della carta e le possibili risorse a scelta
 public class ProduceRequest implements Request {
+
+    private final String className;
     /**
      * The Used card for producing
      */
@@ -23,6 +25,10 @@ public class ProduceRequest implements Request {
      */
     int returnedChoice;
 
+    public ProduceRequest()
+    {
+        className = this.getClass().getName();
+    }
     /**
      * Gets card and inizializes returned choice so it starts with the first element
      *
@@ -48,5 +54,11 @@ public class ProduceRequest implements Request {
     {
         returnedChoice++;
         return choices.get(returnedChoice - 1 );
+    }
+
+    @Override
+    public String getClassName()
+    {
+        return className;
     }
 }

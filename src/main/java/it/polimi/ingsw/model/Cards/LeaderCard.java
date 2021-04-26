@@ -1,5 +1,6 @@
 package it.polimi.ingsw.model.Cards;
 
+import it.polimi.ingsw.Convertable;
 import it.polimi.ingsw.model.Player.Player;
 
 /**
