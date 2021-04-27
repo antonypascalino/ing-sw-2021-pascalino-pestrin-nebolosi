@@ -15,6 +15,7 @@ public class DevCard {
     private int level;
     private int victoryPoint;
     private boolean isEnable;
+    private String cardId;
     /**
      * The Owner.
      */
@@ -40,7 +41,8 @@ public class DevCard {
      * @param pro the resource produced by the card
      * @param pri the price for buying the card
      */
-    public DevCard(String col, int lev, int vp, ArrayList<Resource> req, ArrayList<Resource> pro, ArrayList<Resource> pri) {
+    public DevCard(String id, String col, int lev, int vp, ArrayList<Resource> req, ArrayList<Resource> pro, ArrayList<Resource> pri) {
+        cardId = id;
         color = col;
         level = lev;
         victoryPoint = vp;
@@ -49,6 +51,7 @@ public class DevCard {
         price = pri;
         isEnable = false;
         owner = null;
+        cardId = id;
     }
 
     /**
