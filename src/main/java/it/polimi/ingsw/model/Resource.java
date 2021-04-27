@@ -1,9 +1,11 @@
 package it.polimi.ingsw.model;
 
+import java.util.ArrayList;
+
 /**
  * The enum Resource.
  */
-public enum Resource {
+public enum Resource{
 
 
     /**
@@ -37,5 +39,15 @@ public enum Resource {
     CHOICE;
 
     private String color;
+
+
+    public static ArrayList<Resource> cloneList(ArrayList<Resource> list) {
+        ArrayList<Resource> clone = new ArrayList<Resource>(list.size());
+        for (Resource item : list)
+        {
+                clone.add((item));
+        }
+        return clone;
+    }
 
 }

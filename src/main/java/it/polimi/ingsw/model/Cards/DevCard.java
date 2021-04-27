@@ -145,4 +145,8 @@ public class DevCard {
     public ArrayList<Resource> getPrice() {
         return price;
     }
+
+    public String getCardId() {
+        return cardId;
+    }
 }
