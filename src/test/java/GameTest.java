@@ -9,7 +9,7 @@ import java.util.ArrayList;
     public class GameTest
     {
         @Test
-        public static ArrayList<DevCard>  produceDevCard() {
+        public void produceDevCard() {
 
 
             ArrayList<DevCard> result = new ArrayList<DevCard>();
@@ -468,6 +468,7 @@ import java.util.ArrayList;
             produces.clear();
             price.clear();
 
-            return result;
+            System.out.println(result.size());
+            //return result;
         }
     }
