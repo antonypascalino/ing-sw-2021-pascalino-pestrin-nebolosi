@@ -1,4 +1,4 @@
-package it.polimi.ingsw.connection;
+package it.polimi.ingsw.Request;
 
 import it.polimi.ingsw.Convertable;
 import it.polimi.ingsw.controller.TurnState;

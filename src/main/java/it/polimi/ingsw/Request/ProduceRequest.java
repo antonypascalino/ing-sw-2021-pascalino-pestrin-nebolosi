@@ -1,6 +1,7 @@
-package it.polimi.ingsw.connection;
+package it.polimi.ingsw.Request;
 
 import it.polimi.ingsw.controller.TurnState;
+import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Resource;
 
 import java.util.ArrayList;
@@ -45,6 +46,17 @@ public class ProduceRequest implements Request {
     public TurnState handle()
     {
         //Chiama il game dicendo chi fa cosa
+        return TurnState.Initial;
+    }
+
+    @Override
+    public boolean validRequest() {
+        return false;
+    }
+
+    @Override
+    public int canBePlayed(Player player) {
+        return 0;
     }
 
     /**

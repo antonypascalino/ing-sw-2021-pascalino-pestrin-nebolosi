@@ -1,5 +1,6 @@
 package it.polimi.ingsw.controller;
 
+import it.polimi.ingsw.Request.Request;
 import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Table.Table;
 
@@ -17,7 +18,7 @@ public class Game {
 
     //Return the player
     Table table;
-    privare
+    private TurnState turnState;
 
     /**
      * Change player.
@@ -48,7 +49,8 @@ public class Game {
      * La notify chiama il metodo canBePlayed che le restituirà la pozione su cui si troverà il Player sul FaithPath, con
      * tale posizione notificherà tutti gli altri player per chiedergli loro come di comporteranno di conseguenza
      */
-    public void notify(ArrayList) {
+    public void notify(ArrayList<Request> requests)
+    {
         //for(request r)
         //    if(request.validRequest(turnstate,player))
         //      turnState = request.handle() BOZZA

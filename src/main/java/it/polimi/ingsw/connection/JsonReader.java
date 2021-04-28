@@ -2,9 +2,8 @@ package it.polimi.ingsw.connection;
 
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
-import it.polimi.ingsw.Convertable;
+import it.polimi.ingsw.Request.Request;
 import it.polimi.ingsw.model.Cards.*;
-import it.polimi.ingsw.model.Resource;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;

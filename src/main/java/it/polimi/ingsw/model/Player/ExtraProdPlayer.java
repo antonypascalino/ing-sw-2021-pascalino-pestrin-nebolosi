@@ -1,6 +1,6 @@
 package it.polimi.ingsw.model.Player;
 
-import it.polimi.ingsw.connection.ProduceRequest;
+import it.polimi.ingsw.Request.ProduceRequest;
 import it.polimi.ingsw.model.Cards.DevCard;
 import it.polimi.ingsw.model.Resource;
 
