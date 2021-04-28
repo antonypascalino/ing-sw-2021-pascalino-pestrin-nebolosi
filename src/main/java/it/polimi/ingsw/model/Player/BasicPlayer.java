@@ -1,11 +1,16 @@
 package it.polimi.ingsw.model.Player;
 
+import it.polimi.ingsw.Request.MarketRequest;
 import it.polimi.ingsw.Request.ProduceRequest;
+import it.polimi.ingsw.Request.Request;
+import it.polimi.ingsw.controller.MarketResource;
 import it.polimi.ingsw.model.Board.Board;
 import it.polimi.ingsw.model.Cards.DevCard;
 import it.polimi.ingsw.model.Cards.LeaderCard;
+import it.polimi.ingsw.model.Resource;
 import it.polimi.ingsw.model.Table.Table;
 
+import java.awt.geom.RectangularShape;
 import java.util.ArrayList;
 
 /**
@@ -108,5 +113,18 @@ public class BasicPlayer extends Player {
             //ALlora lo usa sostituendo a ogni richiesta un valore di r.getChoiche
         //per ogni richiesta di produzione (dalla connection) attiva la giusta carta e salva la produzione
         //nel forziere del giocatore
+    }
+
+    @Override
+    public boolean checkSpace(MarketResource marketRes) {
+        return board.getWareHouse().checkSpace(marketRes.getLevel(), marketRes.getResource());
+    }
+
+    @Override
+    public void addToWareHouse(int level, Resource res) {
+        if(level <= 3) {
+            board.getWareHouse().addResource(level, res);
+        }
+        //else lancia eccezione o eventuale.
     }
 }

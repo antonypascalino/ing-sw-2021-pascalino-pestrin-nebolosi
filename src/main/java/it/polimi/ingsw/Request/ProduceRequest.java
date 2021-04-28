@@ -73,4 +73,23 @@ public class ProduceRequest implements Request {
     {
         return className;
     }
+
+
+
+
+    //DA IMPLEMENTARE
+    @Override
+    public TurnState nextTurnState() {
+        return null;
+    }
+
+    @Override
+    public int getMyFPSteps() {
+        return 0;
+    }
+
+    @Override
+    public int getDiscardedSteps() {
+        return 0;
+    }
 }

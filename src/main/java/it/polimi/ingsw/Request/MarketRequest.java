@@ -34,10 +34,10 @@ public class MarketRequest implements Request {
             else if (marketRes.getLevel() == -1) {
                 discardedSteps++;
             }
-            else if (!player.getBoard().getWareHouse().checkSpace(marketRes.getLevel(), marketRes.getResource())) {
+            else if (!player.checkSpace(marketRes)) {
                 discardedSteps++;
             }
-            else player.getBoard().getWareHouse().addResource(marketRes.getLevel(), marketRes.getResource());
+            else player.addToWareHouse(marketRes.getLevel(), marketRes.getResource());
         }
     }
 
@@ -62,6 +62,7 @@ public class MarketRequest implements Request {
         for (MarketResource marketRes : marketResources) {
             requiredRes.add(marketRes.getResource());
         }
+        return requiredRes;
     }
 
     public int getMyFPSteps() {
@@ -70,5 +71,18 @@ public class MarketRequest implements Request {
 
     public int getDiscardedSteps() {
         return discardedSteps;
+    }
+
+    public ArrayList<Resource> requestedRes(){
+        ArrayList<Resource> requestedRes = new ArrayList<Resource>();
+        for(MarketResource marketRes : marketResources) {
+            requestedRes.add(marketRes.getResource());
+        }
+        return requestedRes;
+    }
+
+    @Override
+    public TurnState nextTurnState() {
+        return TurnState.getFromMarket;
     }
 }

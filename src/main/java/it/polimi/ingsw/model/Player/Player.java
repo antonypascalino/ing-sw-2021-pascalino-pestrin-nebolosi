@@ -1,7 +1,9 @@
 package it.polimi.ingsw.model.Player;
 import it.polimi.ingsw.controller.Game;
+import it.polimi.ingsw.controller.MarketResource;
 import it.polimi.ingsw.model.Board.Board;
 import it.polimi.ingsw.model.Cards.LeaderCard;
+import it.polimi.ingsw.model.Resource;
 
 import java.util.ArrayList;
 
@@ -121,5 +123,13 @@ public abstract class Player {
     public void produce()
     {
         original.produce();
+    }
+
+    public boolean checkSpace(MarketResource marketRes){
+        return original.checkSpace(marketRes);
+    }
+
+    public void addToWareHouse(int level, Resource res) {
+        original.addToWareHouse(level,res);
     }
 }
