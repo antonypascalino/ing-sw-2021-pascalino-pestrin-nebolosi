@@ -1,8 +1,9 @@
 package it.polimi.ingsw.controller;
 
-import it.polimi.ingsw.model.Cards.DevCard;
+import it.polimi.ingsw.model.Cards.*;
 import it.polimi.ingsw.model.Resource;
 
+import javax.xml.stream.events.EntityReference;
 import java.util.ArrayList;
 
 /**
@@ -10,6 +11,11 @@ Class used if the player picks to use the default settings for leader and develo
  */
 public class DefaultCreator {
 
+    /**
+     * Static method used for generate an array List containing all the defaults
+     * DevCard in the basic game settings
+     * @result An arrayList with the new cards
+     */
     public static ArrayList<DevCard> produceDevCard() {
 
         ArrayList<DevCard> result = new ArrayList<DevCard>();
@@ -916,6 +922,81 @@ public class DefaultCreator {
         requires.clear();
         produces.clear();
         price.clear();
+        return result;
+    }
+
+    /**
+     * Static method used for generate an array List containing all the defaults
+     * LeaderCards in the basic game settings
+     * @result An arrayList with the new cards
+     */
+    public static ArrayList<LeaderCard> produceLeaderCard()
+    {
+        ArrayList<LeaderCard> result = new ArrayList<LeaderCard>();
+        //PROD01
+        ExtraProd tmp = new ExtraProd(4, "Blue", Resource.SERVANT, "PROD01");
+        result.add(tmp);
+
+        //PROD02
+        ExtraProd tmp2 = new ExtraProd(4, "Green", Resource.GOLD, "PROD02");
+        result.add(tmp2);
+
+        //PROD03
+        ExtraProd tmp3 = new ExtraProd(4, "Purple", Resource.STONE, "PROD03");
+        result.add(tmp3);
+
+        //PROD03
+        ExtraProd tmp4 = new ExtraProd(4, "Yellow", Resource.SHIELD, "PROD04");
+        result.add(tmp4);
+
+        //CNG01
+        ChangeResource cng1 = new ChangeResource(5,"Purple", "Green", Resource.GOLD, "CNG01");
+        result.add(cng1);
+
+        //CNG02
+        ChangeResource cng2 = new ChangeResource(5, "Blue", "Yellow", Resource.STONE, "CNG02");
+        result.add(cng2);
+
+        //CNG03
+        ChangeResource cng3 = new ChangeResource(5, "Green","Purple", Resource.SHIELD, "CNG03");
+        result.add(cng3);
+
+        //CNG04
+        ChangeResource cng4 = new ChangeResource(5,"Yellow", "Blue", Resource.SERVANT, "CNG04");
+        result.add(cng4);
+
+        //DIS01
+        Discount dsn1 = new Discount("Yellow", "Purple", Resource.GOLD, 2, "DIS01");
+        result.add(dsn1);
+
+        //DIS02
+        Discount dsn2 = new Discount("Yellow", "Green", Resource.SERVANT, 2, "DIS02");
+        result.add(dsn2);
+
+        //DIS03
+        Discount dsn3 = new Discount("Blue", "Purple", Resource.SHIELD, 2, "DIS03");
+        result.add(dsn3);
+
+        //DIS04
+        Discount dsn4 = new Discount("Green", "Blue", Resource.STONE, 2, "DIS04");
+        result.add(dsn4);
+
+        //DEP01
+        ExtraDeposit dep1 = new ExtraDeposit(3, Resource.STONE, Resource.SERVANT, "DEP01");
+        result.add(dep1);
+
+        //DEP02
+        ExtraDeposit dep2 = new ExtraDeposit(3, Resource.SHIELD, Resource.GOLD, "DEP02");
+        result.add(dep2);
+
+        //DEP03
+        ExtraDeposit dep3 = new ExtraDeposit(3, Resource.SERVANT, Resource.SHIELD, "DEP03");
+        result.add(dep3);
+
+        //DEP04
+        ExtraDeposit dep4 = new ExtraDeposit(3,Resource.GOLD,Resource.STONE, "DEP04");
+        result.add(dep4);
+
         return result;
     }
 }

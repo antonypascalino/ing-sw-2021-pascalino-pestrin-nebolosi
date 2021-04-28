@@ -8,6 +8,9 @@ import it.polimi.ingsw.model.Cards.*;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
+/**
+ * An auxiliary class used for deserialaizing leaderCards and requests
+ */
 public class JsonReader{
     /**
      * Static metod used for reading a sequence of devCard from a json file

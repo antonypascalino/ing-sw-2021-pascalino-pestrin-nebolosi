@@ -2,8 +2,10 @@
     import com.google.gson.Gson;
     import com.google.gson.GsonBuilder;
     import com.google.gson.reflect.TypeToken;
+    import it.polimi.ingsw.connection.JsonReader;
     import it.polimi.ingsw.controller.DefaultCreator;
     import it.polimi.ingsw.model.Cards.DevCard;
+    import it.polimi.ingsw.model.Cards.LeaderCard;
     import it.polimi.ingsw.model.Resource;
     import org.junit.Test;
 
@@ -14,7 +16,7 @@ import java.lang.reflect.Array;
     public class GameTest
     {
         @Test
-        public void TestTranslation()
+        public void TestDevTranslation()
         {
             GsonBuilder builder = new GsonBuilder();
             Gson gson = builder.setPrettyPrinting().create();
@@ -26,6 +28,24 @@ import java.lang.reflect.Array;
             {
                 System.out.println(dev.getCardId());
                 System.out.println(dev.getPrice());
+            }
+            System.out.println("Riconvertite "+ tmp.size()+ " carte");
+        }
+
+        @Test
+        public void TestLeaderTranslation()
+        {
+            GsonBuilder builder = new GsonBuilder();
+
+            Gson gson = builder.setPrettyPrinting().create();
+            String testLeader=gson.toJson(DefaultCreator.produceLeaderCard());
+            System.out.println(testLeader);
+
+            ArrayList<LeaderCard> tmp= JsonReader.readLeaderCard(testLeader);
+            for (LeaderCard leaderCard : tmp)
+            {
+                System.out.println(leaderCard.getID());
+                System.out.println(leaderCard.toString());
             }
             System.out.println("Riconvertite "+ tmp.size()+ " carte");
         }

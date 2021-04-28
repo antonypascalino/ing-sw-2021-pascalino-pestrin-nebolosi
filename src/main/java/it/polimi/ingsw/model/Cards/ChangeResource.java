@@ -53,6 +53,7 @@ public class ChangeResource implements LeaderCard
         return cardID;
     }
 
+
     public void assignTo(Player player) {
         this.player = player;
         player.addLeaderCard(this);
