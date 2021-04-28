@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2021-04-17T10:19:47.381Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.2 Safari/605.1.15" etag="Svd8rXhH6og_KR0Ok-zy" version="14.6.1" type="github">
+<mxfile host="app.diagrams.net" modified="2021-04-28T09:40:59.777Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.85 Safari/537.36 Edg/90.0.818.46" etag="buJlR5ptHJFdAI_c_2gW" version="14.6.6" type="github">
   <diagram id="XjBvma8TKEidSXA-A0vw" name="Pagina-2">
-    <mxGraphModel dx="3152" dy="-443" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2676" dy="-725" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="zuPwHXy1TFyjWQxAL-yT-0" />
         <mxCell id="zuPwHXy1TFyjWQxAL-yT-1" parent="zuPwHXy1TFyjWQxAL-yT-0" />
@@ -13,13 +13,13 @@
         <mxCell id="zuPwHXy1TFyjWQxAL-yT-4" value="Game" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=none;" parent="zuPwHXy1TFyjWQxAL-yT-1" vertex="1">
           <mxGeometry x="182" y="1990" width="410" height="276" as="geometry" />
         </mxCell>
-        <mxCell id="zuPwHXy1TFyjWQxAL-yT-5" value="- playerList ArrayList&lt;Player&gt;&#xa;- gameTable Table&#xa;- turn : int&#xa;- currPlayer Player&#xa;- lastTurn : boolean&#xa;- maxVictoryPoints : int&#xa;&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="zuPwHXy1TFyjWQxAL-yT-4" vertex="1">
+        <mxCell id="zuPwHXy1TFyjWQxAL-yT-5" value="- playerList ArrayList&lt;Player&gt;&#xa;- gameTable Table&#xa;- currPlayer Player&#xa;- lastTurn : boolean&#xa;- maxVictoryPoints : int&#xa;&#xa;&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="zuPwHXy1TFyjWQxAL-yT-4" vertex="1">
           <mxGeometry y="26" width="410" height="114" as="geometry" />
         </mxCell>
         <mxCell id="zuPwHXy1TFyjWQxAL-yT-6" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="zuPwHXy1TFyjWQxAL-yT-4" vertex="1">
           <mxGeometry y="140" width="410" height="8" as="geometry" />
         </mxCell>
-        <mxCell id="zuPwHXy1TFyjWQxAL-yT-7" value="- nextPlayer(): void&#xa;- endGame() : void&#xa;- getWinner () : Player&#xa;- chooseCard () : void&#xa;- chooseResources () : void&#xa;- newTurnState(TurnState)&#xa;- changePlayerReference(Player, Player) : void            " style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="zuPwHXy1TFyjWQxAL-yT-4" vertex="1">
+        <mxCell id="zuPwHXy1TFyjWQxAL-yT-7" value="- nextPlayer(): void&#xa;- notify() : void&#xa;- endGame() : void&#xa;- getWinner () : Player&#xa;- chooseCard () : void&#xa;- chooseResources () : void&#xa;- newTurnState(TurnState)&#xa;- changePlayerReference(Player, Player) : void            " style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="zuPwHXy1TFyjWQxAL-yT-4" vertex="1">
           <mxGeometry y="148" width="410" height="128" as="geometry" />
         </mxCell>
         <mxCell id="zuPwHXy1TFyjWQxAL-yT-8" value="Start" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=none;" parent="zuPwHXy1TFyjWQxAL-yT-1" vertex="1">
@@ -30,15 +30,6 @@
         </mxCell>
         <mxCell id="zuPwHXy1TFyjWQxAL-yT-10" value="- selectInterface() : void&#xa;- addPlayer (String) : void&#xa;- startGame () : void&#xa;- setGame () : void&#xa;&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="zuPwHXy1TFyjWQxAL-yT-8" vertex="1">
           <mxGeometry y="34" width="520" height="80" as="geometry" />
-        </mxCell>
-        <mxCell id="zuPwHXy1TFyjWQxAL-yT-11" value="HandleTurn" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="zuPwHXy1TFyjWQxAL-yT-1" vertex="1">
-          <mxGeometry x="-559" y="2110" width="360" height="136" as="geometry" />
-        </mxCell>
-        <mxCell id="zuPwHXy1TFyjWQxAL-yT-12" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="zuPwHXy1TFyjWQxAL-yT-11" vertex="1">
-          <mxGeometry y="26" width="360" height="34" as="geometry" />
-        </mxCell>
-        <mxCell id="zuPwHXy1TFyjWQxAL-yT-13" value="- static chosenAction(TurnState, player) : throws InvalidOrder&#xa;- static takeResources() : void&#xa;- static buyDevCard () : void&#xa;- static activateProd () : void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="zuPwHXy1TFyjWQxAL-yT-11" vertex="1">
-          <mxGeometry y="60" width="360" height="76" as="geometry" />
         </mxCell>
         <mxCell id="zuPwHXy1TFyjWQxAL-yT-14" value="Extends" style="endArrow=block;endSize=16;endFill=0;html=1;entryX=0.612;entryY=1.025;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.492;exitY=0.001;exitDx=0;exitDy=0;exitPerimeter=0;" parent="zuPwHXy1TFyjWQxAL-yT-1" source="zuPwHXy1TFyjWQxAL-yT-15" target="zuPwHXy1TFyjWQxAL-yT-7" edge="1">
           <mxGeometry width="160" relative="1" as="geometry">
@@ -62,12 +53,6 @@
           <mxGeometry width="80" relative="1" as="geometry">
             <mxPoint x="-179" y="2010" as="sourcePoint" />
             <mxPoint x="-99" y="2010" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="zuPwHXy1TFyjWQxAL-yT-20" value="" style="html=1;verticalAlign=bottom;endArrow=block;entryX=1.002;entryY=0.128;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.002;exitY=0.904;exitDx=0;exitDy=0;exitPerimeter=0;" parent="zuPwHXy1TFyjWQxAL-yT-1" source="zuPwHXy1TFyjWQxAL-yT-5" target="zuPwHXy1TFyjWQxAL-yT-11" edge="1">
-          <mxGeometry width="80" relative="1" as="geometry">
-            <mxPoint x="31" y="2210" as="sourcePoint" />
-            <mxPoint x="111" y="2210" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="zuPwHXy1TFyjWQxAL-yT-23" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;Interface&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;Token&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ field1: Type&lt;br&gt;+ field2: Type&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- activateEffect () : void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;" parent="zuPwHXy1TFyjWQxAL-yT-1" vertex="1">
@@ -124,23 +109,82 @@
             <mxPoint x="311" y="2600" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="QdaKhmfzMMFKIb9w_ULD-0" value="enum&#xa;Turn state&#xa;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=50;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="zuPwHXy1TFyjWQxAL-yT-1">
+        <mxCell id="QdaKhmfzMMFKIb9w_ULD-0" value="enum&#xa;Turn state&#xa;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=50;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="zuPwHXy1TFyjWQxAL-yT-1" vertex="1">
           <mxGeometry x="-900" y="2100" width="280" height="180" as="geometry" />
         </mxCell>
-        <mxCell id="QdaKhmfzMMFKIb9w_ULD-2" value="- turnState: MoveResource, playLeaderCard,&#xa; getFromMarket, buyDevCard, produce, endTurn  " style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="QdaKhmfzMMFKIb9w_ULD-0">
+        <mxCell id="QdaKhmfzMMFKIb9w_ULD-2" value="- turnState: MoveResource, playLeaderCard,&#xa; getFromMarket, buyDevCard, produce, endTurn  " style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="QdaKhmfzMMFKIb9w_ULD-0" vertex="1">
           <mxGeometry y="50" width="280" height="130" as="geometry" />
         </mxCell>
-        <mxCell id="QdaKhmfzMMFKIb9w_ULD-4" value="//turn state sono i messaggi che la view manda al controller&amp;nbsp;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="zuPwHXy1TFyjWQxAL-yT-1">
-          <mxGeometry x="-860" y="2272" width="200" height="54" as="geometry" />
+        <mxCell id="QdaKhmfzMMFKIb9w_ULD-4" value="//turn state sono i messaggi che la view manda al controller&amp;nbsp;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="zuPwHXy1TFyjWQxAL-yT-1" vertex="1">
+          <mxGeometry x="-1101" y="2170" width="200" height="54" as="geometry" />
         </mxCell>
-        <mxCell id="QdaKhmfzMMFKIb9w_ULD-5" value="La conncetion riceve dalla View il giocatore che vuole giocare e quello che vuole fare.&lt;br&gt;chiama chosenAction() che controlla che sia un&#39;azione valida e se così è chiama il game e aggiorna il giocatore che sta giocando (se diverso da quello di prima) e quello che sta facendo" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="zuPwHXy1TFyjWQxAL-yT-1">
+        <mxCell id="QdaKhmfzMMFKIb9w_ULD-5" value="La conncetion riceve dalla View il giocatore che vuole giocare e quello che vuole fare.&lt;br&gt;chiama chosenAction() che controlla che sia un&#39;azione valida e se così è chiama il game e aggiorna il giocatore che sta giocando (se diverso da quello di prima) e quello che sta facendo" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="zuPwHXy1TFyjWQxAL-yT-1" vertex="1">
           <mxGeometry x="820" y="1800" width="270" height="175" as="geometry" />
         </mxCell>
-        <mxCell id="QdaKhmfzMMFKIb9w_ULD-6" value="newTurnState() invece controlla che momento del turno sia, prende le informazioni dalla connection e chiama uno dei metodi statici di HandleTurn passandogli il giocatore corrente." style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="zuPwHXy1TFyjWQxAL-yT-1">
+        <mxCell id="QdaKhmfzMMFKIb9w_ULD-6" value="newTurnState() invece controlla che momento del turno sia, prende le informazioni dalla connection e chiama uno dei metodi statici di HandleTurn passandogli il giocatore corrente." style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="zuPwHXy1TFyjWQxAL-yT-1" vertex="1">
           <mxGeometry x="700" y="2030" width="270" height="175" as="geometry" />
         </mxCell>
-        <mxCell id="QdaKhmfzMMFKIb9w_ULD-7" value="i metodi di HandleTurn son tutti metodi statici che ricevono il giocatore e ad esempio activateProd() leggerà dalla connection le informazioni relative alla produzione e le passerà al model" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="zuPwHXy1TFyjWQxAL-yT-1">
-          <mxGeometry x="-514" y="2190" width="270" height="175" as="geometry" />
+        <mxCell id="UZ8g9i1Q12Po_Xgt0YLo-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="zuPwHXy1TFyjWQxAL-yT-1" source="UZ8g9i1Q12Po_Xgt0YLo-0" target="QdaKhmfzMMFKIb9w_ULD-0">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-760" y="1840" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="UZ8g9i1Q12Po_Xgt0YLo-0" value="&lt;&lt;interface&gt;&gt;&#xa;Request" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="zuPwHXy1TFyjWQxAL-yT-1">
+          <mxGeometry x="182" y="1730" width="360" height="176" as="geometry">
+            <mxRectangle x="182" y="1730" width="110" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="UZ8g9i1Q12Po_Xgt0YLo-1" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="UZ8g9i1Q12Po_Xgt0YLo-0">
+          <mxGeometry y="40" width="360" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="UZ8g9i1Q12Po_Xgt0YLo-2" value="+ validRequest(player, state) : int&#xa;+ handle(player) : turnState&#xa;+ canBePlayer(player) : int&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="UZ8g9i1Q12Po_Xgt0YLo-0">
+          <mxGeometry y="80" width="360" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="UZ8g9i1Q12Po_Xgt0YLo-3" value="ProduceRequest" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="zuPwHXy1TFyjWQxAL-yT-1">
+          <mxGeometry x="-280" y="1630" width="360" height="136" as="geometry" />
+        </mxCell>
+        <mxCell id="UZ8g9i1Q12Po_Xgt0YLo-4" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="UZ8g9i1Q12Po_Xgt0YLo-3">
+          <mxGeometry y="26" width="360" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="UZ8g9i1Q12Po_Xgt0YLo-5" value="- validRequest(player, state) : int&#xa;- handleTurn(player) : turnState&#xa;- static takeResources() : void&#xa;- static buyDevCard () : void&#xa;- static activateProd () : void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="UZ8g9i1Q12Po_Xgt0YLo-3">
+          <mxGeometry y="60" width="360" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="UZ8g9i1Q12Po_Xgt0YLo-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="zuPwHXy1TFyjWQxAL-yT-1" source="UZ8g9i1Q12Po_Xgt0YLo-6" target="UZ8g9i1Q12Po_Xgt0YLo-0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="UZ8g9i1Q12Po_Xgt0YLo-6" value="MarketRequest" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="zuPwHXy1TFyjWQxAL-yT-1">
+          <mxGeometry x="180" y="1550" width="360" height="136" as="geometry" />
+        </mxCell>
+        <mxCell id="UZ8g9i1Q12Po_Xgt0YLo-7" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="UZ8g9i1Q12Po_Xgt0YLo-6">
+          <mxGeometry y="26" width="360" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="UZ8g9i1Q12Po_Xgt0YLo-8" value="- validRequest(player, state) : int&#xa;- handleTurn(player) : turnState&#xa;- static takeResources() : void&#xa;- static buyDevCard () : void&#xa;- static activateProd () : void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="UZ8g9i1Q12Po_Xgt0YLo-6">
+          <mxGeometry y="60" width="360" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="UZ8g9i1Q12Po_Xgt0YLo-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="zuPwHXy1TFyjWQxAL-yT-1" source="UZ8g9i1Q12Po_Xgt0YLo-9" target="UZ8g9i1Q12Po_Xgt0YLo-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="UZ8g9i1Q12Po_Xgt0YLo-9" value="DevCardRequest" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="zuPwHXy1TFyjWQxAL-yT-1">
+          <mxGeometry x="610" y="1590" width="360" height="136" as="geometry" />
+        </mxCell>
+        <mxCell id="UZ8g9i1Q12Po_Xgt0YLo-10" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="UZ8g9i1Q12Po_Xgt0YLo-9">
+          <mxGeometry y="26" width="360" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="UZ8g9i1Q12Po_Xgt0YLo-11" value="- validRequest(player, state) : int&#xa;- handleTurn(player) : turnState&#xa;- static takeResources() : void&#xa;- static buyDevCard () : void&#xa;- static activateProd () : void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="UZ8g9i1Q12Po_Xgt0YLo-9">
+          <mxGeometry y="60" width="360" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="UZ8g9i1Q12Po_Xgt0YLo-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.006;entryY=0.159;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="zuPwHXy1TFyjWQxAL-yT-1" source="UZ8g9i1Q12Po_Xgt0YLo-5" target="UZ8g9i1Q12Po_Xgt0YLo-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="UZ8g9i1Q12Po_Xgt0YLo-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="zuPwHXy1TFyjWQxAL-yT-1" source="zuPwHXy1TFyjWQxAL-yT-7" target="QdaKhmfzMMFKIb9w_ULD-2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="387" y="2340" />
+              <mxPoint x="-760" y="2340" />
+            </Array>
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
