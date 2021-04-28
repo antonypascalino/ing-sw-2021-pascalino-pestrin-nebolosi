@@ -1,5 +1,6 @@
 package it.polimi.ingsw.connection;
 
+import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Resource;
 
 import java.util.ArrayList;
@@ -41,7 +42,7 @@ public class ProduceRequest implements Request {
     }
 
 
-    public void handle()
+    public TurnState handle()
     {
         //Chiama il game dicendo chi fa cosa
     }

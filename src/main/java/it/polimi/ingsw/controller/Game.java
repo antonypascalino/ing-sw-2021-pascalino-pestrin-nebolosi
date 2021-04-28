@@ -17,6 +17,8 @@ public class Game {
 
     //Return the player
     Table table;
+    privare
+
     /**
      * Change player.
      *
@@ -37,5 +39,18 @@ public class Game {
     public Table getTable()
     {
         return table;
+    }
+
+    /**valid
+     * La notify riceve dal player una lista di Request. Per ogni request il metodo notify() controlla,
+     * chiamando sulla request il metodo validRequest(), che l'azione che
+     * vuole compiere sia compatibile con il turnState corrente del Game.
+     * La notify chiama il metodo canBePlayed che le restituirà la pozione su cui si troverà il Player sul FaithPath, con
+     * tale posizione notificherà tutti gli altri player per chiedergli loro come di comporteranno di conseguenza
+     */
+    public void notify(ArrayList) {
+        //for(request r)
+        //    if(request.validRequest(turnstate,player))
+        //      turnState = request.handle() BOZZA
     }
 }
