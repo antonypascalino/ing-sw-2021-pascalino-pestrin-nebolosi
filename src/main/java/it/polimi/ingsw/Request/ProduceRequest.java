@@ -43,20 +43,19 @@ public class ProduceRequest implements Request {
     }
 
 
-    public TurnState handle()
+    public void handle()
     {
         //Chiama il game dicendo chi fa cosa
-        return TurnState.Initial;
     }
 
     @Override
-    public boolean validRequest() {
+    public boolean validRequest(TurnState turnState, Player player) {
         return false;
     }
 
     @Override
-    public int canBePlayed(Player player) {
-        return 0;
+    public boolean canBePlayed(Player player) {
+        return false;
     }
 
     /**

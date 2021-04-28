@@ -18,13 +18,13 @@ public interface Request extends Convertable {
     /**
      * Compie l'azione indicata dalla Request e restituisce il TurnState appena cffetettuato
      */
-    public TurnState handle();
+    public void handle();
 
     /**
      *
      * @return true se l'azione che vuole compiere la request è compatibile con il TurnState corrente e il giocatore corrente
      */
-    public boolean validRequest();
+    public boolean validRequest(TurnState turnState,Player player);
 
 
     /**
@@ -35,5 +35,13 @@ public interface Request extends Convertable {
      *
      * @return int la posizione su cui si treoverà il giocatore sul FaithPath
      */
-    public int canBePlayed(Player player);
+    public boolean canBePlayed(Player player);
+
+    public TurnState nextTurnState();
+
+    public int getMyFPSteps();
+
+    public int getDiscardedSteps();
+
+
 }

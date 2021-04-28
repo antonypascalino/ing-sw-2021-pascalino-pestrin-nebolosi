@@ -72,6 +72,8 @@ public class Market {
             result.add(tmp);
         }
 
+        //VA DIVISO seeColumn and getColumn
+
         //Once the result array is ready move the market resources
         tmp=currentSituation[0][col];
         for(int r = 0; r< Costants.MARKETROWS-1; r++)

@@ -19,7 +19,7 @@ public class Game {
     //Return the player
     Table table;
     private TurnState turnState;
-
+    private Player currPlayer;
     /**
      * Change player.
      *
@@ -49,10 +49,28 @@ public class Game {
      * La notify chiama il metodo canBePlayed che le restituirà la pozione su cui si troverà il Player sul FaithPath, con
      * tale posizione notificherà tutti gli altri player per chiedergli loro come di comporteranno di conseguenza
      */
-    public void notify(ArrayList<Request> requests)
-    {
-        //for(request r)
-        //    if(request.validRequest(turnstate,player))
-        //      turnState = request.handle() BOZZA
+    public void notify(ArrayList<Request> requests) {
+        for (Request req : requests) {
+            if (req.validRequest(turnState, currPlayer)) {
+                turnState = req.nextTurnState();
+                if (req.canBePlayed(currPlayer)) {
+                    req.handle();
+                    fpAdvancement(req);
+                }
+            }
+        }
+    }
+
+    private void fpAdvancement(Request req) {
+        if(req.getDiscardedSteps() !=0 ) {
+            for(Player player : players) {
+                if (player != currPlayer) {
+                    player.getBoard().getFaithPath().moveForward(req.getDiscardedSteps());
+                }
+            }
+        }
+        if (req.getMyFPSteps() !=0) {
+            currPlayer.getBoard().getFaithPath().moveForward(req.getMyFPSteps());
+        }
     }
 }

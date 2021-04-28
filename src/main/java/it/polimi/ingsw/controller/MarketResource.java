@@ -12,7 +12,6 @@ public class MarketResource {
     }
 
     public Resource getResource() {
-
         return resource;
     }
 
