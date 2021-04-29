@@ -42,7 +42,7 @@ public class Game {
         return table;
     }
 
-    /**valid
+    /**v
      * La notify riceve dal player una lista di Request. Per ogni request il metodo notify() controlla,
      * chiamando sulla request il metodo validRequest(), che l'azione che
      * vuole compiere sia compatibile con il turnState corrente del Game.
@@ -50,27 +50,44 @@ public class Game {
      * tale posizione notificherà tutti gli altri player per chiedergli loro come di comporteranno di conseguenza
      */
     public void notify(ArrayList<Request> requests) {
+        int playerSteps = 0;
+        int discardedSteps = 0;
+
         for (Request req : requests) {
             if (req.validRequest(turnState, currPlayer)) {
-                turnState = req.nextTurnState();
                 if (req.canBePlayed(currPlayer)) {
+                    turnState = req.nextTurnState();
                     req.handle();
-                    fpAdvancement(req);
+                    discardedSteps += req.getDiscardedSteps();
+                    playerSteps += req.getMyFPSteps();
                 }
             }
         }
+        fpAdvancement(discardedSteps, playerSteps);
     }
 
-    private void fpAdvancement(Request req) {
-        if(req.getDiscardedSteps() !=0 ) {
+    /**
+     * Calls all the player, different by the curr player, to make them moveForward on their FaithPath of a number
+     * of steps equal to the discarded resources by the current player in this turn.
+     * <p>
+     * Also call the current player to make him moveForward of a number of steps equal to the number of all FAITH
+     * resources obtained by the player in his turn.
+     *
+     * @param discardedSteps the number of FAITH resources discarded by the current player that make other players move
+     * @param playerSteps the number of FAITH resources obtained by the player in his turn
+     */
+    private void fpAdvancement(int discardedSteps, int playerSteps) {
+        if(discardedSteps !=0 ) {
             for(Player player : players) {
                 if (player != currPlayer) {
-                    player.getBoard().getFaithPath().moveForward(req.getDiscardedSteps());
+                    player.getBoard().getFaithPath().moveForward(discardedSteps);
+                    //qui di dovrebbe chiamare la CheckPope e checkVatican
                 }
             }
         }
-        if (req.getMyFPSteps() !=0) {
-            currPlayer.getBoard().getFaithPath().moveForward(req.getMyFPSteps());
+        if (playerSteps !=0) {
+            currPlayer.getBoard().getFaithPath().moveForward(playerSteps);
+            //qui di dovrebbe chiamare la CheckPope e checkVatican
         }
     }
 }

@@ -1,6 +1,5 @@
 package it.polimi.ingsw.Request;
 
-import it.polimi.ingsw.controller.MappedResource;
 import it.polimi.ingsw.controller.MarketResource;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Player.Player;
@@ -27,14 +26,13 @@ public class MarketRequest implements Request {
     public void handle() {
         for (MarketResource marketRes : marketResources) {
 
-            //Check if the Resource is a FAITH
-            if(marketRes.getResource() == Resource.FAITH) {
+            if (marketRes.getResource() == Resource.EMPTY) {
+                continue;
+            }
+            else if(marketRes.getResource() == Resource.FAITH) {
                 myFPSteps++;
             }
-            else if (marketRes.getLevel() == -1) {
-                discardedSteps++;
-            }
-            else if (!player.checkSpace(marketRes)) {
+            else if ((marketRes.getLevel() == -1) || (!player.checkSpace(marketRes))) {
                 discardedSteps++;
             }
             else player.addToWareHouse(marketRes.getLevel(), marketRes.getResource());
@@ -49,7 +47,20 @@ public class MarketRequest implements Request {
 
     @Override
     public boolean canBePlayed(Player player) {
-        return true;
+        ArrayList<Resource> fromMarket = new ArrayList<Resource>();
+        boolean canBePlayed;
+
+        if (dimension == Dimension.ROW) {
+            fromMarket = player.getTable().market.seeRow(number);
+        } else if (dimension == Dimension.COL) {
+            fromMarket = player.getTable().market.seeColumn(number);
+        }
+        //check if the Required resources match the relative market resources and if the empty marbles have been correctly indicated
+        if(!player.checkMarketRes(this.requestedRes(), fromMarket)) {
+            return false;
+        }
+        //check if the indicated levels are compatible with the player's level in his WareHouse
+        return player.checkLevel(marketResources);
     }
 
     @Override

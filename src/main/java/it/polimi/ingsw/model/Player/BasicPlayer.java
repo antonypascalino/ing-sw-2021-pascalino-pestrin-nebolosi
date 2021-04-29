@@ -1,5 +1,6 @@
 package it.polimi.ingsw.model.Player;
 
+import it.polimi.ingsw.Request.Dimension;
 import it.polimi.ingsw.Request.MarketRequest;
 import it.polimi.ingsw.Request.ProduceRequest;
 import it.polimi.ingsw.Request.Request;
@@ -122,9 +123,36 @@ public class BasicPlayer extends Player {
 
     @Override
     public void addToWareHouse(int level, Resource res) {
-        if(level <= 3) {
+        if (level <= 3) {
             board.getWareHouse().addResource(level, res);
         }
-        //else lancia eccezione o eventuale.
+        //else il player non possiede livelli aggiuntivi
+    }
+
+    @Override
+    public Table getTable() {
+        return table;
+    }
+
+    @Override
+    public boolean checkMarketRes(ArrayList<Resource> requestedRes, ArrayList<Resource> marketRes) {
+        for (int i = 0; i < marketRes.size(); i++) {
+            if (marketRes.get(i).equals(requestedRes.get(i))) {
+                continue;
+            }
+            else return false; //o comunque invia eccezione
+        }
+        return true;
+    }
+
+    @Override
+    public boolean checkLevel(ArrayList<MarketResource> marketResources) {
+        for(MarketResource marketRes : marketResources) {
+            if (!(marketRes.getLevel() <= 3 && marketRes.getLevel() > 0)) {
+                return false;
+                // se false lancia eccezione perché non ha carte che aggiungono livelli e quindi non ha livelli 4 e 5.
+            }
+        }
+        return true;
     }
 }
