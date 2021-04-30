@@ -20,6 +20,15 @@ public class Game {
     private Table table;
     private TurnState turnState;
     private Player currPlayer;
+    private int currPopeSpace;
+
+    public Game(ArrayList<Player> players, Table table, TurnState turnState, Player currPlayer) {
+        this.players = players;
+        this.table = table;
+        this.turnState = turnState;
+        this.currPlayer = currPlayer;
+        this.currPopeSpace = 1;
+    }
 
     /**
      * Replace the new player in the position of the orignal one ( when a new player with new powers gets created)
@@ -49,11 +58,12 @@ public class Game {
         int playerSteps = 0;
         int discardedSteps = 0;
 
+        //BISOGNA AGGIUNGERE UN METODO CHE CONTROLLI CHE IL PLAYER CHE HA INVIATO LA REQUEST SIA IL CURRENT PLAYER
         for (Request req : requests) {
-            if (req.validRequest(turnState, currPlayer)) {
+            if (req.validRequest(turnState)) {
                 if (req.canBePlayed(currPlayer)) {
                     turnState = req.nextTurnState();
-                    req.handle();
+                    req.handle(currPlayer);
                     discardedSteps += req.getDiscardedSteps();
                     playerSteps += req.getMyFPSteps();
                 }
@@ -73,17 +83,34 @@ public class Game {
      * @param playerSteps the number of FAITH resources obtained by the player in his turn
      */
     private void fpAdvancement(int discardedSteps, int playerSteps) {
-        if(discardedSteps !=0 ) {
-            for(Player player : players) {
+        //Sposta gli altri giocatori per le risorse scartate dal current player
+        if (discardedSteps != 0) {
+            for (Player player : players) {
                 if (player != currPlayer) {
                     player.getBoard().getFaithPath().moveForward(discardedSteps);
                 }
-                //qui si dovrebbe chiamare la CheckPope e checkVatican per ogni giocatore
             }
         }
-        if (playerSteps !=0) {
+        //Sposta il curr player per i FAITH ottenuti nel suo turno
+        if (playerSteps != 0) {
             currPlayer.getBoard().getFaithPath().moveForward(playerSteps);
-            //qui si dovrebbe chiamare la CheckPope e checkVatican
         }
+
+        boolean popeSpace = false;
+        //Controlla se, a seguito dei movimenti di tutti, qualcuno ha raggiunto la popeSpace corrente
+        for (Player player : players) {
+            if (player.getBoard().getFaithPath().checkPopeSpace(currPopeSpace)) {
+                popeSpace = true;
+                break;
+            }
+        }
+        //Se qualcuno ha raggiunto la pope space corrente chiamo la checkVaticanSection per tutti
+        if (popeSpace) {
+            for (Player player : players) {
+                player.getBoard().getFaithPath().checkVaticanSection(currPopeSpace);
+            }
+            currPopeSpace++;
+        }
+        this.fpAdvancement(0,0); //Richiama se stessa per verificare se qualche giocatore abbia superato più di una popeSpace
     }
 }

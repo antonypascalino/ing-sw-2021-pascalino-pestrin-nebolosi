@@ -11,7 +11,6 @@ public class MarketRequest implements Request {
     private Dimension dimension;
     private int number;
     private final String className;
-    private Player player;
     private ArrayList<MarketResource> marketResources;
     private int myFPSteps;
     private int discardedSteps;
@@ -23,7 +22,7 @@ public class MarketRequest implements Request {
     }
 
     @Override
-    public void handle() {
+    public void handle(Player player) {
         for (MarketResource marketRes : marketResources) {
             if (!marketRes.getResource().equals(Resource.EMPTY)) {
                 if (marketRes.getResource().equals(Resource.FAITH)) {
@@ -42,9 +41,8 @@ public class MarketRequest implements Request {
     }
 
     @Override
-    public boolean validRequest(TurnState turnState, Player currPlayer) {
-        return (currPlayer.equals(player)) &&
-                (turnState.equals(TurnState.Initial) || turnState.equals(TurnState.playLeaderCard) || turnState.equals(TurnState.moveResource));
+    public boolean validRequest(TurnState turnState) {
+        return (turnState.equals(TurnState.INITIAL) || turnState.equals(TurnState.PLAY_LEADER_CARD) || turnState.equals(TurnState.MOVE_RESOURCE));
     }
 
     @Override
@@ -96,6 +94,6 @@ public class MarketRequest implements Request {
 
     @Override
     public TurnState nextTurnState() {
-        return TurnState.getFromMarket;
+        return TurnState.GET_FROM_MARKET;
     }
 }

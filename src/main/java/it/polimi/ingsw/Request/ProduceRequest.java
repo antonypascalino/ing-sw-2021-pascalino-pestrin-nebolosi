@@ -49,7 +49,12 @@ public class ProduceRequest implements Request {
     }
 
     @Override
-    public boolean validRequest(TurnState turnState, Player player) {
+    public void handle(Player player) {
+
+    }
+
+    @Override
+    public boolean validRequest(TurnState turnState) {
         return false;
     }
 

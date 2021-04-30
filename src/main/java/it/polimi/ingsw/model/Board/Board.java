@@ -2,6 +2,7 @@ package it.polimi.ingsw.model.Board;
 
 import it.polimi.ingsw.connection.Connection;
 import it.polimi.ingsw.model.*;
+import it.polimi.ingsw.model.Player.Player;
 
 import java.util.ArrayList;
 
@@ -17,11 +18,12 @@ public class Board
   private TempBox tempBox;
   private FaithPath faithPath;
   private BasicDevSpace basicDevSpace;
+  private Player player;
 
     /**
      * Instantiates a new Board building the objects it needs: {@link WareHouse}, {@link StrongBox}, {@link Slot}, {@link FaithPath}, {@link BasicDevSpace}, {@link TempBox}.
      */
-    public Board()
+    public Board(Player player)
     {
         wareHouse = new WareHouse();
         strongBox = new StrongBox();
@@ -29,6 +31,15 @@ public class Board
         tempBox = new TempBox(strongBox);
         faithPath = new FaithPath();
         basicDevSpace = new BasicDevSpace(this);
+        this.player = player;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 
     /**

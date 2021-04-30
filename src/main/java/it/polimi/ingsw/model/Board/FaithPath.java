@@ -9,7 +9,7 @@ public class FaithPath
 {
     private int advancement;
 
-    private Player player;
+    private Board board;
 
     private final int pope1;
     private final int pope2;
@@ -34,16 +34,6 @@ public class FaithPath
     }
 
     /**
-     * Set the reference of the {@link Player}.
-     *
-     * @param player the {@link Player} to which the Faith Path belongs.
-     */
-    public void setPlayer(Player player)
-    {
-        this.player = player;
-    }
-
-    /**
      * Receive an <em>int</em> and move the move the player on his {@link FaithPath} of <em>int</em> steps.
      *
      * @param steps the number of steps the {@link Player} have to do on his Faith Path.
@@ -53,7 +43,6 @@ public class FaithPath
         if(steps != 0)
         {
             advancement = advancement + steps;
-            checkPopeSpace(advancement);
             checkVictoryPoints(advancement);
         }
     }
@@ -71,52 +60,42 @@ public class FaithPath
     //faith path
     public void checkVictoryPoints(int a)
     {
-        if(a == 3)
-            player.addVictoryPoints(1);
-        else if(a == 6)
-            player.addVictoryPoints(2);
-        else if(a == 9)
-            player.addVictoryPoints(4);
-        else if(a == 12)
-            player.addVictoryPoints(6);
-        else if(a == 15)
-            player.addVictoryPoints(9);
-        else if(a == 18)
-            player.addVictoryPoints(12);
-        else if(a == 21)
-            player.addVictoryPoints(16);
+        if(a >= 3 && a < 6)
+            board.getPlayer().addVictoryPoints(1);
+        else if(a >= 6 && a < 9)
+            board.getPlayer().addVictoryPoints(2);
+        else if(a >= 9 && a < 12)
+            board.getPlayer().addVictoryPoints(4);
+        else if(a >= 12 && a < 15)
+            board.getPlayer().addVictoryPoints(6);
+        else if(a >= 15 && a < 18)
+            board.getPlayer().addVictoryPoints(9);
+        else if(a >= 18 && a < 21)
+            board.getPlayer().addVictoryPoints(12);
+        else if(a >= 21 && a < 24)
+            board.getPlayer().addVictoryPoints(16);
         else if(a == 24)
-            player.addVictoryPoints(20);
+            board.getPlayer().addVictoryPoints(20);
     }
 
     /**
      * Check if the current {@link Player}'s advancement has reached or passed a Pope Space
      *
-     * @param a the current advancement of the {@link Player}
+     * @param toCheck the current advancement of the {@link Player}
      * @return true if the player has reached or passed a Pope Space, false otherwise
      */
     //A Pope Space is located every 8 steps
-    public boolean checkPopeSpace(int a)
-    {
-        if (a == pope1)
-        {
-            checkVaticanSection(pope1);
-            return true;
+    public boolean checkPopeSpace(int toCheck) {
+        if (toCheck == 1) {
+            return advancement >= pope1;
+        } else if (toCheck == 2) {
+            return advancement >= pope2;
+        } else if (toCheck == 3) {
+            return advancement >= pope3;
         }
-        else if (a == pope2)
-        {
-            checkVaticanSection(pope2);
-            return true;
-        }
-        else if (a == pope3)
-        {
-            checkVaticanSection(pope3);
-            return true;
-        }
-
         return false;
-
     }
+
 
     /**
      * When a {@link Player} has reached or passed a Pope Space, this method is called by {@link #checkPopeSpace(int)}.
@@ -126,56 +105,29 @@ public class FaithPath
      * a player passes that particular pope space. If another player (that was behind) passes that
      * same pope space later in the game, checkVaticanSection is still called but the tile remains false
      *
-     * @param pope the Pope Space just reached;
+     * @param popeCalled the Pope Space just reached;
      * @return true if the player advancement is in the Vatican Section of the corresponding Pope Space just reached, false otherwise
      */
-    public boolean checkVaticanSection(int pope)
+    public boolean checkVaticanSection(int popeCalled)
     {
-
-        //one of the three pope spaces is given
-        if(pope == pope1)
-        {
-            // checks the advancement first
-            if(advancement < 5)
-            {
-                tile1 = false;
-                return false;
-            }
-            //checks if the special tile is true or false
-            if(tile1 == false)
-                return false;
-            else
-                return true;
-
+        if (popeCalled == 1) {
+           if(advancement >= 5) {
+               board.getPlayer().addVictoryPoints(2);
+               return true;
+           }
         }
-        else if(pope == pope2)
-        {
-            if(advancement < 12)
-            {
-                tile2 = false;
-                return false;
-            }
-            if(tile2 == false)
-                return false;
-            else
+        else if (popeCalled == 2) {
+            if(advancement >= 12) {
+                board.getPlayer().addVictoryPoints(3);
                 return true;
-        }
-        else if(pope == pope3)
-        {
-            if(advancement < 19)
-            {
-                tile3 = false;
-                return false;
             }
-            if(tile3 == false)
-                return false;
-            else
-                return true;
         }
-        else
-            return false;
+        else if (popeCalled == 3) {
+            if(advancement >= 19) {
+                board.getPlayer().addVictoryPoints(4);
+                return true;
+            }
+        }
+        return false;
     }
-
-
-
 }

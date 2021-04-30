@@ -23,7 +23,7 @@ public class BasicPlayer extends Player {
     private Board board;
     private ArrayList<LeaderCard> leaderCards;
     private int victoryPoints;
-    private Table table;
+    //private Table table;
     private Player original; //Even if this attribute is in the Player class for not rewriting all the code, it's never being used in this class
 
     /**
@@ -33,9 +33,9 @@ public class BasicPlayer extends Player {
      */
     public BasicPlayer(Table tb)
     {
-        table = tb;
+        //table = tb;
         original=null;
-        board = new Board();
+        board = new Board(this);
         leaderCards = new ArrayList<LeaderCard>();
         victoryPoints = 0;
     }
@@ -61,13 +61,15 @@ public class BasicPlayer extends Player {
      * @param level dev card level
      */
 
+
+    //DA RIVEDERE TUTTO
     public void getDevCard(String color, int level)
     {
-        DevCard card;
+        DevCard card = null;
         int slot=2;
 
         //Dev'essere cambiato in modo che sia gestito in qualche modo dal game, tipo assegnando al giocatore un riferimento al game in cui si trova
-        card = table.buyDev(color, level);
+        //card = table.buyDev(color, level);
         if(board.hasResources(card.getPrice()))
 
             card.setOwner(this);
@@ -129,10 +131,10 @@ public class BasicPlayer extends Player {
         //else il player non possiede livelli aggiuntivi
     }
 
-    @Override
-    public Table getTable() {
-        return table;
-    }
+//    @Override
+//    public Table getTable() {
+//        return table;
+//    }
 
     @Override
     public boolean checkMarketRes(ArrayList<Resource> requestedRes, ArrayList<Resource> marketRes) {
