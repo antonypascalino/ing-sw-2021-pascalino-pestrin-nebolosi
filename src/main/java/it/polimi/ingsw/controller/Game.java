@@ -16,20 +16,16 @@ public class Game {
      */
     ArrayList<Player> players;
 
-    //Return the player
-    Table table;
+
+    private Table table;
     private TurnState turnState;
     private Player currPlayer;
+
     /**
-     * Change player.
+     * Replace the new player in the position of the orignal one ( when a new player with new powers gets created)
      *
-     * @param original  the original
-     * @param newPlayer the new player
-     */
-/*
-    Replace the new player in the position of the orignal one ( when a new player with new powers gets created)
-    @param the original player that is going to be substituted
-    @param the new player reference
+     * @param original player that is going to be substituted
+     * @param newPlayer new player reference
      */
     public void changePlayer(Player original, Player newPlayer)
     {
@@ -81,13 +77,13 @@ public class Game {
             for(Player player : players) {
                 if (player != currPlayer) {
                     player.getBoard().getFaithPath().moveForward(discardedSteps);
-                    //qui di dovrebbe chiamare la CheckPope e checkVatican
                 }
+                //qui si dovrebbe chiamare la CheckPope e checkVatican per ogni giocatore
             }
         }
         if (playerSteps !=0) {
             currPlayer.getBoard().getFaithPath().moveForward(playerSteps);
-            //qui di dovrebbe chiamare la CheckPope e checkVatican
+            //qui si dovrebbe chiamare la CheckPope e checkVatican
         }
     }
 }

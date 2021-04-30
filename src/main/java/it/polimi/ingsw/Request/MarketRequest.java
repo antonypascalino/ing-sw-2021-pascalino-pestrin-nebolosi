@@ -25,24 +25,26 @@ public class MarketRequest implements Request {
     @Override
     public void handle() {
         for (MarketResource marketRes : marketResources) {
+            if (!marketRes.getResource().equals(Resource.EMPTY)) {
+                if (marketRes.getResource().equals(Resource.FAITH)) {
+                    myFPSteps++;
+                } else if ((marketRes.getLevel() == -1) || (!player.checkSpace(marketRes))) {
+                    discardedSteps++;
+                } else player.addToWareHouse(marketRes.getLevel(), marketRes.getResource());
+            }
+        }
 
-            if (marketRes.getResource() == Resource.EMPTY) {
-                continue;
-            }
-            else if(marketRes.getResource() == Resource.FAITH) {
-                myFPSteps++;
-            }
-            else if ((marketRes.getLevel() == -1) || (!player.checkSpace(marketRes))) {
-                discardedSteps++;
-            }
-            else player.addToWareHouse(marketRes.getLevel(), marketRes.getResource());
+        if (dimension.equals(Dimension.ROW)) {
+            player.getTable().market.getRow(number);
+        } else if (dimension.equals(Dimension.COL)) {
+            player.getTable().market.getColumn(number);
         }
     }
 
     @Override
     public boolean validRequest(TurnState turnState, Player currPlayer) {
-        return (currPlayer == player) &&
-                (turnState == TurnState.Initial || turnState == TurnState.playLeaderCard || turnState == TurnState.moveResource);
+        return (currPlayer.equals(player)) &&
+                (turnState.equals(TurnState.Initial) || turnState.equals(TurnState.playLeaderCard) || turnState.equals(TurnState.moveResource));
     }
 
     @Override
@@ -50,9 +52,9 @@ public class MarketRequest implements Request {
         ArrayList<Resource> fromMarket = new ArrayList<Resource>();
         boolean canBePlayed;
 
-        if (dimension == Dimension.ROW) {
+        if (dimension.equals(Dimension.ROW)) {
             fromMarket = player.getTable().market.seeRow(number);
-        } else if (dimension == Dimension.COL) {
+        } else if (dimension.equals(Dimension.COL)) {
             fromMarket = player.getTable().market.seeColumn(number);
         }
         //check if the Required resources match the relative market resources and if the empty marbles have been correctly indicated
