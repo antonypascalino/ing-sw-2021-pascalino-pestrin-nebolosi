@@ -1,6 +1,5 @@
 package it.polimi.ingsw.Request;
 
-import it.polimi.ingsw.controller.MappedResource;
 import it.polimi.ingsw.controller.MarketResource;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Player.Player;
@@ -12,7 +11,6 @@ public class MarketRequest implements Request {
     private Dimension dimension;
     private int number;
     private final String className;
-    private Player player;
     private ArrayList<MarketResource> marketResources;
     private int myFPSteps;
     private int discardedSteps;
@@ -24,32 +22,45 @@ public class MarketRequest implements Request {
     }
 
     @Override
-    public void handle() {
+    public void handle(Player player) {
         for (MarketResource marketRes : marketResources) {
+            if (!marketRes.getResource().equals(Resource.EMPTY)) {
+                if (marketRes.getResource().equals(Resource.FAITH)) {
+                    myFPSteps++;
+                } else if ((marketRes.getLevel() == -1) || (!player.checkSpace(marketRes))) {
+                    discardedSteps++;
+                } else player.addToWareHouse(marketRes.getLevel(), marketRes.getResource());
+            }
+        }
 
-            //Check if the Resource is a FAITH
-            if(marketRes.getResource() == Resource.FAITH) {
-                myFPSteps++;
-            }
-            else if (marketRes.getLevel() == -1) {
-                discardedSteps++;
-            }
-            else if (!player.checkSpace(marketRes)) {
-                discardedSteps++;
-            }
-            else player.addToWareHouse(marketRes.getLevel(), marketRes.getResource());
+        if (dimension.equals(Dimension.ROW)) {
+            player.getTable().market.getRow(number);
+        } else if (dimension.equals(Dimension.COL)) {
+            player.getTable().market.getColumn(number);
         }
     }
 
     @Override
-    public boolean validRequest(TurnState turnState, Player currPlayer) {
-        return (currPlayer == player) &&
-                (turnState == TurnState.Initial || turnState == TurnState.playLeaderCard || turnState == TurnState.moveResource);
+    public boolean validRequest(TurnState turnState) {
+        return (turnState.equals(TurnState.INITIAL) || turnState.equals(TurnState.PLAY_LEADER_CARD) || turnState.equals(TurnState.MOVE_RESOURCE));
     }
 
     @Override
     public boolean canBePlayed(Player player) {
-        return true;
+        ArrayList<Resource> fromMarket = new ArrayList<Resource>();
+        boolean canBePlayed;
+
+        if (dimension.equals(Dimension.ROW)) {
+            fromMarket = player.getTable().market.seeRow(number);
+        } else if (dimension.equals(Dimension.COL)) {
+            fromMarket = player.getTable().market.seeColumn(number);
+        }
+        //check if the Required resources match the relative market resources and if the empty marbles have been correctly indicated
+        if(!player.checkMarketRes(this.requestedRes(), fromMarket)) {
+            return false;
+        }
+        //check if the indicated levels are compatible with the player's level in his WareHouse
+        return player.checkLevel(marketResources);
     }
 
     @Override
@@ -83,6 +94,6 @@ public class MarketRequest implements Request {
 
     @Override
     public TurnState nextTurnState() {
-        return TurnState.getFromMarket;
+        return TurnState.GET_FROM_MARKET;
     }
 }

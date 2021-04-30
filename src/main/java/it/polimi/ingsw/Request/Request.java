@@ -18,13 +18,13 @@ public interface Request extends Convertable {
     /**
      * Compie l'azione indicata dalla Request e restituisce il TurnState appena cffetettuato
      */
-    public void handle();
+    public void handle(Player player);
 
     /**
      *
      * @return true se l'azione che vuole compiere la request è compatibile con il TurnState corrente e il giocatore corrente
      */
-    public boolean validRequest(TurnState turnState,Player player);
+    public boolean validRequest(TurnState turnState);
 
 
     /**

@@ -4,6 +4,7 @@ import it.polimi.ingsw.controller.MarketResource;
 import it.polimi.ingsw.model.Board.Board;
 import it.polimi.ingsw.model.Cards.LeaderCard;
 import it.polimi.ingsw.model.Resource;
+import it.polimi.ingsw.model.Table.Table;
 
 import java.util.ArrayList;
 
@@ -131,5 +132,17 @@ public abstract class Player {
 
     public void addToWareHouse(int level, Resource res) {
         original.addToWareHouse(level,res);
+    }
+
+    public Table getTable() {
+        return original.getTable();
+    }
+
+    public boolean checkMarketRes(ArrayList<Resource> requestedRes, ArrayList<Resource> marketRes) {
+        return original.checkMarketRes(requestedRes, marketRes);
+    }
+
+    public boolean checkLevel(ArrayList<MarketResource> marketResources) {
+        return original.checkLevel(marketResources);
     }
 }

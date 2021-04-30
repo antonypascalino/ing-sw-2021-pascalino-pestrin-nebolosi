@@ -1,5 +1,6 @@
 package it.polimi.ingsw.model.Player;
 
+import it.polimi.ingsw.Request.Dimension;
 import it.polimi.ingsw.model.Resource;
 
 import java.util.ArrayList;
@@ -38,11 +39,17 @@ public class ChangeResPlayer extends Player{
      * Gets from market considering the possibility to change resource
      *
      */
-    public void getFromMarket()
-    {
 
-
-
+    @Override
+    public boolean checkMarketRes(ArrayList<Resource> requestedRes, ArrayList<Resource> marketRes) {
+        for (int i = 0; i < marketRes.size(); i++) {
+            if (!marketRes.get(i).equals(requestedRes.get(i))) {
+                if(!change.contains(requestedRes.get(i))) {
+                    return false; //o chiama eccezione
+                }
+            }
+        }
+        return true;
     }
 
     /**

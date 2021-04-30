@@ -7,7 +7,6 @@ import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Table.Table;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 /**
  * The type Game.
@@ -16,13 +15,12 @@ public class Game {
 
     private ArrayList<Player> players; //The players
 
-    private Table table; //The gaming table
+    //Return the player
+    Table table;
     private TurnState turnState;
     private Player currPlayer;
     /**
-     * Once the lobby is ready and the player select to start the game it instate a new game with all the information.
-     * It doesn't need the leader cards because it all need
-     * Set the turn state and the player to the first one
+     * Change player.
      *
      * @param original  the original
      * @param newPlayer the new player
@@ -58,27 +56,61 @@ public class Game {
      * tale posizione notificherà tutti gli altri player per chiedergli loro come di comporteranno di conseguenza
      */
     public void notify(ArrayList<Request> requests) {
+        int playerSteps = 0;
+        int discardedSteps = 0;
+
+        //BISOGNA AGGIUNGERE UN METODO CHE CONTROLLI CHE IL PLAYER CHE HA INVIATO LA REQUEST SIA IL CURRENT PLAYER
         for (Request req : requests) {
-            if (req.validRequest(turnState, currPlayer)) {
-                turnState = req.nextTurnState();
+            if (req.validRequest(turnState)) {
                 if (req.canBePlayed(currPlayer)) {
-                    req.handle();
-                    fpAdvancement(req);
+                    turnState = req.nextTurnState();
+                    req.handle(currPlayer);
+                    discardedSteps += req.getDiscardedSteps();
+                    playerSteps += req.getMyFPSteps();
                 }
             }
         }
     }
 
-    private void fpAdvancement(Request req) {
-        if(req.getDiscardedSteps() !=0 ) {
-            for(Player player : players) {
+    /**
+     * Calls all the player, different by the curr player, to make them moveForward on their FaithPath of a number
+     * of steps equal to the discarded resources by the current player in this turn.
+     * <p>
+     * Also call the current player to make him moveForward of a number of steps equal to the number of all FAITH
+     * resources obtained by the player in his turn.
+     *
+     * @param discardedSteps the number of FAITH resources discarded by the current player that make other players move
+     * @param playerSteps the number of FAITH resources obtained by the player in his turn
+     */
+    private void fpAdvancement(int discardedSteps, int playerSteps) {
+        //Sposta gli altri giocatori per le risorse scartate dal current player
+        if (discardedSteps != 0) {
+            for (Player player : players) {
                 if (player != currPlayer) {
-                    player.getBoard().getFaithPath().moveForward(req.getDiscardedSteps());
+                    player.getBoard().getFaithPath().moveForward(discardedSteps);
                 }
             }
         }
-        if (req.getMyFPSteps() !=0) {
-            currPlayer.getBoard().getFaithPath().moveForward(req.getMyFPSteps());
+        //Sposta il curr player per i FAITH ottenuti nel suo turno
+        if (playerSteps != 0) {
+            currPlayer.getBoard().getFaithPath().moveForward(playerSteps);
         }
+
+        boolean popeSpace = false;
+        //Controlla se, a seguito dei movimenti di tutti, qualcuno ha raggiunto la popeSpace corrente
+        for (Player player : players) {
+            if (player.getBoard().getFaithPath().checkPopeSpace(currPopeSpace)) {
+                popeSpace = true;
+                break;
+            }
+        }
+        //Se qualcuno ha raggiunto la pope space corrente chiamo la checkVaticanSection per tutti
+        if (popeSpace) {
+            for (Player player : players) {
+                player.getBoard().getFaithPath().checkVaticanSection(currPopeSpace);
+            }
+            currPopeSpace++;
+        }
+        this.fpAdvancement(0,0); //Richiama se stessa per verificare se qualche giocatore abbia superato più di una popeSpace
     }
 }
