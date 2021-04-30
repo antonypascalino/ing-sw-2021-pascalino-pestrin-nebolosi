@@ -1,35 +1,43 @@
 package it.polimi.ingsw.controller;
 
 import it.polimi.ingsw.Request.Request;
+import it.polimi.ingsw.model.Cards.DevCard;
+import it.polimi.ingsw.model.Cards.LeaderCard;
 import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Table.Table;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * The type Game.
  */
 public class Game {
 
-    /**
-     * The Players.
-     */
-    ArrayList<Player> players;
+    private ArrayList<Player> players; //The players
 
-    //Return the player
-    Table table;
+    private Table table; //The gaming table
     private TurnState turnState;
     private Player currPlayer;
     /**
-     * Change player.
+     * Once the lobby is ready and the player select to start the game it instate a new game with all the information.
+     * It doesn't need the leader cards because it all need
+     * Set the turn state and the player to the first one
      *
      * @param original  the original
      * @param newPlayer the new player
      */
-/*
+    public Game(ArrayList<Player> players, ArrayList<DevCard> devCards)
+    {
+        Collections.shuffle(devCards);
+        this.players = players;
+        table = new Table(devCards);
+        turnState = TurnState.Initial;
+    }
+    /**
     Replace the new player in the position of the orignal one ( when a new player with new powers gets created)
-    @param the original player that is going to be substituted
-    @param the new player reference
+    @param original the original player that is going to be substituted
+    @param newPlayer the new player reference
      */
     public void changePlayer(Player original, Player newPlayer)
     {

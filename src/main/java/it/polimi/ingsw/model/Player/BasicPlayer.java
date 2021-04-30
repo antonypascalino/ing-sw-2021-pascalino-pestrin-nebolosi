@@ -39,6 +39,11 @@ public class BasicPlayer extends Player {
         victoryPoints = 0;
     }
 
+    public BasicPlayer()
+    {
+
+    }
+
     public void setNickName(String nickName) {
         this.nickName = nickName;
     }
