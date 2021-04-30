@@ -7,6 +7,7 @@ import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Table.Table;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * The type Game.
@@ -19,12 +20,8 @@ public class Game {
     Table table;
     private TurnState turnState;
     private Player currPlayer;
-    /**
-     * Change player.
-     *
-     * @param original  the original
-     * @param newPlayer the new player
-     */
+    private int currPopeSpace;
+
     public Game(ArrayList<Player> players, ArrayList<DevCard> devCards)
     {
         Collections.shuffle(devCards);

@@ -7,5 +7,5 @@ public enum TurnState {
     GET_FROM_MARKET,
     BUY_DEV_CARD,
     PRODUCE,
-    MOVE_RESOURCE;
+    MOVE_RESOURCE, Initial;
 }
