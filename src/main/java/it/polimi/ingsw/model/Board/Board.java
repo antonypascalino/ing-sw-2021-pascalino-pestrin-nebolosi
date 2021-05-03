@@ -1,7 +1,9 @@
 package it.polimi.ingsw.model.Board;
 
 import it.polimi.ingsw.connection.Connection;
+import it.polimi.ingsw.controller.MappedResource;
 import it.polimi.ingsw.model.*;
+import it.polimi.ingsw.model.Cards.DevCard;
 import it.polimi.ingsw.model.Player.Player;
 
 import java.util.ArrayList;
@@ -12,13 +14,13 @@ import java.util.ArrayList;
 public class Board
 {
     //references to all the classes mentioned below
-  private WareHouse wareHouse;
-  private StrongBox strongBox;
-  private Slot slot;
-  private TempBox tempBox;
-  private FaithPath faithPath;
-  private BasicDevSpace basicDevSpace;
-  private Player player;
+    private WareHouse wareHouse;
+    private StrongBox strongBox;
+    private Slot slot;
+    private TempBox tempBox;
+    private FaithPath faithPath;
+    private BasicDevSpace basicDevSpace;
+    private Player player;
 
     /**
      * Instantiates a new Board building the objects it needs: {@link WareHouse}, {@link StrongBox}, {@link Slot}, {@link FaithPath}, {@link BasicDevSpace}, {@link TempBox}.
@@ -113,47 +115,42 @@ public class Board
      * @param toRem the ArrayList with the resources to remove.
      * @throws ResourceNotAvailable if the not all the resources in toRem aren't in the player's possession.
      */
-    public void removeResources(ArrayList<Resource> toRem) throws ResourceNotAvailable
-    {
+    public void removeResources(ArrayList<MappedResource> toRem) throws ResourceNotAvailable {
         //If the player doesn't have the resources throw a new exception
-        if(!hasResources(toRem))
-        {
-            throw new ResourceNotAvailable();
-        }
-        //Othetwise the resources have to be there and the player can choose where to get them
-        else
-        {
-            for(Resource r: toRem)
-            {
-                String place= Connection.askWhere(r);
-                if(place.equals("strongbox"))
-                {
-                    try {
-                        strongBox.removeResource(r);
-                    }
-                    //If the resource is not in the strongbox it has to be in the warehouse
-                    catch(ResourceNotAvailable ex)
-                    {
-                        Connection.print("The resource is not available here, I'm getting it from the warehouse");
-                        wareHouse.removeResource(r);
-                    }
+        for (MappedResource mappedRes : toRem) {
+            String place = mappedRes.getPlace();
+            if (place.equals("strongbox")) {
+                try {
+                    strongBox.removeResource(r);
                 }
-
-                if(place.equals("warehouse"))
-                {
-                    try {
-                        wareHouse.removeResource(r);
-                    }
-                    //If the resource is not in the strongbox it has to be in the warehouse
-                    catch(ResourceNotAvailable exc)
-                    {
-                        Connection.print("The resource is not available here, I'm getting it from the strongbox");
-                        strongBox.removeResource(r);
-                    }
+                //If the resource is not in the strongbox it has to be in the warehouse
+                catch (ResourceNotAvailable ex) {
+                    Connection.print("The resource is not available here, I'm getting it from the warehouse");
+                    wareHouse.removeResource(r);
                 }
             }
 
+            if (place.equals("warehouse")) {
+                try {
+                    wareHouse.removeResource(r);
+                }
+                //If the resource is not in the strongbox it has to be in the warehouse
+                catch (ResourceNotAvailable exc) {
+                    Connection.print("The resource is not available here, I'm getting it from the strongbox");
+                    strongBox.removeResource(r);
+                }
+            }
         }
+    }
+
+    public DevCard getDevFromID (String cardID) {
+        for(DevCard devCard : this.slot.getAllCards()) {
+            if (devCard.getCardId().equals(cardID)) {
+                return devCard;
+            }
+        }
+        //LANCIA ECCEZIONE NON HA QUESTA CARTA
+        return null;
     }
 
     //remove resource and check resources methods needed here

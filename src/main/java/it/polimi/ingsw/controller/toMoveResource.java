@@ -3,8 +3,7 @@ package it.polimi.ingsw.controller;
 import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Resource;
 
-public class toMoveResource {
-    private Resource resource;
+public class toMoveResource extends WarehouseResource{
     private int ogLevel;
     private int finLevel;
 

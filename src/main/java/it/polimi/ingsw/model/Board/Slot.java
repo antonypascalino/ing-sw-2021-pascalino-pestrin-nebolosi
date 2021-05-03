@@ -47,17 +47,17 @@ public class Slot
         }
     }
 
-    /**
-     * Add external card.
-     *
-     * @param dev the dev
-     */
-    public void addExternalCard(DevCard dev)
-    {
-        DevCard[] tmp = new DevCard[1];
-        tmp[0]=dev;
-        slots.add(tmp);
-    }
+//    /**
+//     * Add external card.
+//     *
+//     * @param dev the dev
+//     */
+//    public void addExternalCard(DevCard dev)
+//    {
+//        DevCard[] tmp = new DevCard[1];
+//        tmp[0]=dev;
+//        slots.add(tmp);
+//    }
 
     /**
      * Check if the {@link DevCard} it wants to add can be add in the chosen slot according to the Slot's rules.
@@ -66,35 +66,26 @@ public class Slot
      * @param slot the slot where wants add the {@link DevCard}.
      * @return true if the {@link DevCard} can be add in the chosen slot, false otherwise.
      */
-    public boolean checkSpace(DevCard card, int slot)
-    {
+    public boolean checkSpace(DevCard card, int slot) {
         //gets the array of cards on the address "slot"
         DevCard[] currSlot = slots.get(slot);
         //current card in the selected slot
         DevCard currCard;
 
         //checks if the slot is empty or not
-        if(card.getLevel() == 1)
-        {
-           for(int i = 0; i < currSlot.length; i++ )
-           {
-               if(currSlot[i] != null)
-               {
-                   return false;
-               }
-           }
-           return true;
-        }
-        else
-        {
+        if (card.getLevel() == 1) {
+            for (int i = 0; i < currSlot.length; i++) {
+                if (currSlot[i] != null) {
+                    return false;
+                }
+            }
+            return true;
+        } else {
             //checks slot card level
-            for(int i = 0; i < currSlot.length; i++)
-            {
-                if(currSlot[i] != null)
-                {
+            for (int i = 0; i < currSlot.length; i++) {
+                if (currSlot[i] != null) {
                     currCard = currSlot[i];
-                    if(card.getLevel() == currCard.getLevel()+1)
-                    {
+                    if (card.getLevel() == currCard.getLevel() + 1) {
                         return true;
                     }
                 }

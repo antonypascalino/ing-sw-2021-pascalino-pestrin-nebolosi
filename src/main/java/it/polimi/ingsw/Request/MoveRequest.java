@@ -17,6 +17,9 @@ public class MoveRequest implements Request {
 
     @Override
     public void handle(Player player) {
+        for(toMoveResource toMoveRes : toMoveResources) {
+            player.getBoard().getWareHouse().switchLevels(toMoveRes.getResource(), toMoveRes.getOgLevel(), toMoveRes.getFinLevel());
+        }
 
     }
 
@@ -27,15 +30,13 @@ public class MoveRequest implements Request {
 
     @Override
     public boolean canBePlayed(Player player) {
-       for (toMoveResource toMoveRes : toMoveResources ) {
 
-       }
-       return false;
+        return true;
     }
 
     @Override
     public TurnState nextTurnState() {
-        return null;
+        return TurnState.MOVE_RESOURCE;
     }
 
     @Override

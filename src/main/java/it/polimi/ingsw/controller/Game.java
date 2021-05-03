@@ -11,12 +11,7 @@ import java.util.ArrayList;
  */
 public class Game {
 
-    /**
-     * The Players.
-     */
     ArrayList<Player> players;
-
-
     private Table table;
     private TurnState turnState;
     private Player currPlayer;
@@ -69,7 +64,9 @@ public class Game {
                 }
             }
         }
-        fpAdvancement(discardedSteps, playerSteps);
+        if(discardedSteps != 0 || playerSteps != 0) {
+            fpAdvancement(discardedSteps, playerSteps);
+        }
     }
 
     /**

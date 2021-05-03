@@ -100,8 +100,6 @@ public class Table {
     }
 
 
-
-
     /*
     Used for determating the cordinates on the map of a card based on his color and level
     @result an array where the first position is the row and the second is the columns
@@ -127,5 +125,35 @@ public class Table {
 
         return result;
     }
+
+    public DevCard seeDev(String color, int level) {
+        DevCard result;
+        int[] coordinates = getCoordinate(color, level);
+        int row = coordinates[0];
+        int col = coordinates[1];
+
+        //If the stack for that type is empty return a null pointer
+        if(stack[row][col]==0)
+            return null;
+        //Get the top card as result
+        result=avaibleDev[row][col][0];
+        return result;
+    }
+
+    public DevCard getDevFromID(String cardID) {
+        DevCard[][] topCard = this.getTop();
+        for (int row = 0; row < 4; row++) {
+            for (int col = 0; col < 3; col++) {
+                if (topCard[row][col].getCardId().equals(cardID)) {
+                    return topCard[row][col];
+                }
+            }
+        }
+        return null;
+        //Lancia eccezione: non c'è questa carta nel mercato;
+
+    }
+
+
 
 }
