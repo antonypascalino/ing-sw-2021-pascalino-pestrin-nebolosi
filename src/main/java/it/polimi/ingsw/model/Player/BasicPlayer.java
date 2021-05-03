@@ -79,7 +79,7 @@ public class BasicPlayer extends Player {
 
             card.setOwner(this);
         //richiesta al giocatore in quale slot mettere la card
-        board.getSlot().purchaseCard(card,slot);
+        board.getSlot().placeCard(card,slot);
     }
 
     public Board getBoard() {

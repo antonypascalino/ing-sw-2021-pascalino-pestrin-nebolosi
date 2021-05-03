@@ -96,9 +96,9 @@ public class WareHouse {
      * @return true if the remove was successful, false if somehow there's an error.
      * @throws ResourceNotAvailable if the {@link Resource} is not available.
      */
-    public Boolean removeResource(Resource res) throws ResourceNotAvailable {
+    public Boolean removeResource(Resource res) {
         if (!checkAvailability(res))
-            throw new ResourceNotAvailable();
+            return false;
 
         Resource[] currentLevel;
         for (Resource[] level : levels) {
@@ -162,12 +162,7 @@ public class WareHouse {
     }
 
     public void switchLevels(Resource resource, int originLevel, int destLevel ) {
-        try {
-            this.removeResource(resource);
-        }
-        catch (ResourceNotAvailable e) {
-            Connection.print("Non c'è questa risorsa qua");
-        }
-        this.addResource(destLevel, resource);
+           this.removeResource(resource);
+           this.addResource(destLevel, resource);
     }
 }

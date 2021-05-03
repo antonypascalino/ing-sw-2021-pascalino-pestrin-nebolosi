@@ -145,4 +145,12 @@ public abstract class Player {
     public boolean checkLevel(ArrayList<MarketResource> marketResources) {
         return original.checkLevel(marketResources);
     }
+
+    public ArrayList<Resource> getAllResources()
+    {
+        ArrayList<Resource> tmp = new ArrayList<Resource>();
+        tmp.addAll(this.getBoard().getStrongBox().getResources());
+        tmp.addAll(this.getBoard().getWareHouse().getResources());
+        return tmp;
+    }
 }

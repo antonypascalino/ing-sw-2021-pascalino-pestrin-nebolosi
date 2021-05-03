@@ -113,31 +113,20 @@ public class Board
      * The automatic remove is possible because the method previously checked the player's possession.
      *
      * @param toRem the ArrayList with the resources to remove.
-     * @throws ResourceNotAvailable if the not all the resources in toRem aren't in the player's possession.
-     */
-    public void removeResources(ArrayList<MappedResource> toRem) throws ResourceNotAvailable {
+     *
+     * */
+    public void removeResources(ArrayList<MappedResource> toRem)  {
         //If the player doesn't have the resources throw a new exception
         for (MappedResource mappedRes : toRem) {
             String place = mappedRes.getPlace();
             if (place.equals("strongbox")) {
-                try {
-                    strongBox.removeResource(r);
-                }
-                //If the resource is not in the strongbox it has to be in the warehouse
-                catch (ResourceNotAvailable ex) {
-                    Connection.print("The resource is not available here, I'm getting it from the warehouse");
-                    wareHouse.removeResource(r);
+                if (!strongBox.removeResource(mappedRes.getResource())) {
+                    wareHouse.removeResource(mappedRes.getResource()); //If the resource is not in the strongbox it has to be in the warehouse
                 }
             }
-
             if (place.equals("warehouse")) {
-                try {
-                    wareHouse.removeResource(r);
-                }
-                //If the resource is not in the strongbox it has to be in the warehouse
-                catch (ResourceNotAvailable exc) {
-                    Connection.print("The resource is not available here, I'm getting it from the strongbox");
-                    strongBox.removeResource(r);
+                if (!wareHouse.removeResource(mappedRes.getResource())) {
+                    strongBox.removeResource(mappedRes.getResource()); //If the resource is not in the strongbox it has to be in the warehouse
                 }
             }
         }
@@ -152,6 +141,9 @@ public class Board
         //LANCIA ECCEZIONE NON HA QUESTA CARTA
         return null;
     }
+
+
+
 
     //remove resource and check resources methods needed here
 }

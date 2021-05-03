@@ -31,7 +31,7 @@ public class Slot
      * @param card the {@link DevCard} to add into the Slot.
      * @param slot the slot in which add the {@link DevCard}
      */
-    public void purchaseCard(DevCard card, int slot)
+    public void placeCard(DevCard card, int slot)
     {
         //if checkSpace is true
         DevCard[] currSlot = slots.get(slot);

@@ -20,11 +20,10 @@ public class BuyDevRequest implements Request {
 
     @Override
     public void handle(Player player) {
-        for (MappedResource mappedRes : resources) {
-            if (mappedRes.getPlace().equals("warehouse")) {
-                player.getBoard().getWareHouse().removeResource(mappedRes.getResource());
-            }
-        }
+
+        player.getBoard().removeResources(resources);
+        DevCard devcard = player.getTable().buyDev(player.getTable().getDevFromID(cardID).getColor(),player.getTable().getDevFromID(cardID).getLevel());
+        player.getBoard().getSlot().placeCard(devcard, slot);
     }
 
     @Override
@@ -38,7 +37,7 @@ public class BuyDevRequest implements Request {
         boolean hasResource = true;
         boolean checkResource = true;
 
-        if (!player.getBoard().hasResources(devCard.getPrice())) {
+        if (!player.getAllResources().containsAll(devCard.getPrice())) {
             //lancia eccezione: nonhai risorse per comprare carta
             hasResource = false;
         }
@@ -53,7 +52,7 @@ public class BuyDevRequest implements Request {
 
     @Override
     public TurnState nextTurnState() {
-        return null;
+        return TurnState.BUY_DEV_CARD;
     }
 
     @Override
