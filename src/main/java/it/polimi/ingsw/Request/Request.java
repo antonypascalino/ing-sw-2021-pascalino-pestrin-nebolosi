@@ -4,6 +4,8 @@ import it.polimi.ingsw.Convertable;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Player.Player;
 
+import java.util.ArrayList;
+
 /**
  * The interface used by all type of request the player could send
  */
@@ -24,7 +26,7 @@ public interface Request extends Convertable {
      *
      * @return true se l'azione che vuole compiere la request è compatibile con il TurnState corrente e il giocatore corrente
      */
-    public boolean validRequest(TurnState turnState);
+    public boolean validRequest(ArrayList<TurnState> turnStates);
 
 
     /**

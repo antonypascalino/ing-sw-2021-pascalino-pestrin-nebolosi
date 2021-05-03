@@ -143,7 +143,7 @@ public class WareHouse {
      */
     public boolean checkSpace(int level, Resource res) {
         Resource[] currentLevel;
-        for (int i = 0; i < levels.size(); i++) {
+        for (int i = 0; i < 2; i++) {
             currentLevel = levels.get(i);
 
             //If the level doesn't contain any empty space

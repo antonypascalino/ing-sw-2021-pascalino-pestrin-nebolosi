@@ -53,9 +53,8 @@ public class ProduceRequest implements Request {
 
     }
 
-    @Override
-    public boolean validRequest(TurnState turnState) {
-        return false;
+    public boolean validRequest(ArrayList<TurnState> turnStates) {
+        return !(turnStates.contains(TurnState.BUY_DEV_CARD) || turnStates.contains(TurnState.PRODUCE) || turnStates.contains(TurnState.GET_FROM_MARKET));
     }
 
     @Override

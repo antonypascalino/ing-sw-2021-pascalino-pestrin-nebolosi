@@ -3,6 +3,8 @@ package it.polimi.ingsw.Request;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Player.Player;
 
+import java.util.ArrayList;
+
 //ABBIAMO IMPLEMENTATO SOLO NEXTTURNSTATE
 public class PlayLeaderRequest implements Request {
 
@@ -19,8 +21,8 @@ public class PlayLeaderRequest implements Request {
     }
 
     @Override
-    public boolean validRequest(TurnState turnState) {
-        return false;
+    public boolean validRequest(ArrayList<TurnState> turnStates) {
+        return !(turnStates.contains(TurnState.PLAY_LEADER_CARD));
     }
 
     @Override
@@ -30,15 +32,7 @@ public class PlayLeaderRequest implements Request {
 
     @Override
     public TurnState nextTurnState() {
-        if(startTurn){
-            return TurnState.PLAY_LEADER_CARD_START;
-
-        }
-        else
-        {
-            return TurnState.PLAY_LEADER_CARD_END;
-        }
-
+        return TurnState.PLAY_LEADER_CARD;
     }
 
     @Override

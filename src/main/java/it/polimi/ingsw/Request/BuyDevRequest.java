@@ -27,8 +27,8 @@ public class BuyDevRequest implements Request {
     }
 
     @Override
-    public boolean validRequest(TurnState turnState) {
-        return (turnState.equals(TurnState.INITIAL) || turnState.equals(TurnState.PLAY_LEADER_CARD_START) || turnState.equals(TurnState.MOVE_RESOURCE));
+    public boolean validRequest(ArrayList<TurnState> turnStates) {
+        return !(turnStates.contains(TurnState.BUY_DEV_CARD) || turnStates.contains(TurnState.PRODUCE) || turnStates.contains(TurnState.GET_FROM_MARKET));
     }
 
     @Override

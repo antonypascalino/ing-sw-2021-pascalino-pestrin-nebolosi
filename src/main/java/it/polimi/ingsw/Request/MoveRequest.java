@@ -23,7 +23,7 @@ public class MoveRequest implements Request {
     }
 
     @Override
-    public boolean validRequest(TurnState turnState) {
+    public boolean validRequest(ArrayList<TurnState> turnStates) {
         return true; //perché le risorse si possono spostare nel WareHouse in ogni momento
     }
 

@@ -13,14 +13,14 @@ public class Game {
 
     ArrayList<Player> players;
     private Table table;
-    private TurnState turnState;
+    private ArrayList<TurnState> turnStates;
     private Player currPlayer;
     private int currPopeSpace;
 
-    public Game(ArrayList<Player> players, Table table, TurnState turnState, Player currPlayer) {
+    public Game(ArrayList<Player> players, Table table, Player currPlayer) {
         this.players = players;
         this.table = table;
-        this.turnState = turnState;
+        this.turnStates = new ArrayList<TurnState>();
         this.currPlayer = currPlayer;
         this.currPopeSpace = 1;
     }
@@ -55,9 +55,9 @@ public class Game {
 
         //BISOGNA AGGIUNGERE UN METODO CHE CONTROLLI CHE IL PLAYER CHE HA INVIATO LA REQUEST SIA IL CURRENT PLAYER
         for (Request req : requests) {
-            if (req.validRequest(turnState)) {
+            if (req.validRequest(turnStates)) {
                 if (req.canBePlayed(currPlayer)) {
-                    turnState = req.nextTurnState();
+                    turnStates.add(req.nextTurnState());
                     req.handle(currPlayer);
                     discardedSteps += req.getDiscardedSteps();
                     playerSteps += req.getMyFPSteps();
@@ -66,6 +66,10 @@ public class Game {
         }
         if(discardedSteps != 0 || playerSteps != 0) {
             fpAdvancement(discardedSteps, playerSteps);
+        }
+        if(turnStates.contains(TurnState.END_TURN))
+        {
+            turnStates.clear();
         }
     }
 
