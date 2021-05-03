@@ -126,8 +126,8 @@ public abstract class Player {
         original.produce();
     }
 
-    public boolean checkSpace(MarketResource marketRes){
-        return original.checkSpace(marketRes);
+    public boolean checkSpace(Resource res, int level){
+        return original.checkSpace(res, level);
     }
 
     public void addToWareHouse(int level, Resource res) {
@@ -142,8 +142,8 @@ public abstract class Player {
         return original.checkMarketRes(requestedRes, marketRes);
     }
 
-    public boolean checkLevel(ArrayList<MarketResource> marketResources) {
-        return original.checkLevel(marketResources);
+    public boolean checkLevel(int level) {
+        return original.checkLevel(level);
     }
 
     public ArrayList<Resource> getAllResources()

@@ -27,7 +27,7 @@ public class MarketRequest implements Request {
             if (!marketRes.getResource().equals(Resource.EMPTY)) {
                 if (marketRes.getResource().equals(Resource.FAITH)) {
                     myFPSteps++;
-                } else if ((marketRes.getLevel() == -1) || (!player.checkSpace(marketRes))) {
+                } else if ((marketRes.getLevel() == -1) || (!player.checkSpace(marketRes.getResource(), marketRes.getLevel()))) {
                     discardedSteps++;
                 } else player.addToWareHouse(marketRes.getLevel(), marketRes.getResource());
             }
@@ -42,7 +42,7 @@ public class MarketRequest implements Request {
 
     @Override
     public boolean validRequest(TurnState turnState) {
-        return (turnState.equals(TurnState.INITIAL) || turnState.equals(TurnState.PLAY_LEADER_CARD) || turnState.equals(TurnState.MOVE_RESOURCE));
+        return (turnState.equals(TurnState.INITIAL) || turnState.equals(TurnState.PLAY_LEADER_CARD_START) || turnState.equals(TurnState.MOVE_RESOURCE));
     }
 
     @Override
@@ -60,7 +60,12 @@ public class MarketRequest implements Request {
             return false;
         }
         //check if the indicated levels are compatible with the player's level in his WareHouse
-        return player.checkLevel(marketResources);
+        for (MarketResource marketRes : marketResources) {
+            if (!player.checkLevel(marketRes.getLevel())) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override

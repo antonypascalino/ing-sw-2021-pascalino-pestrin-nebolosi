@@ -2,7 +2,7 @@ package it.polimi.ingsw.controller;
 
 import it.polimi.ingsw.model.Resource;
 
-public class MappedResource extends WarehouseResource {
+public class MappedResource {
     private Resource resource;
     private String place;
 

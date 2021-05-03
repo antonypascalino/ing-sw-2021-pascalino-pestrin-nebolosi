@@ -16,16 +16,19 @@ public class ExtraDepositPlayer extends Player {
     }
 
     @Override
-    public boolean checkLevel(ArrayList<MarketResource> marketResources) {
-        for(MarketResource marketRes : marketResources) {
-            if (!(marketRes.getLevel() <= addedLevel && marketRes.getLevel() > 0) || (!marketRes.getResource().equals(placeableRes))) {
-                return false;
-                // se false potrebbe lanciare eccezione perché non ha carte che aggiungono il livello indicato o la risorsa richiesta
-                // non può essere aggiunta nel livello indicato
-            }
+    public boolean checkLevel(int level) {
+        if (!(level <= addedLevel && level > 0)) { //|| (!marketRes.getResource().equals(placeableRes))) {
+            // lancia eccezione perché non ha carte che aggiungono il livello indicato
         }
-        return true;
+    return true;
     }
+
+    @Override
+    public boolean checkSpace(Resource res, int level) {
+
+    }
+
+
 }
 
 

@@ -2,7 +2,7 @@ package it.polimi.ingsw.controller;
 
 import it.polimi.ingsw.model.Resource;
 
-public class MarketResource extends WarehouseResource{
+public class MarketResource {
     private Resource resource;
     private int level;
 

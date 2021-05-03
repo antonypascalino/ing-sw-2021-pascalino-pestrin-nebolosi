@@ -124,8 +124,8 @@ public class BasicPlayer extends Player {
     }
 
     @Override
-    public boolean checkSpace(MarketResource marketRes) {
-        return board.getWareHouse().checkSpace(marketRes.getLevel(), marketRes.getResource());
+    public boolean checkSpace(Resource res, int level) {
+        return board.getWareHouse().checkSpace(level, res);
     }
 
     @Override
@@ -144,21 +144,17 @@ public class BasicPlayer extends Player {
     @Override
     public boolean checkMarketRes(ArrayList<Resource> requestedRes, ArrayList<Resource> marketRes) {
         for (int i = 0; i < marketRes.size(); i++) {
-            if (marketRes.get(i).equals(requestedRes.get(i))) {
-                continue;
+            if (!marketRes.get(i).equals(requestedRes.get(i))) {
+                //lancia eccezione: le risorse richieste e le risorse del mercato non corrispondono e non hai changes
             }
-            else return false; //o comunque invia eccezione
         }
         return true;
     }
 
     @Override
-    public boolean checkLevel(ArrayList<MarketResource> marketResources) {
-        for(MarketResource marketRes : marketResources) {
-            if (!(marketRes.getLevel() <= 3 && marketRes.getLevel() > 0)) {
-                return false;
-                // se false lancia eccezione perché non ha carte che aggiungono livelli e quindi non ha livelli 4 e 5.
-            }
+    public boolean checkLevel(int level) {
+        if (!(level <= 3 && level > 0)) {
+            //lancia eccezione perché non ha carte che aggiungono livelli e quindi non ha livelli 4 e 5.
         }
         return true;
     }
