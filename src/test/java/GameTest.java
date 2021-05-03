@@ -4,9 +4,13 @@
     import com.google.gson.reflect.TypeToken;
     import it.polimi.ingsw.connection.JsonReader;
     import it.polimi.ingsw.controller.DefaultCreator;
+    import it.polimi.ingsw.controller.Game;
     import it.polimi.ingsw.model.Cards.DevCard;
     import it.polimi.ingsw.model.Cards.LeaderCard;
+    import it.polimi.ingsw.model.Player.BasicPlayer;
+    import it.polimi.ingsw.model.Player.Player;
     import it.polimi.ingsw.model.Resource;
+    import it.polimi.ingsw.model.Table.Table;
     import org.junit.Test;
 
 import java.lang.reflect.Array;
@@ -48,5 +52,22 @@ import java.lang.reflect.Array;
                 System.out.println(leaderCard.toString());
             }
             System.out.println("Riconvertite "+ tmp.size()+ " carte");
+        }
+
+        /**
+         * Test the generation of a basic game and getting the front cards
+         */
+        @Test
+        public void TestGame()
+        {
+            ArrayList<Player> players = new ArrayList<Player>();
+            Player tmp = new BasicPlayer();
+            players.add(tmp);
+            Game test = new Game(players, DefaultCreator.produceDevCard());
+            DevCard[][] prova = test.getTable().getTop();
+            for (int i = 0; i < prova.length; i++) {
+                for (int j = 0; j < prova[0].length; j++)
+                    System.out.println(prova[i][j].getCardId());
+            }
         }
     }
