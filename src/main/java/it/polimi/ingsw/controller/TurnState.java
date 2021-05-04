@@ -8,5 +8,6 @@ public enum TurnState {
     BUY_DEV_CARD,
     PRODUCE,
     MOVE_RESOURCE,
+    DISCARD_LEADER_CARD,
     END_TURN;
 }

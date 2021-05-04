@@ -168,4 +168,14 @@ public class BasicPlayer extends Player {
         return false;
     }
 
+    @Override
+    public LeaderCard getLeaderFromID(String cardID){
+        for(LeaderCard leader : leaderCards){
+            if(cardID.equals(leader.getID())){
+                return leader;
+            }
+        }
+        return null; //lancia eccezione ("non hai la leader card")
+    }
+
 }

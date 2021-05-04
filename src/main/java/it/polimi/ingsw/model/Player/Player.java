@@ -163,5 +163,9 @@ public abstract class Player {
     public boolean canBuy(DevCard devCard) {
         return original.canBuy(devCard);
     }
+
+    public LeaderCard getLeaderFromID(String cardID){
+        return original.getLeaderFromID(cardID);
+    }
 }
 

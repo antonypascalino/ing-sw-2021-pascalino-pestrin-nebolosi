@@ -1,23 +1,24 @@
 package it.polimi.ingsw.Request;
 
 import it.polimi.ingsw.controller.TurnState;
-import it.polimi.ingsw.model.Cards.LeaderCard;
 import it.polimi.ingsw.model.Player.Player;
 
 import java.util.ArrayList;
 
-//ABBIAMO IMPLEMENTATO SOLO NEXTTURNSTATE
-public class PlayLeaderRequest implements Request {
+public class DiscardLeaderRequest implements Request{
 
+    private int myFPSteps;
     private String cardID;
 
-    public PlayLeaderRequest(String cardID) {
+    public DiscardLeaderRequest(String cardID) {
+        this.myFPSteps = 0;
         this.cardID = cardID;
     }
 
     @Override
     public void handle(Player player) {
-
+        myFPSteps = 1;
+        player.getLeaderCards().remove(player.getLeaderFromID(cardID));
     }
 
     @Override
@@ -27,17 +28,17 @@ public class PlayLeaderRequest implements Request {
 
     @Override
     public boolean canBePlayed(Player player) {
-        return player.getLeaderFromID(cardID).canBePlayed();
+        return true;
     }
 
     @Override
     public TurnState nextTurnState() {
-        return TurnState.PLAY_LEADER_CARD;
+        return TurnState.DISCARD_LEADER_CARD;
     }
 
     @Override
     public int getMyFPSteps() {
-        return 0;
+        return myFPSteps;
     }
 
     @Override
@@ -47,6 +48,6 @@ public class PlayLeaderRequest implements Request {
 
     @Override
     public String getClassName() {
-        return "PlayLeaderRequest";
+        return "DiscardLeaderRequest";
     }
 }
