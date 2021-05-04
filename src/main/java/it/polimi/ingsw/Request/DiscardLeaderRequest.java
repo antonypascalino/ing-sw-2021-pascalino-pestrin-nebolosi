@@ -28,7 +28,7 @@ public class DiscardLeaderRequest implements Request{
 
     @Override
     public boolean canBePlayed(Player player) {
-        return true;
+        return !player.getLeaderFromID(cardID).isEnable();
     }
 
     @Override
