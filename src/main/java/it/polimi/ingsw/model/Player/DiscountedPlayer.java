@@ -78,12 +78,13 @@ public class DiscountedPlayer extends Player
     }
 
     @Override
-    public ArrayList<Resource> getAllResources()
-    {
-        ArrayList<Resource> tmp = new ArrayList<Resource>();
-        tmp.addAll(this.getBoard().getStrongBox().getResources());
-        tmp.addAll(this.getBoard().getWareHouse().getResources());
-        tmp.addAll(discount);
-        return tmp;
+    public boolean canBuy(DevCard devCard) {
+        ArrayList<Resource> discountedRes = original.getAllResources();
+        discountedRes.addAll(discount);
+        if (discountedRes.containsAll(devCard.getPrice())) {
+            return true;
+        }
+        //else lancia eccezione: non hai risorse per comprare questa carta.
+        return false;
     }
 }

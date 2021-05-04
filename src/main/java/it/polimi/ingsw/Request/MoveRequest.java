@@ -18,7 +18,7 @@ public class MoveRequest implements Request {
     @Override
     public void handle(Player player) {
         for(ToMoveResource toMoveRes : toMoveResources) {
-            player.getBoard().getWareHouse().switchLevels(toMoveRes.getResource(), toMoveRes.getOgLevel(), toMoveRes.getFinLevel());
+            player.switchLevels(toMoveRes.getResource(), toMoveRes.getOgLevel(), toMoveRes.getFinLevel());
         }
     }
 
@@ -35,7 +35,7 @@ public class MoveRequest implements Request {
             if(!player.checkLevel(toMoveRes.getFinLevel())) {
                 //lancia eccezione: non possiedi il livello in cui ha detto di voler mettere la risorsa
             }
-            if(!player.getBoard().getWareHouse().checkSpace(toMoveRes.getFinLevel(), toMoveRes.getResource())) {
+            if(!player.checkSpace(toMoveRes.getResource(), toMoveRes.getFinLevel())) {
                 //lancia eccezione: non puoi mettere questa risorsa qua
             }
         }

@@ -115,22 +115,7 @@ public class Board
      * @param toRem the ArrayList with the resources to remove.
      *
      * */
-    public void removeResources(ArrayList<MappedResource> toRem)  {
-        //If the player doesn't have the resources throw a new exception
-        for (MappedResource mappedRes : toRem) {
-            String place = mappedRes.getPlace();
-            if (place.equals("strongbox")) {
-                if (!strongBox.removeResource(mappedRes.getResource())) {
-                    wareHouse.removeResource(mappedRes.getResource()); //If the resource is not in the strongbox it has to be in the warehouse
-                }
-            }
-            if (place.equals("warehouse")) {
-                if (!wareHouse.removeResource(mappedRes.getResource())) {
-                    strongBox.removeResource(mappedRes.getResource()); //If the resource is not in the strongbox it has to be in the warehouse
-                }
-            }
-        }
-    }
+
 
     public DevCard getDevFromID (String cardID) {
         for(DevCard devCard : this.slot.getAllCards()) {

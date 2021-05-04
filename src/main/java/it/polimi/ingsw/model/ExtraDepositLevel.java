@@ -16,7 +16,20 @@ public class ExtraDepositLevel {
         return placeable;
     }
 
-    public ArrayList<Resource> getExtraLevel() {
+    public ArrayList<Resource> getResources() {
         return extraLevel;
     }
+
+    public void addResource(Resource res) {
+        if (res.equals(placeable)) {
+            extraLevel.add(res);
+        }
+    }
+
+    public void removeResource(Resource res) {
+        if (res.equals(placeable)) {
+            extraLevel.remove(res);
+        }
+    }
+
 }

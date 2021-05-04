@@ -2,6 +2,7 @@ package it.polimi.ingsw.model.Player;
 import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.controller.MarketResource;
 import it.polimi.ingsw.model.Board.Board;
+import it.polimi.ingsw.model.Cards.DevCard;
 import it.polimi.ingsw.model.Cards.LeaderCard;
 import it.polimi.ingsw.model.Resource;
 import it.polimi.ingsw.model.Table.Table;
@@ -130,8 +131,12 @@ public abstract class Player {
         return original.checkSpace(res, level);
     }
 
-    public void addToWareHouse(int level, Resource res) {
-        original.addToWareHouse(level,res);
+    public void addResource(int level, Resource res) {
+        original.addResource(level,res);
+    }
+
+    public void removeResource(Resource res, String place) {
+        original.removeResource(res, place);
     }
 
     public Table getTable() {
@@ -148,9 +153,15 @@ public abstract class Player {
 
     public ArrayList<Resource> getAllResources()
     {
-        ArrayList<Resource> tmp = new ArrayList<Resource>();
-        tmp.addAll(this.getBoard().getStrongBox().getResources());
-        tmp.addAll(this.getBoard().getWareHouse().getResources());
-        return tmp;
+        return original.getAllResources();
+    }
+
+    public void switchLevels(Resource res, int orLevel, int finLevel) {
+        original.switchLevels(res, orLevel, finLevel);
+    }
+
+    public boolean canBuy(DevCard devCard) {
+        return original.canBuy(devCard);
     }
 }
+

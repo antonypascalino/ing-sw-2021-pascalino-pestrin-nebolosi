@@ -20,8 +20,9 @@ public class BuyDevRequest implements Request {
 
     @Override
     public void handle(Player player) {
-
-        player.getBoard().removeResources(resources);
+        for(MappedResource mappedRes : resources) {
+            player.removeResource(mappedRes.getResource(), mappedRes.getPlace());
+        }
         DevCard devcard = player.getTable().buyDev(player.getTable().getDevFromID(cardID).getColor(),player.getTable().getDevFromID(cardID).getLevel());
         player.getBoard().getSlot().placeCard(devcard, slot);
     }
@@ -35,19 +36,19 @@ public class BuyDevRequest implements Request {
     public boolean canBePlayed(Player player) {
         DevCard devCard = player.getTable().getDevFromID(cardID);
         boolean hasResource = true;
-        boolean checkResource = true;
+        boolean checkSpace = true;
 
-        if (!player.getAllResources().containsAll(devCard.getPrice())) {
-            //lancia eccezione: nonhai risorse per comprare carta
+        if (!player.canBuy(devCard)) {
+            //lancia eccezione: non hai risorse per comprare questa carta
             hasResource = false;
         }
         if (!player.getBoard().getSlot().checkSpace(devCard, slot)) {
             //lancia eccezione: questa carta non può essere messa in questo slot
-            checkResource = false;
+            checkSpace = false;
         }
         //else Lancia eccezione; non la puoi mettere qua
 
-        return hasResource && checkResource;
+        return hasResource && checkSpace;
     }
 
     @Override

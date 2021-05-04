@@ -4,6 +4,7 @@ import it.polimi.ingsw.Request.Dimension;
 import it.polimi.ingsw.Request.MarketRequest;
 import it.polimi.ingsw.Request.ProduceRequest;
 import it.polimi.ingsw.Request.Request;
+import it.polimi.ingsw.controller.MappedResource;
 import it.polimi.ingsw.controller.MarketResource;
 import it.polimi.ingsw.model.Board.Board;
 import it.polimi.ingsw.model.Cards.DevCard;
@@ -29,19 +30,9 @@ public class BasicPlayer extends Player {
     /**
      * Instantiates a new Basic player.
      *
-     * @param tb the game table assigned to the player
+     *
      */
-    public BasicPlayer(Table tb)
-    {
-        //table = tb;
-        original=null;
-        board = new Board(this);
-        leaderCards = new ArrayList<LeaderCard>();
-        victoryPoints = 0;
-    }
-
-    public BasicPlayer()
-    {
+    public BasicPlayer() {
 
     }
 
@@ -49,13 +40,11 @@ public class BasicPlayer extends Player {
         this.nickName = nickName;
     }
 
-    public String getNickName()
-    {
+    public String getNickName() {
         return nickName;
     }
 
-    public int getVictoryPoints()
-    {
+    public int getVictoryPoints() {
         return victoryPoints;
     }
 
@@ -66,43 +55,37 @@ public class BasicPlayer extends Player {
      * @param level dev card level
      */
 
-
     //DA RIVEDERE TUTTO
-    public void getDevCard(String color, int level)
-    {
+    public void getDevCard(String color, int level) {
         DevCard card = null;
-        int slot=2;
+        int slot = 2;
 
         //Dev'essere cambiato in modo che sia gestito in qualche modo dal game, tipo assegnando al giocatore un riferimento al game in cui si trova
         //card = table.buyDev(color, level);
-        if(board.hasResources(card.getPrice()))
+        if (board.hasResources(card.getPrice()))
 
             card.setOwner(this);
         //richiesta al giocatore in quale slot mettere la card
-        board.getSlot().placeCard(card,slot);
+        board.getSlot().placeCard(card, slot);
     }
 
     public Board getBoard() {
         return board;
     }
 
-    public ArrayList<LeaderCard> getLeaderCards()
-    {
+    public ArrayList<LeaderCard> getLeaderCards() {
         return leaderCards;
     }
 
-    public void addLeaderCard (LeaderCard card)
-    {
+    public void addLeaderCard(LeaderCard card) {
         leaderCards.add(card);
     }
 
-    public void addVictoryPoints (int victoryPoints)
-    {
+    public void addVictoryPoints(int victoryPoints) {
         this.victoryPoints += victoryPoints;
     }
 
-    public void getProduction()
-    {
+    public void getProduction() {
         for (DevCard dev : board.getSlot().getFrontCards())
             //Used for giving the power of all cards to the view
             //dev.getPower();
@@ -114,11 +97,10 @@ public class BasicPlayer extends Player {
      *
      * @param requests the produce requests as an array list
      */
-    public void produce(ArrayList<ProduceRequest> requests)
-    {
+    public void produce(ArrayList<ProduceRequest> requests) {
         //for (ProduceRequest r : requests )
-            //if(getBoard().getSlot().getFrontCards().contains(r.getCard());
-            //ALlora lo usa sostituendo a ogni richiesta un valore di r.getChoiche
+        //if(getBoard().getSlot().getFrontCards().contains(r.getCard());
+        //ALlora lo usa sostituendo a ogni richiesta un valore di r.getChoiche
         //per ogni richiesta di produzione (dalla connection) attiva la giusta carta e salva la produzione
         //nel forziere del giocatore
     }
@@ -127,19 +109,6 @@ public class BasicPlayer extends Player {
     public boolean checkSpace(Resource res, int level) {
         return board.getWareHouse().checkSpace(level, res);
     }
-
-    @Override
-    public void addToWareHouse(int level, Resource res) {
-        if (level <= 3) {
-            board.getWareHouse().addResource(level, res);
-        }
-        //else il player non possiede livelli aggiuntivi
-    }
-
-//    @Override
-//    public Table getTable() {
-//        return table;
-//    }
 
     @Override
     public boolean checkMarketRes(ArrayList<Resource> requestedRes, ArrayList<Resource> marketRes) {
@@ -158,4 +127,45 @@ public class BasicPlayer extends Player {
         }
         return true;
     }
+
+    @Override
+    public void switchLevels(Resource res, int orLevel, int finLevel) {
+        board.getWareHouse().switchLevels(res, orLevel, finLevel);
+    }
+
+    @Override
+    public void addResource(int level, Resource res) {
+        board.getWareHouse().addResource(level, res);
+    }
+
+    @Override
+    public void removeResource(Resource res, String place) {
+        //If the player doesn't have the resources throw a new exception
+        if (place.equals("strongbox")) {
+            board.getStrongBox().removeResource(res);
+        } else if (place.equals("warehouse")) {
+            board.getWareHouse().removeResource(res);
+        //lancia eccezione: non hai questo posto da dove prendere la risorsa
+        }
+    }
+
+
+
+    @Override
+    public ArrayList<Resource> getAllResources() {
+        ArrayList<Resource> tmp = new ArrayList<Resource>();
+        tmp.addAll(this.getBoard().getStrongBox().getResources());
+        tmp.addAll(this.getBoard().getWareHouse().getResources());
+        return tmp;
+    }
+
+    @Override
+    public boolean canBuy(DevCard devCard) {
+        if (this.getAllResources().containsAll(devCard.getPrice())) {
+            return true;
+        }
+        //else lancia eccezione: non hai risorse per comprare questa carta.
+        return false;
+    }
+
 }
