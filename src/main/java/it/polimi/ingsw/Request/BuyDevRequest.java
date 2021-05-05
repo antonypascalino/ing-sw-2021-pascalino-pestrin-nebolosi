@@ -5,6 +5,7 @@ import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Cards.DevCard;
 import it.polimi.ingsw.model.Colors;
 import it.polimi.ingsw.model.Player.Player;
+import it.polimi.ingsw.model.Resource;
 
 import java.util.ArrayList;
 
@@ -38,7 +39,7 @@ public class BuyDevRequest implements Request {
         boolean hasResource = true;
         boolean checkSpace = true;
 
-        if (!player.canBuy(devCard)) {
+        if (!player.canBuy(devCard, player.getAllResources())) {
             //lancia eccezione: non hai risorse per comprare questa carta
             hasResource = false;
         }

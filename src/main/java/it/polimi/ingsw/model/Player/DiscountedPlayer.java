@@ -78,8 +78,9 @@ public class DiscountedPlayer extends Player
     }
 
     @Override
-    public boolean canBuy(DevCard devCard) {
-        ArrayList<Resource> discountedRes = original.getAllResources();
+    public boolean canBuy(DevCard devCard, ArrayList<Resource> allPlayerRes) {
+        ArrayList<Resource> discountedRes = new ArrayList<Resource>();
+        discountedRes.addAll(allPlayerRes);
         discountedRes.addAll(discount);
         if (discountedRes.containsAll(devCard.getPrice())) {
             return true;

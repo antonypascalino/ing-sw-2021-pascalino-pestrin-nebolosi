@@ -160,8 +160,8 @@ public abstract class Player {
         original.switchLevels(res, orLevel, finLevel);
     }
 
-    public boolean canBuy(DevCard devCard) {
-        return original.canBuy(devCard);
+    public boolean canBuy(DevCard devCard, ArrayList<Resource> allPlayerRes) {
+        return original.canBuy(devCard, allPlayerRes);
     }
 
     public LeaderCard getLeaderFromID(String cardID){

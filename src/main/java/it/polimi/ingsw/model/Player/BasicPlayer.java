@@ -160,8 +160,8 @@ public class BasicPlayer extends Player {
     }
 
     @Override
-    public boolean canBuy(DevCard devCard) {
-        if (this.getAllResources().containsAll(devCard.getPrice())) {
+    public boolean canBuy(DevCard devCard, ArrayList<Resource> allPlayerRes) {
+        if (allPlayerRes.containsAll(devCard.getPrice())) {
             return true;
         }
         //else lancia eccezione: non hai risorse per comprare questa carta.
