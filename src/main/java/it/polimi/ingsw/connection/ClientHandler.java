@@ -1,29 +1,35 @@
-package it.polimi.ingsw.client;
+package it.polimi.ingsw.connection;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
 
-public class EchoHandler implements Runnable {
+public class ClientHandler implements Runnable {
 
         private Socket socket;
+        private BufferedReader in;
+        private PrintWriter out;
 
-        public EchoHandler(Socket socket){
+        public ClientHandler(Socket socket) throws IOException {
             this.socket = socket;
+            in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            out = new PrintWriter(socket.getOutputStream());
         }
 
         @Override
         public void run() {
-            try {
-                Scanner in = new Scanner(socket.getInputStream());
-                PrintWriter out = new PrintWriter(socket.getOutputStream());
-                while (true){
-                    String line = in.nextLine();
+            try
+            {
+                while (true)
+                {
+                    String line = in.readLine() ;
                     if(line.equals("quit")){
                         break;
                     } else {
-                        out.println("Received: " + line);
+                        out.println(line);
                         out.flush();
                     }
                 }

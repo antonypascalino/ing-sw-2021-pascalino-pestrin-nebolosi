@@ -1,10 +1,10 @@
 package it.polimi.ingsw.connection;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Server
 {
-
         public static void main( String[] args )
         {
             MultiEchoServer server = new MultiEchoServer(8080);
