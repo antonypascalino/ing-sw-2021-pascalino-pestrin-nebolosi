@@ -999,4 +999,24 @@ public class DefaultCreator {
 
         return result;
     }
+
+    public static ArrayList<BasicProduction> produceBasicProd(){
+        ArrayList<BasicProduction> result = new ArrayList<BasicProduction>();
+        ArrayList<Resource> requires = new ArrayList<Resource>();
+        ArrayList<Resource> produces = new ArrayList<Resource>();
+        BasicProduction tmp;
+
+        requires.add(Resource.CHOICE);
+        produces.add(Resource.CHOICE);
+        produces.add(Resource.CHOICE);
+
+        tmp = new BasicProduction("basicProd", Resource.cloneList(requires), Resource.cloneList(produces));
+        result.add(tmp);
+
+        requires.clear();
+        produces.clear();
+
+        return result;
+
+    }
 }

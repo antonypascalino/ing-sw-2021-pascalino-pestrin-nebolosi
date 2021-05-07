@@ -9,5 +9,6 @@ public enum TurnState {
     PRODUCE,
     MOVE_RESOURCE,
     DISCARD_LEADER_CARD,
+    CONVERT_CHOICE,
     END_TURN;
 }

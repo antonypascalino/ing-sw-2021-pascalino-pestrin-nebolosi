@@ -122,9 +122,9 @@ public abstract class Player {
     /**
      * Production method of the original player
      */
-    public void produce()
+    public void produce(String cardID)
     {
-        original.produce();
+        original.produce(cardID);
     }
 
     public boolean checkSpace(Resource res, int level){

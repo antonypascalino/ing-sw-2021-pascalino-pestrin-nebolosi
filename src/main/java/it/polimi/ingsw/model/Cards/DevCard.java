@@ -9,7 +9,7 @@ import java.util.ArrayList;
 /**
  * The type Dev card.
  */
-public class DevCard {
+public class DevCard /*extends Producer*/ {
     private String color;
     private int level;
     private int victoryPoint;
@@ -84,21 +84,13 @@ public class DevCard {
      * When used gives back the resources and remove the resources
      * from the strongBox or from the wareHouse
      *
-     * @param mappedResources the map cointaing the place where to remove each resource
+     *
      * @return the array list of the produced resourced
      */
     //PLACE IT IN THE STRONGBOX
-    public ArrayList<Resource> produce(ArrayList<MappedResource> mappedResources)
+
+    public ArrayList<Resource> producedResources()
     {
-//        try{
-//            owner.getBoard().removeResources((ArrayList<Resource>) requires.clone());
-//        }
-//        catch(ResourceNotAvailable ex)
-//        {
-//
-//        }
-//
-//        //Needs to be casted
         return (ArrayList<Resource>) produces.clone();
     }
 
@@ -147,5 +139,9 @@ public class DevCard {
 
     public String getCardID() {
         return cardID;
+    }
+
+    public ArrayList<Resource> getRequirements(){
+        return requires;
     }
 }

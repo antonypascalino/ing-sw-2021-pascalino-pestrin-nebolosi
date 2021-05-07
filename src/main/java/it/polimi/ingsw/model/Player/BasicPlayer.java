@@ -95,9 +95,21 @@ public class BasicPlayer extends Player {
     /**
      * Produces the resources (work in progress)
      *
-     * @param requests the produce requests as an array list
+     * @param cardID Card ID
      */
-    public void produce(ArrayList<ProduceRequest> requests) {
+    public void produce(String cardID) {
+
+        if(cardID.contains("dev")){
+            getBoard().getTempBox().addResource(getBoard().getDevFromID(cardID).producedResources());
+
+        }
+        if(cardID.contains("basic")){
+            ArrayList<Resource> basicProd = new ArrayList<Resource>();
+            basicProd.add(Resource.CHOICE);
+            basicProd.add(Resource.CHOICE);
+            getBoard().getTempBox().addResource(basicProd);
+        }
+
         //for (ProduceRequest r : requests )
         //if(getBoard().getSlot().getFrontCards().contains(r.getCard());
         //ALlora lo usa sostituendo a ogni richiesta un valore di r.getChoiche

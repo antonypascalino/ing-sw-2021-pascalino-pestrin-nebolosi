@@ -40,4 +40,5 @@ public interface LeaderCard extends Convertable {
     public Boolean equals(LeaderCard compare);
 
     public String getID();
+
 }

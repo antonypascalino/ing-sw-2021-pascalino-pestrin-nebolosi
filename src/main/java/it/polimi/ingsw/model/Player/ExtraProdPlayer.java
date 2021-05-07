@@ -40,12 +40,25 @@ public class ExtraProdPlayer extends Player {
 /*
     @override
      */
-    public void produce(ArrayList<ProduceRequest> requests)
-    {
+    public void produce(String cardID) {
 
-        //per ogni richiesta di produzione (dalla connection) attiva la giusta carta e salva la produzione
-        //nel forziere del giocatore
-        //TIENE CONTO ANCHE DEL PRODUCE
+        if (cardID.contains("dev")) {
+            getBoard().getTempBox().addResource(getBoard().getDevFromID(cardID).producedResources());
+
+        }
+        if (cardID.contains("PROD")) {
+            ArrayList<Resource> extraProd = new ArrayList<Resource>();
+            extraProd.add(Resource.CHOICE);
+            extraProd.add(Resource.FAITH);
+            getBoard().getTempBox().addResource(extraProd);
+        }
+
+        if (cardID.contains("basic")) {
+            ArrayList<Resource> basicProd = new ArrayList<Resource>();
+            basicProd.add(Resource.CHOICE);
+            basicProd.add(Resource.CHOICE);
+            getBoard().getTempBox().addResource(basicProd);
+        }
     }
 
     public void getProduction()
