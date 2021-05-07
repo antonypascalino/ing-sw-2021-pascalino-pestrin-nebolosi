@@ -9,11 +9,8 @@
     import it.polimi.ingsw.model.Cards.LeaderCard;
     import it.polimi.ingsw.model.Player.BasicPlayer;
     import it.polimi.ingsw.model.Player.Player;
-    import it.polimi.ingsw.model.Resource;
-    import it.polimi.ingsw.model.Table.Table;
     import org.junit.Test;
 
-import java.lang.reflect.Array;
     import java.lang.reflect.Type;
     import java.util.ArrayList;
 
@@ -30,7 +27,7 @@ import java.lang.reflect.Array;
             ArrayList<DevCard> tmp=gson.fromJson(testDev,devListType);
             for (DevCard dev : tmp)
             {
-                System.out.println(dev.getCardId());
+                System.out.println(dev.getCardID());
                 System.out.println(dev.getPrice());
             }
             System.out.println("Riconvertite "+ tmp.size()+ " carte");
@@ -67,7 +64,7 @@ import java.lang.reflect.Array;
             DevCard[][] prova = test.getTable().getTop();
             for (int i = 0; i < prova.length; i++) {
                 for (int j = 0; j < prova[0].length; j++)
-                    System.out.println(prova[i][j].getCardId());
+                    System.out.println(prova[i][j].getCardID());
             }
         }
     }

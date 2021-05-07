@@ -2,6 +2,8 @@ package it.polimi.ingsw.model.Player;
 
 import it.polimi.ingsw.Request.ProduceRequest;
 import it.polimi.ingsw.model.Cards.DevCard;
+import it.polimi.ingsw.model.Cards.ExtraProd;
+import it.polimi.ingsw.model.Cards.LeaderCard;
 import it.polimi.ingsw.model.Resource;
 
 import java.util.ArrayList;
@@ -10,9 +12,10 @@ import java.util.ArrayList;
  * The type Extra Production player (it extends {@link Player}).
  * It's the player with an extra production leader card.
  */
-public class ExtraProdPlayer extends Player{
+public class ExtraProdPlayer extends Player {
     private Resource requires;
     private ArrayList<Resource> produce;
+    private ArrayList<ExtraProd> extraProds;
 
     /**
      * Instantiates a new Extra prod player.
@@ -53,4 +56,21 @@ public class ExtraProdPlayer extends Player{
             System.out.println("Debug");
         //E il potere di produzione
     }
+
+    private ArrayList<String> extraProdID() {
+        ArrayList<String> extraProdID = new ArrayList<String>();
+        for (ExtraProd extra : extraProds) {
+            extraProdID.add(extra.getID());
+        }
+        return extraProdID;
+    }
+
+    @Override
+    public ArrayList<String> getProductionID() {
+        ArrayList<String> productions = new ArrayList<String>();
+        productions.addAll(original.getBoard().getProdID());
+        productions.addAll(extraProdID());
+        return productions;
+    }
+
 }

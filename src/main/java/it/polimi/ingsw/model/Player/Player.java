@@ -167,5 +167,9 @@ public abstract class Player {
     public LeaderCard getLeaderFromID(String cardID){
         return original.getLeaderFromID(cardID);
     }
+
+    public ArrayList<String> getProductionID() {
+        return original.getProductionID();
+    }
 }
 

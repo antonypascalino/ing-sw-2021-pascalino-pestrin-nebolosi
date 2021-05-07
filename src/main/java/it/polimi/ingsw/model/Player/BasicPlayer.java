@@ -178,4 +178,8 @@ public class BasicPlayer extends Player {
         return null; //lancia eccezione ("non hai la leader card")
     }
 
+    @Override
+    public ArrayList<String> getProductionID() {
+        return board.getProdID();
+    }
 }

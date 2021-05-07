@@ -1,7 +1,5 @@
 package it.polimi.ingsw.model.Board;
 
-import it.polimi.ingsw.connection.Connection;
-import it.polimi.ingsw.controller.MappedResource;
 import it.polimi.ingsw.model.*;
 import it.polimi.ingsw.model.Cards.DevCard;
 import it.polimi.ingsw.model.Player.Player;
@@ -112,19 +110,26 @@ public class Board
      * • He choose to take it from StrongBox - check if there's it - if yes remove it, if no automatically remove it from WareHouse
      * The automatic remove is possible because the method previously checked the player's possession.
      *
-     * @param toRem the ArrayList with the resources to remove.
+     * @param cardID the ArrayList with the resources to remove.
      *
      * */
-
-
     public DevCard getDevFromID (String cardID) {
         for(DevCard devCard : this.slot.getAllCards()) {
-            if (devCard.getCardId().equals(cardID)) {
+            if (devCard.getCardID().equals(cardID)) {
                 return devCard;
             }
         }
         //LANCIA ECCEZIONE NON HA QUESTA CARTA
         return null;
+    }
+
+    public ArrayList<String> getProdID() {
+        ArrayList<String> prodID = new ArrayList<String>();
+        DevCard[] tmp = slot.getFrontCards();
+        for (DevCard dev : tmp) {
+            prodID.add(dev.getCardID());
+        }
+        return prodID;
     }
 
 

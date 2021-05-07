@@ -10,6 +10,7 @@ import java.util.ArrayList;
  * Has a reference to the player's board where it belongs
  */
 public class BasicDevSpace {
+    private String cardID;
     private Board board;
 
     /**
@@ -62,5 +63,9 @@ public class BasicDevSpace {
         tmp.add(res1);
         tmp.add(res2);
         return board.hasResources(tmp);
+    }
+
+    public String getCardID() {
+        return cardID;
     }
 }
