@@ -28,6 +28,11 @@ public class ChoiceRequest implements Request{
             //lancia eccezione "choices and resources selected do not match"
             return false;
         }
+        if(choices.contains(Resource.FAITH)){
+            //lancia eccezione "you can't convert choices into faith points"
+            return false;
+        }
+
         return true;
     }
 

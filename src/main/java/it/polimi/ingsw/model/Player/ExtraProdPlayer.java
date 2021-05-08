@@ -56,7 +56,6 @@ public class ExtraProdPlayer extends Player {
         if (cardID.contains("basic")) {
             ArrayList<Resource> basicProd = new ArrayList<Resource>();
             basicProd.add(Resource.CHOICE);
-            basicProd.add(Resource.CHOICE);
             getBoard().getTempBox().addResource(basicProd);
         }
     }

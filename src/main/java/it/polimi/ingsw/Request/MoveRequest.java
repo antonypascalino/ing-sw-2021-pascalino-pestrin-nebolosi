@@ -56,4 +56,9 @@ public class MoveRequest implements Request {
     public int getDiscardedSteps() {
         return 0;
     }
+
+    @Override
+    public int getPlayerChoices() {
+        return 0;
+    }
 }

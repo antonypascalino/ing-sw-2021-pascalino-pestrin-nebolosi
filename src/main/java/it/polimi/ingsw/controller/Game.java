@@ -49,27 +49,26 @@ public class Game {
      * La notify chiama il metodo canBePlayed che le restituirà la pozione su cui si troverà il Player sul FaithPath, con
      * tale posizione notificherà tutti gli altri player per chiedergli loro come di comporteranno di conseguenza
      */
-    public void notify(ArrayList<Request> requests) {
+    public void notify(Request req) {
         int playerSteps = 0;
         int discardedSteps = 0;
 
         //BISOGNA AGGIUNGERE UN METODO CHE CONTROLLI CHE IL PLAYER CHE HA INVIATO LA REQUEST SIA IL CURRENT PLAYER
-        for (Request req : requests) {
-            if (req.validRequest(turnStates)) {
-                if (req.canBePlayed(currPlayer)) {
-                    turnStates.add(req.nextTurnState());
-                    req.handle(currPlayer);
-                    discardedSteps += req.getDiscardedSteps();
-                    playerSteps += req.getMyFPSteps();
+        if (req.validRequest(turnStates)) {
+            if (req.canBePlayed(currPlayer)) {
+                turnStates.add(req.nextTurnState());
+                req.handle(currPlayer);
+                if (req.getDiscardedSteps() != 0 || req.getMyFPSteps() != 0) {
+                    fpAdvancement(discardedSteps, playerSteps);
+                }
+                if (turnStates.contains(TurnState.END_TURN)) {
+                    turnStates.clear();
+                }
+                if (req.getPlayerChoices() != 0) {
+                    //chiama model che chiama view che fa scegliere al player le risorse
                 }
             }
-        }
-        if(discardedSteps != 0 || playerSteps != 0) {
-            fpAdvancement(discardedSteps, playerSteps);
-        }
-        if(turnStates.contains(TurnState.END_TURN))
-        {
-            turnStates.clear();
+
         }
     }
 

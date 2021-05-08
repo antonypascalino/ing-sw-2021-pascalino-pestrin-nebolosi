@@ -45,5 +45,7 @@ public interface Request extends Convertable {
 
     public int getDiscardedSteps();
 
+    public int getPlayerChoices();
+
 
 }

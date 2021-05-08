@@ -18,6 +18,7 @@ public class ProduceRequest implements Request {
 
     private ArrayList<Production> productions;
     private int playerSteps;
+    private int playerChoices;
 
 
     @Override
@@ -32,9 +33,10 @@ public class ProduceRequest implements Request {
             player.produce(prod.getCardID());
         }
 
-        //non so se si può fare, nel caso si sposta nel player
+        playerChoices = player.getBoard().getTempBox().filterChoices().size();
+
         playerSteps = player.getBoard().getTempBox().filterFaithPoints().size();
-        //poi sarebbe da svuotare l'array;
+        player.getBoard().getTempBox().moveToStrongBox();
     }
 
     @Override
@@ -116,6 +118,11 @@ public class ProduceRequest implements Request {
     @Override
     public int getDiscardedSteps() {
         return 0;
+    }
+
+    @Override
+    public int getPlayerChoices() {
+        return playerChoices;
     }
 
 }

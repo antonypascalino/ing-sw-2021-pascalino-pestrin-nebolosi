@@ -91,6 +91,11 @@ public class MarketRequest implements Request {
         return discardedSteps;
     }
 
+    @Override
+    public int getPlayerChoices() {
+        return 0;
+    }
+
     public ArrayList<Resource> requestedRes(){
         ArrayList<Resource> requestedRes = new ArrayList<Resource>();
         for(MarketResource marketRes : marketResources) {

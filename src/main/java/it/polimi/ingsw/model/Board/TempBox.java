@@ -34,9 +34,6 @@ public class TempBox
     public void addResource(ArrayList<Resource> res)
     {
         tempRes.addAll(res);
-        filterChoices();
-        filterFaithPoints();
-        moveToStrongBox();
     }
 
     /**
