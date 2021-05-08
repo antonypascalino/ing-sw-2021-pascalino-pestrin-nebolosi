@@ -26,6 +26,8 @@ public class ClientHandler implements Runnable {
                 while (true)
                 {
                     String line = in.readLine() ;
+                    if(!line.equals(null))
+                        System.out.println("Ricevuto un messaggio");
                     if(line.equals("quit")){
                         break;
                     } else {
