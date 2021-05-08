@@ -39,6 +39,7 @@ public class ConnectionTest {
         assertEquals(serverResponse,jsonDev);
     }
 
+
     @Test
     public void NewClientLeader()
     {

@@ -27,7 +27,8 @@ public class ClientHandler implements Runnable {
                 {
                     String line = in.readLine() ;
                     if(!line.equals(null))
-                        System.out.println("Ricevuto un messaggio");
+                        System.out.println(line);
+                        //System.out.println("Ricevuto un messaggio");
                     if(line.equals("quit")){
                         break;
                     } else {
