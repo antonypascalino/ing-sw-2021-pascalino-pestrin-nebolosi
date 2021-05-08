@@ -1,6 +1,9 @@
 package it.polimi.ingsw.Request;
 
+import it.polimi.ingsw.controller.MappedResource;
+import it.polimi.ingsw.controller.Production;
 import it.polimi.ingsw.controller.TurnState;
+import it.polimi.ingsw.model.Cards.Producer;
 import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Resource;
 
@@ -13,65 +16,113 @@ import java.util.ArrayList;
 //Questo elemento avrò un id della carta e le possibili risorse a scelta
 public class ProduceRequest implements Request {
 
-    private final String className;
-    /**
-     * The Used card for producing
-     */
-    String usedCard; //The card used
-    /**
-     * The Choices in order, whenever there's a Resource.choice get it from here
-     */
-    ArrayList<Resource> choices; //The resources choosen by the player
-    /**
-     * The Returned choice index to keep track of where the caller is
-     */
-    int returnedChoice;
-
-    public ProduceRequest()
-    {
-        className = this.getClass().getName();
-    }
-    /**
-     * Gets card and inizializes returned choice so it starts with the first element
-     *
-     * @return the card
-     */
-    public String getCard()
-    {
-        returnedChoice = 0;
-        return usedCard;
-    }
+    private ArrayList<Production> productions;
+    private int playerSteps;
+    private int playerChoices;
 
 
-    public TurnState handle()
-    {
-        //Chiama il game dicendo chi fa cosa
-        return TurnState.Initial;
+    @Override
+    public void handle(Player player) {
+        for(Production prodReq : productions){
+            for(MappedResource mapRes : prodReq.getMappedResources()){
+                player.removeResource(mapRes.getResource(), mapRes.getPlace());
+            }
+
+        }
+        for(Production prod : productions){
+            player.produce(prod.getCardID());
+        }
+
+        playerChoices = player.getBoard().getTempBox().filterChoices().size();
+
+        playerSteps = player.getBoard().getTempBox().filterFaithPoints().size();
+        player.getBoard().getTempBox().moveToStrongBox();
     }
 
     @Override
-    public boolean validRequest() {
-        return false;
+    public boolean validRequest(ArrayList<TurnState> turnStates) {
+        return !(turnStates.contains(TurnState.BUY_DEV_CARD) || turnStates.contains(TurnState.PRODUCE) || turnStates.contains(TurnState.GET_FROM_MARKET));
     }
 
     @Override
-    public int canBePlayed(Player player) {
-        return 0;
-    }
+    public boolean canBePlayed(Player player) {
 
-    /**
-     * Gets choice and increment the counter so next time it gives back the following choice     *
-     * @return the choice
-     */
-    public Resource getChoice()
-    {
-        returnedChoice++;
-        return choices.get(returnedChoice - 1 );
+        //Controlla che il giocatore abbia le carte con cui vuole produrre
+        for (Production prod : productions) {
+            if(!player.getProductionID().contains(prod.getCardID())) {
+                // lancia eccezione : non hai questa carta per produrre
+                return false;
+            }
+        }
+
+        //controlla che il giocatore abbia le risorse
+        ArrayList<Resource> resTemp = new ArrayList<Resource>();
+        for(Production prod : productions){
+            for(MappedResource map : prod.getMappedResources()){
+                resTemp.add(map.getResource());
+            }
+        }
+        if(!player.getAllResources().containsAll(resTemp)){
+            //lancia eccezione "you don't have those resources!"
+            return false;
+        }
+
+        //controlla che le risorse e le requires siano giuste
+        for(Production pr : productions){
+            for(MappedResource mp : pr.getMappedResources()) {
+                if (pr.getCardID().contains("dev")) {
+                    if (player.getBoard().getDevFromID(pr.getCardID()).getRequirements().size() != pr.getMappedResources().size() && !player.getBoard().getDevFromID(pr.getCardID()).getRequirements().contains(mp.getResource())) {
+                        //lancia eccezione "resources selected do not match card requirements"
+                        return false;
+                    }
+                }
+                if (pr.getCardID().contains("PROD")) {
+                    if (!player.getLeaderFromID(pr.getCardID()).canBePlayed()) {
+                        //lancia eccezione
+                        return false;
+                    }
+                }
+            }
+        }
+
+        //Controlla che non ci siano due carte uguali con cui il giocatore vuole produrre
+        ArrayList<Production> tmpProd = (ArrayList<Production>) productions.clone();
+        for (Production p : tmpProd){
+            String tmpID = p.getCardID();
+            tmpProd.remove(p);
+            if(tmpProd.contains(tmpID)){
+                //lancia eccezione "there's a duplicate of a leader card"
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
     public String getClassName()
     {
-        return className;
+        return "ProduceRequest";
     }
+
+    //DA IMPLEMENTARE
+    @Override
+    public TurnState nextTurnState() {
+        return TurnState.PRODUCE;
+    }
+
+    @Override
+    public int getMyFPSteps() {
+        return playerSteps;
+    }
+
+    @Override
+    public int getDiscardedSteps() {
+        return 0;
+    }
+
+    @Override
+    public int getPlayerChoices() {
+        return playerChoices;
+    }
+
 }

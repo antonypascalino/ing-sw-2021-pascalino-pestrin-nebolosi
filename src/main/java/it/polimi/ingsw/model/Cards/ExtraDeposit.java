@@ -1,6 +1,5 @@
 package it.polimi.ingsw.model.Cards;
 
-import it.polimi.ingsw.model.Player.DiscountedPlayer;
 import it.polimi.ingsw.model.Player.ExtraDepositPlayer;
 import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Resource;
@@ -16,7 +15,7 @@ public class ExtraDeposit implements LeaderCard {
     private boolean isEnable;
     private Player player;
     private Resource requires;
-    private Resource depositableRes;
+    private Resource placeableRes;
     private final String className;
     private String cardID;
 
@@ -25,16 +24,16 @@ public class ExtraDeposit implements LeaderCard {
      *
      * @param victoryPoints  the victory points
      * @param requires       the requires for being played
-     * @param depositableRes the depositable res
+     * @param placeableRes the depositable res
      * @param cardID the unique id for the card
      */
-    public ExtraDeposit(int victoryPoints, Resource requires, Resource depositableRes, String cardID)
+    public ExtraDeposit(int victoryPoints, Resource requires, Resource placeableRes, String cardID)
     {
         this.cardID = cardID;
         className = this.getClass().getName();
         this.victoryPoints = victoryPoints;
         this.requires = requires;
-        this.depositableRes = depositableRes;
+        this.placeableRes = placeableRes;
         isEnable = false;
     }
 
@@ -59,7 +58,7 @@ public class ExtraDeposit implements LeaderCard {
         {
             isEnable = true;
             player.addVictoryPoints(victoryPoints);
-            Player tmp = new ExtraDepositPlayer(player, depositableRes);
+            Player tmp = new ExtraDepositPlayer(player, placeableRes);
             //Add the new powered player in substitition to the actual one if the game references
             player.getGame().changePlayer(player, tmp );
             for (LeaderCard card : player.getLeaderCards())
@@ -95,5 +94,9 @@ public class ExtraDeposit implements LeaderCard {
     public String getID()
     {
         return cardID;
+    }
+
+    public boolean checkPlaceable(Resource res) {
+        return res.equals(placeableRes);
     }
 }

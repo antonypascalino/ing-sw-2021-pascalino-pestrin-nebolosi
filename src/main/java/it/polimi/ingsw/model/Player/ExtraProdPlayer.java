@@ -2,6 +2,8 @@ package it.polimi.ingsw.model.Player;
 
 import it.polimi.ingsw.Request.ProduceRequest;
 import it.polimi.ingsw.model.Cards.DevCard;
+import it.polimi.ingsw.model.Cards.ExtraProd;
+import it.polimi.ingsw.model.Cards.LeaderCard;
 import it.polimi.ingsw.model.Resource;
 
 import java.util.ArrayList;
@@ -10,9 +12,10 @@ import java.util.ArrayList;
  * The type Extra Production player (it extends {@link Player}).
  * It's the player with an extra production leader card.
  */
-public class ExtraProdPlayer extends Player{
+public class ExtraProdPlayer extends Player {
     private Resource requires;
     private ArrayList<Resource> produce;
+    private ArrayList<ExtraProd> extraProds;
 
     /**
      * Instantiates a new Extra prod player.
@@ -37,12 +40,24 @@ public class ExtraProdPlayer extends Player{
 /*
     @override
      */
-    public void produce(ArrayList<ProduceRequest> requests)
-    {
+    public void produce(String cardID) {
 
-        //per ogni richiesta di produzione (dalla connection) attiva la giusta carta e salva la produzione
-        //nel forziere del giocatore
-        //TIENE CONTO ANCHE DEL PRODUCE
+        if (cardID.contains("dev")) {
+            getBoard().getTempBox().addResource(getBoard().getDevFromID(cardID).producedResources());
+
+        }
+        if (cardID.contains("PROD")) {
+            ArrayList<Resource> extraProd = new ArrayList<Resource>();
+            extraProd.add(Resource.CHOICE);
+            extraProd.add(Resource.FAITH);
+            getBoard().getTempBox().addResource(extraProd);
+        }
+
+        if (cardID.contains("basic")) {
+            ArrayList<Resource> basicProd = new ArrayList<Resource>();
+            basicProd.add(Resource.CHOICE);
+            getBoard().getTempBox().addResource(basicProd);
+        }
     }
 
     public void getProduction()
@@ -53,4 +68,21 @@ public class ExtraProdPlayer extends Player{
             System.out.println("Debug");
         //E il potere di produzione
     }
+
+    private ArrayList<String> extraProdID() {
+        ArrayList<String> extraProdID = new ArrayList<String>();
+        for (ExtraProd extra : extraProds) {
+            extraProdID.add(extra.getID());
+        }
+        return extraProdID;
+    }
+
+    @Override
+    public ArrayList<String> getProductionID() {
+        ArrayList<String> productions = new ArrayList<String>();
+        productions.addAll(original.getBoard().getProdID());
+        productions.addAll(extraProdID());
+        return productions;
+    }
+
 }

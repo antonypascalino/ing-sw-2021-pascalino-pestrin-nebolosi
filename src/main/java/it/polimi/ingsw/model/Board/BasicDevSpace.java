@@ -10,7 +10,8 @@ import java.util.ArrayList;
  * Has a reference to the player's board where it belongs
  */
 public class BasicDevSpace {
-    private Board br;
+    private String cardID;
+    private Board board;
 
     /**
      * Instantiates a new Basic Development Space adding the references of the board where it belongs.
@@ -19,7 +20,7 @@ public class BasicDevSpace {
      */
     public BasicDevSpace(Board board)
     {
-        br = board;
+        this.board = board;
     }
 
     /**
@@ -30,23 +31,23 @@ public class BasicDevSpace {
      * @param res2 the second resource chosen by player to pay
      * @return the resource the player chose to receive
      */
-    public Resource use(Resource res1, Resource res2)
-    {
-        ArrayList<Resource> tmp= new ArrayList<Resource>();
-        tmp.add(res1);
-        tmp.add(res2);
-        //if(canBeUsed(res1,res2))
-        try
-        {
-                br.removeResources(tmp);
-        }
-        catch (ResourceNotAvailable ex)
-        {
-            System.out.println("Risorsa non disponibile");
-        }
-       return Resource.SHIELD;
-        //return View.chooseRes();
-    }
+//    public Resource use(Resource res1, Resource res2)
+//    {
+//        ArrayList<Resource> tmp= new ArrayList<Resource>();
+//        tmp.add(res1);
+//        tmp.add(res2);
+//        if(canBeUsed(res1,res2))
+//        try
+//        {
+//               board.removeResources(tmp);
+//        }
+//        catch (ResourceNotAvailable ex)
+//        {
+//            System.out.println("Risorsa non disponibile");
+//        }
+//       return Resource.SHIELD;
+//        return View.chooseRes();
+//    }
 
     /**
      * Checks if player has the two chosen resources to pay, uses Board.hasResource
@@ -61,6 +62,10 @@ public class BasicDevSpace {
         ArrayList<Resource> tmp= new ArrayList<Resource>();
         tmp.add(res1);
         tmp.add(res2);
-        return br.hasResources(tmp);
+        return board.hasResources(tmp);
+    }
+
+    public String getCardID() {
+        return cardID;
     }
 }

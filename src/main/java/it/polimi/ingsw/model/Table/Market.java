@@ -62,7 +62,7 @@ public class Market {
      * @return the array list of resources on the selected column
      */
 
-    public ArrayList<Resource> getColumns(int col)
+    public ArrayList<Resource> getColumn(int col)
     {
         ArrayList<Resource> result = new ArrayList<Resource>();
         Resource tmp;
@@ -71,7 +71,6 @@ public class Market {
             tmp=currentSituation[r][col];
             result.add(tmp);
         }
-
         //Once the result array is ready move the market resources
         tmp=currentSituation[0][col];
         for(int r = 0; r< Costants.MARKETROWS-1; r++)
@@ -84,12 +83,28 @@ public class Market {
     }
 
     /**
+     * Only shows the resources from a column without modifying the market
+     *
+     * @param col a column of the market it wants to see
+     * @return the array list of resources on the selected column
+     */
+    public ArrayList<Resource> seeColumn(int col) {
+        ArrayList<Resource> result = new ArrayList<Resource>();
+        Resource tmp;
+        for(int r = 0; r< Costants.MARKETROWS; r++)
+        {
+            tmp=currentSituation[r][col];
+            result.add(tmp);
+        }
+        return result;
+    }
+
+    /**
      * Selects all the resources from a row, shifts it and inserts the free resource
      *
      * @param row a row of the market selected by the player
      * @return the array list of resources on the selected row
      */
-
     public ArrayList<Resource> getRow(int row)
     {
         ArrayList<Resource> result = new ArrayList<Resource>();
@@ -108,6 +123,23 @@ public class Market {
         }
         currentSituation[row][Costants.MARKETCOLS-1]=freeOne;
         freeOne=tmp;
+        return result;
+    }
+
+    /**
+     * Only shows the resources from a row without modifying the market
+     *
+     * @param row a row of the market it wants to see
+     * @return the array list of resources on the selected row
+     */
+    public ArrayList<Resource> seeRow(int row) {
+        ArrayList<Resource> result = new ArrayList<Resource>();
+        Resource tmp;
+        for(int c = 0; c< Costants.MARKETCOLS; c++)
+        {
+            tmp = currentSituation[row][c];
+            result.add(tmp);
+        }
         return result;
     }
 

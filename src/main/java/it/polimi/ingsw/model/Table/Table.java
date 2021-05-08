@@ -100,32 +100,58 @@ public class Table {
     }
 
 
-
-
     /*
     Used for determating the cordinates on the map of a card based on his color and level
     @result an array where the first position is the row and the second is the columns
      */
-    private static int[] getCoordinate(String color, int level)
+    public static int[] getCoordinate(String color, int level)
     {
         int[] result=new int[2];
         //Select the correct row
-        switch(color)
-        {
-            case "green":
-                result[0]=0;
-            case "blue":
-                result[0]=1;
-            case "yellow":
-                result[0]=2;
-            case "purple":
-                result[0]=3;
-        }
+        if(color.equals("GREEN"))
+            result[0]=0;
+        if(color.equals("BLUE"))
+            result[0]=1;
+        if(color.equals("YELLOW"))
+            result[0]=2;
+        if(color.equals("PURPLE"))
+            result[0]=3;
+
 
         //Select the correct colum
         result[1]=level-1;
 
         return result;
     }
+
+    public DevCard seeDev(String color, int level) {
+        DevCard result;
+        int[] coordinates = getCoordinate(color, level);
+        int row = coordinates[0];
+        int col = coordinates[1];
+
+        //If the stack for that type is empty return a null pointer
+        if(stack[row][col]==0)
+            return null;
+        //Get the top card as result
+        result=avaibleDev[row][col][0];
+        return result;
+    }
+
+    public DevCard getDevFromID(String cardID) {
+        DevCard[][] topCard = this.getTop();
+        for (int row = 0; row < 4; row++) {
+            for (int col = 0; col < 3; col++) {
+                if (topCard[row][col].getCardID().equals(cardID)) {
+                    return topCard[row][col];
+                }
+            }
+        }
+        return null;
+        //Lancia eccezione: non c'è questa carta nel mercato;
+
+    }
+
+
 
 }

@@ -55,12 +55,8 @@ public class StrongBox {
      * @return true if the {@link Resource} was in the {@link StrongBox} and has been successfully removed from it.
      * @throws ResourceNotAvailable if the {@link Resource} is not available in the {@link StrongBox}.
      */
-    public boolean removeResource(Resource res) throws ResourceNotAvailable
-    {
-        if (checkAvailability(resources) == true)
+    public boolean removeResource(Resource res) {
             return resources.remove(res);
-        else
-            throw new ResourceNotAvailable();
     }
 
     /**

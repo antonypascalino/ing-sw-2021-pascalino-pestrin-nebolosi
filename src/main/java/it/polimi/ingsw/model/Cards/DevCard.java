@@ -3,19 +3,18 @@ package it.polimi.ingsw.model.Cards;
 import it.polimi.ingsw.controller.MappedResource;
 import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Resource;
-import it.polimi.ingsw.model.ResourceNotAvailable;
 
 import java.util.ArrayList;
 
 /**
  * The type Dev card.
  */
-public class DevCard {
+public class DevCard /*extends Producer*/ {
     private String color;
     private int level;
     private int victoryPoint;
     private boolean isEnable;
-    private String cardId;
+    private String cardID;
     /**
      * The Owner.
      */
@@ -42,7 +41,7 @@ public class DevCard {
      * @param pri the price for buying the card
      */
     public DevCard(String id, String col, int lev, int vp, ArrayList<Resource> req, ArrayList<Resource> pro, ArrayList<Resource> pri) {
-        cardId = id;
+        cardID = id;
         color = col;
         level = lev;
         victoryPoint = vp;
@@ -51,7 +50,7 @@ public class DevCard {
         price = pri;
         isEnable = false;
         owner = null;
-        cardId = id;
+        cardID = id;
     }
 
     /**
@@ -85,21 +84,13 @@ public class DevCard {
      * When used gives back the resources and remove the resources
      * from the strongBox or from the wareHouse
      *
-     * @param mappedResources the map cointaing the place where to remove each resource
+     *
      * @return the array list of the produced resourced
      */
     //PLACE IT IN THE STRONGBOX
-    public ArrayList<Resource> produce(ArrayList<MappedResource> mappedResources)
+
+    public ArrayList<Resource> producedResources()
     {
-        try{
-            owner.getBoard().removeResources((ArrayList<Resource>) requires.clone());
-        }
-        catch(ResourceNotAvailable ex)
-        {
-
-        }
-
-        //Needs to be casted
         return (ArrayList<Resource>) produces.clone();
     }
 
@@ -146,7 +137,11 @@ public class DevCard {
         return price;
     }
 
-    public String getCardId() {
-        return cardId;
+    public String getCardID() {
+        return cardID;
+    }
+
+    public ArrayList<Resource> getRequirements(){
+        return requires;
     }
 }

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 /**
  * The type Extra prod.
  */
-public class ExtraProd implements LeaderCard {
+public class ExtraProd /*extends Producer*/ implements LeaderCard  {
 
     private int victoryPoints;
     private boolean isEnable;
@@ -93,4 +93,19 @@ public class ExtraProd implements LeaderCard {
     {
         return cardID;
     }
+
+    public ArrayList<Resource> getProducedRes(){
+        ArrayList<Resource> temp = new ArrayList<Resource>();
+        temp.add(Resource.FAITH);
+        temp.add(Resource.CHOICE);
+        return temp;
+    }
+
+    public String getProdID()
+    {
+        return cardID;
+    }
+
+
+
 }

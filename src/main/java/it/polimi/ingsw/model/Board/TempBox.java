@@ -14,6 +14,7 @@ public class TempBox
     private ArrayList<Resource> tempRes;
     private StrongBox sb;
 
+
     /**
      * Instantiates a new {@link TempBox} adding the {@link StrongBox} references.
      *
@@ -30,16 +31,37 @@ public class TempBox
      *
      * @param res the {@link Resource} to add.
      */
-    public void addResource(Resource res)
+    public void addResource(ArrayList<Resource> res)
     {
-        tempRes.add(res);
+        tempRes.addAll(res);
     }
 
     /**
      * At the end of the production turn puts all the {@link Resource}s from the {@link TempBox} into the {@link StrongBox}.
      */
-    public void endTurn()
-    {
+    public ArrayList<Resource> filterChoices() {
+        ArrayList<Resource> choices = new ArrayList<Resource>();
+        for (Resource r : tempRes) {
+            if (r.equals(Resource.CHOICE)) {
+                choices.add(Resource.CHOICE);
+                tempRes.remove(r);
+            }
+        }
+        return choices;
+    }
+
+    public ArrayList<Resource> filterFaithPoints() {
+        ArrayList<Resource> faithPoints = new ArrayList<Resource>();
+        for (Resource r : tempRes) {
+            if (r.equals(Resource.FAITH)) {
+                faithPoints.add(Resource.FAITH);
+                tempRes.remove(r);
+            }
+        }
+        return faithPoints;
+    }
+
+    public void moveToStrongBox(){
         sb.addResource(tempRes);
         tempRes.clear();
     }

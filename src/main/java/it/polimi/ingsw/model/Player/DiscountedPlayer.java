@@ -48,22 +48,22 @@ public class DiscountedPlayer extends Player
      */
     public void getDevCard(String color, int level)
     {
-        DevCard card;
-        int slot=2;
-        //Setted to 2 for debug purposes
-
-        card = original.getGame().getTable().buyDev(color, level);
-        ArrayList<Resource> tmp ;
-        tmp = card.getPrice();
-
-        //Remove the discount
-        for (Resource r: discount)
-            tmp.remove(r);
-        if(original.getBoard().hasResources(tmp))
-        {
-            card.setOwner(this);
-            original.getBoard().getSlot().purchaseCard(card,slot);
-        }
+//        DevCard card;
+//        int slot=2;
+//        //Setted to 2 for debug purposes
+//
+//        card = original.getGame().getTable().buyDev(color, level);
+//        ArrayList<Resource> tmp ;
+//        tmp = card.getPrice();
+//
+//        //Remove the discount
+//        for (Resource r: discount)
+//            tmp.remove(r);
+//        if(original.getBoard().hasResources(tmp))
+//        {
+//            card.setOwner(this);
+//            original.getBoard().getSlot().purchaseCard(card,slot);
+//        }
 
     }
 
@@ -75,5 +75,17 @@ public class DiscountedPlayer extends Player
     public ArrayList<Resource> getDiscount()
     {
         return discount;
+    }
+
+    @Override
+    public boolean canBuy(DevCard devCard, ArrayList<Resource> allPlayerRes) {
+        ArrayList<Resource> discountedRes = new ArrayList<Resource>();
+        discountedRes.addAll(allPlayerRes);
+        discountedRes.addAll(discount);
+        if (discountedRes.containsAll(devCard.getPrice())) {
+            return true;
+        }
+        //else lancia eccezione: non hai risorse per comprare questa carta.
+        return false;
     }
 }

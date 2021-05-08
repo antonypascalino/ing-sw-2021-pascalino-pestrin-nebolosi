@@ -1,7 +1,11 @@
 package it.polimi.ingsw.model.Player;
 import it.polimi.ingsw.controller.Game;
+import it.polimi.ingsw.controller.MarketResource;
 import it.polimi.ingsw.model.Board.Board;
+import it.polimi.ingsw.model.Cards.DevCard;
 import it.polimi.ingsw.model.Cards.LeaderCard;
+import it.polimi.ingsw.model.Resource;
+import it.polimi.ingsw.model.Table.Table;
 
 import java.util.ArrayList;
 
@@ -118,8 +122,54 @@ public abstract class Player {
     /**
      * Production method of the original player
      */
-    public void produce()
+    public void produce(String cardID)
     {
-        original.produce();
+        original.produce(cardID);
+    }
+
+    public boolean checkSpace(Resource res, int level){
+        return original.checkSpace(res, level);
+    }
+
+    public void addResource(int level, Resource res) {
+        original.addResource(level,res);
+    }
+
+    public void removeResource(Resource res, String place) {
+        original.removeResource(res, place);
+    }
+
+    public Table getTable() {
+        return original.getTable();
+    }
+
+    public boolean checkMarketRes(ArrayList<Resource> requestedRes, ArrayList<Resource> marketRes) {
+        return original.checkMarketRes(requestedRes, marketRes);
+    }
+
+    public boolean checkLevel(int level) {
+        return original.checkLevel(level);
+    }
+
+    public ArrayList<Resource> getAllResources()
+    {
+        return original.getAllResources();
+    }
+
+    public void switchLevels(Resource res, int orLevel, int finLevel) {
+        original.switchLevels(res, orLevel, finLevel);
+    }
+
+    public boolean canBuy(DevCard devCard, ArrayList<Resource> allPlayerRes) {
+        return original.canBuy(devCard, allPlayerRes);
+    }
+
+    public LeaderCard getLeaderFromID(String cardID){
+        return original.getLeaderFromID(cardID);
+    }
+
+    public ArrayList<String> getProductionID() {
+        return original.getProductionID();
     }
 }
+
