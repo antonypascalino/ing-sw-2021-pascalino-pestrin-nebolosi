@@ -1,5 +1,7 @@
 package it.polimi.ingsw.connection;
 
+import it.polimi.ingsw.Request.NewGameRequest;
+import it.polimi.ingsw.Request.Request;
 import it.polimi.ingsw.controller.DefaultCreator;
 import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.model.Player.BasicPlayer;
@@ -35,14 +37,12 @@ public class ClientHandler implements Runnable {
                 while (true)
                 {
                     String line = in.readLine() ;
-                    if(line.equals("new game"))
+                    Request request = JsonReader.readSingleRequest(line);
+                    if(request instanceof NewGameRequest)
                     {
-                        String num = in.readLine();
-                        System.out.println(num);
-                        int playerNum = Integer.parseInt(num);
-                        String nickName = in.readLine();
+                        int playerNum = ((NewGameRequest) request).getPlayers();
                         ArrayList<Player> tmp = new ArrayList<Player>();
-                        Player first = new BasicPlayer(nickName);
+                        Player first = new BasicPlayer(((NewGameRequest) request).getNickname());
                         tmp.add(first);
 
                         //Deciding the new game id

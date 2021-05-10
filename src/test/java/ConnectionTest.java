@@ -1,5 +1,7 @@
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import it.polimi.ingsw.Request.NewGameRequest;
+import it.polimi.ingsw.Request.Request;
 import it.polimi.ingsw.client.LineClient;
 import it.polimi.ingsw.controller.DefaultCreator;
 import it.polimi.ingsw.model.Cards.DevCard;
@@ -74,10 +76,12 @@ public class ConnectionTest {
         }
         String serverResponse = "test";
 
-        String test = "new game\n\r2\n\rSickNebo\r";
-        System.out.println(test);
+        Request request = new NewGameRequest("SickNebo", 3);
+        System.out.println(request.toString());
         try {
-            serverResponse = client.sendMessage(test);
+            Gson gson = new Gson();
+            String jsonReq = gson.toJson(request);
+            serverResponse = client.sendMessage(jsonReq);
         } catch (IOException e) {
             e.printStackTrace();
         }
