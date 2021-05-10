@@ -1,7 +1,5 @@
 package it.polimi.ingsw.controller.SinglePlayer;
 
-import it.polimi.ingsw.model.Colors;
-
 public class DiscardCards implements Token {
     private String color;
 
@@ -20,6 +18,13 @@ public class DiscardCards implements Token {
                 }
             }
         }
+        //Check if the are no more cards of the selected color
+        for(int level = 1; level <= 3; level++) {
+            if (game.getTable().seeDev(color, level) != null) {
+                return;
+            }
+        }
+        game.lorenzoWins();
     }
 }
 

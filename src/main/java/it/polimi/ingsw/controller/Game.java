@@ -110,7 +110,7 @@ public class Game {
                 player.getBoard().getFaithPath().checkVaticanSection(currPopeSpace);
             }
             currPopeSpace++;
+            this.fpAdvancement(0,0); //Richiama se stessa per verificare se qualche giocatore abbia superato più di una popeSpace
         }
-        this.fpAdvancement(0,0); //Richiama se stessa per verificare se qualche giocatore abbia superato più di una popeSpace
     }
 }

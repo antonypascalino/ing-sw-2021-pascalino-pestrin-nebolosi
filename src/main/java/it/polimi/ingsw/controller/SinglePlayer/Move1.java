@@ -7,7 +7,10 @@ public class Move1 implements Token {
     @Override
     public void activateEffect(SinglePlayerGame game) {
         game.getLorenzoPath().moveForward(2);
+        if (game.getLorenzoPath().checkPopeSpace(3)) {
+            game.lorenzoWins();
+        }
         Collections.shuffle(game.getTokenList());
-        game.getLorenzoPath().checkPopeSpace(game.get)
+        game.fpAdvancement(0,0);
     }
 }

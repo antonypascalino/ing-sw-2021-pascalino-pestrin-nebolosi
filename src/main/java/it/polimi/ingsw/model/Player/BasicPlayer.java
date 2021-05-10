@@ -24,7 +24,7 @@ public class BasicPlayer extends Player {
     private Board board;
     private ArrayList<LeaderCard> leaderCards;
     private int victoryPoints;
-    //private Table table;
+    private Table table;
     private Player original; //Even if this attribute is in the Player class for not rewriting all the code, it's never being used in this class
 
     /**
@@ -32,8 +32,11 @@ public class BasicPlayer extends Player {
      *
      *
      */
-    public BasicPlayer() {
-
+    public BasicPlayer(String nickName, Table table) {
+        this.nickName = nickName;
+        this.board = new Board(this);
+        this.victoryPoints = 0;
+        this.table = table;
     }
 
     public void setNickName(String nickName) {
