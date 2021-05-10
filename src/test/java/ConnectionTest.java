@@ -64,5 +64,23 @@ public class ConnectionTest {
         assertEquals(serverResponse,jsonDev);
     }
 
+    @Test
+    public void NewGameRequest() {
+        LineClient client = new LineClient("127.0.0.1", 8080);
+        try {
+            client.startClient();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String serverResponse = "test";
 
+        String test = "new game\n\r2\n\rSickNebo\r";
+        System.out.println(test);
+        try {
+            serverResponse = client.sendMessage(test);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+        //assertEquals(serverResponse,jsonDev);
 }

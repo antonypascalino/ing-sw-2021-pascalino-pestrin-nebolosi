@@ -52,6 +52,11 @@ public class ChoiceRequest implements Request{
     }
 
     @Override
+    public int getPlayerChoices() {
+        return 0;
+    }
+
+    @Override
     public String getClassName() {
         return "ChoiceRequest";
     }
