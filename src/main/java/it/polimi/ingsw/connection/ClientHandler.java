@@ -50,9 +50,12 @@ public class ClientHandler implements Runnable {
                         if(games.size() == 0)
                             newId = 0;
                         else
-                            newId = games.get(games.size()-1).getGameId();
+                            newId = games.get(games.size()-1).getGameId() + 1;
                         Game game = new Game(tmp, DefaultCreator.produceDevCard(),newId);
-                        System.out.println("new game created with ID: " + newId);
+                        games.add(game);
+                        String response = "new game created with ID: " + newId;
+                        System.out.println(response);
+                        out.println(response);
                     }
 
                         //System.out.println("Ricevuto un messaggio");

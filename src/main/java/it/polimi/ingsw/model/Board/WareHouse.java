@@ -31,6 +31,7 @@ public class WareHouse {
      * Instantiates a new WareHouse (with only 3 levels)
      */
     public WareHouse() {
+        levels = new ArrayList<Resource[]>();
         level1 = new Resource[1];
         level2 = new Resource[2];
         level3 = new Resource[3];

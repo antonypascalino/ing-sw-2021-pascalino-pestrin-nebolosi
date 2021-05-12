@@ -82,6 +82,7 @@ public class ConnectionTest {
             Gson gson = new Gson();
             String jsonReq = gson.toJson(request);
             serverResponse = client.sendMessage(jsonReq);
+            System.out.println(serverResponse);
         } catch (IOException e) {
             e.printStackTrace();
         }
