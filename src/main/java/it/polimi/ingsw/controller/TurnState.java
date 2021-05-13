@@ -3,6 +3,7 @@ package it.polimi.ingsw.controller;
 public enum TurnState {
 
     INITIAL,
+    CHECK_STATS,
     PLAY_LEADER_CARD,
     GET_FROM_MARKET,
     BUY_DEV_CARD,
@@ -10,5 +11,6 @@ public enum TurnState {
     MOVE_RESOURCE,
     DISCARD_LEADER_CARD,
     CONVERT_CHOICE,
-    END_TURN;
+    END_TURN,
+    QUIT;
 }

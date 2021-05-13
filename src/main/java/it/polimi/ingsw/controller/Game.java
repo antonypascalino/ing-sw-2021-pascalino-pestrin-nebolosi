@@ -1,6 +1,7 @@
 package it.polimi.ingsw.controller;
 
 import it.polimi.ingsw.Request.Request;
+import it.polimi.ingsw.model.Cards.DevCard;
 import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Table.Table;
 
@@ -23,6 +24,9 @@ public class Game {
         this.turnStates = new ArrayList<TurnState>();
         this.currPlayer = currPlayer;
         this.currPopeSpace = 1;
+    }
+
+    public Game(ArrayList<Player> players, ArrayList<DevCard> produceDevCard) {
     }
 
     /**

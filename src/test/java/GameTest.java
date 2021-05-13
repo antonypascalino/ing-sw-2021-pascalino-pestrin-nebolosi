@@ -9,6 +9,7 @@
     import it.polimi.ingsw.model.Cards.LeaderCard;
     import it.polimi.ingsw.model.Player.BasicPlayer;
     import it.polimi.ingsw.model.Player.Player;
+    import it.polimi.ingsw.model.Table.Table;
     import org.junit.Test;
 
     import java.lang.reflect.Type;

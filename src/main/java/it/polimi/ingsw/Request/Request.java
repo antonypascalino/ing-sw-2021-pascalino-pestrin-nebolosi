@@ -28,7 +28,6 @@ public interface Request extends Convertable {
      */
     public boolean validRequest(ArrayList<TurnState> turnStates);
 
-
     /**
      * Controlla che il giocatore abbaia tutti i requisiti per compiere la request.
      * Calcola la nuova posizione su cui il giocatore si troverà sul FaithPath
