@@ -1,5 +1,6 @@
 package it.polimi.ingsw.connection;
 
+import it.polimi.ingsw.Request.JoinGameRequest;
 import it.polimi.ingsw.Request.NewGameRequest;
 import it.polimi.ingsw.Request.Request;
 import it.polimi.ingsw.controller.DefaultCreator;
@@ -51,25 +52,40 @@ public class ClientHandler implements Runnable {
                             newId = 0;
                         else
                             newId = games.get(games.size()-1).getGameId() + 1;
-                        Game game = new Game(tmp, DefaultCreator.produceDevCard(),newId);
+                        Game game = new Game(tmp, DefaultCreator.produceDevCard(),newId, playerNum);
                         games.add(game);
                         String response = "new game created with ID: " + newId;
                         System.out.println(response);
                         out.println(response);
                     }
 
-                        //System.out.println("Ricevuto un messaggio");
-                    if(line.equals("quit")){
-                        break;
-                    } else {
+                    else if(request instanceof JoinGameRequest)
+                    {
+                        int gameId = ((JoinGameRequest) request).getGameId();
+                        String nickName = ((JoinGameRequest) request).getNickName();
+                        //Return the first occuracy of the game, if there's not return not found
+                        Game game = games.stream().filter(game1 -> (game1.getGameId() == gameId)).findFirst().orElse(null);
+                        if(game == null)
+                        {
+                            System.out.println("Game not found");
+                            //Null game
+                        }
+                        else
+                        {
+                            Player newPlayer= new BasicPlayer(nickName);
+                            game.addPlayer(newPlayer);
+                            System.out.println("Player "+nickName+" added to game "+ gameId);
+                        }
+                    }
+                    else {
                         out.println(line);
                         out.flush();
                     }
                 }
                 //close connections
-                in.close();
-                out.close();
-                socket.close();
+                //in.close();
+                //out.close();
+                //socket.close();
             } catch (IOException e){
                 System.err.println(e.getMessage());
             }

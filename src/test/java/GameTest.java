@@ -60,7 +60,7 @@
             ArrayList<Player> players = new ArrayList<Player>();
             Player tmp = new BasicPlayer("SickNebo");
             players.add(tmp);
-            Game test = new Game(players, DefaultCreator.produceDevCard(), 2);
+            Game test = new Game(players, DefaultCreator.produceDevCard(), 2,4);
             DevCard[][] prova = test.getTable().getTop();
             for (int i = 0; i < prova.length; i++) {
                 for (int j = 0; j < prova[0].length; j++)

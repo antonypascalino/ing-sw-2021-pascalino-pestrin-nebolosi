@@ -13,6 +13,7 @@ import java.util.ArrayList;
  */
 public class Game {
 
+    private int maxPlayer;
     ArrayList<Player> players;
     private Table table;
     private ArrayList<TurnState> turnStates;
@@ -20,7 +21,8 @@ public class Game {
     private int currPopeSpace;
     private final int gameId;
 
-    public Game(ArrayList<Player> players, ArrayList<DevCard> cards, int gameId) {
+    public Game(ArrayList<Player> players, ArrayList<DevCard> cards, int gameId, int maxPlayer) {
+        this.maxPlayer = maxPlayer;
         this.gameId = gameId;
         this.players = players;
         this.table = new Table(cards);
@@ -120,5 +122,10 @@ public class Game {
             currPopeSpace++;
         }
         this.fpAdvancement(0,0); //Richiama se stessa per verificare se qualche giocatore abbia superato più di una popeSpace
+    }
+
+    public void addPlayer(Player newPlayer) {
+        if(players.size() < maxPlayer)
+            players.add(newPlayer);
     }
 }
