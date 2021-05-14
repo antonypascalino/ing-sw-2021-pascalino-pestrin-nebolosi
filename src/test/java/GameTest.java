@@ -58,9 +58,9 @@
         public void TestGame()
         {
             ArrayList<Player> players = new ArrayList<Player>();
-            Player tmp = new BasicPlayer();
+            Player tmp = new BasicPlayer("SickNebo");
             players.add(tmp);
-            Game test = new Game(players, DefaultCreator.produceDevCard());
+            Game test = new Game(players, DefaultCreator.produceDevCard(), 2);
             DevCard[][] prova = test.getTable().getTop();
             for (int i = 0; i < prova.length; i++) {
                 for (int j = 0; j < prova[0].length; j++)

@@ -32,8 +32,9 @@ public class BasicPlayer extends Player {
      *
      *
      */
-    public BasicPlayer() {
-
+    public BasicPlayer(String nickName) {
+        this.nickName = nickName;
+        board = new Board(this);
     }
 
     public void setNickName(String nickName) {

@@ -1,5 +1,7 @@
 package it.polimi.ingsw.connection;
 
+import it.polimi.ingsw.controller.Game;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -13,6 +15,7 @@ public class MultiEchoServer {
 
     //Array list used for handle different threads
     private ArrayList<ClientHandler> clients = new ArrayList<ClientHandler>();
+    private ArrayList<Game> games = new ArrayList<Game>();
 
     public MultiEchoServer(int port){
         this.port = port;
@@ -32,7 +35,7 @@ public class MultiEchoServer {
         while (true){
             try{
                 Socket socket = serverSocket.accept();
-                executor.submit(new ClientHandler(socket));
+                executor.submit(new ClientHandler(socket,games));
             }catch(IOException e){
                 break; //In case the serverSocket gets closed
             }

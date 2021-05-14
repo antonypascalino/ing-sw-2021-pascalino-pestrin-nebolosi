@@ -1,5 +1,7 @@
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import it.polimi.ingsw.Request.NewGameRequest;
+import it.polimi.ingsw.Request.Request;
 import it.polimi.ingsw.client.LineClient;
 import it.polimi.ingsw.controller.DefaultCreator;
 import it.polimi.ingsw.model.Cards.DevCard;
@@ -64,5 +66,26 @@ public class ConnectionTest {
         assertEquals(serverResponse,jsonDev);
     }
 
+    @Test
+    public void NewGameRequest() {
+        LineClient client = new LineClient("127.0.0.1", 8080);
+        try {
+            client.startClient();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String serverResponse = "test";
 
+        Request request = new NewGameRequest("SickNebo", 3);
+        System.out.println(request.toString());
+        try {
+            Gson gson = new Gson();
+            String jsonReq = gson.toJson(request);
+            serverResponse = client.sendMessage(jsonReq);
+            System.out.println(serverResponse);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+        //assertEquals(serverResponse,jsonDev);
 }

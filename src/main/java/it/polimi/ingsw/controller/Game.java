@@ -1,9 +1,11 @@
 package it.polimi.ingsw.controller;
 
 import it.polimi.ingsw.Request.Request;
+import it.polimi.ingsw.model.Cards.DevCard;
 import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Table.Table;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -16,15 +18,21 @@ public class Game {
     private ArrayList<TurnState> turnStates;
     private Player currPlayer;
     private int currPopeSpace;
+    private final int gameId;
 
-    public Game(ArrayList<Player> players, Table table, Player currPlayer) {
+    public Game(ArrayList<Player> players, ArrayList<DevCard> cards, int gameId) {
+        this.gameId = gameId;
         this.players = players;
-        this.table = table;
+        this.table = new Table(cards);
         this.turnStates = new ArrayList<TurnState>();
-        this.currPlayer = currPlayer;
+        this.currPlayer = players.get(0);
         this.currPopeSpace = 1;
     }
 
+    public int getGameId()
+    {
+        return gameId;
+    }
     /**
      * Replace the new player in the position of the orignal one ( when a new player with new powers gets created)
      *

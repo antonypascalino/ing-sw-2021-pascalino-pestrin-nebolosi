@@ -50,4 +50,19 @@ public class JsonReader{
         ArrayList<Request> empObject = gson.fromJson(input, listType );
         return empObject;
     }
+
+    /**
+     * Static metod used for reading a requests from a json file
+     * @param input the string containing the input information for deserialize
+     * @return an array list with the deserialized request
+     */
+    public static Request readSingleRequest(String input)
+    {
+        //Gson gson = new Gson();
+        GsonBuilder builder = new GsonBuilder();
+        builder.registerTypeAdapter(Request.class, new ConvertableDeserializer<Request>());
+        Gson gson = builder.setPrettyPrinting().create();
+        Request empObject = gson.fromJson(input, Request.class );
+        return empObject;
+    }
 }

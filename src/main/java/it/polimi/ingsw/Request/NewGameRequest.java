@@ -2,43 +2,40 @@ package it.polimi.ingsw.Request;
 
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Player.Player;
-import it.polimi.ingsw.model.Resource;
 
 import java.util.ArrayList;
 
-public class ChoiceRequest implements Request{
+public class NewGameRequest implements Request{
 
-    ArrayList<Resource> choices;
+    private String nickname; //Name of the first player
+    private int players; //Number of players in the game
+    private final String className;
+
+    public NewGameRequest(String nickname, int players)
+    {
+        this.className = this.getClass().getName();
+        this.nickname = nickname;
+        this.players = players;
+    }
 
     @Override
     public void handle(Player player) {
-        for (Resource c : choices) {
-            player.getBoard().getStrongBox().addResource(c);
-        }
+
     }
 
     @Override
     public boolean validRequest(ArrayList<TurnState> turnStates) {
-        return true;
+        return false;
     }
 
     @Override
     public boolean canBePlayed(Player player) {
-        if(choices.size() != player.getBoard().getTempBox().filterChoices().size()){
-            //lancia eccezione "choices and resources selected do not match"
-            return false;
-        }
-        if(choices.contains(Resource.FAITH)){
-            //lancia eccezione "you can't convert choices into faith points"
-            return false;
-        }
-
-        return true;
+        return false;
     }
 
     @Override
     public TurnState nextTurnState() {
-        return TurnState.CONVERT_CHOICE;
+        return null;
     }
 
     @Override
@@ -58,6 +55,15 @@ public class ChoiceRequest implements Request{
 
     @Override
     public String getClassName() {
-        return "ChoiceRequest";
+        return className;
+
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public int getPlayers() {
+        return players;
     }
 }
