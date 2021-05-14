@@ -59,7 +59,7 @@ public class Game {
      * La notify chiama il metodo canBePlayed che le restituirà la pozione su cui si troverà il Player sul FaithPath, con
      * tale posizione notificherà tutti gli altri player per chiedergli loro come di comporteranno di conseguenza
      */
-    public void notify(Request req) {
+    public synchronized void notify(Request req) {
         int playerSteps = 0;
         int discardedSteps = 0;
 
@@ -124,7 +124,8 @@ public class Game {
         this.fpAdvancement(0,0); //Richiama se stessa per verificare se qualche giocatore abbia superato più di una popeSpace
     }
 
-    public void addPlayer(Player newPlayer) {
+    //Synchronyzed player because two players can't register at the same time
+    public synchronized void addPlayer(Player newPlayer) {
         if(players.size() < maxPlayer)
             players.add(newPlayer);
     }
