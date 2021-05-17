@@ -8,6 +8,7 @@ public class Production {
     private String cardID;
     private ArrayList<MappedResource> resources;
 
+
     public String getCardID() {
         return cardID;
     }

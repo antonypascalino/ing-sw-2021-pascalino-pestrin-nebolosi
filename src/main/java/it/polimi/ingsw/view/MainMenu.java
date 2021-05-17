@@ -16,7 +16,8 @@ public class MainMenu {
     String input = "";
 
     public MainMenu(ArrayList<TurnState> turnStates, Scanner inputs, PlayerData data, String input) {
-        this.turnStates = turnStates;
+        this.turnStates = new ArrayList<TurnState>();
+        this.turnStates.addAll(turnStates);
         this.inputs = inputs;
         this.data = data;
         this.input = input;
@@ -33,11 +34,10 @@ public class MainMenu {
             //va in ciascuno stato
             input = inputs.nextLine();
             int index = Integer.parseInt(input); //converts String into int
-            for (int i = 0; i < index; i++) {
-                selectionHandler(turnStates.get(i), data);
-                if (turnStates.get(i).equals(TurnState.QUIT)) {
-                    input = "-1";
-                }
+
+            selectionHandler(turnStates.get(index-1), data);
+            if (turnStates.get(index-1).equals(TurnState.QUIT)) {
+                input = "-1";
             }
         } while (!input.equals("-1"));
     }

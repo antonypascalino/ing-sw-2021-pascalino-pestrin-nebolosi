@@ -1,6 +1,7 @@
 package it.polimi.ingsw.view.selections;
 
 import it.polimi.ingsw.controller.MappedResource;
+import it.polimi.ingsw.controller.Production;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Resource;
 import it.polimi.ingsw.view.data.PlayerData;
@@ -16,29 +17,28 @@ public class ProductionSelection extends Selection {
     public void handleSelection(PlayerData data) {
         Scanner inputs = new Scanner(System.in);
         ArrayList<String> cards = new ArrayList<String>();
+        ArrayList<Production> mappedProduction = new ArrayList<Production>();
         String selection = "";
-        cards.addAll(data.cardsFilter());
-        for (int i = 0; i < cards.size(); i++) {
-            System.out.println("[" + (i + 1) + "]" + "" + cards.get(i));
-        }
-        selection = inputs.nextLine();
-        int index = Integer.parseInt(selection);
-        Card card = new Card();
-        ArrayList<Resource> needed = new ArrayList<Resource>();
-        ArrayList<MappedResource> mappedRes = new ArrayList<MappedResource>();
-        card = data.fromIDtoCard(cards.get(index));
-        mappedRes = data.createMappedRes(needed.addAll(card.required));
-        for(int j = 0; j < mappedRes.size(); j++){
-            System.out.println("[" + (j + 1) + "]" + "" + mappedRes.get(j));
-        }
-        String mappedSelect = "";
+
         do{
-            //scegli la mappedSelect ogni volta
-            //lui te le rimuove mano a mano dal PlayerData nei punti stabiliti
-            //ti fa la printLn delle risorse a mano a mano
-            //ti compone l'array finale delle mappedres
-    }while(r != '0')
-        //poi ti aggiunge l'id della carta + le mappedres ad un arraylist di MappedProduce
+            cards.addAll(data.cardsFilter());
+            ArrayList<MappedResource> mappedRes = new ArrayList<MappedResource>();
+            for (int i = 0; i < cards.size(); i++) {
+                System.out.println("[" + (i + 1) + "]" + "" + cards.get(i));
+            }
+            selection = inputs.nextLine();
+            int index = Integer.parseInt(selection);
+            mappedRes.addAll(data.createMappedRes(data.getCardFromID(cards.get(index)).getRequired()));
+            data.removeMappedResource(mappedRes);
+            cards.remove(cards.get(index));
+            Production p = new Production();
+            mappedProduction.add(p);
+        }while(cards.size() > 0);
+
+
+    }
+
+
 
 
     @Override
