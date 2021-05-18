@@ -1,24 +1,28 @@
 package it.polimi.ingsw.view.data;
 
 import it.polimi.ingsw.controller.MappedResource;
+import it.polimi.ingsw.controller.MarketResource;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Resource;
 import it.polimi.ingsw.view.ClientCard;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class BasicData extends PlayerData {
     private ArrayList<TurnState> turnStates;
     private TurnState turnState;
-    private ArrayList<Resource> wareHouse;
+    private ArrayList<Resource[]> wareHouse;
     private ArrayList<Resource> strongBox;
     private int faithPoints;
     private int victoryPoints;
     private ArrayList<String> cardsID;  //3 front cards + basic + extraProd
     private int leaders;
+    private Resource[][] market;
 
-    public BasicData(ArrayList<String> cardID, ArrayList<TurnState> turnStates, TurnState turnState, ArrayList<Resource> wareHouse, ArrayList<Resource> strongBox, int faithPoints, int victoryPoints, ArrayList<String> cardsID, int leaders) {
+
+    public BasicData(ArrayList<String> cardID, ArrayList<TurnState> turnStates, TurnState turnState, ArrayList<Resource[]> wareHouse, ArrayList<Resource> strongBox, int faithPoints, int victoryPoints, ArrayList<String> cardsID, int leaders, Resource[][] market) {
         this.turnStates = turnStates;
         this.turnState = turnState;
         this.wareHouse = wareHouse;
@@ -27,6 +31,7 @@ public class BasicData extends PlayerData {
         this.victoryPoints = victoryPoints;
         this.cardsID = cardsID;
         this.leaders = leaders;
+        this.market = market;
     }
 
     public ArrayList<TurnState> turnStateFilter(){
@@ -83,9 +88,12 @@ public class BasicData extends PlayerData {
 
     public ArrayList<MappedResource> allResources(){
         ArrayList<MappedResource> tmp = new ArrayList<MappedResource>();
-        for(Resource w : wareHouse){
-            MappedResource mappedW = new MappedResource(w, "warehouse");
-            tmp.add(mappedW);
+        Resource[] level = new Resource[3];
+        for(Resource[] l : wareHouse) {
+            for (Resource w : level){
+                MappedResource mappedW = new MappedResource(w, "warehouse");
+                tmp.add(mappedW);
+            }
         }
         for(Resource s : strongBox){
             MappedResource mappedS = new MappedResource(s, "strongbox");
@@ -147,6 +155,66 @@ public class BasicData extends PlayerData {
     public ClientCard getCardFromID(String cardID){
         ClientCard card = new ClientCard();
         return card;
+    }
+
+    public Resource[][] getMarket(){
+        return market;
+    }
+
+    public ArrayList<MarketResource> handleWarehouse(ArrayList<Resource> res){
+        ArrayList<MarketResource> marketRes = new ArrayList<MarketResource>();
+        ArrayList<Resource> wareHouseRes = new ArrayList<Resource>();
+        for(Resource[] lv : wareHouse){
+            wareHouseRes.addAll(Arrays.asList(lv));
+        }
+
+        int myFP = 0;
+        int discardedFP = 0;
+        Resource[] level = new Resource[3];
+        //the array goes backwards so it's possible to remove elements on the spot
+        for(int p = res.size()-1; p >= 0; p--){
+            if(res.get(p).equals(Resource.EMPTY)){
+                Scanner inputs = new Scanner(System.in);
+                String selection = "";
+                ArrayList<Resource> convert = new ArrayList<Resource>();
+                convert.add(Resource.GOLD);
+                convert.add(Resource.SHIELD);
+                convert.add(Resource.STONE);
+                convert.add(Resource.SERVANT);
+
+                for(int q = 0; q < convert.size(); q++){
+                    System.out.println("[" + (q + 1) + "]" + "" + convert.get(q));
+                }
+                System.out.println("Enter selection: ");
+                selection = inputs.nextLine();
+                int index = Integer.parseInt(selection);
+
+                res.set(index, convert.get(index)); //converts the resource selected on the spot
+
+            }
+            if(res.get(p).equals(Resource.FAITH)){
+                myFP++;
+                res.remove(p);
+            }
+
+            for(Resource[] l : wareHouse){
+                int i = 0;
+                i++;
+
+                    if((!wareHouseRes.contains(res.get(p)) && (l.length == 0)) || ((Arrays.stream(l).anyMatch(res.get(p) :: equals) && (l.length < 3)))){
+                        MarketResource market = new MarketResource(res.get(p), i);
+                        marketRes.add(market);
+                        System.out.println("The resource" + res.get(p) + "was put in level" + i);
+                    }
+                    else{
+                        System.out.println("The resource" + res.get(p) + "was discarded");
+
+                    }
+                }
+            }
+
+        return marketRes;
+
     }
 
 }

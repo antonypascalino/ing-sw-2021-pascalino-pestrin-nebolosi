@@ -1,6 +1,7 @@
 package it.polimi.ingsw.view.data;
 
 import it.polimi.ingsw.controller.MappedResource;
+import it.polimi.ingsw.controller.MarketResource;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Board.StrongBox;
 import it.polimi.ingsw.model.Board.WareHouse;
@@ -35,5 +36,13 @@ public abstract class PlayerData {
 
     public ClientCard getCardFromID(String cardID){
         return originalData.getCardFromID(cardID);
+    }
+
+    public Resource[][] getMarket(){
+        return originalData.getMarket();
+    }
+
+    public ArrayList<MarketResource> handleWarehouse(ArrayList<Resource> res){
+        return originalData.handleWarehouse(res);
     }
 }
