@@ -15,9 +15,12 @@ public class MarketSelection extends Selection {
     @Override
     public void handleSelection(PlayerData data) {
         Scanner inputs = new Scanner(System.in);
+        ArrayList<Resource> resFromMarket = new ArrayList<Resource>();
+        ArrayList<MarketResource> marketRes = new ArrayList<MarketResource>();
         String selection = "";
         Resource[][] market = data.getMarket();
         int i = 0;
+        //da fare meglio la matrice a schermo
         for(int w = 0; w < market.length; w++) {
                 for (int j = 0; j < market[w].length; j++) {
                     System.out.println(market[i][j] + " ");
@@ -26,8 +29,9 @@ public class MarketSelection extends Selection {
             }
         selection = inputs.nextLine();
         int index = Integer.parseInt(selection);
-        ArrayList<Resource> resFromMarket = new ArrayList<Resource>();
-        ArrayList<MarketResource> marketRes = new ArrayList<MarketResource>();
+        //devo capire come selezionare effettivamente una riga o una colonna
+
+
         marketRes.addAll(data.handleWarehouse(resFromMarket));
 
 

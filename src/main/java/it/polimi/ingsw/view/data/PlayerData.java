@@ -18,8 +18,8 @@ public abstract class PlayerData {
         return originalData.turnStateFilter();
     }
 
-    public ArrayList<String> cardsFilter(){
-        return originalData.cardsFilter();
+    public ArrayList<String> slotCardsFilter(){
+        return originalData.slotCardsFilter();
     }
 
     public ArrayList<MappedResource> createMappedRes(ArrayList<Resource> resources){
@@ -44,5 +44,13 @@ public abstract class PlayerData {
 
     public ArrayList<MarketResource> handleWarehouse(ArrayList<Resource> res){
         return originalData.handleWarehouse(res);
+    }
+
+    public ArrayList<String> tableCardsFilter(){
+        return originalData.tableCardsFilter();
+    }
+
+    public Integer handleSlots(String devID){
+        return originalData.handleSlots(devID);
     }
 }

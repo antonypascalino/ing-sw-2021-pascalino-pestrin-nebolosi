@@ -21,16 +21,16 @@ public class ProductionSelection extends Selection {
         String selection = "";
 
         do{
-            cards.addAll(data.cardsFilter());
+            cards.addAll(data.slotCardsFilter());
             ArrayList<MappedResource> mappedRes = new ArrayList<MappedResource>();
             for (int i = 0; i < cards.size(); i++) {
                 System.out.println("[" + (i + 1) + "]" + "" + cards.get(i));
             }
             selection = inputs.nextLine();
             int index = Integer.parseInt(selection);
-            mappedRes.addAll(data.createMappedRes(data.getCardFromID(cards.get(index)).getRequired()));
+            mappedRes.addAll(data.createMappedRes(data.getCardFromID(cards.get(index-1)).getRequired()));
             data.removeMappedResource(mappedRes);
-            cards.remove(cards.get(index));
+            cards.remove(cards.get(index-1));
             Production p = new Production();
             mappedProduction.add(p);
         }while(cards.size() > 0);
