@@ -7,6 +7,7 @@
     import org.junit.Test;
 
     import java.util.ArrayList;
+    import java.util.Collections;
 
     //First test of the server
     public class GameTest

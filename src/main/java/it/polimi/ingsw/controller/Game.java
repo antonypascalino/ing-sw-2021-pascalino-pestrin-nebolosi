@@ -6,6 +6,7 @@ import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Table.Table;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * The type Game.
@@ -26,6 +27,7 @@ public class Game {
         this.maxPlayer = maxPlayer;
         this.gameId = gameId;
         this.players = players;
+        Collections.shuffle(cards);
         this.table = new Table(cards);
         this.turnStates = new ArrayList<TurnState>();
         this.currPlayer = players.get(0);

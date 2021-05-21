@@ -15,7 +15,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class ConnectionTest {
-
+/*
     @Test
     public void NewClientWithMessage()
     {
@@ -87,4 +87,6 @@ public class ConnectionTest {
         }
     }
         //assertEquals(serverResponse,jsonDev);
+
+ */
 }
