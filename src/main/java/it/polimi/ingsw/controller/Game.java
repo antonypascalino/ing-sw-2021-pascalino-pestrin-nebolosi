@@ -69,15 +69,10 @@ public class Game {
         if (req.validRequest(turnStates)) {
             if (req.canBePlayed(currPlayer)) {
                 turnStates.add(req.handle(currPlayer ,this));
-                if (req.getDiscardedSteps() != 0 || req.getMyFPSteps() != 0) {
-                    fpAdvancement(discardedSteps, playerSteps);
-                }
                 if (turnStates.contains(TurnState.END_TURN)) {
                     turnStates.clear();
                 }
-                if (req.getPlayerChoices() != 0) {
-                    //chiama model che chiama view che fa scegliere al player le risorse
-                }
+
                 if(lastTurn) {
                     lastRound.add(currPlayer);
                     if (lastRound.containsAll(players)) {
