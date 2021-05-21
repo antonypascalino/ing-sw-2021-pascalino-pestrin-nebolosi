@@ -7,7 +7,7 @@ import it.polimi.ingsw.model.card.DevCard;
 import it.polimi.ingsw.model.card.ExtraDeposit;
 import it.polimi.ingsw.model.card.ExtraProd;
 import it.polimi.ingsw.model.card.LeaderCard;
-import it.polimi.ingsw.model.Resource;
+import it.polimi.ingsw.model.Table.Resource;
 import org.junit.Test;
 
 import java.lang.reflect.Type;

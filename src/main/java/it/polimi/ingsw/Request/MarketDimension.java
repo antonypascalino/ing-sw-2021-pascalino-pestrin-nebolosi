@@ -1,6 +1,6 @@
 package it.polimi.ingsw.Request;
 
-public enum Dimension {
+public enum MarketDimension {
     ROW,
     COL;
 }

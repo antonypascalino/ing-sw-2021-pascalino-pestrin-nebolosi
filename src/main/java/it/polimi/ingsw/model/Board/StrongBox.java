@@ -1,7 +1,7 @@
 package it.polimi.ingsw.model.Board;
 
-import it.polimi.ingsw.model.Resource;
-import it.polimi.ingsw.model.ResourceNotAvailable;
+import it.polimi.ingsw.model.Table.Resource;
+//import it.polimi.ingsw.model.ResourceNotAvailable;
 
 import java.util.ArrayList;
 
@@ -52,7 +52,7 @@ public class StrongBox {
      *
      * @param res the {@link Resource} to be removed.
      * @return true if the {@link Resource} was in the {@link StrongBox} and has been successfully removed from it.
-     * @throws ResourceNotAvailable if the {@link Resource} is not available in the {@link StrongBox}.
+     //* @throws ResourceNotAvailable if the {@link Resource} is not available in the {@link StrongBox}.
      */
     public boolean removeResource(Resource res) {
             return resources.remove(res);

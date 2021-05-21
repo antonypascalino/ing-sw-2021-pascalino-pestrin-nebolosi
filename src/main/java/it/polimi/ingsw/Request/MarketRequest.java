@@ -4,12 +4,13 @@ import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.controller.MarketResource;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Player.Player;
-import it.polimi.ingsw.model.Resource;
+import it.polimi.ingsw.model.Table.Resource;
+import it.polimi.ingsw.Request.MarketDimension;
 
 import java.util.ArrayList;
 
 public class MarketRequest implements Request {
-    private Dimension dimension;
+    private MarketDimension marketDimension;
     private int number;
     private final String className;
     private ArrayList<MarketResource> marketResources;
@@ -28,9 +29,9 @@ public class MarketRequest implements Request {
         ArrayList<Resource> fromMarket = new ArrayList<Resource>();
         boolean canBePlayed;
 
-        if (dimension.equals(Dimension.ROW)) {
+        if (marketDimension.equals(MarketDimension.ROW)) {
             fromMarket = player.getTable().market.seeRow(number);
-        } else if (dimension.equals(Dimension.COL)) {
+        } else if (marketDimension.equals(MarketDimension.COL)) {
             fromMarket = player.getTable().market.seeColumn(number);
         }
         //check if the Required resources match the relative market resources and if the empty marbles have been correctly indicated
@@ -63,9 +64,9 @@ public class MarketRequest implements Request {
         //Abbiamo già confrontato che le risorse richieste dal player matchano le corrispondenti risorse del mercato (tenenedo anche conto delle Changes)
         // per cui si possono usare quelle, già matchate e changeate per aggiungerle al Player e modificare il mercato di conseguenza.
         // altrimenti si dovrebbe fare un altro giro di chiamate per prendere le risorse dal mercato cambiare le empty e aggiungerle al player.
-        if (dimension.equals(Dimension.ROW)) {
+        if (marketDimension.equals(MarketDimension.ROW)) {
             player.getTable().market.getRow(number);
-        } else if (dimension.equals(Dimension.COL)) {
+        } else if (marketDimension.equals(MarketDimension.COL)) {
             player.getTable().market.getColumn(number);
         }
 

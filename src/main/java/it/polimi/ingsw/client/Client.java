@@ -1,8 +1,10 @@
 package it.polimi.ingsw.client;
 
+
 import com.google.gson.Gson;
 import it.polimi.ingsw.Request.NewGameRequest;
 import it.polimi.ingsw.Request.Request;
+import it.polimi.ingsw.connection.*;
 
 import java.io.IOException;
 
@@ -15,7 +17,7 @@ public class Client
             }catch (IOException e){
                 System.err.println(e.getMessage());
             }
-           * */
+           *
             LineClient client = new LineClient("127.0.0.1", 8080);
             try {
                 client.startClient();
@@ -37,7 +39,9 @@ public class Client
             while(true){
 
             }
+        */
         }
+
 }
 
 

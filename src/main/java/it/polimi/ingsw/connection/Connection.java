@@ -1,6 +1,6 @@
 package it.polimi.ingsw.connection;
 
-import it.polimi.ingsw.model.Resource;
+import it.polimi.ingsw.model.Table.Resource;
 
 /**
  * The type Connection.

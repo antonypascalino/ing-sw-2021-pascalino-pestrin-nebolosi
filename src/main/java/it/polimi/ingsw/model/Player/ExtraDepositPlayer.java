@@ -2,7 +2,7 @@ package it.polimi.ingsw.model.Player;
 
 import it.polimi.ingsw.model.card.ExtraDeposit;
 import it.polimi.ingsw.model.ExtraDepositLevel;
-import it.polimi.ingsw.model.Resource;
+import it.polimi.ingsw.model.Table.Resource;
 
 import java.util.ArrayList;
 

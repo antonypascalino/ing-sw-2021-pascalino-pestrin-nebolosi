@@ -1,7 +1,6 @@
 package it.polimi.ingsw.model.Table;
 
 import it.polimi.ingsw.model.Costants;
-import it.polimi.ingsw.model.Resource;
 
 import java.util.ArrayList;
 import java.util.Random;

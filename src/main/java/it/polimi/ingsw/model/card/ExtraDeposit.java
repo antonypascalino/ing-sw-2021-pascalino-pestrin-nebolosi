@@ -2,7 +2,7 @@ package it.polimi.ingsw.model.card;
 
 import it.polimi.ingsw.model.Player.ExtraDepositPlayer;
 import it.polimi.ingsw.model.Player.Player;
-import it.polimi.ingsw.model.Resource;
+import it.polimi.ingsw.model.Table.Resource;
 
 import java.util.Collections;
 

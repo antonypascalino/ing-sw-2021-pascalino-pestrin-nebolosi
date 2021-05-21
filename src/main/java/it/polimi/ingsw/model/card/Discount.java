@@ -2,7 +2,7 @@ package it.polimi.ingsw.model.card;
 
 import it.polimi.ingsw.model.Player.DiscountedPlayer;
 import it.polimi.ingsw.model.Player.Player;
-import it.polimi.ingsw.model.Resource;
+import it.polimi.ingsw.model.Table.Resource;
 
 /**
  * The type Discount.

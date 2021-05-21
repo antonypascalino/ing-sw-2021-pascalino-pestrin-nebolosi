@@ -1,9 +1,9 @@
 package it.polimi.ingsw.model.Board;
 
-import it.polimi.ingsw.model.Resource;
+import it.polimi.ingsw.model.Table.Resource;
 import it.polimi.ingsw.model.card.LeaderCard;
 import it.polimi.ingsw.model.Player.Player;
-import it.polimi.ingsw.model.ResourceNotAvailable;
+//import it.polimi.ingsw.model.ResourceNotAvailable;
 import it.polimi.ingsw.model.card.ExtraDeposit;
 
 import java.util.ArrayList;
@@ -94,7 +94,7 @@ public class WareHouse {
      *
      * @param res the {@link Resource} to remove.
      * @return true if the remove was successful, false if somehow there's an error.
-     * @throws ResourceNotAvailable if the {@link Resource} is not available.
+     //* @throws ResourceNotAvailable if the {@link Resource} is not available.
      */
     public Boolean removeResource(Resource res) {
         if (!checkAvailability(res))
