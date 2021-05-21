@@ -1,6 +1,5 @@
-package it.polimi.ingsw.model.Cards;
+package it.polimi.ingsw.model.card;
 
-import it.polimi.ingsw.model.Player.ChangeResPlayer;
 import it.polimi.ingsw.model.Player.DiscountedPlayer;
 import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Resource;

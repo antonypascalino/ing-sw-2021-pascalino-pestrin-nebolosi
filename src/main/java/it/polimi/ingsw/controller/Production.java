@@ -1,7 +1,5 @@
 package it.polimi.ingsw.controller;
 
-import it.polimi.ingsw.model.Resource;
-
 import java.util.ArrayList;
 
 public class Production {

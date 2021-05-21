@@ -1,9 +1,8 @@
 package it.polimi.ingsw.model.Player;
 import it.polimi.ingsw.controller.Game;
-import it.polimi.ingsw.controller.MarketResource;
 import it.polimi.ingsw.model.Board.Board;
-import it.polimi.ingsw.model.Cards.DevCard;
-import it.polimi.ingsw.model.Cards.LeaderCard;
+import it.polimi.ingsw.model.card.DevCard;
+import it.polimi.ingsw.model.card.LeaderCard;
 import it.polimi.ingsw.model.Resource;
 import it.polimi.ingsw.model.Table.Table;
 

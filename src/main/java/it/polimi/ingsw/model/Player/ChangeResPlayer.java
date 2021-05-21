@@ -1,6 +1,5 @@
 package it.polimi.ingsw.model.Player;
 
-import it.polimi.ingsw.Request.Dimension;
 import it.polimi.ingsw.model.Resource;
 
 import java.util.ArrayList;

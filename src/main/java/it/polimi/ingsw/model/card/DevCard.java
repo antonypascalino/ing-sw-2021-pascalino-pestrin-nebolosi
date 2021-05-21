@@ -1,6 +1,5 @@
-package it.polimi.ingsw.model.Cards;
+package it.polimi.ingsw.model.card;
 
-import it.polimi.ingsw.controller.MappedResource;
 import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Resource;
 

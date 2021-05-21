@@ -1,7 +1,6 @@
 package it.polimi.ingsw.model.Board;
 
 import it.polimi.ingsw.model.Resource;
-import it.polimi.ingsw.model.ResourceNotAvailable;
 
 import java.util.ArrayList;
 

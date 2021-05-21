@@ -1,9 +1,8 @@
 package it.polimi.ingsw.controller;
 
-import it.polimi.ingsw.model.Cards.*;
+import it.polimi.ingsw.model.card.*;
 import it.polimi.ingsw.model.Resource;
 
-import javax.xml.stream.events.EntityReference;
 import java.util.ArrayList;
 
 /**

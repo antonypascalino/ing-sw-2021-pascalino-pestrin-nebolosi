@@ -1,6 +1,5 @@
 package it.polimi.ingsw.model.Board;
 
-import it.polimi.ingsw.model.Board.StrongBox;
 import it.polimi.ingsw.model.Resource;
 
 import java.util.ArrayList;

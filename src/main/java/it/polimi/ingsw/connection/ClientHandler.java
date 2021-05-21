@@ -7,7 +7,6 @@ import it.polimi.ingsw.controller.DefaultCreator;
 import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.model.Player.BasicPlayer;
 import it.polimi.ingsw.model.Player.Player;
-import it.polimi.ingsw.model.Table.Table;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,7 +14,6 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class ClientHandler implements Runnable {
 

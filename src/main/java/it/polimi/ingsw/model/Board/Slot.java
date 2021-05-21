@@ -1,5 +1,5 @@
 package it.polimi.ingsw.model.Board;
-import it.polimi.ingsw.model.Cards.DevCard;
+import it.polimi.ingsw.model.card.DevCard;
 
 import java.util.ArrayList;
 
@@ -123,7 +123,7 @@ public class Slot
 
     /**
      * Get an array with all the {@link DevCard} in possession by the {@link it.polimi.ingsw.model.Player.Player} (even if not usable to produce).
-     * It may be called by some {@link it.polimi.ingsw.model.Cards.LeaderCard}s to check if they can be activated.
+     * It may be called by some {@link it.polimi.ingsw.model.card.LeaderCard}s to check if they can be activated.
      *
      * @return An ArrayList with all the {@link DevCard} in possession by the {@link it.polimi.ingsw.model.Player.Player}.
      */

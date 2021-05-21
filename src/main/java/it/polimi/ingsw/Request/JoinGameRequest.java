@@ -1,6 +1,5 @@
 package it.polimi.ingsw.Request;
 
-import com.google.inject.internal.util.Join;
 import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Player.Player;

@@ -1,11 +1,10 @@
 package it.polimi.ingsw.model.Board;
 
-import it.polimi.ingsw.connection.Connection;
 import it.polimi.ingsw.model.Resource;
-import it.polimi.ingsw.model.Cards.LeaderCard;
+import it.polimi.ingsw.model.card.LeaderCard;
 import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.ResourceNotAvailable;
-import it.polimi.ingsw.model.Cards.ExtraDeposit;
+import it.polimi.ingsw.model.card.ExtraDeposit;
 
 import java.util.ArrayList;
 import java.util.Arrays;

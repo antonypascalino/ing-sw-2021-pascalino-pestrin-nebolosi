@@ -1,11 +1,10 @@
 package it.polimi.ingsw.controller;
 
 import it.polimi.ingsw.Request.Request;
-import it.polimi.ingsw.model.Cards.DevCard;
+import it.polimi.ingsw.model.card.DevCard;
 import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Table.Table;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**

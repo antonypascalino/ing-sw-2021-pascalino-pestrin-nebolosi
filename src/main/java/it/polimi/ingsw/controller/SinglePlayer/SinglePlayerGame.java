@@ -5,15 +5,14 @@ import it.polimi.ingsw.controller.DefaultCreator;
 import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Board.FaithPath;
-import it.polimi.ingsw.model.Colors;
-import it.polimi.ingsw.model.Player.BasicPlayer;
+import it.polimi.ingsw.model.card.DevCard;
 import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Table.Table;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class SinglePlayerGame {
+public class SinglePlayerGame extends Game {
     private FaithPath lorenzoPath;
     private ArrayList<Token> tokenList;
     private Player player;
@@ -21,9 +20,9 @@ public class SinglePlayerGame {
     private int currPopeSpace;
     private ArrayList<TurnState> turnStates;
 
-    public SinglePlayerGame(String nickname) {
+    public SinglePlayerGame(ArrayList<Player> players, ArrayList<DevCard> cards, int gameId, int maxPlayer) {
+        super(players, cards, gameId, 1);
         table = new Table(DefaultCreator.produceDevCard());
-        player = new BasicPlayer(nickname, table);
         lorenzoPath = new FaithPath();
         tokenList = new ArrayList<>();
         createTokens();
@@ -73,16 +72,10 @@ public class SinglePlayerGame {
 
         if (req.validRequest(turnStates)) {
             if (req.canBePlayed(player)) {
-                turnStates.add(req.nextTurnState());
-                req.handle(player);
-                if (req.getDiscardedSteps() != 0 || req.getMyFPSteps() != 0) {
-                    fpAdvancement(discardedSteps, playerSteps);
-                }
+                turnStates.add(req.handle(player,this));
+
                 if (turnStates.contains(TurnState.END_TURN)) {
                     turnStates.clear();
-                }
-                if (req.getPlayerChoices() != 0) {
-                    //chiama model che chiama view che fa scegliere al player le risorse
                 }
             }
             drawToken().activateEffect(this);

@@ -1,7 +1,5 @@
 package it.polimi.ingsw.model;
 
-import it.polimi.ingsw.model.Table.Table;
-
 /**
  * The type Costants.
  */

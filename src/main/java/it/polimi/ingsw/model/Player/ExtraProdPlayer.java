@@ -1,9 +1,7 @@
 package it.polimi.ingsw.model.Player;
 
-import it.polimi.ingsw.Request.ProduceRequest;
-import it.polimi.ingsw.model.Cards.DevCard;
-import it.polimi.ingsw.model.Cards.ExtraProd;
-import it.polimi.ingsw.model.Cards.LeaderCard;
+import it.polimi.ingsw.model.card.DevCard;
+import it.polimi.ingsw.model.card.ExtraProd;
 import it.polimi.ingsw.model.Resource;
 
 import java.util.ArrayList;

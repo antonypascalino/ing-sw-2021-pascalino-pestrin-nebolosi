@@ -1,18 +1,11 @@
 package it.polimi.ingsw.model.Player;
 
-import it.polimi.ingsw.Request.Dimension;
-import it.polimi.ingsw.Request.MarketRequest;
-import it.polimi.ingsw.Request.ProduceRequest;
-import it.polimi.ingsw.Request.Request;
-import it.polimi.ingsw.controller.MappedResource;
-import it.polimi.ingsw.controller.MarketResource;
 import it.polimi.ingsw.model.Board.Board;
-import it.polimi.ingsw.model.Cards.DevCard;
-import it.polimi.ingsw.model.Cards.LeaderCard;
+import it.polimi.ingsw.model.card.DevCard;
+import it.polimi.ingsw.model.card.LeaderCard;
 import it.polimi.ingsw.model.Resource;
 import it.polimi.ingsw.model.Table.Table;
 
-import java.awt.geom.RectangularShape;
 import java.util.ArrayList;
 
 /**

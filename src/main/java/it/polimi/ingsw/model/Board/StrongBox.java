@@ -1,6 +1,5 @@
 package it.polimi.ingsw.model.Board;
 
-import it.polimi.ingsw.model.Cards.DevCard;
 import it.polimi.ingsw.model.Resource;
 import it.polimi.ingsw.model.ResourceNotAvailable;
 

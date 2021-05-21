@@ -2,7 +2,6 @@ package it.polimi.ingsw.client;
 
 import com.google.gson.Gson;
 import it.polimi.ingsw.Request.JoinGameRequest;
-import it.polimi.ingsw.Request.NewGameRequest;
 import it.polimi.ingsw.Request.Request;
 
 import java.io.IOException;

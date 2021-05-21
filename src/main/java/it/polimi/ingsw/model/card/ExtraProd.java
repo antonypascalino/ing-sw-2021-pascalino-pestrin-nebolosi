@@ -1,4 +1,4 @@
-package it.polimi.ingsw.model.Cards;
+package it.polimi.ingsw.model.card;
 
 import it.polimi.ingsw.model.Player.ExtraProdPlayer;
 import it.polimi.ingsw.model.Player.Player;

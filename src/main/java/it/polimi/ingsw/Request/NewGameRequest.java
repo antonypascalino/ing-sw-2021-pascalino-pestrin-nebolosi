@@ -1,7 +1,6 @@
 package it.polimi.ingsw.Request;
 
 import it.polimi.ingsw.controller.Game;
-import it.polimi.ingsw.controller.Lobby;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Player.Player;
 

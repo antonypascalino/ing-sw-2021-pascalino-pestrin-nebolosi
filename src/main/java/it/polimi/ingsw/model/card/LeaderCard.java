@@ -1,12 +1,11 @@
-package it.polimi.ingsw.model.Cards;
-
-import it.polimi.ingsw.Convertable;
+package it.polimi.ingsw.model.card;
+import it.polimi.ingsw.Convertible;
 import it.polimi.ingsw.model.Player.Player;
 
 /**
  * The interface Leader card implemented by all the leader cards
  */
-public interface LeaderCard extends Convertable {
+public interface LeaderCard extends Convertible {
 
     /**
      * Play card, which means setting it to enable

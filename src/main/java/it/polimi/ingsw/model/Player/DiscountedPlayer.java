@@ -1,8 +1,7 @@
 package it.polimi.ingsw.model.Player;
 
-import it.polimi.ingsw.model.Cards.DevCard;
+import it.polimi.ingsw.model.card.DevCard;
 import it.polimi.ingsw.model.Resource;
-import it.polimi.ingsw.model.Table.Table;
 
 import java.util.ArrayList;
 

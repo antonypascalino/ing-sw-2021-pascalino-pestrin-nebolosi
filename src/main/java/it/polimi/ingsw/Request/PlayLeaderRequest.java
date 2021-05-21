@@ -2,7 +2,6 @@ package it.polimi.ingsw.Request;
 
 import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.controller.TurnState;
-import it.polimi.ingsw.model.Cards.LeaderCard;
 import it.polimi.ingsw.model.Player.Player;
 
 import java.util.ArrayList;

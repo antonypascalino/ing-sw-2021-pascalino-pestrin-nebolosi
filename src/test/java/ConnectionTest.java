@@ -4,9 +4,8 @@ import it.polimi.ingsw.Request.NewGameRequest;
 import it.polimi.ingsw.Request.Request;
 import it.polimi.ingsw.client.LineClient;
 import it.polimi.ingsw.controller.DefaultCreator;
-import it.polimi.ingsw.model.Cards.DevCard;
-import it.polimi.ingsw.model.Cards.LeaderCard;
-import it.polimi.ingsw.model.Resource;
+import it.polimi.ingsw.model.card.DevCard;
+import it.polimi.ingsw.model.card.LeaderCard;
 import org.junit.Test;
 
 import java.io.IOException;

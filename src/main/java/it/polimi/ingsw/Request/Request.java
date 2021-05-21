@@ -1,6 +1,6 @@
 package it.polimi.ingsw.Request;
 
-import it.polimi.ingsw.Convertable;
+import it.polimi.ingsw.Convertible;
 import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Player.Player;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 /**
  * The interface used by all type of request the player could send
  */
-public interface Request extends Convertable {
+public interface Request extends Convertible {
     /**
      * Activate the request calling the right methods in the controller classes
      */

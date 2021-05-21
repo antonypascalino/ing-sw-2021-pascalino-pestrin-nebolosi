@@ -1,6 +1,6 @@
 package it.polimi.ingsw.model.Table;
 
-import it.polimi.ingsw.model.Cards.DevCard;
+import it.polimi.ingsw.model.card.DevCard;
 
 import java.util.ArrayList;
 

@@ -1,10 +1,8 @@
-package it.polimi.ingsw.model.Cards;
+package it.polimi.ingsw.model.card;
 
 import it.polimi.ingsw.model.Player.ChangeResPlayer;
 import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Resource;
-
-import java.util.ArrayList;
 
 /**
  * The leader card that gives the player the possibility to change a resource

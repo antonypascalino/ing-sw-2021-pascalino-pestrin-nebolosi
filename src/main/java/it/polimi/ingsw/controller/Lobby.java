@@ -1,7 +1,7 @@
 package it.polimi.ingsw.controller;
 
-import it.polimi.ingsw.model.Cards.DevCard;
-import it.polimi.ingsw.model.Cards.LeaderCard;
+import it.polimi.ingsw.model.card.DevCard;
+import it.polimi.ingsw.model.card.LeaderCard;
 
 import java.util.ArrayList;
 

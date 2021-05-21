@@ -6,8 +6,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonPrimitive;
-import it.polimi.ingsw.Convertable;
-import it.polimi.ingsw.model.Cards.LeaderCard;
+import it.polimi.ingsw.Convertible;
 
 import java.lang.reflect.Type;
 
@@ -15,7 +14,7 @@ import java.lang.reflect.Type;
  * Classe used for deserialize any type of interface that extends the convertable interface
  * @param <T> The interface that needs to be deserialized
  */
-class ConvertableDeserializer<T extends Convertable> implements JsonDeserializer<T> {
+class ConvertableDeserializer<T extends Convertible> implements JsonDeserializer<T> {
 
     private static final String CLASSNAME = "className";
 
