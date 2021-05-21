@@ -1,8 +1,10 @@
 package it.polimi.ingsw.Request;
 
+import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.controller.MappedResource;
 import it.polimi.ingsw.controller.Production;
 import it.polimi.ingsw.controller.TurnState;
+import it.polimi.ingsw.model.Cards.ExtraProd;
 import it.polimi.ingsw.model.Cards.Producer;
 import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Resource;
@@ -19,30 +21,7 @@ public class ProduceRequest implements Request {
     private ArrayList<Production> productions;
     private int playerSteps;
     private int playerChoices;
-
-
-    @Override
-    public void handle(Player player) {
-        for(Production prodReq : productions){
-            for(MappedResource mapRes : prodReq.getMappedResources()){
-                player.removeResource(mapRes.getResource(), mapRes.getPlace());
-            }
-
-        }
-        for(Production prod : productions){
-            player.produce(prod.getCardID());
-        }
-
-        playerChoices = player.getBoard().getTempBox().filterChoices().size();
-
-        playerSteps = player.getBoard().getTempBox().filterFaithPoints().size();
-        player.getBoard().getTempBox().moveToStrongBox();
-    }
-
-    @Override
-    public boolean validRequest(ArrayList<TurnState> turnStates) {
-        return !(turnStates.contains(TurnState.BUY_DEV_CARD) || turnStates.contains(TurnState.PRODUCE) || turnStates.contains(TurnState.GET_FROM_MARKET));
-    }
+    private final String className = this.getClass().getName();
 
     @Override
     public boolean canBePlayed(Player player) {
@@ -67,17 +46,18 @@ public class ProduceRequest implements Request {
             return false;
         }
 
-        //controlla che le risorse e le requires siano giuste
+        //controlla che le risorse e le requires della carta siano giuste
         for(Production pr : productions){
             for(MappedResource mp : pr.getMappedResources()) {
                 if (pr.getCardID().contains("dev")) {
-                    if (player.getBoard().getDevFromID(pr.getCardID()).getRequirements().size() != pr.getMappedResources().size() && !player.getBoard().getDevFromID(pr.getCardID()).getRequirements().contains(mp.getResource())) {
+                    if (player.getBoard().getDevFromID(pr.getCardID()).getRequirements().size() != pr.getMappedResources().size() || !player.getBoard().getDevFromID(pr.getCardID()).getRequirements().contains(mp.getResource())) {
                         //lancia eccezione "resources selected do not match card requirements"
                         return false;
                     }
                 }
                 if (pr.getCardID().contains("PROD")) {
-                    if (!player.getLeaderFromID(pr.getCardID()).canBePlayed()) {
+                    //If the card
+                    if (((ExtraProd)(player.getLeaderFromID(pr.getCardID()))).getProducedRes().contains(mp.getResource())) {
                         //lancia eccezione
                         return false;
                     }
@@ -99,30 +79,33 @@ public class ProduceRequest implements Request {
     }
 
     @Override
-    public String getClassName()
-    {
-        return "ProduceRequest";
-    }
+    public TurnState handle(Player player, Game game) {
+        for(Production prodReq : productions){
+            for(MappedResource mapRes : prodReq.getMappedResources()){
+                player.removeResource(mapRes.getResource(), mapRes.getPlace());
+            }
 
-    //DA IMPLEMENTARE
-    @Override
-    public TurnState nextTurnState() {
+        }
+        for(Production prod : productions){
+            player.produce(prod.getCardID());
+        }
+
+
+        playerSteps = player.getBoard().getTempBox().filterFaithPoints().size();
+        player.getBoard().getTempBox().moveToStrongBox();
         return TurnState.PRODUCE;
     }
 
     @Override
-    public int getMyFPSteps() {
-        return playerSteps;
+    public boolean validRequest(ArrayList<TurnState> turnStates) {
+        return !(turnStates.contains(TurnState.BUY_DEV_CARD) || turnStates.contains(TurnState.PRODUCE) || turnStates.contains(TurnState.GET_FROM_MARKET));
     }
+
+
 
     @Override
-    public int getDiscardedSteps() {
-        return 0;
+    public String getClassName()
+    {
+        return className;
     }
-
-    @Override
-    public int getPlayerChoices() {
-        return playerChoices;
-    }
-
 }
