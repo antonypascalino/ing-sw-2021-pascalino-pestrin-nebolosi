@@ -20,6 +20,8 @@ public class Game {
     private Player currPlayer;
     private int currPopeSpace;
     private final int gameId;
+    private boolean lastTurn;
+    private ArrayList<Player> lastRound;
 
     public Game(ArrayList<Player> players, ArrayList<DevCard> cards, int gameId, int maxPlayer) {
         this.maxPlayer = maxPlayer;
@@ -77,6 +79,17 @@ public class Game {
                 if (req.getPlayerChoices() != 0) {
                     //chiama model che chiama view che fa scegliere al player le risorse
                 }
+                if(lastTurn) {
+                    lastRound.add(currPlayer);
+                    if (lastRound.containsAll(players)) {
+                        endgame();
+                    }
+                }
+                if((currPlayer.getBoard().getSlot().getAllCards().size() == 7 || currPlayer.getBoard().getFaithPath().checkPopeSpace(3)) && !lastTurn) {
+                    lastTurn = true;
+                    lastRound = new ArrayList<Player>();
+                    lastRound.add(currPlayer);
+                }
             }
 
         }
@@ -124,9 +137,24 @@ public class Game {
         this.fpAdvancement(0,0); //Richiama se stessa per verificare se qualche giocatore abbia superato più di una popeSpace
     }
 
+
+
     //Synchronyzed player because two players can't register at the same time
     public synchronized void addPlayer(Player newPlayer) {
         if(players.size() < maxPlayer)
             players.add(newPlayer);
+    }
+
+    private String endgame() {
+        int winnerPoints = 0;
+        String winnerNickname = null;
+        for (Player player : players) {
+            player.addVictoryPoints((int)player.getAllResources().size()/5);
+            if (player.getVictoryPoints() > winnerPoints) {
+                winnerPoints = player.getVictoryPoints();
+                winnerNickname = player.getNickName();
+            }
+        }
+        return winnerNickname;
     }
 }
