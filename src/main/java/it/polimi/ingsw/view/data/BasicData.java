@@ -4,7 +4,9 @@ import it.polimi.ingsw.controller.MappedResource;
 import it.polimi.ingsw.controller.MarketResource;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Resource;
-import it.polimi.ingsw.view.ClientCard;
+import it.polimi.ingsw.view.ClientDevCard;
+import it.polimi.ingsw.view.ClientLeaderCard;
+import it.polimi.ingsw.view.Printer;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,11 +21,13 @@ public class BasicData extends PlayerData {
     private int faithPoints;
     private int victoryPoints;
     private ArrayList<String> cardsID;  //3 front cards + basic + extraProd
-    private int leaders;
+    private ArrayList<String> leadersID;
+    private ArrayList<String> leadersPlayedID;
     private Resource[][] market;
+    private Printer printer;
 
 
-    public BasicData(ArrayList<String> cardID, ArrayList<TurnState> turnStates, TurnState turnState, ArrayList<Resource[]> wareHouse, ArrayList<Resource> strongBox, int faithPoints, int victoryPoints, ArrayList<String> cardsID, int leaders, Resource[][] market, ArrayList<String> tableCardsID) {
+    public BasicData(ArrayList<String> cardID, ArrayList<TurnState> turnStates, TurnState turnState, ArrayList<Resource[]> wareHouse, ArrayList<Resource> strongBox, int faithPoints, int victoryPoints, ArrayList<String> cardsID, ArrayList<String> leadersID, Resource[][] market, ArrayList<String> tableCardsID) {
         this.turnStates = turnStates;
         this.turnState = turnState;
         this.wareHouse = wareHouse;
@@ -31,7 +35,7 @@ public class BasicData extends PlayerData {
         this.faithPoints = faithPoints;
         this.victoryPoints = victoryPoints;
         this.cardsID = cardsID;
-        this.leaders = leaders;
+        this.leadersID = leadersID;
         this.market = market;
         this.tableCardsID = tableCardsID;
     }
@@ -66,7 +70,7 @@ public class BasicData extends PlayerData {
             tmp.add(TurnState.MOVE_RESOURCE);
         }
 
-        if(leaders == 0){
+        if(leadersID.size() == 0){
             tmp.remove(TurnState.DISCARD_LEADER_CARD);
         }
 
@@ -83,7 +87,7 @@ public class BasicData extends PlayerData {
         for(MappedResource m : mapped){
             allRes.add(m.getResource());
         }
-        ClientCard playerCard = new ClientCard();
+        ClientDevCard playerCard = new ClientDevCard();
         cloned.removeIf(card -> !allRes.containsAll(playerCard.getRequired()));
         return cloned;
     }
@@ -105,8 +109,6 @@ public class BasicData extends PlayerData {
     }
 
     public ArrayList<MappedResource> createMappedRes(ArrayList<Resource> res){
-        Scanner inputs = new Scanner(System.in);
-        String selection = "";
         ArrayList<MappedResource> tmp = new ArrayList<MappedResource>();
         ArrayList<MappedResource> toSelect = new ArrayList<MappedResource>();
         ArrayList<MappedResource> mappedRes = new ArrayList<MappedResource>();
@@ -114,21 +116,15 @@ public class BasicData extends PlayerData {
         //gets all the res
         tmp.addAll(allResources());
 
-
         for (Resource re : res) {
-            int n = 0;
             for (MappedResource map : tmp) {
                 if (map.getResource().equals(re)) {
-                    n++;
-                    System.out.println("[" + n + "]" + "" + map.getResource() + "" + map.getPlace());
                     toSelect.add(map);
                 }
             }
-            System.out.println("Enter selection: ");
-            selection = inputs.nextLine();
-            int index = Integer.parseInt(selection);
-            mappedRes.add(toSelect.get(index - 1));
-            tmp.remove(toSelect.get(index - 1));
+            MappedResource selected = printer.printMappedRes(toSelect);
+            mappedRes.add(selected);
+            tmp.remove(selected);
             toSelect.clear();
         }
 
@@ -152,9 +148,15 @@ public class BasicData extends PlayerData {
         }
     }
 
-    public ClientCard getCardFromID(String cardID){
-        ClientCard card = new ClientCard();
+    public ClientDevCard getCardFromID(String cardID){
+        ClientDevCard card = new ClientDevCard();
         return card;
+    }
+
+    public ClientLeaderCard getLeaderFromID(String cardID){
+        ClientLeaderCard leader = new ClientLeaderCard();
+        return leader;
+
     }
 
     public Resource[][] getMarket(){
@@ -169,33 +171,18 @@ public class BasicData extends PlayerData {
         for(Resource[] lv : wareHouse){
             wareHouseRes.addAll(Arrays.asList(lv));
         }
-
-        int myFP = 0;
-        int discardedFP = 0;
         Resource[] level = new Resource[3];
-
         for(int p = 0; p < res.size(); p++) {
             if (res.get(p).equals(Resource.EMPTY)) {
-                Scanner inputs = new Scanner(System.in);
-                String selection = "";
                 ArrayList<Resource> convert = new ArrayList<Resource>();
                 convert.add(Resource.GOLD);
                 convert.add(Resource.SHIELD);
                 convert.add(Resource.STONE);
                 convert.add(Resource.SERVANT);
-
-                for (int q = 0; q < convert.size(); q++) {
-                    System.out.println("[" + (q + 1) + "]" + "" + convert.get(q));
-                }
-                System.out.println("Enter selection: ");
-                selection = inputs.nextLine();
-                int index = Integer.parseInt(selection);
-
-                res.set(index, convert.get(index - 1)); //converts the resource selected on the spot
+                res.set(p, printer.printResources(convert)); //converts the resource selected on the spot
 
             }
             if (res.get(p).equals(Resource.FAITH)) {
-                myFP++;
                 MarketResource m = new MarketResource(res.get(p), -1);
                 marketRes.add(m);
                 p++;
@@ -213,24 +200,12 @@ public class BasicData extends PlayerData {
                     System.out.println("The resource" + "" + res.get(p) + "" + "was discarded");
                 }
             }
-
-            for(int a = 0; a < tmp.size(); a++){
-                System.out.println("[" + (a + 1) + "]" + "" + tmp.get(a));
-            }
-            Scanner inputs = new Scanner(System.in);
-            String selection = "";
-
-            System.out.println("Enter selection: ");
-            selection = inputs.nextLine();
-            int index = Integer.parseInt(selection);
-            MarketResource mr = new MarketResource(res.get(p), tmp.get(index-1));
-            System.out.println("The resource " + res.get(p) + "" + "was put in level " + tmp.get(index-1));
+            int wareHouseLevel = printer.printIntegers(tmp, false);
+            MarketResource mr = new MarketResource(res.get(p), wareHouseLevel);
+            System.out.println("The resource " + res.get(p) + "" + "was put in level " + wareHouseLevel);
             marketRes.add(mr);
-
         }
-
         return marketRes;
-
     }
 
     public ArrayList<String> tableCardsFilter(){
@@ -242,15 +217,13 @@ public class BasicData extends PlayerData {
         for(MappedResource m : mapped){
             allRes.add(m.getResource());
         }
-        ClientCard playerCard = new ClientCard();
+        ClientDevCard playerCard = new ClientDevCard();
         cloned.removeIf(card -> !allRes.containsAll(playerCard.getRequired()));
         return cloned;
     }
 
     public Integer handleSlots(String devID){
         ArrayList<Integer> slots = new ArrayList<Integer>();
-        Scanner inputs = new Scanner(System.in);
-        String selection = "";
         for(int i = 0; i < cardsID.size(); i++){
             if(getCardFromID(cardsID.get(i)).getLevel() < getCardFromID(devID).getLevel()){
                 slots.add(i);
@@ -261,12 +234,7 @@ public class BasicData extends PlayerData {
                 }
             }
         }
-        for(int s = 0; s < slots.size(); s++){
-            System.out.println("[" + (s + 1) + "]" + "" + slots.get(s));
-        }
-        selection = inputs.nextLine();
-        int index = Integer.parseInt(selection);
-        return slots.get(index - 1);
+        return printer.printIntegers(slots, true);
     }
 
     public ArrayList<Resource[]> getWareHouse(){
@@ -280,17 +248,34 @@ public class BasicData extends PlayerData {
         int l = 0;
         for(int i = 0; i < wareHouse.size(); i++){
             if(wareHouse.get(origin).length <= wareHouse.get(i).length){
-                l++;
-                System.out.println("[" + l + "]" + " level " + l);
                 levels.add(i);
             }
-
-
         }
-        selection = inputs.nextLine();
-        int index = Integer.parseInt(selection) -1;
-        return index;
+
+        return printer.printIntegers(levels, false);
     }
 
+    public ArrayList<String> leaderCardsFilter() {
+        ArrayList<String> tmp = new ArrayList<String>();
+        ArrayList<MappedResource> mapped = new ArrayList<MappedResource>();
+        ArrayList<Resource> allRes = new ArrayList<Resource>();
 
+        mapped.addAll(allResources());
+
+        for (MappedResource m : mapped) {
+            allRes.add(m.getResource());
+        }
+
+        for (String id : leadersID) {
+            ClientLeaderCard leader = getLeaderFromID(id);
+            if (allRes.contains(leader.getPrice())) {
+                tmp.add(id);
+            }
+        }
+        return tmp;
+    }
+
+    public ArrayList<String> getLeaders() {
+        return leadersID;
+    }
 }

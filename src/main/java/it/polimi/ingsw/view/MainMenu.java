@@ -14,6 +14,7 @@ public class MainMenu {
     Scanner inputs = new Scanner(System.in);
     PlayerData data;
     String input = "";
+    Printer printer;
 
     public MainMenu(ArrayList<TurnState> turnStates, Scanner inputs, PlayerData data, String input) {
         this.turnStates = new ArrayList<TurnState>();
@@ -27,18 +28,7 @@ public class MainMenu {
         do {
             turnStates.clear();
             turnStates.addAll(data.turnStateFilter());
-            for (int i = 0; i < turnStates.size(); i++) {
-                System.out.println("[" + (i + 1) + "]" + "" + turnStates.get(i));
-            }
-            System.out.println("Enter selection: ");
-            //va in ciascuno stato
-            input = inputs.nextLine();
-            int index = Integer.parseInt(input); //converts String into int
-
-            selectionHandler(turnStates.get(index-1), data);
-            if (turnStates.get(index-1).equals(TurnState.QUIT)) {
-                input = "-1";
-            }
+            selectionHandler(printer.printTurnStates(turnStates), data);
         } while (!input.equals("-1"));
     }
 

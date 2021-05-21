@@ -23,13 +23,6 @@ public class MoveSelection extends Selection{
         selection = inputs.nextLine();
 
         int origin = Integer.parseInt(selection) - 1;
-
         int destination = data.switchLevels(origin);
-
-
-
-
-
-
     }
 }

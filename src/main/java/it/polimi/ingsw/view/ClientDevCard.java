@@ -4,12 +4,17 @@ import it.polimi.ingsw.model.Resource;
 
 import java.util.ArrayList;
 
-public class ClientCard {
+public class ClientDevCard {
     public ArrayList<Resource> required;
+    public ArrayList<Resource> price;
     public int level;
 
     public ArrayList<Resource> getRequired(){
         return required;
+    }
+
+    public ArrayList<Resource> getPrice(){
+        return price;
     }
 
     public int getLevel(){

@@ -15,31 +15,19 @@ public class ProductionSelection extends Selection {
 
     @Override
     public void handleSelection(PlayerData data) {
-        Scanner inputs = new Scanner(System.in);
         ArrayList<String> cards = new ArrayList<String>();
         ArrayList<Production> mappedProduction = new ArrayList<Production>();
-        String selection = "";
-
+        cards.addAll(data.slotCardsFilter());
         do{
-            cards.addAll(data.slotCardsFilter());
+            String cardID = printer.printCardID(cards);
             ArrayList<MappedResource> mappedRes = new ArrayList<MappedResource>();
-            for (int i = 0; i < cards.size(); i++) {
-                System.out.println("[" + (i + 1) + "]" + "" + cards.get(i));
-            }
-            selection = inputs.nextLine();
-            int index = Integer.parseInt(selection);
-            mappedRes.addAll(data.createMappedRes(data.getCardFromID(cards.get(index-1)).getRequired()));
+            mappedRes.addAll(data.createMappedRes(data.getCardFromID(cardID).getRequired()));
             data.removeMappedResource(mappedRes);
-            cards.remove(cards.get(index-1));
+            cards.remove(cardID);
             Production p = new Production();
             mappedProduction.add(p);
         }while(cards.size() > 0);
-
-
     }
-
-
-
 
     @Override
     public void sendToConnection() {

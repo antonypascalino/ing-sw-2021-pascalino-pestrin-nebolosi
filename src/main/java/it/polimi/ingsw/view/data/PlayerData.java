@@ -3,10 +3,9 @@ package it.polimi.ingsw.view.data;
 import it.polimi.ingsw.controller.MappedResource;
 import it.polimi.ingsw.controller.MarketResource;
 import it.polimi.ingsw.controller.TurnState;
-import it.polimi.ingsw.model.Board.StrongBox;
-import it.polimi.ingsw.model.Board.WareHouse;
 import it.polimi.ingsw.model.Resource;
-import it.polimi.ingsw.view.ClientCard;
+import it.polimi.ingsw.view.ClientDevCard;
+import it.polimi.ingsw.view.ClientLeaderCard;
 
 import java.util.ArrayList;
 
@@ -34,8 +33,12 @@ public abstract class PlayerData {
 
     }
 
-    public ClientCard getCardFromID(String cardID){
+    public ClientDevCard getCardFromID(String cardID){
         return originalData.getCardFromID(cardID);
+    }
+
+    public ClientLeaderCard getLeaderFromID(String cardID){
+        return originalData.getLeaderFromID(cardID);
     }
 
     public Resource[][] getMarket(){
@@ -60,5 +63,13 @@ public abstract class PlayerData {
 
     public int switchLevels(int origin){
         return originalData.switchLevels(origin);
+    }
+
+    public ArrayList<String> leaderCardsFilter(){
+        return originalData.leaderCardsFilter();
+    }
+
+    public ArrayList<String> getLeaders(){
+        return originalData.getLeaders();
     }
 }
