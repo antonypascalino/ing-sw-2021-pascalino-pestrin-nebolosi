@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Request;
 
+import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.controller.MarketResource;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Player.Player;
@@ -21,32 +22,7 @@ public class MarketRequest implements Request {
         discardedSteps = 0;
     }
 
-    @Override
-    public void handle(Player player) {
-        for (MarketResource marketRes : marketResources) {
-            if (!marketRes.getResource().equals(Resource.EMPTY)) {
-                if (marketRes.getResource().equals(Resource.FAITH)) {
-                    myFPSteps++;
-                } else if ((marketRes.getLevel() == -1) || (!player.checkSpace(marketRes.getResource(), marketRes.getLevel()))) {
-                    discardedSteps++;
-                } else player.addResource(marketRes.getLevel(), marketRes.getResource());
-            }
-        }
-        //Abbiamo già confrontato che le risorse richieste dal player matchano le corrispondenti risorse del mercato (tenenedo anche conto delle Changes)
-        // per cui si possono usare quelle, già matchate e changeate per aggiungerle al Player e modificare il mercato di conseguenza.
-        // altrimenti si dovrebbe fare un altro giro di chiamate per prendere le risorse dal mercato cambiare le empty e aggiungerle al player.
-        if (dimension.equals(Dimension.ROW)) {
-            player.getTable().market.getRow(number);
-        } else if (dimension.equals(Dimension.COL)) {
-            player.getTable().market.getColumn(number);
-        }
-    }
-
-    @Override
-    public boolean validRequest(ArrayList<TurnState> turnStates) {
-        return !(turnStates.contains(TurnState.BUY_DEV_CARD) || turnStates.contains(TurnState.PRODUCE) || turnStates.contains(TurnState.GET_FROM_MARKET));
-    }
-
+    //Non controlla che il player abbia effettivamente spazio per tutte le risorse
     @Override
     public boolean canBePlayed(Player player) {
         ArrayList<Resource> fromMarket = new ArrayList<Resource>();
@@ -62,6 +38,7 @@ public class MarketRequest implements Request {
             return false;
         }
         //check if the indicated levels are compatible with the player's level in his WareHouse
+        //Passa dal player perchè potrebbero essere livelli extra
         for (MarketResource marketRes : marketResources) {
             if (!player.checkLevel(marketRes.getLevel())) {
                 return false;
@@ -69,6 +46,39 @@ public class MarketRequest implements Request {
         }
         return true;
     }
+
+    @Override
+    public TurnState handle(Player player, Game game) {
+        //It has already checked that is the same array as the market row or column
+        for (MarketResource marketRes : marketResources) {
+            if (!marketRes.getResource().equals(Resource.EMPTY)) {
+                if (marketRes.getResource().equals(Resource.FAITH)) {
+                    myFPSteps++;
+                    //Level = -1 means the player wants to discard it
+                } else if ((marketRes.getLevel() == -1) || (!player.checkSpace(marketRes.getResource(), marketRes.getLevel()))) {
+                    discardedSteps++;
+                } else player.addResource(marketRes.getLevel(), marketRes.getResource());
+            }
+        }
+        //Abbiamo già confrontato che le risorse richieste dal player matchano le corrispondenti risorse del mercato (tenenedo anche conto delle Changes)
+        // per cui si possono usare quelle, già matchate e changeate per aggiungerle al Player e modificare il mercato di conseguenza.
+        // altrimenti si dovrebbe fare un altro giro di chiamate per prendere le risorse dal mercato cambiare le empty e aggiungerle al player.
+        if (dimension.equals(Dimension.ROW)) {
+            player.getTable().market.getRow(number);
+        } else if (dimension.equals(Dimension.COL)) {
+            player.getTable().market.getColumn(number);
+        }
+
+        game.fpAdvancement(discardedSteps,myFPSteps);
+        return TurnState.GET_FROM_MARKET;
+    }
+
+    @Override
+    public boolean validRequest(ArrayList<TurnState> turnStates) {
+        return !(turnStates.contains(TurnState.BUY_DEV_CARD) || turnStates.contains(TurnState.PRODUCE) || turnStates.contains(TurnState.GET_FROM_MARKET));
+    }
+
+
 
     @Override
     public String getClassName() {
@@ -91,10 +101,6 @@ public class MarketRequest implements Request {
         return discardedSteps;
     }
 
-    @Override
-    public int getPlayerChoices() {
-        return 0;
-    }
 
     public ArrayList<Resource> requestedRes(){
         ArrayList<Resource> requestedRes = new ArrayList<Resource>();
@@ -104,8 +110,4 @@ public class MarketRequest implements Request {
         return requestedRes;
     }
 
-    @Override
-    public TurnState nextTurnState() {
-        return TurnState.GET_FROM_MARKET;
-    }
 }
