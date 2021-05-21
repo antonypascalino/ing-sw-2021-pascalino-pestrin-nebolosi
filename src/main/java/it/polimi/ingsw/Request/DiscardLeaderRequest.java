@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class DiscardLeaderRequest implements Request{
 
-    private static String className;
+    private final String className;
     private String cardID;
 
     public DiscardLeaderRequest(String cardID) {

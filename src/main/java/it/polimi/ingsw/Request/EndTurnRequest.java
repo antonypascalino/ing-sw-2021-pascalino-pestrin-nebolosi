@@ -1,14 +1,17 @@
 package it.polimi.ingsw.Request;
 
+import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Player.Player;
 
 import java.util.ArrayList;
 
 public class EndTurnRequest implements Request {
+    private final String className = this.getClass().getName();
     @Override
-    public void handle(Player player) {
-     // chiama un qualcosa per far inviare i dati dal model alla view                                                                        
+    public TurnState handle(Player player, Game game) {
+     // chiama un qualcosa per far inviare i dati dal model alla view
+     return TurnState.END_TURN;
     }
 
     @Override
@@ -21,28 +24,9 @@ public class EndTurnRequest implements Request {
         return true;
     }
 
-    @Override
-    public TurnState nextTurnState() {
-        return TurnState.END_TURN;
-    }
-
-    @Override
-    public int getMyFPSteps() {
-        return 0;
-    }
-
-    @Override
-    public int getDiscardedSteps() {
-        return 0;
-    }
-
-    @Override
-    public int getPlayerChoices() {
-        return 0;
-    }
 
     @Override
     public String getClassName() {
-        return "EndTurnRequest";
+        return className;
     }
 }
