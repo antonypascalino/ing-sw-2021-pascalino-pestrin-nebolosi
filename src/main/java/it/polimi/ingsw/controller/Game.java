@@ -16,6 +16,8 @@ public class Game {
     private ArrayList<TurnState> turnStates;
     private Player currPlayer;
     private int currPopeSpace;
+    private boolean lastTurn;
+    private ArrayList<Player> lastRound;
 
     public Game(ArrayList<Player> players, Table table, Player currPlayer) {
         this.players = players;
@@ -67,6 +69,17 @@ public class Game {
                 if (req.getPlayerChoices() != 0) {
                     //chiama model che chiama view che fa scegliere al player le risorse
                 }
+                if(lastTurn) {
+                    lastRound.add(currPlayer);
+                    if (lastRound.containsAll(players)) {
+                        endgame();
+                    }
+                }
+                if((currPlayer.getBoard().getSlot().getAllCards().size() == 7 || currPlayer.getBoard().getFaithPath().checkPopeSpace(3)) && !lastTurn) {
+                    lastTurn = true;
+                    lastRound = new ArrayList<Player>();
+                    lastRound.add(currPlayer);
+                }
             }
 
         }
@@ -112,5 +125,18 @@ public class Game {
             currPopeSpace++;
             this.fpAdvancement(0,0); //Richiama se stessa per verificare se qualche giocatore abbia superato più di una popeSpace
         }
+    }
+
+    private String endgame() {
+        int winnerPoints = 0;
+        String winnerNickname = null;
+        for (Player player : players) {
+            player.addVictoryPoints((int)player.getAllResources().size()/5);
+            if (player.getVictoryPoints() > winnerPoints) {
+                winnerPoints = player.getVictoryPoints();
+                winnerNickname = player.getNickName();
+            }
+        }
+        return winnerNickname;
     }
 }
