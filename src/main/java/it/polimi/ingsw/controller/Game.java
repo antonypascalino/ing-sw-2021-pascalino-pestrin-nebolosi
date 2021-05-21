@@ -104,7 +104,7 @@ public class Game {
      * @param discardedSteps the number of FAITH resources discarded by the current player that make other players move
      * @param playerSteps the number of FAITH resources obtained by the player in his turn
      */
-    private void fpAdvancement(int discardedSteps, int playerSteps) {
+    public void fpAdvancement(int discardedSteps, int playerSteps) {
         //Sposta gli altri giocatori per le risorse scartate dal current player
         if (discardedSteps != 0) {
             for (Player player : players) {
@@ -132,8 +132,9 @@ public class Game {
                 player.getBoard().getFaithPath().checkVaticanSection(currPopeSpace);
             }
             currPopeSpace++;
+            this.fpAdvancement(0,0); //Richiama se stessa per verificare se qualche giocatore abbia superato più di una popeSpace
         }
-        this.fpAdvancement(0,0); //Richiama se stessa per verificare se qualche giocatore abbia superato più di una popeSpace
+
     }
 
 
