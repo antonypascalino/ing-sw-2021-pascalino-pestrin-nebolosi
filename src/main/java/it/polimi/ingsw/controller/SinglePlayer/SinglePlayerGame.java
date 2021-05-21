@@ -1,6 +1,7 @@
 package it.polimi.ingsw.controller.SinglePlayer;
 
 import it.polimi.ingsw.Request.Request;
+import it.polimi.ingsw.controller.DefaultCreator;
 import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Board.FaithPath;
@@ -21,7 +22,7 @@ public class SinglePlayerGame {
     private ArrayList<TurnState> turnStates;
 
     public SinglePlayerGame(String nickname) {
-        table = new Table();
+        table = new Table(DefaultCreator.produceDevCard());
         player = new BasicPlayer(nickname, table);
         lorenzoPath = new FaithPath();
         tokenList = new ArrayList<>();
