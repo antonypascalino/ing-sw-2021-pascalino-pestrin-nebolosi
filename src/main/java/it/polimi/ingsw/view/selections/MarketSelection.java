@@ -21,10 +21,13 @@ public class MarketSelection extends Selection {
         Resource[][] market = data.getMarket();
         int i = 0;
         //da fare meglio la matrice a schermo
+        System.out.println("    1  2   3  4");
         for(int w = 0; w < market.length; w++) {
+                System.out.print(w + 1);
                 for (int j = 0; j < market[w].length; j++) {
-                    System.out.println(market[i][j] + " ");
+                    System.out.print(market[i][j] + " ");
                 }
+                System.out.println("");
 
             }
         selection = inputs.nextLine();

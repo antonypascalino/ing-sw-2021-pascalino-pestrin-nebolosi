@@ -53,4 +53,12 @@ public abstract class PlayerData {
     public Integer handleSlots(String devID){
         return originalData.handleSlots(devID);
     }
+
+    public ArrayList<Resource[]> getWareHouse(){
+        return originalData.getWareHouse();
+    }
+
+    public int switchLevels(int origin){
+        return originalData.switchLevels(origin);
+    }
 }

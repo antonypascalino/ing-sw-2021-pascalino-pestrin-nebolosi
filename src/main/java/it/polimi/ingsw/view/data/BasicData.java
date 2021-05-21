@@ -269,5 +269,28 @@ public class BasicData extends PlayerData {
         return slots.get(index - 1);
     }
 
+    public ArrayList<Resource[]> getWareHouse(){
+        return wareHouse;
+    }
+
+    public int switchLevels(int origin){
+        ArrayList<Integer> levels = new ArrayList<Integer>();
+        Scanner inputs = new Scanner(System.in);
+        String selection = "";
+        int l = 0;
+        for(int i = 0; i < wareHouse.size(); i++){
+            if(wareHouse.get(origin).length <= wareHouse.get(i).length){
+                l++;
+                System.out.println("[" + l + "]" + " level " + l);
+                levels.add(i);
+            }
+
+
+        }
+        selection = inputs.nextLine();
+        int index = Integer.parseInt(selection) -1;
+        return index;
+    }
+
 
 }
