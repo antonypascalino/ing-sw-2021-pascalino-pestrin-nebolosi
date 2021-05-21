@@ -1,6 +1,7 @@
 package it.polimi.ingsw.Request;
 
 import it.polimi.ingsw.Convertable;
+import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Player.Player;
 
@@ -20,7 +21,7 @@ public interface Request extends Convertable {
     /**
      * Compie l'azione indicata dalla Request e restituisce il TurnState appena cffetettuato
      */
-    public void handle(Player player);
+    public TurnState handle(Player curr, Game game);
 
     /**
      *
@@ -38,14 +39,5 @@ public interface Request extends Convertable {
      * @return int la posizione su cui si treoverà il giocatore sul FaithPath
      */
     public boolean canBePlayed(Player player);
-
-    public TurnState nextTurnState();
-
-    public int getMyFPSteps();
-
-    public int getDiscardedSteps();
-
-    public int getPlayerChoices();
-
 
 }

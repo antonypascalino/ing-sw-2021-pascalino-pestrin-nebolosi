@@ -68,8 +68,7 @@ public class Game {
         //BISOGNA AGGIUNGERE UN METODO CHE CONTROLLI CHE IL PLAYER CHE HA INVIATO LA REQUEST SIA IL CURRENT PLAYER
         if (req.validRequest(turnStates)) {
             if (req.canBePlayed(currPlayer)) {
-                turnStates.add(req.nextTurnState());
-                req.handle(currPlayer);
+                turnStates.add(req.handle(currPlayer ,this));
                 if (req.getDiscardedSteps() != 0 || req.getMyFPSteps() != 0) {
                     fpAdvancement(discardedSteps, playerSteps);
                 }
@@ -156,5 +155,9 @@ public class Game {
             }
         }
         return winnerNickname;
+    }
+
+    public ArrayList<Player> getPlayers() {
+        return players;
     }
 }

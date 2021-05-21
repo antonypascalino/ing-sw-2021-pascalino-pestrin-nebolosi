@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Request;
 
+import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.controller.MappedResource;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Cards.DevCard;
@@ -13,29 +14,21 @@ public class BuyDevRequest implements Request {
     private String cardID;
     private ArrayList<MappedResource> resources;
     private int slot;
+    //The player on which the request is done
+    private String playerNickName;
+    DevCard devCard;
+    private final String className = this.getClass().getName();
 
     @Override
     public String getClassName() {
-        return "BuyDevRequest";
+        return className;
     }
 
-    @Override
-    public void handle(Player player) {
-        for(MappedResource mappedRes : resources) {
-            player.removeResource(mappedRes.getResource(), mappedRes.getPlace());
-        }
-        DevCard devcard = player.getTable().buyDev(player.getTable().getDevFromID(cardID).getColor(),player.getTable().getDevFromID(cardID).getLevel());
-        player.getBoard().getSlot().placeCard(devcard, slot);
-    }
-
-    @Override
-    public boolean validRequest(ArrayList<TurnState> turnStates) {
-        return !(turnStates.contains(TurnState.BUY_DEV_CARD) || turnStates.contains(TurnState.PRODUCE) || turnStates.contains(TurnState.GET_FROM_MARKET));
-    }
-
-    @Override
     public boolean canBePlayed(Player player) {
-        DevCard devCard = player.getTable().getDevFromID(cardID);
+        //Get from id returns null if the card is not on the top of the table
+        devCard = player.getTable().getDevFromID(cardID);
+        if (devCard == null)
+            return false;
         boolean hasResource = true;
         boolean checkSpace = true;
 
@@ -53,22 +46,18 @@ public class BuyDevRequest implements Request {
     }
 
     @Override
-    public TurnState nextTurnState() {
+    public TurnState handle(Player player, Game game) {
+        for (MappedResource mappedRes : resources) {
+            player.removeResource(mappedRes.getResource(), mappedRes.getPlace());
+        }
+        DevCard devcard = game.getTable().buyDev(devCard.getColor(), devCard.getLevel());
+        player.getBoard().getSlot().placeCard(devcard, slot);
         return TurnState.BUY_DEV_CARD;
     }
 
     @Override
-    public int getMyFPSteps() {
-        return 0;
+    public boolean validRequest(ArrayList<TurnState> turnStates) {
+        return !(turnStates.contains(TurnState.BUY_DEV_CARD) || turnStates.contains(TurnState.PRODUCE) || turnStates.contains(TurnState.GET_FROM_MARKET));
     }
 
-    @Override
-    public int getDiscardedSteps() {
-        return 0;
-    }
-
-    @Override
-    public int getPlayerChoices() {
-        return 0;
-    }
 }
