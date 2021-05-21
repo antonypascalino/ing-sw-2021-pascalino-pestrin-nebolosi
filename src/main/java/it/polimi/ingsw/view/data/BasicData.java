@@ -242,16 +242,14 @@ public class BasicData extends PlayerData {
     }
 
     public int switchLevels(int origin){
+
         ArrayList<Integer> levels = new ArrayList<Integer>();
-        Scanner inputs = new Scanner(System.in);
-        String selection = "";
         int l = 0;
         for(int i = 0; i < wareHouse.size(); i++){
             if(wareHouse.get(origin).length <= wareHouse.get(i).length){
                 levels.add(i);
             }
         }
-
         return printer.printIntegers(levels, false);
     }
 

@@ -12,17 +12,14 @@ public class MoveSelection extends Selection{
 
         Scanner inputs = new Scanner(System.in);
         String selection = "";
-
+        ArrayList<Integer> l = new ArrayList<Integer>();
         ArrayList<Resource[]> levels = data.getWareHouse();
 
         for(int i = 0; i < levels.size(); i++){
-            System.out.print("[" + (i + 1) + "]" + "" + "level " + (i + 1));
+            l.add(i);
         }
 
-        System.out.println("Enter first level: ");
-        selection = inputs.nextLine();
-
-        int origin = Integer.parseInt(selection) - 1;
+        int origin = printer.printIntegers(l, false);;
         int destination = data.switchLevels(origin);
     }
 }
