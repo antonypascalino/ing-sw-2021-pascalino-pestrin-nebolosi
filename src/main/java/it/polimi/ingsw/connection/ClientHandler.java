@@ -21,8 +21,11 @@ public class ClientHandler implements Runnable {
         private BufferedReader in;
         private PrintWriter out;
         private ArrayList<Game> games;
+        //Each clientHandler has a playerId so it's sure the requests comes from the right socket
+        public final String playerId;
 
-        public ClientHandler(Socket socket, ArrayList<Game> games) throws IOException {
+        public ClientHandler(Socket socket, ArrayList<Game> games, String playerId) throws IOException {
+            this.playerId = playerId;
             this.games = games;
             this.socket = socket;
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -37,7 +40,8 @@ public class ClientHandler implements Runnable {
                 {
                     String line = in.readLine() ;
                     Request request = JsonReader.readSingleRequest(line);
-                    if(request instanceof NewGameRequest)
+                    //It doesn't exist the idea of a new game or join game, there's just a join game that creates a game
+                    /*if(request instanceof NewGameRequest)
                     {
                         int playerNum = ((NewGameRequest) request).getPlayers();
                         ArrayList<Player> tmp = new ArrayList<Player>();
@@ -73,6 +77,30 @@ public class ClientHandler implements Runnable {
                             Player newPlayer= new BasicPlayer(nickName);
                             game.addPlayer(newPlayer);
                             System.out.println("Player "+nickName+" added to game "+ gameId);
+                        }
+                    }*/
+                    if(request instanceof NewGameRequest)
+                    {
+                        Game lastGame = games.get(games.size()-1);
+                        //If it hasn't alrady reached the maximum numner of players
+                        //add the new player
+                        if(lastGame.getPlayers().size()<lastGame.getMax())
+                        {
+                            Player newPlayer = new BasicPlayer(((NewGameRequest) request).getNickname());
+                            lastGame.addPlayer(newPlayer);
+                            out.println("Player "+((NewGameRequest) request).getNickname()+ " added to game "+lastGame.getGameId());
+                            out.flush();
+                        }
+
+                        //If it has already the max number of players create a new game
+                        else
+                        {
+                            ArrayList<Player> tmp = new ArrayList<Player>();
+                            tmp.add(new BasicPlayer(((NewGameRequest) request).getNickname()));
+                            Game newGame = new Game(tmp,DefaultCreator.produceDevCard(),games.get(games.size()-1).getGameId(),((NewGameRequest) request).getPlayers());
+                            games.add(newGame);
+                            out.println("Player "+((NewGameRequest) request).getNickname()+ " added to the new game "+newGame.getGameId());
+                            out.flush();
                         }
                     }
                     else {

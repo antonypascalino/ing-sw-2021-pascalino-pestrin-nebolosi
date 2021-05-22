@@ -16,6 +16,7 @@
 
         /**
          * Test the generation of a basic game and getting the front cards
+         * from the table
          */
         @Test
         public void TestGame()

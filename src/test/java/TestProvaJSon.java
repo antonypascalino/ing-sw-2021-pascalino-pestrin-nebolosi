@@ -35,8 +35,10 @@ public class TestProvaJSon{
         Gson gson = builder.setPrettyPrinting().create();
         String jsonString = gson.toJson(nonFuzionaMaSeFunziona);
         System.out.println(jsonString);
+        jsonString = gson.toJson(DefaultCreator.produceLeaderCard());
+        System.out.println(jsonString);
         ArrayList<LeaderCard> risultato = JsonReader.readLeaderCard(jsonString);
-        assertTrue(risultato.get(0).equals(nonFuzionaMaSeFunziona.get(0)));
+        assertTrue(risultato.get(0).equals(DefaultCreator.produceLeaderCard().get(0)));
     }
 
     @Test
