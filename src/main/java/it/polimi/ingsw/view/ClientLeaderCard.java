@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class ClientLeaderCard {
     public ArrayList<Resource> required;
     public ArrayList<Resource> price;
+    public Resource deposit;
     public int level;
 
     public ArrayList<Resource> getRequired(){
@@ -15,6 +16,10 @@ public class ClientLeaderCard {
 
     public ArrayList<Resource> getPrice(){
         return price;
+    }
+
+    public Resource getDeposit(){
+        return deposit;
     }
 
     public int getLevel(){

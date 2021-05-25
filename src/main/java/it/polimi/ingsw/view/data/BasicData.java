@@ -156,7 +156,6 @@ public class BasicData extends PlayerData {
     public ClientLeaderCard getLeaderFromID(String cardID){
         ClientLeaderCard leader = new ClientLeaderCard();
         return leader;
-
     }
 
     public Resource[][] getMarket(){
@@ -174,12 +173,9 @@ public class BasicData extends PlayerData {
         Resource[] level = new Resource[3];
         for(int p = 0; p < res.size(); p++) {
             if (res.get(p).equals(Resource.EMPTY)) {
-                ArrayList<Resource> convert = new ArrayList<Resource>();
-                convert.add(Resource.GOLD);
-                convert.add(Resource.SHIELD);
-                convert.add(Resource.STONE);
-                convert.add(Resource.SERVANT);
-                res.set(p, printer.printResources(convert)); //converts the resource selected on the spot
+                MarketResource m = new MarketResource(res.get(p), -2);
+                marketRes.add(m);
+                p++;
 
             }
             if (res.get(p).equals(Resource.FAITH)) {
