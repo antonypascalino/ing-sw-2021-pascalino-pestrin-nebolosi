@@ -81,27 +81,35 @@ public class ClientHandler implements Runnable {
                     }*/
                     if(request instanceof NewGameRequest)
                     {
-                        Game lastGame = games.get(games.size()-1);
+                        //If there's no game on the server create the first one
+                        Game lastGame = null;
+                        if (games.size() != 0)
+                            lastGame = games.get(games.size()-1);
+                        //If there's no game or the last one has reached the maximum player, it doesn't check it if games.size==0
+                        //Create a new game
+                        if (games.size() == 0 || !(lastGame.getPlayers().size() < lastGame.getMax()))
+                        {
+                            int gameId;
+                            if(games.size() != 0)
+                                gameId = games.get(games.size()-1).getGameId() +1;
+                            else
+                                gameId=0;
+                            ArrayList<Player> tmp = new ArrayList<Player>();
+                            tmp.add(new BasicPlayer(((NewGameRequest) request).getNickname()));
+                            Game newGame = new Game(tmp,DefaultCreator.produceDevCard(),gameId,((NewGameRequest) request).getPlayers());
+                            games.add(newGame);
+                            System.out.println("Player "+((NewGameRequest) request).getNickname()+ " added to the new game "+newGame.getGameId());
+                        }
                         //If it hasn't alrady reached the maximum numner of players
                         //add the new player
-                        if(lastGame.getPlayers().size()<lastGame.getMax())
+                        else
                         {
                             Player newPlayer = new BasicPlayer(((NewGameRequest) request).getNickname());
                             lastGame.addPlayer(newPlayer);
-                            out.println("Player "+((NewGameRequest) request).getNickname()+ " added to game "+lastGame.getGameId());
-                            out.flush();
+                            System.out.println("Player "+((NewGameRequest) request).getNickname()+ " added to game "+lastGame.getGameId());
+
                         }
 
-                        //If it has already the max number of players create a new game
-                        else
-                        {
-                            ArrayList<Player> tmp = new ArrayList<Player>();
-                            tmp.add(new BasicPlayer(((NewGameRequest) request).getNickname()));
-                            Game newGame = new Game(tmp,DefaultCreator.produceDevCard(),games.get(games.size()-1).getGameId(),((NewGameRequest) request).getPlayers());
-                            games.add(newGame);
-                            out.println("Player "+((NewGameRequest) request).getNickname()+ " added to the new game "+newGame.getGameId());
-                            out.flush();
-                        }
                     }
                     else {
                         out.println(line);

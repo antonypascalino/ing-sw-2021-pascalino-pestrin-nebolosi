@@ -37,6 +37,7 @@ public class MultiEchoServer {
         while (true){
             try{
                 Socket socket = serverSocket.accept();
+                //Create the new game id
                 lastPlayer = newPlayer(lastPlayer);
                 executor.submit(new ClientHandler(socket,games,lastPlayer));
             }catch(IOException e){
