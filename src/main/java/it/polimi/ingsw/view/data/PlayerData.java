@@ -17,8 +17,8 @@ public abstract class PlayerData {
         return originalData.turnStateFilter();
     }
 
-    public ArrayList<String> slotCardsFilter(){
-        return originalData.slotCardsFilter();
+    public ArrayList<String> slotCardsFilter(ArrayList<MappedResource> mapped){
+        return originalData.slotCardsFilter(mapped);
     }
 
     public ArrayList<MappedResource> createMappedRes(ArrayList<Resource> resources){
@@ -27,10 +27,6 @@ public abstract class PlayerData {
 
     public ArrayList<MappedResource> allResources(){
         return originalData.allResources();
-    }
-
-    public void removeMappedResource(ArrayList<MappedResource> map){
-
     }
 
     public ClientDevCard getCardFromID(String cardID){
@@ -49,16 +45,16 @@ public abstract class PlayerData {
         return originalData.handleWarehouse(res);
     }
 
-    public ArrayList<String> tableCardsFilter(){
-        return originalData.tableCardsFilter();
+    public ArrayList<String> tableCardsFilter(ArrayList<MappedResource> mapped){
+        return originalData.tableCardsFilter(mapped);
     }
 
     public Integer handleSlots(String devID){
         return originalData.handleSlots(devID);
     }
 
-    public ArrayList<Resource[]> getWareHouse(){
-        return originalData.getWareHouse();
+    public ArrayList<Resource[]> getDeposits(){
+        return originalData.getDeposits();
     }
 
     public int switchLevels(int origin){

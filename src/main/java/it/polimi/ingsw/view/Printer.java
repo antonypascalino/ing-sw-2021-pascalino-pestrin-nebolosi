@@ -127,4 +127,24 @@ public class Printer {
         return res;
 
     }
+
+    public boolean askQuestion(){
+        Scanner inputs = new Scanner(System.in);
+        String selection = "";
+        System.out.println("Continue?");
+        System.out.println("[1] Yes");
+        System.out.println("[2] No");
+
+        selection = inputs.nextLine();
+        switch(selection){
+            case("1"):
+                return true;
+            case("2"):
+                return false;
+        }
+
+
+        return false;
+
+    }
 }

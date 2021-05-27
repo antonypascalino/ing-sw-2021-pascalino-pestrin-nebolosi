@@ -17,17 +17,22 @@ public class ProductionSelection extends Selection {
     public void handleSelection(PlayerData data) {
         ArrayList<String> cards = new ArrayList<String>();
         ArrayList<Production> mappedProduction = new ArrayList<Production>();
+        ArrayList<MappedResource> allRes = new ArrayList<MappedResource>();
+        allRes.addAll(data.allResources());
 
         do{
-            cards.addAll(data.slotCardsFilter());
+            cards.addAll(data.slotCardsFilter(allRes));
             String cardID = printer.printCardID(cards);
             ArrayList<MappedResource> mappedRes = new ArrayList<MappedResource>();
             mappedRes.addAll(data.createMappedRes(data.getCardFromID(cardID).getRequired()));
-            data.removeMappedResource(mappedRes);
+            allRes.removeAll(mappedRes);
             cards.remove(cardID);
             Production p = new Production();
             mappedProduction.add(p);
-        }while(cards.size() > 0);
+            if(cards.size() == 0){
+                break;
+            }
+        }while(printer.askQuestion());
     }
 
     @Override

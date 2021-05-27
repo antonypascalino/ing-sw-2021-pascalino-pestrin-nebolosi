@@ -78,12 +78,10 @@ public class BasicData extends PlayerData {
 
     }
 
-    public ArrayList<String> slotCardsFilter(){
+    public ArrayList<String> slotCardsFilter(ArrayList<MappedResource> mapped){
         ArrayList<String> cloned = new ArrayList<String>();
         cloned.addAll(cardsID);
         ArrayList<Resource> allRes = new ArrayList<Resource>();
-        ArrayList<MappedResource> mapped = new ArrayList<MappedResource>();
-        mapped.addAll(allResources());
         for(MappedResource m : mapped){
             allRes.add(m.getResource());
         }
@@ -131,22 +129,22 @@ public class BasicData extends PlayerData {
         return mappedRes;
     }
 
-    public void removeMappedResource(ArrayList<MappedResource> mapped) {
-        for (MappedResource m : mapped) {
-            if (m.getPlace().equals("warehouse")) {
-                for (Resource[] l : wareHouse) {
-                    Resource[] current = l;
-                    for (int j = 0; j < current.length; j++)
-                        if (current[j].equals(m.getResource())) {
-                            current[j] = null;
-                        }
-                }
-            }
-            if (m.getPlace().equals("strongbox")) {
-                strongBox.remove(m.getResource());
-            }
-        }
-    }
+//    public void removeMappedResource(ArrayList<MappedResource> mapped) {
+//        for (MappedResource m : mapped) {
+//            if (m.getPlace().equals("warehouse")) {
+//                for (Resource[] l : wareHouse) {
+//                    Resource[] current = l;
+//                    for (int j = 0; j < current.length; j++)
+//                        if (current[j].equals(m.getResource())) {
+//                            current[j] = null;
+//                        }
+//                }
+//            }
+//            if (m.getPlace().equals("strongbox")) {
+//                strongBox.remove(m.getResource());
+//            }
+//        }
+//    }
 
     public ClientDevCard getCardFromID(String cardID){
         ClientDevCard card = new ClientDevCard();
@@ -162,38 +160,55 @@ public class BasicData extends PlayerData {
         return market;
     }
 
-    public ArrayList<MarketResource> handleWarehouse(ArrayList<Resource> res){
+    public ArrayList<MarketResource> handleWarehouse(ArrayList<Resource> res) {
         ArrayList<MarketResource> marketRes = new ArrayList<MarketResource>();
         ArrayList<Integer> tmp = new ArrayList<Integer>();
         ArrayList<Resource> wareHouseRes = new ArrayList<Resource>();
 
-        for(Resource[] lv : wareHouse){
+        for (Resource[] lv : wareHouse) {
             wareHouseRes.addAll(Arrays.asList(lv));
         }
-        Resource[] level = new Resource[3];
-        for(int p = 0; p < res.size(); p++) {
+
+        for (int p = 0; p < res.size(); p++) {
             if (res.get(p).equals(Resource.EMPTY)) {
                 MarketResource m = new MarketResource(res.get(p), -2);
                 marketRes.add(m);
                 p++;
-
             }
+
             if (res.get(p).equals(Resource.FAITH)) {
                 MarketResource m = new MarketResource(res.get(p), -1);
                 marketRes.add(m);
                 p++;
             }
 
-            for(int l = 0; l < wareHouse.size(); l++){
+            for (int l = 0; l < wareHouse.size(); l++) {
                 Resource resource = res.get(p);
-                if(Arrays.stream(wareHouse.get(l)).anyMatch(null) && !wareHouseRes.contains(res.get(p))) {
-                    tmp.add(l);
+                //se è pieno
+                if (!Arrays.stream(wareHouse.get(l)).anyMatch(null)) {
+                    continue;
                 }
-                if(!Arrays.stream(wareHouse.get(l)).anyMatch(null) && Arrays.stream(wareHouse.get(l)).anyMatch(x -> x.equals(resource)) && wareHouse.get(l).length < 3){
-                    tmp.add(l);
-                }
-                else{
-                    System.out.println("The resource" + "" + res.get(p) + "" + "was discarded");
+                //se ha degli spazi vuoti
+                if (Arrays.stream(wareHouse.get(l)).anyMatch(null)) {
+                    //se è vuoto
+                    if (wareHouse.get(l)[0] == null) {
+                        boolean empty = true;
+                        for (int x = 0; x < wareHouse.size(); x++) {
+                            if (x != l) {
+                                if (Arrays.stream(wareHouse.get(l)).anyMatch(z -> z.equals(resource))) {
+                                    empty = false;
+                                    break;
+                                }
+                            }
+                        }
+                        if (empty) {
+                            tmp.add(l);
+                        }
+                    }
+                    //se ha la mia risorsa
+                    else if (wareHouse.get(l)[0] == res.get(p)) {
+                        tmp.add(l);
+                    }
                 }
             }
             int wareHouseLevel = printer.printIntegers(tmp, false);
@@ -201,14 +216,15 @@ public class BasicData extends PlayerData {
             System.out.println("The resource " + res.get(p) + "" + "was put in level " + wareHouseLevel);
             marketRes.add(mr);
         }
+
         return marketRes;
     }
 
-    public ArrayList<String> tableCardsFilter(){
+    public ArrayList<String> tableCardsFilter(ArrayList<MappedResource> mapped){
+
         ArrayList<String> cloned = new ArrayList<String>();
         cloned.addAll(tableCardsID);
         ArrayList<Resource> allRes = new ArrayList<Resource>();
-        ArrayList<MappedResource> mapped = new ArrayList<MappedResource>();
         mapped.addAll(allResources());
         for(MappedResource m : mapped){
             allRes.add(m.getResource());
@@ -233,16 +249,33 @@ public class BasicData extends PlayerData {
         return printer.printIntegers(slots, true);
     }
 
-    public ArrayList<Resource[]> getWareHouse(){
+    public ArrayList<Resource[]> getDeposits(){
         return wareHouse;
     }
 
     public int switchLevels(int origin){
 
         ArrayList<Integer> levels = new ArrayList<Integer>();
-        int l = 0;
-        for(int i = 0; i < wareHouse.size(); i++){
-            if(wareHouse.get(origin).length <= wareHouse.get(i).length){
+        int counterOr = 0;
+        int counterDes = 0;
+
+        //conta origine
+        for(int co = 0; co < wareHouse.get(origin).length; co++) {
+            if (wareHouse.get(origin)[co] == null) {
+                break;
+            }
+            counterOr = co;
+        }
+
+        for(int i = 0; i < wareHouse.size(); i++) {
+            //conta destinazione
+            for(int cd = 0; cd < wareHouse.get(i).length; cd++){
+                if(wareHouse.get(i)[cd] == null){
+                    break;
+                }
+                counterDes = cd;
+            }
+            if (counterOr <= wareHouse.get(i).length && counterDes <= wareHouse.get(origin).length) {
                 levels.add(i);
             }
         }

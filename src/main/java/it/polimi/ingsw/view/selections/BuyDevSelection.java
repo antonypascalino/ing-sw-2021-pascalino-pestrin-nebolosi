@@ -15,8 +15,10 @@ public class BuyDevSelection extends Selection {
     public void handleSelection(PlayerData data) {
 
         ArrayList<MappedResource> mappedRes = new ArrayList<MappedResource>();
+        ArrayList<MappedResource> allRes = new ArrayList<MappedResource>();
+        allRes.addAll(data.allResources());
         ArrayList<String> cards = new ArrayList<String>();
-        cards.addAll(data.tableCardsFilter());
+        cards.addAll(data.tableCardsFilter(allRes));
         String cardID = printer.printCardID(cards);
         mappedRes.addAll(data.createMappedRes(data.getCardFromID(cardID).getPrice()));
         int slot = data.handleSlots(cardID);
