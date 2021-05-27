@@ -170,5 +170,9 @@ public abstract class Player {
     public ArrayList<String> getProductionID() {
         return original.getProductionID();
     }
+
+    public void setTable(Table tbl ){
+        original.setTable(tbl);
+    };
 }
 

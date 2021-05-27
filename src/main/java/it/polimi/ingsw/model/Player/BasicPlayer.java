@@ -34,10 +34,17 @@ public class BasicPlayer extends Player {
 
     public BasicPlayer(String nickname) {
         this.nickName = nickname;
+        this.board = new Board(this);
+
     }
 
     public void setNickName(String nickName) {
         this.nickName = nickName;
+    }
+
+    public void setTable(Table tbl)
+    {
+        this.table = tbl;
     }
 
     public String getNickName() {
@@ -193,5 +200,10 @@ public class BasicPlayer extends Player {
     @Override
     public ArrayList<String> getProductionID() {
         return board.getProdID();
+    }
+
+    public Table getTable()
+    {
+        return table;
     }
 }

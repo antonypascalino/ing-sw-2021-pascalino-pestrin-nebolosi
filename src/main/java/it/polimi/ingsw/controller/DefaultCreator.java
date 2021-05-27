@@ -1018,4 +1018,21 @@ public class DefaultCreator {
         return result;
 
     }
+
+    public static ArrayList<Resource> getGameRes() {
+        ArrayList<Resource> result = new ArrayList<Resource>();
+        for (int i = 0; i < 2; i++)
+            result.add(Resource.GOLD);
+        for (int i = 0; i < 2; i++)
+            result.add(Resource.SERVANT);
+        for (int i = 0; i < 2; i++)
+            result.add(Resource.EMPTY);
+        for (int i = 0; i < 2; i++)
+            result.add(Resource.FAITH);
+        for (int i = 0; i < 2; i++)
+            result.add(Resource.STONE);
+        for (int i = 0; i < 3; i++)
+            result.add(Resource.SHIELD);
+        return result;
+    }
 }

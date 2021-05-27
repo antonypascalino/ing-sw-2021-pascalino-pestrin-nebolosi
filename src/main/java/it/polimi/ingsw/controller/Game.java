@@ -29,6 +29,10 @@ public class Game {
         this.players = players;
         Collections.shuffle(cards);
         this.table = new Table(cards);
+
+        //Set the table on all the players
+        for(Player player : players)
+            player.setTable(table);
         this.turnStates = new ArrayList<TurnState>();
         this.currPlayer = players.get(0);
         this.currPopeSpace = 1;
@@ -63,6 +67,7 @@ public class Game {
      * tale posizione notificherà tutti gli altri player per chiedergli loro come di comporteranno di conseguenza
      */
     public synchronized void notify(Request req) {
+
         int playerSteps = 0;
         int discardedSteps = 0;
 

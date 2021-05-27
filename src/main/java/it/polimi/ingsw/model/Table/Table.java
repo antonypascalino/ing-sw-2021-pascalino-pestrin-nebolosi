@@ -1,5 +1,6 @@
 package it.polimi.ingsw.model.Table;
 
+import it.polimi.ingsw.controller.DefaultCreator;
 import it.polimi.ingsw.model.card.DevCard;
 
 import java.util.ArrayList;
@@ -30,6 +31,7 @@ public class Table {
     public Table(ArrayList<DevCard> gameCards)
     {
         //MESCOLARE LE CARTE PRIMA DI PASSARLE QUA
+        market = new Market(DefaultCreator.getGameRes());
         int row, col;
         stack=new int[4][3]; //
         int coordinates[]; //Coordinates of the card that is being inserted

@@ -10,6 +10,8 @@ import it.polimi.ingsw.Request.MarketDimension;
 import java.util.ArrayList;
 
 public class MarketRequest implements Request {
+    private String playerID;
+    private int gameID;
     private MarketDimension marketDimension;
     private int number;
     private final String className;
@@ -17,7 +19,13 @@ public class MarketRequest implements Request {
     private int myFPSteps;
     private int discardedSteps;
 
-    public MarketRequest() {
+    public MarketRequest(MarketDimension marketDimension, int lev, int gameID, String playerID, ArrayList<MarketResource> marketResources) {
+        this.marketResources = marketResources;
+        this.playerID = playerID;
+        this.marketDimension = marketDimension;
+        this.number = lev;
+        this.gameID = gameID;
+
         this.className = this.getClass().getName();
         myFPSteps = 0;
         discardedSteps = 0;
