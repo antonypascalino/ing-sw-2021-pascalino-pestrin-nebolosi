@@ -12,7 +12,7 @@ public class BuyDevSelection extends Selection {
 
 
     @Override
-    public void handleSelection(PlayerData data){
+    public void handleSelection(PlayerData data) {
 
         ArrayList<MappedResource> mappedRes = new ArrayList<MappedResource>();
         ArrayList<String> cards = new ArrayList<String>();
@@ -20,7 +20,8 @@ public class BuyDevSelection extends Selection {
         String cardID = printer.printCardID(cards);
         mappedRes.addAll(data.createMappedRes(data.getCardFromID(cardID).getPrice()));
         int slot = data.handleSlots(cardID);
-        //ora ho l'id + lo slot + la mapped di quella carta
+        //qua chiama costruttore di buy dev request passandogli le info
+        //chiami un metodo che passa le request
     }
 
 }

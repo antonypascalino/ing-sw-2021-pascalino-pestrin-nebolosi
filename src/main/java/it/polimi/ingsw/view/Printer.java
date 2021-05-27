@@ -29,7 +29,7 @@ public class Printer {
         String selection = "";
 
         for (int i = 0; i < mappedRes.size(); i++) {
-            System.out.println("[" + (i + 1) + "]" + "" + mappedRes.get(i));
+            System.out.println("[" + (i + 1) + "]" + "" + mappedRes.get(i).getResource() + "" + mappedRes.get(i).getPlace());
         }
 
         System.out.println("Enter selection: ");
@@ -51,7 +51,6 @@ public class Printer {
         System.out.println("Enter selection: ");
         selection = inputs.nextLine();
         int index = Integer.parseInt(selection);
-
         return turnStates.get(index -1);
     }
 

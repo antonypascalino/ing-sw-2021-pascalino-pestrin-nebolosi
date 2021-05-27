@@ -3,7 +3,7 @@ package it.polimi.ingsw.view;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.view.data.PlayerData;
-import it.polimi.ingsw.view.selections.Selection;
+import it.polimi.ingsw.view.selections.*;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -32,9 +32,32 @@ public class MainMenu {
         } while (!input.equals("-1"));
     }
 
-    public void selectionHandler(TurnState state, PlayerData data){
-       Selection selection = new Selection();
-       selection.handleSelection(data);
+    private void selectionHandler(TurnState state, PlayerData data){
+        Selection selection;
+       switch(state){
+           case PRODUCE:
+               selection = new ProductionSelection();
+               selection.handleSelection(data);
+           case BUY_DEV_CARD:
+               selection = new BuyDevSelection();
+               selection.handleSelection(data);
+           case GET_FROM_MARKET:
+               selection = new MarketSelection();
+               selection.handleSelection(data);
+           case MOVE_RESOURCE:
+               selection = new MoveSelection();
+               selection.handleSelection(data);
+           case PLAY_LEADER_CARD:
+               selection = new PlayLeaderSelection();
+               selection.handleSelection(data);
+           case DISCARD_LEADER_CARD:
+               selection = new DiscardLeaderSelection();
+               selection.handleSelection(data);
+           case CHECK_STATS:
+               selection = new CheckStatsSelection();
+               selection.handleSelection(data);
+       }
+
     }
 }
 

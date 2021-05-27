@@ -17,8 +17,9 @@ public class ProductionSelection extends Selection {
     public void handleSelection(PlayerData data) {
         ArrayList<String> cards = new ArrayList<String>();
         ArrayList<Production> mappedProduction = new ArrayList<Production>();
-        cards.addAll(data.slotCardsFilter());
+
         do{
+            cards.addAll(data.slotCardsFilter());
             String cardID = printer.printCardID(cards);
             ArrayList<MappedResource> mappedRes = new ArrayList<MappedResource>();
             mappedRes.addAll(data.createMappedRes(data.getCardFromID(cardID).getRequired()));
