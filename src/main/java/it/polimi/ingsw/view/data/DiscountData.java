@@ -8,7 +8,7 @@ import it.polimi.ingsw.view.Printer;
 
 import java.util.ArrayList;
 
-public class DiscountData {
+public class DiscountData extends PlayerData{
 
     private ArrayList<TurnState> turnStates;
     private TurnState turnState;
@@ -38,46 +38,19 @@ public class DiscountData {
         this.discount = discount;
     }
 
-    public ArrayList<String> tableCardsFilter(){
-        //qui è da vedere un attimo se fa casini ma non dovrebbe
+
+    public ArrayList<String> tableCardsFilter(ArrayList<MappedResource> mapped){
+
         ArrayList<String> cloned = new ArrayList<String>();
         cloned.addAll(tableCardsID);
         ArrayList<Resource> allRes = new ArrayList<Resource>();
-        ArrayList<MappedResource> mapped = new ArrayList<MappedResource>();
-        mapped.addAll(allResources());
-
         for(MappedResource m : mapped){
             allRes.add(m.getResource());
         }
-        for(String c : cloned){
-            for(Resource res : discount){
-                ClientDevCard card = getCardFromID(c);
-                card.getPrice().remove(res);
-            }
-        }
+        allRes.addAll(discount);
         ClientDevCard playerCard = new ClientDevCard();
         cloned.removeIf(card -> !allRes.containsAll(playerCard.getRequired()));
         return cloned;
     }
 
-    public ArrayList<MappedResource> allResources(){
-        ArrayList<MappedResource> tmp = new ArrayList<MappedResource>();
-        Resource[] level = new Resource[3];
-        for(Resource[] l : wareHouse) {
-            for (Resource w : level){
-                MappedResource mappedW = new MappedResource(w, "warehouse");
-                tmp.add(mappedW);
-            }
-        }
-        for(Resource s : strongBox){
-            MappedResource mappedS = new MappedResource(s, "strongbox");
-            tmp.add(mappedS);
-        }
-        return tmp;
-    }
-
-    public ClientDevCard getCardFromID(String cardID){
-        ClientDevCard card = new ClientDevCard();
-        return card;
-    }
 }

@@ -123,10 +123,10 @@ public class ExtraDepData extends PlayerData {
                 }
             }
 
-            for (int d = 3; d < extraDep.size() + 3; d++){
-                    if(res.get(p).equals(getLeaderFromID(leadersPlayedID.get(d-3)).getPlaceable()) && Arrays.stream(extraDep.get(d-3)).anyMatch(null)){
-                        tmp.add(d);
-                    }
+            for (int d = 3; d < extraDep.size() + 3; d++) {
+                if (res.get(p).equals(getLeaderFromID(leadersPlayedID.get(d - 3)).getPlaceable()) && Arrays.stream(extraDep.get(d - 3)).anyMatch(null)) {
+                    tmp.add(d);
+                }
 
             }
 
@@ -145,19 +145,19 @@ public class ExtraDepData extends PlayerData {
         int counterOr = 0;
         int counterDes = 0;
 
-        if(origin <= 2){
+        if (origin <= 2) {
             //conta origine
-            for(int co = 0; co < wareHouse.get(origin).length; co++) {
+            for (int co = 0; co < wareHouse.get(origin).length; co++) {
                 if (wareHouse.get(origin)[co] == null) {
                     break;
                 }
                 counterOr = co;
             }
 
-            for(int i = 0; i < wareHouse.size(); i++) {
+            for (int i = 0; i < wareHouse.size(); i++) {
                 //conta destinazione
-                for(int cd = 0; cd < wareHouse.get(i).length; cd++){
-                    if(wareHouse.get(i)[cd] == null){
+                for (int cd = 0; cd < wareHouse.get(i).length; cd++) {
+                    if (wareHouse.get(i)[cd] == null) {
                         break;
                     }
                     counterDes = cd;
@@ -166,42 +166,53 @@ public class ExtraDepData extends PlayerData {
                     levels.add(i);
                 }
             }
-            for(int e = 3; e < extraDep.size() + 3; e++) {
-                for(int cd = 0; cd < extraDep.get(e-3).length; cd++){
-                    if(extraDep.get(e-3)[cd] == null){
+            for (int e = 3; e < extraDep.size() + 3; e++) {
+                for (int cd = 0; cd < extraDep.get(e - 3).length; cd++) {
+                    if (extraDep.get(e - 3)[cd] == null) {
                         break;
                     }
                     counterDes = cd;
                 }
-                String card = leadersPlayedID.get(e-3);
-                if(Arrays.stream(wareHouse.get(origin)).anyMatch(x -> x.equals(getLeaderFromID(card).getPlaceable())) && counterOr <= extraDep.get(e-3).length && counterDes <= wareHouse.get(origin).length){
+                String card = leadersPlayedID.get(e - 3);
+                if (Arrays.stream(wareHouse.get(origin)).anyMatch(x -> x.equals(getLeaderFromID(card).getPlaceable())) && counterOr <= extraDep.get(e - 3).length && counterDes <= wareHouse.get(origin).length) {
                     levels.add(e);
-            }
-
-
+                }
 
 
             }
+            levels.remove(origin);
         }
-        if(origin > 3){
-            for(int co = 0; co < extraDep.get(origin).length; co++) {
+        if (origin > 3) {
+            for (int co = 0; co < extraDep.get(origin).length; co++) {
                 if (extraDep.get(origin)[co] == null) {
                     break;
                 }
                 counterOr = co;
             }
+            Resource placeable = getLeaderFromID(leadersPlayedID.get(origin - 3)).getPlaceable();
+            for (int k = 0; k < wareHouse.size(); k++) {
+                for (int cd = 0; cd < wareHouse.get(k).length; cd++) {
+                    if (wareHouse.get(k)[cd] == null) {
+                        break;
+                    }
+                    counterDes = cd;
 
 
+                }
+                if (Arrays.stream(wareHouse.get(origin)).anyMatch(x -> x.equals(placeable)) && counterOr <= wareHouse.get(k).length && counterDes <= extraDep.get(origin).length) {
+                    levels.add(k);
+                }
+            }
         }
-
         return printer.printIntegers(levels, false);
     }
 
-    public ArrayList<Resource[]> getDeposits(){
-        ArrayList<Resource[]> allDeposits = new ArrayList<Resource[]>();
-        allDeposits.addAll(wareHouse);
-        allDeposits.addAll(extraDep);
-        return allDeposits;
+        public ArrayList<Resource[]> getDeposits () {
+            ArrayList<Resource[]> allDeposits = new ArrayList<Resource[]>();
+            allDeposits.addAll(wareHouse);
+            allDeposits.addAll(extraDep);
+            return allDeposits;
+        }
     }
-}
+
 

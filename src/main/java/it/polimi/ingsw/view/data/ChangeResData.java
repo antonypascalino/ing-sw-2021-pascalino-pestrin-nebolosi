@@ -22,9 +22,9 @@ public class ChangeResData extends PlayerData
     private ArrayList<String> leadersPlayedID;
     private Resource[][] market;
     private Printer printer;
+    private ArrayList<Resource> changes;
 
-
-    public ChangeResData(ArrayList<String> cardID, ArrayList<TurnState> turnStates, TurnState turnState, ArrayList<Resource[]> wareHouse, ArrayList<Resource> strongBox, int faithPoints, int victoryPoints, ArrayList<String> cardsID, ArrayList<String> leadersID, Resource[][] market, ArrayList<String> tableCardsID) {
+    public ChangeResData(ArrayList<Resource> changes, ArrayList<String> cardID, ArrayList<TurnState> turnStates, TurnState turnState, ArrayList<Resource[]> wareHouse, ArrayList<Resource> strongBox, int faithPoints, int victoryPoints, ArrayList<String> cardsID, ArrayList<String> leadersID, Resource[][] market, ArrayList<String> tableCardsID) {
         this.turnStates = turnStates;
         this.turnState = turnState;
         this.wareHouse = wareHouse;
@@ -35,6 +35,7 @@ public class ChangeResData extends PlayerData
         this.leadersID = leadersID;
         this.market = market;
         this.tableCardsID = tableCardsID;
+        this.changes = changes;
     }
 
     public ArrayList<MarketResource> handleWarehouse(ArrayList<Resource> res){
@@ -49,12 +50,8 @@ public class ChangeResData extends PlayerData
         for(int p = 0; p < res.size(); p++) {
             if (res.get(p).equals(Resource.EMPTY)) {
                 ArrayList<Resource> convert = new ArrayList<Resource>();
-                convert.add(Resource.GOLD);
-                convert.add(Resource.SHIELD);
-                convert.add(Resource.STONE);
-                convert.add(Resource.SERVANT);
+                convert.addAll(changes);
                 res.set(p, printer.printResources(convert)); //converts the resource selected on the spot
-
             }
             if (res.get(p).equals(Resource.FAITH)) {
                 MarketResource m = new MarketResource(res.get(p), -1);

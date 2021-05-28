@@ -20,7 +20,13 @@ public class Printer {
         System.out.println("Enter selection: ");
         selection = inputs.nextLine();
         int index = Integer.parseInt(selection);
-
+        if(res.get(index - 1).equals(Resource.CHOICE)){
+            ArrayList<Resource> choices = new ArrayList<Resource>();
+            choices.add(Resource.GOLD);
+            choices.add(Resource.SERVANT);
+            choices.add(Resource.SHIELD);
+            choices.add(Resource.STONE);
+        }
         return res.get(index -1);
     }
 

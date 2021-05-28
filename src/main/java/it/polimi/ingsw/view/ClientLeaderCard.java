@@ -9,6 +9,7 @@ public class ClientLeaderCard {
     public ArrayList<Resource> price;
     public Resource placeable;
     public int level;
+    private Resource changeRes;
 
     public ArrayList<Resource> getRequired(){
         return required;
@@ -25,5 +26,7 @@ public class ClientLeaderCard {
     public int getLevel(){
         return level;
     }
+
+    public Resource getChangeRes(){return changeRes;}
 
 }

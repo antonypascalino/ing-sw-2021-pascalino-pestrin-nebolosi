@@ -225,7 +225,6 @@ public class BasicData extends PlayerData {
         ArrayList<String> cloned = new ArrayList<String>();
         cloned.addAll(tableCardsID);
         ArrayList<Resource> allRes = new ArrayList<Resource>();
-        mapped.addAll(allResources());
         for(MappedResource m : mapped){
             allRes.add(m.getResource());
         }

@@ -1,7 +1,9 @@
 package it.polimi.ingsw.view.data;
 
+import it.polimi.ingsw.controller.MappedResource;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Resource;
+import it.polimi.ingsw.view.ClientDevCard;
 import it.polimi.ingsw.view.Printer;
 
 import java.util.ArrayList;
@@ -32,6 +34,19 @@ public class ExtraProdData extends PlayerData{
         this.leadersID = leadersID;
         this.market = market;
         this.tableCardsID = tableCardsID;
+    }
+
+    public ArrayList<String> slotCardsFilter(ArrayList<MappedResource> mapped){
+        ArrayList<String> cloned = new ArrayList<String>();
+        cloned.addAll(cardsID);
+        cloned.addAll(leadersPlayedID); //questa è da mettere un if "prod"
+        ArrayList<Resource> allRes = new ArrayList<Resource>();
+        for(MappedResource m : mapped){
+            allRes.add(m.getResource());
+        }
+        ClientDevCard playerCard = new ClientDevCard();
+        cloned.removeIf(card -> !allRes.containsAll(playerCard.getRequired()));
+        return cloned;
     }
 
 
