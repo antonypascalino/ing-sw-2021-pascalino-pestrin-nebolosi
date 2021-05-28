@@ -154,6 +154,18 @@ public class Table {
 
     }
 
+    @Override
+    public String toString() {
+        String result = "";
+        for(int r=0; r<4; r++)
+        {
+            for(int c=0; c<3; c++)
+            {
+                    result+=" " +avaibleDev[r][c][0].getCardID();
+            }
+            result+="\n\r";
+        }
 
-
+        return result;
+    }
 }

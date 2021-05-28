@@ -9,14 +9,24 @@ import it.polimi.ingsw.model.Player.Player;
 import java.util.ArrayList;
 
 public class BuyDevRequest implements Request {
+    //The player on which the request is done
+    private String playerID;
+    private int gameID;
     private String cardID;
     private ArrayList<MappedResource> resources;
     private int slot;
-    //The player on which the request is done
-    private String playerNickName;
+
     DevCard devCard;
     private final String className = this.getClass().getName();
 
+    public BuyDevRequest(int gameID, String playerID, String cardID, ArrayList<MappedResource> mappedResources, int slot)
+    {
+        this.gameID = gameID;
+        this.playerID = playerID;
+        this.cardID = cardID;
+        this.resources = mappedResources;
+        this.slot = slot;
+    }
     @Override
     public String getClassName() {
         return className;

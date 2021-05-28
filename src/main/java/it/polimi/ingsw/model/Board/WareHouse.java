@@ -153,14 +153,14 @@ public class WareHouse {
             currentLevel = levels.get(i);
 
             //If the level doesn't contain any empty space
-            if (i == level && !(Arrays.stream(currentLevel).anyMatch(null)))
+            if (i == level && !(Arrays.stream(currentLevel).anyMatch(x -> x.equals(Resource.EMPTY))))
                 return false;
             for (int j = 0; j < currentLevel.length; j++) {
                 //If there's the same resource on another level
                 if (currentLevel[j].equals(res) && i != level)
                     return false;
                 //If the level contains different resources
-                if (i == level && currentLevel[j] != null && !currentLevel[j].equals(res))
+                if (i == level && currentLevel[j] != Resource.EMPTY && !currentLevel[j].equals(res))
                     return false;
             }
         }

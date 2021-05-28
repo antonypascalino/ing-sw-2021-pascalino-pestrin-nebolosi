@@ -108,15 +108,22 @@ public class Slot
         {
             //frontCards is updated if either there's a card or the index is null
             currSlot = slots.get(i);
-            for (int j = 0; j < currSlot.length; j++)
+            for (int j = 0; j < currSlot.length -1; j++)
             {
                 //if one of the 3 indexes of frontCards is null it means that in a slot
                 //there are no cards
                 if(currSlot[j+1] == null)
                 {
-                    frontCards[j] = currSlot[j];
+                    frontCards[i] = currSlot[j];
+                    break;
                 }
             }
+            //If after scanning a whole stack the front card is still null it means that the top one is on the top is in 0
+            if(frontCards[i] == null)
+            {
+                frontCards[i] = currSlot[2];
+            }
+
         }
         return frontCards;
     }
