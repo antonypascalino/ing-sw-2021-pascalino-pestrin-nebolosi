@@ -62,7 +62,6 @@ public class RequestTest {
         Player tmp = games.get(0).getPlayers().get(0);
         //Get the second row of the market
         ArrayList<Resource> resources = games.get(0).getTable().market.seeRow(2);
-        Scanner myInput = new Scanner( System.in );
         ArrayList<MarketResource> mappedRes = new ArrayList<MarketResource>();
         for (Resource res : resources)
         {

@@ -37,6 +37,12 @@ public class WareHouse {
         levels.add(level1);
         levels.add(level2);
         levels.add(level3);
+        level1[0]=Resource.EMPTY;
+        level2[0]=Resource.EMPTY;
+        level2[1]=Resource.EMPTY;
+        level3[0]=Resource.EMPTY;
+        level3[1]=Resource.EMPTY;
+        level3[2]=Resource.EMPTY;
     }
 
     /**
@@ -63,7 +69,7 @@ public class WareHouse {
             current = levels.get(level);
             //Add the resource in the first empty space of the array
             for (int i = 0; i < current.length; i++) {
-                if (current[i] == null) {
+                if (current[i] == Resource.EMPTY) {
                     current[i] = res;
                     return true;
                 }
@@ -143,7 +149,7 @@ public class WareHouse {
      */
     public boolean checkSpace(int level, Resource res) {
         Resource[] currentLevel;
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i <= 2; i++) {
             currentLevel = levels.get(i);
 
             //If the level doesn't contain any empty space
