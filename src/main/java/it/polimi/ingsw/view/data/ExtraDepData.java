@@ -207,12 +207,40 @@ public class ExtraDepData extends PlayerData {
         return printer.printIntegers(levels, false);
     }
 
-        public ArrayList<Resource[]> getDeposits () {
+    public ArrayList<Resource[]> getDeposits () {
             ArrayList<Resource[]> allDeposits = new ArrayList<Resource[]>();
             allDeposits.addAll(wareHouse);
             allDeposits.addAll(extraDep);
             return allDeposits;
+    }
+
+    @Override
+    public void setWareHouse(ArrayList<Resource[]> wareHouse) {
+        if (wareHouse.size() == 3) {
+            originalData.setWareHouse(wareHouse);
+        }
+        else if(wareHouse.size() == 4) {
+            extraDep.get(0)[0]=wareHouse.get(3)[0];
+            extraDep.get(0)[1]=wareHouse.get(3)[1];
+        }
+        else if(wareHouse.size() == 5) {
+            if (getLeaderFromID(leadersPlayedID.get(0)).getPlaceable() == wareHouse.get(4)[0]) {
+                extraDep.get(0)[0] = wareHouse.get(3)[0];
+                extraDep.get(0)[1] = wareHouse.get(3)[1];
+
+                extraDep.get(1)[0] = wareHouse.get(4)[0];
+                extraDep.get(1)[1] = wareHouse.get(4)[1];
+            }
+            else
+            {
+                extraDep.get(0)[0] = wareHouse.get(4)[0];
+                extraDep.get(0)[1] = wareHouse.get(4)[1];
+
+                extraDep.get(1)[0] = wareHouse.get(3)[0];
+                extraDep.get(1)[1] = wareHouse.get(3)[1];
+            }
         }
     }
+}
 
 
