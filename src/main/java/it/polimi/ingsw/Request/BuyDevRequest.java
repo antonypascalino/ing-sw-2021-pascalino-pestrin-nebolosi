@@ -3,6 +3,8 @@ package it.polimi.ingsw.Request;
 import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.controller.MappedResource;
 import it.polimi.ingsw.controller.TurnState;
+import it.polimi.ingsw.model.Updates.BuyDevUpdate;
+import it.polimi.ingsw.model.Updates.Update;
 import it.polimi.ingsw.model.card.DevCard;
 import it.polimi.ingsw.model.Player.Player;
 
@@ -66,6 +68,10 @@ public class BuyDevRequest implements Request {
     @Override
     public boolean validRequest(ArrayList<TurnState> turnStates) {
         return !(turnStates.contains(TurnState.BUY_DEV_CARD) || turnStates.contains(TurnState.PRODUCE) || turnStates.contains(TurnState.GET_FROM_MARKET));
+    }
+
+    public Update createUpdate(Player player, Game game) {
+        return new BuyDevUpdate(game.getTurnStates(), player.getDeposits(), player.getBoard().getStrongBox().getResources(), game.getTable().getFrontIDs(), player.getVictoryPoints(), player.getProductionID());
     }
 
 }

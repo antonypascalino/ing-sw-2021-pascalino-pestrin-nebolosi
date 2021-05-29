@@ -4,6 +4,7 @@ import it.polimi.ingsw.Convertible;
 import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Player.Player;
+import it.polimi.ingsw.model.Updates.Update;
 
 import java.util.ArrayList;
 
@@ -39,5 +40,7 @@ public interface Request extends Convertible {
      * @return int la posizione su cui si treoverà il giocatore sul FaithPath
      */
     public boolean canBePlayed(Player player);
+
+    public Update createUpdate(Player player, Game game);
 
 }

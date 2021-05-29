@@ -91,7 +91,6 @@ public class Game {
                     lastRound.add(currPlayer);
                 }
             }
-
         }
     }
 
@@ -165,5 +164,9 @@ public class Game {
 
     public int getMax() {
         return maxPlayer;
+    }
+
+    public ArrayList<TurnState> getTurnStates() {
+        return turnStates;
     }
 }

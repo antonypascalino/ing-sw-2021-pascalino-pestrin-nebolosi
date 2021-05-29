@@ -5,6 +5,9 @@ import it.polimi.ingsw.controller.MappedResource;
 import it.polimi.ingsw.controller.Production;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Table.Resource;
+import it.polimi.ingsw.model.Updates.PlayerVP;
+import it.polimi.ingsw.model.Updates.ProduceUpdate;
+import it.polimi.ingsw.model.Updates.Update;
 import it.polimi.ingsw.model.card.ExtraProd;
 import it.polimi.ingsw.model.Player.Player;
 
@@ -100,11 +103,19 @@ public class ProduceRequest implements Request {
         return !(turnStates.contains(TurnState.BUY_DEV_CARD) || turnStates.contains(TurnState.PRODUCE) || turnStates.contains(TurnState.GET_FROM_MARKET));
     }
 
-
-
     @Override
     public String getClassName()
     {
         return className;
+    }
+
+    @Override
+    public Update createUpdate(Player player, Game game) {
+        ArrayList<PlayerVP> playersVP = new ArrayList<PlayerVP>();
+        for (Player p : game.getPlayers()) {
+            playersVP.add(new PlayerVP(p.getNickName(), p.getVictoryPoints()));
+        }
+
+        return new ProduceUpdate(game.getTurnStates(), player.getDeposits(), player.getBoard().getStrongBox().getResources(), player.getBoard().getFaithPath().getAdvancement(), playersVP);
     }
 }

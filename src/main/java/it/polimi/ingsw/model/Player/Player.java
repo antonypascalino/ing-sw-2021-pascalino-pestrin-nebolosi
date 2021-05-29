@@ -174,5 +174,13 @@ public abstract class Player {
     public void setTable(Table tbl ){
         original.setTable(tbl);
     };
+
+    public ArrayList<String> getLeadersID() {
+        return original.getLeadersID();
+    }
+
+    public ArrayList<Resource[]> getDeposits() {
+        return original.getDeposits();
+    }
 }
 

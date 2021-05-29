@@ -6,6 +6,10 @@ import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Table.Resource;
 import it.polimi.ingsw.Request.MarketDimension;
+import it.polimi.ingsw.model.Updates.MarketUpdate;
+import it.polimi.ingsw.model.Updates.PlayerFP;
+import it.polimi.ingsw.model.Updates.PlayerVP;
+import it.polimi.ingsw.model.Updates.Update;
 
 import java.util.ArrayList;
 
@@ -119,4 +123,15 @@ public class MarketRequest implements Request {
         return requestedRes;
     }
 
+    @Override
+    public Update createUpdate(Player player, Game game) {
+        ArrayList<PlayerVP> playersVP = new ArrayList<PlayerVP>();
+        ArrayList<PlayerFP> playersFP = new ArrayList<PlayerFP>();
+        for (Player p : game.getPlayers()) {
+            playersVP.add(new PlayerVP(p.getNickName(), p.getVictoryPoints()));
+            playersFP.add(new PlayerFP(p.getNickName(), p.getBoard().getFaithPath().getAdvancement()));
+        }
+
+        return new MarketUpdate(game.getTurnStates(), player.getDeposits(), playersVP, playersFP, game.getTable().market.getMarket());
+    }
 }
