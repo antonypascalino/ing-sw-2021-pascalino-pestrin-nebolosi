@@ -3,6 +3,8 @@ package it.polimi.ingsw.model.Updates;
 import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Table.Resource;
+import it.polimi.ingsw.view.GameHub;
+
 import java.util.ArrayList;
 
 public class BuyDevUpdate implements Update {
@@ -27,7 +29,14 @@ public class BuyDevUpdate implements Update {
 
 
     @Override
-    public void handleUpdate(Game game) {
+    public void handleUpdate(GameHub game) {
+
+        game.getCurrData().setTurnStates(turnStates);
+        game.getCurrData().setWareHouse(wareHouse);
+        game.getCurrData().setStrongBox(strongBox);
+        game.getCurrData().setVictoryPoints(victoryPoints);
+        game.getCurrData().setCardsID(cardsID);
+        game.setFrontTableCardsID(tableCardsID);
 
     }
 }

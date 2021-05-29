@@ -8,4 +8,12 @@ public class PlayerFP {
         this.playerID = playerID;
         this.faithPoints = faithPoints;
     }
+
+    public String getPlayerID() {
+        return playerID;
+    }
+
+    public int getFaithPoints() {
+        return faithPoints;
+    }
 }

@@ -2,6 +2,7 @@ package it.polimi.ingsw.model.Updates;
 
 import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.controller.TurnState;
+import it.polimi.ingsw.view.GameHub;
 
 import java.util.ArrayList;
 
@@ -13,7 +14,7 @@ public class EndTurnUpdate implements Update{
     }
 
     @Override
-    public void handleUpdate(Game game) {
+    public void handleUpdate(GameHub game) {
 
     }
 }

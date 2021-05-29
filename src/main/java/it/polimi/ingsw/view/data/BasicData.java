@@ -13,6 +13,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class BasicData extends PlayerData {
+    private String playerID;
     private ArrayList<TurnState> turnStates;
     private TurnState turnState;
     private ArrayList<Resource[]> wareHouse;
@@ -27,7 +28,7 @@ public class BasicData extends PlayerData {
     private Printer printer;
 
 
-    public BasicData(ArrayList<String> cardID, ArrayList<TurnState> turnStates, TurnState turnState, ArrayList<Resource[]> wareHouse, ArrayList<Resource> strongBox, int faithPoints, int victoryPoints, ArrayList<String> cardsID, ArrayList<String> leadersID, Resource[][] market, ArrayList<String> tableCardsID) {
+    public BasicData(String playerID, ArrayList<String> cardID, ArrayList<TurnState> turnStates, TurnState turnState, ArrayList<Resource[]> wareHouse, ArrayList<Resource> strongBox, int faithPoints, int victoryPoints, ArrayList<String> cardsID, ArrayList<String> leadersID, Resource[][] market, ArrayList<String> tableCardsID) {
         this.turnStates = turnStates;
         this.turnState = turnState;
         this.wareHouse = wareHouse;
@@ -38,6 +39,7 @@ public class BasicData extends PlayerData {
         this.leadersID = leadersID;
         this.market = market;
         this.tableCardsID = tableCardsID;
+        this.playerID = playerID;
     }
 
     public ArrayList<TurnState> turnStateFilter(){
@@ -303,5 +305,41 @@ public class BasicData extends PlayerData {
 
     public ArrayList<String> getLeaders() {
         return leadersID;
+    }
+
+    public void setTurnStates(ArrayList<TurnState> turnStates) {
+        this.turnStates = turnStates;
+    }
+
+    public void setWareHouse(ArrayList<Resource[]> wareHouse) {
+        this.wareHouse = wareHouse;
+    }
+
+    public void setStrongBox(ArrayList<Resource> strongBox) {
+        this.strongBox = strongBox;
+    }
+
+    public void setFaithPoints(int faithPoints) {
+        this.faithPoints = faithPoints;
+    }
+
+    public void setVictoryPoints(int victoryPoints) {
+        this.victoryPoints = victoryPoints;
+    }
+
+    public void setCardsID(ArrayList<String> cardsID) {
+        this.cardsID = cardsID;
+    }
+
+    public void setLeadersID(ArrayList<String> leadersID) {
+        this.leadersID = leadersID;
+    }
+
+    public void setLeadersPlayedID(ArrayList<String> leadersPlayedID) {
+        this.leadersPlayedID = leadersPlayedID;
+    }
+
+    public String getPlayerID() {
+        return playerID;
     }
 }

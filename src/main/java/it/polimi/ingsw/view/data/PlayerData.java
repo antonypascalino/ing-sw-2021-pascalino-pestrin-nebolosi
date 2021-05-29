@@ -68,4 +68,42 @@ public abstract class PlayerData {
     public ArrayList<String> getLeaders(){
         return originalData.getLeaders();
     }
+
+
+    //getters & setters
+    public void setTurnStates(ArrayList<TurnState> turnStates) {
+        originalData.setTurnStates(turnStates);
+    }
+
+    public void setWareHouse(ArrayList<Resource[]> wareHouse) {
+        originalData.setWareHouse(wareHouse);
+    }
+
+    public void setStrongBox(ArrayList<Resource> strongBox) {
+        originalData.setStrongBox(strongBox);
+    }
+
+    public void setFaithPoints(int faithPoints) {
+        originalData.setFaithPoints(faithPoints);
+    }
+
+    public void setVictoryPoints(int victoryPoints) {
+        originalData.setVictoryPoints(victoryPoints);
+    }
+
+    public void setCardsID(ArrayList<String> cardsID) {
+        originalData.setCardsID(cardsID);
+    }
+
+    public void setLeadersID(ArrayList<String> leadersID) {
+        originalData.setLeadersID(leadersID);
+    }
+
+    public void setLeadersPlayedID(ArrayList<String> leadersPlayedID) {
+        originalData.setLeadersPlayedID(leadersPlayedID);
+    }
+
+    public String getPlayerID() {
+        return originalData.getPlayerID();
+    }
 }

@@ -8,4 +8,12 @@ public class PlayerVP {
         this.playerID = playerID;
         this.victoryPoints = victoryPoints;
     }
+
+    public String getPlayerID() {
+        return playerID;
+    }
+
+    public int getVictoryPoints() {
+        return victoryPoints;
+    }
 }

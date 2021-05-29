@@ -2,6 +2,8 @@ package it.polimi.ingsw.model.Updates;
 
 import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.controller.TurnState;
+import it.polimi.ingsw.view.GameHub;
+import it.polimi.ingsw.view.data.PlayerData;
 
 import java.util.ArrayList;
 
@@ -19,7 +21,19 @@ public class DiscardLeaderUpdate implements Update {
     }
 
     @Override
-    public void handleUpdate(Game game) {
+    public void handleUpdate(GameHub game) {
+        game.getCurrData().setTurnStates(turnStates);
+        game.getCurrData().setFaithPoints(faithPoints);
+        game.getCurrData().setLeadersID(leadersID);
+
+        //aggiorna i victory points di tutti
+        for(PlayerVP pvp : playersVP){
+            for(PlayerData pd : game.getPlayers()){
+                if(pvp.getPlayerID().equals(pd.getPlayerID())){
+                    pd.setVictoryPoints(pvp.getVictoryPoints());
+                }
+            }
+        }
 
     }
 }
