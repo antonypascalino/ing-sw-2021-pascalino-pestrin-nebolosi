@@ -1,6 +1,7 @@
 package it.polimi.ingsw.view;
 
-import it.polimi.ingsw.model.Resource;
+
+import it.polimi.ingsw.model.Table.Resource;
 
 import java.util.ArrayList;
 

@@ -2,7 +2,7 @@ package it.polimi.ingsw.view;
 
 import it.polimi.ingsw.controller.MappedResource;
 import it.polimi.ingsw.controller.TurnState;
-import it.polimi.ingsw.model.Resource;
+import it.polimi.ingsw.model.Table.Resource;
 
 import java.util.ArrayList;
 import java.util.Scanner;

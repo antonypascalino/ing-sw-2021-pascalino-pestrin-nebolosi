@@ -2,7 +2,7 @@ package it.polimi.ingsw.view.data;
 
 import it.polimi.ingsw.controller.MarketResource;
 import it.polimi.ingsw.controller.TurnState;
-import it.polimi.ingsw.model.Resource;
+import it.polimi.ingsw.model.Table.Resource;
 import it.polimi.ingsw.view.Printer;
 
 import java.util.ArrayList;

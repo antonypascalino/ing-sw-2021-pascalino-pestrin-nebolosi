@@ -3,7 +3,7 @@ package it.polimi.ingsw.view.selections;
 import it.polimi.ingsw.controller.MappedResource;
 import it.polimi.ingsw.controller.Production;
 import it.polimi.ingsw.controller.TurnState;
-import it.polimi.ingsw.model.Resource;
+import it.polimi.ingsw.model.Table.Resource;
 import it.polimi.ingsw.view.data.PlayerData;
 
 import java.util.ArrayList;
