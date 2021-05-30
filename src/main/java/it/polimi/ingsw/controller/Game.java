@@ -72,7 +72,7 @@ public class Game {
         int discardedSteps = 0;
 
         //BISOGNA AGGIUNGERE UN METODO CHE CONTROLLI CHE IL PLAYER CHE HA INVIATO LA REQUEST SIA IL CURRENT PLAYER
-        if (req.validRequest(turnStates)) {
+        if (/*req.validRequest(turnStates)*/true) {
             if (req.canBePlayed(currPlayer)) {
                 turnStates.add(req.handle(currPlayer ,this));
                 if (turnStates.contains(TurnState.END_TURN)) {

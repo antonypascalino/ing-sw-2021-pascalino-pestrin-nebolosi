@@ -14,6 +14,8 @@ import javax.annotation.processing.SupportedSourceVersion;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import static org.junit.Assert.assertEquals;
+
 /*
 Tries to create a game and send different requests to it
  */
@@ -239,6 +241,225 @@ public class RequestTest {
 
 
         Request buyDevRequest = new BuyDevRequest(games.get(0).getGameId(),tmp.getNickName(), interessata.getCardID(), test, 1);
+        games.get(0).notify(buyDevRequest);
+        for(int i = 0; i< 3; i++)
+        {
+            if (tmp.getBoard().getSlot().getFrontCards()[i] != null)
+                System.out.println(tmp.getBoard().getSlot().getFrontCards()[i].getCardID());
+            else
+                System.out.println("null");
+        }
+
+        System.out.println(games.get(0).getTable().toString());
+        System.out.println(tmp.getAllResources());
+        assertEquals(interessata.getCardID(),tmp.getBoard().getSlot().getFrontCards()[1].getCardID());
+    }
+
+    @Test
+    public void doubleBuyDev()
+    {
+        //First create a new game and add a player
+        ArrayList<Game> games = new ArrayList<>();
+        Request request = new NewGameRequest("SickNebo", 3);
+        //This code has been copied from the client handler class
+        if(request instanceof NewGameRequest)
+        {
+            //If there's no game on the server create the first one
+            Game lastGame = null;
+            if (games.size() != 0)
+                lastGame = games.get(games.size()-1);
+            //If there's no game or the last one has reached the maximum player, it doesn't check it if games.size==0
+            //Create a new game
+            if (games.size() == 0 || !(lastGame.getPlayers().size() < lastGame.getMax()))
+            {
+                int gameId;
+                if(games.size() != 0)
+                    gameId = games.get(games.size()-1).getGameId() +1;
+                else
+                    gameId=0;
+                ArrayList<Player> tmp = new ArrayList<Player>();
+                tmp.add(new BasicPlayer(((NewGameRequest) request).getNickname()));
+                Game newGame = new Game(tmp, DefaultCreator.produceDevCard(),gameId,((NewGameRequest) request).getPlayers());
+                games.add(newGame);
+                System.out.println("Player "+((NewGameRequest) request).getNickname()+ " added to the new game "+newGame.getGameId());
+            }
+            //If it hasn't alrady reached the maximum numner of players
+            //add the new player
+            else
+            {
+                Player newPlayer = new BasicPlayer(((NewGameRequest) request).getNickname());
+                lastGame.addPlayer(newPlayer);
+                System.out.println("Player "+((NewGameRequest) request).getNickname()+ " added to game "+lastGame.getGameId());
+
+            }
+
+        }
+
+
+        //Now send a new request for buying and it doesn't buy it because there's no space in the same slot
+        Player tmp = games.get(0).getPlayers().get(0);
+        //Get the second row of the market
+        tmp.addResource(0, Resource.GOLD);
+        tmp.addResource(1, Resource.SERVANT);
+        tmp.addResource(1, Resource.SERVANT);
+        tmp.addResource(2, Resource.SHIELD);
+        tmp.addResource(2, Resource.SHIELD);
+        tmp.addResource(2, Resource.SHIELD);
+        System.out.println(tmp.getAllResources());
+        System.out.println(games.get(0).getTable().toString());
+        DevCard interessata = games.get(0).getTable().getTop()[0][0];
+        ArrayList<Resource> res;
+        res = interessata.getPrice();
+        System.out.println(res);
+        tmp.getBoard().getStrongBox().addResource(res);
+        System.out.println(tmp.getAllResources());
+        ArrayList<MappedResource> test = new ArrayList<>();
+        for(Resource resource : interessata.getPrice())
+        {
+            MappedResource risorsa = new MappedResource(resource,"strongbox");
+            test.add(risorsa);
+        }
+
+
+        Request buyDevRequest = new BuyDevRequest(games.get(0).getGameId(),tmp.getNickName(), interessata.getCardID(), test, 1);
+        games.get(0).notify(buyDevRequest);
+        for(int i = 0; i< 3; i++)
+        {
+            if (tmp.getBoard().getSlot().getFrontCards()[i] != null)
+                System.out.println(tmp.getBoard().getSlot().getFrontCards()[i].getCardID());
+            else
+                System.out.println("null");
+        }
+
+        System.out.println(games.get(0).getTable().toString());
+        System.out.println(tmp.getAllResources());
+
+
+        //Request to buy again another card
+        interessata = games.get(0).getTable().getTop()[0][1];
+        System.out.println(interessata.getCardID());
+        res = interessata.getPrice();
+        System.out.println(res);
+        tmp.getBoard().getStrongBox().addResource(res);
+        System.out.println(tmp.getAllResources());
+        test = new ArrayList<>();
+        for(Resource resource : interessata.getPrice())
+        {
+            MappedResource risorsa = new MappedResource(resource,"strongbox");
+            test.add(risorsa);
+        }
+
+        buyDevRequest = new BuyDevRequest(games.get(0).getGameId(),tmp.getNickName(), interessata.getCardID(), test, 1);
+        games.get(0).notify(buyDevRequest);
+        for(int i = 0; i< 3; i++)
+        {
+            if (tmp.getBoard().getSlot().getFrontCards()[i] != null)
+                System.out.println(tmp.getBoard().getSlot().getFrontCards()[i].getCardID());
+            else
+                System.out.println("null");
+        }
+
+        System.out.println(games.get(0).getTable().toString());
+        System.out.println(tmp.getAllResources());
+
+    }
+
+    @Test
+    //Try to buy two cards with the same level and stack them and the server simply doesn't do that
+    public void buySameLevel()
+    {
+        //First create a new game and add a player
+        ArrayList<Game> games = new ArrayList<>();
+        Request request = new NewGameRequest("SickNebo", 3);
+        //This code has been copied from the client handler class
+        if(request instanceof NewGameRequest)
+        {
+            //If there's no game on the server create the first one
+            Game lastGame = null;
+            if (games.size() != 0)
+                lastGame = games.get(games.size()-1);
+            //If there's no game or the last one has reached the maximum player, it doesn't check it if games.size==0
+            //Create a new game
+            if (games.size() == 0 || !(lastGame.getPlayers().size() < lastGame.getMax()))
+            {
+                int gameId;
+                if(games.size() != 0)
+                    gameId = games.get(games.size()-1).getGameId() +1;
+                else
+                    gameId=0;
+                ArrayList<Player> tmp = new ArrayList<Player>();
+                tmp.add(new BasicPlayer(((NewGameRequest) request).getNickname()));
+                Game newGame = new Game(tmp, DefaultCreator.produceDevCard(),gameId,((NewGameRequest) request).getPlayers());
+                games.add(newGame);
+                System.out.println("Player "+((NewGameRequest) request).getNickname()+ " added to the new game "+newGame.getGameId());
+            }
+            //If it hasn't alrady reached the maximum numner of players
+            //add the new player
+            else
+            {
+                Player newPlayer = new BasicPlayer(((NewGameRequest) request).getNickname());
+                lastGame.addPlayer(newPlayer);
+                System.out.println("Player "+((NewGameRequest) request).getNickname()+ " added to game "+lastGame.getGameId());
+
+            }
+
+        }
+
+
+        //Now send a new request for buying and it doesn't buy it because there's no space in the same slot
+        Player tmp = games.get(0).getPlayers().get(0);
+        //Get the second row of the market
+        tmp.addResource(0, Resource.GOLD);
+        tmp.addResource(1, Resource.SERVANT);
+        tmp.addResource(1, Resource.SERVANT);
+        tmp.addResource(2, Resource.SHIELD);
+        tmp.addResource(2, Resource.SHIELD);
+        tmp.addResource(2, Resource.SHIELD);
+        System.out.println(tmp.getAllResources());
+        System.out.println(games.get(0).getTable().toString());
+        DevCard interessata = games.get(0).getTable().getTop()[0][0];
+        ArrayList<Resource> res;
+        res = interessata.getPrice();
+        System.out.println(res);
+        tmp.getBoard().getStrongBox().addResource(res);
+        System.out.println(tmp.getAllResources());
+        ArrayList<MappedResource> test = new ArrayList<>();
+        for(Resource resource : interessata.getPrice())
+        {
+            MappedResource risorsa = new MappedResource(resource,"strongbox");
+            test.add(risorsa);
+        }
+
+
+        Request buyDevRequest = new BuyDevRequest(games.get(0).getGameId(),tmp.getNickName(), interessata.getCardID(), test, 1);
+        games.get(0).notify(buyDevRequest);
+        for(int i = 0; i< 3; i++)
+        {
+            if (tmp.getBoard().getSlot().getFrontCards()[i] != null)
+                System.out.println(tmp.getBoard().getSlot().getFrontCards()[i].getCardID());
+            else
+                System.out.println("null");
+        }
+
+        System.out.println(games.get(0).getTable().toString());
+        System.out.println(tmp.getAllResources());
+
+
+        //Request to buy again another card
+        interessata = games.get(0).getTable().getTop()[1][0];
+        System.out.println(interessata.getCardID());
+        res = interessata.getPrice();
+        System.out.println(res);
+        tmp.getBoard().getStrongBox().addResource(res);
+        System.out.println(tmp.getAllResources());
+        test = new ArrayList<>();
+        for(Resource resource : interessata.getPrice())
+        {
+            MappedResource risorsa = new MappedResource(resource,"strongbox");
+            test.add(risorsa);
+        }
+
+        buyDevRequest = new BuyDevRequest(games.get(0).getGameId(),tmp.getNickName(), interessata.getCardID(), test, 1);
         games.get(0).notify(buyDevRequest);
         for(int i = 0; i< 3; i++)
         {
