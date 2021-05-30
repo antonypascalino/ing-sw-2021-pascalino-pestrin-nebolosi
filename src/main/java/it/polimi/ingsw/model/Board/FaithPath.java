@@ -130,4 +130,8 @@ public class FaithPath
         }
         return false;
     }
+
+    public int getAdvancement() {
+        return advancement;
+    }
 }

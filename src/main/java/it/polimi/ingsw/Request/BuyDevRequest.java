@@ -1,7 +1,6 @@
 package it.polimi.ingsw.Request;
 
 import it.polimi.ingsw.controller.Game;
-import it.polimi.ingsw.controller.MappedResource;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.card.DevCard;
 import it.polimi.ingsw.model.Player.Player;

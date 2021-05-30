@@ -127,7 +127,9 @@ public class Board
         ArrayList<String> prodID = new ArrayList<String>();
         DevCard[] tmp = slot.getFrontCards();
         for (DevCard dev : tmp) {
-            prodID.add(dev.getCardID());
+            //if it contains an empty space it can't get get card id
+            if(dev != null)
+                prodID.add(dev.getCardID());
         }
         return prodID;
     }

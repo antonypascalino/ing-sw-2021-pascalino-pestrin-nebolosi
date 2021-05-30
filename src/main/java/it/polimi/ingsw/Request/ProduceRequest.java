@@ -1,8 +1,6 @@
 package it.polimi.ingsw.Request;
 
 import it.polimi.ingsw.controller.Game;
-import it.polimi.ingsw.controller.MappedResource;
-import it.polimi.ingsw.controller.Production;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Table.Resource;
 import it.polimi.ingsw.model.card.ExtraProd;
@@ -17,10 +15,20 @@ import java.util.ArrayList;
 //Questo elemento avrò un id della carta e le possibili risorse a scelta
 public class ProduceRequest implements Request {
 
+    private String playerID;
+    private int gameID;
     private ArrayList<Production> productions;
     private int playerSteps;
     private int playerChoices;
-    private final String className = this.getClass().getName();
+    private final String className;
+
+    public ProduceRequest(int gameID, String playerID, ArrayList<Production> prod)
+    {
+        className = this.getClass().getName();
+        this.gameID = gameID;
+        this.playerID = playerID;
+        this.productions = prod;
+    }
 
     @Override
     public boolean canBePlayed(Player player) {
@@ -33,7 +41,7 @@ public class ProduceRequest implements Request {
             }
         }
 
-        //controlla che il giocatore abbia le risorse
+        //controlla che il giocatore abbia le risorse aggiungendole in un array temporaneo per controllare che le abbia tutte
         ArrayList<Resource> resTemp = new ArrayList<Resource>();
         for(Production prod : productions){
             for(MappedResource map : prod.getMappedResources()){
@@ -65,15 +73,8 @@ public class ProduceRequest implements Request {
         }
 
         //Controlla che non ci siano due carte uguali con cui il giocatore vuole produrre
-        ArrayList<Production> tmpProd = (ArrayList<Production>) productions.clone();
-        for (Production p : tmpProd){
-            String tmpID = p.getCardID();
-            tmpProd.remove(p);
-            if(tmpProd.contains(tmpID)){
-                //lancia eccezione "there's a duplicate of a leader card"
-                return false;
-            }
-        }
+        if( productions.stream().map(Production::getCardID).count() >=2 )
+            return false;
         return true;
     }
 
@@ -90,7 +91,8 @@ public class ProduceRequest implements Request {
         }
 
 
-        playerSteps = player.getBoard().getTempBox().filterFaithPoints().size();
+        playerSteps = player.getBoard().getTempBox().filterFaithPoints();
+        game.fpAdvancement(0,playerSteps);
         player.getBoard().getTempBox().moveToStrongBox();
         return TurnState.PRODUCE;
     }

@@ -63,6 +63,7 @@ public class WareHouse {
      * @param res the {@link Resource} to add.
      * @return true if
      */
+    //Friendly because it's just needed in the package
     public boolean addResource(int level, Resource res) {
         if(checkSpace(level, res)) {
             Resource[] current;

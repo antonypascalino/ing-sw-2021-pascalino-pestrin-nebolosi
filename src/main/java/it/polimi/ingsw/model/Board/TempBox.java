@@ -3,6 +3,7 @@ package it.polimi.ingsw.model.Board;
 import it.polimi.ingsw.model.Table.Resource;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 /**
  * Used to place all the {@link Resource} produced by the {@link it.polimi.ingsw.model.Player.Player} in the current production
@@ -49,15 +50,15 @@ public class TempBox
         return choices;
     }
 
-    public ArrayList<Resource> filterFaithPoints() {
+    public int filterFaithPoints() {
         ArrayList<Resource> faithPoints = new ArrayList<Resource>();
         for (Resource r : tempRes) {
             if (r.equals(Resource.FAITH)) {
                 faithPoints.add(Resource.FAITH);
-                tempRes.remove(r);
             }
         }
-        return faithPoints;
+        tempRes = (ArrayList<Resource>) tempRes.stream().filter(r->  r!=Resource.FAITH).collect(Collectors.toList());
+        return faithPoints.size();
     }
 
     public void moveToStrongBox(){

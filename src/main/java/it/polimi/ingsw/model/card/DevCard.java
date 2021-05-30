@@ -140,6 +140,9 @@ public class DevCard /*extends Producer*/ {
         return cardID;
     }
 
+    /**
+     * @return the resources needed for using this production card
+     */
     public ArrayList<Resource> getRequirements(){
         return requires;
     }

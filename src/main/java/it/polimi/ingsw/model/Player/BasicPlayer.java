@@ -160,9 +160,9 @@ public class BasicPlayer extends Player {
     @Override
     public void removeResource(Resource res, String place) {
         //If the player doesn't have the resources throw a new exception
-        if (place.equals("strongbox")) {
+        if (place.toLowerCase().equals("strongbox")) {
             board.getStrongBox().removeResource(res);
-        } else if (place.equals("warehouse")) {
+        } else if (place.toLowerCase().equals("warehouse")) {
             board.getWareHouse().removeResource(res);
         //lancia eccezione: non hai questo posto da dove prendere la risorsa
         }
