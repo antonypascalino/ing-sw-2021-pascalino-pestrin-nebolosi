@@ -4,8 +4,9 @@ import it.polimi.ingsw.controller.MappedResource;
 import it.polimi.ingsw.controller.MarketResource;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Table.Resource;
-import it.polimi.ingsw.view.ClientDevCard;
-import it.polimi.ingsw.view.ClientLeaderCard;
+import it.polimi.ingsw.view.Printer;
+import it.polimi.ingsw.view.clientCards.ClientDevCard;
+import it.polimi.ingsw.view.clientCards.ClientLeaderCard;
 
 import java.util.ArrayList;
 
@@ -91,8 +92,8 @@ public abstract class PlayerData {
         originalData.setVictoryPoints(victoryPoints);
     }
 
-    public void setCardsID(ArrayList<String> cardsID) {
-        originalData.setCardsID(cardsID);
+    public void setFrontCardsID(ArrayList<String> frontCardsID) {
+        originalData.setFrontCardsID(frontCardsID);
     }
 
     public void setLeadersID(ArrayList<String> leadersID) {
@@ -143,8 +144,8 @@ public abstract class PlayerData {
         return originalData.getVictoryPoints();
     }
 
-    public ArrayList<String> getCardsID() {
-        return originalData.getCardsID();
+    public ArrayList<String> getFrontCardsID() {
+        return originalData.getFrontCardsID();
     }
 
     public ArrayList<String> getLeadersID() {
@@ -155,4 +156,11 @@ public abstract class PlayerData {
         return originalData.getLeadersPlayedID();
     }
 
+    public ArrayList<String> getAllDevID() {
+        return originalData.getAllDevID();
+    }
+
+    public Printer getPrinter() {
+        return originalData.getPrinter();
+    }
 }

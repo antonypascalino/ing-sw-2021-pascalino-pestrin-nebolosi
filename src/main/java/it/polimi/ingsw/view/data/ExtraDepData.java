@@ -11,47 +11,50 @@ import java.util.Arrays;
 
 public class ExtraDepData extends PlayerData {
 
-    private ArrayList<TurnState> turnStates;
-    private TurnState turnState;
-    private ArrayList<Resource[]> wareHouse;
-    private ArrayList<Resource> strongBox;
-    private ArrayList<String> tableCardsID; //just the front table cards
-    private int faithPoints;
-    private int victoryPoints;
-    private ArrayList<String> cardsID;  //3 front cards + basic + extraProd
-    private ArrayList<String> leadersID;
-    private ArrayList<String> leadersPlayedID;
-    private Resource[][] market;
-    private Printer printer;
+//    private ArrayList<TurnState> turnStates;
+//    private TurnState turnState;
+//    private ArrayList<Resource[]> wareHouse;
+//    private ArrayList<Resource> strongBox;
+//    private ArrayList<String> tableCardsID; //just the front table cards
+//    private int faithPoints;
+//    private int victoryPoints;
+//    private ArrayList<String> cardsID;  //3 front cards + basic + extraProd
+//    private ArrayList<String> leadersID;
+//    private ArrayList<String> leadersPlayedID;
+//    private Resource[][] market;
+//    private Printer printer;
     private ArrayList<Resource[]> extraDep;
+    private ArrayList<Resource> placeableRes;
 
 
-    public ExtraDepData(ArrayList<String> leadersPlayedID, ArrayList<Resource[]> extraDep, ArrayList<String> cardID, ArrayList<TurnState> turnStates, TurnState turnState, ArrayList<Resource[]> wareHouse, ArrayList<Resource> strongBox, int faithPoints, int victoryPoints, ArrayList<String> cardsID, ArrayList<String> leadersID, Resource[][] market, ArrayList<String> tableCardsID) {
-        this.turnStates = turnStates;
-        this.turnState = turnState;
-        this.wareHouse = wareHouse;
-        this.strongBox = strongBox;
-        this.faithPoints = faithPoints;
-        this.victoryPoints = victoryPoints;
-        this.cardsID = cardsID;
-        this.leadersID = leadersID;
-        this.market = market;
-        this.tableCardsID = tableCardsID;
-        this.extraDep = extraDep;
-        this.leadersPlayedID = leadersPlayedID;
+    public ExtraDepData(PlayerData originalData, ArrayList<Resource> placeableRes) {
+    //        this.turnStates = turnStates;
+//        this.turnState = turnState;
+//        this.wareHouse = wareHouse;
+//        this.strongBox = strongBox;
+//        this.faithPoints = faithPoints;
+//        this.victoryPoints = victoryPoints;
+//        this.cardsID = cardsID;
+//        this.leadersID = leadersID;
+//        this.market = market;
+//        this.tableCardsID = tableCardsID;
+//        this.leadersPlayedID = leadersPlayedID;
+        extraDep = new ArrayList<Resource[]>();
+        originalData = originalData;
+
     }
 
     public ArrayList<MappedResource> allResources() {
 
         ArrayList<MappedResource> tmp = new ArrayList<MappedResource>();
 
-        for (Resource[] l : wareHouse) {
+        for (Resource[] l : originalData.getDeposits()) {
             for (Resource w : l) {
                 MappedResource mappedW = new MappedResource(w, "warehouse");
                 tmp.add(mappedW);
             }
         }
-        for (Resource s : strongBox) {
+        for (Resource s : originalData.getStrongBox()) {
             MappedResource mappedS = new MappedResource(s, "strongbox");
             tmp.add(mappedS);
         }
@@ -68,6 +71,8 @@ public class ExtraDepData extends PlayerData {
     }
 
     public ArrayList<MarketResource> handleWarehouse(ArrayList<Resource> res) {
+        ArrayList<Resource[]> wareHouse = new ArrayList<Resource[]>();
+        wareHouse.addAll(originalData.getDeposits());
         ArrayList<MarketResource> marketRes = new ArrayList<MarketResource>();
         ArrayList<Integer> tmp = new ArrayList<Integer>();
         ArrayList<Resource> wareHouseRes = new ArrayList<Resource>();
@@ -124,7 +129,7 @@ public class ExtraDepData extends PlayerData {
             }
 
             for (int d = 3; d < extraDep.size() + 3; d++) {
-                if (res.get(p).equals(getLeaderFromID(leadersPlayedID.get(d - 3)).getPlaceable()) && Arrays.stream(extraDep.get(d - 3)).anyMatch(null)) {
+                if (res.get(p).equals(placeableRes.get(d - 3)) && Arrays.stream(extraDep.get(d - 3)).anyMatch(null)) {
                     tmp.add(d);
                 }
 
@@ -140,7 +145,8 @@ public class ExtraDepData extends PlayerData {
     }
 
     public int switchLevels(int origin) {
-
+        ArrayList<Resource[]> wareHouse = new ArrayList<Resource[]>();
+        wareHouse.addAll(originalData.getDeposits());
         ArrayList<Integer> levels = new ArrayList<Integer>();
         int counterOr = 0;
         int counterDes = 0;
@@ -173,8 +179,11 @@ public class ExtraDepData extends PlayerData {
                     }
                     counterDes = cd;
                 }
-                String card = leadersPlayedID.get(e - 3);
-                if (Arrays.stream(wareHouse.get(origin)).anyMatch(x -> x.equals(getLeaderFromID(card).getPlaceable())) && counterOr <= extraDep.get(e - 3).length && counterDes <= wareHouse.get(origin).length) {
+                final Resource placeRes = placeableRes.get(e - 3);
+                int finalCounterOr = counterOr;
+                int finalCounterDes = counterDes;
+                int finalE = e;
+                if (Arrays.stream(wareHouse.get(origin)).anyMatch(x -> x.equals(placeRes) && finalCounterOr <= extraDep.get(finalE - 3).length && finalCounterDes <= wareHouse.get(origin).length)) {
                     levels.add(e);
                 }
 
@@ -189,7 +198,7 @@ public class ExtraDepData extends PlayerData {
                 }
                 counterOr = co;
             }
-            Resource placeable = getLeaderFromID(leadersPlayedID.get(origin - 3)).getPlaceable();
+            Resource placeable = placeableRes.get(origin - 3);
             for (int k = 0; k < wareHouse.size(); k++) {
                 for (int cd = 0; cd < wareHouse.get(k).length; cd++) {
                     if (wareHouse.get(k)[cd] == null) {
@@ -204,12 +213,12 @@ public class ExtraDepData extends PlayerData {
                 }
             }
         }
-        return printer.printIntegers(levels, false);
+        return originalData.getPrinter().printIntegers(levels, false);
     }
 
     public ArrayList<Resource[]> getDeposits () {
             ArrayList<Resource[]> allDeposits = new ArrayList<Resource[]>();
-            allDeposits.addAll(wareHouse);
+            allDeposits.addAll(originalData.getDeposits());
             allDeposits.addAll(extraDep);
             return allDeposits;
     }
@@ -224,7 +233,7 @@ public class ExtraDepData extends PlayerData {
             extraDep.get(0)[1]=wareHouse.get(3)[1];
         }
         else if(wareHouse.size() == 5) {
-            if (getLeaderFromID(leadersPlayedID.get(0)).getPlaceable() == wareHouse.get(4)[0]) {
+            if (getLeaderFromID(originalData.getLeadersPlayedID().get(0)).getPlaceable() == wareHouse.get(4)[0]) {
                 extraDep.get(0)[0] = wareHouse.get(3)[0];
                 extraDep.get(0)[1] = wareHouse.get(3)[1];
 

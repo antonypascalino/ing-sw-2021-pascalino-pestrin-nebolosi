@@ -4,13 +4,13 @@ import it.polimi.ingsw.controller.MappedResource;
 import it.polimi.ingsw.controller.MarketResource;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Table.Resource;
-import it.polimi.ingsw.view.ClientDevCard;
-import it.polimi.ingsw.view.ClientLeaderCard;
+import it.polimi.ingsw.model.card.LeaderCard;
+import it.polimi.ingsw.view.clientCards.ClientDevCard;
+import it.polimi.ingsw.view.clientCards.ClientLeaderCard;
 import it.polimi.ingsw.view.Printer;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Scanner;
 
 public class BasicData extends PlayerData {
     private String playerID;
@@ -21,22 +21,23 @@ public class BasicData extends PlayerData {
     private ArrayList<String> tableCardsID; //just the front table cards
     private int faithPoints;
     private int victoryPoints;
-    private ArrayList<String> cardsID;  //3 front cards + basic + extraProd
+    private ArrayList<String> frontCardsID;  //3 front cards + basic + extraProd
     private ArrayList<String> leadersID;
     private ArrayList<String> leadersPlayedID;
     private Resource[][] market;
     private Printer printer;
     private ArrayList<OtherPlayerData> otherPlayersData;
+    private ArrayList<String> allDevID;
 
 
-    public BasicData(String playerID, ArrayList<String> cardID, ArrayList<TurnState> turnStates, TurnState turnState, ArrayList<Resource[]> wareHouse, ArrayList<Resource> strongBox, int faithPoints, int victoryPoints, ArrayList<String> cardsID, ArrayList<String> leadersID, Resource[][] market, ArrayList<String> tableCardsID) {
+    public BasicData(String playerID, ArrayList<TurnState> turnStates, TurnState turnState, ArrayList<Resource[]> wareHouse, ArrayList<Resource> strongBox, int faithPoints, int victoryPoints, ArrayList<String> frontCardsID, ArrayList<String> leadersID, Resource[][] market, ArrayList<String> tableCardsID) {
         this.turnStates = turnStates;
         this.turnState = turnState;
         this.wareHouse = wareHouse;
         this.strongBox = strongBox;
         this.faithPoints = faithPoints;
         this.victoryPoints = victoryPoints;
-        this.cardsID = cardsID;
+        this.frontCardsID = frontCardsID;
         this.leadersID = leadersID;
         this.market = market;
         this.tableCardsID = tableCardsID;
@@ -83,7 +84,7 @@ public class BasicData extends PlayerData {
 
     public ArrayList<String> slotCardsFilter(ArrayList<MappedResource> mapped){
         ArrayList<String> cloned = new ArrayList<String>();
-        cloned.addAll(cardsID);
+        cloned.addAll(frontCardsID);
         ArrayList<Resource> allRes = new ArrayList<Resource>();
         for(MappedResource m : mapped){
             allRes.add(m.getResource());
@@ -238,12 +239,12 @@ public class BasicData extends PlayerData {
 
     public Integer handleSlots(String devID){
         ArrayList<Integer> slots = new ArrayList<Integer>();
-        for(int i = 0; i < cardsID.size(); i++){
-            if(getCardFromID(cardsID.get(i)).getLevel() < getCardFromID(devID).getLevel()){
+        for(int i = 0; i < frontCardsID.size(); i++){
+            if(getCardFromID(frontCardsID.get(i)).getLevel() < getCardFromID(devID).getLevel()){
                 slots.add(i);
             }
-            if(cardsID.size() < 3){
-                for(int j = i; j < 3 - cardsID.size(); j++){
+            if(frontCardsID.size() < 3){
+                for(int j = i; j < 3 - frontCardsID.size(); j++){
                     slots.add(j);
                 }
             }
@@ -286,19 +287,10 @@ public class BasicData extends PlayerData {
 
     public ArrayList<String> leaderCardsFilter() {
         ArrayList<String> tmp = new ArrayList<String>();
-        ArrayList<MappedResource> mapped = new ArrayList<MappedResource>();
-        ArrayList<Resource> allRes = new ArrayList<Resource>();
-
-        mapped.addAll(allResources());
-
-        for (MappedResource m : mapped) {
-            allRes.add(m.getResource());
-        }
-
-        for (String id : leadersID) {
-            ClientLeaderCard leader = getLeaderFromID(id);
-            if (allRes.contains(leader.getPrice())) {
-                tmp.add(id);
+        for (String c : leadersID)
+        {
+            if(getLeaderFromID(c).canBePlayed(this)) {
+                tmp.add(c);
             }
         }
         return tmp;
@@ -328,8 +320,8 @@ public class BasicData extends PlayerData {
         this.victoryPoints = victoryPoints;
     }
 
-    public void setCardsID(ArrayList<String> cardsID) {
-        this.cardsID = cardsID;
+    public void setFrontCardsID(ArrayList<String> frontCardsID) {
+        this.frontCardsID = frontCardsID;
     }
 
     public void setLeadersID(ArrayList<String> leadersID) {
@@ -378,8 +370,8 @@ public class BasicData extends PlayerData {
         return victoryPoints;
     }
 
-    public ArrayList<String> getCardsID() {
-        return cardsID;
+    public ArrayList<String> getFrontCardsID() {
+        return frontCardsID;
     }
 
     public ArrayList<String> getLeadersID() {
@@ -388,5 +380,13 @@ public class BasicData extends PlayerData {
 
     public ArrayList<String> getLeadersPlayedID() {
         return leadersPlayedID;
+    }
+
+    public ArrayList<String> getAllDevID() {
+        return allDevID;
+    }
+
+    public Printer getPrinter() {
+        return printer;
     }
 }

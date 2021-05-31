@@ -2,7 +2,6 @@ package it.polimi.ingsw.model.Updates;
 
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Table.Resource;
-import it.polimi.ingsw.view.Updater;
 import it.polimi.ingsw.view.data.OtherPlayerData;
 import it.polimi.ingsw.view.data.PlayerData;
 
@@ -39,7 +38,7 @@ public class BuyDevUpdate implements Update {
             data.setTurnStates(turnStates);
             data.setWareHouse(wareHouse);
             data.setStrongBox(strongBox);
-            data.setCardsID(cardsID);
+            data.setFrontCardsID(cardsID);
         }
         else {
             for (OtherPlayerData p : data.getOtherPlayers()) {

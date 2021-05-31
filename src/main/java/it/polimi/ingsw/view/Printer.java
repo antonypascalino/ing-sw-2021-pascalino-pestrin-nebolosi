@@ -172,7 +172,7 @@ public class Printer {
         System.out.println("Front cards:\n" + data.getFrontTableCardsID());
         System.out.println("Warehouse:\n" + data.getDeposits());
         System.out.println("Strongbox:\n" + data.getStrongBox());
-        System.out.println("Slots:\n" + data.getCardsID());
+        System.out.println("Slots:\n" + data.getFrontCardsID());
         System.out.println("Faith Points: " + data.getFaithPoints());
         System.out.println("Victory Points: " + data.getVictoryPoints());
         for(String s: data.getLeadersID()){

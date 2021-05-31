@@ -1,7 +1,7 @@
 package it.polimi.ingsw.view.data;
 
 import it.polimi.ingsw.model.Table.Resource;
-import it.polimi.ingsw.view.ClientLeaderCard;
+import it.polimi.ingsw.view.clientCards.ClientLeaderCard;
 
 import java.util.ArrayList;
 
