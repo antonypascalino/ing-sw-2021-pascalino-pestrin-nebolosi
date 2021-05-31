@@ -71,7 +71,7 @@ public class BuyDevRequest implements Request {
     }
 
     public Update createUpdate(Player player, Game game) {
-        return new BuyDevUpdate(game.getTurnStates(), player.getDeposits(), player.getBoard().getStrongBox().getResources(), game.getTable().getFrontIDs(), player.getVictoryPoints(), player.getProductionID());
+        return new BuyDevUpdate(player.getNickName(), game.getTurnStates(), player.getDeposits(), player.getBoard().getStrongBox().getResources(), game.getTable().getFrontIDs(), player.getVictoryPoints(), player.getProductionID());
     }
 
 }

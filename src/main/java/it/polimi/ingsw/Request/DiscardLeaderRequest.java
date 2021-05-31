@@ -13,6 +13,7 @@ public class DiscardLeaderRequest implements Request{
 
     private final String className;
     private String cardID;
+    private String playerID;
 
     public DiscardLeaderRequest(String cardID) {
         className = this.getClass().getName();
@@ -50,6 +51,6 @@ public class DiscardLeaderRequest implements Request{
             playersVP.add(new PlayerVP(p.getNickName(), p.getVictoryPoints()));
         }
 
-        return new DiscardLeaderUpdate(game.getTurnStates(), player.getBoard().getFaithPath().getAdvancement(), player.getLeadersID(), playersVP);
+        return new DiscardLeaderUpdate(player.getNickName(), game.getTurnStates(), player.getBoard().getFaithPath().getAdvancement(), player.getLeadersID(), playersVP);
     }
 }

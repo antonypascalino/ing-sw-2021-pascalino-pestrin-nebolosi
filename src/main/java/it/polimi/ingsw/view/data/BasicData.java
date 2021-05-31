@@ -26,6 +26,7 @@ public class BasicData extends PlayerData {
     private ArrayList<String> leadersPlayedID;
     private Resource[][] market;
     private Printer printer;
+    private ArrayList<OtherPlayerData> otherPlayersData;
 
 
     public BasicData(String playerID, ArrayList<String> cardID, ArrayList<TurnState> turnStates, TurnState turnState, ArrayList<Resource[]> wareHouse, ArrayList<Resource> strongBox, int faithPoints, int victoryPoints, ArrayList<String> cardsID, ArrayList<String> leadersID, Resource[][] market, ArrayList<String> tableCardsID) {
@@ -341,5 +342,51 @@ public class BasicData extends PlayerData {
 
     public String getPlayerID() {
         return playerID;
+    }
+
+    public void setMarket(Resource[][] market) {
+        this.market = market;
+    }
+
+    public void setFrontTableCardsID(ArrayList<String> frontTableCardsID) {
+        this.tableCardsID = frontTableCardsID;
+    }
+
+    public void checkOtherStats() {
+        for(OtherPlayerData p : otherPlayersData){
+            printer.printOtherStats(p);
+        }
+    }
+
+    public ArrayList<OtherPlayerData> getOtherPlayers(){
+        return otherPlayersData;
+    }
+
+    public ArrayList<Resource> getStrongBox() {
+        return strongBox;
+    }
+
+    public ArrayList<String> getTableCardsID() {
+        return tableCardsID;
+    }
+
+    public int getFaithPoints() {
+        return faithPoints;
+    }
+
+    public int getVictoryPoints() {
+        return victoryPoints;
+    }
+
+    public ArrayList<String> getCardsID() {
+        return cardsID;
+    }
+
+    public ArrayList<String> getLeadersID() {
+        return leadersID;
+    }
+
+    public ArrayList<String> getLeadersPlayedID() {
+        return leadersPlayedID;
     }
 }

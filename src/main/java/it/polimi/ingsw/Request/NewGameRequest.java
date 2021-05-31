@@ -3,6 +3,7 @@ package it.polimi.ingsw.Request;
 import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Player.Player;
+import it.polimi.ingsw.model.Updates.Update;
 
 import java.util.ArrayList;
 
@@ -32,6 +33,11 @@ public class NewGameRequest implements Request{
     @Override
     public boolean canBePlayed(Player player) {
         return false;
+    }
+
+    @Override
+    public Update createUpdate(Player player, Game game) {
+        return null;
     }
 
     @Override

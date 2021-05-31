@@ -13,6 +13,7 @@ import java.util.ArrayList;
 public class MoveRequest implements Request {
     private ArrayList<ToMoveResource> toMoveResources;
     private final String className = this.getClass().getName();
+    private String playerID;
 
     @Override
     public String getClassName() {
@@ -51,6 +52,6 @@ public class MoveRequest implements Request {
 
     @Override
     public Update createUpdate(Player player, Game game) {
-        return new MoveUpdate(game.getTurnStates(), player.getDeposits());
+        return new MoveUpdate(player.getNickName(), game.getTurnStates(), player.getDeposits());
     }
 }

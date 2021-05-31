@@ -24,6 +24,7 @@ public class ProduceRequest implements Request {
     private int playerSteps;
     private int playerChoices;
     private final String className = this.getClass().getName();
+    private String playerID;
 
     @Override
     public boolean canBePlayed(Player player) {
@@ -116,6 +117,6 @@ public class ProduceRequest implements Request {
             playersVP.add(new PlayerVP(p.getNickName(), p.getVictoryPoints()));
         }
 
-        return new ProduceUpdate(game.getTurnStates(), player.getDeposits(), player.getBoard().getStrongBox().getResources(), player.getBoard().getFaithPath().getAdvancement(), playersVP);
+        return new ProduceUpdate(player.getNickName(), game.getTurnStates(), player.getDeposits(), player.getBoard().getStrongBox().getResources(), player.getBoard().getFaithPath().getAdvancement(), playersVP);
     }
 }

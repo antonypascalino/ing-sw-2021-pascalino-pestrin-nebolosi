@@ -132,6 +132,6 @@ public class MarketRequest implements Request {
             playersFP.add(new PlayerFP(p.getNickName(), p.getBoard().getFaithPath().getAdvancement()));
         }
 
-        return new MarketUpdate(game.getTurnStates(), player.getDeposits(), playersVP, playersFP, game.getTable().market.getMarket());
+        return new MarketUpdate(player.getNickName(), game.getTurnStates(), player.getDeposits(), playersVP, playersFP, game.getTable().market.getMarket());
     }
 }

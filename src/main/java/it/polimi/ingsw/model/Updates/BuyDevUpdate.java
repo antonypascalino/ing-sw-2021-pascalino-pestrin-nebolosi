@@ -1,15 +1,17 @@
 package it.polimi.ingsw.model.Updates;
 
-import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Table.Resource;
-import it.polimi.ingsw.view.GameHub;
+import it.polimi.ingsw.view.Updater;
+import it.polimi.ingsw.view.data.OtherPlayerData;
+import it.polimi.ingsw.view.data.PlayerData;
 
 import java.util.ArrayList;
 
 public class BuyDevUpdate implements Update {
 
     private ArrayList<TurnState> turnStates;
+    private String playerID;
     private ArrayList<Resource[]> wareHouse;
     private ArrayList<Resource[]> extraDep;
     private ArrayList<Resource> strongBox;
@@ -17,26 +19,44 @@ public class BuyDevUpdate implements Update {
     private int victoryPoints;
     private ArrayList<String> cardsID;  //3 front cards + basic + extraProd
 
-    public BuyDevUpdate(ArrayList<TurnState> turnStates, ArrayList<Resource[]> wareHouse, ArrayList<Resource> strongBox, ArrayList<String> tableCardsID, int victoryPoints, ArrayList<String> cardsID) {
+    public BuyDevUpdate(String playerID, ArrayList<TurnState> turnStates, ArrayList<Resource[]> wareHouse, ArrayList<Resource> strongBox, ArrayList<String> tableCardsID, int victoryPoints, ArrayList<String> cardsID) {
         this.turnStates = turnStates;
         this.wareHouse = wareHouse;
         this.strongBox = strongBox;
         this.tableCardsID = tableCardsID;
         this.victoryPoints = victoryPoints;
         this.cardsID = cardsID;
+        this.playerID = playerID;
     }
 
 
 
     @Override
-    public void handleUpdate(GameHub game) {
+    public void handleUpdate(PlayerData data) {
 
-        game.getCurrData().setTurnStates(turnStates);
-        game.getCurrData().setWareHouse(wareHouse);
-        game.getCurrData().setStrongBox(strongBox);
-        game.getCurrData().setVictoryPoints(victoryPoints);
-        game.getCurrData().setCardsID(cardsID);
-        game.setFrontTableCardsID(tableCardsID);
+        data.setFrontTableCardsID(tableCardsID);
+        if(playerID.equals(data.getPlayerID())){
+            data.setTurnStates(turnStates);
+            data.setWareHouse(wareHouse);
+            data.setStrongBox(strongBox);
+            data.setCardsID(cardsID);
+        }
+        else {
+            for (OtherPlayerData p : data.getOtherPlayers()) {
+                if (playerID.equals(p.getPlayerID())) {
+                    p.setStrongBox(strongBox);
+                    p.setSlotFrontCards(cardsID);
+                    p.getWareHouse().clear();
+                    for(Resource[] l : wareHouse){
+                        for(Resource r: l){
+                            p.getWareHouse().add(r);
+                        }
+                    }
+                }
+            }
+        }
+
+
 
     }
 }

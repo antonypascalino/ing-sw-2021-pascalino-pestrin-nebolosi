@@ -13,59 +13,59 @@ public abstract class PlayerData {
     //qua arrivano le cose dalla connection
     PlayerData originalData;
 
-    public ArrayList<TurnState> turnStateFilter(){
+    public ArrayList<TurnState> turnStateFilter() {
         return originalData.turnStateFilter();
     }
 
-    public ArrayList<String> slotCardsFilter(ArrayList<MappedResource> mapped){
+    public ArrayList<String> slotCardsFilter(ArrayList<MappedResource> mapped) {
         return originalData.slotCardsFilter(mapped);
     }
 
-    public ArrayList<MappedResource> createMappedRes(ArrayList<Resource> resources){
+    public ArrayList<MappedResource> createMappedRes(ArrayList<Resource> resources) {
         return originalData.createMappedRes(resources);
     }
 
-    public ArrayList<MappedResource> allResources(){
+    public ArrayList<MappedResource> allResources() {
         return originalData.allResources();
     }
 
-    public ClientDevCard getCardFromID(String cardID){
+    public ClientDevCard getCardFromID(String cardID) {
         return originalData.getCardFromID(cardID);
     }
 
-    public ClientLeaderCard getLeaderFromID(String cardID){
+    public ClientLeaderCard getLeaderFromID(String cardID) {
         return originalData.getLeaderFromID(cardID);
     }
 
-    public Resource[][] getMarket(){
+    public Resource[][] getMarket() {
         return originalData.getMarket();
     }
 
-    public ArrayList<MarketResource> handleWarehouse(ArrayList<Resource> res){
+    public ArrayList<MarketResource> handleWarehouse(ArrayList<Resource> res) {
         return originalData.handleWarehouse(res);
     }
 
-    public ArrayList<String> tableCardsFilter(ArrayList<MappedResource> mapped){
+    public ArrayList<String> tableCardsFilter(ArrayList<MappedResource> mapped) {
         return originalData.tableCardsFilter(mapped);
     }
 
-    public Integer handleSlots(String devID){
+    public Integer handleSlots(String devID) {
         return originalData.handleSlots(devID);
     }
 
-    public ArrayList<Resource[]> getDeposits(){
+    public ArrayList<Resource[]> getDeposits() {
         return originalData.getDeposits();
     }
 
-    public int switchLevels(int origin){
+    public int switchLevels(int origin) {
         return originalData.switchLevels(origin);
     }
 
-    public ArrayList<String> leaderCardsFilter(){
+    public ArrayList<String> leaderCardsFilter() {
         return originalData.leaderCardsFilter();
     }
 
-    public ArrayList<String> getLeaders(){
+    public ArrayList<String> getLeaders() {
         return originalData.getLeaders();
     }
 
@@ -106,4 +106,53 @@ public abstract class PlayerData {
     public String getPlayerID() {
         return originalData.getPlayerID();
     }
+
+    public ArrayList<String> getFrontTableCardsID() {
+        return originalData.getFrontTableCardsID();
+    }
+
+    public void setMarket(Resource[][] market) {
+        originalData.setMarket(market);
+    }
+
+    public void setFrontTableCardsID(ArrayList<String> frontTableCardsID) {
+        originalData.setFrontTableCardsID(frontTableCardsID);
+    }
+
+    public void checkOtherStats() {
+        originalData.checkOtherStats();
+    }
+
+    public ArrayList<OtherPlayerData> getOtherPlayers(){
+        return originalData.getOtherPlayers();
+    }
+
+    public ArrayList<Resource> getStrongBox(){
+        return originalData.getStrongBox();
+    }
+
+    public ArrayList<String> getTableCardsID() {
+        return originalData.getTableCardsID();
+    }
+
+    public int getFaithPoints() {
+        return originalData.getFaithPoints();
+    }
+
+    public int getVictoryPoints() {
+        return originalData.getVictoryPoints();
+    }
+
+    public ArrayList<String> getCardsID() {
+        return originalData.getCardsID();
+    }
+
+    public ArrayList<String> getLeadersID() {
+        return originalData.getLeadersID();
+    }
+
+    public ArrayList<String> getLeadersPlayedID() {
+        return originalData.getLeadersPlayedID();
+    }
+
 }
