@@ -1,7 +1,7 @@
 package it.polimi.ingsw.Request;
 
 import it.polimi.ingsw.controller.Game;
-import it.polimi.ingsw.controller.MarketResource;
+import it.polimi.ingsw.Request.MarketResource;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Table.Resource;
