@@ -581,9 +581,10 @@ public class RequestTest {
         //Create the production request containing a prod request for each card
         ArrayList<MappedResource> prodResources = new ArrayList<>();
         //Create the array with the mapped resources from get
+        System.out.println("Required res for producing " );
         for (Resource restmp : tmp.getBoard().getDevFromID(interessata.getCardID()).getRequirements())
         {
-            System.out.println("Required res for producing " + restmp);
+            System.out.println(restmp);
             tmp.getBoard().getStrongBox().addResource(restmp);
             MappedResource boh = new MappedResource(restmp, "strongbox");
             prodResources.add(boh);
