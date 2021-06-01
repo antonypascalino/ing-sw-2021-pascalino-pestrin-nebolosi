@@ -1,5 +1,8 @@
 package it.polimi.ingsw.client;
 
+import com.google.gson.Gson;
+import it.polimi.ingsw.Request.Request;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
@@ -13,8 +16,10 @@ public class LineClient {
     private String message;
     private boolean avaible = false;
     Socket socket;
+    private Gson json;
 
     public LineClient(String ip, int port){
+        json = new Gson();
         this.ip = ip;
         this.port = port;
     }
@@ -44,6 +49,30 @@ public class LineClient {
                 socketOut.flush();
                 String socketLine = socketIn.nextLine();
                 return socketLine;
+        } catch(NoSuchElementException e) {
+            System.out.println("Connection closed");
+        }
+        finally {
+            stdin.close();
+            socketIn.close();
+            socketOut.close();
+        }
+        //In case there's an error
+        return "Failed";
+    }
+
+    public String sendRequest(Request input) throws IOException
+    {
+        message = json.toJson(input);
+        Scanner socketIn = new Scanner(socket.getInputStream());
+        PrintWriter socketOut = new PrintWriter(socket.getOutputStream());
+        Scanner stdin = new Scanner(System.in);
+        try{
+            String inputLine = message;
+            socketOut.println(inputLine);
+            socketOut.flush();
+            String socketLine = socketIn.nextLine();
+            return socketLine;
         } catch(NoSuchElementException e) {
             System.out.println("Connection closed");
         }

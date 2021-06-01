@@ -1,35 +1,46 @@
 package it.polimi.ingsw.view;
 
+import it.polimi.ingsw.client.LineClient;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.view.data.PlayerData;
 import it.polimi.ingsw.view.selections.*;
 
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MainMenu {
 
-    ArrayList<TurnState> turnStates = new ArrayList<TurnState>();
+    ArrayList<TurnState> turnStates;
     Scanner inputs = new Scanner(System.in);
     PlayerData data;
     String input = "";
     Printer printer;
+    LineClient connection;
 
-    public MainMenu(ArrayList<TurnState> turnStates, Scanner inputs, PlayerData data, String input) {
+    public MainMenu(LineClient thisPlayer, PlayerData data) {
+        this.printer = new Printer();
+        this.connection = thisPlayer;
         this.turnStates = new ArrayList<TurnState>();
-        this.turnStates.addAll(turnStates);
-        this.inputs = inputs;
         this.data = data;
         this.input = input;
     }
 
-    public void menuMaker(PlayerData data) {
+    public MainMenu(PlayerData data) {
+        this.printer = new Printer();
+        this.turnStates = new ArrayList<TurnState>();
+        this.data = data;
+        this.input = input;
+    }
+
+    public void menuMaker() {
         do {
             turnStates.clear();
             turnStates.addAll(data.turnStateFilter());
             selectionHandler(printer.printTurnStates(turnStates), data);
         } while (!input.equals("-1"));
+
     }
 
     private void selectionHandler(TurnState state, PlayerData data){

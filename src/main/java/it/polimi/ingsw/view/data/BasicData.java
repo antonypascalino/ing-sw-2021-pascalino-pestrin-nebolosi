@@ -3,6 +3,7 @@ package it.polimi.ingsw.view.data;
 import it.polimi.ingsw.Request.MappedResource;
 import it.polimi.ingsw.Request.MarketResource;
 import it.polimi.ingsw.controller.TurnState;
+import it.polimi.ingsw.model.Board.WareHouse;
 import it.polimi.ingsw.model.Table.Resource;
 import it.polimi.ingsw.model.card.LeaderCard;
 import it.polimi.ingsw.view.clientCards.AllGameCards;
@@ -16,7 +17,6 @@ import java.util.Arrays;
 public class BasicData extends PlayerData {
     private String playerID;
     private ArrayList<TurnState> turnStates;
-    private TurnState turnState;
     private ArrayList<Resource[]> wareHouse;
     private ArrayList<Resource> strongBox;
     private ArrayList<String> tableCardsID; //just the front table cards
@@ -32,17 +32,27 @@ public class BasicData extends PlayerData {
     private AllGameCards allGameCards;
 
 
-    public BasicData(String playerID, ArrayList<TurnState> turnStates, TurnState turnState, ArrayList<Resource[]> wareHouse, ArrayList<Resource> strongBox, int faithPoints, int victoryPoints, ArrayList<String> frontCardsID, ArrayList<String> leadersID, Resource[][] market, ArrayList<String> tableCardsID) {
-        this.turnStates = turnStates;
-        this.turnState = turnState;
-        this.wareHouse = wareHouse;
-        this.strongBox = strongBox;
-        this.faithPoints = faithPoints;
-        this.victoryPoints = victoryPoints;
-        this.frontCardsID = frontCardsID;
-        this.leadersID = leadersID;
-        this.market = market;
-        this.tableCardsID = tableCardsID;
+    public BasicData(String playerID) {
+        this.turnStates = new ArrayList<>();
+        this.wareHouse = new ArrayList<Resource[]>();
+        Resource[] tmp = new Resource[1];
+        tmp[0]=Resource.EMPTY;
+        wareHouse.add(tmp);
+        tmp = new Resource[2];
+        tmp[0] = Resource.EMPTY;
+        tmp[1] = Resource.EMPTY;
+        wareHouse.add(tmp);
+        tmp = new Resource[3];
+        tmp[0] = Resource.EMPTY;
+        tmp[1] = Resource.EMPTY;
+        tmp[2] = Resource.EMPTY;
+        wareHouse.add(tmp);
+
+        this.strongBox = new ArrayList<Resource>();
+        this.faithPoints = 0;
+        this.victoryPoints = 0;
+        this.frontCardsID = new ArrayList<String>();
+        this.leadersID = new ArrayList<String>();
         this.playerID = playerID;
     }
 

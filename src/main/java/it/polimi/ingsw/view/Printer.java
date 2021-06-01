@@ -57,7 +57,11 @@ public class Printer {
         }
 
         System.out.println("Enter selection: ");
-        selection = inputs.nextLine();
+        while(inputs == null)
+        {
+            selection = inputs.nextLine();
+        }
+
         int index = Integer.parseInt(selection);
         return turnStates.get(index -1);
     }

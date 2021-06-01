@@ -29,6 +29,7 @@ public class MultiEchoServer {
         ServerSocket serverSocket;
         try{
             serverSocket = new ServerSocket(port);
+            System.out.println(port);
         }catch (IOException e){
             System.err.println(e.getMessage()); //port not available
             return;
@@ -38,8 +39,8 @@ public class MultiEchoServer {
             try{
                 Socket socket = serverSocket.accept();
                 //Create the new game id
-                lastPlayer = newPlayer(lastPlayer);
-                executor.submit(new ClientHandler(socket,games,lastPlayer));
+                //lastPlayer = newPlayer(lastPlayer);
+                executor.submit(new ClientHandler(socket,games));
             }catch(IOException e){
                 break; //In case the serverSocket gets closed
             }

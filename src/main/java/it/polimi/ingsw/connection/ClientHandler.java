@@ -22,10 +22,9 @@ public class ClientHandler implements Runnable {
         private PrintWriter out;
         private ArrayList<Game> games;
         //Each clientHandler has a playerId so it's sure the requests comes from the right socket
-        public final String playerId;
+        public String playerId;
 
-        public ClientHandler(Socket socket, ArrayList<Game> games, String playerId) throws IOException {
-            this.playerId = playerId;
+        public ClientHandler(Socket socket, ArrayList<Game> games) throws IOException {
             this.games = games;
             this.socket = socket;
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -95,10 +94,13 @@ public class ClientHandler implements Runnable {
                             else
                                 gameId=0;
                             ArrayList<Player> tmp = new ArrayList<Player>();
+                            this.playerId = ((NewGameRequest) request).getNickname();
                             tmp.add(new BasicPlayer(((NewGameRequest) request).getNickname()));
                             Game newGame = new Game(tmp,DefaultCreator.produceDevCard(),gameId,((NewGameRequest) request).getPlayers());
                             games.add(newGame);
                             System.out.println("Player "+((NewGameRequest) request).getNickname()+ " added to the new game "+newGame.getGameId());
+                            out.println("Player "+((NewGameRequest) request).getNickname()+ " added to the new game "+newGame.getGameId());
+                            out.flush();
                         }
                         //If it hasn't alrady reached the maximum numner of players
                         //add the new player
