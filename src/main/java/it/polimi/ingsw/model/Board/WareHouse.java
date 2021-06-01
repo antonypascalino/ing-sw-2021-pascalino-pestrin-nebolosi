@@ -172,4 +172,23 @@ public class WareHouse {
            this.removeResource(resource);
            this.addResource(destLevel, resource);
     }
+
+    public ArrayList<Resource[]> getArrayListWareHouse() {
+        ArrayList<Resource[]> wareHouse = new ArrayList<Resource[]>();
+        wareHouse.add(new Resource[1]);
+        wareHouse.add(new Resource[2]);
+        wareHouse.add(new Resource[3]);
+
+        wareHouse.get(0)[0] = level1[0];
+
+        wareHouse.get(1)[0] = level2[0];
+        wareHouse.get(1)[1] = level2[1];
+
+        wareHouse.get(2)[0] = level3[0];
+        wareHouse.get(2)[1] = level3[1];
+        wareHouse.get(2)[2] = level3[2];
+
+        return (ArrayList<Resource[]>) wareHouse.clone();
+
+    }
 }

@@ -4,6 +4,8 @@ import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.controller.ToMoveResource;
 import it.polimi.ingsw.model.Player.Player;
+import it.polimi.ingsw.model.Updates.MoveUpdate;
+import it.polimi.ingsw.model.Updates.Update;
 
 import java.util.ArrayList;
 
@@ -11,6 +13,7 @@ import java.util.ArrayList;
 public class MoveRequest implements Request {
     private ArrayList<ToMoveResource> toMoveResources;
     private final String className = this.getClass().getName();
+    private String playerID;
 
     @Override
     public String getClassName() {
@@ -47,7 +50,8 @@ public class MoveRequest implements Request {
         return true; //perché le risorse si possono spostare nel WareHouse in ogni momento
     }
 
-
-
-
+    @Override
+    public Update createUpdate(Player player, Game game) {
+        return new MoveUpdate(player.getNickName(), game.getTurnStates(), player.getDeposits());
+    }
 }

@@ -168,4 +168,17 @@ public class Table {
 
         return result;
     }
+
+    public ArrayList<String> getFrontIDs() {
+        ArrayList<String> result = new ArrayList<String>();
+        for(int r=0; r<4; r++)
+        {
+            for(int c=0; c<3; c++)
+            {
+                if(stack[r][c]!=0)
+                    result.add(avaibleDev[r][c][0].getCardID());
+            }
+        }
+        return result;
+    }
 }

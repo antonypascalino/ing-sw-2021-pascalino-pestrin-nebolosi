@@ -5,6 +5,7 @@ import it.polimi.ingsw.model.ExtraDepositLevel;
 import it.polimi.ingsw.model.Table.Resource;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class ExtraDepositPlayer extends Player {
     private ExtraDeposit card;
@@ -107,6 +108,17 @@ public class ExtraDepositPlayer extends Player {
             tmp.addAll(extraLevel.getResources());
         }
         return tmp;
+    }
+
+    @Override
+    public ArrayList<Resource[]> getDeposits() {
+        ArrayList<Resource[]> deposits = original.getBoard().getWareHouse().getArrayListWareHouse();
+
+        for(ExtraDepositLevel e : extraDep) {
+            Resource[] extraLevel = e.getResources().toArray(new Resource[2]);
+            deposits.add(extraLevel);
+            }
+        return deposits;
     }
 }
 

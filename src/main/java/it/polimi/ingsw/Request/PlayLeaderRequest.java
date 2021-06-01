@@ -3,10 +3,10 @@ package it.polimi.ingsw.Request;
 import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Player.Player;
+import it.polimi.ingsw.model.Updates.Update;
 
 import java.util.ArrayList;
 
-//ABBIAMO IMPLEMENTATO SOLO NEXTTURNSTATE
 public class PlayLeaderRequest implements Request {
 
     private String cardID;
@@ -31,6 +31,11 @@ public class PlayLeaderRequest implements Request {
     @Override
     public boolean canBePlayed(Player player) {
         return player.getLeaderFromID(cardID).canBePlayed();
+    }
+
+    @Override
+    public Update createUpdate(Player player, Game game) {
+        return null;
     }
 
     @Override

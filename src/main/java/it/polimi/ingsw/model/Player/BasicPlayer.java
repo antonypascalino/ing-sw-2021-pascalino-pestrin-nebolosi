@@ -206,4 +206,18 @@ public class BasicPlayer extends Player {
     {
         return table;
     }
+
+    @Override
+    public ArrayList<String> getLeadersID() {
+        ArrayList<String> leadersID = new ArrayList<String>();
+        for (LeaderCard leader : leaderCards) {
+            leadersID.add(leader.getID());
+        }
+        return leadersID;
+    }
+
+    @Override
+    public ArrayList<Resource[]> getDeposits() {
+        return board.getWareHouse().getArrayListWareHouse();
+    }
 }

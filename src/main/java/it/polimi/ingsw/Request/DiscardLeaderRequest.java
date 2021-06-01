@@ -3,6 +3,9 @@ package it.polimi.ingsw.Request;
 import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Player.Player;
+import it.polimi.ingsw.model.Updates.DiscardLeaderUpdate;
+import it.polimi.ingsw.model.Updates.PlayerVP;
+import it.polimi.ingsw.model.Updates.Update;
 
 import java.util.ArrayList;
 
@@ -10,6 +13,7 @@ public class DiscardLeaderRequest implements Request{
 
     private final String className;
     private String cardID;
+    private String playerID;
 
     public DiscardLeaderRequest(String cardID) {
         className = this.getClass().getName();
@@ -40,4 +44,13 @@ public class DiscardLeaderRequest implements Request{
         return className;
     }
 
+    @Override
+    public Update createUpdate(Player player, Game game) {
+        ArrayList<PlayerVP> playersVP = new ArrayList<PlayerVP>();
+        for (Player p : game.getPlayers()) {
+            playersVP.add(new PlayerVP(p.getNickName(), p.getVictoryPoints()));
+        }
+
+        return new DiscardLeaderUpdate(player.getNickName(), game.getTurnStates(), player.getBoard().getFaithPath().getAdvancement(), player.getLeadersID(), playersVP);
+    }
 }

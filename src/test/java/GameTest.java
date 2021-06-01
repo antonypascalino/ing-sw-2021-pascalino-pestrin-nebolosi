@@ -8,6 +8,7 @@
     import it.polimi.ingsw.model.card.DevCard;
     import it.polimi.ingsw.model.Player.BasicPlayer;
     import it.polimi.ingsw.model.Player.Player;
+    import it.polimi.ingsw.model.Table.Table;
     import org.junit.Test;
 
     import java.net.Socket;
