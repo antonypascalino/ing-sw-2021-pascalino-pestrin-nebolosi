@@ -1,7 +1,7 @@
 package it.polimi.ingsw.view.selections;
 
-import it.polimi.ingsw.controller.MappedResource;
-import it.polimi.ingsw.controller.Production;
+import it.polimi.ingsw.Request.MappedResource;
+import it.polimi.ingsw.Request.Production;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Table.Resource;
 import it.polimi.ingsw.view.data.PlayerData;
@@ -56,7 +56,7 @@ public class ProductionSelection extends Selection {
 
             allRes.removeAll(mappedRes);
             cards.remove(cardID);
-            Production p = new Production();
+            Production p = new Production(mappedRes,cardID);
             mappedProduction.add(p);
             if(cards.size() == 0){
                 break;
@@ -66,6 +66,7 @@ public class ProductionSelection extends Selection {
 
     @Override
     public void sendToConnection() {
+
 
     }
 

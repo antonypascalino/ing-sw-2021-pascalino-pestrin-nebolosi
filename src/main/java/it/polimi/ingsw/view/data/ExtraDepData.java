@@ -1,7 +1,7 @@
 package it.polimi.ingsw.view.data;
 
-import it.polimi.ingsw.controller.MappedResource;
-import it.polimi.ingsw.controller.MarketResource;
+import it.polimi.ingsw.Request.MappedResource;
+import it.polimi.ingsw.Request.MarketResource;
 import it.polimi.ingsw.model.Table.Resource;
 
 

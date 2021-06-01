@@ -1,7 +1,7 @@
 package it.polimi.ingsw.view.selections;
 
-import it.polimi.ingsw.controller.MappedResource;
-import it.polimi.ingsw.controller.Production;
+import it.polimi.ingsw.Request.MappedResource;
+import it.polimi.ingsw.Request.Production;
 import it.polimi.ingsw.view.Printer;
 import it.polimi.ingsw.view.data.PlayerData;
 

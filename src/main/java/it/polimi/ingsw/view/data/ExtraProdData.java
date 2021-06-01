@@ -1,6 +1,6 @@
 package it.polimi.ingsw.view.data;
 
-import it.polimi.ingsw.controller.MappedResource;
+import it.polimi.ingsw.Request.MappedResource;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Table.Resource;
 import it.polimi.ingsw.view.clientCards.ClientDevCard;
