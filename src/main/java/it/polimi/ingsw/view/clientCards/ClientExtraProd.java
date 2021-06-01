@@ -11,8 +11,8 @@ public class ClientExtraProd extends ClientLeaderCard {
     private Resource prodRequired;
 
 
-    public ClientExtraProd(String leaderID, Colors color, Resource prodRequired) {
-        super(leaderID, "Extra Production");
+    public ClientExtraProd(int victoryPoints, Colors color, Resource prodRequired, String leaderID) {
+        super(leaderID, "Extra Production", victoryPoints);
         this.prodRequired = prodRequired;
         this.color = color;
     }
@@ -28,5 +28,13 @@ public class ClientExtraProd extends ClientLeaderCard {
             if (card.getLevel() == 2 && card.getColor().equals(color)) return true;
         }
         return false;
+    }
+
+    public Colors getColor() {
+        return color;
+    }
+
+    public Resource getProdRequired() {
+        return prodRequired;
     }
 }

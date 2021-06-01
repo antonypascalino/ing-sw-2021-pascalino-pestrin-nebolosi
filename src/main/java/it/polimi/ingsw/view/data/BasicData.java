@@ -5,6 +5,7 @@ import it.polimi.ingsw.controller.MarketResource;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Table.Resource;
 import it.polimi.ingsw.model.card.LeaderCard;
+import it.polimi.ingsw.view.clientCards.AllGameCards;
 import it.polimi.ingsw.view.clientCards.ClientDevCard;
 import it.polimi.ingsw.view.clientCards.ClientLeaderCard;
 import it.polimi.ingsw.view.Printer;
@@ -28,6 +29,7 @@ public class BasicData extends PlayerData {
     private Printer printer;
     private ArrayList<OtherPlayerData> otherPlayersData;
     private ArrayList<String> allDevID;
+    private AllGameCards allGameCards;
 
 
     public BasicData(String playerID, ArrayList<TurnState> turnStates, TurnState turnState, ArrayList<Resource[]> wareHouse, ArrayList<Resource> strongBox, int faithPoints, int victoryPoints, ArrayList<String> frontCardsID, ArrayList<String> leadersID, Resource[][] market, ArrayList<String> tableCardsID) {
@@ -89,8 +91,8 @@ public class BasicData extends PlayerData {
         for(MappedResource m : mapped){
             allRes.add(m.getResource());
         }
-        ClientDevCard playerCard = new ClientDevCard();
-        cloned.removeIf(card -> !allRes.containsAll(playerCard.getRequired()));
+
+        cloned.removeIf(card -> !allRes.containsAll(getCardFromID(card).getRequired()));
         return cloned;
     }
 
@@ -151,13 +153,21 @@ public class BasicData extends PlayerData {
 //    }
 
     public ClientDevCard getCardFromID(String cardID){
-        ClientDevCard card = new ClientDevCard();
-        return card;
+        for(ClientDevCard c : allGameCards.getAllDevCards()){
+            if(c.getCardID().equals(cardID)){
+                return c;
+            }
+        }
+        return null;
     }
 
     public ClientLeaderCard getLeaderFromID(String cardID){
-        ClientLeaderCard leader = new ClientLeaderCard();
-        return leader;
+        for(ClientLeaderCard l : allGameCards.getAllLeaderCards()){
+            if(l.getLeaderID().equals(cardID)){
+                return l;
+            }
+        }
+        return null;
     }
 
     public Resource[][] getMarket(){
@@ -232,8 +242,7 @@ public class BasicData extends PlayerData {
         for(MappedResource m : mapped){
             allRes.add(m.getResource());
         }
-        ClientDevCard playerCard = new ClientDevCard();
-        cloned.removeIf(card -> !allRes.containsAll(playerCard.getRequired()));
+        cloned.removeIf(card -> !allRes.containsAll(getCardFromID(card).getPrice()));
         return cloned;
     }
 

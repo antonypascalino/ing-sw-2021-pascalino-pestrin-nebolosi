@@ -9,45 +9,31 @@ import it.polimi.ingsw.view.Printer;
 import java.util.ArrayList;
 
 public class ExtraProdData extends PlayerData{
-    private ArrayList<TurnState> turnStates;
-    private TurnState turnState;
-    private ArrayList<Resource[]> wareHouse;
-    private ArrayList<Resource> strongBox;
-    private ArrayList<String> tableCardsID; //just the front table cards
-    private int faithPoints;
-    private int victoryPoints;
-    private ArrayList<String> cardsID;  //3 front cards + basic + extraProd
-    private ArrayList<String> leadersID;
-    private ArrayList<String> leadersPlayedID;
-    private Resource[][] market;
-    private Printer printer;
-    private ArrayList<Resource[]> extraDep;
+    private ArrayList<String> extraProdID;
+    private ArrayList<Resource> prodRequired;
 
-    public ExtraProdData(ArrayList<String> cardID, ArrayList<TurnState> turnStates, TurnState turnState, ArrayList<Resource[]> wareHouse, ArrayList<Resource> strongBox, int faithPoints, int victoryPoints, ArrayList<String> cardsID, ArrayList<String> leadersID, Resource[][] market, ArrayList<String> tableCardsID) {
-        this.turnStates = turnStates;
-        this.turnState = turnState;
-        this.wareHouse = wareHouse;
-        this.strongBox = strongBox;
-        this.faithPoints = faithPoints;
-        this.victoryPoints = victoryPoints;
-        this.cardsID = cardsID;
-        this.leadersID = leadersID;
-        this.market = market;
-        this.tableCardsID = tableCardsID;
+    public ExtraProdData(ArrayList<String> extraProdID, ArrayList<Resource> prodRequired) {
+        this.extraProdID = extraProdID;
+        this.prodRequired = prodRequired;
     }
 
     public ArrayList<String> slotCardsFilter(ArrayList<MappedResource> mapped){
-        ArrayList<String> cloned = new ArrayList<String>();
-        cloned.addAll(cardsID);
-        cloned.addAll(leadersPlayedID); //questa è da mettere un if "prod"
+        ArrayList<String> clonedDev = new ArrayList<String>();
+        ArrayList<String> clonedLeader = new ArrayList<String>();
+
+        clonedDev.addAll(originalData.getFrontCardsID());
+        clonedLeader.addAll(extraProdID);
         ArrayList<Resource> allRes = new ArrayList<Resource>();
         for(MappedResource m : mapped){
             allRes.add(m.getResource());
         }
-        ClientDevCard playerCard = new ClientDevCard();
-        cloned.removeIf(card -> !allRes.containsAll(playerCard.getRequired()));
-        return cloned;
+
+        clonedDev.removeIf(card -> !allRes.containsAll(originalData.getCardFromID(card).getRequired()));
+        for(int i = 0; i < prodRequired.size(); i++){
+            if(allRes.contains(prodRequired.get(i))){
+                clonedDev.add(clonedLeader.get(i));
+            }
+        }
+        return clonedDev;
     }
-
-
 }

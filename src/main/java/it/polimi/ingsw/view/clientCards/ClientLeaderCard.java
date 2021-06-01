@@ -9,15 +9,17 @@ public abstract class ClientLeaderCard {
 
     private String leaderID;
     private String power;
+    protected int victoryPoints;
 //    public ArrayList<Resource> price;
 //    public Resource placeable;
 //    public int level;
 //    private Resource changeRes;
 //    public ArrayList<Resource> required;
 
-    public ClientLeaderCard(String leaderID, String power) {
+    public ClientLeaderCard(String leaderID, String power, int victoryPoints) {
         this.power = power;
         this.leaderID = leaderID;
+        this.victoryPoints = victoryPoints;
     }
 
     public String getLeaderID() {

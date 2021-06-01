@@ -2,16 +2,15 @@ package it.polimi.ingsw.view.data;
 
 import it.polimi.ingsw.controller.MappedResource;
 import it.polimi.ingsw.controller.MarketResource;
-import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Table.Resource;
-import it.polimi.ingsw.view.Printer;
+
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class ExtraDepData extends PlayerData {
 
-//    private ArrayList<TurnState> turnStates;
+    //    private ArrayList<TurnState> turnStates;
 //    private TurnState turnState;
 //    private ArrayList<Resource[]> wareHouse;
 //    private ArrayList<Resource> strongBox;
@@ -28,7 +27,7 @@ public class ExtraDepData extends PlayerData {
 
 
     public ExtraDepData(PlayerData originalData, ArrayList<Resource> placeableRes) {
-    //        this.turnStates = turnStates;
+        //        this.turnStates = turnStates;
 //        this.turnState = turnState;
 //        this.wareHouse = wareHouse;
 //        this.strongBox = strongBox;
@@ -135,7 +134,7 @@ public class ExtraDepData extends PlayerData {
 
             }
 
-            int wareHouseLevel = printer.printIntegers(tmp, false);
+            int wareHouseLevel = originalData.getPrinter().printIntegers(tmp, false);
             MarketResource mr = new MarketResource(res.get(p), wareHouseLevel);
             System.out.println("The resource " + res.get(p) + "" + "was put in level " + wareHouseLevel);
             marketRes.add(mr);
@@ -216,40 +215,30 @@ public class ExtraDepData extends PlayerData {
         return originalData.getPrinter().printIntegers(levels, false);
     }
 
-    public ArrayList<Resource[]> getDeposits () {
-            ArrayList<Resource[]> allDeposits = new ArrayList<Resource[]>();
-            allDeposits.addAll(originalData.getDeposits());
-            allDeposits.addAll(extraDep);
-            return allDeposits;
+    public ArrayList<Resource[]> getDeposits() {
+        ArrayList<Resource[]> allDeposits = new ArrayList<Resource[]>();
+        allDeposits.addAll(originalData.getDeposits());
+        allDeposits.addAll(extraDep);
+        return allDeposits;
     }
 
     @Override
     public void setWareHouse(ArrayList<Resource[]> wareHouse) {
         if (wareHouse.size() == 3) {
             originalData.setWareHouse(wareHouse);
-        }
-        else if(wareHouse.size() == 4) {
-            extraDep.get(0)[0]=wareHouse.get(3)[0];
-            extraDep.get(0)[1]=wareHouse.get(3)[1];
-        }
-        else if(wareHouse.size() == 5) {
-            if (getLeaderFromID(originalData.getLeadersPlayedID().get(0)).getPlaceable() == wareHouse.get(4)[0]) {
-                extraDep.get(0)[0] = wareHouse.get(3)[0];
-                extraDep.get(0)[1] = wareHouse.get(3)[1];
+        } else if (wareHouse.size() == 4) {
+            extraDep.get(0)[0] = wareHouse.get(3)[0];
+            extraDep.get(0)[1] = wareHouse.get(3)[1];
+        } else if (wareHouse.size() == 5) {
+            extraDep.get(0)[0] = wareHouse.get(3)[0];
+            extraDep.get(0)[1] = wareHouse.get(3)[1];
 
-                extraDep.get(1)[0] = wareHouse.get(4)[0];
-                extraDep.get(1)[1] = wareHouse.get(4)[1];
-            }
-            else
-            {
-                extraDep.get(0)[0] = wareHouse.get(4)[0];
-                extraDep.get(0)[1] = wareHouse.get(4)[1];
-
-                extraDep.get(1)[0] = wareHouse.get(3)[0];
-                extraDep.get(1)[1] = wareHouse.get(3)[1];
-            }
+            extraDep.get(1)[0] = wareHouse.get(4)[0];
+            extraDep.get(1)[1] = wareHouse.get(4)[1];
         }
     }
 }
+
+
 
 

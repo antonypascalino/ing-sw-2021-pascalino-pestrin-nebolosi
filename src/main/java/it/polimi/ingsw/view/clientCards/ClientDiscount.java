@@ -11,8 +11,8 @@ public class ClientDiscount extends ClientLeaderCard {
     private Colors color2;
     private Resource discount;
 
-    public ClientDiscount(String leaderID, Colors color1, Colors color2, Resource discount) {
-        super(leaderID, "Discount");
+    public ClientDiscount(Colors color1, Colors color2, Resource discount, int victoryPoints, String leaderID) {
+        super(leaderID, "Discount", victoryPoints);
         this.color1 = color1;
         this.color2 = color2;
         this.discount = discount;

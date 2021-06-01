@@ -1,7 +1,7 @@
 package it.polimi.ingsw.view.data;
 
 import it.polimi.ingsw.model.Table.Resource;
-import it.polimi.ingsw.view.clientCards.ClientLeaderCard;
+import it.polimi.ingsw.view.clientCards.AllGameCards;
 
 import java.util.ArrayList;
 
@@ -81,7 +81,4 @@ public class OtherPlayerData {
         return victoryPoints;
     }
 
-    public ClientLeaderCard getLeaderFromID(){
-        return new ClientLeaderCard();
-    }
 }

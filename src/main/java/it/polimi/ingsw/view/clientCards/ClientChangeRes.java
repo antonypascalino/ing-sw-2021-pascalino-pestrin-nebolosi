@@ -12,8 +12,8 @@ public class ClientChangeRes extends ClientLeaderCard {
     private Colors color2;
     private Resource change;
 
-    public ClientChangeRes(String leaderID, Colors color1, Colors color2, Resource change) {
-        super(leaderID, "Change Resource");
+    public ClientChangeRes(int victoryPoints, Colors color1, Colors color2, Resource change, String leaderID) {
+        super(leaderID, "Change Resource", victoryPoints);
         this.color1 = color1;
         this.color2 = color2;
         this.change = change;

@@ -9,10 +9,10 @@ import java.util.ArrayList;
 public class ClientExtraDep extends ClientLeaderCard {
 
     private Resource placeableRes;
-    private ArrayList<Resource> required;
+    private Resource required;
 
-    public ClientExtraDep(String leaderID, Resource placeableRes, ArrayList<Resource> required) {
-        super(leaderID, "Extra Deposit");
+    public ClientExtraDep(int victoryPoints, Resource required, Resource placeableRes, String leaderID) {
+        super(leaderID, "Extra Deposit", victoryPoints);
         this.placeableRes = placeableRes;
         this.required = required;
     }
@@ -22,7 +22,7 @@ public class ClientExtraDep extends ClientLeaderCard {
         for (MappedResource mappedRes : data.allResources()) {
             allRes.add(mappedRes.getResource());
         }
-        return allRes.containsAll(required);
+        return allRes.contains(required);
     }
 
 
