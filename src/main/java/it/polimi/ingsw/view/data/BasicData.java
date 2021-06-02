@@ -62,12 +62,12 @@ public class BasicData extends PlayerData {
 
     public ArrayList<TurnState> turnStateFilter(){
         ArrayList<TurnState> tmp = new ArrayList<TurnState>();
+        //tmp.add(TurnState.QUIT);
         tmp.add(TurnState.CHECK_STATS);
         tmp.add(TurnState.PRODUCE);
         tmp.add(TurnState.BUY_DEV_CARD);
         tmp.add(TurnState.GET_FROM_MARKET);
         tmp.add(TurnState.DISCARD_LEADER_CARD);
-        tmp.add(TurnState.QUIT);
 
         if(turnStates.contains(TurnState.BUY_DEV_CARD) || turnStates.contains(TurnState.PRODUCE) || turnStates.contains(TurnState.GET_FROM_MARKET)){
             tmp.remove(TurnState.PRODUCE);
@@ -81,21 +81,39 @@ public class BasicData extends PlayerData {
             tmp.remove(TurnState.DISCARD_LEADER_CARD);
         }
 
-        if(turnStates.contains(TurnState.PLAY_LEADER_CARD)){
+        if(turnStates.contains(TurnState.DISCARD_LEADER_CARD)){
             tmp.remove(TurnState.PLAY_LEADER_CARD);
             tmp.remove(TurnState.DISCARD_LEADER_CARD);
         }
 
-        if(wareHouse.size() > 0){
+        boolean empty = true;
+        for(int i = 0; i < wareHouse.size(); i++){
+
+            for(int k = 0; k < wareHouse.get(i).length; k++){
+                if(!wareHouse.get(i)[k].equals(Resource.EMPTY)){
+                    empty = false;
+                    break;
+                }
+            }
+        }
+        if(!empty){
             tmp.add(TurnState.MOVE_RESOURCE);
+        }
+        else{
+            if(strongBox.size() == 0){
+                tmp.remove(TurnState.PRODUCE);
+            }
+            if(strongBox.size() == 0 && frontCardsID.size() == 0){
+                tmp.remove(TurnState.PLAY_LEADER_CARD);
+            }
         }
 
         if(leadersID.size() == 0){
             tmp.remove(TurnState.DISCARD_LEADER_CARD);
+            tmp.remove(TurnState.PLAY_LEADER_CARD);
         }
 
         return tmp;
-
     }
 
     public ArrayList<String> slotCardsFilter(ArrayList<MappedResource> mapped){
