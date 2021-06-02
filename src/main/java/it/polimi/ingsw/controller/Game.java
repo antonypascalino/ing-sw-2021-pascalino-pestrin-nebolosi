@@ -1,10 +1,13 @@
 package it.polimi.ingsw.controller;
 
 import it.polimi.ingsw.Request.Request;
+import it.polimi.ingsw.model.Updates.NewGameUpdate;
+import it.polimi.ingsw.model.Updates.PlayerLC;
 import it.polimi.ingsw.model.Updates.Update;
 import it.polimi.ingsw.model.card.DevCard;
 import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Table.Table;
+import it.polimi.ingsw.model.card.LeaderCard;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -15,7 +18,7 @@ import java.util.Collections;
 public class Game {
 
     private int maxPlayer;
-    ArrayList<Player> players;
+    private ArrayList<Player> players;
     private Table table;
     private ArrayList<TurnState> turnStates;
     private Player currPlayer;
@@ -30,13 +33,15 @@ public class Game {
         this.players = players;
         Collections.shuffle(cards);
         this.table = new Table(cards);
-
         //Set the table on all the players
         for(Player player : players)
             player.setTable(table);
         this.turnStates = new ArrayList<TurnState>();
         this.currPlayer = players.get(0);
         this.currPopeSpace = 1;
+        //Chiama metodo che crea Update per inviare a tutti i giocatori la situazione iniziale del Table, del Market e assegna loro 4 LeaderCard che poi dovranno selezonare lato client
+        //Chiamata messa provvisoriamente nel costruttore
+        createNewGameUpdate();
     }
 
     public int getGameId()
@@ -93,13 +98,15 @@ public class Game {
                 }
             }
         }
+
     }
 
-    public synchronized void updatePlayers(Update upadate)
+    public synchronized void updatePlayers(Update update)
     {
         for(Player p : players)
-            p.notifyView(upadate);
+            p.notifyView(update);
     }
+
     /**
      * Calls all the player, different by the curr player, to make them moveForward on their FaithPath of a number
      * of steps equal to the discarded resources by the current player in this turn.
@@ -140,7 +147,6 @@ public class Game {
             currPopeSpace++;
             this.fpAdvancement(0,0); //Richiama se stessa per verificare se qualche giocatore abbia superato più di una popeSpace
         }
-
     }
 
 
@@ -174,5 +180,23 @@ public class Game {
 
     public ArrayList<TurnState> getTurnStates() {
         return turnStates;
+    }
+
+    private Update createNewGameUpdate() {
+        ArrayList<LeaderCard> allLeaderCards = DefaultCreator.produceLeaderCard(); //Produce tutte le Leader del gioco
+        Collections.shuffle(allLeaderCards); //Le mischia
+
+        //Crea un elenco di players e attibuisce ad ognungo di loro 4 leaderCard diverse
+        ArrayList<PlayerLC> playersLC = new ArrayList<PlayerLC>();
+        for (Player player : players) {
+            ArrayList<String> leadersToChoose = new ArrayList<String>();
+            for (int addedCard = 0; addedCard <= 4; addedCard++) {
+                leadersToChoose.add(allLeaderCards.remove(0).getID());
+                //Qui si potrebbe aggiungere anche la carta al player nel model e poi la request successiva ne rimuoverebbe 2
+                //Oppure (come ora) non aggiungerle al player nel model ma nelle request successiva aggiungere le uniche 2
+            }
+            playersLC.add(new PlayerLC(player.getNickName(), leadersToChoose));
+        }
+        return new NewGameUpdate(table.getFrontIDs(), table.market.getMarket(), playersLC);
     }
 }

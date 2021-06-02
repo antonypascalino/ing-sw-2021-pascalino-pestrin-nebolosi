@@ -99,4 +99,8 @@ public class ExtraDeposit implements LeaderCard {
     public boolean checkPlaceable(Resource res) {
         return res.equals(placeableRes);
     }
+
+    public String toString() {
+        return "Extra Deposit Leader Card:\nYou will have an Extra Deposit of 2 spaces in you Warehouse; in it you can deposit " + placeableRes + "S" + "\nTo play this card you need to have 5 " + requires + "S";
+    }
 }

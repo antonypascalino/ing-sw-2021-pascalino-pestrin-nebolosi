@@ -189,4 +189,25 @@ public class Printer {
         }
 
     }
+
+    public ArrayList<String> chooseLeaderCard(ArrayList<String> leadersToChoose, PlayerData data) {
+        ArrayList<String> chosen = new ArrayList<String>();
+        Scanner inputs = new Scanner(System.in);
+        int index = 1;
+        System.out.println("Choose 2 Leaders Cards between this 4:");
+        for(String s : leadersToChoose) {
+            System.out.println("[" + index + "]");
+            System.out.println(data.getLeaderFromID(s).toString());
+        }
+        System.out.println("What is your first choice?");
+        chosen.add(leadersToChoose.remove(inputs.nextInt() - 1));
+        index = 1;
+        for(String s : leadersToChoose) {
+            System.out.println("[" + index + "]");
+            System.out.println(data.getLeaderFromID(s).toString());
+        }
+        chosen.add(leadersToChoose.remove(inputs.nextInt() - 1));
+
+        return chosen;
+    }
 }

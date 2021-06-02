@@ -106,6 +106,9 @@ public class ExtraProd /*extends Producer*/ implements LeaderCard  {
         return cardID;
     }
 
+    public String toString() {
+        return "Extra Production Leader Card:\nYou will have an Extra Production power which you can use to produce a CHOICE resource and a FAITH point, paying a " + prodResource + "\nTo play this card you need to have a " + requires + "Development card of level 2";
+    }
 
 
 }
