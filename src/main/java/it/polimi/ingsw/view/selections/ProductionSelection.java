@@ -1,7 +1,9 @@
 package it.polimi.ingsw.view.selections;
 
 import it.polimi.ingsw.Request.MappedResource;
+import it.polimi.ingsw.Request.ProduceRequest;
 import it.polimi.ingsw.Request.Production;
+import it.polimi.ingsw.Request.Request;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Table.Resource;
 import it.polimi.ingsw.view.data.PlayerData;
@@ -62,10 +64,13 @@ public class ProductionSelection extends Selection {
                 break;
             }
         }while(printer.askQuestion());
+
+        Request produceReq = new ProduceRequest(data.getGameID(), data.getPlayerID(), mappedProduction );
+        sendToConnection(produceReq);
     }
 
     @Override
-    public void sendToConnection() {
+    public void sendToConnection(Request request) {
 
 
     }

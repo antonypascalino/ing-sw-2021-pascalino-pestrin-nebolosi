@@ -14,8 +14,9 @@ public class DiscardLeaderRequest implements Request{
     private final String className;
     private String cardID;
     private String playerID;
+    private int gameID;
 
-    public DiscardLeaderRequest(String cardID) {
+    public DiscardLeaderRequest(int gameID, String playerID, String cardID) {
         className = this.getClass().getName();
         this.cardID = cardID;
     }

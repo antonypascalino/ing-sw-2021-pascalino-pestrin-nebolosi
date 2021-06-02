@@ -2,7 +2,6 @@ package it.polimi.ingsw.Request;
 
 import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.controller.TurnState;
-import it.polimi.ingsw.controller.ToMoveResource;
 import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Updates.MoveUpdate;
 import it.polimi.ingsw.model.Updates.Update;
@@ -11,9 +10,16 @@ import java.util.ArrayList;
 
 
 public class MoveRequest implements Request {
-    private ArrayList<ToMoveResource> toMoveResources;
+    private int originLevel;
+    private int destLevel;
     private final String className = this.getClass().getName();
     private String playerID;
+    private int gameID;
+
+    public MoveRequest(String playerID, int gameID, int originLevel, int destLevel) {
+        this.playerID = playerID;
+        this.gameID = gameID;
+    }
 
     @Override
     public String getClassName() {
@@ -24,24 +30,20 @@ public class MoveRequest implements Request {
     public boolean canBePlayed(Player player) {
         //Per ogni risorsa controlla che il giocatore abbia il livello in cui vuole mettere la
         //risorsa e che essa si possa spostare in quel livello.
-        for (ToMoveResource toMoveRes : toMoveResources) {
-            if(!player.checkLevel(toMoveRes.getFinLevel())) {
-                return false;
-                //lancia eccezione: non possiedi il livello in cui ha detto di voler mettere la risorsa
-            }
-            if(!player.checkSpace(toMoveRes.getResource(), toMoveRes.getFinLevel())) {
-                //lancia eccezione: non puoi mettere questa risorsa qua
-                return false;
-            }
+        if (!player.checkLevel(destLevel)) {
+            return false;
+            //lancia eccezione: non possiedi il livello in cui ha detto di voler mettere la risorsa
         }
+//            if(!player.checkSpace(toMoveRes.getResource(), toMoveRes.getFinLevel())) {
+//                //lancia eccezione: non puoi mettere questa risorsa qua
+//                return false;
+//
         return true;
     }
 
     @Override
     public TurnState handle(Player player, Game game) {
-        for(ToMoveResource toMoveRes : toMoveResources) {
-            player.switchLevels(toMoveRes.getResource(), toMoveRes.getOgLevel(), toMoveRes.getFinLevel());
-        }
+        player.switchLevels(originLevel, destLevel);
         return TurnState.MOVE_RESOURCE;
     }
 

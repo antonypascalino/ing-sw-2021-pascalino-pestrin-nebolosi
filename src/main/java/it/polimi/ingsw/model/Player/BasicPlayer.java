@@ -158,8 +158,8 @@ public class BasicPlayer extends Player {
     }
 
     @Override
-    public void switchLevels(Resource res, int orLevel, int finLevel) {
-        board.getWareHouse().switchLevels(res, orLevel, finLevel);
+    public void switchLevels(int originLevel, int destLevel) {
+        board.getWareHouse().switchLevels(originLevel, destLevel);
     }
 
     @Override

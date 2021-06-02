@@ -1,7 +1,9 @@
 package it.polimi.ingsw.view.selections;
 
+import it.polimi.ingsw.Request.BuyDevRequest;
 import it.polimi.ingsw.Request.MappedResource;
 import it.polimi.ingsw.Request.Production;
+import it.polimi.ingsw.Request.Request;
 import it.polimi.ingsw.view.Printer;
 import it.polimi.ingsw.view.data.PlayerData;
 
@@ -22,8 +24,11 @@ public class BuyDevSelection extends Selection {
         String cardID = printer.printCardID(cards);
         mappedRes.addAll(data.createMappedRes(data.getCardFromID(cardID).getPrice()));
         int slot = data.handleSlots(cardID);
-        //qua chiama costruttore di buy dev request passandogli le info
-        //chiami un metodo che passa le request
+
+        Request buyDevReq = new BuyDevRequest(data.getGameID(), data.getPlayerID(), cardID, mappedRes, slot);
+        //CHIAMATA A METODO PER INVIARE REQUEST
+        sendToConnection(buyDevReq);
+
     }
 
 }

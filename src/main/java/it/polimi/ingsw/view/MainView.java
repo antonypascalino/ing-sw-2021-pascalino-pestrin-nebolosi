@@ -24,6 +24,7 @@ public class MainView {
         Obsverver obsverver = new Obsverver(thisPlayer);
         Request request = new NewGameRequest(nickname, 2);
         thisPlayer.startClient();
+        //Aggiungere a tutti i PlayerData il gameID
         System.out.println(thisPlayer.sendRequest(request));
         PlayerData data = new BasicData(nickname);
         MainMenu menu = new MainMenu(thisPlayer,data);

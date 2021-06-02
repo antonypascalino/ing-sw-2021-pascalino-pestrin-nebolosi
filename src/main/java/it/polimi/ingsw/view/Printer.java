@@ -1,10 +1,12 @@
 package it.polimi.ingsw.view;
 
 import it.polimi.ingsw.Request.MappedResource;
+import it.polimi.ingsw.Request.MarketDimension;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Table.Resource;
 import it.polimi.ingsw.view.data.OtherPlayerData;
 import it.polimi.ingsw.view.data.PlayerData;
+import it.polimi.ingsw.view.selections.MarketArray;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -101,7 +103,7 @@ public class Printer {
         return ints.get(index - 1);
     }
 
-    public ArrayList<Resource> printMatrix(Resource[][] matrix) {
+    public MarketArray printMatrix(Resource[][] matrix) {
         Scanner inputs = new Scanner(System.in);
         String selection = "";
         ArrayList<Resource> res = new ArrayList<Resource>();
@@ -119,6 +121,7 @@ public class Printer {
 
         selection = inputs.nextLine();
 
+
         switch (selection) {
             case ("1"):
                 System.out.println("Select your row: ");
@@ -127,17 +130,18 @@ public class Printer {
                 for (int k = 0; k < matrix[indexRow - 1].length; k++) {
                     res.add(matrix[indexRow - 1][k]);
                 }
+                return new MarketArray(res, MarketDimension.ROW, indexRow);
+
             case ("2"):
-                System.out.println("Select your row: ");
+                System.out.println("Select your column: ");
                 selection = inputs.nextLine();
                 int indexColumn = Integer.parseInt(selection);
                 for (int z = 0; z < matrix.length; z++) {
                     res.add(matrix[z][indexColumn - 1]);
                 }
+                return new MarketArray(res, MarketDimension.COL, indexColumn);
         }
-
-        return res;
-
+        return null;
     }
 
     public boolean askQuestion(){
