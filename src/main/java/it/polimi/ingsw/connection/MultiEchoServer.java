@@ -25,7 +25,7 @@ public class MultiEchoServer {
 
     public void startServer() throws IOException {
         //It creates threads when necessary, otherwise it re-uses existing one when possible
-        ExecutorService executor = Executors.newCachedThreadPool();
+        ExecutorService executor = Executors.newFixedThreadPool(4);
         ServerSocket serverSocket;
         try{
             serverSocket = new ServerSocket(port);
@@ -40,7 +40,7 @@ public class MultiEchoServer {
                 Socket socket = serverSocket.accept();
                 //Create the new game id
                 //lastPlayer = newPlayer(lastPlayer);
-                executor.submit(new ClientHandler(socket,games));
+                executor.execute(new ClientHandler(socket,games));
             }catch(IOException e){
                 break; //In case the serverSocket gets closed
             }

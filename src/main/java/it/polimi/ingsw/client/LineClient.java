@@ -18,6 +18,7 @@ public class LineClient {
     Socket socket;
     private Gson json;
     private Scanner socketIn;
+    PrintWriter socketOut;
 
     public LineClient(String ip, int port){
         json = new Gson();
@@ -28,6 +29,7 @@ public class LineClient {
         socket = new Socket(ip, port);
         System.out.println("Connection established");
         socketIn = new Scanner(socket.getInputStream());
+        socketOut = new PrintWriter(socket.getOutputStream(),true);
     }
 
 
@@ -65,8 +67,7 @@ public class LineClient {
     public String sendRequest(Request input) throws IOException
     {
         message = json.toJson(input);
-        PrintWriter socketOut = new PrintWriter(socket.getOutputStream());
-        Scanner stdin = new Scanner(System.in);
+
         try{
             String inputLine = message;
             socketOut.println(inputLine);
@@ -77,7 +78,7 @@ public class LineClient {
             System.out.println("Connection closed");
         }
         finally {
-            stdin.close();
+            //stdin.close();
             socketIn.close();
             socketOut.close();
         }

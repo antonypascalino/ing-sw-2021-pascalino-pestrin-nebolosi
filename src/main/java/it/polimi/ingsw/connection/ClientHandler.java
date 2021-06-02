@@ -30,7 +30,7 @@ public class ClientHandler implements Runnable {
             this.games = games;
             this.socket = socket;
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            out = new PrintWriter(socket.getOutputStream());
+            out = new PrintWriter(socket.getOutputStream(),true);
         }
 
         @Override
@@ -111,7 +111,8 @@ public class ClientHandler implements Runnable {
                             Player newPlayer = new BasicPlayer(((NewGameRequest) request).getNickname());
                             lastGame.addPlayer(newPlayer);
                             System.out.println("Player "+((NewGameRequest) request).getNickname()+ " added to game "+lastGame.getGameId());
-
+                            out.println("Player "+((NewGameRequest) request).getNickname()+ " added to the new game "+lastGame.getGameId());
+                            out.flush();
                         }
 
                     }
