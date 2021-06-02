@@ -22,6 +22,6 @@ public class MoveSelection extends Selection{
         int origin = printer.printIntegers(l, false);
         int destination = data.switchLevels(origin);
 
-        Request moveReq = new MoveRequest();
+        Request moveReq = new MoveRequest(data.getPlayerID(), data.getGameID(), origin, destination);
     }
 }
