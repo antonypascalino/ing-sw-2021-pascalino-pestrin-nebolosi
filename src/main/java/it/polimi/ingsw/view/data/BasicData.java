@@ -105,6 +105,8 @@ public class BasicData extends PlayerData {
             }
             if(strongBox.size() == 0 && frontCardsID.size() == 0){
                 tmp.remove(TurnState.PLAY_LEADER_CARD);
+                tmp.remove(TurnState.BUY_DEV_CARD);
+
             }
         }
 
