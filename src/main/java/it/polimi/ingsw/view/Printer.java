@@ -57,7 +57,7 @@ public class Printer {
         }
 
         System.out.println("Enter selection: ");
-        while(inputs == null)
+        while(selection.equals(""))
         {
             selection = inputs.nextLine();
         }

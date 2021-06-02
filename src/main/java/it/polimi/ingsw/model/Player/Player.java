@@ -2,6 +2,7 @@ package it.polimi.ingsw.model.Player;
 import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.model.Board.Board;
 import it.polimi.ingsw.model.Table.Resource;
+import it.polimi.ingsw.model.Updates.Update;
 import it.polimi.ingsw.model.card.DevCard;
 import it.polimi.ingsw.model.card.LeaderCard;
 import it.polimi.ingsw.model.Table.Table;
@@ -181,6 +182,11 @@ public abstract class Player {
 
     public ArrayList<Resource[]> getDeposits() {
         return original.getDeposits();
+    }
+
+    public void notifyView(Update upadate)
+    {
+        original.notifyView(upadate);
     }
 }
 

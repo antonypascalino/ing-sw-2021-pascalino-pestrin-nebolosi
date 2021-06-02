@@ -1,6 +1,8 @@
 package it.polimi.ingsw.model.Player;
 
+import it.polimi.ingsw.connection.ClientHandler;
 import it.polimi.ingsw.model.Board.Board;
+import it.polimi.ingsw.model.Updates.Update;
 import it.polimi.ingsw.model.card.DevCard;
 import it.polimi.ingsw.model.card.LeaderCard;
 import it.polimi.ingsw.model.Table.Resource;
@@ -18,12 +20,13 @@ public class BasicPlayer extends Player {
     private ArrayList<LeaderCard> leaderCards;
     private int victoryPoints;
     private Table table;
+    private ClientHandler thisPlayer;
     private Player original; //Even if this attribute is in the Player class for not rewriting all the code, it's never being used in this class
 
     /**
      * Instantiates a new Basic player.
-     *
-     *
+     * @param nickName the player nickname and id
+     * @param table the game table if it needs a new game
      */
     public BasicPlayer(String nickName, Table table) {
         this.nickName = nickName;
@@ -32,10 +35,17 @@ public class BasicPlayer extends Player {
         this.table = table;
     }
 
-    public BasicPlayer(String nickname) {
+    //Constructor used for debugging without connection
+    public BasicPlayer(String nickName)
+    {
+        this.nickName = nickName;
+        this.board = new Board(this);
+    }
+
+    public BasicPlayer(String nickname, ClientHandler thisPlayer) {
         this.nickName = nickname;
         this.board = new Board(this);
-
+        this.thisPlayer = thisPlayer;
     }
 
     public void setNickName(String nickName) {
@@ -219,5 +229,15 @@ public class BasicPlayer extends Player {
     @Override
     public ArrayList<Resource[]> getDeposits() {
         return board.getWareHouse().getArrayListWareHouse();
+    }
+
+    /**
+     * Sending an update to the view after the request is done
+     * The requests calls the game and the game calls this method on each player connected to the game
+     */
+    @Override
+    public void notifyView(Update update)
+    {
+        thisPlayer.notifyAll();
     }
 }

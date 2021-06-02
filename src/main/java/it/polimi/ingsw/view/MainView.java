@@ -16,14 +16,12 @@ public class MainView {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Insert a new nickname");
         String nickname = scanner.nextLine();
-
-
-
         System.out.println("Insert the server IP");
         String serverIP = scanner.nextLine();
         System.out.println("Insert the server port");
         int serverPort = scanner.nextInt();
         LineClient thisPlayer = new LineClient(serverIP, serverPort);
+        Obsverver obsverver = new Obsverver(thisPlayer);
         Request request = new NewGameRequest(nickname, 2);
         thisPlayer.startClient();
         System.out.println(thisPlayer.sendRequest(request));

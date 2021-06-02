@@ -17,6 +17,7 @@ public class LineClient {
     private boolean avaible = false;
     Socket socket;
     private Gson json;
+    private Scanner socketIn;
 
     public LineClient(String ip, int port){
         json = new Gson();
@@ -26,7 +27,7 @@ public class LineClient {
     public void startClient() throws IOException {
         socket = new Socket(ip, port);
         System.out.println("Connection established");
-
+        socketIn = new Scanner(socket.getInputStream());
     }
 
 
@@ -64,7 +65,6 @@ public class LineClient {
     public String sendRequest(Request input) throws IOException
     {
         message = json.toJson(input);
-        Scanner socketIn = new Scanner(socket.getInputStream());
         PrintWriter socketOut = new PrintWriter(socket.getOutputStream());
         Scanner stdin = new Scanner(System.in);
         try{
@@ -92,5 +92,14 @@ public class LineClient {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Method used for reading data from the server
+     * @return the server message if there's any, null if it's empty
+     */
+    public String readServer()
+    {
+        return socketIn.nextLine();
     }
 }

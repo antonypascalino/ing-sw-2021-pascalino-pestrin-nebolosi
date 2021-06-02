@@ -1,6 +1,7 @@
 package it.polimi.ingsw.controller;
 
 import it.polimi.ingsw.Request.Request;
+import it.polimi.ingsw.model.Updates.Update;
 import it.polimi.ingsw.model.card.DevCard;
 import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Table.Table;
@@ -94,6 +95,11 @@ public class Game {
         }
     }
 
+    public synchronized void updatePlayers(Update upadate)
+    {
+        for(Player p : players)
+            p.notifyView(upadate);
+    }
     /**
      * Calls all the player, different by the curr player, to make them moveForward on their FaithPath of a number
      * of steps equal to the discarded resources by the current player in this turn.

@@ -1,5 +1,6 @@
 package it.polimi.ingsw.connection;
 
+import com.google.gson.Gson;
 import it.polimi.ingsw.Request.JoinGameRequest;
 import it.polimi.ingsw.Request.NewGameRequest;
 import it.polimi.ingsw.Request.Request;
@@ -7,6 +8,7 @@ import it.polimi.ingsw.controller.DefaultCreator;
 import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.model.Player.BasicPlayer;
 import it.polimi.ingsw.model.Player.Player;
+import it.polimi.ingsw.model.Updates.Update;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -95,7 +97,7 @@ public class ClientHandler implements Runnable {
                                 gameId=0;
                             ArrayList<Player> tmp = new ArrayList<Player>();
                             this.playerId = ((NewGameRequest) request).getNickname();
-                            tmp.add(new BasicPlayer(((NewGameRequest) request).getNickname()));
+                            tmp.add(new BasicPlayer(((NewGameRequest) request).getNickname(),this));
                             Game newGame = new Game(tmp,DefaultCreator.produceDevCard(),gameId,((NewGameRequest) request).getPlayers());
                             games.add(newGame);
                             System.out.println("Player "+((NewGameRequest) request).getNickname()+ " added to the new game "+newGame.getGameId());
@@ -127,6 +129,12 @@ public class ClientHandler implements Runnable {
             }
         }
 
+        public void notifyView(Update update)
+        {
+            Gson json = new Gson();
+            String message = json.toJson(update);
+            out.println(message);
+        }
 }
 
 
