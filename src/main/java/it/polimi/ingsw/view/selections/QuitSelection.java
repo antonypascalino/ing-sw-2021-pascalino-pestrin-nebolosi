@@ -1,5 +1,6 @@
 package it.polimi.ingsw.view.selections;
 
+import it.polimi.ingsw.Request.Request;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.view.data.PlayerData;
 
@@ -30,7 +31,7 @@ public class QuitSelection extends Selection{
 
 
     @Override
-    public void sendToConnection() {
+    public void sendToConnection(Request request) {
 
     }
 }

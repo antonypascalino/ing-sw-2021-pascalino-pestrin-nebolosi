@@ -163,4 +163,12 @@ public abstract class PlayerData {
     public Printer getPrinter() {
         return originalData.getPrinter();
     }
+
+    public int getGameID() {
+        return originalData.getGameID();
+    }
+
+    public void setGameID(int gameID) {
+        originalData.setGameID(gameID);
+    }
 }

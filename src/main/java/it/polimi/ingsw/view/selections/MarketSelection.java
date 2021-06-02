@@ -1,6 +1,8 @@
 package it.polimi.ingsw.view.selections;
 
+import it.polimi.ingsw.Request.MarketRequest;
 import it.polimi.ingsw.Request.MarketResource;
+import it.polimi.ingsw.Request.Request;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Table.Resource;
 import it.polimi.ingsw.view.data.PlayerData;
@@ -13,14 +15,12 @@ public class MarketSelection extends Selection {
 
     @Override
     public void handleSelection(PlayerData data) {
-        ArrayList<Resource> resFromMarket = new ArrayList<Resource>();
         ArrayList<MarketResource> marketRes = new ArrayList<MarketResource>();
-        resFromMarket.addAll(printer.printMatrix(data.getMarket()));
-        marketRes.addAll(data.handleWarehouse(resFromMarket));
+
+
+        MarketArray marketArray =  printer.printMatrix(data.getMarket());
+        marketRes.addAll(data.handleWarehouse(marketArray.getResources()));
+        Request marketReq = new MarketRequest(marketRes, marketArray.getIndex(), marketArray.getDimension());
     }
 
-    @Override
-    public void sendToConnection() {
-
-    }
 }

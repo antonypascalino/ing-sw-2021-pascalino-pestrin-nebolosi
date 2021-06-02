@@ -2,6 +2,7 @@ package it.polimi.ingsw.view.selections;
 
 import it.polimi.ingsw.Request.MappedResource;
 import it.polimi.ingsw.Request.Production;
+import it.polimi.ingsw.Request.Request;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Table.Resource;
 import it.polimi.ingsw.view.data.PlayerData;
@@ -65,7 +66,7 @@ public class ProductionSelection extends Selection {
     }
 
     @Override
-    public void sendToConnection() {
+    public void sendToConnection(Request request) {
 
 
     }

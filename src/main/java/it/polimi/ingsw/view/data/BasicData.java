@@ -7,6 +7,7 @@ import it.polimi.ingsw.model.Board.WareHouse;
 import it.polimi.ingsw.model.Table.Resource;
 import it.polimi.ingsw.model.card.LeaderCard;
 import it.polimi.ingsw.view.clientCards.AllGameCards;
+import it.polimi.ingsw.view.clientCards.ClientDefaultCreator;
 import it.polimi.ingsw.view.clientCards.ClientDevCard;
 import it.polimi.ingsw.view.clientCards.ClientLeaderCard;
 import it.polimi.ingsw.view.Printer;
@@ -16,6 +17,7 @@ import java.util.Arrays;
 
 public class BasicData extends PlayerData {
     private String playerID;
+    private int gameID;
     private ArrayList<TurnState> turnStates;
     private ArrayList<Resource[]> wareHouse;
     private ArrayList<Resource> strongBox;
@@ -54,6 +56,8 @@ public class BasicData extends PlayerData {
         this.frontCardsID = new ArrayList<String>();
         this.leadersID = new ArrayList<String>();
         this.playerID = playerID;
+
+        allGameCards = new AllGameCards(ClientDefaultCreator.produceClientDevCard(), ClientDefaultCreator.produceClientLeaderCard());
     }
 
     public ArrayList<TurnState> turnStateFilter(){
@@ -407,5 +411,13 @@ public class BasicData extends PlayerData {
 
     public Printer getPrinter() {
         return printer;
+    }
+
+    public int getGameID() {
+        return gameID;
+    }
+
+    public void setGameID(int gameID) {
+        this.gameID = gameID;
     }
 }
