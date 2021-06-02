@@ -238,6 +238,6 @@ public class BasicPlayer extends Player {
     @Override
     public void notifyView(Update update)
     {
-        thisPlayer.notifyAll();
+        thisPlayer.notifyView(update);
     }
 }
