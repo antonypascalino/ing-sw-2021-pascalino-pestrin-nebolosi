@@ -1,5 +1,7 @@
 package it.polimi.ingsw.view.selections;
 
+import it.polimi.ingsw.Request.MoveRequest;
+import it.polimi.ingsw.Request.Request;
 import it.polimi.ingsw.model.Table.Resource;
 import it.polimi.ingsw.view.data.PlayerData;
 
@@ -19,5 +21,7 @@ public class MoveSelection extends Selection{
         }
         int origin = printer.printIntegers(l, false);
         int destination = data.switchLevels(origin);
+
+        Request moveReq = new MoveRequest();
     }
 }

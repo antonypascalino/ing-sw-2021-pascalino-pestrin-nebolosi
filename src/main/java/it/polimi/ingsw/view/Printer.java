@@ -121,6 +121,7 @@ public class Printer {
 
         selection = inputs.nextLine();
 
+
         switch (selection) {
             case ("1"):
                 System.out.println("Select your row: ");
@@ -129,7 +130,7 @@ public class Printer {
                 for (int k = 0; k < matrix[indexRow - 1].length; k++) {
                     res.add(matrix[indexRow - 1][k]);
                 }
-                MarketArray marketArray = new MarketArray(res, MarketDimension.ROW, indexRow);
+                return new MarketArray(res, MarketDimension.ROW, indexRow);
 
             case ("2"):
                 System.out.println("Select your column: ");
@@ -138,11 +139,9 @@ public class Printer {
                 for (int z = 0; z < matrix.length; z++) {
                     res.add(matrix[z][indexColumn - 1]);
                 }
-                MarketArray marketArray = new MarketArray(res, MarketDimension.COL, indexColumn);
+                return new MarketArray(res, MarketDimension.COL, indexColumn);
         }
-
-        return marketArray;
-
+        return null;
     }
 
     public boolean askQuestion(){

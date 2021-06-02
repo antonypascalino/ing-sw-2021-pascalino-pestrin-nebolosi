@@ -9,10 +9,14 @@ import java.util.ArrayList;
 
 public class PlayLeaderRequest implements Request {
 
+    private String playerID;
+    private int gameID;
     private String cardID;
     private final String className;
 
-    public PlayLeaderRequest(String cardID) {
+    public PlayLeaderRequest(String playerID, int gameID, String cardID) {
+        this.playerID = playerID;
+        this.gameID = gameID;
         this.className = this.getClass().getName();
         this.cardID = cardID;
     }

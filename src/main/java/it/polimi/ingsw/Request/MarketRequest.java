@@ -23,11 +23,11 @@ public class MarketRequest implements Request {
     private int myFPSteps;
     private int discardedSteps;
 
-    public MarketRequest(MarketDimension marketDimension, int lev, int gameID, String playerID, ArrayList<MarketResource> marketResources) {
+    public MarketRequest(MarketDimension marketDimension, int number, int gameID, String playerID, ArrayList<MarketResource> marketResources) {
         this.marketResources = marketResources;
         this.playerID = playerID;
         this.marketDimension = marketDimension;
-        this.number = lev;
+        this.number = number;
         this.gameID = gameID;
 
         this.className = this.getClass().getName();

@@ -168,9 +168,21 @@ public class WareHouse {
         return true;
     }
 
-    public void switchLevels(Resource resource, int originLevel, int destLevel ) {
-           this.removeResource(resource);
-           this.addResource(destLevel, resource);
+    public void switchLevels(int originLevel, int destLevel ) {
+        int counterOr = 0;
+        int counterDes = 0;
+
+        ArrayList<Resource> helper = new ArrayList<Resource>();
+        helper.addAll(Arrays.asList(levels.get(destLevel)));
+        Arrays.fill(levels.get(destLevel), Resource.EMPTY);
+        for (int j = 0; j < levels.get(originLevel).length; j++) {
+            levels.get(destLevel)[j] = levels.get(originLevel)[j];
+        }
+        Arrays.fill(levels.get(originLevel), Resource.EMPTY);
+        for (int k = 0; k < helper.size(); k++) {
+            levels.get(originLevel)[k] = helper.get(k);
+        }
+
     }
 
     public ArrayList<Resource[]> getArrayListWareHouse() {

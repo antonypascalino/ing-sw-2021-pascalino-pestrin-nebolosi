@@ -155,8 +155,8 @@ public abstract class Player {
         return original.getAllResources();
     }
 
-    public void switchLevels(Resource res, int orLevel, int finLevel) {
-        original.switchLevels(res, orLevel, finLevel);
+    public void switchLevels(int originLevel, int destLevel) {
+        original.switchLevels(originLevel, destLevel);
     }
 
     public boolean canBuy(DevCard devCard, ArrayList<Resource> allPlayerRes) {
