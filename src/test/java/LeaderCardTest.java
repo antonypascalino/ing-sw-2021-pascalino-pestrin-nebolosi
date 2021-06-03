@@ -9,7 +9,7 @@ public class LeaderCardTest {
      * Tries to wrap a BasicPlayer in a new type of player after using a leadercard
      */
     @Test
-    public void wrapping()
+    public void TestPlayExtraProd()
     {
         PlayerAndGame info = RequestTest.DoubleMarket();
         Player tmp = info.player;
