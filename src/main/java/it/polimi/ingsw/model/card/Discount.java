@@ -9,14 +9,14 @@ import it.polimi.ingsw.model.Table.Resource;
  */
 public class Discount implements LeaderCard {
 
-    private String color1;
-    private String color2;
-    private Resource discount;
-    private int victoryPoints;
+    private final String color1;
+    private final String color2;
+    private final Resource discount;
+    private final int victoryPoints;
     private boolean isEnable;
     private Player player;
     private final String className;
-    private String cardID;
+    private final String cardID;
 
     /**
      * Instantiates a new Discount.

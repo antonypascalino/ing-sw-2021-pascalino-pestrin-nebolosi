@@ -9,9 +9,9 @@ import java.util.ArrayList;
  * The type Dev card.
  */
 public class DevCard /*extends Producer*/ {
-    private String color;
-    private int level;
-    private int victoryPoint;
+    private final String color;
+    private final int level;
+    private final int victoryPoint;
     private boolean isEnable;
     private String cardID;
     /**
@@ -23,9 +23,9 @@ public class DevCard /*extends Producer*/ {
      * The Requires for production
      */
     ArrayList<Resource> requires;
-    private ArrayList<Resource> produces;
+    private final ArrayList<Resource> produces;
 
-    private ArrayList<Resource> price;
+    private final ArrayList<Resource> price;
 
 
     /**
