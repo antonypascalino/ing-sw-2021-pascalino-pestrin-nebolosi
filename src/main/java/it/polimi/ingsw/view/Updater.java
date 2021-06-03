@@ -13,7 +13,5 @@ public class Updater {
         this.playerData = playerData;
     }
 
-    public void refresh(Update update) {
-        update.handleUpdate(playerData);
-    }
+
 }

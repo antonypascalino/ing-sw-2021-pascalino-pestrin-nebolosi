@@ -25,15 +25,15 @@ public class ProductionSelection extends Selection {
 
         do{
             cards.addAll(data.slotCardsFilter(allRes));
-            String cardID = printer.printCardID(cards);
+            String cardID = data.getPrinter().printCardID(cards);
 
             if(cardID.contains("BASIC")){
 
-                MappedResource selected1 = printer.printMappedRes(allRes);
+                MappedResource selected1 = data.getPrinter().printMappedRes(allRes);
                 mappedRes.add(selected1);
                 allRes.removeAll(mappedRes);
 
-                MappedResource selected2 = printer.printMappedRes(allRes);
+                MappedResource selected2 = data.getPrinter().printMappedRes(allRes);
                 mappedRes.add(selected2);
                 allRes.removeAll(mappedRes);
             }
@@ -52,7 +52,7 @@ public class ProductionSelection extends Selection {
                 choices.add(mapped2);
                 choices.add(mapped3);
                 choices.add(mapped4);
-                MappedResource selected = printer.printMappedRes(choices);
+                MappedResource selected = data.getPrinter().printMappedRes(choices);
                 mappedRes.add(selected);
             }
 
@@ -63,7 +63,7 @@ public class ProductionSelection extends Selection {
             if(cards.size() == 0){
                 break;
             }
-        }while(printer.askQuestion());
+        }while(data.getPrinter().askQuestion());
 
         Request produceReq = new ProduceRequest(data.getGameID(), data.getPlayerID(), mappedProduction );
         sendToConnection(produceReq);

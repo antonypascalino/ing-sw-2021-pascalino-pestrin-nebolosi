@@ -10,4 +10,16 @@ public class PlayerST {
         this.choices = choices;
         this.faithPoint = faithPoint;
     }
+
+    public String getPlayerID() {
+        return playerID;
+    }
+
+    public int getChoices() {
+        return choices;
+    }
+
+    public int getFaithPoint() {
+        return faithPoint;
+    }
 }

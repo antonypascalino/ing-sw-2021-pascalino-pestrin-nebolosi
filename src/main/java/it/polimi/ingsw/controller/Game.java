@@ -158,8 +158,6 @@ public class Game {
         }
     }
 
-
-
     //Synchronyzed player because two players can't register at the same time
     public synchronized void addPlayer(Player newPlayer) {
         if(players.size() < maxPlayer)
@@ -210,7 +208,8 @@ public class Game {
         ArrayList<PlayerST> playersST = new ArrayList<>();
         switch (players.size()) {
             case (1):
-
+                PlayerST player11 = new PlayerST(players.get(0).getNickName(), 0, 0);
+                playersST.add(player11);
             case (2):
                 PlayerST player21 = new PlayerST(players.get(0).getNickName(), 0, 0);
                 PlayerST player22 = new PlayerST(players.get(1).getNickName(), 1, 0);
@@ -221,6 +220,7 @@ public class Game {
                 PlayerST player31 = new PlayerST(players.get(0).getNickName(), 0, 0);
                 PlayerST player32 = new PlayerST(players.get(1).getNickName(), 1, 0);
                 PlayerST player33 = new PlayerST(players.get(2).getNickName(), 1, 1);
+                players.get(2).addVictoryPoints(1);
                 playersST.add(player31);
                 playersST.add(player32);
                 playersST.add(player33);
@@ -230,6 +230,8 @@ public class Game {
                 PlayerST player42 = new PlayerST(players.get(1).getNickName(), 1, 0);
                 PlayerST player43 = new PlayerST(players.get(2).getNickName(), 1, 1);
                 PlayerST player44 = new PlayerST(players.get(3).getNickName(), 2, 1);
+                players.get(2).addVictoryPoints(1);
+                players.get(3).addVictoryPoints(1);
                 playersST.add(player41);
                 playersST.add(player42);
                 playersST.add(player43);

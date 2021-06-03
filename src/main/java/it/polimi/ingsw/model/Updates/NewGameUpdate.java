@@ -4,6 +4,8 @@ import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Table.Resource;
 import it.polimi.ingsw.view.data.PlayerData;
+import it.polimi.ingsw.view.selections.Selection;
+import it.polimi.ingsw.view.selections.StartGameSelection;
 
 import java.util.ArrayList;
 
@@ -23,11 +25,27 @@ public class NewGameUpdate implements Update{
 
     @Override
     public void handleUpdate(PlayerData data) {
-        PlayerLC playerLC = null;
+        data.setFrontTableCardsID(frontTableCardsID);
+        data.setMarket(market);
+
+        int dataFaithPoint = 0;
+        int dataChoices = 0;
+        ArrayList<String> leadersToChoose = new ArrayList<String>();
+
         for (PlayerLC p : playersLC) {
-            if(p.getPlayerID().equals(data.getPlayerID())) playerLC = p;
+            if (p.getPlayerID().equals(data.getPlayerID())) {
+                leadersToChoose.addAll(p.getLeadersToChoose());
+            }
         }
-        ArrayList<String> chosen = data.getPrinter().chooseLeaderCard(playerLC.getLeadersToChoose(), data);
-        data.setLeadersID(chosen);
+        for (PlayerST p : playersST) {
+            if (p.getPlayerID().equals(data.getPlayerID())) {
+                dataChoices = p.getChoices();
+                dataFaithPoint = p.getFaithPoint();
+            }
+        }
+        Selection startGameSelection = new StartGameSelection(dataChoices, dataFaithPoint, leadersToChoose);
+        startGameSelection.handleSelection(data);
     }
+
+
 }

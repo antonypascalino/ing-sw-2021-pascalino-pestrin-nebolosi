@@ -5,6 +5,7 @@ import it.polimi.ingsw.Request.MarketResource;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Board.WareHouse;
 import it.polimi.ingsw.model.Table.Resource;
+import it.polimi.ingsw.model.Updates.Update;
 import it.polimi.ingsw.model.card.LeaderCard;
 import it.polimi.ingsw.view.MainMenu;
 import it.polimi.ingsw.view.clientCards.AllGameCards;
@@ -444,5 +445,9 @@ public class BasicData extends PlayerData {
 
     public MainMenu getMenu() {
         return menu;
+    }
+
+    public void refresh(Update update) {
+        update.handleUpdate(this);
     }
 }

@@ -37,7 +37,8 @@ public class MainMenu {
 
     private void selectionHandler(TurnState state, PlayerData data){
         Selection selection;
-       switch(state){
+
+        switch(state){
            case PRODUCE:
                selection = new ProductionSelection();
                selection.handleSelection(data);

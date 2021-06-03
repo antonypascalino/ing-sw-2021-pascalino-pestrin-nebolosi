@@ -202,6 +202,7 @@ public class Printer {
         System.out.println("What is your first choice?");
         chosen.add(leadersToChoose.remove(inputs.nextInt() - 1));
         index = 1;
+        System.out.println("What is your second choice?");
         for(String s : leadersToChoose) {
             System.out.println("[" + index + "]");
             System.out.println(data.getLeaderFromID(s).toString());
@@ -209,5 +210,26 @@ public class Printer {
         chosen.add(leadersToChoose.remove(inputs.nextInt() - 1));
 
         return chosen;
+    }
+
+    public Resource chooseResource() {
+        Scanner input = new Scanner(System.in);
+        boolean validInput;
+
+        while(true) {
+            System.out.println("You can choose a Resource to add to your Warehouse, which one do you want?");
+            System.out.println("[1] GOLD");
+            System.out.println("[2] STONE");
+            System.out.println("[3] SHIELD");
+            System.out.println("[4] SERVANT");
+
+            switch (input.nextInt()) {
+                case (1): return Resource.GOLD;
+                case (2): return Resource.STONE;
+                case (3): return Resource.SHIELD;
+                case (4): return Resource.SERVANT;
+                default : System.out.println("Invalid input");
+            }
+        }
     }
 }
