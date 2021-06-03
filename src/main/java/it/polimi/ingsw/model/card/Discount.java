@@ -80,14 +80,14 @@ public class Discount implements LeaderCard {
             isEnable = true;
             Player tmp = new DiscountedPlayer(player, discount);
             //Add the new powered player in substitition to the actual one if the game references
-            player.getGame().changePlayer(player, tmp );
+            player.getGame().changePlayer(player, tmp);
             for (LeaderCard card : player.getLeaderCards())
             {
-                //Change the reference for every dev card unless they point directly to the board
-
-                //For every leader card change the owner
-                card.assignTo(tmp);
+                //Do not change the reference on this card
+                if(!card.getID().equals(this.getID()))
+                    card.setPlayer(tmp);
             }
+            this.player = tmp;
         }
     }
 
