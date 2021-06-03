@@ -51,7 +51,6 @@ public class Game {
         this.currPopeSpace = 1;
         //Chiama metodo che crea Update per inviare a tutti i giocatori la situazione iniziale del Table, del Market e assegna loro 4 LeaderCard che poi dovranno selezonare lato client
         //Chiamata messa provvisoriamente nel costruttore
-        createNewGameUpdate();
     }
 
     public int getGameId()
@@ -210,11 +209,13 @@ public class Game {
             case (1):
                 PlayerST player11 = new PlayerST(players.get(0).getNickName(), 0, 0);
                 playersST.add(player11);
+                break;
             case (2):
                 PlayerST player21 = new PlayerST(players.get(0).getNickName(), 0, 0);
                 PlayerST player22 = new PlayerST(players.get(1).getNickName(), 1, 0);
                 playersST.add(player21);
                 playersST.add(player22);
+                break;
 
             case (3):
                 PlayerST player31 = new PlayerST(players.get(0).getNickName(), 0, 0);
@@ -224,6 +225,7 @@ public class Game {
                 playersST.add(player31);
                 playersST.add(player32);
                 playersST.add(player33);
+                break;
 
             case (4):
                 PlayerST player41 = new PlayerST(players.get(0).getNickName(), 0, 0);
@@ -236,6 +238,7 @@ public class Game {
                 playersST.add(player42);
                 playersST.add(player43);
                 playersST.add(player44);
+                break;
         }
         return new NewGameUpdate(table.getFrontIDs(), table.market.getMarket(), playersLC, playersST);
     }

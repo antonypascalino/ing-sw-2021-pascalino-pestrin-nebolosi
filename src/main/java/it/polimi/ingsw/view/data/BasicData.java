@@ -450,4 +450,8 @@ public class BasicData extends PlayerData {
     public void refresh(Update update) {
         update.handleUpdate(this);
     }
+
+    public ArrayList<String> getFrontTableCardsID() {
+        return frontCardsID;
+    }
 }
