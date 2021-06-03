@@ -1,6 +1,7 @@
 package it.polimi.ingsw.model.Player;
 
 import it.polimi.ingsw.connection.ClientHandler;
+import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.model.Board.Board;
 import it.polimi.ingsw.model.Updates.Update;
 import it.polimi.ingsw.model.card.DevCard;
@@ -22,6 +23,7 @@ public class BasicPlayer extends Player {
     private Table table;
     private ClientHandler thisPlayer;
     private Player original; //Even if this attribute is in the Player class for not rewriting all the code, it's never being used in this class
+    private Game game;
 
     /**
      * Instantiates a new Basic player.
@@ -56,6 +58,11 @@ public class BasicPlayer extends Player {
     public void setTable(Table tbl)
     {
         this.table = tbl;
+    }
+
+    public void setGame(Game game)
+    {
+        this.game = game;
     }
 
     public String getNickName() {
@@ -97,7 +104,6 @@ public class BasicPlayer extends Player {
 
     public void addLeaderCard(LeaderCard card) {
         leaderCards.add(card);
-        card.assignTo(this);
     }
 
     public void addVictoryPoints(int victoryPoints) {
@@ -242,4 +248,11 @@ public class BasicPlayer extends Player {
     {
         thisPlayer.notifyView(update);
     }
+
+    @Override
+    public Game getGame()
+    {
+        return game;
+    }
+
 }

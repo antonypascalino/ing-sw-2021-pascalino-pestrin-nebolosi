@@ -38,6 +38,11 @@ public class Discount implements LeaderCard {
         isEnable = false;
     }
 
+    @Override
+    public void setPlayer(Player tmp) {
+        this.player = tmp;
+    }
+
     public void assignTo(Player player) {
         this.player = player;
         player.addLeaderCard(this);

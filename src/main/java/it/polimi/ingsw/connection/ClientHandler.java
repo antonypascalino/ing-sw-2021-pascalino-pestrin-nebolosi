@@ -97,8 +97,10 @@ public class ClientHandler implements Runnable {
                                 gameId=0;
                             ArrayList<Player> tmp = new ArrayList<Player>();
                             this.playerId = ((NewGameRequest) request).getNickname();
-                            tmp.add(new BasicPlayer(((NewGameRequest) request).getNickname(),this));
+                            Player newPlayer = new BasicPlayer(((NewGameRequest) request).getNickname(),this);
+                            tmp.add(newPlayer);
                             Game newGame = new Game(tmp,DefaultCreator.produceDevCard(),gameId,((NewGameRequest) request).getPlayers());
+                            newPlayer.setGame(newGame);
                             games.add(newGame);
                             System.out.println("Player "+((NewGameRequest) request).getNickname()+ " added to the new game "+newGame.getGameId());
                             out.println("Player "+((NewGameRequest) request).getNickname()+ " added to the new game "+newGame.getGameId());
@@ -110,6 +112,7 @@ public class ClientHandler implements Runnable {
                         {
                             Player newPlayer = new BasicPlayer(((NewGameRequest) request).getNickname());
                             lastGame.addPlayer(newPlayer);
+                            newPlayer.setGame(lastGame);
                             System.out.println("Player "+((NewGameRequest) request).getNickname()+ " added to game "+lastGame.getGameId());
                             out.println("Player "+((NewGameRequest) request).getNickname()+ " added to the new game "+lastGame.getGameId());
                             out.flush();

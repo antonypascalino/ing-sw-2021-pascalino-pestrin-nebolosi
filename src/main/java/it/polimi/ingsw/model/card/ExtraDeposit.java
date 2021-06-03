@@ -96,6 +96,11 @@ public class ExtraDeposit implements LeaderCard {
         return cardID;
     }
 
+    @Override
+    public void setPlayer(Player tmp) {
+        this.player = tmp;
+    }
+
     public boolean checkPlaceable(Resource res) {
         return res.equals(placeableRes);
     }

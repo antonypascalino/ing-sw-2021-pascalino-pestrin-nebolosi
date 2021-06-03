@@ -92,35 +92,40 @@ public class RequestTest {
         //This code has been copied from the client handler class
         if(request instanceof NewGameRequest)
         {
-            //If there's no game on the server create the first one
-            Game lastGame = null;
-            if (games.size() != 0)
-                lastGame = games.get(games.size()-1);
-            //If there's no game or the last one has reached the maximum player, it doesn't check it if games.size==0
-            //Create a new game
-            if (games.size() == 0 || !(lastGame.getPlayers().size() < lastGame.getMax()))
+            if(request instanceof NewGameRequest)
             {
-                int gameId;
-                if(games.size() != 0)
-                    gameId = games.get(games.size()-1).getGameId() +1;
+                //If there's no game on the server create the first one
+                Game lastGame = null;
+                if (games.size() != 0)
+                    lastGame = games.get(games.size()-1);
+                //If there's no game or the last one has reached the maximum player, it doesn't check it if games.size==0
+                //Create a new game
+                if (games.size() == 0 || !(lastGame.getPlayers().size() < lastGame.getMax()))
+                {
+                    int gameId;
+                    if(games.size() != 0)
+                        gameId = games.get(games.size()-1).getGameId() +1;
+                    else
+                        gameId=0;
+                    ArrayList<Player> tmp = new ArrayList<Player>();
+
+                    Player newPlayer = new BasicPlayer(((NewGameRequest) request).getNickname());
+                    tmp.add(newPlayer);
+                    Game newGame = new Game(tmp,DefaultCreator.produceDevCard(),gameId,((NewGameRequest) request).getPlayers());
+                    newPlayer.setGame(newGame);
+                    games.add(newGame);
+                    System.out.println("Player "+((NewGameRequest) request).getNickname()+ " added to the new game "+newGame.getGameId());
+                }
+                //If it hasn't alrady reached the maximum numner of players
+                //add the new player
                 else
-                    gameId=0;
-                ArrayList<Player> tmp = new ArrayList<Player>();
-                tmp.add(new BasicPlayer(((NewGameRequest) request).getNickname()));
-                Game newGame = new Game(tmp, DefaultCreator.produceDevCard(),gameId,((NewGameRequest) request).getPlayers());
-                games.add(newGame);
-                System.out.println("Player "+((NewGameRequest) request).getNickname()+ " added to the new game "+newGame.getGameId());
+                {
+                    Player newPlayer = new BasicPlayer(((NewGameRequest) request).getNickname());
+                    lastGame.addPlayer(newPlayer);
+                    newPlayer.setGame(lastGame);
+                    System.out.println("Player "+((NewGameRequest) request).getNickname()+ " added to game "+lastGame.getGameId());
+                }
             }
-            //If it hasn't alrady reached the maximum numner of players
-            //add the new player
-            else
-            {
-                Player newPlayer = new BasicPlayer(((NewGameRequest) request).getNickname());
-                lastGame.addPlayer(newPlayer);
-                System.out.println("Player "+((NewGameRequest) request).getNickname()+ " added to game "+lastGame.getGameId());
-
-            }
-
         }
 
 

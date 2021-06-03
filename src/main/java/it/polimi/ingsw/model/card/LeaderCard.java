@@ -40,4 +40,5 @@ public interface LeaderCard extends Convertible {
 
     public String getID();
 
+    public void setPlayer(Player tmp);
 }

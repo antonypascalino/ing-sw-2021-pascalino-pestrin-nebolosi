@@ -14,9 +14,12 @@ public class LeaderCardTest {
         PlayerAndGame info = RequestTest.DoubleMarket();
         Player tmp = info.player;
         Game game = info.game;
+        //it gets the first card which is a n extra prod card that requires
         LeaderCard card = DefaultCreator.produceLeaderCard().get(0);
-        tmp.addLeaderCard(card);
+        card.assignTo(tmp);
+        tmp.getBoard().getSlot().placeCard(DefaultCreator.produceDevCard().get(42),0);
         System.out.println(card.getClassName() + " " +card.getID());
         card.playCard();
+        System.out.println(game.getPlayers().get(0).getClass().getName());
     }
 }
