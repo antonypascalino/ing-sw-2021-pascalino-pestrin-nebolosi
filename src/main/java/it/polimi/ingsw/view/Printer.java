@@ -4,11 +4,14 @@ import it.polimi.ingsw.Request.MappedResource;
 import it.polimi.ingsw.Request.MarketDimension;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Table.Resource;
+import it.polimi.ingsw.model.Updates.EndgameUpdate;
+import it.polimi.ingsw.model.Updates.PlayerVP;
 import it.polimi.ingsw.view.data.OtherPlayerData;
 import it.polimi.ingsw.view.data.PlayerData;
 import it.polimi.ingsw.view.selections.MarketArray;
 
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Printer {
@@ -231,5 +234,18 @@ public class Printer {
                 default : System.out.println("Invalid input");
             }
         }
+    }
+
+    public void endgame(EndgameUpdate endgameUpdate) {
+        System.out.println(endgameUpdate.getWinner().toUpperCase(Locale.ROOT) + "WON!");
+        System.out.println("Here's the points:");
+        for (PlayerVP player : endgameUpdate.getFinalPlayersVPS()) {
+            System.out.println(player.getPlayerID() + ": " + player.getVictoryPoints());
+        }
+        //chiudere connessione e tutto baci baci ciao ciao
+    }
+
+    public void printMessage(String message) {
+        System.out.println(message);
     }
 }

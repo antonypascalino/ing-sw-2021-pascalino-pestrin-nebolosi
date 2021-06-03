@@ -1,10 +1,7 @@
 package it.polimi.ingsw.controller;
 
 import it.polimi.ingsw.Request.Request;
-import it.polimi.ingsw.model.Updates.NewGameUpdate;
-import it.polimi.ingsw.model.Updates.PlayerLC;
-import it.polimi.ingsw.model.Updates.PlayerST;
-import it.polimi.ingsw.model.Updates.Update;
+import it.polimi.ingsw.model.Updates.*;
 import it.polimi.ingsw.model.card.DevCard;
 import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Table.Table;
@@ -19,11 +16,6 @@ import java.util.Collections;
 public class Game {
 
     private int maxPlayer;
-
-    public ArrayList<Player> getLastRound() {
-        return lastRound;
-    }
-
     private ArrayList<Player> players;
     private int currPlayerInt;
     private Table table;
@@ -33,7 +25,6 @@ public class Game {
     private int currPopeSpace;
     private final int gameId;
     private boolean lastTurn;
-    private ArrayList<Player> lastRound;
 
     public Game(ArrayList<Player> players, ArrayList<DevCard> cards, int gameId, int maxPlayer) {
         currPlayerInt = 0;
@@ -86,33 +77,27 @@ public class Game {
         int playerSteps = 0;
         int discardedSteps = 0;
 
-        //BISOGNA AGGIUNGERE UN METODO CHE CONTROLLI CHE IL PLAYER CHE HA INVIATO LA REQUEST SIA IL CURRENT PLAYER
-        if (/*req.validRequest(turnStates)*/true) {
-            if (req.canBePlayed(currPlayer)) {
-                turnStates.add(req.handle(currPlayer ,this));
-                if(lastTurn) {
-                    lastRound.add(currPlayer);
-                    if (lastRound.containsAll(players)) {
-                        endgame();
+        if (req.getPlayerID().equals(currPlayer.getNickName())) {
+            if (/*req.validRequest(turnStates)*/true) {
+                if (req.canBePlayed(currPlayer)) {
+                    turnStates.add(req.handle(currPlayer, this));
+                    if (lastTurn) {
+                        if (currPlayerInt == 0) {
+                            endgame();
+                        }
+                    }
+                    if ((currPlayer.getBoard().getSlot().getAllCards().size() == 7 || currPlayer.getBoard().getFaithPath().checkPopeSpace(3)) && !lastTurn) {
+                        lastTurn = true;
+                    }
+                    if (turnStates.contains(TurnState.END_TURN)) {
+                        turnStates.clear();
+                        currPlayer = nextPlayer;
                     }
                 }
-                if((currPlayer.getBoard().getSlot().getAllCards().size() == 7 || currPlayer.getBoard().getFaithPath().checkPopeSpace(3)) && !lastTurn) {
-                    lastTurn = true;
-                    lastRound = new ArrayList<Player>();
-                    lastRound.add(currPlayer);
-                }
-                if (turnStates.contains(TurnState.END_TURN)) {
-                    turnStates.clear();
-                    currPlayer = nextPlayer;
-                }
             }
+        } else {
+            Update error = new ErrorUpdate("It's not your turn", req.getPlayerID());
         }
-    }
-
-    public synchronized void updatePlayers(Update update)
-    {
-        for(Player p : players)
-            p.notifyView(update);
     }
 
     /**
@@ -163,7 +148,7 @@ public class Game {
             players.add(newPlayer);
     }
 
-    private String endgame() {
+    private void endgame() {
         int winnerPoints = 0;
         String winnerNickname = null;
         for (Player player : players) {
@@ -173,7 +158,7 @@ public class Game {
                 winnerNickname = player.getNickName();
             }
         }
-        return winnerNickname;
+        new EndgameUpdate(winnerNickname);
     }
 
     public ArrayList<Player> getPlayers() {

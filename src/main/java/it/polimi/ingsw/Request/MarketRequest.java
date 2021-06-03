@@ -134,4 +134,9 @@ public class MarketRequest implements Request {
 
         return new MarketUpdate(player.getNickName(), game.getTurnStates(), player.getDeposits(), playersVP, playersFP, game.getTable().market.getMarket());
     }
+
+    @Override
+    public String getPlayerID() {
+        return playerID;
+    }
 }

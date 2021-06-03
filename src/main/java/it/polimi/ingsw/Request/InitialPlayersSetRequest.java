@@ -52,4 +52,9 @@ public class InitialPlayersSetRequest implements Request {
     public Update createUpdate(Player player, Game game) {
         return new StartGameUpdate(game.getCurrPlayer().getNickName());
     }
+
+    @Override
+    public String getPlayerID() {
+        return playerID;
+    }
 }

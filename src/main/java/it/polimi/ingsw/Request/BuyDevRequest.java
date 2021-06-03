@@ -73,4 +73,8 @@ public class BuyDevRequest implements Request {
         return new BuyDevUpdate(player.getNickName(), game.getTurnStates(), player.getDeposits(), player.getBoard().getStrongBox().getResources(), game.getTable().getFrontIDs(), player.getVictoryPoints(), player.getProductionID());
     }
 
+    @Override
+    public String getPlayerID() {
+        return playerID;
+    }
 }

@@ -56,4 +56,9 @@ public class MoveRequest implements Request {
     public Update createUpdate(Player player, Game game) {
         return new MoveUpdate(player.getNickName(), game.getTurnStates(), player.getDeposits());
     }
+
+    @Override
+    public String getPlayerID() {
+        return playerID;
+    }
 }

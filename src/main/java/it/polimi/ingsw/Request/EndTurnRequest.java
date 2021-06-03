@@ -10,6 +10,13 @@ import java.util.ArrayList;
 
 public class EndTurnRequest implements Request {
     private final String className = this.getClass().getName();
+    private String playerID;
+    private int gameID;
+
+    public EndTurnRequest(String playerID, int gameID) {
+        this.playerID = playerID;
+        this.gameID = gameID;
+    }
 
     @Override
     public TurnState handle(Player player, Game game) {
@@ -40,5 +47,10 @@ public class EndTurnRequest implements Request {
     @Override
     public Update createUpdate(Player player, Game game) {
         return new EndTurnUpdate(game.getTurnStates(), game.getCurrPlayer().getNickName());
+    }
+
+    @Override
+    public String getPlayerID() {
+        return playerID;
     }
 }
