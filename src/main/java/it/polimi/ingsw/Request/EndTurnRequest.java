@@ -10,10 +10,16 @@ import java.util.ArrayList;
 
 public class EndTurnRequest implements Request {
     private final String className = this.getClass().getName();
+
     @Override
     public TurnState handle(Player player, Game game) {
-     // chiama un qualcosa per far inviare i dati dal model alla view
-     return TurnState.END_TURN;
+        if (game.getCurrPlayerInt() + 1 >= game.getMax()) { //Se è già stato completato il giro, ricomincia
+            game.setCurrPlayerInt(0);
+        } else {
+            game.setCurrPlayerInt(game.getCurrPlayerInt() + 1); //Se il giro non è ancora stato completato, contiunua
+        }
+        game.setNextPlayer(game.getPlayers().get(game.getCurrPlayerInt())); //Setta il successivo currPlayer
+        return TurnState.END_TURN;
     }
 
     @Override
@@ -26,7 +32,6 @@ public class EndTurnRequest implements Request {
         return true;
     }
 
-
     @Override
     public String getClassName() {
         return className;
@@ -34,6 +39,6 @@ public class EndTurnRequest implements Request {
 
     @Override
     public Update createUpdate(Player player, Game game) {
-        return new EndTurnUpdate(game.getTurnStates());
+        return new EndTurnUpdate(game.getTurnStates(), game.getCurrPlayer().getNickName());
     }
 }

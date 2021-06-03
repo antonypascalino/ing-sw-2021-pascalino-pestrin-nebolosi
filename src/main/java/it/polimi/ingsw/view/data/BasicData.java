@@ -6,6 +6,7 @@ import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Board.WareHouse;
 import it.polimi.ingsw.model.Table.Resource;
 import it.polimi.ingsw.model.card.LeaderCard;
+import it.polimi.ingsw.view.MainMenu;
 import it.polimi.ingsw.view.clientCards.AllGameCards;
 import it.polimi.ingsw.view.clientCards.ClientDefaultCreator;
 import it.polimi.ingsw.view.clientCards.ClientDevCard;
@@ -32,7 +33,7 @@ public class BasicData extends PlayerData {
     private ArrayList<OtherPlayerData> otherPlayersData;
     private ArrayList<String> allDevID;
     private AllGameCards allGameCards;
-
+    private MainMenu menu;
 
     public BasicData(String playerID) {
         this.turnStates = new ArrayList<>();
@@ -439,5 +440,9 @@ public class BasicData extends PlayerData {
 
     public void setGameID(int gameID) {
         this.gameID = gameID;
+    }
+
+    public MainMenu getMenu() {
+        return menu;
     }
 }

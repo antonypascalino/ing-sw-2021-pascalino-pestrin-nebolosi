@@ -3,6 +3,7 @@ package it.polimi.ingsw.controller;
 import it.polimi.ingsw.Request.Request;
 import it.polimi.ingsw.model.Updates.NewGameUpdate;
 import it.polimi.ingsw.model.Updates.PlayerLC;
+import it.polimi.ingsw.model.Updates.PlayerST;
 import it.polimi.ingsw.model.Updates.Update;
 import it.polimi.ingsw.model.card.DevCard;
 import it.polimi.ingsw.model.Player.Player;
@@ -18,16 +19,25 @@ import java.util.Collections;
 public class Game {
 
     private int maxPlayer;
+
+    public ArrayList<Player> getLastRound() {
+        return lastRound;
+    }
+
     private ArrayList<Player> players;
+    private int currPlayerInt;
     private Table table;
     private ArrayList<TurnState> turnStates;
     private Player currPlayer;
+    private Player nextPlayer;
     private int currPopeSpace;
     private final int gameId;
     private boolean lastTurn;
     private ArrayList<Player> lastRound;
 
     public Game(ArrayList<Player> players, ArrayList<DevCard> cards, int gameId, int maxPlayer) {
+        currPlayerInt = 0;
+        currPlayer = players.get(currPlayerInt);
         this.maxPlayer = maxPlayer;
         this.gameId = gameId;
         this.players = players;
@@ -81,10 +91,6 @@ public class Game {
         if (/*req.validRequest(turnStates)*/true) {
             if (req.canBePlayed(currPlayer)) {
                 turnStates.add(req.handle(currPlayer ,this));
-                if (turnStates.contains(TurnState.END_TURN)) {
-                    turnStates.clear();
-                }
-
                 if(lastTurn) {
                     lastRound.add(currPlayer);
                     if (lastRound.containsAll(players)) {
@@ -96,9 +102,12 @@ public class Game {
                     lastRound = new ArrayList<Player>();
                     lastRound.add(currPlayer);
                 }
+                if (turnStates.contains(TurnState.END_TURN)) {
+                    turnStates.clear();
+                    currPlayer = nextPlayer;
+                }
             }
         }
-
     }
 
     public synchronized void updatePlayers(Update update)
@@ -197,6 +206,51 @@ public class Game {
             }
             playersLC.add(new PlayerLC(player.getNickName(), leadersToChoose));
         }
-        return new NewGameUpdate(table.getFrontIDs(), table.market.getMarket(), playersLC);
+
+        ArrayList<PlayerST> playersST = new ArrayList<>();
+        switch (players.size()) {
+            case (1):
+
+            case (2):
+                PlayerST player21 = new PlayerST(players.get(0).getNickName(), 0, 0);
+                PlayerST player22 = new PlayerST(players.get(1).getNickName(), 1, 0);
+                playersST.add(player21);
+                playersST.add(player22);
+
+            case (3):
+                PlayerST player31 = new PlayerST(players.get(0).getNickName(), 0, 0);
+                PlayerST player32 = new PlayerST(players.get(1).getNickName(), 1, 0);
+                PlayerST player33 = new PlayerST(players.get(2).getNickName(), 1, 1);
+                playersST.add(player31);
+                playersST.add(player32);
+                playersST.add(player33);
+
+            case (4):
+                PlayerST player41 = new PlayerST(players.get(0).getNickName(), 0, 0);
+                PlayerST player42 = new PlayerST(players.get(1).getNickName(), 1, 0);
+                PlayerST player43 = new PlayerST(players.get(2).getNickName(), 1, 1);
+                PlayerST player44 = new PlayerST(players.get(3).getNickName(), 2, 1);
+                playersST.add(player41);
+                playersST.add(player42);
+                playersST.add(player43);
+                playersST.add(player44);
+        }
+        return new NewGameUpdate(table.getFrontIDs(), table.market.getMarket(), playersLC, playersST);
+    }
+
+    public int getCurrPlayerInt() {
+        return currPlayerInt;
+    }
+
+    public void setCurrPlayerInt(int currPlayerInt) {
+        this.currPlayerInt = currPlayerInt;
+    }
+
+    public Player getCurrPlayer() {
+        return currPlayer;
+    }
+
+    public void setNextPlayer(Player nextPlayer) {
+        this.nextPlayer = nextPlayer;
     }
 }

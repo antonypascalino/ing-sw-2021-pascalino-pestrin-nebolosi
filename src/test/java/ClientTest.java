@@ -14,8 +14,8 @@ public class ClientTest {
     {
         Scanner scanner = new Scanner(System.in);
         PlayerData data = new BasicData("Rango");
-        MainMenu menu = new MainMenu(data);
-        menu.menuMaker();
+        //MainMenu menu = new MainMenu(data);
+        //menu.menuMaker();
 
     }
 }
