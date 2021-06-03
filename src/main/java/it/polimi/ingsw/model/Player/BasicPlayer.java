@@ -38,6 +38,7 @@ public class BasicPlayer extends Player {
     //Constructor used for debugging without connection
     public BasicPlayer(String nickName)
     {
+        leaderCards = new ArrayList<LeaderCard>();
         this.nickName = nickName;
         this.board = new Board(this);
     }
@@ -96,6 +97,7 @@ public class BasicPlayer extends Player {
 
     public void addLeaderCard(LeaderCard card) {
         leaderCards.add(card);
+        card.assignTo(this);
     }
 
     public void addVictoryPoints(int victoryPoints) {

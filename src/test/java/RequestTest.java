@@ -84,7 +84,7 @@ public class RequestTest {
     }
 
     @Test
-    public void DoubleMarket()
+    public static PlayerAndGame DoubleMarket()
     {
         //First create a new game and add a player
         ArrayList<Game> games = new ArrayList<>();
@@ -167,7 +167,7 @@ public class RequestTest {
         games.get(0).notify(test);
         System.out.println(tmp.getAllResources());
         System.out.println(games.get(0).getTable().market.toString());
-
+        return new PlayerAndGame(games.get(0),tmp);
     }
 
 
