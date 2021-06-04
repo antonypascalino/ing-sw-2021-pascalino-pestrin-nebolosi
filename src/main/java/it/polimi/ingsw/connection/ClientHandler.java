@@ -116,9 +116,19 @@ public class ClientHandler implements Runnable {
                             else {
                                 Player newPlayer = new BasicPlayer(((NewGameRequest) request).getNickname(), this);
                                 lastGame.addPlayer(newPlayer);
+
                                 newPlayer.setGame(lastGame);
-                                System.out.println("Player " + ((NewGameRequest) request).getNickname() + " added to game " + lastGame.getGameId());
-                                Update update = new LobbyUpdate(((NewGameRequest) request).getNickname(), lastGame.getPlayers().size(), ((NewGameRequest) request).getPlayers());
+                                Update update;
+                                //If the game has reached the max level of players
+                                if(lastGame.getPlayers().size() == lastGame.getMax())
+                                {
+                                    update = lastGame.createNewGameUpdate();
+                                }
+                                else
+                                {
+                                    System.out.println("Player " + ((NewGameRequest) request).getNickname() + " added to game " + lastGame.getGameId());
+                                    update = new LobbyUpdate(((NewGameRequest) request).getNickname(), lastGame.getPlayers().size(), ((NewGameRequest) request).getPlayers());
+                                }
                                 lastGame.notifyAllPlayers(update);
                             }
                         } else {

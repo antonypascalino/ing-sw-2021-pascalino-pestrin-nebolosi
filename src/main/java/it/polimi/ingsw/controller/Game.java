@@ -176,7 +176,7 @@ public class Game {
         return turnStates;
     }
 
-    private Update createNewGameUpdate() {
+    public Update createNewGameUpdate() {
         ArrayList<LeaderCard> allLeaderCards = DefaultCreator.produceLeaderCard(); //Produce tutte le Leader del gioco
         Collections.shuffle(allLeaderCards); //Le mischia
 
