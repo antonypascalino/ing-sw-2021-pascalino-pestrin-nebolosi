@@ -226,27 +226,27 @@ public class BasicData extends PlayerData {
             wareHouseRes.addAll(Arrays.asList(lv));
         }
 
-        for (int p = 0; p < res.size(); p++) {
-            if (res.get(p).equals(Resource.EMPTY)) {
-                MarketResource m = new MarketResource(res.get(p), -2);
+        for (Resource re : res) {
+            if (re.equals(Resource.EMPTY)) {
+                MarketResource m = new MarketResource(re, -2);
                 marketRes.add(m);
-                p++;
+                continue;
             }
 
-            if (res.get(p).equals(Resource.FAITH)) {
-                MarketResource m = new MarketResource(res.get(p), -1);
+            if (re.equals(Resource.FAITH)) {
+                MarketResource m = new MarketResource(re, -1);
                 marketRes.add(m);
-                p++;
+                continue;
             }
 
             for (int l = 0; l < wareHouse.size(); l++) {
-                Resource resource = res.get(p);
+                Resource resource = re;
                 //se è pieno
-                if (!Arrays.stream(wareHouse.get(l)).anyMatch( r -> r.equals(Resource.EMPTY))) {
+                if (!Arrays.stream(wareHouse.get(l)).anyMatch(r -> r.equals(Resource.EMPTY))) {
                     continue;
                 }
                 //se ha degli spazi vuoti
-                if (Arrays.stream(wareHouse.get(l)).anyMatch( r -> r.equals(Resource.EMPTY))) {
+                if (Arrays.stream(wareHouse.get(l)).anyMatch(r -> r.equals(Resource.EMPTY))) {
                     //se è vuoto
                     if (wareHouse.get(l)[0].equals(Resource.EMPTY)) {
                         boolean empty = true;
@@ -263,14 +263,15 @@ public class BasicData extends PlayerData {
                         }
                     }
                     //se ha la mia risorsa
-                    else if (wareHouse.get(l)[0] == res.get(p)) {
+                    else if (wareHouse.get(l)[0] == re) {
                         tmp.add(l);
                     }
                 }
             }
+            printer.printMessage("\nWhere do you wanna put " + re + "?");
             int wareHouseLevel = printer.printIntegers(tmp, false);
-            MarketResource mr = new MarketResource(res.get(p), wareHouseLevel);
-            System.out.println("The resource " + res.get(p) + "" + "was put in level " + wareHouseLevel);
+            MarketResource mr = new MarketResource(re, wareHouseLevel);
+            printer.printMessage("The resource " + re + " " + "was put in level " + wareHouseLevel);
             marketRes.add(mr);
         }
 

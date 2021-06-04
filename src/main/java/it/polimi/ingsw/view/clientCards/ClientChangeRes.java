@@ -38,6 +38,6 @@ public class ClientChangeRes extends ClientLeaderCard {
     }
 
     public String toString() {
-        return "Change Resource Leader Card:\nYou can change an EMPTY from market with a " + change + "\nTo play this card you need to have 2 " + color2 + " Developments card and 1 " + color1 + "Development card" ;
+        return "Change Resource Leader Card:\nYou can change an EMPTY from market with a " + change + "\nTo play this card you need to have 2 " + color2 + " Developments card and 1 " + color1 + " Development card" ;
     }
 }

@@ -37,6 +37,6 @@ public class ClientDiscount extends ClientLeaderCard {
     }
 
     public String toString() {
-        return "Discount Leader Card:\nWhen you buy a Developement Card from table you will pay one " + discount + "less" + "\nTo play this card you need to have 1 " + color2 + " Developments card and 1 " + color1 + "Development card" ;
+        return "Discount Leader Card:\nWhen you buy a Developement Card from table you will pay one " + discount + " less" + "\nTo play this card you need to have 1 " + color2 + " Developments card and 1 " + color1 + " Development card" ;
     }
 }

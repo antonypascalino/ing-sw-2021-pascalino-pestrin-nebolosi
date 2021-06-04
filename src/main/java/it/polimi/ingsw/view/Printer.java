@@ -57,6 +57,7 @@ public class Printer {
         Scanner inputs = new Scanner(System.in);
         String selection = "";
 
+        System.out.println("What do you wanna do?");
         for (int i = 0; i < turnStates.size(); i++) {
             System.out.println("[" + (i + 1) + "]" + "" + turnStates.get(i));
         }
@@ -91,12 +92,12 @@ public class Printer {
         String selection = "";
         if(slots){
             for (int i = 0; i < ints.size(); i++) {
-                System.out.println("[" + (i + 1) + "]" + "" + "slot" + "" + ints.get(i));
+                System.out.println("[" + (i + 1) + "]" + " " + "slot" + "" + ints.get(i));
             }
         }
         else{
             for (int i = 0; i < ints.size(); i++) {
-                System.out.println("[" + (i + 1) + "]" + "" + "warehouse level" + "" + ints.get(i));
+                System.out.println("[" + (i + 1) + "]" + " " + "warehouse level" + " " + ints.get(i));
             }
 
         }
@@ -118,11 +119,17 @@ public class Printer {
             }
             System.out.println("");
         }
-        System.out.println("Select if you want a row or a column: ");
-        System.out.println("[1] row");
-        System.out.println("[2] column");
+        while (true) {
+            System.out.println("Select if you want a row or a column: ");
+            System.out.println("[1] Row");
+            System.out.println("[2] Column");
 
-        selection = inputs.nextLine();
+            selection = inputs.nextLine();
+            if (!selection.equals("1") && !selection.equals("2")) {
+                System.out.println("Invalid input");
+            }
+            else break;
+        }
 
 
         switch (selection) {
@@ -133,6 +140,7 @@ public class Printer {
                 for (int k = 0; k < matrix[indexRow - 1].length; k++) {
                     res.add(matrix[indexRow - 1][k]);
                 }
+                System.out.println("You chose these resources: " + res);
                 return new MarketArray(res, MarketDimension.ROW, indexRow);
 
             case ("2"):
@@ -142,12 +150,13 @@ public class Printer {
                 for (int z = 0; z < matrix.length; z++) {
                     res.add(matrix[z][indexColumn - 1]);
                 }
+                System.out.println("You chose these resources: " + res);
                 return new MarketArray(res, MarketDimension.COL, indexColumn);
         }
         return null;
     }
 
-    public boolean askQuestion(){
+    public boolean askQuestion() {
         Scanner inputs = new Scanner(System.in);
         String selection = "";
         System.out.println("Continue?");
@@ -197,19 +206,19 @@ public class Printer {
         ArrayList<String> chosen = new ArrayList<String>();
         Scanner inputs = new Scanner(System.in);
         int index = 1;
-        System.out.println("Choose 2 Leaders Cards between this 4:");
+        System.out.println("\nChoose 2 Leaders Cards between this 4:");
         for(String s : leadersToChoose) {
-            System.out.print("[" + index + "]");
-            System.out.println(data.getLeaderFromID(s).toString());
-            index ++;
+            System.out.print("\n[" + index + "] ");
+            System.out.println(data.getLeaderFromID(s).toString() + "\n");
+            index++;
         }
         System.out.println("What is your first choice?");
         chosen.add(leadersToChoose.remove(inputs.nextInt() - 1));
         index = 1;
         System.out.println("What is your second choice?");
         for(String s : leadersToChoose) {
-            System.out.print("[" + index + "]");
-            System.out.println(data.getLeaderFromID(s).toString());
+            System.out.print("\n[" + index + "] ");
+            System.out.println(data.getLeaderFromID(s).toString() + "\n");
             index++;
         }
         chosen.add(leadersToChoose.remove(inputs.nextInt() - 1));
