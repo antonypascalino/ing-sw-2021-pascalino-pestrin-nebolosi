@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Request;
 
+import it.polimi.ingsw.controller.DefaultCreator;
 import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Player.Player;
@@ -35,10 +36,9 @@ public class InitialPlayersSetRequest implements Request {
                 for(MarketResource mRes : marketRes) {
                     player.addResource(mRes.getLevel(), mRes.getResource());
                 }
-                //AGGIUNGERE GETLEADERFROMID
-//                for (String leaderID : leadersChosen) {
-//                    curr.addLeaderCard(g);
-//                }
+                for (String cardID : leadersChosen) {
+                    curr.addLeaderCard(DefaultCreator.getLeaderFromID(cardID));
+                }
             }
         }
         return null;

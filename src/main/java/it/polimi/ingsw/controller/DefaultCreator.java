@@ -10,12 +10,19 @@ Class used if the player picks to use the default settings for leader and develo
  */
 public class DefaultCreator {
 
+
+    private static ArrayList<DevCard> allDevCards = new ArrayList<DevCard>();
+    private static ArrayList<LeaderCard> allLeadersCards = new ArrayList<LeaderCard>();
+
+
     /**
      * Static method used for generate an array List containing all the defaults
      * DevCard in the basic game settings
      * @result An arrayList with the new cards
      */
     public static ArrayList<DevCard> produceDevCard() {
+
+        if (allDevCards.size() != 0) return allDevCards;
 
         ArrayList<DevCard> result = new ArrayList<DevCard>();
         ArrayList<Resource> requires = new ArrayList<Resource>();
@@ -921,6 +928,7 @@ public class DefaultCreator {
         requires.clear();
         produces.clear();
         price.clear();
+        allDevCards = result;
         return result;
     }
 
@@ -931,6 +939,8 @@ public class DefaultCreator {
      */
     public static ArrayList<LeaderCard> produceLeaderCard()
     {
+        if (allLeadersCards.size() != 0) return allLeadersCards;
+
         ArrayList<LeaderCard> result = new ArrayList<LeaderCard>();
         //PROD01
         ExtraProd tmp = new ExtraProd(4, "Blue", Resource.SERVANT, "PROD01");
@@ -996,6 +1006,7 @@ public class DefaultCreator {
         ExtraDeposit dep4 = new ExtraDeposit(3,Resource.GOLD,Resource.STONE, "DEP04");
         result.add(dep4);
 
+        allLeadersCards = result;
         return result;
     }
 
@@ -1034,5 +1045,23 @@ public class DefaultCreator {
         for (int i = 0; i < 2; i++)
             result.add(Resource.SHIELD);
         return result;
+    }
+
+    public static DevCard getDevFromID(String cardID) {
+        for (DevCard card : allDevCards) {
+            if (card.getCardID().equals(cardID)) {
+                return card;
+            }
+        }
+        return null;
+    }
+
+    public static LeaderCard getLeaderFromID(String cardID) {
+        for (LeaderCard card : allLeadersCards) {
+            if (card.getID().equals(cardID)) {
+                return card;
+            }
+        }
+        return null;
     }
 }
