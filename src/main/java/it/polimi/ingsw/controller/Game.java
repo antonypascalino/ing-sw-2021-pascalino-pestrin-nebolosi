@@ -38,8 +38,8 @@ public class Game {
         Collections.shuffle(cards);
         this.table = new Table(cards);
         //Set the table on all the players
-        for(Player player : players)
-            player.setTable(table);
+//        for(Player player : players)
+//            player.setTable(table);
         this.turnStates = new ArrayList<TurnState>();
         this.currPlayer = players.get(0);
         this.currPopeSpace = 1;
@@ -83,7 +83,7 @@ public class Game {
         if (req.getPlayerID().equals(currPlayer.getNickName())) {
             if (/*req.validRequest(turnStates)*/true) {
                 if (req.canBePlayed(currPlayer)) {
-                    turnStates.add(req.handle(currPlayer, this));
+                    turnStates.add(req.handle(getPlayerFromID(req.getPlayerID()), this));
                     if (lastTurn) {
                         if (currPlayerInt == 0) {
                             endgame();
@@ -183,6 +183,7 @@ public class Game {
         //Crea un elenco di players e attibuisce ad ognungo di loro 4 leaderCard diverse
         ArrayList<PlayerLC> playersLC = new ArrayList<PlayerLC>();
         for (Player player : players) {
+            player.setTable(table);
             ArrayList<String> leadersToChoose = new ArrayList<String>();
             for (int addedCard = 0; addedCard < 4; addedCard++) {
                 leadersToChoose.add(allLeaderCards.remove(0).getID());
@@ -249,5 +250,14 @@ public class Game {
     }
     public void setNextPlayer(Player nextPlayer) {
         this.nextPlayer = nextPlayer;
+    }
+
+    public Player getPlayerFromID(String playerID) {
+        for (Player p : players) {
+            if (p.getNickName().equals(playerID)) {
+                return p;
+            }
+        }
+        return null;
     }
 }

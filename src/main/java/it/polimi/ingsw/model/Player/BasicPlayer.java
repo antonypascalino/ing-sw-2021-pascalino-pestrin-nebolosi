@@ -25,27 +25,24 @@ public class BasicPlayer extends Player {
     private Player original; //Even if this attribute is in the Player class for not rewriting all the code, it's never being used in this class
     private Game game;
 
-    /**
-     * Instantiates a new Basic player.
-     * @param nickName the player nickname and id
-     * @param table the game table if it needs a new game
-     */
-    public BasicPlayer(String nickName, Table table) {
-        this.nickName = nickName;
-        this.board = new Board(this);
-        this.victoryPoints = 0;
-        this.table = table;
-    }
+
+//    public BasicPlayer(String nickName, Table table, ClientHandler thisPlayer) {
+//        this.nickName = nickName;
+//        this.board = new Board(this);
+//        this.victoryPoints = 0;
+//        this.table = table;
+//        leaderCards = new ArrayList<LeaderCard>();
+//    }
 
     //Constructor used for debugging without connection
-    public BasicPlayer(String nickName)
-    {
+    public BasicPlayer(String nickName) {
         leaderCards = new ArrayList<LeaderCard>();
         this.nickName = nickName;
         this.board = new Board(this);
     }
 
     public BasicPlayer(String nickname, ClientHandler thisPlayer) {
+        leaderCards = new ArrayList<LeaderCard>();
         this.nickName = nickname;
         this.board = new Board(this);
         this.thisPlayer = thisPlayer;

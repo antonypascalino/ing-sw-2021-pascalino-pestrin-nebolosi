@@ -182,5 +182,5 @@ public abstract class PlayerData {
         originalData.refresh(update);
     }
 
-    public void sendRequest(Request initialSet) {originalData.sendRequest(initialSet);}
+    public void sendRequest(Request request) {originalData.sendRequest(request);}
 }

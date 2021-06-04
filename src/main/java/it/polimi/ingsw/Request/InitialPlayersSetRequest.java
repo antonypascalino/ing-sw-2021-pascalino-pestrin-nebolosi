@@ -37,7 +37,7 @@ public class InitialPlayersSetRequest implements Request {
                     player.addResource(mRes.getLevel(), mRes.getResource());
                 }
                 for (String cardID : leadersChosen) {
-                    curr.addLeaderCard(DefaultCreator.getLeaderFromID(cardID));
+                    player.addLeaderCard(DefaultCreator.getLeaderFromID(cardID));
                 }
             }
         }
