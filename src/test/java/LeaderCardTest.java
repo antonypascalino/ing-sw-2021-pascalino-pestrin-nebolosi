@@ -35,6 +35,7 @@ public class LeaderCardTest {
             tmp.add(newPlayer);
             Game newGame = new Game(tmp,DefaultCreator.produceDevCard(),gameId, request.getPlayers());
             newPlayer.setGame(newGame);
+            newPlayer.setTable(newGame.getTable());
             games.add(newGame);
             System.out.println("Player "+ request.getNickname()+ " added to the new game "+newGame.getGameId());
         }
@@ -117,6 +118,7 @@ public class LeaderCardTest {
             tmp.add(newPlayer);
             Game newGame = new Game(tmp,DefaultCreator.produceDevCard(),gameId, request.getPlayers());
             newPlayer.setGame(newGame);
+            newPlayer.setTable(newGame.getTable());
             games.add(newGame);
             System.out.println("Player "+ request.getNickname()+ " added to the new game "+newGame.getGameId());
         }
@@ -197,6 +199,7 @@ public class LeaderCardTest {
             tmp.add(newPlayer);
             Game newGame = new Game(tmp,DefaultCreator.produceDevCard(),gameId, request.getPlayers());
             newPlayer.setGame(newGame);
+            newPlayer.setTable(newGame.getTable());
             games.add(newGame);
             System.out.println("Player "+ request.getNickname()+ " added to the new game "+newGame.getGameId());
         }
@@ -276,6 +279,7 @@ public class LeaderCardTest {
             tmp.add(newPlayer);
             Game newGame = new Game(tmp,DefaultCreator.produceDevCard(),gameId, request.getPlayers());
             newPlayer.setGame(newGame);
+            newPlayer.setTable(newGame.getTable());
             games.add(newGame);
             System.out.println("Player "+ request.getNickname()+ " added to the new game "+newGame.getGameId());
         }

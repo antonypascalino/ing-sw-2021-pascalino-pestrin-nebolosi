@@ -106,6 +106,7 @@ public class ClientHandler implements Runnable {
                                 tmp.add(newPlayer);
                                 Game newGame = new Game(tmp, DefaultCreator.produceDevCard(), gameId, ((NewGameRequest) request).getPlayers());
                                 newPlayer.setGame(newGame);
+                                newPlayer.setTable(newGame.getTable());
                                 games.add(newGame);
                                 System.out.println("Player " + ((NewGameRequest) request).getNickname() + " added to the new game " + newGame.getGameId());
                                 Update update = new LobbyUpdate(((NewGameRequest) request).getNickname(), newGame.getPlayers().size(), ((NewGameRequest) request).getPlayers());
@@ -116,7 +117,7 @@ public class ClientHandler implements Runnable {
                             else {
                                 Player newPlayer = new BasicPlayer(((NewGameRequest) request).getNickname(), this);
                                 lastGame.addPlayer(newPlayer);
-
+                                newPlayer.setTable(lastGame.getTable());
                                 newPlayer.setGame(lastGame);
                                 Update update;
                                 //If the game has reached the max level of players
