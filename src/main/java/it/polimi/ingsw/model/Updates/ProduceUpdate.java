@@ -14,6 +14,7 @@ public class ProduceUpdate implements Update {
     private int faithPoints;
     private ArrayList<PlayerVP> playersVP;
     private String playerID;
+    private final String className;
 
     public ProduceUpdate(String playerID, ArrayList<TurnState> turnStates, ArrayList<Resource[]> wareHouse, ArrayList<Resource> strongBox, int faithPoints, ArrayList<PlayerVP> playersVP) {
         this.turnStates = turnStates;
@@ -22,6 +23,12 @@ public class ProduceUpdate implements Update {
         this.faithPoints = faithPoints;
         this.playersVP = playersVP;
         this.playerID = playerID;
+        className = this.getClass().getName();
+    }
+
+    @Override
+    public String getClassName() {
+        return className;
     }
 
     @Override

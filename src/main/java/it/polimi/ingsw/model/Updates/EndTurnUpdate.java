@@ -8,10 +8,18 @@ import java.util.ArrayList;
 public class EndTurnUpdate implements Update{
     private ArrayList<TurnState> turnStates;
     private String nextPlayer;
+    private final String className;
+
 
     public EndTurnUpdate(ArrayList<TurnState> turnStates, String nextPlayer) {
         this.nextPlayer = nextPlayer;
         this.turnStates = turnStates;
+        className = this.getClass().getName();
+    }
+
+    @Override
+    public String getClassName() {
+        return className;
     }
 
     @Override

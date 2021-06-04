@@ -1,5 +1,6 @@
 package it.polimi.ingsw.controller;
 
+import com.google.gson.Gson;
 import it.polimi.ingsw.Request.Request;
 import it.polimi.ingsw.model.Updates.*;
 import it.polimi.ingsw.model.card.DevCard;
@@ -25,8 +26,10 @@ public class Game {
     private int currPopeSpace;
     private final int gameId;
     private boolean lastTurn;
+    private Gson gson;
 
     public Game(ArrayList<Player> players, ArrayList<DevCard> cards, int gameId, int maxPlayer) {
+        gson = new Gson();
         currPlayerInt = 0;
         currPlayer = players.get(currPlayerInt);
         this.maxPlayer = maxPlayer;
@@ -240,6 +243,10 @@ public class Game {
         return currPlayer;
     }
 
+    public void notifyAllPlayers(Update update){
+        for (Player p: players)
+            p.notifyView(update);
+    }
     public void setNextPlayer(Player nextPlayer) {
         this.nextPlayer = nextPlayer;
     }

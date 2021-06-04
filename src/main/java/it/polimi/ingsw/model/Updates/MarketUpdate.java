@@ -14,6 +14,8 @@ public class MarketUpdate implements Update {
     private ArrayList<PlayerFP> playersFP;
     private Resource[][] market;
     private String playerID;
+    private final String className;
+
 
 
     public MarketUpdate(String playerID, ArrayList<TurnState> turnStates, ArrayList<Resource[]> wareHouse, ArrayList<PlayerVP> playersVP, ArrayList<PlayerFP> playersFP, Resource[][] market) {
@@ -23,6 +25,12 @@ public class MarketUpdate implements Update {
         this.playersFP = playersFP;
         this.market = market;
         this.playerID = playerID;
+        className = this.getClass().getName();
+    }
+
+    @Override
+    public String getClassName() {
+        return className;
     }
 
     @Override

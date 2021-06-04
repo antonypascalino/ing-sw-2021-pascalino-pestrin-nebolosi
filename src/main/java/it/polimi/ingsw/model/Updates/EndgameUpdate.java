@@ -8,8 +8,10 @@ public class EndgameUpdate implements Update {
 
     private String winner;
     private ArrayList<PlayerVP> finalPlayersVPS;
+    private final String className;
 
     public EndgameUpdate(String winner) {
+        className = this.getClass().getName();
         this.winner = winner;
     }
 
@@ -24,5 +26,10 @@ public class EndgameUpdate implements Update {
 
     public ArrayList<PlayerVP> getFinalPlayersVPS() {
         return finalPlayersVPS;
+    }
+
+    @Override
+    public String getClassName() {
+        return className;
     }
 }

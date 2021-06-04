@@ -12,6 +12,8 @@ public class DiscardLeaderUpdate implements Update {
     private ArrayList<String> leadersID;
     private ArrayList<PlayerVP> playersVP;
     private String playerID;
+    private final String className;
+
 
     public DiscardLeaderUpdate(String playerID, ArrayList<TurnState> turnStates, int faithPoints, ArrayList<String> leadersID, ArrayList<PlayerVP> playersVP) {
         this.turnStates = turnStates;
@@ -19,6 +21,12 @@ public class DiscardLeaderUpdate implements Update {
         this.leadersID = leadersID;
         this.playersVP = playersVP;
         this.playerID = playerID;
+        className = this.getClass().getName();
+    }
+
+    @Override
+    public String getClassName() {
+        return className;
     }
 
     @Override

@@ -15,12 +15,19 @@ public class NewGameUpdate implements Update{
     private Resource[][] market;
     private ArrayList<PlayerLC> playersLC; // una mapped che per ogni playerID associa un arrayList di 4 leaderID random importante è che non si ripetano le carte
     private ArrayList<PlayerST> playersST; // una mapped che per ogni playerID indica il numero di risorse a scelta a inizio game
+    private final String className;
 
     public NewGameUpdate(ArrayList<String> frontTableCardsID, Resource[][] market, ArrayList<PlayerLC> playersLC, ArrayList<PlayerST> playersST) {
         this.frontTableCardsID = frontTableCardsID;
         this.market = market;
         this.playersLC = playersLC;
         this.playersST = playersST;
+        className = this.getClass().getName();
+    }
+
+    @Override
+    public String getClassName() {
+        return className;
     }
 
     @Override

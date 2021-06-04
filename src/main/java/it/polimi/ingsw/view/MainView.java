@@ -1,12 +1,10 @@
 package it.polimi.ingsw.view;
 
-import it.polimi.ingsw.Request.JoinGameRequest;
 import it.polimi.ingsw.Request.NewGameRequest;
 import it.polimi.ingsw.Request.Request;
 import it.polimi.ingsw.client.LineClient;
 import it.polimi.ingsw.view.data.BasicData;
 import it.polimi.ingsw.view.data.PlayerData;
-import it.polimi.ingsw.view.selections.Selection;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -21,12 +19,16 @@ public class MainView {
         System.out.println("Insert the server port");
         int serverPort = 8080;//= scanner.nextInt();
         LineClient thisPlayer = new LineClient(serverIP, serverPort);
-        Obsverver obsverver = new Obsverver(thisPlayer);
-        Request request = new NewGameRequest(nickname, 2);
+        Request request = new NewGameRequest(nickname, 3);
         thisPlayer.startClient();
-        //Aggiungere a tutti i PlayerData il gameID
-        System.out.println(thisPlayer.sendRequest(request));
+
+
         PlayerData data = new BasicData(nickname);
-        MainMenu menu = new MainMenu(thisPlayer,data);
+        Observer observer = new Observer(thisPlayer,data);
+        Thread t = new Thread(observer);
+        t.start();
+        //Aggiungere a tutti i PlayerData il gameID
+        thisPlayer.sendRequest(request);
+
     }
 }

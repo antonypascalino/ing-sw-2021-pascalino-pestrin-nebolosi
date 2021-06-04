@@ -12,10 +12,19 @@ public class MoveUpdate implements Update {
     private ArrayList<Resource[]> wareHouse;
     private String playerID;
 
+    private final String className;
+
+
     public MoveUpdate(String playerID, ArrayList<TurnState> turnStates, ArrayList<Resource[]> wareHouse) {
         this.turnStates = turnStates;
         this.wareHouse = wareHouse;
         this.playerID = playerID;
+        className = this.getClass().getName();
+    }
+
+    @Override
+    public String getClassName() {
+        return className;
     }
 
     @Override

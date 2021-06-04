@@ -17,9 +17,8 @@ public class MainMenu {
     private Printer printer;
     private LineClient connection;
 
-    public MainMenu(LineClient thisPlayer, PlayerData data) {
+    public MainMenu(PlayerData data) {
         this.printer = data.getPrinter();
-        this.connection = thisPlayer;
         this.turnStates = new ArrayList<TurnState>();
         this.data = data;
     }

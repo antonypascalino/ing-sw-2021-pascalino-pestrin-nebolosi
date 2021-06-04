@@ -17,6 +17,9 @@ public class BuyDevUpdate implements Update {
     private ArrayList<String> tableCardsID; //just the front table cards
     private int victoryPoints;
     private ArrayList<String> cardsID;  //3 front cards + basic + extraProd
+    private final String className;
+
+
 
     public BuyDevUpdate(String playerID, ArrayList<TurnState> turnStates, ArrayList<Resource[]> wareHouse, ArrayList<Resource> strongBox, ArrayList<String> tableCardsID, int victoryPoints, ArrayList<String> cardsID) {
         this.turnStates = turnStates;
@@ -26,9 +29,13 @@ public class BuyDevUpdate implements Update {
         this.victoryPoints = victoryPoints;
         this.cardsID = cardsID;
         this.playerID = playerID;
+        className = this.getClass().getName();
     }
 
-
+    @Override
+    public String getClassName() {
+        return className;
+    }
 
     @Override
     public void handleUpdate(PlayerData data) {

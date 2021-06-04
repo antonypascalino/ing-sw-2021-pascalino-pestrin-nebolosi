@@ -3,6 +3,7 @@ package it.polimi.ingsw.connection;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import it.polimi.ingsw.Request.Request;
+import it.polimi.ingsw.model.Updates.Update;
 import it.polimi.ingsw.model.card.*;
 
 import java.lang.reflect.Type;
@@ -64,5 +65,14 @@ public class JsonReader{
         Gson gson = builder.setPrettyPrinting().create();
         Request empObject = gson.fromJson(input, Request.class );
         return empObject;
+    }
+
+    public static Update readUpdate(String input) {
+        GsonBuilder builder = new GsonBuilder();
+        builder.registerTypeAdapter(Update.class, new ConvertableDeserializer<Update>());
+        Gson gson = builder.create();
+        Update empObject = gson.fromJson(input, Update.class );
+        return empObject;
+
     }
 }

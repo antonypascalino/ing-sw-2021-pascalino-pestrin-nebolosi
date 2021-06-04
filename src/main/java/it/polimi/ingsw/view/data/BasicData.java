@@ -37,6 +37,8 @@ public class BasicData extends PlayerData {
     private MainMenu menu;
 
     public BasicData(String playerID) {
+        menu = new MainMenu(this);
+        printer = new Printer();
         this.turnStates = new ArrayList<>();
         this.wareHouse = new ArrayList<Resource[]>();
         Resource[] tmp = new Resource[1];
