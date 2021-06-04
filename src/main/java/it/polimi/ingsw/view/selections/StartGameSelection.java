@@ -4,6 +4,7 @@ import it.polimi.ingsw.Request.InitialPlayersSetRequest;
 import it.polimi.ingsw.Request.MarketResource;
 import it.polimi.ingsw.Request.Request;
 import it.polimi.ingsw.model.Table.Resource;
+import it.polimi.ingsw.model.card.LeaderCard;
 import it.polimi.ingsw.view.data.PlayerData;
 
 import java.util.ArrayList;
@@ -29,8 +30,9 @@ public class StartGameSelection extends Selection {
             chosen.add(data.getPrinter().chooseResource());
         }
         ArrayList<MarketResource> marketChosen = data.handleWarehouse(chosen);
-        Request initialSet = new InitialPlayersSetRequest(data.getGameID(), data.getPlayerID() , marketChosen);
-        sendToConnection(initialSet);
+        ArrayList<String> leaderChosen = data.getLeaders();
+        Request initialSet = new InitialPlayersSetRequest(data.getGameID(), data.getPlayerID() , marketChosen, leaderChosen);
+        data.sendRequest(initialSet);
     }
 
 

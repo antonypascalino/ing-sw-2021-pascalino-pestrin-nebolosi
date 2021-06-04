@@ -61,6 +61,11 @@ public class MarketRequest implements Request {
     }
 
     @Override
+    public int getGameID() {
+        return gameID;
+    }
+
+    @Override
     public TurnState handle(Player player, Game game) {
         //It has already checked that is the same array as the market row or column
         for (MarketResource marketRes : marketResources) {

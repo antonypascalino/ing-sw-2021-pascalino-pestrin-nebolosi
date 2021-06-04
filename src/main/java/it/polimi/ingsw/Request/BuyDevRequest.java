@@ -33,6 +33,11 @@ public class BuyDevRequest implements Request {
         return className;
     }
 
+    @Override
+    public int getGameID() {
+        return gameID;
+    }
+
     public boolean canBePlayed(Player player) {
         //Get from id returns null if the card is not on the top of the table
         devCard = player.getTable().getDevFromID(cardID);

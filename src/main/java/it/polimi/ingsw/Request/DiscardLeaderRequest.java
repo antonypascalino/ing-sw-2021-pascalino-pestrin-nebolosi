@@ -41,6 +41,11 @@ public class DiscardLeaderRequest implements Request{
     }
 
     @Override
+    public int getGameID() {
+        return gameID;
+    }
+
+    @Override
     public String getClassName() {
         return className;
     }

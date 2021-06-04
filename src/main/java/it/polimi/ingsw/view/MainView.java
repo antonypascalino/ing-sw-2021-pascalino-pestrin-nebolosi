@@ -23,7 +23,7 @@ public class MainView {
         thisPlayer.startClient();
 
 
-        PlayerData data = new BasicData(nickname);
+        PlayerData data = new BasicData(nickname,thisPlayer);
         Observer observer = new Observer(thisPlayer,data);
         Thread t = new Thread(observer);
         t.start();

@@ -132,8 +132,8 @@ public class ClientHandler implements Runnable {
                                 lastGame.notifyAllPlayers(update);
                             }
                         } else {
-                            out.println(line);
-                            out.flush();
+                            games.get(request.getGameID()).notify(request);
+
                         }
                     }
                 }

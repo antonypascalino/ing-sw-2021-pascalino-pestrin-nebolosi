@@ -1,8 +1,6 @@
 package it.polimi.ingsw.Request;
 
 import it.polimi.ingsw.controller.Game;
-import it.polimi.ingsw.Request.MappedResource;
-import it.polimi.ingsw.Request.Production;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Table.Resource;
 import it.polimi.ingsw.model.Updates.PlayerVP;
@@ -128,5 +126,10 @@ public class ProduceRequest implements Request {
     @Override
     public String getPlayerID() {
         return playerID;
+    }
+
+    @Override
+    public int getGameID() {
+        return gameID;
     }
 }

@@ -51,4 +51,8 @@ public class PlayLeaderRequest implements Request {
     public String getPlayerID() {
         return playerID;
     }
+    @Override
+    public int getGameID() {
+        return gameID;
+    }
 }

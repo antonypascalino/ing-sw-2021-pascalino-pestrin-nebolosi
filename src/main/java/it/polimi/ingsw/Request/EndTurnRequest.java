@@ -35,6 +35,11 @@ public class EndTurnRequest implements Request {
     }
 
     @Override
+    public int getGameID() {
+        return gameID;
+    }
+
+    @Override
     public boolean canBePlayed(Player player) {
         return true;
     }

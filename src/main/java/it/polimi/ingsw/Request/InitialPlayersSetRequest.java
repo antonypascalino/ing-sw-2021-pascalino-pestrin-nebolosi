@@ -45,6 +45,11 @@ public class InitialPlayersSetRequest implements Request {
     }
 
     @Override
+    public int getGameID() {
+        return gameID;
+    }
+
+    @Override
     public boolean validRequest(ArrayList<TurnState> turnStates) {
         return true;
     }

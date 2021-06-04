@@ -2,6 +2,8 @@ package it.polimi.ingsw.view.data;
 
 import it.polimi.ingsw.Request.MappedResource;
 import it.polimi.ingsw.Request.MarketResource;
+import it.polimi.ingsw.Request.Request;
+import it.polimi.ingsw.client.LineClient;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Board.WareHouse;
 import it.polimi.ingsw.model.Table.Resource;
@@ -14,6 +16,7 @@ import it.polimi.ingsw.view.clientCards.ClientDevCard;
 import it.polimi.ingsw.view.clientCards.ClientLeaderCard;
 import it.polimi.ingsw.view.Printer;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -35,8 +38,10 @@ public class BasicData extends PlayerData {
     private ArrayList<String> allDevID;
     private AllGameCards allGameCards;
     private MainMenu menu;
+    private LineClient connection;
 
-    public BasicData(String playerID) {
+    public BasicData(String playerID, LineClient connection) {
+        this.connection = connection;
         menu = new MainMenu(this);
         printer = new Printer();
         this.turnStates = new ArrayList<>();
@@ -272,6 +277,7 @@ public class BasicData extends PlayerData {
         return marketRes;
     }
 
+
     public ArrayList<String> tableCardsFilter(ArrayList<MappedResource> mapped){
 
         ArrayList<String> cloned = new ArrayList<String>();
@@ -347,6 +353,15 @@ public class BasicData extends PlayerData {
         return leadersID;
     }
 
+    @Override
+    public void sendRequest(Request request)
+    {
+        try {
+            connection.sendRequest(request);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public void setTurnStates(ArrayList<TurnState> turnStates) {
         this.turnStates = turnStates;
     }
