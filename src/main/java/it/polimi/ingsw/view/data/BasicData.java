@@ -237,13 +237,13 @@ public class BasicData extends PlayerData {
             for (int l = 0; l < wareHouse.size(); l++) {
                 Resource resource = res.get(p);
                 //se è pieno
-                if (!Arrays.stream(wareHouse.get(l)).anyMatch(null)) {
+                if (!Arrays.stream(wareHouse.get(l)).anyMatch( r -> r.equals(Resource.EMPTY))) {
                     continue;
                 }
                 //se ha degli spazi vuoti
-                if (Arrays.stream(wareHouse.get(l)).anyMatch(null)) {
+                if (Arrays.stream(wareHouse.get(l)).anyMatch( r -> r.equals(Resource.EMPTY))) {
                     //se è vuoto
-                    if (wareHouse.get(l)[0] == null) {
+                    if (wareHouse.get(l)[0].equals(Resource.EMPTY)) {
                         boolean empty = true;
                         for (int x = 0; x < wareHouse.size(); x++) {
                             if (x != l) {
