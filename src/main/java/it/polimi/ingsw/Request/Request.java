@@ -47,5 +47,4 @@ public interface Request extends Convertible {
     public String getPlayerID();
 
     public int getGameID();
-
 }

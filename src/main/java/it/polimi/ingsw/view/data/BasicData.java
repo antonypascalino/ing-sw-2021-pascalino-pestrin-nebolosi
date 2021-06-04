@@ -218,11 +218,14 @@ public class BasicData extends PlayerData {
     }
 
     public ArrayList<MarketResource> handleWarehouse(ArrayList<Resource> res) {
+        ArrayList<Resource[]> wareHouseClone = new ArrayList<Resource[]>();
         ArrayList<MarketResource> marketRes = new ArrayList<MarketResource>();
         ArrayList<Integer> tmp = new ArrayList<Integer>();
         ArrayList<Resource> wareHouseRes = new ArrayList<Resource>();
 
-        for (Resource[] lv : wareHouse) {
+        wareHouseClone.addAll(this.getDeposits());
+
+        for (Resource[] lv : wareHouseClone) {
             wareHouseRes.addAll(Arrays.asList(lv));
         }
 
@@ -239,32 +242,32 @@ public class BasicData extends PlayerData {
                 continue;
             }
 
-            for (int l = 0; l < wareHouse.size(); l++) {
+            for (int l = 0; l < wareHouseClone.size(); l++) {
                 Resource resource = re;
                 //se è pieno
-                if (!Arrays.stream(wareHouse.get(l)).anyMatch(r -> r.equals(Resource.EMPTY))) {
+                if (!Arrays.stream(wareHouseClone.get(l)).anyMatch(r -> r.equals(Resource.EMPTY))) {
                     continue;
                 }
                 //se ha degli spazi vuoti
-                if (Arrays.stream(wareHouse.get(l)).anyMatch(r -> r.equals(Resource.EMPTY))) {
+                if (Arrays.stream(wareHouseClone.get(l)).anyMatch(r -> r.equals(Resource.EMPTY))) {
                     //se è vuoto
-                    if (wareHouse.get(l)[0].equals(Resource.EMPTY)) {
-                        boolean empty = true;
-                        for (int x = 0; x < wareHouse.size(); x++) {
-                            if (x != l) {
-                                if (Arrays.stream(wareHouse.get(l)).anyMatch(z -> z.equals(resource))) {
-                                    empty = false;
-                                    break;
-                                }
-                            }
-                        }
-                        if (empty) {
+                    if (wareHouseClone.get(l)[0].equals(Resource.EMPTY)) {
+                        if(!wareHouseRes.contains(re)){
+                            wareHouseClone.get(l)[0] = re;
+                            wareHouseRes.add(re);
                             tmp.add(l);
                         }
+
                     }
                     //se ha la mia risorsa
-                    else if (wareHouse.get(l)[0] == re) {
+                    else if (wareHouseClone.get(l)[0] == re) {
                         tmp.add(l);
+                        for(int d = 0; d < wareHouseClone.get(l).length; d++){
+                            if(wareHouseClone.get(l)[d] == Resource.EMPTY){
+                                wareHouseClone.get(l)[d] = re;
+                                wareHouseRes.add(re);
+                            }
+                        }
                     }
                 }
             }
