@@ -12,13 +12,15 @@ public class InitialPlayersSetRequest implements Request {
     private int gameID;
     private String playerID;
     private ArrayList<MarketResource> marketRes;
+    private ArrayList<String> leadersChosen;
     private String className;
 
-    public InitialPlayersSetRequest(int gameID, String playerID, ArrayList<MarketResource> marketRes) {
+    public InitialPlayersSetRequest(int gameID, String playerID, ArrayList<MarketResource> marketRes, ArrayList<String> leadersChosen) {
         this.gameID = gameID;
         this.playerID = playerID;
         this.marketRes = marketRes;
         className = this.getClass().getName();
+        this.leadersChosen = leadersChosen;
     }
 
     @Override
@@ -33,6 +35,10 @@ public class InitialPlayersSetRequest implements Request {
                 for(MarketResource mRes : marketRes) {
                     player.addResource(mRes.getLevel(), mRes.getResource());
                 }
+                //AGGIUNGERE GETLEADERFROMID
+//                for (String leaderID : leadersChosen) {
+//                    curr.addLeaderCard(g);
+//                }
             }
         }
         return null;
