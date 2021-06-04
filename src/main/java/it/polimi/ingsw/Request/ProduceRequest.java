@@ -124,4 +124,9 @@ public class ProduceRequest implements Request {
 
         return new ProduceUpdate(player.getNickName(), game.getTurnStates(), player.getDeposits(), player.getBoard().getStrongBox().getResources(), player.getBoard().getFaithPath().getAdvancement(), playersVP);
     }
+
+    @Override
+    public String getPlayerID() {
+        return playerID;
+    }
 }

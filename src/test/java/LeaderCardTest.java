@@ -86,9 +86,11 @@ public class LeaderCardTest {
         System.out.println(tmp.getAllResources());
         System.out.println(games.get(0).getTable().market.toString());
         Game game = games.get(0);
+
         //it gets the first card which is a n extra prod card that requires
         LeaderCard card = DefaultCreator.produceLeaderCard().get(0);
         card.assignTo(tmp);
+        //Assigns to the player what it needs for using the leader card
         tmp.getBoard().getSlot().placeCard(DefaultCreator.produceDevCard().get(42),0);
         System.out.println(card.getClassName() + " " +card.getID());
         card.playCard();
