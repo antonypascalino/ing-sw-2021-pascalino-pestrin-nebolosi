@@ -199,15 +199,16 @@ public class Printer {
         int index = 1;
         System.out.println("Choose 2 Leaders Cards between this 4:");
         for(String s : leadersToChoose) {
-            System.out.println("[" + index + "]");
+            System.out.print("[" + index + "]");
             System.out.println(data.getLeaderFromID(s).toString());
+            index ++;
         }
         System.out.println("What is your first choice?");
         chosen.add(leadersToChoose.remove(inputs.nextInt() - 1));
         index = 1;
         System.out.println("What is your second choice?");
         for(String s : leadersToChoose) {
-            System.out.println("[" + index + "]");
+            System.out.print("[" + index + "]");
             System.out.println(data.getLeaderFromID(s).toString());
             index++;
         }

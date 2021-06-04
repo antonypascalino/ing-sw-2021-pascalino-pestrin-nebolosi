@@ -184,7 +184,7 @@ public class Game {
         ArrayList<PlayerLC> playersLC = new ArrayList<PlayerLC>();
         for (Player player : players) {
             ArrayList<String> leadersToChoose = new ArrayList<String>();
-            for (int addedCard = 0; addedCard <= 4; addedCard++) {
+            for (int addedCard = 0; addedCard < 4; addedCard++) {
                 leadersToChoose.add(allLeaderCards.remove(0).getID());
                 //Qui si potrebbe aggiungere anche la carta al player nel model e poi la request successiva ne rimuoverebbe 2
                 //Oppure (come ora) non aggiungerle al player nel model ma nelle request successiva aggiungere le uniche 2
