@@ -16,7 +16,9 @@ public class StartGameUpdate implements Update {
 
     @Override
     public void handleUpdate(PlayerData data) {
-        if(data.getPlayerID().equals(playerID)) {
+        data.getPrinter().printMessage("The game has started and the first one to play is "+playerID);
+        if(data.getPlayerID().equals(playerID))
+        {
             data.getMenu().menuMaker();
         }
     }

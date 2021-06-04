@@ -39,7 +39,13 @@ public class InitialPlayersSetRequest implements Request {
                 for (String cardID : leadersChosen) {
                     player.addLeaderCard(DefaultCreator.getLeaderFromID(cardID));
                 }
+                game.playerReady++;
+                //If all the players are ready
+                if(game.playerReady == game.maxPlayer)
+                    game.start();
             }
+
+
         }
         return null;
     }

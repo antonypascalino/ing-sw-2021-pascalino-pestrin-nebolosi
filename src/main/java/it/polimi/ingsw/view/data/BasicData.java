@@ -42,7 +42,7 @@ public class BasicData extends PlayerData {
 
     public BasicData(String playerID, LineClient connection) {
         this.connection = connection;
-        menu = new MainMenu(this);
+
         printer = new Printer();
         this.turnStates = new ArrayList<>();
         this.wareHouse = new ArrayList<Resource[]>();
@@ -65,7 +65,7 @@ public class BasicData extends PlayerData {
         this.frontCardsID = new ArrayList<String>();
         this.leadersID = new ArrayList<String>();
         this.playerID = playerID;
-
+        menu = new MainMenu(this);
         allGameCards = new AllGameCards(ClientDefaultCreator.produceClientDevCard(), ClientDefaultCreator.produceClientLeaderCard());
     }
 

@@ -1,6 +1,7 @@
 package it.polimi.ingsw.controller;
 
 import com.google.gson.Gson;
+import it.polimi.ingsw.Request.InitialPlayersSetRequest;
 import it.polimi.ingsw.Request.Request;
 import it.polimi.ingsw.model.Updates.*;
 import it.polimi.ingsw.model.card.DevCard;
@@ -16,7 +17,7 @@ import java.util.Collections;
  */
 public class Game {
 
-    private int maxPlayer;
+    public int maxPlayer;
     private ArrayList<Player> players;
     private int currPlayerInt;
     private Table table;
@@ -26,10 +27,10 @@ public class Game {
     private int currPopeSpace;
     private final int gameId;
     private boolean lastTurn;
-    private Gson gson;
+    public int playerReady; //Players ready to start the game that have choosen their leaderCards
 
     public Game(ArrayList<Player> players, ArrayList<DevCard> cards, int gameId, int maxPlayer) {
-        gson = new Gson();
+        playerReady = 0;
         currPlayerInt = 0;
         currPlayer = players.get(currPlayerInt);
         this.maxPlayer = maxPlayer;
@@ -80,7 +81,8 @@ public class Game {
         int playerSteps = 0;
         int discardedSteps = 0;
 
-        if (req.getPlayerID().equals(currPlayer.getNickName())) {
+        //In the case the game is starting every game can send the request
+        if (req.getPlayerID().equals(currPlayer.getNickName())  || req instanceof InitialPlayersSetRequest) {
             if (/*req.validRequest(turnStates)*/true) {
                 if (req.canBePlayed(currPlayer)) {
                     turnStates.add(req.handle(getPlayerFromID(req.getPlayerID()), this));
@@ -229,7 +231,7 @@ public class Game {
                 playersST.add(player44);
                 break;
         }
-        return new NewGameUpdate(table.getFrontIDs(), table.market.getMarket(), playersLC, playersST);
+        return new NewGameUpdate(this.gameId, table.getFrontIDs(), table.market.getMarket(), playersLC, playersST);
     }
 
     public int getCurrPlayerInt() {
@@ -259,5 +261,14 @@ public class Game {
             }
         }
         return null;
+    }
+
+    public void start() {
+        currPlayer = players.get(0);
+        turnStates.add(TurnState.PRODUCE);
+        turnStates.add(TurnState.MOVE_RESOURCE);
+        turnStates.add(TurnState.BUY_DEV_CARD);
+        turnStates.add(TurnState.CHECK_STATS);
+        this.notifyAllPlayers(new StartGameUpdate(players.get(0).getNickName()));
     }
 }
