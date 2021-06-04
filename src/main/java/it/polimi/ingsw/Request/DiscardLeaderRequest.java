@@ -54,4 +54,9 @@ public class DiscardLeaderRequest implements Request{
 
         return new DiscardLeaderUpdate(player.getNickName(), game.getTurnStates(), player.getBoard().getFaithPath().getAdvancement(), player.getLeadersID(), playersVP);
     }
+
+    @Override
+    public String getPlayerID() {
+        return playerID;
+    }
 }

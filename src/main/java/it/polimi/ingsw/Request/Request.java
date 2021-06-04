@@ -12,6 +12,8 @@ import java.util.ArrayList;
  * The interface used by all type of request the player could send
  */
 public interface Request extends Convertible {
+
+
     /**
      * Activate the request calling the right methods in the controller classes
      */
@@ -41,5 +43,7 @@ public interface Request extends Convertible {
     public boolean canBePlayed(Player player);
 
     public Update createUpdate(Player player, Game game);
+
+    public String getPlayerID();
 
 }

@@ -28,6 +28,5 @@ public class MainView {
         System.out.println(thisPlayer.sendRequest(request));
         PlayerData data = new BasicData(nickname);
         MainMenu menu = new MainMenu(thisPlayer,data);
-        menu.menuMaker();
     }
 }

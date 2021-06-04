@@ -4,11 +4,14 @@ import it.polimi.ingsw.Request.MappedResource;
 import it.polimi.ingsw.Request.MarketDimension;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Table.Resource;
+import it.polimi.ingsw.model.Updates.EndgameUpdate;
+import it.polimi.ingsw.model.Updates.PlayerVP;
 import it.polimi.ingsw.view.data.OtherPlayerData;
 import it.polimi.ingsw.view.data.PlayerData;
 import it.polimi.ingsw.view.selections.MarketArray;
 
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Printer {
@@ -202,6 +205,7 @@ public class Printer {
         System.out.println("What is your first choice?");
         chosen.add(leadersToChoose.remove(inputs.nextInt() - 1));
         index = 1;
+        System.out.println("What is your second choice?");
         for(String s : leadersToChoose) {
             System.out.println("[" + index + "]");
             System.out.println(data.getLeaderFromID(s).toString());
@@ -209,5 +213,39 @@ public class Printer {
         chosen.add(leadersToChoose.remove(inputs.nextInt() - 1));
 
         return chosen;
+    }
+
+    public Resource chooseResource() {
+        Scanner input = new Scanner(System.in);
+        boolean validInput;
+
+        while(true) {
+            System.out.println("You can choose a Resource to add to your Warehouse, which one do you want?");
+            System.out.println("[1] GOLD");
+            System.out.println("[2] STONE");
+            System.out.println("[3] SHIELD");
+            System.out.println("[4] SERVANT");
+
+            switch (input.nextInt()) {
+                case (1): return Resource.GOLD;
+                case (2): return Resource.STONE;
+                case (3): return Resource.SHIELD;
+                case (4): return Resource.SERVANT;
+                default : System.out.println("Invalid input");
+            }
+        }
+    }
+
+    public void endgame(EndgameUpdate endgameUpdate) {
+        System.out.println(endgameUpdate.getWinner().toUpperCase(Locale.ROOT) + "WON!");
+        System.out.println("Here's the points:");
+        for (PlayerVP player : endgameUpdate.getFinalPlayersVPS()) {
+            System.out.println(player.getPlayerID() + ": " + player.getVictoryPoints());
+        }
+        //chiudere connessione e tutto baci baci ciao ciao
+    }
+
+    public void printMessage(String message) {
+        System.out.println(message);
     }
 }

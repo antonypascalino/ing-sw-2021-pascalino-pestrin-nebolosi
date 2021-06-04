@@ -41,6 +41,11 @@ public class NewGameRequest implements Request{
     }
 
     @Override
+    public String getPlayerID() {
+        return nickname;
+    }
+
+    @Override
     public String getClassName() {
         return className;
 
@@ -53,4 +58,6 @@ public class NewGameRequest implements Request{
     public int getPlayers() {
         return players;
     }
+
+
 }

@@ -12,40 +12,33 @@ import java.util.Scanner;
 
 public class MainMenu {
 
-    ArrayList<TurnState> turnStates;
-    Scanner inputs = new Scanner(System.in);
-    PlayerData data;
-    String input = "";
-    Printer printer;
-    LineClient connection;
+    private ArrayList<TurnState> turnStates;
+    private PlayerData data;
+    private Printer printer;
+    private LineClient connection;
 
     public MainMenu(LineClient thisPlayer, PlayerData data) {
-        this.printer = new Printer();
+        this.printer = data.getPrinter();
         this.connection = thisPlayer;
         this.turnStates = new ArrayList<TurnState>();
         this.data = data;
-        this.input = input;
-    }
-
-    public MainMenu(PlayerData data) {
-        this.printer = new Printer();
-        this.turnStates = new ArrayList<TurnState>();
-        this.data = data;
-        this.input = input;
     }
 
     public void menuMaker() {
+        TurnState turnState;
         do {
             turnStates.clear();
             turnStates.addAll(data.turnStateFilter());
-            selectionHandler(printer.printTurnStates(turnStates), data);
-        } while (!input.equals("-1"));
+            turnState = printer.printTurnStates(turnStates);
+            selectionHandler(turnState, data);
+        } while (!turnState.equals(TurnState.END_TURN));
 
     }
 
     private void selectionHandler(TurnState state, PlayerData data){
         Selection selection;
-       switch(state){
+
+        switch(state){
            case PRODUCE:
                selection = new ProductionSelection();
                selection.handleSelection(data);
@@ -68,7 +61,6 @@ public class MainMenu {
                selection = new CheckStatsSelection();
                selection.handleSelection(data);
        }
-
     }
 }
 

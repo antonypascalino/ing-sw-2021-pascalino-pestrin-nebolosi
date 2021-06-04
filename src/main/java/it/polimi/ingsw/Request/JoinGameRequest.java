@@ -54,4 +54,8 @@ public class JoinGameRequest implements Request{
     {
         return nickName;
     }
+
+    public String getPlayerID(){
+        return playerID;
+    }
 }

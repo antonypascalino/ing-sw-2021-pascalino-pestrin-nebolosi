@@ -19,7 +19,7 @@ public class MoveSelection extends Selection{
         for(int i = 0; i < levels.size(); i++){
             l.add(i);
         }
-        int origin = printer.printIntegers(l, false);
+        int origin = data.getPrinter().printIntegers(l, false);
         int destination = data.switchLevels(origin);
 
         Request moveReq = new MoveRequest(data.getPlayerID(), data.getGameID(), origin, destination);
