@@ -37,4 +37,8 @@ public class ClientExtraProd extends ClientLeaderCard {
     public Resource getProdRequired() {
         return prodRequired;
     }
+
+    public String toString() {
+        return "Extra Production Leader Card:\nYou will have an Extra Production power which you can use to produce a CHOICE resource and a FAITH point, paying a " + prodRequired + "\nTo play this card you need to have a " + color + "Development card of level 2";
+    }
 }

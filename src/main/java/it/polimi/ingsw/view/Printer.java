@@ -209,6 +209,7 @@ public class Printer {
         for(String s : leadersToChoose) {
             System.out.println("[" + index + "]");
             System.out.println(data.getLeaderFromID(s).toString());
+            index++;
         }
         chosen.add(leadersToChoose.remove(inputs.nextInt() - 1));
 
