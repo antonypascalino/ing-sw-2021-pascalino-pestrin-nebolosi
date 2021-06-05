@@ -53,23 +53,32 @@ public class Printer {
 
     }
 
-    public TurnState printTurnStates(ArrayList<TurnState> turnStates){
+    public TurnState printTurnStates(ArrayList<TurnState> turnStates) {
         Scanner inputs = new Scanner(System.in);
         String selection = "";
 
-        System.out.println("What do you wanna do?");
-        for (int i = 0; i < turnStates.size(); i++) {
-            System.out.println("[" + (i + 1) + "]" + "" + turnStates.get(i));
-        }
+        int actions = 0;
+        while (true) {
+            System.out.println("What do you wanna do?");
+            for (int i = 0; i < turnStates.size(); i++) {
+                System.out.println("[" + (i + 1) + "]" + "" + turnStates.get(i));
+                actions = i + 1;
+            }
 
-        System.out.println("Enter selection: ");
-        while(selection.equals(""))
-        {
+            System.out.println("Enter selection: ");
             selection = inputs.nextLine();
+            try {
+                if (Integer.parseInt(selection) > actions) {
+                    System.out.println("Invalid input!");
+                } else break;
+            }
+            catch (NumberFormatException e) {
+                System.out.println("Invalid input!");
+            }
         }
 
         int index = Integer.parseInt(selection);
-        return turnStates.get(index -1);
+        return turnStates.get(index - 1);
     }
 
     public String printCardID(ArrayList<String> cardID){
@@ -187,16 +196,18 @@ public class Printer {
     }
 
     public void printMyStats(PlayerData data) {
-        System.out.println("Player ID: " + data.getPlayerID());
-        System.out.println("Market:\n" + data.getMarket());
-        System.out.println("Front cards:\n" + data.getFrontTableCardsID());
-        System.out.println("Warehouse:\n" + data.getDeposits());
-        System.out.println("Strongbox:\n" + data.getStrongBox());
-        System.out.println("Slots:\n" + data.getFrontCardsID());
-        System.out.println("Faith Points: " + data.getFaithPoints());
-        System.out.println("Victory Points: " + data.getVictoryPoints());
+        System.out.println("\nPlayer ID: " + data.getPlayerID());
+        System.out.println("\nMarket:");
+        viewMarket(data.getMarket());
+        System.out.println("\nFront cards:\n" + data.getFrontTableCardsID());
+        System.out.println("\nWarehouse:");
+        printWareHouse(data.getDeposits());
+        System.out.println("\nStrongbox:\n" + data.getStrongBox());
+        System.out.println("\nSlots:\n" + data.getFrontCardsID());
+        System.out.println("\nFaith Points: " + data.getFaithPoints());
+        System.out.println("\nVictory Points: " + data.getVictoryPoints());
         for(String s: data.getLeadersID()){
-            System.out.println("Leader ID: " + s);
+            System.out.println("Leader card: " + data.getLeaderFromID(s));
             System.out.println(""); //depositi extra o sconti o bla bla bla
         }
 
@@ -258,5 +269,25 @@ public class Printer {
 
     public void printMessage(String message) {
         System.out.println(message);
+    }
+
+    public void viewMarket(Resource[][] matrix) {
+        Scanner inputs = new Scanner(System.in);
+        String selection = "";
+        ArrayList<Resource> res = new ArrayList<Resource>();
+        //da fare meglio la matrice a schermo
+        //System.out.println("1  2   3  4");
+        for (int r = 0; r < matrix.length; r++) {
+            for (int c = 0; c < matrix[r].length; c++) {
+                System.out.print(matrix[r][c] + " ");
+            }
+            System.out.println("");
+        }
+    }
+
+    public void printWareHouse(ArrayList<Resource[]> warehouse) {
+        System.out.println("Level 1: " + warehouse.get(0)[0]);
+        System.out.println("Level 2: " + warehouse.get(1)[0] + " " + warehouse.get(1)[1]);
+        System.out.println("Level 1: " + warehouse.get(2)[0] + " " + warehouse.get(2)[1] + " " + warehouse.get(2)[2]);
     }
 }
