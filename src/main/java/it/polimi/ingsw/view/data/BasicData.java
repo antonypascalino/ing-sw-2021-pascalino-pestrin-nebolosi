@@ -207,11 +207,9 @@ public class BasicData extends PlayerData {
         ArrayList<Resource> wareHouseRes = new ArrayList<Resource>();
 
         wareHouseClone.addAll(this.getDeposits());
-
         for (Resource[] lv : wareHouseClone) {
             wareHouseRes.addAll(Arrays.asList(lv));
         }
-
         for (Resource re : res) {
             if (re.equals(Resource.EMPTY)) {
                 MarketResource m = new MarketResource(re, -2);
@@ -262,7 +260,6 @@ public class BasicData extends PlayerData {
             printer.printMessage("The resource " + re + " " + "was put in level " + wareHouseLevel);
             marketRes.add(mr);
         }
-
         return marketRes;
     }
 
