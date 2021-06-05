@@ -233,9 +233,6 @@ public class BasicData extends PlayerData {
                     //se è vuoto
                     if (wareHouseClone.get(l)[0].equals(Resource.EMPTY)) {
                         if(!wareHouseRes.contains(re)){
-                            wareHouseClone.get(l)[0] = re;
-                            wareHouseRes.add(re);
-                            wareHouseRes.remove(Resource.EMPTY);
                             tmp.add(l);
                         }
 
@@ -243,14 +240,7 @@ public class BasicData extends PlayerData {
                     //se ha la mia risorsa
                     else if (wareHouseClone.get(l)[0] == re) {
                         tmp.add(l);
-                        for(int d = 0; d < wareHouseClone.get(l).length; d++){
-                            if(wareHouseClone.get(l)[d] == Resource.EMPTY){
-                                wareHouseClone.get(l)[d] = re;
-                                wareHouseRes.add(re);
-                                wareHouseRes.remove(Resource.EMPTY);
-                                break;
-                            }
-                        }
+
                     }
                 }
             }
@@ -259,6 +249,14 @@ public class BasicData extends PlayerData {
             MarketResource mr = new MarketResource(re, wareHouseLevel);
             printer.printMessage("The resource " + re + " " + "was put in level " + wareHouseLevel);
             marketRes.add(mr);
+            for(int d = 0; d < wareHouseClone.get(wareHouseLevel).length; d++){
+                if(wareHouseClone.get(wareHouseLevel)[d] == Resource.EMPTY){
+                    wareHouseClone.get(wareHouseLevel)[d] = re;
+                    wareHouseRes.add(re);
+                    wareHouseRes.remove(Resource.EMPTY);
+                    break;
+                }
+            }
         }
         return marketRes;
     }
