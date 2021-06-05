@@ -41,24 +41,31 @@ public class MainMenu {
            case PRODUCE:
                selection = new ProductionSelection();
                selection.handleSelection(data);
+               break;
            case BUY_DEV_CARD:
                selection = new BuyDevSelection();
                selection.handleSelection(data);
+               break;
            case GET_FROM_MARKET:
                selection = new MarketSelection();
                selection.handleSelection(data);
+               break;
            case MOVE_RESOURCE:
                selection = new MoveSelection();
                selection.handleSelection(data);
+               break;
            case PLAY_LEADER_CARD:
                selection = new PlayLeaderSelection();
                selection.handleSelection(data);
+               break;
            case DISCARD_LEADER_CARD:
                selection = new DiscardLeaderSelection();
                selection.handleSelection(data);
+               break;
            case CHECK_STATS:
                selection = new CheckStatsSelection();
                selection.handleSelection(data);
+               break;
        }
     }
 }

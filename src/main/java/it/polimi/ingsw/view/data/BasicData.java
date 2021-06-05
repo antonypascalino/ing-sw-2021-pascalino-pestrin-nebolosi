@@ -211,6 +211,7 @@ public class BasicData extends PlayerData {
             wareHouseRes.addAll(Arrays.asList(lv));
         }
         for (Resource re : res) {
+            tmp.clear();
             if (re.equals(Resource.EMPTY)) {
                 MarketResource m = new MarketResource(re, -2);
                 marketRes.add(m);
@@ -226,7 +227,7 @@ public class BasicData extends PlayerData {
             for (int l = 0; l < wareHouseClone.size(); l++) {
                 //se è pieno
                 if (!Arrays.stream(wareHouseClone.get(l)).anyMatch(r -> r.equals(Resource.EMPTY))) {
-                   l++;
+                   continue;
                 }
                 //se ha degli spazi vuoti
                 if (Arrays.stream(wareHouseClone.get(l)).anyMatch(r -> r.equals(Resource.EMPTY))) {
