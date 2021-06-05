@@ -27,7 +27,7 @@ public class BuyDevSelection extends Selection {
 
         Request buyDevReq = new BuyDevRequest(data.getGameID(), data.getPlayerID(), cardID, mappedRes, slot);
         //CHIAMATA A METODO PER INVIARE REQUEST
-        sendToConnection(buyDevReq);
+        data.sendRequest(buyDevReq);
 
     }
 

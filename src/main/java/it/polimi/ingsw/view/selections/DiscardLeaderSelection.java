@@ -14,7 +14,7 @@ public class DiscardLeaderSelection extends Selection {
         leaderID.addAll(data.getLeaders());
         String discarded = data.getPrinter().printCardID(leaderID);
         Request discardLeaderReq = new DiscardLeaderRequest(data.getGameID(), data.getPlayerID(), discarded);
-        sendToConnection(discardLeaderReq);
+        data.sendRequest(discardLeaderReq);
     }
 
 }

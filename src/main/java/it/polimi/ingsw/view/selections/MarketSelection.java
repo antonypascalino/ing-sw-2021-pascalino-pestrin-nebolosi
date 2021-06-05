@@ -17,6 +17,6 @@ public class MarketSelection extends Selection {
         MarketArray marketArray =  data.getPrinter().printMatrix(data.getMarket());
         marketRes.addAll(data.handleWarehouse(marketArray.getResources()));
         Request marketReq = new MarketRequest(marketArray.getDimension(), marketArray.getIndex(), data.getGameID(), data.getPlayerID(), marketRes);
-        sendToConnection(marketReq);
+        data.sendRequest(marketReq);
     }
 }

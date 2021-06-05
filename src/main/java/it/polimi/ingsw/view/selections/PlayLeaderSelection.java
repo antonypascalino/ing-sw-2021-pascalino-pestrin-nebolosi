@@ -13,7 +13,7 @@ public class PlayLeaderSelection extends Selection{
         leaderID.addAll(data.leaderCardsFilter());
         String cardID = data.getPrinter().printCardID(leaderID);
         Request playLeaderReq = new PlayLeaderRequest(data.getPlayerID(), data.getGameID(), cardID);
-        sendToConnection(playLeaderReq);
+        data.sendRequest(playLeaderReq);
     }
 
 }

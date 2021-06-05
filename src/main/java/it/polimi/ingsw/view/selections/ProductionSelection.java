@@ -66,7 +66,7 @@ public class ProductionSelection extends Selection {
         }while(data.getPrinter().askQuestion());
 
         Request produceReq = new ProduceRequest(data.getGameID(), data.getPlayerID(), mappedProduction );
-        sendToConnection(produceReq);
+        data.sendRequest(produceReq);
     }
 
     @Override
