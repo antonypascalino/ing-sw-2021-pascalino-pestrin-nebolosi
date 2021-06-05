@@ -38,9 +38,6 @@ public class Game {
         this.players = players;
         Collections.shuffle(cards);
         this.table = new Table(cards);
-        //Set the table on all the players
-//        for(Player player : players)
-//            player.setTable(table);
         this.turnStates = new ArrayList<TurnState>();
         this.currPlayer = players.get(0);
         this.currPopeSpace = 1;
@@ -86,6 +83,9 @@ public class Game {
             if (/*req.validRequest(turnStates)*/true) {
                 if (req.canBePlayed(currPlayer)) {
                     turnStates.add(req.handle(getPlayerFromID(req.getPlayerID()), this));
+
+
+                    //Check if the game is finished
                     if (lastTurn) {
                         if (currPlayerInt == 0) {
                             endgame();
@@ -250,6 +250,7 @@ public class Game {
         for (Player p: players)
             p.notifyView(update);
     }
+
     public void setNextPlayer(Player nextPlayer) {
         this.nextPlayer = nextPlayer;
     }
@@ -269,6 +270,6 @@ public class Game {
         turnStates.add(TurnState.MOVE_RESOURCE);
         turnStates.add(TurnState.BUY_DEV_CARD);
         turnStates.add(TurnState.CHECK_STATS);
-        this.notifyAllPlayers(new StartGameUpdate(players.get(0).getNickName()));
+        notifyAllPlayers(new StartGameUpdate(players.get(0).getNickName()));
     }
 }
