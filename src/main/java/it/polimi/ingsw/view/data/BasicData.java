@@ -178,23 +178,6 @@ public class BasicData extends PlayerData {
         return mappedRes;
     }
 
-//    public void removeMappedResource(ArrayList<MappedResource> mapped) {
-//        for (MappedResource m : mapped) {
-//            if (m.getPlace().equals("warehouse")) {
-//                for (Resource[] l : wareHouse) {
-//                    Resource[] current = l;
-//                    for (int j = 0; j < current.length; j++)
-//                        if (current[j].equals(m.getResource())) {
-//                            current[j] = null;
-//                        }
-//                }
-//            }
-//            if (m.getPlace().equals("strongbox")) {
-//                strongBox.remove(m.getResource());
-//            }
-//        }
-//    }
-
     public ClientDevCard getCardFromID(String cardID){
         for(ClientDevCard c : allGameCards.getAllDevCards()){
             if(c.getCardID().equals(cardID)){
@@ -243,10 +226,9 @@ public class BasicData extends PlayerData {
             }
 
             for (int l = 0; l < wareHouseClone.size(); l++) {
-                Resource resource = re;
                 //se è pieno
                 if (!Arrays.stream(wareHouseClone.get(l)).anyMatch(r -> r.equals(Resource.EMPTY))) {
-                    continue;
+                   l++;
                 }
                 //se ha degli spazi vuoti
                 if (Arrays.stream(wareHouseClone.get(l)).anyMatch(r -> r.equals(Resource.EMPTY))) {
@@ -255,6 +237,7 @@ public class BasicData extends PlayerData {
                         if(!wareHouseRes.contains(re)){
                             wareHouseClone.get(l)[0] = re;
                             wareHouseRes.add(re);
+                            wareHouseRes.remove(Resource.EMPTY);
                             tmp.add(l);
                         }
 
@@ -266,6 +249,8 @@ public class BasicData extends PlayerData {
                             if(wareHouseClone.get(l)[d] == Resource.EMPTY){
                                 wareHouseClone.get(l)[d] = re;
                                 wareHouseRes.add(re);
+                                wareHouseRes.remove(Resource.EMPTY);
+                                break;
                             }
                         }
                     }
