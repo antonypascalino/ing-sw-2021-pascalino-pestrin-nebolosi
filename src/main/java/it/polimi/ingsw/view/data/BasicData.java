@@ -178,23 +178,6 @@ public class BasicData extends PlayerData {
         return mappedRes;
     }
 
-//    public void removeMappedResource(ArrayList<MappedResource> mapped) {
-//        for (MappedResource m : mapped) {
-//            if (m.getPlace().equals("warehouse")) {
-//                for (Resource[] l : wareHouse) {
-//                    Resource[] current = l;
-//                    for (int j = 0; j < current.length; j++)
-//                        if (current[j].equals(m.getResource())) {
-//                            current[j] = null;
-//                        }
-//                }
-//            }
-//            if (m.getPlace().equals("strongbox")) {
-//                strongBox.remove(m.getResource());
-//            }
-//        }
-//    }
-
     public ClientDevCard getCardFromID(String cardID){
         for(ClientDevCard c : allGameCards.getAllDevCards()){
             if(c.getCardID().equals(cardID)){
@@ -218,15 +201,17 @@ public class BasicData extends PlayerData {
     }
 
     public ArrayList<MarketResource> handleWarehouse(ArrayList<Resource> res) {
+        ArrayList<Resource[]> wareHouseClone = new ArrayList<Resource[]>();
         ArrayList<MarketResource> marketRes = new ArrayList<MarketResource>();
         ArrayList<Integer> tmp = new ArrayList<Integer>();
         ArrayList<Resource> wareHouseRes = new ArrayList<Resource>();
 
-        for (Resource[] lv : wareHouse) {
+        wareHouseClone.addAll(this.getDeposits());
+        for (Resource[] lv : wareHouseClone) {
             wareHouseRes.addAll(Arrays.asList(lv));
         }
-
         for (Resource re : res) {
+            tmp.clear();
             if (re.equals(Resource.EMPTY)) {
                 MarketResource m = new MarketResource(re, -2);
                 marketRes.add(m);
@@ -239,32 +224,24 @@ public class BasicData extends PlayerData {
                 continue;
             }
 
-            for (int l = 0; l < wareHouse.size(); l++) {
-                Resource resource = re;
+            for (int l = 0; l < wareHouseClone.size(); l++) {
                 //se è pieno
-                if (!Arrays.stream(wareHouse.get(l)).anyMatch(r -> r.equals(Resource.EMPTY))) {
-                    continue;
+                if (!Arrays.stream(wareHouseClone.get(l)).anyMatch(r -> r.equals(Resource.EMPTY))) {
+                   continue;
                 }
                 //se ha degli spazi vuoti
-                if (Arrays.stream(wareHouse.get(l)).anyMatch(r -> r.equals(Resource.EMPTY))) {
+                if (Arrays.stream(wareHouseClone.get(l)).anyMatch(r -> r.equals(Resource.EMPTY))) {
                     //se è vuoto
-                    if (wareHouse.get(l)[0].equals(Resource.EMPTY)) {
-                        boolean empty = true;
-                        for (int x = 0; x < wareHouse.size(); x++) {
-                            if (x != l) {
-                                if (Arrays.stream(wareHouse.get(l)).anyMatch(z -> z.equals(resource))) {
-                                    empty = false;
-                                    break;
-                                }
-                            }
-                        }
-                        if (empty) {
+                    if (wareHouseClone.get(l)[0].equals(Resource.EMPTY)) {
+                        if(!wareHouseRes.contains(re)){
                             tmp.add(l);
                         }
+
                     }
                     //se ha la mia risorsa
-                    else if (wareHouse.get(l)[0] == re) {
+                    else if (wareHouseClone.get(l)[0] == re) {
                         tmp.add(l);
+
                     }
                 }
             }
@@ -273,8 +250,15 @@ public class BasicData extends PlayerData {
             MarketResource mr = new MarketResource(re, wareHouseLevel);
             printer.printMessage("The resource " + re + " " + "was put in level " + wareHouseLevel);
             marketRes.add(mr);
+            for(int d = 0; d < wareHouseClone.get(wareHouseLevel).length; d++){
+                if(wareHouseClone.get(wareHouseLevel)[d] == Resource.EMPTY){
+                    wareHouseClone.get(wareHouseLevel)[d] = re;
+                    wareHouseRes.add(re);
+                    wareHouseRes.remove(Resource.EMPTY);
+                    break;
+                }
+            }
         }
-
         return marketRes;
     }
 
