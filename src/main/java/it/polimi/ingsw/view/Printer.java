@@ -81,19 +81,28 @@ public class Printer {
         return turnStates.get(index - 1);
     }
 
-    public String printCardID(ArrayList<String> cardID){
+    public String printCardID(ArrayList<String> cardID, PlayerData data) {
         Scanner inputs = new Scanner(System.in);
         String selection = "";
 
-        for (int i = 0; i < cardID.size(); i++) {
-            System.out.println("[" + (i + 1) + "]" + "" + cardID.get(i));
+        try {
+            while (true) {
+                for (int i = 0; i < cardID.size(); i++) {
+                    System.out.println("[" + (i + 1) + "] " + data.getLeaderFromID(cardID.get(i)));
+                }
+                System.out.println("Enter selection: ");
+                selection = inputs.nextLine();
+                int index = Integer.parseInt(selection);
+                if (index <= 0 || index > cardID.size()) {
+                    System.out.println("Invalid input");
+                } else return cardID.get(index - 1);
+            }
+        } catch (NumberFormatException e) {
+            {
+                System.out.println("Invalid input");
+            }
         }
-
-        System.out.println("Enter selection: ");
-        selection = inputs.nextLine();
-        int index = Integer.parseInt(selection);
-
-        return cardID.get(index - 1);
+        return null;
     }
 
     public int printIntegers(ArrayList<Integer> ints, boolean slots){
@@ -205,7 +214,7 @@ public class Printer {
         System.out.println("\nStrongbox:\n" + data.getStrongBox());
         System.out.println("\nSlots:\n" + data.getFrontCardsID());
         System.out.println("\nFaith Points: " + data.getFaithPoints());
-        System.out.println("\nVictory Points: " + data.getVictoryPoints());
+        System.out.println("\nVictory Points:" + data.getVictoryPoints() + "\n");
         for(String s: data.getLeadersID()){
             System.out.println("Leader card: " + data.getLeaderFromID(s));
             System.out.println(""); //depositi extra o sconti o bla bla bla
@@ -229,7 +238,7 @@ public class Printer {
         System.out.println("What is your second choice?");
         for(String s : leadersToChoose) {
             System.out.print("\n[" + index + "] ");
-            System.out.println(data.getLeaderFromID(s).toString() + "\n");
+            System.out.println(data.getLeaderFromID(s).toString());
             index++;
         }
         chosen.add(leadersToChoose.remove(inputs.nextInt() - 1));
@@ -288,6 +297,6 @@ public class Printer {
     public void printWareHouse(ArrayList<Resource[]> warehouse) {
         System.out.println("Level 1: " + warehouse.get(0)[0]);
         System.out.println("Level 2: " + warehouse.get(1)[0] + " " + warehouse.get(1)[1]);
-        System.out.println("Level 1: " + warehouse.get(2)[0] + " " + warehouse.get(2)[1] + " " + warehouse.get(2)[2]);
+        System.out.println("Level 3: " + warehouse.get(2)[0] + " " + warehouse.get(2)[1] + " " + warehouse.get(2)[2]);
     }
 }

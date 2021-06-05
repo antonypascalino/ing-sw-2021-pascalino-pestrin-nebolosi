@@ -179,7 +179,8 @@ public class Game {
     }
 
     public Update createNewGameUpdate() {
-        ArrayList<LeaderCard> allLeaderCards = DefaultCreator.produceLeaderCard(); //Produce tutte le Leader del gioco
+        ArrayList<LeaderCard> allLeaderCards = new ArrayList<LeaderCard>();
+        allLeaderCards.addAll(DefaultCreator.produceLeaderCard()); //Produce tutte le Leader del gioco
         Collections.shuffle(allLeaderCards); //Le mischia
 
         //Crea un elenco di players e attibuisce ad ognungo di loro 4 leaderCard diverse

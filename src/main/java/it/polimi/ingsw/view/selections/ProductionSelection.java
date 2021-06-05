@@ -25,7 +25,7 @@ public class ProductionSelection extends Selection {
 
         do{
             cards.addAll(data.slotCardsFilter(allRes));
-            String cardID = data.getPrinter().printCardID(cards);
+            String cardID = data.getPrinter().printCardID(cards, data);
 
             if(cardID.contains("BASIC")){
 
