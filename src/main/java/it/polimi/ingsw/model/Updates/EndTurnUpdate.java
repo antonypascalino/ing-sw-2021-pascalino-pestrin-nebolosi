@@ -25,7 +25,11 @@ public class EndTurnUpdate implements Update{
     @Override
     public void handleUpdate(PlayerData data) {
         if (data.getPlayerID().equals(nextPlayer)) {
+            data.getPrinter().printMessage("\nNow it's your turn!");
             data.getMenu().menuMaker();
+        }
+        else {
+            data.getPrinter().printMessage("\nIt's " + nextPlayer + "'s turn!");
         }
     }
 }

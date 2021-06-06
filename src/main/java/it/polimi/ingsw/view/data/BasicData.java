@@ -94,6 +94,10 @@ public class BasicData extends PlayerData {
             tmp.remove(TurnState.PLAY_LEADER_CARD);
             tmp.remove(TurnState.DISCARD_LEADER_CARD);
         }
+        //Se non ha carte con cui può produrre
+        if(frontCardsID.size() == 0) {
+            tmp.remove(TurnState.PRODUCE);
+        }
 
         boolean empty = true;
         for(int i = 0; i < wareHouse.size(); i++){
@@ -115,15 +119,12 @@ public class BasicData extends PlayerData {
             if(strongBox.size() == 0 && frontCardsID.size() == 0){
                 tmp.remove(TurnState.PLAY_LEADER_CARD);
                 tmp.remove(TurnState.BUY_DEV_CARD);
-
             }
         }
-
         if(leadersID.size() == 0){
             tmp.remove(TurnState.DISCARD_LEADER_CARD);
             tmp.remove(TurnState.PLAY_LEADER_CARD);
         }
-
         return tmp;
     }
 

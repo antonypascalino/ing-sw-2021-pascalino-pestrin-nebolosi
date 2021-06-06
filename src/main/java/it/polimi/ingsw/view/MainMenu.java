@@ -63,6 +63,10 @@ public class MainMenu {
                selection = new CheckStatsSelection();
                selection.handleSelection(data);
                break;
+           case END_TURN:
+                selection = new EndTurnSelection();
+                selection.handleSelection(data);
+                break;
        }
     }
 }

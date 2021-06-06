@@ -115,7 +115,7 @@ public class Printer {
         }
         else{
             for (int i = 0; i < ints.size(); i++) {
-                System.out.println("[" + (i + 1) + "]" + " " + "warehouse level" + " " + ints.get(i));
+                System.out.println("[" + (i + 1) + "]" + " " + "warehouse level" + " " + (ints.get(i) + 1));
             }
 
         }
