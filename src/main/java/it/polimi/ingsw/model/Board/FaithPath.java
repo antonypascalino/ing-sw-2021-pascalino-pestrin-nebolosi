@@ -22,6 +22,18 @@ public class FaithPath
     /**
      * Instantiates a new Faith path setting the advancement attribute to 0.
      */
+    public FaithPath(Board board)
+    {
+        this.board = board;
+        advancement = 0;
+        pope1 = 8;
+        pope2 = 16;
+        pope3 = 24;
+        tile1 = true;
+        tile2 = true;
+        tile3 = true;
+    }
+
     public FaithPath()
     {
         advancement = 0;

@@ -59,6 +59,7 @@ public class BasicData extends PlayerData {
         tmp[2] = Resource.EMPTY;
         wareHouse.add(tmp);
 
+        this.allDevID = new ArrayList<String>();
         this.strongBox = new ArrayList<Resource>();
         this.faithPoints = 0;
         this.victoryPoints = 0;
@@ -115,10 +116,10 @@ public class BasicData extends PlayerData {
         else{
             if(strongBox.size() == 0){
                 tmp.remove(TurnState.PRODUCE);
-            }
-            if(strongBox.size() == 0 && frontCardsID.size() == 0){
-                tmp.remove(TurnState.PLAY_LEADER_CARD);
                 tmp.remove(TurnState.BUY_DEV_CARD);
+                if(allDevID.size() == 0){
+                    tmp.remove(TurnState.PLAY_LEADER_CARD);
+                }
             }
         }
         if(leadersID.size() == 0){
@@ -245,6 +246,12 @@ public class BasicData extends PlayerData {
 
                     }
                 }
+            }
+            if(tmp.size() == 0) {
+                printer.printMessage("You hav no space for " + re + ". It was discarded!");
+                MarketResource mr = new MarketResource(re, -1);
+                marketRes.add(mr);
+                continue;
             }
             printer.printMessage("\nWhere do you wanna put " + re + "?");
             int wareHouseLevel = printer.printIntegers(tmp, false);
@@ -456,5 +463,9 @@ public class BasicData extends PlayerData {
 
     public ArrayList<String> getFrontTableCardsID() {
         return tableCardsID;
+    }
+
+    public void newTurn() {
+        turnStates.clear();
     }
 }

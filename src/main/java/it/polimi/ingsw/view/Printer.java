@@ -159,7 +159,7 @@ public class Printer {
                     res.add(matrix[indexRow - 1][k]);
                 }
                 System.out.println("You chose these resources: " + res);
-                return new MarketArray(res, MarketDimension.ROW, indexRow);
+                return new MarketArray(res, MarketDimension.ROW, indexRow - 1);
 
             case ("2"):
                 System.out.println("Select your column: ");
@@ -169,7 +169,7 @@ public class Printer {
                     res.add(matrix[z][indexColumn - 1]);
                 }
                 System.out.println("You chose these resources: " + res);
-                return new MarketArray(res, MarketDimension.COL, indexColumn);
+                return new MarketArray(res, MarketDimension.COL, indexColumn - 1);
         }
         return null;
     }

@@ -183,4 +183,8 @@ public abstract class PlayerData {
     }
 
     public void sendRequest(Request request) {originalData.sendRequest(request);}
+
+    public void newTurn() {
+        originalData.newTurn();
+    }
 }

@@ -29,7 +29,7 @@ public class Board
         strongBox = new StrongBox();
         slot = new Slot();
         tempBox = new TempBox(strongBox);
-        faithPath = new FaithPath();
+        faithPath = new FaithPath(this);
         basicDevSpace = new BasicDevSpace(this);
         this.player = player;
     }
