@@ -454,6 +454,6 @@ public class BasicData extends PlayerData {
     }
 
     public ArrayList<String> getFrontTableCardsID() {
-        return frontCardsID;
+        return tableCardsID;
     }
 }
