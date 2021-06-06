@@ -11,6 +11,7 @@
     import it.polimi.ingsw.model.Table.Table;
     import org.junit.Test;
 
+    import java.io.IOException;
     import java.net.Socket;
     import java.util.ArrayList;
     import java.util.Collections;
@@ -82,5 +83,43 @@
                     System.out.println(prova[i][j].getCardID());
             }
 
+        }
+
+        @Test
+        public void TestNewGameUpdate1player() {
+        ArrayList<Player> players = new ArrayList<>();
+        players.add(new BasicPlayer("Tester1"));
+        Game game = new Game(players, DefaultCreator.produceDevCard(), 1, 1);
+        game.createNewGameUpdate();
+        }
+
+        @Test
+        public void TestNewGameUpdate2players() {
+            ArrayList<Player> players = new ArrayList<>();
+            players.add(new BasicPlayer("Tester1"));
+            players.add(new BasicPlayer("Tester2"));
+            Game game = new Game(players, DefaultCreator.produceDevCard(), 1, 2);
+            game.createNewGameUpdate();
+        }
+
+        @Test
+        public void TestNewGameUpdate3players() {
+            ArrayList<Player> players = new ArrayList<>();
+            players.add(new BasicPlayer("Tester1"));
+            players.add(new BasicPlayer("Tester2"));
+            players.add(new BasicPlayer("Tester3"));
+            Game game = new Game(players, DefaultCreator.produceDevCard(), 1, 3);
+            game.createNewGameUpdate();
+        }
+
+        @Test
+        public void TestNewGameUpdate4players() {
+            ArrayList<Player> players = new ArrayList<>();
+            players.add(new BasicPlayer("Tester1"));
+            players.add(new BasicPlayer("Tester2"));
+            players.add(new BasicPlayer("Tester3"));
+            players.add(new BasicPlayer("Tester4"));
+            Game game = new Game(players, DefaultCreator.produceDevCard(), 1, 4);
+            game.createNewGameUpdate();
         }
     }

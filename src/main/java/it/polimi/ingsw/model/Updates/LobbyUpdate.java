@@ -1,6 +1,5 @@
 package it.polimi.ingsw.model.Updates;
 
-import it.polimi.ingsw.controller.Lobby;
 import it.polimi.ingsw.view.data.PlayerData;
 
 public class LobbyUpdate implements Update {
