@@ -23,5 +23,6 @@ public class LobbyUpdate implements Update {
     @Override
     public void handleUpdate(PlayerData data) {
         data.getPrinter().printMessage("New game created wwith "+ maxPlayer+ " max players\n\rActually there are "+playerNum+" players in the lobby\n\rThe last one to join was "+nickname);
+
     }
 }

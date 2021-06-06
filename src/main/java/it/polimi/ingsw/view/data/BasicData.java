@@ -42,7 +42,7 @@ public class BasicData extends PlayerData {
 
     public BasicData(String playerID, LineClient connection) {
         this.connection = connection;
-
+        this.otherPlayersData = new ArrayList<>();
         printer = new Printer();
         this.turnStates = new ArrayList<>();
         this.wareHouse = new ArrayList<Resource[]>();

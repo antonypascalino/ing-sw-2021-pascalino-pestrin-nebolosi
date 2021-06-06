@@ -3,6 +3,7 @@ package it.polimi.ingsw.model.Updates;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Table.Resource;
+import it.polimi.ingsw.view.data.OtherPlayerData;
 import it.polimi.ingsw.view.data.PlayerData;
 import it.polimi.ingsw.view.selections.Selection;
 import it.polimi.ingsw.view.selections.StartGameSelection;
@@ -42,10 +43,16 @@ public class NewGameUpdate implements Update{
         int dataChoices = 0;
         ArrayList<String> leadersToChoose = new ArrayList<String>();
 
+
         for (PlayerLC p : playersLC) {
+
             if (p.getPlayerID().equals(data.getPlayerID())) {
                 leadersToChoose.addAll(p.getLeadersToChoose());
             }
+
+            else
+                data.getOtherPlayers().add(new OtherPlayerData(p.getPlayerID()));
+
         }
         for (PlayerST p : playersST) {
             if (p.getPlayerID().equals(data.getPlayerID())) {

@@ -15,7 +15,7 @@ public class OtherPlayerData {
     private int faithPoints;
     private int victoryPoints;
 
-    public OtherPlayerData(String playerID, ArrayList<Resource> wareHouse, ArrayList<Resource> strongBox, ArrayList<String> slotFrontCards, ArrayList<String> playedLeadersID, int faithPoints, int victoryPoints) {
+    public OtherPlayerData(String playerID) {
         this.playerID = playerID;
         wareHouse = new ArrayList<Resource>();
         strongBox = new ArrayList<Resource>();
