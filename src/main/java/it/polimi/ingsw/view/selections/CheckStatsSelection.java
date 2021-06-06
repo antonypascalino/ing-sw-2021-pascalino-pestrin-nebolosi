@@ -14,6 +14,6 @@ public class CheckStatsSelection extends Selection{
             for(OtherPlayerData p : data.getOtherPlayers())
             data.getPrinter().printOtherStats(p);
         }
-
+        data.getMenu().menuMaker();
     }
 }

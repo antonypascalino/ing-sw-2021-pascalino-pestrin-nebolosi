@@ -46,6 +46,7 @@ public class BuyDevUpdate implements Update {
             data.setWareHouse(wareHouse);
             data.setStrongBox(strongBox);
             data.setFrontCardsID(cardsID);
+            data.getMenu().menuMaker();
         }
         else {
             for (OtherPlayerData p : data.getOtherPlayers()) {
@@ -61,6 +62,7 @@ public class BuyDevUpdate implements Update {
                 }
             }
         }
+
 
 
 

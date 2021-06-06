@@ -25,12 +25,12 @@ public class MainMenu {
 
     public void menuMaker() {
         TurnState turnState;
-        do {
+
             turnStates.clear();
             turnStates.addAll(data.turnStateFilter());
             turnState = printer.printTurnStates(turnStates);
             selectionHandler(turnState, data);
-        } while (!turnState.equals(TurnState.END_TURN));
+
 
     }
 
