@@ -55,8 +55,9 @@ public class ExtraProd /*extends Producer*/ implements LeaderCard  {
         if(isEnable) return false; //It can't be played twice
         for(DevCard card : player.getBoard().getSlot().getAllCards() )
         {
-            if (card.getColor().equals(requires) && card.getLevel()==2) return true;
+            if (card.getColor().equals(requires.toUpperCase()) && card.getLevel()==2) return true;
         }
+
         return false;
 
     }
@@ -76,8 +77,11 @@ public class ExtraProd /*extends Producer*/ implements LeaderCard  {
             player.getGame().changePlayer(player, tmp);
             for (LeaderCard card : player.getLeaderCards())
             {
-                card.assignTo(tmp);
+                //Do not change the reference on this card
+                if(!card.getID().equals(this.getID()))
+                card.setPlayer(tmp);
             }
+            this.player = tmp;
         }
     }
 
@@ -94,6 +98,15 @@ public class ExtraProd /*extends Producer*/ implements LeaderCard  {
         return cardID;
     }
 
+    /**
+     * Just used as setter, for adding the card to the player use assignTo
+     * @param tmp the player to be added to the player
+     */
+    @Override
+    public void setPlayer(Player tmp) {
+        this.player = tmp;
+    }
+
     public ArrayList<Resource> getProducedRes(){
         ArrayList<Resource> temp = new ArrayList<Resource>();
         temp.add(Resource.FAITH);
@@ -106,9 +119,7 @@ public class ExtraProd /*extends Producer*/ implements LeaderCard  {
         return cardID;
     }
 
-    public String toString() {
-        return "Extra Production Leader Card:\nYou will have an Extra Production power which you can use to produce a CHOICE resource and a FAITH point, paying a " + prodResource + "\nTo play this card you need to have a " + requires + "Development card of level 2";
-    }
+
 
 
 }

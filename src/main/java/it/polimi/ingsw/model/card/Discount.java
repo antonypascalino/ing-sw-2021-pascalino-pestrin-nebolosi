@@ -9,14 +9,14 @@ import it.polimi.ingsw.model.Table.Resource;
  */
 public class Discount implements LeaderCard {
 
-    private String color1;
-    private String color2;
-    private Resource discount;
-    private int victoryPoints;
+    private final String color1;
+    private final String color2;
+    private final Resource discount;
+    private final int victoryPoints;
     private boolean isEnable;
     private Player player;
     private final String className;
-    private String cardID;
+    private final String cardID;
 
     /**
      * Instantiates a new Discount.
@@ -36,6 +36,11 @@ public class Discount implements LeaderCard {
         discount = dis;
         victoryPoints = vp;
         isEnable = false;
+    }
+
+    @Override
+    public void setPlayer(Player tmp) {
+        this.player = tmp;
     }
 
     public void assignTo(Player player) {
@@ -75,14 +80,14 @@ public class Discount implements LeaderCard {
             isEnable = true;
             Player tmp = new DiscountedPlayer(player, discount);
             //Add the new powered player in substitition to the actual one if the game references
-            player.getGame().changePlayer(player, tmp );
+            player.getGame().changePlayer(player, tmp);
             for (LeaderCard card : player.getLeaderCards())
             {
-                //Change the reference for every dev card unless they point directly to the board
-
-                //For every leader card change the owner
-                card.assignTo(tmp);
+                //Do not change the reference on this card
+                if(!card.getID().equals(this.getID()))
+                    card.setPlayer(tmp);
             }
+            this.player = tmp;
         }
     }
 
@@ -93,13 +98,9 @@ public class Discount implements LeaderCard {
         boolean firstColor = false;
         if (isEnable) return false; //The card can't be played twice
         for (DevCard card : player.getBoard().getSlot().getAllCards()) {
-            if (card.getColor().equals(color1)) firstColor = true;
-            if (card.getColor().equals(color2)) secondColor = true;
+            if (card.getColor().equals(color1.toUpperCase())) firstColor = true;
+            if (card.getColor().equals(color2.toUpperCase())) secondColor = true;
         }
         return (firstColor && secondColor);
-    }
-
-    public String toString() {
-        return "Discount Leader Card:\nWhen you buy a Developement Card from table you will pay one " + discount + "less" + "\nTo play this card you need to have 1 " + color2 + " Developments card and 1 " + color1 + "Development card" ;
     }
 }

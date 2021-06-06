@@ -1,7 +1,6 @@
 package it.polimi.ingsw.model.Updates;
 
 import it.polimi.ingsw.controller.TurnState;
-import it.polimi.ingsw.view.Updater;
 import it.polimi.ingsw.view.data.OtherPlayerData;
 import it.polimi.ingsw.view.data.PlayerData;
 
@@ -13,6 +12,8 @@ public class DiscardLeaderUpdate implements Update {
     private ArrayList<String> leadersID;
     private ArrayList<PlayerVP> playersVP;
     private String playerID;
+    private final String className;
+
 
     public DiscardLeaderUpdate(String playerID, ArrayList<TurnState> turnStates, int faithPoints, ArrayList<String> leadersID, ArrayList<PlayerVP> playersVP) {
         this.turnStates = turnStates;
@@ -20,22 +21,16 @@ public class DiscardLeaderUpdate implements Update {
         this.leadersID = leadersID;
         this.playersVP = playersVP;
         this.playerID = playerID;
+        className = this.getClass().getName();
+    }
+
+    @Override
+    public String getClassName() {
+        return className;
     }
 
     @Override
     public void handleUpdate(PlayerData data) {
-        if (playerID.equals(data.getPlayerID())) {
-            data.setTurnStates(turnStates);
-            data.setFaithPoints(faithPoints);
-            data.setLeadersID(leadersID);
-        } else {
-            for (OtherPlayerData p : data.getOtherPlayers()) {
-                if (p.getPlayerID().equals(playerID)) {
-                    p.setFaithPoints(faithPoints);
-                }
-            }
-
-        }
         for (PlayerVP pvp : playersVP) {
             if (pvp.getPlayerID().equals(data.getPlayerID())) {
                 data.setVictoryPoints(pvp.getVictoryPoints());
@@ -46,6 +41,19 @@ public class DiscardLeaderUpdate implements Update {
                     }
                 }
             }
+        }
+        if (playerID.equals(data.getPlayerID())) {
+            data.setTurnStates(turnStates);
+            data.setFaithPoints(faithPoints);
+            data.setLeadersID(leadersID);
+            data.getMenu().menuMaker();
+        } else {
+            for (OtherPlayerData p : data.getOtherPlayers()) {
+                if (p.getPlayerID().equals(playerID)) {
+                    p.setFaithPoints(faithPoints);
+                }
+            }
+
         }
     }
 }

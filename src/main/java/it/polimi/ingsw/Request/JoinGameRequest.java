@@ -26,6 +26,7 @@ public class JoinGameRequest implements Request{
         return TurnState.LOBBY;
     }
 
+
     @Override
     public boolean validRequest(ArrayList<TurnState> turnStates) {
         return true;
@@ -46,12 +47,16 @@ public class JoinGameRequest implements Request{
         return className;
     }
 
-    public int getGameId() {
+    public int getGameID() {
         return gameId;
     }
 
     public String getNickName()
     {
         return nickName;
+    }
+
+    public String getPlayerID(){
+        return playerID;
     }
 }

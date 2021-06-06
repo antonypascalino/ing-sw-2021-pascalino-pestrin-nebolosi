@@ -2,16 +2,21 @@ package it.polimi.ingsw.view.data;
 
 import it.polimi.ingsw.Request.MappedResource;
 import it.polimi.ingsw.Request.MarketResource;
+import it.polimi.ingsw.Request.Request;
+import it.polimi.ingsw.client.LineClient;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Board.WareHouse;
 import it.polimi.ingsw.model.Table.Resource;
+import it.polimi.ingsw.model.Updates.Update;
 import it.polimi.ingsw.model.card.LeaderCard;
+import it.polimi.ingsw.view.MainMenu;
 import it.polimi.ingsw.view.clientCards.AllGameCards;
 import it.polimi.ingsw.view.clientCards.ClientDefaultCreator;
 import it.polimi.ingsw.view.clientCards.ClientDevCard;
 import it.polimi.ingsw.view.clientCards.ClientLeaderCard;
 import it.polimi.ingsw.view.Printer;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -32,9 +37,13 @@ public class BasicData extends PlayerData {
     private ArrayList<OtherPlayerData> otherPlayersData;
     private ArrayList<String> allDevID;
     private AllGameCards allGameCards;
+    private MainMenu menu;
+    private LineClient connection;
 
-
-    public BasicData(String playerID) {
+    public BasicData(String playerID, LineClient connection) {
+        this.connection = connection;
+        this.otherPlayersData = new ArrayList<>();
+        printer = new Printer();
         this.turnStates = new ArrayList<>();
         this.wareHouse = new ArrayList<Resource[]>();
         Resource[] tmp = new Resource[1];
@@ -50,13 +59,14 @@ public class BasicData extends PlayerData {
         tmp[2] = Resource.EMPTY;
         wareHouse.add(tmp);
 
+        this.allDevID = new ArrayList<String>();
         this.strongBox = new ArrayList<Resource>();
         this.faithPoints = 0;
         this.victoryPoints = 0;
         this.frontCardsID = new ArrayList<String>();
         this.leadersID = new ArrayList<String>();
         this.playerID = playerID;
-
+        menu = new MainMenu(this);
         allGameCards = new AllGameCards(ClientDefaultCreator.produceClientDevCard(), ClientDefaultCreator.produceClientLeaderCard());
     }
 
@@ -85,6 +95,10 @@ public class BasicData extends PlayerData {
             tmp.remove(TurnState.PLAY_LEADER_CARD);
             tmp.remove(TurnState.DISCARD_LEADER_CARD);
         }
+        //Se non ha carte con cui può produrre
+        if(frontCardsID.size() == 0) {
+            tmp.remove(TurnState.PRODUCE);
+        }
 
         boolean empty = true;
         for(int i = 0; i < wareHouse.size(); i++){
@@ -102,19 +116,16 @@ public class BasicData extends PlayerData {
         else{
             if(strongBox.size() == 0){
                 tmp.remove(TurnState.PRODUCE);
-            }
-            if(strongBox.size() == 0 && frontCardsID.size() == 0){
-                tmp.remove(TurnState.PLAY_LEADER_CARD);
                 tmp.remove(TurnState.BUY_DEV_CARD);
-
+                if(allDevID.size() == 0){
+                    tmp.remove(TurnState.PLAY_LEADER_CARD);
+                }
             }
         }
-
         if(leadersID.size() == 0){
             tmp.remove(TurnState.DISCARD_LEADER_CARD);
             tmp.remove(TurnState.PLAY_LEADER_CARD);
         }
-
         return tmp;
     }
 
@@ -169,23 +180,6 @@ public class BasicData extends PlayerData {
         return mappedRes;
     }
 
-//    public void removeMappedResource(ArrayList<MappedResource> mapped) {
-//        for (MappedResource m : mapped) {
-//            if (m.getPlace().equals("warehouse")) {
-//                for (Resource[] l : wareHouse) {
-//                    Resource[] current = l;
-//                    for (int j = 0; j < current.length; j++)
-//                        if (current[j].equals(m.getResource())) {
-//                            current[j] = null;
-//                        }
-//                }
-//            }
-//            if (m.getPlace().equals("strongbox")) {
-//                strongBox.remove(m.getResource());
-//            }
-//        }
-//    }
-
     public ClientDevCard getCardFromID(String cardID){
         for(ClientDevCard c : allGameCards.getAllDevCards()){
             if(c.getCardID().equals(cardID)){
@@ -209,64 +203,73 @@ public class BasicData extends PlayerData {
     }
 
     public ArrayList<MarketResource> handleWarehouse(ArrayList<Resource> res) {
+        ArrayList<Resource[]> wareHouseClone = new ArrayList<Resource[]>();
         ArrayList<MarketResource> marketRes = new ArrayList<MarketResource>();
         ArrayList<Integer> tmp = new ArrayList<Integer>();
         ArrayList<Resource> wareHouseRes = new ArrayList<Resource>();
 
-        for (Resource[] lv : wareHouse) {
+        wareHouseClone.addAll(this.getDeposits());
+        for (Resource[] lv : wareHouseClone) {
             wareHouseRes.addAll(Arrays.asList(lv));
         }
-
-        for (int p = 0; p < res.size(); p++) {
-            if (res.get(p).equals(Resource.EMPTY)) {
-                MarketResource m = new MarketResource(res.get(p), -2);
+        for (Resource re : res) {
+            tmp.clear();
+            if (re.equals(Resource.EMPTY)) {
+                MarketResource m = new MarketResource(re, -2);
                 marketRes.add(m);
-                p++;
+                continue;
             }
 
-            if (res.get(p).equals(Resource.FAITH)) {
-                MarketResource m = new MarketResource(res.get(p), -1);
+            if (re.equals(Resource.FAITH)) {
+                MarketResource m = new MarketResource(re, -1);
                 marketRes.add(m);
-                p++;
+                continue;
             }
 
-            for (int l = 0; l < wareHouse.size(); l++) {
-                Resource resource = res.get(p);
+            for (int l = 0; l < wareHouseClone.size(); l++) {
                 //se è pieno
-                if (!Arrays.stream(wareHouse.get(l)).anyMatch(null)) {
-                    continue;
+                if (!Arrays.stream(wareHouseClone.get(l)).anyMatch(r -> r.equals(Resource.EMPTY))) {
+                   continue;
                 }
                 //se ha degli spazi vuoti
-                if (Arrays.stream(wareHouse.get(l)).anyMatch(null)) {
+                if (Arrays.stream(wareHouseClone.get(l)).anyMatch(r -> r.equals(Resource.EMPTY))) {
                     //se è vuoto
-                    if (wareHouse.get(l)[0] == null) {
-                        boolean empty = true;
-                        for (int x = 0; x < wareHouse.size(); x++) {
-                            if (x != l) {
-                                if (Arrays.stream(wareHouse.get(l)).anyMatch(z -> z.equals(resource))) {
-                                    empty = false;
-                                    break;
-                                }
-                            }
-                        }
-                        if (empty) {
+                    if (wareHouseClone.get(l)[0].equals(Resource.EMPTY)) {
+                        if(!wareHouseRes.contains(re)){
                             tmp.add(l);
                         }
+
                     }
                     //se ha la mia risorsa
-                    else if (wareHouse.get(l)[0] == res.get(p)) {
+                    else if (wareHouseClone.get(l)[0] == re) {
                         tmp.add(l);
+
                     }
                 }
             }
+            if(tmp.size() == 0) {
+                printer.printMessage("You hav no space for " + re + ". It was discarded!");
+                MarketResource mr = new MarketResource(re, -1);
+                marketRes.add(mr);
+                continue;
+            }
+            printer.printMessage("\nWhere do you wanna put " + re + "?");
             int wareHouseLevel = printer.printIntegers(tmp, false);
-            MarketResource mr = new MarketResource(res.get(p), wareHouseLevel);
-            System.out.println("The resource " + res.get(p) + "" + "was put in level " + wareHouseLevel);
+            MarketResource mr = new MarketResource(re, wareHouseLevel);
+            printer.printMessage("The resource " + re + " " + "was put in level " + wareHouseLevel);
             marketRes.add(mr);
+            for(int d = 0; d < wareHouseClone.get(wareHouseLevel).length; d++){
+                if(wareHouseClone.get(wareHouseLevel)[d] == Resource.EMPTY){
+                    wareHouseClone.get(wareHouseLevel)[d] = re;
+                    wareHouseRes.add(re);
+                    wareHouseRes.remove(Resource.EMPTY);
+                    break;
+                }
+            }
         }
-
         return marketRes;
     }
+
 
     public ArrayList<String> tableCardsFilter(ArrayList<MappedResource> mapped){
 
@@ -343,6 +346,15 @@ public class BasicData extends PlayerData {
         return leadersID;
     }
 
+    @Override
+    public void sendRequest(Request request)
+    {
+        try {
+            connection.sendRequest(request);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public void setTurnStates(ArrayList<TurnState> turnStates) {
         this.turnStates = turnStates;
     }
@@ -439,5 +451,21 @@ public class BasicData extends PlayerData {
 
     public void setGameID(int gameID) {
         this.gameID = gameID;
+    }
+
+    public MainMenu getMenu() {
+        return menu;
+    }
+
+    public void refresh(Update update) {
+        update.handleUpdate(this);
+    }
+
+    public ArrayList<String> getFrontTableCardsID() {
+        return tableCardsID;
+    }
+
+    public void newTurn() {
+        turnStates.clear();
     }
 }

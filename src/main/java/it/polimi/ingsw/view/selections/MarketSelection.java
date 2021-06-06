@@ -14,9 +14,9 @@ public class MarketSelection extends Selection {
     public void handleSelection(PlayerData data) {
         ArrayList<MarketResource> marketRes = new ArrayList<MarketResource>();
 
-        MarketArray marketArray =  printer.printMatrix(data.getMarket());
+        MarketArray marketArray =  data.getPrinter().printMatrix(data.getMarket());
         marketRes.addAll(data.handleWarehouse(marketArray.getResources()));
         Request marketReq = new MarketRequest(marketArray.getDimension(), marketArray.getIndex(), data.getGameID(), data.getPlayerID(), marketRes);
-        sendToConnection(marketReq);
+        data.sendRequest(marketReq);
     }
 }

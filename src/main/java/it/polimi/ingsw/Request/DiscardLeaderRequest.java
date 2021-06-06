@@ -17,6 +17,8 @@ public class DiscardLeaderRequest implements Request{
     private int gameID;
 
     public DiscardLeaderRequest(int gameID, String playerID, String cardID) {
+        this.gameID = gameID;
+        this.playerID = playerID;
         className = this.getClass().getName();
         this.cardID = cardID;
     }
@@ -41,6 +43,11 @@ public class DiscardLeaderRequest implements Request{
     }
 
     @Override
+    public int getGameID() {
+        return gameID;
+    }
+
+    @Override
     public String getClassName() {
         return className;
     }
@@ -53,5 +60,10 @@ public class DiscardLeaderRequest implements Request{
         }
 
         return new DiscardLeaderUpdate(player.getNickName(), game.getTurnStates(), player.getBoard().getFaithPath().getAdvancement(), player.getLeadersID(), playersVP);
+    }
+
+    @Override
+    public String getPlayerID() {
+        return playerID;
     }
 }

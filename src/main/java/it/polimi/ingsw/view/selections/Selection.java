@@ -7,18 +7,8 @@ import it.polimi.ingsw.view.data.PlayerData;
 
 import java.util.ArrayList;
 
-public class Selection {
+public abstract class Selection {
 
-    Selection original;
-
-    Printer printer;
-
-    public void handleSelection(PlayerData data){
-
-    }
-
-    public void sendToConnection(Request request) {
-
-    }
+    public abstract void handleSelection(PlayerData data);
 
 }

@@ -1,9 +1,10 @@
 package it.polimi.ingsw.controller;
 
+import com.google.gson.Gson;
+import it.polimi.ingsw.Request.InitialPlayersSetRequest;
+import it.polimi.ingsw.Request.NewGameRequest;
 import it.polimi.ingsw.Request.Request;
-import it.polimi.ingsw.model.Updates.NewGameUpdate;
-import it.polimi.ingsw.model.Updates.PlayerLC;
-import it.polimi.ingsw.model.Updates.Update;
+import it.polimi.ingsw.model.Updates.*;
 import it.polimi.ingsw.model.card.DevCard;
 import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Table.Table;
@@ -17,31 +18,32 @@ import java.util.Collections;
  */
 public class Game {
 
-    private int maxPlayer;
+    public int maxPlayer;
     private ArrayList<Player> players;
+    private int currPlayerInt;
     private Table table;
     private ArrayList<TurnState> turnStates;
     private Player currPlayer;
+    private Player nextPlayer;
     private int currPopeSpace;
     private final int gameId;
     private boolean lastTurn;
-    private ArrayList<Player> lastRound;
+    public int playerReady; //Players ready to start the game that have choosen their leaderCards
 
     public Game(ArrayList<Player> players, ArrayList<DevCard> cards, int gameId, int maxPlayer) {
+        playerReady = 0;
+        currPlayerInt = 0;
+        currPlayer = players.get(currPlayerInt);
         this.maxPlayer = maxPlayer;
         this.gameId = gameId;
         this.players = players;
         Collections.shuffle(cards);
         this.table = new Table(cards);
-        //Set the table on all the players
-        for(Player player : players)
-            player.setTable(table);
         this.turnStates = new ArrayList<TurnState>();
         this.currPlayer = players.get(0);
         this.currPopeSpace = 1;
         //Chiama metodo che crea Update per inviare a tutti i giocatori la situazione iniziale del Table, del Market e assegna loro 4 LeaderCard che poi dovranno selezonare lato client
         //Chiamata messa provvisoriamente nel costruttore
-        createNewGameUpdate();
     }
 
     public int getGameId()
@@ -77,34 +79,35 @@ public class Game {
         int playerSteps = 0;
         int discardedSteps = 0;
 
-        //BISOGNA AGGIUNGERE UN METODO CHE CONTROLLI CHE IL PLAYER CHE HA INVIATO LA REQUEST SIA IL CURRENT PLAYER
-        if (/*req.validRequest(turnStates)*/true) {
-            if (req.canBePlayed(currPlayer)) {
-                turnStates.add(req.handle(currPlayer ,this));
-                if (turnStates.contains(TurnState.END_TURN)) {
-                    turnStates.clear();
-                }
+        //In the case the game is starting every game can send the request
+        if (req.getPlayerID().equals(currPlayer.getNickName())  || req instanceof InitialPlayersSetRequest) {
+            if (/*req.validRequest(turnStates)*/true) {
+                if (req.canBePlayed(currPlayer)) {
+                    turnStates.add(req.handle(getPlayerFromID(req.getPlayerID()), this));
 
-                if(lastTurn) {
-                    lastRound.add(currPlayer);
-                    if (lastRound.containsAll(players)) {
-                        endgame();
+
+                    //Check if the game is finished
+                    if (lastTurn) {
+                        if (currPlayerInt == 0) {
+                            endgame();
+                        }
                     }
-                }
-                if((currPlayer.getBoard().getSlot().getAllCards().size() == 7 || currPlayer.getBoard().getFaithPath().checkPopeSpace(3)) && !lastTurn) {
-                    lastTurn = true;
-                    lastRound = new ArrayList<Player>();
-                    lastRound.add(currPlayer);
+                    if ((currPlayer.getBoard().getSlot().getAllCards().size() == 7 || currPlayer.getBoard().getFaithPath().checkPopeSpace(3)) && !lastTurn) {
+                        lastTurn = true;
+                    }
+                    if (turnStates.contains(TurnState.END_TURN)) {
+                        turnStates.clear();
+                        currPlayer = nextPlayer;
+                    }
+                    //Notify all players execpt for the newGame req which is handled separetly
+                    if(!(req instanceof InitialPlayersSetRequest))
+                        notifyAllPlayers(req.createUpdate(currPlayer, this));
+
                 }
             }
+        } else {
+            Update error = new ErrorUpdate("It's not your turn", req.getPlayerID());
         }
-
-    }
-
-    public synchronized void updatePlayers(Update update)
-    {
-        for(Player p : players)
-            p.notifyView(update);
     }
 
     /**
@@ -149,15 +152,13 @@ public class Game {
         }
     }
 
-
-
     //Synchronyzed player because two players can't register at the same time
     public synchronized void addPlayer(Player newPlayer) {
         if(players.size() < maxPlayer)
             players.add(newPlayer);
     }
 
-    private String endgame() {
+    private void endgame() {
         int winnerPoints = 0;
         String winnerNickname = null;
         for (Player player : players) {
@@ -167,7 +168,7 @@ public class Game {
                 winnerNickname = player.getNickName();
             }
         }
-        return winnerNickname;
+        new EndgameUpdate(winnerNickname);
     }
 
     public ArrayList<Player> getPlayers() {
@@ -182,21 +183,95 @@ public class Game {
         return turnStates;
     }
 
-    private Update createNewGameUpdate() {
-        ArrayList<LeaderCard> allLeaderCards = DefaultCreator.produceLeaderCard(); //Produce tutte le Leader del gioco
+    public Update createNewGameUpdate() {
+        ArrayList<LeaderCard> allLeaderCards = new ArrayList<LeaderCard>();
+        allLeaderCards.addAll(DefaultCreator.produceLeaderCard()); //Produce tutte le Leader del gioco
         Collections.shuffle(allLeaderCards); //Le mischia
 
         //Crea un elenco di players e attibuisce ad ognungo di loro 4 leaderCard diverse
         ArrayList<PlayerLC> playersLC = new ArrayList<PlayerLC>();
         for (Player player : players) {
+            player.setTable(table);
             ArrayList<String> leadersToChoose = new ArrayList<String>();
-            for (int addedCard = 0; addedCard <= 4; addedCard++) {
+            for (int addedCard = 0; addedCard < 4; addedCard++) {
                 leadersToChoose.add(allLeaderCards.remove(0).getID());
                 //Qui si potrebbe aggiungere anche la carta al player nel model e poi la request successiva ne rimuoverebbe 2
                 //Oppure (come ora) non aggiungerle al player nel model ma nelle request successiva aggiungere le uniche 2
             }
             playersLC.add(new PlayerLC(player.getNickName(), leadersToChoose));
         }
-        return new NewGameUpdate(table.getFrontIDs(), table.market.getMarket(), playersLC);
+
+        ArrayList<PlayerST> playersST = new ArrayList<>();
+        switch (players.size()) {
+            case (1):
+                PlayerST player11 = new PlayerST(players.get(0).getNickName(), 0, 0);
+                playersST.add(player11);
+                break;
+            case (2):
+                PlayerST player21 = new PlayerST(players.get(0).getNickName(), 0, 0);
+                PlayerST player22 = new PlayerST(players.get(1).getNickName(), 1, 0);
+                playersST.add(player21);
+                playersST.add(player22);
+                break;
+
+            case (3):
+                PlayerST player31 = new PlayerST(players.get(0).getNickName(), 0, 0);
+                PlayerST player32 = new PlayerST(players.get(1).getNickName(), 1, 0);
+                PlayerST player33 = new PlayerST(players.get(2).getNickName(), 1, 1);
+                players.get(2).addVictoryPoints(1);
+                playersST.add(player31);
+                playersST.add(player32);
+                playersST.add(player33);
+                break;
+
+            case (4):
+                PlayerST player41 = new PlayerST(players.get(0).getNickName(), 0, 0);
+                PlayerST player42 = new PlayerST(players.get(1).getNickName(), 1, 0);
+                PlayerST player43 = new PlayerST(players.get(2).getNickName(), 1, 1);
+                PlayerST player44 = new PlayerST(players.get(3).getNickName(), 2, 1);
+                players.get(2).addVictoryPoints(1);
+                players.get(3).addVictoryPoints(1);
+                playersST.add(player41);
+                playersST.add(player42);
+                playersST.add(player43);
+                playersST.add(player44);
+                break;
+        }
+        return new NewGameUpdate(this.gameId, table.getFrontIDs(), table.market.getMarket(), playersLC, playersST);
+    }
+
+    public int getCurrPlayerInt() {
+        return currPlayerInt;
+    }
+
+    public void setCurrPlayerInt(int currPlayerInt) {
+        this.currPlayerInt = currPlayerInt;
+    }
+
+    public Player getCurrPlayer() {
+        return currPlayer;
+    }
+
+    public void notifyAllPlayers(Update update){
+        for (Player p: players)
+            p.notifyView(update);
+    }
+
+    public void setNextPlayer(Player nextPlayer) {
+        this.nextPlayer = nextPlayer;
+    }
+
+    public Player getPlayerFromID(String playerID) {
+        for (Player p : players) {
+            if (p.getNickName().equals(playerID)) {
+                return p;
+            }
+        }
+        return null;
+    }
+
+    public void start() {
+        currPlayer = players.get(0);
+        notifyAllPlayers(new StartGameUpdate(players.get(0).getNickName()));
     }
 }

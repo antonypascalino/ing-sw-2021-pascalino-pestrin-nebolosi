@@ -37,6 +37,11 @@ public class ChangeResource implements LeaderCard
         isEnable=false;
     }
 
+    @Override
+    public void setPlayer(Player tmp) {
+        this.player = tmp;
+    }
+
     public boolean isEnable() {
         return isEnable;
     }
@@ -68,8 +73,8 @@ public class ChangeResource implements LeaderCard
 
         for( DevCard card : player.getBoard().getSlot().getAllCards())
         {
-            if (card.getColor().equals(color1)) firstColor = true;
-            if (card.getColor().equals(color2)) secondColor++ ;
+            if (card.getColor().equals(color1.toUpperCase())) firstColor = true;
+            if (card.getColor().equals(color2.toUpperCase())) secondColor++ ;
         }
 
         return (firstColor && secondColor >= 2);
@@ -89,16 +94,17 @@ public class ChangeResource implements LeaderCard
             isEnable= true;
             Player tmp = new ChangeResPlayer(player, change);
             //Add the new powered player in substitition to the actual one if the game references
-            player.getGame().changePlayer(player, tmp );
+            player.getGame().changePlayer(player, tmp);
             for (LeaderCard card : player.getLeaderCards())
             {
-                card.assignTo(tmp);
+                //Do not change the reference on this card
+                if(!card.getID().equals(this.getID()))
+                    card.setPlayer(tmp);
             }
+            this.player = tmp;
         }
 
     }
 
-    public String toString() {
-        return "Change Resource Leader Card:\nYou can change an EMPTY from market with a " + change + "\nTo play this card you need to have 2 " + color2 + " Developments card and 1 " + color1 + "Development card" ;
-    }
+
 }

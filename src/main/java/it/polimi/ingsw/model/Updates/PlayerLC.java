@@ -8,7 +8,7 @@ public class PlayerLC {
 
     public PlayerLC(String playerID, ArrayList<String> leadersToChoose) {
         this.playerID = playerID;
-        leadersToChoose = leadersToChoose;
+        this.leadersToChoose = leadersToChoose;
     }
 
     public String getPlayerID() {

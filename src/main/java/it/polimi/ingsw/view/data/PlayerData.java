@@ -2,8 +2,11 @@ package it.polimi.ingsw.view.data;
 
 import it.polimi.ingsw.Request.MappedResource;
 import it.polimi.ingsw.Request.MarketResource;
+import it.polimi.ingsw.Request.Request;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Table.Resource;
+import it.polimi.ingsw.model.Updates.Update;
+import it.polimi.ingsw.view.MainMenu;
 import it.polimi.ingsw.view.Printer;
 import it.polimi.ingsw.view.clientCards.ClientDevCard;
 import it.polimi.ingsw.view.clientCards.ClientLeaderCard;
@@ -69,7 +72,6 @@ public abstract class PlayerData {
     public ArrayList<String> getLeaders() {
         return originalData.getLeaders();
     }
-
 
     //getters & setters
     public void setTurnStates(ArrayList<TurnState> turnStates) {
@@ -170,5 +172,19 @@ public abstract class PlayerData {
 
     public void setGameID(int gameID) {
         originalData.setGameID(gameID);
+    }
+
+    public MainMenu getMenu() {
+        return originalData.getMenu();
+    }
+
+    public void refresh(Update update) {
+        originalData.refresh(update);
+    }
+
+    public void sendRequest(Request request) {originalData.sendRequest(request);}
+
+    public void newTurn() {
+        originalData.newTurn();
     }
 }

@@ -42,6 +42,10 @@ public class MoveRequest implements Request {
     }
 
     @Override
+    public int getGameID() {
+        return gameID;
+    }
+    @Override
     public TurnState handle(Player player, Game game) {
         player.switchLevels(originLevel, destLevel);
         return TurnState.MOVE_RESOURCE;
@@ -55,5 +59,10 @@ public class MoveRequest implements Request {
     @Override
     public Update createUpdate(Player player, Game game) {
         return new MoveUpdate(player.getNickName(), game.getTurnStates(), player.getDeposits());
+    }
+
+    @Override
+    public String getPlayerID() {
+        return playerID;
     }
 }

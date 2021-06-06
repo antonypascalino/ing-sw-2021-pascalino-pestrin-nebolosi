@@ -11,9 +11,9 @@ public class PlayLeaderSelection extends Selection{
     public void handleSelection(PlayerData data){
         ArrayList<String> leaderID = new ArrayList<String>();
         leaderID.addAll(data.leaderCardsFilter());
-        String cardID = printer.printCardID(leaderID);
+        String cardID = data.getPrinter().printCardID(leaderID, data);
         Request playLeaderReq = new PlayLeaderRequest(data.getPlayerID(), data.getGameID(), cardID);
-        sendToConnection(playLeaderReq);
+        data.sendRequest(playLeaderReq);
     }
 
 }

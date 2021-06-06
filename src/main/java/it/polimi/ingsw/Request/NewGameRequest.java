@@ -12,6 +12,7 @@ public class NewGameRequest implements Request{
     private String nickname; //Name of the first player
     private int players; //Number of players in the game
     private final String className;
+    private final int gameID = -1;
 
     public NewGameRequest(String nickname, int players)
     {
@@ -41,11 +42,20 @@ public class NewGameRequest implements Request{
     }
 
     @Override
+    public String getPlayerID() {
+        return nickname;
+    }
+
+    @Override
     public String getClassName() {
         return className;
 
     }
 
+    @Override
+    public int getGameID() {
+        return gameID;
+    }
     public String getNickname() {
         return nickname;
     }
@@ -53,4 +63,6 @@ public class NewGameRequest implements Request{
     public int getPlayers() {
         return players;
     }
+
+
 }

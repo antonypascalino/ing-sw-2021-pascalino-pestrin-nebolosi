@@ -2,7 +2,6 @@ package it.polimi.ingsw.model.Updates;
 
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Table.Resource;
-import it.polimi.ingsw.view.Updater;
 import it.polimi.ingsw.view.data.OtherPlayerData;
 import it.polimi.ingsw.view.data.PlayerData;
 
@@ -15,6 +14,8 @@ public class MarketUpdate implements Update {
     private ArrayList<PlayerFP> playersFP;
     private Resource[][] market;
     private String playerID;
+    private final String className;
+
 
 
     public MarketUpdate(String playerID, ArrayList<TurnState> turnStates, ArrayList<Resource[]> wareHouse, ArrayList<PlayerVP> playersVP, ArrayList<PlayerFP> playersFP, Resource[][] market) {
@@ -24,6 +25,12 @@ public class MarketUpdate implements Update {
         this.playersFP = playersFP;
         this.market = market;
         this.playerID = playerID;
+        className = this.getClass().getName();
+    }
+
+    @Override
+    public String getClassName() {
+        return className;
     }
 
     @Override
@@ -54,6 +61,7 @@ public class MarketUpdate implements Update {
         if (playerID.equals(data.getPlayerID())) {
             data.setTurnStates(turnStates);
             data.setWareHouse(wareHouse);
+            data.getMenu().menuMaker();
         } else {
             for (OtherPlayerData p : data.getOtherPlayers()) {
                 if (playerID.equals(p.getPlayerID())) {
@@ -65,5 +73,6 @@ public class MarketUpdate implements Update {
                 }
             }
         }
+
     }
 }

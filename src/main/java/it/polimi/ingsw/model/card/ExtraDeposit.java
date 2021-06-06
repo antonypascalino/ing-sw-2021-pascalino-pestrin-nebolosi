@@ -60,14 +60,14 @@ public class ExtraDeposit implements LeaderCard {
             player.addVictoryPoints(victoryPoints);
             Player tmp = new ExtraDepositPlayer(player, placeableRes);
             //Add the new powered player in substitition to the actual one if the game references
-            player.getGame().changePlayer(player, tmp );
+            player.getGame().changePlayer(player, tmp);
             for (LeaderCard card : player.getLeaderCards())
             {
-                //Change the reference for every dev card unless they point directly to the board
-
-                //For every leader card change the owner
-                card.assignTo(tmp);
+                //Do not change the reference on this card
+                if(!card.getID().equals(this.getID()))
+                    card.setPlayer(tmp);
             }
+            this.player = tmp;
         }
     }
 
@@ -96,11 +96,13 @@ public class ExtraDeposit implements LeaderCard {
         return cardID;
     }
 
+    @Override
+    public void setPlayer(Player tmp) {
+        this.player = tmp;
+    }
+
     public boolean checkPlaceable(Resource res) {
         return res.equals(placeableRes);
     }
 
-    public String toString() {
-        return "Extra Deposit Leader Card:\nYou will have an Extra Deposit of 2 spaces in you Warehouse; in it you can deposit " + placeableRes + "S" + "\nTo play this card you need to have 5 " + requires + "S";
-    }
 }

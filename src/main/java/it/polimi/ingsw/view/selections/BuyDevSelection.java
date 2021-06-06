@@ -20,14 +20,20 @@ public class BuyDevSelection extends Selection {
         ArrayList<MappedResource> allRes = new ArrayList<MappedResource>();
         allRes.addAll(data.allResources());
         ArrayList<String> cards = new ArrayList<String>();
-        cards.addAll(data.tableCardsFilter(allRes));
-        String cardID = printer.printCardID(cards);
+        ArrayList<String> buyable = data.tableCardsFilter(allRes);
+        if (buyable.isEmpty()) {
+            data.getPrinter().printMessage("You can't buy any card!");
+            data.getMenu().menuMaker();
+            return;
+        }
+        cards.addAll(buyable);
+        String cardID = data.getPrinter().printCardID(cards, data);
         mappedRes.addAll(data.createMappedRes(data.getCardFromID(cardID).getPrice()));
         int slot = data.handleSlots(cardID);
 
         Request buyDevReq = new BuyDevRequest(data.getGameID(), data.getPlayerID(), cardID, mappedRes, slot);
         //CHIAMATA A METODO PER INVIARE REQUEST
-        sendToConnection(buyDevReq);
+        data.sendRequest(buyDevReq);
 
     }
 

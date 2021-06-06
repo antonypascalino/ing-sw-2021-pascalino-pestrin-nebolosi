@@ -2,7 +2,6 @@ package it.polimi.ingsw.model.Updates;
 
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Table.Resource;
-import it.polimi.ingsw.view.Updater;
 import it.polimi.ingsw.view.data.OtherPlayerData;
 import it.polimi.ingsw.view.data.PlayerData;
 
@@ -15,6 +14,7 @@ public class ProduceUpdate implements Update {
     private int faithPoints;
     private ArrayList<PlayerVP> playersVP;
     private String playerID;
+    private final String className;
 
     public ProduceUpdate(String playerID, ArrayList<TurnState> turnStates, ArrayList<Resource[]> wareHouse, ArrayList<Resource> strongBox, int faithPoints, ArrayList<PlayerVP> playersVP) {
         this.turnStates = turnStates;
@@ -23,6 +23,12 @@ public class ProduceUpdate implements Update {
         this.faithPoints = faithPoints;
         this.playersVP = playersVP;
         this.playerID = playerID;
+        className = this.getClass().getName();
+    }
+
+    @Override
+    public String getClassName() {
+        return className;
     }
 
     @Override
@@ -43,6 +49,7 @@ public class ProduceUpdate implements Update {
             data.setTurnStates(turnStates);
             data.setWareHouse(wareHouse);
             data.setStrongBox(strongBox);
+            data.getMenu().menuMaker();
         }
         else{
             for(OtherPlayerData p: data.getOtherPlayers()){

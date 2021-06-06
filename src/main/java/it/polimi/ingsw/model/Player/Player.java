@@ -28,6 +28,8 @@ public abstract class Player {
         original.setNickName(newNick);
     }
 
+    public void setGame(Game game){ original.setGame(game);}
+
     /**
      * Gets nickname.
      *

@@ -7,13 +7,13 @@ public class CheckStatsSelection extends Selection{
 
     @Override
     public void handleSelection(PlayerData data) {
-        if(printer.askQuestion()){
-            printer.printMyStats(data);
+        if(data.getPrinter().askQuestion()){
+            data.getPrinter().printMyStats(data);
         }
         else{
             for(OtherPlayerData p : data.getOtherPlayers())
-            printer.printOtherStats(p);
+            data.getPrinter().printOtherStats(p);
         }
-
+        data.getMenu().menuMaker();
     }
 }

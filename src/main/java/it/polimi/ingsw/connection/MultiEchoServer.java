@@ -25,7 +25,7 @@ public class MultiEchoServer {
 
     public void startServer() throws IOException {
         //It creates threads when necessary, otherwise it re-uses existing one when possible
-        ExecutorService executor = Executors.newFixedThreadPool(4);
+        ExecutorService executor = Executors.newFixedThreadPool(10);
         ServerSocket serverSocket;
         try{
             serverSocket = new ServerSocket(port);

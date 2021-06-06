@@ -8,6 +8,8 @@ import it.polimi.ingsw.controller.DefaultCreator;
 import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.model.Player.BasicPlayer;
 import it.polimi.ingsw.model.Player.Player;
+import it.polimi.ingsw.model.Updates.LobbyUpdate;
+import it.polimi.ingsw.model.Updates.NewGameUpdate;
 import it.polimi.ingsw.model.Updates.Update;
 
 import java.io.BufferedReader;
@@ -25,8 +27,10 @@ public class ClientHandler implements Runnable {
         private ArrayList<Game> games;
         //Each clientHandler has a playerId so it's sure the requests comes from the right socket
         public String playerId;
+        Gson json;
 
         public ClientHandler(Socket socket, ArrayList<Game> games) throws IOException {
+            json = new Gson();
             this.games = games;
             this.socket = socket;
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -39,9 +43,12 @@ public class ClientHandler implements Runnable {
             {
                 while (true)
                 {
-                    String line = in.readLine() ;
-                    Request request = JsonReader.readSingleRequest(line);
-                    //It doesn't exist the idea of a new game or join game, there's just a join game that creates a game
+                    String line = null;
+                    if(in.ready())
+                         line = in.readLine() ;
+                    if(line != null) {
+                        Request request = JsonReader.readSingleRequest(line);
+                        //It doesn't exist the idea of a new game or join game, there's just a join game that creates a game
                     /*if(request instanceof NewGameRequest)
                     {
                         int playerNum = ((NewGameRequest) request).getPlayers();
@@ -80,45 +87,55 @@ public class ClientHandler implements Runnable {
                             System.out.println("Player "+nickName+" added to game "+ gameId);
                         }
                     }*/
-                    if(request instanceof NewGameRequest)
-                    {
-                        //If there's no game on the server create the first one
-                        Game lastGame = null;
-                        if (games.size() != 0)
-                            lastGame = games.get(games.size()-1);
-                        //If there's no game or the last one has reached the maximum player, it doesn't check it if games.size==0
-                        //Create a new game
-                        if (games.size() == 0 || !(lastGame.getPlayers().size() < lastGame.getMax()))
-                        {
-                            int gameId;
-                            if(games.size() != 0)
-                                gameId = games.get(games.size()-1).getGameId() +1;
-                            else
-                                gameId=0;
-                            ArrayList<Player> tmp = new ArrayList<Player>();
-                            this.playerId = ((NewGameRequest) request).getNickname();
-                            tmp.add(new BasicPlayer(((NewGameRequest) request).getNickname(),this));
-                            Game newGame = new Game(tmp,DefaultCreator.produceDevCard(),gameId,((NewGameRequest) request).getPlayers());
-                            games.add(newGame);
-                            System.out.println("Player "+((NewGameRequest) request).getNickname()+ " added to the new game "+newGame.getGameId());
-                            out.println("Player "+((NewGameRequest) request).getNickname()+ " added to the new game "+newGame.getGameId());
-                            out.flush();
-                        }
-                        //If it hasn't alrady reached the maximum numner of players
-                        //add the new player
-                        else
-                        {
-                            Player newPlayer = new BasicPlayer(((NewGameRequest) request).getNickname());
-                            lastGame.addPlayer(newPlayer);
-                            System.out.println("Player "+((NewGameRequest) request).getNickname()+ " added to game "+lastGame.getGameId());
-                            out.println("Player "+((NewGameRequest) request).getNickname()+ " added to the new game "+lastGame.getGameId());
-                            out.flush();
-                        }
+                        if (request instanceof NewGameRequest) {
+                            //If there's no game on the server create the first one
+                            Game lastGame = null;
+                            if (games.size() != 0)
+                                lastGame = games.get(games.size() - 1);
+                            //If there's no game or the last one has reached the maximum player, it doesn't check it if games.size==0
+                            //Create a new game
+                            if (games.size() == 0 || !(lastGame.getPlayers().size() < lastGame.getMax())) {
+                                int gameId;
+                                if (games.size() != 0)
+                                    gameId = games.get(games.size() - 1).getGameId() + 1;
+                                else
+                                    gameId = 0;
+                                ArrayList<Player> tmp = new ArrayList<Player>();
+                                this.playerId = ((NewGameRequest) request).getNickname();
+                                Player newPlayer = new BasicPlayer(((NewGameRequest) request).getNickname(), this);
+                                tmp.add(newPlayer);
+                                Game newGame = new Game(tmp, DefaultCreator.produceDevCard(), gameId, ((NewGameRequest) request).getPlayers());
+                                newPlayer.setGame(newGame);
+                                newPlayer.setTable(newGame.getTable());
+                                games.add(newGame);
+                                System.out.println("Player " + ((NewGameRequest) request).getNickname() + " added to the new game " + newGame.getGameId());
+                                Update update = new LobbyUpdate(((NewGameRequest) request).getNickname(), newGame.getPlayers().size(), ((NewGameRequest) request).getPlayers());
+                                newGame.notifyAllPlayers(update);
+                            }
+                            //If it hasn't alrady reached the maximum numner of players
+                            //add the new player
+                            else {
+                                Player newPlayer = new BasicPlayer(((NewGameRequest) request).getNickname(), this);
+                                lastGame.addPlayer(newPlayer);
+                                newPlayer.setTable(lastGame.getTable());
+                                newPlayer.setGame(lastGame);
+                                Update update;
+                                //If the game has reached the max level of players
+                                if(lastGame.getPlayers().size() == lastGame.getMax())
+                                {
+                                    update = lastGame.createNewGameUpdate();
+                                }
+                                else
+                                {
+                                    System.out.println("Player " + ((NewGameRequest) request).getNickname() + " added to game " + lastGame.getGameId());
+                                    update = new LobbyUpdate(((NewGameRequest) request).getNickname(), lastGame.getPlayers().size(), ((NewGameRequest) request).getPlayers());
+                                }
+                                lastGame.notifyAllPlayers(update);
+                            }
+                        } else {
+                            games.get(request.getGameID()).notify(request);
 
-                    }
-                    else {
-                        out.println(line);
-                        out.flush();
+                        }
                     }
                 }
                 //close connections
@@ -132,9 +149,9 @@ public class ClientHandler implements Runnable {
 
         public void notifyView(Update update)
         {
-            Gson json = new Gson();
             String message = json.toJson(update);
             out.println(message);
+            out.flush();
         }
 }
 
