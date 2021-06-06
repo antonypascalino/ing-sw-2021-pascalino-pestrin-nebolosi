@@ -14,6 +14,7 @@ public class PlayLeaderUpdate implements Update {
     public String getClassName() {
         return className;
     }
+
     @Override
     public void handleUpdate(PlayerData data) {
 

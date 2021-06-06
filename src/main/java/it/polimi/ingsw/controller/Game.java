@@ -273,10 +273,6 @@ public class Game {
 
     public void start() {
         currPlayer = players.get(0);
-        turnStates.add(TurnState.PRODUCE);
-        turnStates.add(TurnState.MOVE_RESOURCE);
-        turnStates.add(TurnState.BUY_DEV_CARD);
-        turnStates.add(TurnState.CHECK_STATS);
         notifyAllPlayers(new StartGameUpdate(players.get(0).getNickName()));
     }
 }

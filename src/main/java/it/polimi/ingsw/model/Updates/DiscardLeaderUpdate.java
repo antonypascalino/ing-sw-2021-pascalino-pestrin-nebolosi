@@ -31,18 +31,6 @@ public class DiscardLeaderUpdate implements Update {
 
     @Override
     public void handleUpdate(PlayerData data) {
-        if (playerID.equals(data.getPlayerID())) {
-            data.setTurnStates(turnStates);
-            data.setFaithPoints(faithPoints);
-            data.setLeadersID(leadersID);
-        } else {
-            for (OtherPlayerData p : data.getOtherPlayers()) {
-                if (p.getPlayerID().equals(playerID)) {
-                    p.setFaithPoints(faithPoints);
-                }
-            }
-
-        }
         for (PlayerVP pvp : playersVP) {
             if (pvp.getPlayerID().equals(data.getPlayerID())) {
                 data.setVictoryPoints(pvp.getVictoryPoints());
@@ -53,6 +41,19 @@ public class DiscardLeaderUpdate implements Update {
                     }
                 }
             }
+        }
+        if (playerID.equals(data.getPlayerID())) {
+            data.setTurnStates(turnStates);
+            data.setFaithPoints(faithPoints);
+            data.setLeadersID(leadersID);
+            data.getMenu().menuMaker();
+        } else {
+            for (OtherPlayerData p : data.getOtherPlayers()) {
+                if (p.getPlayerID().equals(playerID)) {
+                    p.setFaithPoints(faithPoints);
+                }
+            }
+
         }
     }
 }

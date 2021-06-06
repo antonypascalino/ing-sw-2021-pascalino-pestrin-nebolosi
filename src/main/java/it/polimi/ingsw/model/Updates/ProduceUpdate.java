@@ -49,6 +49,7 @@ public class ProduceUpdate implements Update {
             data.setTurnStates(turnStates);
             data.setWareHouse(wareHouse);
             data.setStrongBox(strongBox);
+            data.getMenu().menuMaker();
         }
         else{
             for(OtherPlayerData p: data.getOtherPlayers()){

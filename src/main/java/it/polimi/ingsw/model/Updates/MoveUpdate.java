@@ -32,6 +32,7 @@ public class MoveUpdate implements Update {
         if (playerID.equals(data.getPlayerID())) {
             data.setTurnStates(turnStates);
             data.setWareHouse(wareHouse);
+            data.getMenu().menuMaker();
         } else {
             for (OtherPlayerData p : data.getOtherPlayers()) {
                 if (playerID.equals(p.getPlayerID())) {
