@@ -143,9 +143,8 @@ public class BasicData extends PlayerData {
 
     public ArrayList<MappedResource> allResources(){
         ArrayList<MappedResource> tmp = new ArrayList<MappedResource>();
-        Resource[] level = new Resource[3];
         for(Resource[] l : wareHouse) {
-            for (Resource w : level){
+            for (Resource w : l){
                 MappedResource mappedW = new MappedResource(w, "warehouse");
                 tmp.add(mappedW);
             }
@@ -269,7 +268,6 @@ public class BasicData extends PlayerData {
         }
         return marketRes;
     }
-
 
     public ArrayList<String> tableCardsFilter(ArrayList<MappedResource> mapped){
 

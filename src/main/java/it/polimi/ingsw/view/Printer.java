@@ -16,113 +16,138 @@ import java.util.Scanner;
 
 public class Printer {
 
-    public Resource printResources(ArrayList<Resource> res){
+    public Resource printResources(ArrayList<Resource> res) {
+        Scanner inputs = new Scanner(System.in);
+        String selection;
+
+        int actions = 0;
+        while (true) {
+            for (int i = 0; i < res.size(); i++) {
+                System.out.println("[" + (i + 1) + "] " + res.get(i));
+                actions = i + 1;
+            }
+            System.out.println("Enter selection: ");
+            selection = inputs.nextLine();
+            try {
+                int index = Integer.parseInt(selection);
+                if (index > actions || index <= 0) {
+                    System.out.println("Invalid input!");
+                } else {
+                    if (res.get(index - 1).equals(Resource.CHOICE)) {
+                        ArrayList<Resource> choices = new ArrayList<Resource>();
+                        choices.add(Resource.GOLD);
+                        choices.add(Resource.SERVANT);
+                        choices.add(Resource.SHIELD);
+                        choices.add(Resource.STONE);
+                    }
+                    return res.get(index - 1);
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input!");
+            }
+        }
+    }
+
+    public MappedResource printMappedRes(ArrayList<MappedResource> mappedRes) {
         Scanner inputs = new Scanner(System.in);
         String selection = "";
 
-        for (int i = 0; i < res.size(); i++) {
-            System.out.println("[" + (i + 1) + "]" + "" + res.get(i));
+        while (true) {
+            int actions = 0;
+            for (int i = 0; i < mappedRes.size(); i++) {
+                System.out.println("[" + (i + 1) + "] " + mappedRes.get(i).getResource() + " " + mappedRes.get(i).getPlace());
+                actions = i + 1;
+            }
+            System.out.println("Enter selection: ");
+            selection = inputs.nextLine();
+            try {
+                int index = Integer.parseInt(selection);
+                if (index > actions || index <= 0) {
+                    System.out.println("Invalid input!");
+                } else return mappedRes.get(index - 1);
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input!");
+            }
         }
-
-        System.out.println("Enter selection: ");
-        selection = inputs.nextLine();
-        int index = Integer.parseInt(selection);
-        if(res.get(index - 1).equals(Resource.CHOICE)){
-            ArrayList<Resource> choices = new ArrayList<Resource>();
-            choices.add(Resource.GOLD);
-            choices.add(Resource.SERVANT);
-            choices.add(Resource.SHIELD);
-            choices.add(Resource.STONE);
-        }
-        return res.get(index -1);
     }
 
-    public MappedResource printMappedRes(ArrayList<MappedResource> mappedRes){
-        Scanner inputs = new Scanner(System.in);
-        String selection = "";
 
-        for (int i = 0; i < mappedRes.size(); i++) {
-            System.out.println("[" + (i + 1) + "]" + "" + mappedRes.get(i).getResource() + "" + mappedRes.get(i).getPlace());
-        }
-
-        System.out.println("Enter selection: ");
-        selection = inputs.nextLine();
-        int index = Integer.parseInt(selection);
-
-        return mappedRes.get(index -1);
-
-    }
 
     public TurnState printTurnStates(ArrayList<TurnState> turnStates) {
         Scanner inputs = new Scanner(System.in);
         String selection = "";
-
         int actions = 0;
+
         while (true) {
             System.out.println("What do you wanna do?");
             for (int i = 0; i < turnStates.size(); i++) {
-                System.out.println("[" + (i + 1) + "]" + "" + turnStates.get(i));
+                System.out.println("[" + (i + 1) + "] " + turnStates.get(i));
                 actions = i + 1;
             }
-
             System.out.println("Enter selection: ");
             selection = inputs.nextLine();
             try {
-                if (Integer.parseInt(selection) > actions) {
+                int index = Integer.parseInt(selection);
+                if ( index > actions || index <= 0) {
                     System.out.println("Invalid input!");
-                } else break;
+                } else return turnStates.get(index - 1);;
             }
             catch (NumberFormatException e) {
                 System.out.println("Invalid input!");
             }
         }
-
-        int index = Integer.parseInt(selection);
-        return turnStates.get(index - 1);
     }
 
     public String printCardID(ArrayList<String> cardID, PlayerData data) {
         Scanner inputs = new Scanner(System.in);
         String selection = "";
 
-        try {
-            while (true) {
-                for (int i = 0; i < cardID.size(); i++) {
-                    System.out.println("[" + (i + 1) + "] " + data.getLeaderFromID(cardID.get(i)));
-                }
-                System.out.println("Enter selection: ");
-                selection = inputs.nextLine();
+        while (true) {
+            for (int i = 0; i < cardID.size(); i++) {
+                System.out.println("[" + (i + 1) + "] " + data.getCardFromID(cardID.get(i)).toString());
+            }
+            System.out.println("Enter selection: ");
+            selection = inputs.nextLine();
+            try {
                 int index = Integer.parseInt(selection);
                 if (index <= 0 || index > cardID.size()) {
                     System.out.println("Invalid input");
                 } else return cardID.get(index - 1);
-            }
-        } catch (NumberFormatException e) {
-            {
+            } catch (NumberFormatException e) {
                 System.out.println("Invalid input");
             }
         }
-        return null;
     }
 
-    public int printIntegers(ArrayList<Integer> ints, boolean slots){
+    public int printIntegers(ArrayList<Integer> ints, boolean slots) {
         Scanner inputs = new Scanner(System.in);
         String selection = "";
-        if(slots){
-            for (int i = 0; i < ints.size(); i++) {
-                System.out.println("[" + (i + 1) + "]" + " " + "slot" + "" + ints.get(i));
-            }
-        }
-        else{
-            for (int i = 0; i < ints.size(); i++) {
-                System.out.println("[" + (i + 1) + "]" + " " + "warehouse level" + " " + (ints.get(i) + 1));
-            }
+        int actions = 0;
 
+        while (true) {
+            if (slots) {
+                for (int i = 0; i < ints.size(); i++) {
+                    System.out.println("[" + (i + 1) + "]" + " " + "slot" + " " + (ints.get(i) + 1));
+                    actions = i + 1;
+                }
+            } else {
+                for (int i = 0; i < ints.size(); i++) {
+                    System.out.println("[" + (i + 1) + "]" + " " + "warehouse level" + " " + (ints.get(i) + 1));
+                    actions = i + 1;
+                }
+
+            }
+            System.out.println("Enter selection: ");
+            selection = inputs.nextLine();
+            try {
+                int index = Integer.parseInt(selection);
+                if (index > actions || index <= 0) {
+                    System.out.println("Invalid input!");
+                } else return ints.get(index - 1);
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input!");
+            }
         }
-        System.out.println("Enter selection: ");
-        selection = inputs.nextLine();
-        int index = Integer.parseInt(selection);
-        return ints.get(index - 1);
     }
 
     public MarketArray printMatrix(Resource[][] matrix) {
@@ -145,31 +170,51 @@ public class Printer {
             selection = inputs.nextLine();
             if (!selection.equals("1") && !selection.equals("2")) {
                 System.out.println("Invalid input");
-            }
-            else break;
+            } else break;
         }
-
 
         switch (selection) {
             case ("1"):
-                System.out.println("Select your row: ");
-                selection = inputs.nextLine();
-                int indexRow = Integer.parseInt(selection);
-                for (int k = 0; k < matrix[indexRow - 1].length; k++) {
-                    res.add(matrix[indexRow - 1][k]);
-                }
-                System.out.println("You chose these resources: " + res);
-                return new MarketArray(res, MarketDimension.ROW, indexRow - 1);
+                while (true) {
+                    System.out.println("Select your row: ");
+                    selection = inputs.nextLine();
+                    try {
+                        int indexRow = Integer.parseInt(selection);
+                        if (indexRow <= 0 || indexRow > matrix.length) {
+                            System.out.println ("Invalid input!");
+                        }
+                        else {
+                            for (int k = 0; k < matrix[indexRow - 1].length; k++) {
+                                res.add(matrix[indexRow - 1][k]);
+                            }
+                            System.out.println("You chose these resources: " + res);
+                            return new MarketArray(res, MarketDimension.ROW, indexRow - 1);
+                        }
+                    } catch (NumberFormatException e) {
+                        System.out.println("Invalid input!");
+                    }
 
-            case ("2"):
-                System.out.println("Select your column: ");
-                selection = inputs.nextLine();
-                int indexColumn = Integer.parseInt(selection);
-                for (int z = 0; z < matrix.length; z++) {
-                    res.add(matrix[z][indexColumn - 1]);
                 }
-                System.out.println("You chose these resources: " + res);
-                return new MarketArray(res, MarketDimension.COL, indexColumn - 1);
+            case ("2"):
+                while (true) {
+                    System.out.println("Select your column: ");
+                    selection = inputs.nextLine();
+                    try {
+                        int indexColumn = Integer.parseInt(selection);
+                        if (indexColumn <= 0 || indexColumn > matrix[0].length) {
+                            System.out.println("Invalid input!");
+                        }
+                        else {
+                            for (int z = 0; z < matrix.length; z++) {
+                                res.add(matrix[z][indexColumn - 1]);
+                            }
+                            System.out.println("You chose these resources: " + res);
+                            return new MarketArray(res, MarketDimension.COL, indexColumn - 1);
+                        }
+                    } catch (NumberFormatException e) {
+                        System.out.println("Invalid input!");
+                    }
+                }
         }
         return null;
     }
@@ -191,6 +236,26 @@ public class Printer {
         return false;
     }
 
+    public boolean chooseStats() {
+        Scanner inputs = new Scanner(System.in);
+        String selection = "";
+        System.out.println("Whose stats do you wanna see?");
+        System.out.println("[1] Yours");
+        System.out.println("[2] Others players' stats");
+
+        while (true) {
+            selection = inputs.nextLine();
+            switch (selection) {
+                case ("1"):
+                    return true;
+                case ("2"):
+                    return false;
+                default:
+                    System.out.println("Invalid input!");
+            }
+        }
+    }
+
     public void printOtherStats(OtherPlayerData data){
         System.out.println("Player ID: " + data.getPlayerID());
         System.out.println("Warehouse:\n" + data.getWareHouse());
@@ -208,7 +273,10 @@ public class Printer {
         System.out.println("\nPlayer ID: " + data.getPlayerID());
         System.out.println("\nMarket:");
         viewMarket(data.getMarket());
-        System.out.println("\nFront cards:\n" + data.getFrontTableCardsID());
+        System.out.println("\nFront cards:\n");
+        for (String cardID : data.getFrontTableCardsID()) {
+            System.out.println(data.getCardFromID(cardID));
+        }
         System.out.println("\nWarehouse:");
         printWareHouse(data.getDeposits());
         System.out.println("\nStrongbox:\n" + data.getStrongBox());

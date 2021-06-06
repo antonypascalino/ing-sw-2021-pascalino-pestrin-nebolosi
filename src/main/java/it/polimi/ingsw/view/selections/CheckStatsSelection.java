@@ -7,7 +7,7 @@ public class CheckStatsSelection extends Selection{
 
     @Override
     public void handleSelection(PlayerData data) {
-        if(data.getPrinter().askQuestion()){
+        if(data.getPrinter().chooseStats()){
             data.getPrinter().printMyStats(data);
         }
         else{

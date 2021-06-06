@@ -45,4 +45,8 @@ public class ClientDevCard {
     public String getCardID() {
         return cardID;
     }
+
+    public String toString() {
+        return ("Color: " + color + "\n" + "Level: " + level + "\n" + "Price: " + price + "\n" + "Requires: " + required + "\n" + "Produces: " + produces + "\n" + "Victory Points: " + victoryPoints + "\n");
+    }
 }
