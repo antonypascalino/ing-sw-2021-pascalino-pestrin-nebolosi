@@ -95,14 +95,13 @@ public class Game {
                     if ((currPlayer.getBoard().getSlot().getAllCards().size() == 7 || currPlayer.getBoard().getFaithPath().checkPopeSpace(3)) && !lastTurn) {
                         lastTurn = true;
                     }
-                    //Notify all players execpt for the newGame req which is handled separetly
-                    if(!(req instanceof InitialPlayersSetRequest))
-                        notifyAllPlayers(req.createUpdate(currPlayer, this));
-
                     if (turnStates.contains(TurnState.END_TURN)) {
                         turnStates.clear();
                         currPlayer = nextPlayer;
                     }
+                    //Notify all players execpt for the newGame req which is handled separetly
+                    if(!(req instanceof InitialPlayersSetRequest))
+                        notifyAllPlayers(req.createUpdate(currPlayer, this));
 
                 }
             }

@@ -11,7 +11,4 @@ public abstract class Selection {
 
     public abstract void handleSelection(PlayerData data);
 
-    public void sendToConnection(Request request) {
-
-    }
 }

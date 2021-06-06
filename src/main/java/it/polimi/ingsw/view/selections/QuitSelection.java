@@ -28,10 +28,4 @@ public class QuitSelection extends Selection{
 
 
     }
-
-
-    @Override
-    public void sendToConnection(Request request) {
-
-    }
 }

@@ -68,12 +68,4 @@ public class ProductionSelection extends Selection {
         Request produceReq = new ProduceRequest(data.getGameID(), data.getPlayerID(), mappedProduction );
         data.sendRequest(produceReq);
     }
-
-    @Override
-    public void sendToConnection(Request request) {
-
-
-    }
-
-
 }
