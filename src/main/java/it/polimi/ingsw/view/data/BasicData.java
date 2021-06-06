@@ -272,13 +272,26 @@ public class BasicData extends PlayerData {
     public ArrayList<String> tableCardsFilter(ArrayList<MappedResource> mapped){
 
         ArrayList<String> cloned = new ArrayList<String>();
+        ArrayList<String> available = new ArrayList<>();
+        ArrayList<Integer> cardLevel = new ArrayList<>(); // the levels of the cards which the player can buy
+        cardLevel.add(1);
         cloned.addAll(tableCardsID);
         ArrayList<Resource> allRes = new ArrayList<Resource>();
         for(MappedResource m : mapped){
             allRes.add(m.getResource());
         }
-        cloned.removeIf(card -> !allRes.containsAll(getCardFromID(card).getPrice()));
-        return cloned;
+        for (String devCardID : frontCardsID) {
+            cardLevel.add(getCardFromID(devCardID).getLevel() + 1);
+        }
+        if (cardLevel.size() == 4) {
+            cardLevel.remove(0);
+        }
+        for (String card : cloned) {
+            if (allRes.containsAll(getCardFromID(card).getPrice()) && cardLevel.contains(getCardFromID(card).getLevel())) {
+                available.add(card);
+            }
+        }
+        return available;
     }
 
     public Integer handleSlots(String devID){

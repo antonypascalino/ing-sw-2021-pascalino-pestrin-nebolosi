@@ -31,7 +31,6 @@ public class BuyDevSelection extends Selection {
         int slot = data.handleSlots(cardID);
 
         Request buyDevReq = new BuyDevRequest(data.getGameID(), data.getPlayerID(), cardID, mappedRes, slot);
-        //CHIAMATA A METODO PER INVIARE REQUEST
         data.sendRequest(buyDevReq);
 
     }
