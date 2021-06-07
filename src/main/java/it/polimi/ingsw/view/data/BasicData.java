@@ -308,13 +308,16 @@ public class BasicData extends PlayerData {
     public Integer handleSlots(String devID){
         ArrayList<Integer> slots = new ArrayList<Integer>();
         for(int i = 0; i < frontCardsID.size(); i++){
-            if(getCardFromID(frontCardsID.get(i)).getLevel() < getCardFromID(devID).getLevel()){
+            if( getCardFromID(frontCardsID.get(i)).getLevel() < getCardFromID(devID).getLevel() ){
                 slots.add(i);
             }
-            if(frontCardsID.size() < 3){
-                for(int j = i; j < 3 - frontCardsID.size(); j++){
-                    slots.add(j);
-                }
+
+        }
+
+        //It needs to stay out because if the size of frontcardsId is zero it never buys them
+        if(frontCardsID.size() < 3){
+            for(int j = 3; j > frontCardsID.size(); j--){
+                slots.add(j);
             }
         }
         return printer.printIntegers(slots, true);
