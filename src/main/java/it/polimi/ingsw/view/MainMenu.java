@@ -10,6 +10,9 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * The type Main menu.
+ */
 public class MainMenu {
 
     private ArrayList<TurnState> turnStates;
@@ -17,12 +20,20 @@ public class MainMenu {
     private Printer printer;
     private LineClient connection;
 
+    /**
+     * Instantiates a new Main menu.
+     *
+     * @param data the data
+     */
     public MainMenu(PlayerData data) {
         this.printer = data.getPrinter();
         this.turnStates = new ArrayList<TurnState>();
         this.data = data;
     }
 
+    /**
+     * Menu maker.
+     */
     public void menuMaker() {
         TurnState turnState;
         turnStates.clear();

@@ -7,11 +7,23 @@ import it.polimi.ingsw.view.data.PlayerData;
 
 import java.util.ArrayList;
 
+/**
+ * The type Client change res.
+ */
 public class ClientChangeRes extends ClientLeaderCard {
     private Colors color1;
     private Colors color2;
     private Resource change;
 
+    /**
+     * Instantiates a new Client change res.
+     *
+     * @param victoryPoints the victory points
+     * @param color1        the color 1
+     * @param color2        the color 2
+     * @param change        the change
+     * @param leaderID      the leader id
+     */
     public ClientChangeRes(int victoryPoints, Colors color1, Colors color2, Resource change, String leaderID) {
         super(leaderID, "Change Resource", victoryPoints);
         this.color1 = color1;

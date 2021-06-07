@@ -8,6 +8,9 @@ import it.polimi.ingsw.view.Printer;
 
 import java.util.ArrayList;
 
+/**
+ * The type Discount data.
+ */
 public class DiscountData extends PlayerData{
 
 //    private ArrayList<TurnState> turnStates;
@@ -24,6 +27,23 @@ public class DiscountData extends PlayerData{
 //    private Printer printer;
     private ArrayList<Resource> discount;
 
+    /**
+     * Instantiates a new Discount data.
+     *
+     * @param originalData  the original data
+     * @param discount      the discount
+     * @param cardID        the card id
+     * @param turnStates    the turn states
+     * @param turnState     the turn state
+     * @param wareHouse     the ware house
+     * @param strongBox     the strong box
+     * @param faithPoints   the faith points
+     * @param victoryPoints the victory points
+     * @param cardsID       the cards id
+     * @param leadersID     the leaders id
+     * @param market        the market
+     * @param tableCardsID  the table cards id
+     */
     public DiscountData( PlayerData originalData, ArrayList<Resource> discount, ArrayList<String> cardID, ArrayList<TurnState> turnStates, TurnState turnState, ArrayList<Resource[]> wareHouse, ArrayList<Resource> strongBox, int faithPoints, int victoryPoints, ArrayList<String> cardsID, ArrayList<String> leadersID, Resource[][] market, ArrayList<String> tableCardsID) {
 //        this.turnStates = turnStates;
 //        this.turnState = turnState;

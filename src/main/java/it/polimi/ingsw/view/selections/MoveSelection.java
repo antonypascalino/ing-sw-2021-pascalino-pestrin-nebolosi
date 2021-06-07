@@ -8,6 +8,9 @@ import it.polimi.ingsw.view.data.PlayerData;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * The type Move selection.
+ */
 public class MoveSelection extends Selection{
 
     public void handleSelection(PlayerData data){

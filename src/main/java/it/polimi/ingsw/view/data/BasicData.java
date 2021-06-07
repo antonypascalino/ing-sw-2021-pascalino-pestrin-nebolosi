@@ -19,7 +19,11 @@ import it.polimi.ingsw.view.Printer;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
+/**
+ * The type Basic data.
+ */
 public class BasicData extends PlayerData {
     private String playerID;
     private int gameID;
@@ -40,6 +44,12 @@ public class BasicData extends PlayerData {
     private MainMenu menu;
     private LineClient connection;
 
+    /**
+     * Instantiates a new Basic data.
+     *
+     * @param playerID   the player id
+     * @param connection the connection
+     */
     public BasicData(String playerID, LineClient connection) {
         this.connection = connection;
         this.otherPlayersData = new ArrayList<>();
@@ -270,27 +280,28 @@ public class BasicData extends PlayerData {
     }
 
     public ArrayList<String> tableCardsFilter(ArrayList<MappedResource> mapped){
-
-        ArrayList<String> cloned = new ArrayList<String>();
         ArrayList<String> available = new ArrayList<>();
         ArrayList<Integer> cardLevel = new ArrayList<>(); // the levels of the cards which the player can buy
         cardLevel.add(1);
-        cloned.addAll(tableCardsID);
         ArrayList<Resource> allRes = new ArrayList<Resource>();
         for(MappedResource m : mapped){
             allRes.add(m.getResource());
         }
-        for (String devCardID : frontCardsID) {
+        for (String devCardID : getFrontTableCardsID()) {
             cardLevel.add(getCardFromID(devCardID).getLevel() + 1);
+            available.add(devCardID);
         }
         if (cardLevel.size() == 4) {
             cardLevel.remove(0);
         }
-        for (String card : cloned) {
-            if (allRes.containsAll(getCardFromID(card).getPrice()) && cardLevel.contains(getCardFromID(card).getLevel())) {
-                available.add(card);
+        //For every resource i have to check if the occurences match
+        for (String card : getFrontTableCardsID()) {
+            for(Resource res : getCardFromID(card).getPrice())
+                //Check if they have the same number of res for every tipe, if it doesn't have the resource remove them
+                if( Collections.frequency(allRes, res) != Collections.frequency(getCardFromID(card).getPrice(), res))
+            //if (allRes.containsAll(getCardFromID(card).getPrice()) && cardLevel.contains(getCardFromID(card).getLevel())) {
+                    available.remove(card);
             }
-        }
         return available;
     }
 

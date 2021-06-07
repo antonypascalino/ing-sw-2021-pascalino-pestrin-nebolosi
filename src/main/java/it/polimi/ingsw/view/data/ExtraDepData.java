@@ -8,6 +8,9 @@ import it.polimi.ingsw.model.Table.Resource;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * The type Extra dep data.
+ */
 public class ExtraDepData extends PlayerData {
 
     //    private ArrayList<TurnState> turnStates;
@@ -26,6 +29,12 @@ public class ExtraDepData extends PlayerData {
     private ArrayList<Resource> placeableRes;
 
 
+    /**
+     * Instantiates a new Extra dep data.
+     *
+     * @param originalData the original data
+     * @param placeableRes the placeable res
+     */
     public ExtraDepData(PlayerData originalData, ArrayList<Resource> placeableRes) {
         //        this.turnStates = turnStates;
 //        this.turnState = turnState;

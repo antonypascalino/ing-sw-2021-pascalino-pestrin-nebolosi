@@ -6,11 +6,22 @@ import it.polimi.ingsw.view.data.PlayerData;
 
 import java.util.ArrayList;
 
+/**
+ * The type Client extra prod.
+ */
 public class ClientExtraProd extends ClientLeaderCard {
     private Colors color;
     private Resource prodRequired;
 
 
+    /**
+     * Instantiates a new Client extra prod.
+     *
+     * @param victoryPoints the victory points
+     * @param color         the color
+     * @param prodRequired  the prod required
+     * @param leaderID      the leader id
+     */
     public ClientExtraProd(int victoryPoints, Colors color, Resource prodRequired, String leaderID) {
         super(leaderID, "Extra Production", victoryPoints);
         this.prodRequired = prodRequired;
@@ -30,10 +41,20 @@ public class ClientExtraProd extends ClientLeaderCard {
         return false;
     }
 
+    /**
+     * Gets color.
+     *
+     * @return the color
+     */
     public Colors getColor() {
         return color;
     }
 
+    /**
+     * Gets prod required.
+     *
+     * @return the prod required
+     */
     public Resource getProdRequired() {
         return prodRequired;
     }

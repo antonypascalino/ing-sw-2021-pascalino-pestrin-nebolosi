@@ -7,6 +7,9 @@ import it.polimi.ingsw.view.data.PlayerData;
 import java.util.ArrayList;
 
 
+/**
+ * The type Market selection.
+ */
 public class MarketSelection extends Selection {
 
 

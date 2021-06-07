@@ -7,6 +7,9 @@ import it.polimi.ingsw.view.data.PlayerData;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * The type Quit selection.
+ */
 public class QuitSelection extends Selection{
 
 

@@ -9,7 +9,16 @@ import it.polimi.ingsw.view.data.PlayerData;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * The type Main view.
+ */
 public class MainView {
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     * @throws IOException the io exception
+     */
     public static void main(String[] args) throws IOException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Insert a new nickname");

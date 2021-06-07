@@ -6,6 +6,9 @@ import it.polimi.ingsw.view.data.PlayerData;
 
 import java.util.ArrayList;
 
+/**
+ * The type Discard leader selection.
+ */
 public class DiscardLeaderSelection extends Selection {
 
 

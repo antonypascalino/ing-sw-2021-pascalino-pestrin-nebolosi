@@ -6,11 +6,23 @@ import it.polimi.ingsw.view.data.PlayerData;
 
 import java.util.ArrayList;
 
+/**
+ * The type Client discount.
+ */
 public class ClientDiscount extends ClientLeaderCard {
     private Colors color1;
     private Colors color2;
     private Resource discount;
 
+    /**
+     * Instantiates a new Client discount.
+     *
+     * @param color1        the color 1
+     * @param color2        the color 2
+     * @param discount      the discount
+     * @param victoryPoints the victory points
+     * @param leaderID      the leader id
+     */
     public ClientDiscount(Colors color1, Colors color2, Resource discount, int victoryPoints, String leaderID) {
         super(leaderID, "Discount", victoryPoints);
         this.color1 = color1;

@@ -11,6 +11,9 @@ import it.polimi.ingsw.view.data.PlayerData;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * The type Production selection.
+ */
 public class ProductionSelection extends Selection {
 
 

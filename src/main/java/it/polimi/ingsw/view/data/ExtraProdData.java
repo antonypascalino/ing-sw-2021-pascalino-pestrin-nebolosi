@@ -8,10 +8,19 @@ import it.polimi.ingsw.view.Printer;
 
 import java.util.ArrayList;
 
+/**
+ * The type Extra prod data.
+ */
 public class ExtraProdData extends PlayerData{
     private ArrayList<String> extraProdID;
     private ArrayList<Resource> prodRequired;
 
+    /**
+     * Instantiates a new Extra prod data.
+     *
+     * @param extraProdID  the extra prod id
+     * @param prodRequired the prod required
+     */
     public ExtraProdData(ArrayList<String> extraProdID, ArrayList<Resource> prodRequired) {
         this.extraProdID = extraProdID;
         this.prodRequired = prodRequired;

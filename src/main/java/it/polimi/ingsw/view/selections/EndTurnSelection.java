@@ -3,6 +3,9 @@ package it.polimi.ingsw.view.selections;
 import it.polimi.ingsw.Request.EndTurnRequest;
 import it.polimi.ingsw.view.data.PlayerData;
 
+/**
+ * The type End turn selection.
+ */
 public class EndTurnSelection extends Selection {
 
     @Override

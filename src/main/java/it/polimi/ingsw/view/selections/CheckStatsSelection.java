@@ -3,6 +3,9 @@ package it.polimi.ingsw.view.selections;
 import it.polimi.ingsw.view.data.OtherPlayerData;
 import it.polimi.ingsw.view.data.PlayerData;
 
+/**
+ * The type Check stats selection.
+ */
 public class CheckStatsSelection extends Selection{
 
     @Override

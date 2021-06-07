@@ -12,12 +12,32 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
 
+/**
+ * The type Observer.
+ */
 //Keep listening on the server and print any message that is received
 public class Observer implements Runnable{
 
+    /**
+     * The Socket.
+     */
     Socket socket;
+    /**
+     * The In.
+     */
     BufferedReader in;
+    /**
+     * The Data.
+     */
     PlayerData data;
+
+    /**
+     * Instantiates a new Observer.
+     *
+     * @param connection the connection
+     * @param data       the data
+     * @throws IOException the io exception
+     */
     public Observer(LineClient connection, PlayerData data) throws IOException {
         this.data = data;
         this.socket = connection.getSocket();

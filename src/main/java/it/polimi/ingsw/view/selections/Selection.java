@@ -7,8 +7,16 @@ import it.polimi.ingsw.view.data.PlayerData;
 
 import java.util.ArrayList;
 
+/**
+ * The type Selection.
+ */
 public abstract class Selection {
 
+    /**
+     * Handle selection.
+     *
+     * @param data the data
+     */
     public abstract void handleSelection(PlayerData data);
 
 }

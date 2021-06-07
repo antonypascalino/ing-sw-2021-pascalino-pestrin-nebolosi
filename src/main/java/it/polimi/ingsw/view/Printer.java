@@ -14,8 +14,17 @@ import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Scanner;
 
+/**
+ * The type Printer.
+ */
 public class Printer {
 
+    /**
+     * Print resources resource.
+     *
+     * @param res the res
+     * @return the resource
+     */
     public Resource printResources(ArrayList<Resource> res) {
         Scanner inputs = new Scanner(System.in);
         String selection;
@@ -48,6 +57,12 @@ public class Printer {
         }
     }
 
+    /**
+     * Print mapped res mapped resource.
+     *
+     * @param mappedRes the mapped res
+     * @return the mapped resource
+     */
     public MappedResource printMappedRes(ArrayList<MappedResource> mappedRes) {
         Scanner inputs = new Scanner(System.in);
         String selection = "";
@@ -72,7 +87,12 @@ public class Printer {
     }
 
 
-
+    /**
+     * Print turn states turn state.
+     *
+     * @param turnStates the turn states
+     * @return the turn state
+     */
     public TurnState printTurnStates(ArrayList<TurnState> turnStates) {
         Scanner inputs = new Scanner(System.in);
         String selection = "";
@@ -98,6 +118,13 @@ public class Printer {
         }
     }
 
+    /**
+     * Print card id string.
+     *
+     * @param cardID the card id
+     * @param data   the data
+     * @return the string
+     */
     public String printCardID(ArrayList<String> cardID, PlayerData data) {
         Scanner inputs = new Scanner(System.in);
         String selection = "";
@@ -119,6 +146,13 @@ public class Printer {
         }
     }
 
+    /**
+     * Print integers int.
+     *
+     * @param ints  the ints
+     * @param slots the slots
+     * @return the int
+     */
     public int printIntegers(ArrayList<Integer> ints, boolean slots) {
         Scanner inputs = new Scanner(System.in);
         String selection = "";
@@ -150,6 +184,12 @@ public class Printer {
         }
     }
 
+    /**
+     * Print matrix market array.
+     *
+     * @param matrix the matrix
+     * @return the market array
+     */
     public MarketArray printMatrix(Resource[][] matrix) {
         Scanner inputs = new Scanner(System.in);
         String selection = "";
@@ -219,6 +259,11 @@ public class Printer {
         return null;
     }
 
+    /**
+     * Ask question boolean.
+     *
+     * @return the boolean
+     */
     public boolean askQuestion() {
         Scanner inputs = new Scanner(System.in);
         String selection = "";
@@ -236,6 +281,11 @@ public class Printer {
         return false;
     }
 
+    /**
+     * Choose stats boolean.
+     *
+     * @return the boolean
+     */
     public boolean chooseStats() {
         Scanner inputs = new Scanner(System.in);
         String selection = "";
@@ -256,6 +306,11 @@ public class Printer {
         }
     }
 
+    /**
+     * Print other stats.
+     *
+     * @param data the data
+     */
     public void printOtherStats(OtherPlayerData data){
         System.out.println("Player ID: " + data.getPlayerID());
         System.out.println("Warehouse:\n" + data.getWareHouse());
@@ -269,6 +324,11 @@ public class Printer {
         }
     }
 
+    /**
+     * Print my stats.
+     *
+     * @param data the data
+     */
     public void printMyStats(PlayerData data) {
         System.out.println("\nPlayer ID: " + data.getPlayerID());
         System.out.println("\nMarket:");
@@ -290,6 +350,13 @@ public class Printer {
 
     }
 
+    /**
+     * Choose leader card array list.
+     *
+     * @param leadersToChoose the leaders to choose
+     * @param data            the data
+     * @return the array list
+     */
     public ArrayList<String> chooseLeaderCard(ArrayList<String> leadersToChoose, PlayerData data) {
         ArrayList<String> chosen = new ArrayList<String>();
         Scanner inputs = new Scanner(System.in);
@@ -314,6 +381,11 @@ public class Printer {
         return chosen;
     }
 
+    /**
+     * Choose resource resource.
+     *
+     * @return the resource
+     */
     public Resource chooseResource() {
         Scanner input = new Scanner(System.in);
         boolean validInput;
@@ -335,6 +407,11 @@ public class Printer {
         }
     }
 
+    /**
+     * Endgame.
+     *
+     * @param endgameUpdate the endgame update
+     */
     public void endgame(EndgameUpdate endgameUpdate) {
         System.out.println(endgameUpdate.getWinner().toUpperCase(Locale.ROOT) + "WON!");
         System.out.println("Here's the points:");
@@ -344,10 +421,20 @@ public class Printer {
         //chiudere connessione e tutto baci baci ciao ciao
     }
 
+    /**
+     * Print message.
+     *
+     * @param message the message
+     */
     public void printMessage(String message) {
         System.out.println(message);
     }
 
+    /**
+     * View market.
+     *
+     * @param matrix the matrix
+     */
     public void viewMarket(Resource[][] matrix) {
         Scanner inputs = new Scanner(System.in);
         String selection = "";
@@ -362,6 +449,11 @@ public class Printer {
         }
     }
 
+    /**
+     * Print ware house.
+     *
+     * @param warehouse the warehouse
+     */
     public void printWareHouse(ArrayList<Resource[]> warehouse) {
         System.out.println("Level 1: " + warehouse.get(0)[0]);
         System.out.println("Level 2: " + warehouse.get(1)[0] + " " + warehouse.get(1)[1]);

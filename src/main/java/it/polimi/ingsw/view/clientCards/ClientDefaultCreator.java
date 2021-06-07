@@ -6,6 +6,9 @@ import it.polimi.ingsw.model.card.*;
 
 import java.util.ArrayList;
 
+/**
+ * The type Client default creator.
+ */
 public class ClientDefaultCreator {
 
 
@@ -18,6 +21,7 @@ public class ClientDefaultCreator {
      * Static method used for generate an array List containing all the defaults
      * DevCard in the basic game settings
      *
+     * @return the array list
      * @result An arrayList with the new cards
      */
     public static ArrayList<ClientDevCard> produceClientDevCard() {
@@ -933,6 +937,7 @@ public class ClientDefaultCreator {
      * Static method used for generate an array List containing all the defaults
      * ClientLeaderCards in the basic game settings
      *
+     * @return the array list
      * @result An arrayList with the new cards
      */
     public static ArrayList<ClientLeaderCard> produceClientLeaderCard() {
@@ -1004,6 +1009,11 @@ public class ClientDefaultCreator {
         return result;
     }
 
+    /**
+     * Produce basic prod array list.
+     *
+     * @return the array list
+     */
     public static ArrayList<BasicProduction> produceBasicProd() {
         ArrayList<BasicProduction> result = new ArrayList<BasicProduction>();
         ArrayList<Resource> requires = new ArrayList<Resource>();
@@ -1024,6 +1034,11 @@ public class ClientDefaultCreator {
 
     }
 
+    /**
+     * Gets game res.
+     *
+     * @return the game res
+     */
     public static ArrayList<Resource> getGameRes() {
         ArrayList<Resource> result = new ArrayList<Resource>();
         for (int i = 0; i < 2; i++)

@@ -8,6 +8,9 @@ import it.polimi.ingsw.view.Printer;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * The type Change res data.
+ */
 public class ChangeResData extends PlayerData
 {
 //    private ArrayList<TurnState> turnStates;
@@ -25,6 +28,12 @@ public class ChangeResData extends PlayerData
     private ArrayList<Resource> changes;
     private PlayerData originalData;
 
+    /**
+     * Instantiates a new Change res data.
+     *
+     * @param changes      the changes
+     * @param originalData the original data
+     */
     public ChangeResData(ArrayList<Resource> changes, PlayerData originalData) {
     //        this.turnStates = turnStates;
 //        this.turnState = turnState;

@@ -6,6 +6,9 @@ import it.polimi.ingsw.view.data.PlayerData;
 
 import java.util.ArrayList;
 
+/**
+ * The type Play leader selection.
+ */
 public class PlayLeaderSelection extends Selection{
 
     public void handleSelection(PlayerData data){

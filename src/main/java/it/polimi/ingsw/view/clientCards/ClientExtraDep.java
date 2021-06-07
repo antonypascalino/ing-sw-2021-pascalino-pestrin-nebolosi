@@ -6,11 +6,22 @@ import it.polimi.ingsw.view.data.PlayerData;
 
 import java.util.ArrayList;
 
+/**
+ * The type Client extra dep.
+ */
 public class ClientExtraDep extends ClientLeaderCard {
 
     private Resource placeableRes;
     private Resource required;
 
+    /**
+     * Instantiates a new Client extra dep.
+     *
+     * @param victoryPoints the victory points
+     * @param required      the required
+     * @param placeableRes  the placeable res
+     * @param leaderID      the leader id
+     */
     public ClientExtraDep(int victoryPoints, Resource required, Resource placeableRes, String leaderID) {
         super(leaderID, "Extra Deposit", victoryPoints);
         this.placeableRes = placeableRes;
