@@ -62,6 +62,8 @@ public class RequestTest {
 
         //Now send a new request for buying
         Player tmp = games.get(0).getPlayers().get(0);
+        tmp.setTable(games.get(0).getTable());
+
         //Get the second row of the market
         ArrayList<Resource> resources = games.get(0).getTable().market.seeRow(2);
         System.out.println(games.get(0).getTable().market.toString());
@@ -163,6 +165,8 @@ public class RequestTest {
 
         //Now send a new request for buying
         Player tmp = games.get(0).getPlayers().get(0);
+        tmp.setTable(games.get(0).getTable());
+
         //Get the second row of the market
         ArrayList<Resource> resources = games.get(0).getTable().market.seeRow(2);
         System.out.println(games.get(0).getTable().market.toString());
@@ -252,6 +256,8 @@ public class RequestTest {
 
         //Now send a new request for buying
         Player tmp = games.get(0).getPlayers().get(0);
+        tmp.setTable(games.get(0).getTable());
+
         //Get the second row of the market
         tmp.addResource(0, Resource.GOLD);
         tmp.addResource(1, Resource.SERVANT);
@@ -333,6 +339,8 @@ public class RequestTest {
 
         //Now send a new request for buying and it doesn't buy it because there's no space in the same slot
         Player tmp = games.get(0).getPlayers().get(0);
+        tmp.setTable(games.get(0).getTable());
+
         //Get the second row of the market
         tmp.addResource(0, Resource.GOLD);
         tmp.addResource(1, Resource.SERVANT);
@@ -442,6 +450,8 @@ public class RequestTest {
 
         //Now send a new request for buying and it doesn't buy it because there's no space in the same slot
         Player tmp = games.get(0).getPlayers().get(0);
+        tmp.setTable(games.get(0).getTable());
+
         //Get the second row of the market
         tmp.addResource(0, Resource.GOLD);
         tmp.addResource(1, Resource.SERVANT);
@@ -550,6 +560,7 @@ public class RequestTest {
 
         //Now send a new request for buying and it doesn't buy it because there's no space in the same slot
         Player tmp = games.get(0).getPlayers().get(0);
+        tmp.setTable(games.get(0).getTable());
         //Get the second row of the market
         tmp.addResource(0, Resource.GOLD);
         tmp.addResource(1, Resource.SERVANT);
