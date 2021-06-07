@@ -70,6 +70,9 @@ public class Printer {
         while (true) {
             int actions = 0;
             for (int i = 0; i < mappedRes.size(); i++) {
+                if(mappedRes.get(i).getResource().equals(Resource.EMPTY)){
+                    continue;
+                }
                 System.out.println("[" + (i + 1) + "] " + mappedRes.get(i).getResource() + " " + mappedRes.get(i).getPlace());
                 actions = i + 1;
             }

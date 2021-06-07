@@ -40,6 +40,7 @@ public class ProductionSelection extends Selection {
                 MappedResource selected2 = data.getPrinter().printMappedRes(allRes);
                 mappedRes.add(selected2);
                 allRes.removeAll(mappedRes);
+
             }
 
             else{
