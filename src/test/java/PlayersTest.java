@@ -1,11 +1,9 @@
 import it.polimi.ingsw.controller.DefaultCreator;
-import it.polimi.ingsw.model.Player.BasicPlayer;
-import it.polimi.ingsw.model.Player.ChangeResPlayer;
-import it.polimi.ingsw.model.Player.DiscountedPlayer;
-import it.polimi.ingsw.model.Player.Player;
+import it.polimi.ingsw.model.Player.*;
 import it.polimi.ingsw.model.Table.Resource;
 import it.polimi.ingsw.model.Table.Table;
 import it.polimi.ingsw.model.card.DevCard;
+import it.polimi.ingsw.model.card.ExtraDeposit;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -40,5 +38,13 @@ public class PlayersTest {
         System.out.println(player.canBuy(card, original.getAllResources()));
         System.out.println(player.getDiscount());
         DiscountedPlayer player1 = new DiscountedPlayer(player, Resource.GOLD);
+    }
+
+    @Test
+    public void TestExtraDepositPlayer() {
+        Player original = new BasicPlayer("Tester1");
+        Table table = new Table(DefaultCreator.produceDevCard());
+        original.setTable(table);
+        ExtraDepositPlayer player = new ExtraDepositPlayer(original, Resource.GOLD);
     }
 }

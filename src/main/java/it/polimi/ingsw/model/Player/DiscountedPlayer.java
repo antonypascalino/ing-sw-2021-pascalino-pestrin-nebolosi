@@ -34,33 +34,6 @@ public class DiscountedPlayer extends Player
         }
     }
 
-    /**
-     * Gets dev card.
-     *
-     * @param color dev card color
-     * @param level dev card level
-     *
-     */
-    public void getDevCard(String color, int level)
-    {
-//        DevCard card;
-//        int slot=2;
-//        //Setted to 2 for debug purposes
-//
-//        card = original.getGame().getTable().buyDev(color, level);
-//        ArrayList<Resource> tmp ;
-//        tmp = card.getPrice();
-//
-//        //Remove the discount
-//        for (Resource r: discount)
-//            tmp.remove(r);
-//        if(original.getBoard().hasResources(tmp))
-//        {
-//            card.setOwner(this);
-//            original.getBoard().getSlot().purchaseCard(card,slot);
-//        }
-
-    }
 
     /**
      * Gets discount
