@@ -253,6 +253,7 @@ public class Game {
     }
 
     public void notifyAllPlayers(Update update){
+        System.out.println("Sending "+update+ "to all players");
         for (Player p: players)
             p.notifyView(update);
     }

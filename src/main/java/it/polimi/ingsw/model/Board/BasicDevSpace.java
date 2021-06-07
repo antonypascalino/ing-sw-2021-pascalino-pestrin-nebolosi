@@ -19,7 +19,7 @@ public class BasicDevSpace {
      */
     public BasicDevSpace(Board board)
     {
-        this.cardID = "basicProd";
+        this.cardID = "BASIC";
         this.board = board;
     }
 

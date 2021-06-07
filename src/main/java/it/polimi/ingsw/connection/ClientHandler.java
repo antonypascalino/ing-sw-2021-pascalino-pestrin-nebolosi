@@ -119,8 +119,9 @@ public class ClientHandler implements Runnable {
                                 lastGame.addPlayer(newPlayer);
                                 newPlayer.setTable(lastGame.getTable());
                                 newPlayer.setGame(lastGame);
+                                System.out.println("Player " + ((NewGameRequest) request).getNickname() + " added to game " + lastGame.getGameId());
                                 Update update;
-                                //If the game has reached the max level of players
+                                //If the game has reached the max level of players with this new one
                                 if(lastGame.getPlayers().size() == lastGame.getMax())
                                 {
                                     update = lastGame.createNewGameUpdate();
@@ -133,6 +134,7 @@ public class ClientHandler implements Runnable {
                                 lastGame.notifyAllPlayers(update);
                             }
                         } else {
+                            System.out.println("Received "+request);
                             games.get(request.getGameID()).notify(request);
 
                         }

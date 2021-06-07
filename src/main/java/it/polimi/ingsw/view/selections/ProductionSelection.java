@@ -33,6 +33,13 @@ public class ProductionSelection extends Selection {
 
             if(cardID.contains("BASIC")){
 
+                //If the non empty resources are more than two
+                if(data.allResources().stream().map(x -> x.getResource()).filter(x -> !x.equals(Resource.EMPTY)).count() <=1)
+                {
+                    data.getPrinter().printMessage("You don't have enough resource for using the basic production");
+                    break;
+                }
+
                 MappedResource selected1 = data.getPrinter().printMappedRes(allRes);
                 mappedRes.add(selected1);
                 allRes.removeAll(mappedRes);
@@ -40,7 +47,6 @@ public class ProductionSelection extends Selection {
                 MappedResource selected2 = data.getPrinter().printMappedRes(allRes);
                 mappedRes.add(selected2);
                 allRes.removeAll(mappedRes);
-
             }
 
             else{
@@ -70,7 +76,16 @@ public class ProductionSelection extends Selection {
             }
         }while(data.getPrinter().askQuestion());
 
-        Request produceReq = new ProduceRequest(data.getGameID(), data.getPlayerID(), mappedProduction );
-        data.sendRequest(produceReq);
+        //If the userce chose what to send
+        if(mappedProduction.size() != 0)
+        {
+            Request produceReq = new ProduceRequest(data.getGameID(), data.getPlayerID(), mappedProduction );
+            data.sendRequest(produceReq);
+        }
+
+        //if there's nothing to send recreate a menu
+        else
+            data.getMenu().menuMaker();
+
     }
 }

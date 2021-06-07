@@ -48,6 +48,7 @@ public class ProduceRequest implements Request {
         ArrayList<Resource> resTemp = new ArrayList<Resource>();
         for(Production prod : productions){
             for(MappedResource map : prod.getMappedResources()){
+                if(!map.getPlace().equals("choice"))
                 resTemp.add(map.getResource());
             }
         }
