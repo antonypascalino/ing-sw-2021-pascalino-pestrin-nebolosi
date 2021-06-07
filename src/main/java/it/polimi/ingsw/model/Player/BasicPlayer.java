@@ -22,9 +22,7 @@ public class BasicPlayer extends Player {
     private int victoryPoints;
     private Table table;
     private ClientHandler thisPlayer;
-    private Player original; //Even if this attribute is in the Player class for not rewriting all the code, it's never being used in this class
     private Game game;
-
 
 //    public BasicPlayer(String nickName, Table table, ClientHandler thisPlayer) {
 //        this.nickName = nickName;
@@ -123,20 +121,7 @@ public class BasicPlayer extends Player {
 
         if(cardID.contains("dev")){
             getBoard().getTempBox().addResource(getBoard().getDevFromID(cardID).producedResources());
-
         }
-        if(cardID.contains("BASIC")){
-            ArrayList<Resource> basicProd = new ArrayList<Resource>();
-            basicProd.add(Resource.CHOICE);
-            basicProd.add(Resource.CHOICE);
-            getBoard().getTempBox().addResource(basicProd);
-        }
-
-        //for (ProduceRequest r : requests )
-        //if(getBoard().getSlot().getFrontCards().contains(r.getCard());
-        //ALlora lo usa sostituendo a ogni richiesta un valore di r.getChoiche
-        //per ogni richiesta di produzione (dalla connection) attiva la giusta carta e salva la produzione
-        //nel forziere del giocatore
     }
 
     @Override
@@ -156,8 +141,8 @@ public class BasicPlayer extends Player {
 
     @Override
     public boolean checkLevel(int level) {
-        if (!(level <= 3 && level > 0)) {
-            //lancia eccezione perché non ha carte che aggiungono livelli e quindi non ha livelli 4 e 5.
+        if (!(level <= 2 && level >= 0)) {
+            return false; //lancia eccezione perché non ha carte che aggiungono livelli e quindi non ha livelli 3 e 4 (indici di programmazione non indici in linguaggio naturale).
         }
         return true;
     }
@@ -182,8 +167,6 @@ public class BasicPlayer extends Player {
         //lancia eccezione: non hai questo posto da dove prendere la risorsa
         }
     }
-
-
 
     @Override
     public ArrayList<Resource> getAllResources() {

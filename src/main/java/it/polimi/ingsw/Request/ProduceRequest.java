@@ -88,14 +88,13 @@ public class ProduceRequest implements Request {
 
     @Override
     public TurnState handle(Player player, Game game) {
-        for(Production prodReq : productions){
-            for(MappedResource mapRes : prodReq.getMappedResources()){
+        for (Production prodReq : productions) {
+            for (MappedResource mapRes : prodReq.getMappedResources()) {
                 player.removeResource(mapRes.getResource(), mapRes.getPlace());
             }
-
         }
-        for(Production prod : productions){
-            if(prod.getCardID().equals("BASIC")) {
+        for (Production prod : productions) {
+            if (prod.getCardID().equals("BASIC") || prod.getCardID().contains("PROD")) {
                 //Add to the temp box all the resource that
                 //Are received as choices
                 ArrayList<Resource> list = new ArrayList<>();
@@ -105,14 +104,12 @@ public class ProduceRequest implements Request {
                     }
                 }
                 player.getBoard().getTempBox().addResource(list);
-            }
-            else
+            } else
                 player.produce(prod.getCardID());
         }
 
-
         playerSteps = player.getBoard().getTempBox().filterFaithPoints();
-        game.fpAdvancement(0,playerSteps);
+        game.fpAdvancement(0, playerSteps);
         player.getBoard().getTempBox().moveToStrongBox();
         return TurnState.PRODUCE;
     }

@@ -18,16 +18,6 @@ public abstract class Player {
      */
     Player original;
 
-    /**
-     * Sets nick name.
-     *
-     * @param newNick the new nickname inserted at the start of the game.
-     */
-    public void setNickName(String newNick)
-    {
-        original.setNickName(newNick);
-    }
-
     public void setGame(Game game){ original.setGame(game);}
 
     /**
@@ -74,7 +64,7 @@ public abstract class Player {
      *
      * @param card the card that needs to be added to the player.
      */
-/*
+    /*
     Used in the start game phase when the player chooses two out of the four leader cards
     @param a leader card that needs to be added to the player
      */
@@ -94,15 +84,6 @@ public abstract class Player {
     }
 
     /**
-     * Gets resources from {@link it.polimi.ingsw.model.Table.Market}.
-     */
-    public void getFromMarket()
-    {
-        original.getFromMarket();
-    }
-
-
-    /**
      * Gets {@link LeaderCard}.
      *
      * @return the leader cards
@@ -110,15 +91,6 @@ public abstract class Player {
     public ArrayList<LeaderCard> getLeaderCards()
     {
         return original.getLeaderCards();
-    }
-
-    /**
-     * Gets all the production powers.
-     */
-
-    public void getProduction()
-    {
-        original.getProduction();
     }
 
     /**

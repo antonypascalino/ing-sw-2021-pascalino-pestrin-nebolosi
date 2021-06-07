@@ -12,13 +12,16 @@ import java.util.ArrayList;
 public class MoveRequest implements Request {
     private int originLevel;
     private int destLevel;
-    private final String className = this.getClass().getName();
+    private final String className;
     private String playerID;
     private int gameID;
 
     public MoveRequest(String playerID, int gameID, int originLevel, int destLevel) {
+        this.originLevel = originLevel;
+        this.destLevel = destLevel;
         this.playerID = playerID;
         this.gameID = gameID;
+        className = this.getClass().getName();
     }
 
     @Override
@@ -34,10 +37,6 @@ public class MoveRequest implements Request {
             return false;
             //lancia eccezione: non possiedi il livello in cui ha detto di voler mettere la risorsa
         }
-//            if(!player.checkSpace(toMoveRes.getResource(), toMoveRes.getFinLevel())) {
-//                //lancia eccezione: non puoi mettere questa risorsa qua
-//                return false;
-//
         return true;
     }
 

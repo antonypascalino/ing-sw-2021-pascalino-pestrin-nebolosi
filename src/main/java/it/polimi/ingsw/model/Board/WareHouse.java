@@ -63,7 +63,6 @@ public class WareHouse {
      * @param res the {@link Resource} to add.
      * @return true if
      */
-    //Friendly because it's just needed in the package
     public boolean addResource(int level, Resource res) {
         if(checkSpace(level, res)) {
             Resource[] current;
@@ -176,13 +175,16 @@ public class WareHouse {
         helper.addAll(Arrays.asList(levels.get(destLevel)));
         Arrays.fill(levels.get(destLevel), Resource.EMPTY);
         for (int j = 0; j < levels.get(originLevel).length; j++) {
-            levels.get(destLevel)[j] = levels.get(originLevel)[j];
+            if (!levels.get(originLevel)[j].equals(Resource.EMPTY)) { //If necessario perché level.get(originLevel) potrebbe essere più lungo di levels.get(destLevel), ma avendo già controllato prima, gli elementi in più sarebbero solo gli EMPTY
+                levels.get(destLevel)[j] = levels.get(originLevel)[j];
+            }
         }
         Arrays.fill(levels.get(originLevel), Resource.EMPTY);
         for (int k = 0; k < helper.size(); k++) {
-            levels.get(originLevel)[k] = helper.get(k);
+            if(!helper.get(k).equals(Resource.EMPTY)) {
+                levels.get(originLevel)[k] = helper.get(k);
+            }
         }
-
     }
 
     public ArrayList<Resource[]> getArrayListWareHouse() {

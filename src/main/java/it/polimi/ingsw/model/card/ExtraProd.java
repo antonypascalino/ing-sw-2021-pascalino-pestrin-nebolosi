@@ -73,7 +73,7 @@ public class ExtraProd /*extends Producer*/ implements LeaderCard  {
         {
             isEnable = true;
             player.addVictoryPoints(victoryPoints);
-            Player tmp =new ExtraProdPlayer(player, prodResource );
+            Player tmp =new ExtraProdPlayer(player, prodResource, cardID);
             player.getGame().changePlayer(player, tmp);
             for (LeaderCard card : player.getLeaderCards())
             {
