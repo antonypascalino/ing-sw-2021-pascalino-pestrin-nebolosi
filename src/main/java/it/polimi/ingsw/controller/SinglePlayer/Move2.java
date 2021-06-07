@@ -10,4 +10,9 @@ public class Move2 implements Token {
         }
         game.fpAdvancement(0,0);
     }
+
+    public String toString(){
+        return (this.getClass().getName());
+    }
+
 }

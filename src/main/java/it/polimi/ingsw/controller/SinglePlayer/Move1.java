@@ -13,4 +13,8 @@ public class Move1 implements Token {
         Collections.shuffle(game.getTokenList());
         game.fpAdvancement(0,0);
     }
+
+    public String toString(){
+        return (this.getClass().getName());
+    }
 }

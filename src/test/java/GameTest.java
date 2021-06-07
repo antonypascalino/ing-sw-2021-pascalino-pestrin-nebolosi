@@ -122,4 +122,47 @@
             Game game = new Game(players, DefaultCreator.produceDevCard(), 1, 4);
             game.createNewGameUpdate();
         }
+
+        @Test
+        public void TestEndGame(){
+            ArrayList<Player> players = new ArrayList<>();
+            players.add(new BasicPlayer("Tester1"));
+            players.add(new BasicPlayer("Tester2"));
+            Game game = new Game(players, DefaultCreator.produceDevCard(), 1, 2);
+            players.get(0).addVictoryPoints(10);
+            game.endgame();
+        }
+
+        @Test
+        public void TestStartGame(){
+            ArrayList<Player> players = new ArrayList<>();
+            players.add(new BasicPlayer("Tester1"));
+            players.add(new BasicPlayer("Tester2"));
+            Game game = new Game(players, DefaultCreator.produceDevCard(), 1, 2);
+            game.start();
+        }
+
+        @Test
+        public void TestFPAdvancement(){
+            ArrayList<Player> players = new ArrayList<>();
+            players.add(new BasicPlayer("Tester1"));
+            players.add(new BasicPlayer("Tester2"));
+            Game game = new Game(players, DefaultCreator.produceDevCard(), 1, 2);
+            players.get(0).getBoard().getFaithPath().moveForward(5);
+            players.get(1).getBoard().getFaithPath().moveForward(8);
+            game.fpAdvancement(3, 1);
+        }
+
+        @Test
+        public void TestChangePlayer(){
+            ArrayList<Player> players = new ArrayList<>();
+            players.add(new BasicPlayer("Tester1"));
+            players.add(new BasicPlayer("Tester2"));
+            Game game = new Game(players, DefaultCreator.produceDevCard(), 1, 2);
+            players.get(0).getBoard().getFaithPath().moveForward(5);
+            players.get(1).getBoard().getFaithPath().moveForward(8);
+            game.fpAdvancement(3, 1);
+        }
+
+
     }

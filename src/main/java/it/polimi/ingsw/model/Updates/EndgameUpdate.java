@@ -10,7 +10,8 @@ public class EndgameUpdate implements Update {
     private ArrayList<PlayerVP> finalPlayersVPS;
     private final String className;
 
-    public EndgameUpdate(String winner) {
+    public EndgameUpdate(String winner, ArrayList<PlayerVP> finalPlayersVPS) {
+        this.finalPlayersVPS = finalPlayersVPS;
         className = this.getClass().getName();
         this.winner = winner;
     }
