@@ -21,11 +21,11 @@ public class Game {
     public int maxPlayer;
     private ArrayList<Player> players;
     private int currPlayerInt;
-    private Table table;
-    private ArrayList<TurnState> turnStates;
+    protected Table table;
+    protected ArrayList<TurnState> turnStates;
     private Player currPlayer;
     private Player nextPlayer;
-    private int currPopeSpace;
+    protected int currPopeSpace;
     private final int gameId;
     private boolean lastTurn;
     public int playerReady; //Players ready to start the game that have choosen their leaderCards
@@ -75,17 +75,11 @@ public class Game {
      * tale posizione notificherà tutti gli altri player per chiedergli loro come di comporteranno di conseguenza
      */
     public synchronized void notify(Request req) {
-
-        int playerSteps = 0;
-        int discardedSteps = 0;
-
         //In the case the game is starting every game can send the request
         if (req.getPlayerID().equals(currPlayer.getNickName())  || req instanceof InitialPlayersSetRequest) {
             if (/*req.validRequest(turnStates)*/true) {
                 if (req.canBePlayed(currPlayer)) {
                     turnStates.add(req.handle(getPlayerFromID(req.getPlayerID()), this));
-
-
                     //Check if the game is finished
                     if (lastTurn) {
                         if (currPlayerInt == 0) {
@@ -99,7 +93,7 @@ public class Game {
                         turnStates.clear();
                         currPlayer = nextPlayer;
                     }
-                    //Notify all players execpt for the newGame req which is handled separetly
+                    //Notify all players except for the newGame req which is handled separetly
                     if(!(req instanceof InitialPlayersSetRequest))
                         notifyAllPlayers(req.createUpdate(currPlayer, this));
 
@@ -126,12 +120,14 @@ public class Game {
             for (Player player : players) {
                 if (player != currPlayer) {
                     player.getBoard().getFaithPath().moveForward(discardedSteps);
+                    player.getBoard().getFaithPath().checkVictoryPoints();
                 }
             }
         }
         //Sposta il curr player per i FAITH ottenuti nel suo turno
         if (playerSteps != 0) {
             currPlayer.getBoard().getFaithPath().moveForward(playerSteps);
+            currPlayer.getBoard().getFaithPath().checkVictoryPoints();
         }
 
         boolean popeSpace = false;
@@ -158,17 +154,19 @@ public class Game {
             players.add(newPlayer);
     }
 
-    private void endgame() {
+    public void endgame() {
         int winnerPoints = 0;
         String winnerNickname = null;
+        ArrayList<PlayerVP> playersVP = new ArrayList<>();
         for (Player player : players) {
             player.addVictoryPoints((int)player.getAllResources().size()/5);
+            playersVP.add(new PlayerVP(player.getNickName(), player.getVictoryPoints()));
             if (player.getVictoryPoints() > winnerPoints) {
                 winnerPoints = player.getVictoryPoints();
                 winnerNickname = player.getNickName();
             }
         }
-        new EndgameUpdate(winnerNickname);
+        new EndgameUpdate(winnerNickname, playersVP);
     }
 
     public ArrayList<Player> getPlayers() {

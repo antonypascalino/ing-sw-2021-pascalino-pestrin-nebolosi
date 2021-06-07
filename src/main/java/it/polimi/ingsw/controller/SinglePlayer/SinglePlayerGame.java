@@ -1,13 +1,16 @@
 package it.polimi.ingsw.controller.SinglePlayer;
 
+import it.polimi.ingsw.Request.InitialPlayersSetRequest;
 import it.polimi.ingsw.Request.Request;
 import it.polimi.ingsw.controller.DefaultCreator;
 import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Board.FaithPath;
+import it.polimi.ingsw.model.Updates.*;
 import it.polimi.ingsw.model.card.DevCard;
 import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Table.Table;
+import it.polimi.ingsw.model.card.LeaderCard;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -16,16 +19,15 @@ public class SinglePlayerGame extends Game {
     private FaithPath lorenzoPath;
     private ArrayList<Token> tokenList;
     private Player player;
-    private Table table;
-    private int currPopeSpace;
-    private ArrayList<TurnState> turnStates;
 
-    public SinglePlayerGame(ArrayList<Player> players, ArrayList<DevCard> cards, int gameId, int maxPlayer) {
+    public SinglePlayerGame(ArrayList<Player> players, ArrayList<DevCard> cards, int gameId) {
         super(players, cards, gameId, 1);
+        player = players.get(0);
         table = new Table(DefaultCreator.produceDevCard());
         lorenzoPath = new FaithPath();
         tokenList = new ArrayList<>();
         createTokens();
+        turnStates = new ArrayList<>();
     }
 
     private void createTokens() {
@@ -60,29 +62,57 @@ public class SinglePlayerGame extends Game {
         return tokenList;
     }
 
-    private Token drawToken() {
+    public Token drawToken() {
         Token result = tokenList.remove(0);
         tokenList.add(result);
         return result;
     }
 
-    public void notify(Request req) {
-        int playerSteps = 0;
-        int discardedSteps = 0;
+    public Update createNewGameUpdate() {
+        ArrayList<LeaderCard> allLeaderCards = new ArrayList<LeaderCard>();
+        allLeaderCards.addAll(DefaultCreator.produceLeaderCard()); //Produce tutte le Leader del gioco
+        Collections.shuffle(allLeaderCards); //Le mischia
 
+        //Crea un elenco di players e attibuisce ad ognungo di loro 4 leaderCard diverse
+        ArrayList<PlayerLC> playersLC = new ArrayList<PlayerLC>();
+
+        player.setTable(table);
+        ArrayList<String> leadersToChoose = new ArrayList<String>();
+        for (int addedCard = 0; addedCard < 4; addedCard++) {
+            leadersToChoose.add(allLeaderCards.remove(0).getID());
+        }
+        playersLC.add(new PlayerLC(player.getNickName(), leadersToChoose));
+
+
+        ArrayList<PlayerST> playersST = new ArrayList<>();
+
+        PlayerST player1 = new PlayerST(player.getNickName(), 0, 0);
+        playersST.add(player1);
+
+        return new NewGameUpdate(getGameId(), table.getFrontIDs(), table.market.getMarket(), playersLC, playersST);
+    }
+
+    public void notify(Request req) {
         if (req.validRequest(turnStates)) {
             if (req.canBePlayed(player)) {
-                turnStates.add(req.handle(player,this));
-
+                turnStates.add(req.handle(player, this));
                 if (turnStates.contains(TurnState.END_TURN)) {
+                    drawToken().activateEffect(this);
                     turnStates.clear();
                 }
             }
-            drawToken().activateEffect(this);
         }
         if (player.getBoard().getSlot().getAllCards().size() == 7 || player.getBoard().getFaithPath().checkPopeSpace(3)) {
             playerWins();
         }
+        if (!(req instanceof InitialPlayersSetRequest)) {
+            notifyAllPlayers(req.createUpdate(player, this));
+            notifyAllPlayers(createLorenzoUpdate());
+        }
+    }
+
+    private Update createLorenzoUpdate() {
+        return new LorenzoUpdate(lorenzoPath.getAdvancement(), player.getVictoryPoints(), table.getFrontIDs());
     }
 
     public void fpAdvancement(int discardedSteps, int playerSteps) {
@@ -99,17 +129,22 @@ public class SinglePlayerGame extends Game {
         if (player.getBoard().getFaithPath().checkPopeSpace(currPopeSpace) || lorenzoPath.checkPopeSpace(currPopeSpace)) {
             player.getBoard().getFaithPath().checkVaticanSection(currPopeSpace);
             currPopeSpace++;
-            this.fpAdvancement(0,0); //Richiama se stessa per verificare se qualche giocatore abbia superato più di una popeSpace
+            this.fpAdvancement(0, 0); //Richiama se stessa per verificare se qualche giocatore abbia superato più di una popeSpace
         }
     }
 
     public void lorenzoWins() {
-        //Termina la partita e comunica al giocatore che ha perso
-    }
-    public void playerWins() {
-        //Termina la partita e comunica al giocatore che ha vinto e il suo punteggio
-        player.addVictoryPoints((int)player.getAllResources().size()/5);
-        player.getVictoryPoints();
+        ArrayList<PlayerVP> playersVP = new ArrayList<>();
+        playersVP.add(new PlayerVP(player.getNickName(), player.getVictoryPoints()));
+        notifyAllPlayers(new EndgameUpdate("Lorenzo", playersVP));
     }
 
+    public void playerWins() {
+        //Termina la partita e comunica al giocatore che ha vinto e il suo punteggio
+        player.addVictoryPoints((int) player.getAllResources().size() / 5);
+        player.getVictoryPoints();
+        ArrayList<PlayerVP> playersVP = new ArrayList<>();
+        playersVP.add(new PlayerVP(player.getNickName(), player.getVictoryPoints()));
+        notifyAllPlayers(new EndgameUpdate(player.getNickName(), playersVP));
+    }
 }

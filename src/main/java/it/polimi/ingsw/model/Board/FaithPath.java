@@ -55,7 +55,6 @@ public class FaithPath
         if(steps != 0)
         {
             advancement = advancement + steps;
-            checkVictoryPoints(advancement);
         }
     }
 
@@ -65,28 +64,28 @@ public class FaithPath
      * This method check, after every single move of the player on the {@link FaithPath}, if the player reached any <em>checkpoint</em>.
      * If yes, the method call the {@link it.polimi.ingsw.model.Player.Player#addVictoryPoints(int)} method passing the respective VictoryPoints.
      *
-     * @param a the current advancement of the {@link Player} on his {@link FaithPath}.
+    // * @param a the current advancement of the {@link Player} on his {@link FaithPath}.
      */
     //could be improved
     //if advancement % 3 == 0, addVictoryPoints is called. The argument is the amount of VP written on
     //faith path
-    public void checkVictoryPoints(int a)
+    public void checkVictoryPoints()
     {
-        if(a >= 3 && a < 6)
+        if(advancement >= 3 && advancement < 6)
             board.getPlayer().addVictoryPoints(1);
-        else if(a >= 6 && a < 9)
+        else if(advancement >= 6 && advancement < 9)
             board.getPlayer().addVictoryPoints(2);
-        else if(a >= 9 && a < 12)
+        else if(advancement >= 9 && advancement < 12)
             board.getPlayer().addVictoryPoints(4);
-        else if(a >= 12 && a < 15)
+        else if(advancement >= 12 && advancement < 15)
             board.getPlayer().addVictoryPoints(6);
-        else if(a >= 15 && a < 18)
+        else if(advancement >= 15 && advancement < 18)
             board.getPlayer().addVictoryPoints(9);
-        else if(a >= 18 && a < 21)
+        else if(advancement >= 18 && advancement < 21)
             board.getPlayer().addVictoryPoints(12);
-        else if(a >= 21 && a < 24)
+        else if(advancement >= 21 && advancement < 24)
             board.getPlayer().addVictoryPoints(16);
-        else if(a == 24)
+        else if(advancement == 24)
             board.getPlayer().addVictoryPoints(20);
     }
 

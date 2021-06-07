@@ -12,13 +12,15 @@ public class ExtraDepositPlayer extends Player {
     //private int addedLevel; //the level in the Warehouse added by this Mod
     private Resource placeableRes; //the resource placeable in the added level
     private ArrayList<ExtraDepositLevel> extraDep;
-    private Player original;
+    //private Player original;
     //private Resource extra1;
 
     public ExtraDepositPlayer(Player player, Resource placeableRes) {
        // addedLevel = player.getBoard().getWareHouse().getLevels().size(); //CONTOLLARE DISCORSO INDICI: LIVELLO 1 HA INDICE 0 NELL'ARRAYLIST
+        if (original instanceof ExtraDepositPlayer)
         extraDep = new ArrayList<ExtraDepositLevel>();
         extraDep.add(new ExtraDepositLevel(placeableRes));
+        original = player;
     }
 
     @Override

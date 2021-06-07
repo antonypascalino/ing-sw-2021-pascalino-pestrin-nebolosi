@@ -26,5 +26,9 @@ public class DiscardCards implements Token {
         }
         game.lorenzoWins();
     }
+
+    public String toString(){
+        return (this.getClass().getName());
+    }
 }
 
