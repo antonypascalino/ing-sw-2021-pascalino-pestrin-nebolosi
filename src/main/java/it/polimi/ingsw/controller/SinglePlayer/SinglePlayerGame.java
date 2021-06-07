@@ -93,7 +93,6 @@ public class SinglePlayerGame extends Game {
     }
 
     public void notify(Request req) {
-
         if (req.validRequest(turnStates)) {
             if (req.canBePlayed(player)) {
                 turnStates.add(req.handle(player, this));

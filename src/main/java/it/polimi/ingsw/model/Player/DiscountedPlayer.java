@@ -15,10 +15,6 @@ public class DiscountedPlayer extends Player
      * The Discount.
      */
     ArrayList<Resource> discount;
-    /**
-     * reference to the original {@link Player} abstract class.
-     */
-    Player original;
 
     /**
      * Instantiates a new Discounted player.

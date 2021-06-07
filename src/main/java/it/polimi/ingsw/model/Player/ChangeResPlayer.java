@@ -38,7 +38,6 @@ public class ChangeResPlayer extends Player{
      * Gets from market considering the possibility to change resource
      *
      */
-
     @Override
     public boolean checkMarketRes(ArrayList<Resource> requestedRes, ArrayList<Resource> marketRes) {
         for (int i = 0; i < marketRes.size(); i++) {
