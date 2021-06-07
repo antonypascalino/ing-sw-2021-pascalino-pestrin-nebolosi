@@ -125,13 +125,37 @@ public class Printer {
      * @param data   the data
      * @return the string
      */
-    public String printCardID(ArrayList<String> cardID, PlayerData data) {
+    public String printDevCardID(ArrayList<String> cardID, PlayerData data) {
         Scanner inputs = new Scanner(System.in);
         String selection = "";
 
         while (true) {
             for (int i = 0; i < cardID.size(); i++) {
+                if(cardID.get(i).equals("BASIC"))
+                    System.out.println("[" + (i + 1) + "] "+"Basic bitch");
+                else
                 System.out.println("[" + (i + 1) + "] " + data.getCardFromID(cardID.get(i)).toString());
+            }
+            System.out.println("Enter selection: ");
+            selection = inputs.nextLine();
+            try {
+                int index = Integer.parseInt(selection);
+                if (index <= 0 || index > cardID.size()) {
+                    System.out.println("Invalid input");
+                } else return cardID.get(index - 1);
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input");
+            }
+        }
+    }
+
+    public String printLeaderCardID(ArrayList<String> cardID, PlayerData data) {
+        Scanner inputs = new Scanner(System.in);
+        String selection = "";
+
+        while (true) {
+            for (int i = 0; i < cardID.size(); i++) {
+                System.out.println("[" + (i + 1) + "] " + data.getLeaderFromID(cardID.get(i)).toString());
             }
             System.out.println("Enter selection: ");
             selection = inputs.nextLine();

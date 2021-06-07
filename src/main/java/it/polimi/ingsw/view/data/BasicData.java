@@ -6,6 +6,7 @@ import it.polimi.ingsw.Request.Request;
 import it.polimi.ingsw.client.LineClient;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Board.WareHouse;
+import it.polimi.ingsw.model.Colors;
 import it.polimi.ingsw.model.Table.Resource;
 import it.polimi.ingsw.model.Updates.Update;
 import it.polimi.ingsw.model.card.LeaderCard;
@@ -33,7 +34,7 @@ public class BasicData extends PlayerData {
     private ArrayList<String> tableCardsID; //just the front table cards
     private int faithPoints;
     private int victoryPoints;
-    private ArrayList<String> frontCardsID;  //3 front cards + basic + extraProd
+    private ArrayList<String> frontCardsID;  //3 front cards + basic
     private ArrayList<String> leadersID;
     private ArrayList<String> leadersPlayedID;
     private Resource[][] market;
@@ -73,7 +74,8 @@ public class BasicData extends PlayerData {
         this.strongBox = new ArrayList<Resource>();
         this.faithPoints = 0;
         this.victoryPoints = 0;
-        this.frontCardsID = new ArrayList<String>();
+        this.frontCardsID = new ArrayList<>();
+
         this.leadersID = new ArrayList<String>();
         this.playerID = playerID;
         menu = new MainMenu(this);
@@ -105,8 +107,8 @@ public class BasicData extends PlayerData {
             tmp.remove(TurnState.PLAY_LEADER_CARD);
             tmp.remove(TurnState.DISCARD_LEADER_CARD);
         }
-        //Se non ha carte con cui può produrre
-        if(frontCardsID.size() == 0) {
+        //Se non ha carte con cui può produrre (ha sempre almeno la basic)
+        if( allResources().size() == 0) {
             tmp.remove(TurnState.PRODUCE);
         }
 
@@ -140,14 +142,25 @@ public class BasicData extends PlayerData {
     }
 
     public ArrayList<String> slotCardsFilter(ArrayList<MappedResource> mapped){
-        ArrayList<String> cloned = new ArrayList<String>();
+        ArrayList<String> cloned = new ArrayList<>();
         cloned.addAll(frontCardsID);
-        ArrayList<Resource> allRes = new ArrayList<Resource>();
+
+        ArrayList<Resource> allRes = new ArrayList<>();
         for(MappedResource m : mapped){
             allRes.add(m.getResource());
         }
 
+        /*
+        for (String card : getFrontTableCardsID()) {
+            for(Resource res : getCardFromID(card).getPrice())
+                //Check if they have the same number of res for every tipe, if it doesn't have the resource remove them
+                if( Collections.frequency(allRes, res) < Collections.frequency(getCardFromID(card).getPrice(), res))
+                    //if (allRes.containsAll(getCardFromID(card).getPrice()) && cardLevel.contains(getCardFromID(card).getLevel())) {
+                    cloned.remove(card);
+        }*/
+
         cloned.removeIf(card -> !allRes.containsAll(getCardFromID(card).getRequired()));
+        cloned.add("BASIC");
         return cloned;
     }
 
@@ -298,7 +311,7 @@ public class BasicData extends PlayerData {
         for (String card : getFrontTableCardsID()) {
             for(Resource res : getCardFromID(card).getPrice())
                 //Check if they have the same number of res for every tipe, if it doesn't have the resource remove them
-                if( Collections.frequency(allRes, res) != Collections.frequency(getCardFromID(card).getPrice(), res))
+                if( Collections.frequency(allRes, res) < Collections.frequency(getCardFromID(card).getPrice(), res))
             //if (allRes.containsAll(getCardFromID(card).getPrice()) && cardLevel.contains(getCardFromID(card).getLevel())) {
                     available.remove(card);
             }
@@ -315,10 +328,10 @@ public class BasicData extends PlayerData {
         }
 
         //It needs to stay out because if the size of frontcardsId is zero it never buys them
+        //If the are empty spaces and the players is trying to buy alevel 1 card it puts it in the first position
         if(frontCardsID.size() < 3){
-            for(int j = 3; j > frontCardsID.size(); j--){
-                slots.add(j);
-            }
+                if(getCardFromID(devID).getLevel() == 1  )
+                    return frontCardsID.size();
         }
         return printer.printIntegers(slots, true);
     }

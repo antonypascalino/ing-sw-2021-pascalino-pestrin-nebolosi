@@ -24,11 +24,12 @@ public class ProductionSelection extends Selection {
         ArrayList<Production> mappedProduction = new ArrayList<Production>();
         ArrayList<MappedResource> allRes = new ArrayList<MappedResource>();
         ArrayList<MappedResource> mappedRes = new ArrayList<MappedResource>();
+        //Add the bsdic prod since the players always has it
         allRes.addAll(data.allResources());
 
         do{
             cards.addAll(data.slotCardsFilter(allRes));
-            String cardID = data.getPrinter().printCardID(cards, data);
+            String cardID = data.getPrinter().printDevCardID(cards, data);
 
             if(cardID.contains("BASIC")){
 

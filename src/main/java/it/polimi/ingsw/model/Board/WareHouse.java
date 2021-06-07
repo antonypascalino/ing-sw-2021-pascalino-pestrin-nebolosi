@@ -112,7 +112,7 @@ public class WareHouse {
             currentLevel = level;
             for (int j = 0; j < currentLevel.length; j++)
                 if (currentLevel[j].equals(res)) {
-                    currentLevel[j] = null;
+                    currentLevel[j] = Resource.EMPTY;
                     return true;
                 }
         }

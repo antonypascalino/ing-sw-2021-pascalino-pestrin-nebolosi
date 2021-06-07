@@ -33,7 +33,7 @@ public class BuyDevSelection extends Selection {
             return;
         }
 
-        String cardID = data.getPrinter().printCardID(cards, data);
+        String cardID = data.getPrinter().printDevCardID(cards, data);
         mappedRes.addAll(data.createMappedRes(data.getCardFromID(cardID).getPrice()));
         int slot = data.handleSlots(cardID);
 
