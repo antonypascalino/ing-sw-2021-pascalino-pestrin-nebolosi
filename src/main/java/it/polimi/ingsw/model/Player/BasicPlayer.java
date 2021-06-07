@@ -125,7 +125,7 @@ public class BasicPlayer extends Player {
             getBoard().getTempBox().addResource(getBoard().getDevFromID(cardID).producedResources());
 
         }
-        if(cardID.contains("basic")){
+        if(cardID.contains("BASIC")){
             ArrayList<Resource> basicProd = new ArrayList<Resource>();
             basicProd.add(Resource.CHOICE);
             basicProd.add(Resource.CHOICE);

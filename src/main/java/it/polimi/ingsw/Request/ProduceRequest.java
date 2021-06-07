@@ -10,6 +10,9 @@ import it.polimi.ingsw.model.card.ExtraProd;
 import it.polimi.ingsw.model.Player.Player;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * The type Produce request.
@@ -92,7 +95,19 @@ public class ProduceRequest implements Request {
 
         }
         for(Production prod : productions){
-            player.produce(prod.getCardID());
+            if(prod.getCardID().equals("BASIC")) {
+                //Add to the temp box all the resource that
+                //Are received as choices
+                ArrayList<Resource> list = new ArrayList<>();
+                for (MappedResource x : prod.getMappedResources()) {
+                    if (x.getPlace().equals("choice")) {
+                        list.add(x.getResource());
+                    }
+                }
+                player.getBoard().getTempBox().addResource(list);
+            }
+            else
+                player.produce(prod.getCardID());
         }
 
 
