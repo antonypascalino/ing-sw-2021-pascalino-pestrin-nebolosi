@@ -46,15 +46,16 @@ public class ProduceRequest implements Request {
 
         //controlla che il giocatore abbia le risorse aggiungendole in un array temporaneo per controllare che le abbia tutte
         ArrayList<Resource> resTemp = new ArrayList<Resource>();
-        for(Production prod : productions){
-            for(MappedResource map : prod.getMappedResources()){
-                if(!map.getPlace().equals("choice"))
-                resTemp.add(map.getResource());
+        for(Production prod : productions) {
+            for (MappedResource map : prod.getMappedResources()) {
+                if (!map.getPlace().equals("choice")) {
+                    resTemp.add(map.getResource());
+                }
             }
-        }
-        if(!player.getAllResources().containsAll(resTemp)){
-            //lancia eccezione "you don't have those resources!"
-            return false;
+            if (!player.getAllResources().containsAll(resTemp)) {
+                //lancia eccezione "you don't have those resources!"
+                return false;
+            }
         }
 
         //controlla che le risorse e le requires della carta siano giuste
