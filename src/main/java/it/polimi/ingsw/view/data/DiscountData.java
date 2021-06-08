@@ -1,6 +1,7 @@
 package it.polimi.ingsw.view.data;
 
 import it.polimi.ingsw.Request.MappedResource;
+import it.polimi.ingsw.client.Client;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Table.Resource;
 import it.polimi.ingsw.view.clientCards.ClientDevCard;
@@ -13,18 +14,6 @@ import java.util.ArrayList;
  */
 public class DiscountData extends PlayerData{
 
-//    private ArrayList<TurnState> turnStates;
-//    private TurnState turnState;
-//    private ArrayList<Resource[]> wareHouse;
-//    private ArrayList<Resource> strongBox;
-//    private ArrayList<String> tableCardsID; //just the front table cards
-//    private int faithPoints;
-//    private int victoryPoints;
-//    private ArrayList<String> cardsID;  //3 front cards + basic + extraProd
-//    private ArrayList<String> leadersID;
-//    private ArrayList<String> leadersPlayedID;
-//    private Resource[][] market;
-//    private Printer printer;
     private ArrayList<Resource> discount;
 
     /**
@@ -32,34 +21,29 @@ public class DiscountData extends PlayerData{
      *
      * @param originalData  the original data
      * @param discount      the discount
-     * @param cardID        the card id
-     * @param turnStates    the turn states
-     * @param turnState     the turn state
-     * @param wareHouse     the ware house
-     * @param strongBox     the strong box
-     * @param faithPoints   the faith points
-     * @param victoryPoints the victory points
-     * @param cardsID       the cards id
-     * @param leadersID     the leaders id
-     * @param market        the market
-     * @param tableCardsID  the table cards id
      */
-    public DiscountData( PlayerData originalData, ArrayList<Resource> discount, ArrayList<String> cardID, ArrayList<TurnState> turnStates, TurnState turnState, ArrayList<Resource[]> wareHouse, ArrayList<Resource> strongBox, int faithPoints, int victoryPoints, ArrayList<String> cardsID, ArrayList<String> leadersID, Resource[][] market, ArrayList<String> tableCardsID) {
-//        this.turnStates = turnStates;
-//        this.turnState = turnState;
-//        this.wareHouse = wareHouse;
-//        this.strongBox = strongBox;
-//        this.faithPoints = faithPoints;
-//        this.victoryPoints = victoryPoints;
-//        this.cardsID = cardsID;
-//        this.leadersID = leadersID;
-//        this.market = market;
-//        this.tableCardsID = tableCardsID;
+    public DiscountData( PlayerData originalData, ArrayList<Resource> discount) {
         this.discount = discount;
         this.originalData = originalData;
     }
 
 
+    /**
+     * Needs to be overrided so it count the discount
+     * @return
+     */
+    @Override
+    public ClientDevCard getCardFromID(String cardID) {
+        ClientDevCard tmp = super.getCardFromID(cardID);
+        ArrayList<Resource> newPrice = tmp.getPrice();
+        for(Resource res : discount)
+            if(newPrice.contains(res))
+                newPrice.remove(res);
+        ClientDevCard discounted =  new ClientDevCard(tmp.getCardID(),tmp.getColor(),tmp.getLevel(), tmp.getLevel(), tmp.getRequired(), tmp.getProduces(), newPrice);
+        return discounted;
+    }
+
+    @Override
     public ArrayList<String> tableCardsFilter(ArrayList<MappedResource> mapped){
 
         ArrayList<String> cloned = new ArrayList<String>();

@@ -13,18 +13,6 @@ import java.util.Arrays;
  */
 public class ExtraDepData extends PlayerData {
 
-    //    private ArrayList<TurnState> turnStates;
-//    private TurnState turnState;
-//    private ArrayList<Resource[]> wareHouse;
-//    private ArrayList<Resource> strongBox;
-//    private ArrayList<String> tableCardsID; //just the front table cards
-//    private int faithPoints;
-//    private int victoryPoints;
-//    private ArrayList<String> cardsID;  //3 front cards + basic + extraProd
-//    private ArrayList<String> leadersID;
-//    private ArrayList<String> leadersPlayedID;
-//    private Resource[][] market;
-//    private Printer printer;
     private ArrayList<Resource[]> extraDep;
     private ArrayList<Resource> placeableRes;
 
@@ -36,19 +24,9 @@ public class ExtraDepData extends PlayerData {
      * @param placeableRes the placeable res
      */
     public ExtraDepData(PlayerData originalData, ArrayList<Resource> placeableRes) {
-        //        this.turnStates = turnStates;
-//        this.turnState = turnState;
-//        this.wareHouse = wareHouse;
-//        this.strongBox = strongBox;
-//        this.faithPoints = faithPoints;
-//        this.victoryPoints = victoryPoints;
-//        this.cardsID = cardsID;
-//        this.leadersID = leadersID;
-//        this.market = market;
-//        this.tableCardsID = tableCardsID;
-//        this.leadersPlayedID = leadersPlayedID;
-        extraDep = new ArrayList<Resource[]>();
-        originalData = originalData;
+
+        extraDep = new ArrayList<>();
+        this.originalData = originalData;
 
     }
 

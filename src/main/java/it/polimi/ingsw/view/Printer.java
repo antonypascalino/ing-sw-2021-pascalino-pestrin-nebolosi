@@ -216,6 +216,35 @@ public class Printer {
     }
 
     /**
+     * Ask the player which resource it needs using a number as input from the stdin
+     * @param resource the resources that the player might choose
+     * @return the resource chosen by the user
+     */
+    public Resource printResource(ArrayList<Resource> resource) {
+        Scanner inputs = new Scanner(System.in);
+        String selection = "";
+        int actions = 0;
+
+        while (true) {
+            for (int i = 0; i < resource.size(); i++) {
+                    System.out.println("[" + (i + 1) + "]" + " "+ resource.get(i));
+                    actions = i + 1;
+                }
+            System.out.println("Enter selection: ");
+            selection = inputs.nextLine();
+            try {
+                int index = Integer.parseInt(selection);
+                if (index > actions + 1 || index <= 0) {
+                    System.out.println("Invalid input!");
+                } else {
+                    return resource.get(index - 1);
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input!");
+            }
+        }
+    }
+    /**
      * Print matrix market array.
      *
      * @param matrix the matrix
