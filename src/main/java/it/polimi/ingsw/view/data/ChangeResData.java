@@ -26,7 +26,6 @@ public class ChangeResData extends PlayerData
 //    private Resource[][] market;
 //    private Printer printer;
     private ArrayList<Resource> changes;
-    private PlayerData originalData;
 
     /**
      * Instantiates a new Change res data.
@@ -45,6 +44,7 @@ public class ChangeResData extends PlayerData
 //        this.leadersID = leadersID;
 //        this.market = market;
 //        this.tableCardsID = tableCardsID;
+        this.originalData = originalData;
         this.changes = changes;
     }
 

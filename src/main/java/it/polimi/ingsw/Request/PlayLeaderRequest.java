@@ -3,7 +3,9 @@ package it.polimi.ingsw.Request;
 import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Player.Player;
+import it.polimi.ingsw.model.Updates.PlayLeaderUpdate;
 import it.polimi.ingsw.model.Updates.Update;
+import it.polimi.ingsw.model.card.LeaderCard;
 
 import java.util.ArrayList;
 
@@ -39,7 +41,15 @@ public class PlayLeaderRequest implements Request {
 
     @Override
     public Update createUpdate(Player player, Game game) {
-        return null;
+        ArrayList<String> leadersPlayed = new ArrayList<>();
+        ArrayList<String> leadersNOTPlayed = new ArrayList<>();
+        for (LeaderCard leaderCard : player.getLeaderCards()) {
+            if (leaderCard.isEnable()) {
+                leadersPlayed.add(leaderCard.getID());
+            }
+            else leadersNOTPlayed.add(leaderCard.getID());
+        }
+        return new PlayLeaderUpdate()
     }
 
     @Override

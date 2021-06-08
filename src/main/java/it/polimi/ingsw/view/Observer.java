@@ -50,6 +50,7 @@ public class Observer implements Runnable{
             while(true) {
                 String input = in.readLine();
                 Update update = JsonReader.readUpdate(input);
+                
                 update.handleUpdate(data);
             }
         }catch (IOException e) {
