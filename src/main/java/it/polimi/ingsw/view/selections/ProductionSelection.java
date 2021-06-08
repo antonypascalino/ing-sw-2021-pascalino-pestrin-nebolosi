@@ -21,6 +21,7 @@ public class ProductionSelection extends Selection {
     @Override
     public void handleSelection(PlayerData data) {
         ArrayList<String> cards = new ArrayList<String>();
+        ArrayList<String> usedCards = new ArrayList<String>();
         ArrayList<Production> mappedProduction = new ArrayList<Production>();
         ArrayList<MappedResource> allRes = new ArrayList<MappedResource>();
         ArrayList<MappedResource> mappedRes = new ArrayList<MappedResource>();
@@ -28,7 +29,9 @@ public class ProductionSelection extends Selection {
         allRes.addAll(data.allResources());
 
         do{
+            cards.clear();
             cards.addAll(data.slotCardsFilter(allRes));
+            cards.removeAll(usedCards);
             String cardID = data.getPrinter().printDevCardID(cards, data);
 
             if(cardID.contains("BASIC")){
@@ -46,7 +49,6 @@ public class ProductionSelection extends Selection {
 
                 MappedResource selected2 = data.getPrinter().printMappedRes(allRes);
                 mappedRes.add(selected2);
-                allRes.removeAll(mappedRes);
             }
 
             else{
@@ -66,9 +68,16 @@ public class ProductionSelection extends Selection {
                 MappedResource selected = data.getPrinter().printMappedRes(choices);
                 mappedRes.add(selected);
             }
-
-            allRes.removeAll(mappedRes);
-            cards.remove(cardID);
+            //For every resource in the selected one check if it's contiained in the all res and removes it
+            //AS IT IS NOW IT'S NOT WORKING: CAN'T REMOVE INSIDE A FOR EACH
+            for(MappedResource res : mappedRes)
+                for (MappedResource playerRes : allRes)
+                    if(res.getResource().equals(playerRes.getResource()))
+                    {
+                        allRes.remove(playerRes);
+                        break;
+                    }
+            usedCards.add(cardID);
             Production p = new Production(mappedRes,cardID);
             mappedProduction.add(p);
             if(cards.size() == 0){

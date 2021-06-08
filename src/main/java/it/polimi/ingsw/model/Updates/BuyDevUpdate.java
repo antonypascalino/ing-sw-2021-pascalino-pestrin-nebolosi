@@ -39,7 +39,8 @@ public class BuyDevUpdate implements Update {
 
     @Override
     public void handleUpdate(PlayerData data) {
-
+        //Since the basic production is handled separately and the client handle it itself, we don't need to pass the basic prod
+        cardsID.remove("BASIC");
         data.setFrontTableCardsID(tableCardsID);
         if(playerID.equals(data.getPlayerID())){
             data.setTurnStates(turnStates);
