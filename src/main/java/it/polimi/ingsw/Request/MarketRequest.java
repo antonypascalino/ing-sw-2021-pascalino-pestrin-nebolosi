@@ -53,8 +53,10 @@ public class MarketRequest implements Request {
         //check if the indicated levels are compatible with the player's level in his WareHouse
         //Passa dal player perchè potrebbero essere livelli extra
         for (MarketResource marketRes : marketResources) {
-            if (!player.checkLevel(marketRes.getLevel())) {
-                return false;
+            if (!marketRes.getResource().equals(Resource.EMPTY) && !marketRes.getResource().equals(Resource.FAITH)) {
+                if (!player.checkLevel(marketRes.getLevel())) {
+                    return false;
+                }
             }
         }
         return true;
