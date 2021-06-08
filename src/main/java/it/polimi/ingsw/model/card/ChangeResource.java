@@ -42,6 +42,11 @@ public class ChangeResource implements LeaderCard
         this.player = tmp;
     }
 
+    @Override
+    public Resource getPowerResource() {
+        return change;
+    }
+
     public boolean isEnable() {
         return isEnable;
     }

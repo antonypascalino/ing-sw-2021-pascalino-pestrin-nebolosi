@@ -21,9 +21,10 @@ public class ExtraProdData extends PlayerData{
      * @param extraProdID  the extra prod id
      * @param prodRequired the prod required
      */
-    public ExtraProdData(ArrayList<String> extraProdID, ArrayList<Resource> prodRequired) {
+    public ExtraProdData(ArrayList<String> extraProdID, ArrayList<Resource> prodRequired, PlayerData original) {
         this.extraProdID = extraProdID;
         this.prodRequired = prodRequired;
+        this.originalData = original;
     }
 
     public ArrayList<String> slotCardsFilter(ArrayList<MappedResource> mapped){

@@ -25,10 +25,11 @@ public class ClientChangeRes extends ClientLeaderCard {
      * @param leaderID      the leader id
      */
     public ClientChangeRes(int victoryPoints, Colors color1, Colors color2, Resource change, String leaderID) {
-        super(leaderID, "Change Resource", victoryPoints);
+        super(leaderID, victoryPoints, change);
         this.color1 = color1;
         this.color2 = color2;
         this.change = change;
+
     }
 
     @Override

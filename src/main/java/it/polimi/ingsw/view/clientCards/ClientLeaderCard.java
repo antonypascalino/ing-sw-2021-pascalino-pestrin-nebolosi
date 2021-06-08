@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public abstract class ClientLeaderCard {
 
     private String leaderID;
-    private String power;
+    private Resource powerResource; //A resource that change by the type of leaderCard: for ExtraDep is the placeable, for Change is the changeable, for Discount is the discount and for ExtraProd is the required Resource for produce
     /**
      * The Victory points.
      */
@@ -26,11 +26,10 @@ public abstract class ClientLeaderCard {
      * Instantiates a new Client leader card.
      *
      * @param leaderID      the leader id
-     * @param power         the power
      * @param victoryPoints the victory points
      */
-    public ClientLeaderCard(String leaderID, String power, int victoryPoints) {
-        this.power = power;
+    public ClientLeaderCard(String leaderID, int victoryPoints, Resource powerResource) {
+        this.powerResource = powerResource;
         this.leaderID = leaderID;
         this.victoryPoints = victoryPoints;
     }
@@ -52,22 +51,9 @@ public abstract class ClientLeaderCard {
      */
     public abstract boolean canBePlayed(PlayerData data);
 
-//    public ArrayList<Resource> getRequired(){
-//        return required;
-//    }
-//
-//    public ArrayList<Resource> getPrice(){
-//        return price;
-//    }
-//
-//    public Resource getPlaceable(){
-//        return placeable;
-//    }
-//
-//    public int getLevel(){
-//        return levl;
-//    }
-//
-//    public Resource getChangeRes(){return changeRes;}
+    public Resource getPowerResource() {
+        return powerResource;
+    }
+
 
 }

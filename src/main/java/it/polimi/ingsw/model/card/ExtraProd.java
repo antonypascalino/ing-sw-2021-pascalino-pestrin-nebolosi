@@ -119,7 +119,10 @@ public class ExtraProd /*extends Producer*/ implements LeaderCard  {
         return cardID;
     }
 
-
+    @Override
+    public Resource getPowerResource() {
+        return prodResource;
+    }
 
 
 }

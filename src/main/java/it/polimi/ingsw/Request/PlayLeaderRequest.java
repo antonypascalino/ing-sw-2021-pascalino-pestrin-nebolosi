@@ -49,7 +49,7 @@ public class PlayLeaderRequest implements Request {
             }
             else leadersNOTPlayed.add(leaderCard.getID());
         }
-        return new PlayLeaderUpdate()
+        return new PlayLeaderUpdate(playerID, cardID, leadersPlayed, leadersNOTPlayed, player.getLeaderFromID(cardID).getPowerResource());
     }
 
     @Override

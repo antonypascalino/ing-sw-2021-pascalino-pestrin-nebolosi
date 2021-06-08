@@ -4,6 +4,7 @@ import it.polimi.ingsw.Request.Request;
 import it.polimi.ingsw.client.LineClient;
 import it.polimi.ingsw.connection.JsonReader;
 import it.polimi.ingsw.model.Player.Player;
+import it.polimi.ingsw.model.Updates.PlayLeaderUpdate;
 import it.polimi.ingsw.model.Updates.Update;
 import it.polimi.ingsw.view.data.PlayerData;
 
@@ -50,12 +51,22 @@ public class Observer implements Runnable{
             while(true) {
                 String input = in.readLine();
                 Update update = JsonReader.readUpdate(input);
-                
                 update.handleUpdate(data);
+                if (update instanceof PlayLeaderUpdate) {
+                    ((PlayLeaderUpdate) update).wrapPlayer(this);
+                }
             }
         }catch (IOException e) {
         }
 
 
+    }
+
+    public void setPlayer(PlayerData data) {
+        this.data = data;
+    }
+
+    public PlayerData getData() {
+        return data;
     }
 }

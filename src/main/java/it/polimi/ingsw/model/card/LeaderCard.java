@@ -1,6 +1,7 @@
 package it.polimi.ingsw.model.card;
 import it.polimi.ingsw.Convertible;
 import it.polimi.ingsw.model.Player.Player;
+import it.polimi.ingsw.model.Table.Resource;
 
 /**
  * The interface Leader card implemented by all the leader cards
@@ -41,4 +42,7 @@ public interface LeaderCard extends Convertible {
     public String getID();
 
     public void setPlayer(Player tmp);
+
+    public Resource getPowerResource();     // return a resource that changes by the type of leaderCard: for ExtraDep is the placeable, for Change is the changeable, for Discount is the discount and for ExtraProd is the required Resource for produce
+
 }

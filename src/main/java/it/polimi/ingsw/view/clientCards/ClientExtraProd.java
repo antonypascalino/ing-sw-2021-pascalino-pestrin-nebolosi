@@ -23,7 +23,7 @@ public class ClientExtraProd extends ClientLeaderCard {
      * @param leaderID      the leader id
      */
     public ClientExtraProd(int victoryPoints, Colors color, Resource prodRequired, String leaderID) {
-        super(leaderID, "Extra Production", victoryPoints);
+        super(leaderID, victoryPoints, prodRequired);
         this.prodRequired = prodRequired;
         this.color = color;
     }

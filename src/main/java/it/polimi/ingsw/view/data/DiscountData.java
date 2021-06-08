@@ -13,52 +13,13 @@ import java.util.ArrayList;
  */
 public class DiscountData extends PlayerData{
 
-//    private ArrayList<TurnState> turnStates;
-//    private TurnState turnState;
-//    private ArrayList<Resource[]> wareHouse;
-//    private ArrayList<Resource> strongBox;
-//    private ArrayList<String> tableCardsID; //just the front table cards
-//    private int faithPoints;
-//    private int victoryPoints;
-//    private ArrayList<String> cardsID;  //3 front cards + basic + extraProd
-//    private ArrayList<String> leadersID;
-//    private ArrayList<String> leadersPlayedID;
-//    private Resource[][] market;
-//    private Printer printer;
+
     private ArrayList<Resource> discount;
 
-    /**
-     * Instantiates a new Discount data.
-     *
-     * @param originalData  the original data
-     * @param discount      the discount
-     * @param cardID        the card id
-     * @param turnStates    the turn states
-     * @param turnState     the turn state
-     * @param wareHouse     the ware house
-     * @param strongBox     the strong box
-     * @param faithPoints   the faith points
-     * @param victoryPoints the victory points
-     * @param cardsID       the cards id
-     * @param leadersID     the leaders id
-     * @param market        the market
-     * @param tableCardsID  the table cards id
-     */
-    public DiscountData( PlayerData originalData, ArrayList<Resource> discount, ArrayList<String> cardID, ArrayList<TurnState> turnStates, TurnState turnState, ArrayList<Resource[]> wareHouse, ArrayList<Resource> strongBox, int faithPoints, int victoryPoints, ArrayList<String> cardsID, ArrayList<String> leadersID, Resource[][] market, ArrayList<String> tableCardsID) {
-//        this.turnStates = turnStates;
-//        this.turnState = turnState;
-//        this.wareHouse = wareHouse;
-//        this.strongBox = strongBox;
-//        this.faithPoints = faithPoints;
-//        this.victoryPoints = victoryPoints;
-//        this.cardsID = cardsID;
-//        this.leadersID = leadersID;
-//        this.market = market;
-//        this.tableCardsID = tableCardsID;
-        this.discount = discount;
+    public DiscountData(ArrayList<Resource> discount, PlayerData originalData) {
         this.originalData = originalData;
+        this.discount = discount;
     }
-
 
     public ArrayList<String> tableCardsFilter(ArrayList<MappedResource> mapped){
 

@@ -24,7 +24,7 @@ public class ClientDiscount extends ClientLeaderCard {
      * @param leaderID      the leader id
      */
     public ClientDiscount(Colors color1, Colors color2, Resource discount, int victoryPoints, String leaderID) {
-        super(leaderID, "Discount", victoryPoints);
+        super(leaderID, victoryPoints, discount);
         this.color1 = color1;
         this.color2 = color2;
         this.discount = discount;

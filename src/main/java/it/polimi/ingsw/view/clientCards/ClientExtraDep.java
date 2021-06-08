@@ -23,7 +23,7 @@ public class ClientExtraDep extends ClientLeaderCard {
      * @param leaderID      the leader id
      */
     public ClientExtraDep(int victoryPoints, Resource required, Resource placeableRes, String leaderID) {
-        super(leaderID, "Extra Deposit", victoryPoints);
+        super(leaderID, victoryPoints, placeableRes);
         this.placeableRes = placeableRes;
         this.required = required;
     }

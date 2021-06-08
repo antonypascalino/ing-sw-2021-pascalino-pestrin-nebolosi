@@ -105,4 +105,9 @@ public class ExtraDeposit implements LeaderCard {
         return res.equals(placeableRes);
     }
 
+    @Override
+    public Resource getPowerResource() {
+        return placeableRes;
+    }
+
 }

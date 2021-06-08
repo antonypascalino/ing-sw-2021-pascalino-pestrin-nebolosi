@@ -103,4 +103,9 @@ public class Discount implements LeaderCard {
         }
         return (firstColor && secondColor);
     }
+
+    @Override
+    public Resource getPowerResource() {
+        return discount;
+    }
 }
