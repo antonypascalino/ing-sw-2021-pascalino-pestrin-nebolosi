@@ -29,7 +29,7 @@ public class ProductionSelection extends Selection {
         allRes.addAll(data.allResources());
 
         do{
-            mappedRes=new ArrayList<>();
+            mappedRes = new ArrayList<>();
             cards.clear();
             cards.addAll(data.slotCardsFilter(allRes));
             cards.removeAll(usedCards);
@@ -39,10 +39,10 @@ public class ProductionSelection extends Selection {
             }
             String cardID = data.getPrinter().printDevCardID(cards, data);
 
-            if(cardID.contains("BASIC")){
+            if(cardID.contains("BASIC") ){
 
                 //If the non empty resources are more than two
-                if(data.allResources().stream().map(x -> x.getResource()).filter(x -> !x.equals(Resource.EMPTY)).count() <=1)
+                if(allRes.stream().map(MappedResource::getResource).filter(x -> !x.equals(Resource.EMPTY)).count() <=1)
                 {
                     data.getPrinter().printMessage("You don't have enough resource for using the basic production");
                     break;
@@ -75,13 +75,15 @@ public class ProductionSelection extends Selection {
             }
             //For every resource in the selected one check if it's contiained in the all res and removes it
             //AS IT IS NOW IT'S NOT WORKING: CAN'T REMOVE INSIDE A FOR EACH
-            for(MappedResource res : mappedRes)
-                for (MappedResource playerRes : allRes)
-                    if(res.getResource().equals(playerRes.getResource()))
-                    {
-                        allRes.remove(playerRes);
-                        break;
-                    }
+            if (!cardID.equals("BASIC")) {
+                for(MappedResource res : mappedRes)
+                    for (MappedResource playerRes : allRes)
+                        if(res.getResource().equals(playerRes.getResource()))
+                        {
+                            allRes.remove(playerRes);
+                            break;
+                        }
+            }
             usedCards.add(cardID);
             Production p = new Production(mappedRes,cardID);
             mappedProduction.add(p);

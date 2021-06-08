@@ -6,6 +6,7 @@ import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Table.Resource;
 import it.polimi.ingsw.model.Updates.EndgameUpdate;
 import it.polimi.ingsw.model.Updates.PlayerVP;
+import it.polimi.ingsw.view.clientCards.ClientDevCard;
 import it.polimi.ingsw.view.data.OtherPlayerData;
 import it.polimi.ingsw.view.data.PlayerData;
 import it.polimi.ingsw.view.selections.MarketArray;
@@ -343,7 +344,7 @@ public class Printer {
      */
     public void printOtherStats(OtherPlayerData data){
         System.out.println("Player ID: " + data.getPlayerID());
-        System.out.println("Warehouse:\n" + data.getWareHouse());
+        System.out.println("Warehouse:\n" );
         System.out.println("Strongbox:\n" + data.getStrongBox());
         System.out.println("Slots:\n" + data.getSlotFrontCards());
         System.out.println("Faith Points: " + data.getFaithPoints());
@@ -370,9 +371,12 @@ public class Printer {
         System.out.println("\nWarehouse:");
         printWareHouse(data.getDeposits());
         System.out.println("\nStrongbox:\n" + data.getStrongBox());
-        System.out.println("\nSlots:\n" + data.getFrontCardsID());
+        System.out.println("\nSlots:\n" );
+        for (String card : data.getFrontCardsID()) {
+            data.getCardFromID(card);
+        }
         System.out.println("\nFaith Points: " + data.getFaithPoints());
-        System.out.println("\nVictory Points:" + data.getVictoryPoints() + "\n");
+        System.out.println("\nVictory Points: " + data.getVictoryPoints() + "\n");
         for(String s: data.getLeadersID()){
             System.out.println("Leader card: " + data.getLeaderFromID(s));
             System.out.println(""); //depositi extra o sconti o bla bla bla

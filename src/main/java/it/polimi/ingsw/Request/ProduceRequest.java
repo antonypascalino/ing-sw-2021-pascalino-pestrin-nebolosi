@@ -10,6 +10,7 @@ import it.polimi.ingsw.model.card.ExtraProd;
 import it.polimi.ingsw.model.Player.Player;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -55,8 +56,9 @@ public class ProduceRequest implements Request {
                     resTemp.add(map.getResource());
                 }
             }
-            if (!player.getAllResources().containsAll(resTemp)) {
-                //lancia eccezione "you don't have those resources!"
+        }
+        for (Resource res : resTemp) {
+            if (Collections.frequency(resTemp, res) > Collections.frequency(player.getAllResources(), res)) {
                 return false;
             }
         }
@@ -81,7 +83,7 @@ public class ProduceRequest implements Request {
         }
 
         //Controlla che non ci siano due carte uguali con cui il giocatore vuole produrre
-        if( productions.stream().map(Production::getCardID).count() >=2 )
+        if( productions.stream().map(Production::getCardID).distinct().count() != productions.size() )
             return false;
         return true;
     }
