@@ -344,27 +344,33 @@ public class BasicData extends PlayerData {
 
         ArrayList<Integer> levels = new ArrayList<Integer>();
         int counterOr = 0;
-        int counterDes = 0;
 
         //conta origine
         for(int co = 0; co < wareHouse.get(origin).length; co++) {
-            if (wareHouse.get(origin)[co] == null) {
+            if (wareHouse.get(origin)[co] == Resource.EMPTY) {
                 break;
             }
-            counterOr = co;
+            counterOr ++;
         }
 
         for(int i = 0; i < wareHouse.size(); i++) {
-            //conta destinazione
-            for(int cd = 0; cd < wareHouse.get(i).length; cd++){
-                if(wareHouse.get(i)[cd] == null){
-                    break;
+            if (i != origin) {
+                //conta destinazione
+                int counterDes = 0;
+                for (int cd = 0; cd < wareHouse.get(i).length; cd++) {
+                    if (wareHouse.get(i)[cd] == Resource.EMPTY) {
+                        break;
+                    }
+                    counterDes ++;
                 }
-                counterDes = cd;
+                if (counterOr <= wareHouse.get(i).length && counterDes <= wareHouse.get(origin).length && !(counterDes == 0 && counterOr == 0)) {
+                    levels.add(i);
+                }
             }
-            if (counterOr <= wareHouse.get(i).length && counterDes <= wareHouse.get(origin).length) {
-                levels.add(i);
-            }
+        }
+        if (levels.size() == 0) {
+            printer.printMessage("You can't switch this level!");
+            return -1;
         }
         return printer.printIntegers(levels, false);
     }

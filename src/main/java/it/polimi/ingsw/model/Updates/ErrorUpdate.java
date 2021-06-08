@@ -24,6 +24,7 @@ public class ErrorUpdate implements Update {
     public void handleUpdate(PlayerData data) {
         if (playerID.equals(data.getPlayerID())) {
             data.getPrinter().printMessage(error);
+            data.getMenu().menuMaker();
         }
     }
 }

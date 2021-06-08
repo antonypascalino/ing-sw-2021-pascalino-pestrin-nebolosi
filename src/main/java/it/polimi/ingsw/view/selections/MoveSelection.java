@@ -24,6 +24,10 @@ public class MoveSelection extends Selection{
         }
         int origin = data.getPrinter().printIntegers(l, false);
         int destination = data.switchLevels(origin);
+        if (destination == -1) {
+            data.getMenu().menuMaker();
+            return;
+        }
 
         Request moveReq = new MoveRequest(data.getPlayerID(), data.getGameID(), origin, destination);
         data.sendRequest(moveReq);

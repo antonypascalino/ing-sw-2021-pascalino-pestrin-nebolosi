@@ -3,10 +3,12 @@ package it.polimi.ingsw.Request;
 import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Player.Player;
+import it.polimi.ingsw.model.Table.Resource;
 import it.polimi.ingsw.model.Updates.MoveUpdate;
 import it.polimi.ingsw.model.Updates.Update;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 
 public class MoveRequest implements Request {
@@ -31,13 +33,16 @@ public class MoveRequest implements Request {
 
     @Override
     public boolean canBePlayed(Player player) {
-        //Per ogni risorsa controlla che il giocatore abbia il livello in cui vuole mettere la
-        //risorsa e che essa si possa spostare in quel livello.
+        //Controlla che il giocatore possegga il livello di destinazione
         if (!player.checkLevel(destLevel)) {
             return false;
-            //lancia eccezione: non possiedi il livello in cui ha detto di voler mettere la risorsa
         }
-        return true;
+        long originCount = Arrays.stream(player.getBoard().getWareHouse().getLevels().get(originLevel)).filter(resource -> !resource.equals(Resource.EMPTY)).count();
+        long destCount = Arrays.stream(player.getBoard().getWareHouse().getLevels().get(destLevel)).filter(resource -> !resource.equals(Resource.EMPTY)).count();
+        if (!(originCount == 0 && destCount ==0)) {
+            return originCount <= player.getBoard().getWareHouse().getLevels().get(destLevel).length && destCount <= player.getBoard().getWareHouse().getLevels().get(originLevel).length;
+        }
+        return false;
     }
 
     @Override

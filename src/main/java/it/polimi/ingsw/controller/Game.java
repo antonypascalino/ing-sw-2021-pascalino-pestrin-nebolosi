@@ -97,10 +97,14 @@ public class Game {
                     if(!(req instanceof InitialPlayersSetRequest))
                         notifyAllPlayers(req.createUpdate(currPlayer, this));
 
+                } else {
+                    Update error = new ErrorUpdate("You can't do that!", req.getPlayerID());
+                    notifyAllPlayers(error);
                 }
             }
         } else {
             Update error = new ErrorUpdate("It's not your turn", req.getPlayerID());
+            notifyAllPlayers(error);
         }
     }
 
