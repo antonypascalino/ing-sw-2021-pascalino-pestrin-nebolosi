@@ -24,11 +24,12 @@ public class ProductionSelection extends Selection {
         ArrayList<String> usedCards = new ArrayList<String>();
         ArrayList<Production> mappedProduction = new ArrayList<Production>();
         ArrayList<MappedResource> allRes = new ArrayList<MappedResource>();
-        ArrayList<MappedResource> mappedRes = new ArrayList<MappedResource>();
+        ArrayList<MappedResource> mappedRes;
         //Add the bsdic prod since the players always has it
         allRes.addAll(data.allResources());
 
         do{
+            mappedRes=new ArrayList<>();
             cards.clear();
             cards.addAll(data.slotCardsFilter(allRes));
             cards.removeAll(usedCards);
