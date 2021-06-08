@@ -16,8 +16,7 @@ public class BuyDevRequest implements Request {
     private String cardID;
     private ArrayList<MappedResource> resources;
     private int slot;
-
-    DevCard devCard;
+    private DevCard devCard;
     private final String className = this.getClass().getName();
 
     public BuyDevRequest(int gameID, String playerID, String cardID, ArrayList<MappedResource> mappedResources, int slot)
@@ -66,6 +65,7 @@ public class BuyDevRequest implements Request {
         }
         DevCard devcard = game.getTable().buyDev(devCard.getColor(), devCard.getLevel());
         player.getBoard().getSlot().placeCard(devcard, slot);
+        player.addVictoryPoints(devcard.getVictoryPoints());
         return TurnState.BUY_DEV_CARD;
     }
 

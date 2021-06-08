@@ -196,15 +196,18 @@ public class Printer {
                     System.out.println("[" + (i + 1) + "]" + " " + "warehouse level" + " " + (ints.get(i) + 1));
                     actions = i + 1;
                 }
-
+                System.out.println("[" + (actions + 1) + "] " + "Discard" );
             }
             System.out.println("Enter selection: ");
             selection = inputs.nextLine();
             try {
                 int index = Integer.parseInt(selection);
-                if (index > actions || index <= 0) {
+                if (index > actions + 1 || index <= 0) {
                     System.out.println("Invalid input!");
-                } else return ints.get(index - 1);
+                } else {
+                    if (index == actions + 1) return -1;
+                    return ints.get(index - 1);
+                }
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input!");
             }

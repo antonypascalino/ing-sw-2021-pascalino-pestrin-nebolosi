@@ -32,6 +32,10 @@ public class ProductionSelection extends Selection {
             cards.clear();
             cards.addAll(data.slotCardsFilter(allRes));
             cards.removeAll(usedCards);
+            if(cards.size() == 0){
+                data.getPrinter().printMessage("You have no more card which can produce!");
+                break;
+            }
             String cardID = data.getPrinter().printDevCardID(cards, data);
 
             if(cardID.contains("BASIC")){
@@ -80,9 +84,6 @@ public class ProductionSelection extends Selection {
             usedCards.add(cardID);
             Production p = new Production(mappedRes,cardID);
             mappedProduction.add(p);
-            if(cards.size() == 0){
-                break;
-            }
         }while(data.getPrinter().askQuestion());
 
         //If the userce chose what to send

@@ -260,12 +260,10 @@ public class BasicData extends PlayerData {
                         if(!wareHouseRes.contains(re)){
                             tmp.add(l);
                         }
-
                     }
                     //se ha la mia risorsa
                     else if (wareHouseClone.get(l)[0] == re) {
                         tmp.add(l);
-
                     }
                 }
             }
@@ -278,7 +276,13 @@ public class BasicData extends PlayerData {
             printer.printMessage("\nWhere do you wanna put " + re + "?");
             int wareHouseLevel = printer.printIntegers(tmp, false);
             MarketResource mr = new MarketResource(re, wareHouseLevel);
-            printer.printMessage("The resource " + re + " " + "was put in level " + wareHouseLevel);
+            if (wareHouseLevel == -1)
+            {
+                printer.printMessage("The resource " + re + " was discarded!");
+                marketRes.add(mr);
+                continue;
+            }
+            else printer.printMessage("The resource " + re + " " + "was put in level " + (wareHouseLevel + 1));
             marketRes.add(mr);
             for(int d = 0; d < wareHouseClone.get(wareHouseLevel).length; d++){
                 if(wareHouseClone.get(wareHouseLevel)[d] == Resource.EMPTY){

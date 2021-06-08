@@ -146,4 +146,8 @@ public class DevCard /*extends Producer*/ {
     public ArrayList<Resource> getRequirements(){
         return requires;
     }
+
+    public int getVictoryPoints() {
+        return victoryPoint;
+    }
 }

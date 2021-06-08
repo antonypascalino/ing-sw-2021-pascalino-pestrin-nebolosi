@@ -33,9 +33,14 @@ public class InitialPlayersSetRequest implements Request {
     public TurnState handle(Player curr, Game game) {
         for (Player player : game.getPlayers()) {
             if (playerID.equals(player.getNickName())) {
+                int discardedSteps = 0;
                 for(MarketResource mRes : marketRes) {
-                    player.addResource(mRes.getLevel(), mRes.getResource());
+                    if (mRes.getLevel() != -1) {
+                        player.addResource(mRes.getLevel(), mRes.getResource());
+                    }
+                    else discardedSteps++;
                 }
+                if (discardedSteps > 0) game.fpAdvancement(discardedSteps, 0);
                 for (String cardID : leadersChosen) {
                     player.addLeaderCard(DefaultCreator.getLeaderFromID(cardID));
                 }
