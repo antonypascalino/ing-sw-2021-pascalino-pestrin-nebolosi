@@ -234,7 +234,6 @@ public class ExtraDepData extends PlayerData {
         return allDeposits;
     }
 
-
     @Override
     public void setWareHouse(ArrayList<Resource[]> wareHouse) {
         if (wareHouse.size() == 4) {
