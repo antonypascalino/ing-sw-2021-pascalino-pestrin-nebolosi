@@ -38,18 +38,4 @@ public class DiscountData extends PlayerData{
         return discounted;
     }
 
-    @Override
-    public ArrayList<String> tableCardsFilter(ArrayList<MappedResource> mapped){
-
-        ArrayList<String> cloned = new ArrayList<String>();
-        cloned.addAll(originalData.getTableCardsID());
-        ArrayList<Resource> allRes = new ArrayList<Resource>();
-        for(MappedResource m : mapped){
-            allRes.add(m.getResource());
-        }
-        allRes.addAll(discount);
-        cloned.removeIf(card -> !allRes.containsAll(getCardFromID(card).getPrice()));
-        return cloned;
-    }
-
 }
