@@ -65,18 +65,15 @@ public class ExtraDepData extends PlayerData {
     public ArrayList<MarketResource> handleWarehouse(ArrayList<Resource> res) {
         ArrayList<Resource[]> wareHouseClone = new ArrayList<Resource[]>();
         ArrayList<MarketResource> marketRes = new ArrayList<MarketResource>();
-        wareHouseClone.addAll(originalData.getDeposits());
         ArrayList<Integer> tmp = new ArrayList<Integer>();
-        ArrayList<Resource> depositRes = new ArrayList<Resource>();
         ArrayList<Resource> wareHouseRes = new ArrayList<Resource>();
 
         wareHouseClone.addAll(this.getDeposits());
         for (Resource[] lv : wareHouseClone) {
             wareHouseRes.addAll(Arrays.asList(lv));
         }
-        for (Resource[] ly : extraDep) {
-            depositRes.addAll(Arrays.asList(ly));
-        }
+
+
         res = changeEmpty(res);
 
         for (Resource re : res) {
@@ -93,7 +90,7 @@ public class ExtraDepData extends PlayerData {
                 continue;
             }
 
-            for (int l = 0; l < wareHouseClone.size(); l++) {
+            for (int l = 0; l < 3; l++) {
                 //se è pieno
                 if (!Arrays.stream(wareHouseClone.get(l)).anyMatch(r -> r.equals(Resource.EMPTY))) {
                     continue;
@@ -136,6 +133,8 @@ public class ExtraDepData extends PlayerData {
             }
             else originalData.getPrinter().printMessage("The resource " + re + " " + "was put in level " + (wareHouseLevel + 1));
             marketRes.add(mr);
+
+            //Insert the resource in a clone for checking the spaces
             for(int d = 0; d < wareHouseClone.get(wareHouseLevel).length; d++){
                 if(wareHouseClone.get(wareHouseLevel)[d] == Resource.EMPTY){
                     wareHouseClone.get(wareHouseLevel)[d] = re;

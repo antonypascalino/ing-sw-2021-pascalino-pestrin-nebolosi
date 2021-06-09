@@ -6,6 +6,7 @@ import it.polimi.ingsw.model.Table.Resource;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 public class ExtraDepositPlayer extends Player {
     private ExtraDeposit card;
@@ -42,7 +43,7 @@ public class ExtraDepositPlayer extends Player {
         }
         else if(level >= 3 && level <= extraDep.size() + 2) {
             if (extraDep.get(level - 3).getPlaceable().equals(res)) {
-                return extraDep.get(level - 3).getResources().size() < 2;
+                return Collections.frequency(extraDep.get(level - 3).getResources(),Resource.EMPTY) >=1;
             }
             return false;
         }

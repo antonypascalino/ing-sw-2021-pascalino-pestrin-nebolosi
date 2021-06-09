@@ -524,8 +524,15 @@ public class Printer {
      * @param warehouse the warehouse
      */
     public void printWareHouse(ArrayList<Resource[]> warehouse) {
-        System.out.println("Level 1: " + warehouse.get(0)[0]);
-        System.out.println("Level 2: " + warehouse.get(1)[0] + " " + warehouse.get(1)[1]);
-        System.out.println("Level 3: " + warehouse.get(2)[0] + " " + warehouse.get(2)[1] + " " + warehouse.get(2)[2]);
+        for(int i = 0; i< warehouse.size(); i++)
+        {
+            System.out.print("Level " +(i+1)+ ": ");
+            for(int k = 0; k<warehouse.get(i).length; k++)
+            {
+                System.out.print(warehouse.get(i)[k]+" ");
+            }
+            System.out.println();
+        }
+
     }
 }

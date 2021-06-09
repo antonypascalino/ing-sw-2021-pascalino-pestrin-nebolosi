@@ -26,13 +26,18 @@ public class ExtraDepositLevel {
 
     public void addResource(Resource res) {
         if (res.equals(placeable)) {
-            extraLevel.add(res);
+            for(Resource r : extraLevel)
+                if(r.equals(Resource.EMPTY)) {
+                    extraLevel.set(extraLevel.indexOf(r), res);
+                    break;
+                }
         }
     }
 
     public void removeResource(Resource res) {
         if (res.equals(placeable)) {
             extraLevel.remove(res);
+            extraLevel.add(Resource.EMPTY);
         }
     }
 
