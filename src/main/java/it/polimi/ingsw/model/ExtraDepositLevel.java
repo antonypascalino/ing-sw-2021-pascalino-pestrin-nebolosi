@@ -11,7 +11,9 @@ public class ExtraDepositLevel {
 
     public ExtraDepositLevel(Resource placeable) {
         this.placeable = placeable;
-        this.extraLevel = new ArrayList<Resource>();
+        this.extraLevel = new ArrayList<>();
+        extraLevel.add(Resource.EMPTY);
+        extraLevel.add(Resource.EMPTY);
     }
 
     public Resource getPlaceable() {

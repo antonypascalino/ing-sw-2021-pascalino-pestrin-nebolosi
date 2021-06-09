@@ -60,6 +60,8 @@ public class Game {
     {
         int pos = players.indexOf(original);
         players.set(pos, newPlayer);
+        if(original.getNickName().equals(currPlayer.getNickName()))
+            currPlayer = newPlayer;
     }
 
     public Table getTable()

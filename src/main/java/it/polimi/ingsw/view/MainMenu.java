@@ -31,6 +31,11 @@ public class MainMenu {
         this.data = data;
     }
 
+
+    public void setData(PlayerData newData)
+    {
+        this.data = newData;
+    }
     /**
      * Menu maker.
      */

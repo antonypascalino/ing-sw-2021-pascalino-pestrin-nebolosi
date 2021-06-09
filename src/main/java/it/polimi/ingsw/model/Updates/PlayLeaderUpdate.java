@@ -27,36 +27,44 @@ public class PlayLeaderUpdate implements Update {
     }
 
     public void wrapPlayer(Observer observer) {
-        String leaderType = leaderPlayedID.substring(0,3); //considers only the firsts 3 char of the string
-        switch (leaderType) {
-            case ("PRO") : {
-                ArrayList<String> leaderProdID = new ArrayList<>();
-                ArrayList<Resource> prodRequired = new ArrayList<>();
-                leaderProdID.add(leaderPlayedID);
-                prodRequired.add(powerResource);
-                observer.setPlayer(new ExtraProdData(leaderProdID, prodRequired, observer.getData()));
-                break;
-            }
-            case ("CNG") : {
-                ArrayList<Resource> changes = new ArrayList<>();
-                changes.add(powerResource);
-                observer.setPlayer(new ChangeResData(changes, observer.getData()));
-                break;
-            }
-            case ("DIS") : {
-                ArrayList<Resource> discount = new ArrayList<>();
-                discount.add(powerResource);
-                observer.setPlayer(new DiscountData(discount, observer.getData()));
-                break;
-            }
-            case ("DEP") : {
-                ArrayList<Resource> placeable = new ArrayList<>();
-                placeable.add(powerResource);
-                observer.setPlayer(new ExtraDepData(observer.getData(), placeable));
-                break;
-            }
+        if(observer.getData().getPlayerID().equals(playerID))
+        {
+            String leaderType = leaderPlayedID.substring(0,3); //considers only the firsts 3 char of the string
+            PlayerData newPlayer = null;
+            switch (leaderType) {
 
+                case ("PRO") : {
+                    ArrayList<String> leaderProdID = new ArrayList<>();
+                    ArrayList<Resource> prodRequired = new ArrayList<>();
+                    leaderProdID.add(leaderPlayedID);
+                    prodRequired.add(powerResource);
+                    newPlayer = new ExtraProdData(leaderProdID, prodRequired, observer.getData());
+                    break;
+                }
+                case ("CNG") : {
+                    ArrayList<Resource> changes = new ArrayList<>();
+                    changes.add(powerResource);
+                    newPlayer = new ChangeResData(changes, observer.getData());
+                    break;
+                }
+                case ("DIS") : {
+                    ArrayList<Resource> discount = new ArrayList<>();
+                    discount.add(powerResource);
+                    newPlayer = new DiscountData(discount, observer.getData());
+                    break;
+                }
+                case ("DEP") : {
+                    ArrayList<Resource> placeable = new ArrayList<>();
+                    placeable.add(powerResource);
+                    newPlayer = new ExtraDepData(observer.getData(), placeable);
+                    break;
+                }
+
+            }
+            observer.setPlayer(newPlayer);
+            observer.getData().getMenu().setData(newPlayer);
         }
+
     }
 
     @Override

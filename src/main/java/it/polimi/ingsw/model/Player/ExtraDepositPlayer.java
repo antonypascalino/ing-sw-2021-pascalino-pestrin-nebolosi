@@ -20,9 +20,10 @@ public class ExtraDepositPlayer extends Player {
             extraDep.add(new ExtraDepositLevel(placeableRes));
             extraDep.add(((ExtraDepositPlayer) original).getExtraDep().get(0)); //Non dovrebbe essere get 0 ma get l'ultimo elemento, ma tanto possiamo avere solo 2 carte al massimo
         }
-        extraDep = new ArrayList<ExtraDepositLevel>();
+        extraDep = new ArrayList<>();
         extraDep.add(new ExtraDepositLevel(placeableRes));
         this.original = original;
+        this.placeableRes = placeableRes;
     }
 
     @Override

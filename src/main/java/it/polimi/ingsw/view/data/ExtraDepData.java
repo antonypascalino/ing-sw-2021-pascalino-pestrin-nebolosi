@@ -27,6 +27,10 @@ public class ExtraDepData extends PlayerData {
 
         this.placeableRes = placeableRes;
         extraDep = new ArrayList<>();
+        Resource[] tmp = new Resource[2];
+        tmp[0] = Resource.EMPTY;
+        tmp[1] = Resource.EMPTY;
+        extraDep.add(tmp);
         this.originalData = originalData;
 
     }
@@ -236,14 +240,10 @@ public class ExtraDepData extends PlayerData {
         if (wareHouse.size() == 3) {
             originalData.setWareHouse(wareHouse);
         } else if (wareHouse.size() == 4) {
-            extraDep.get(0)[0] = wareHouse.get(3)[0];
-            extraDep.get(0)[1] = wareHouse.get(3)[1];
+            extraDep.set(0,wareHouse.get(3));
         } else if (wareHouse.size() == 5) {
-            extraDep.get(0)[0] = wareHouse.get(3)[0];
-            extraDep.get(0)[1] = wareHouse.get(3)[1];
-
-            extraDep.get(1)[0] = wareHouse.get(4)[0];
-            extraDep.get(1)[1] = wareHouse.get(4)[1];
+            extraDep.set(0,wareHouse.get(3));
+            extraDep.set(1,wareHouse.get(4));
         }
     }
 }

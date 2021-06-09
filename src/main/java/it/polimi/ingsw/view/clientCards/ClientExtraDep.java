@@ -30,6 +30,8 @@ public class ClientExtraDep extends ClientLeaderCard {
     }
 
     public boolean canBePlayed(PlayerData data) {
+        return true;
+        /*
         ArrayList<Resource> allRes = new ArrayList<Resource>();
         for (MappedResource mappedRes : data.allResources()) {
             allRes.add(mappedRes.getResource());
@@ -39,6 +41,7 @@ public class ClientExtraDep extends ClientLeaderCard {
             allDataRes.add(mappedRes.getResource());
         }
         return (Collections.frequency(allDataRes, required) >= 5);
+         */
     }
 
     public String toString() {

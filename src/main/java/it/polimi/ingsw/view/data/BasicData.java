@@ -70,13 +70,14 @@ public class BasicData extends PlayerData {
         tmp[2] = Resource.EMPTY;
         wareHouse.add(tmp);
 
-        this.allDevID = new ArrayList<String>();
-        this.strongBox = new ArrayList<Resource>();
+        this.allDevID = new ArrayList<>();
+        this.strongBox = new ArrayList<>();
         this.faithPoints = 0;
         this.victoryPoints = 0;
         this.frontCardsID = new ArrayList<>();
 
-        this.leadersID = new ArrayList<String>();
+        this.leadersID = new ArrayList<>();
+        this.leadersPlayedID = new ArrayList<>();
         this.playerID = playerID;
         menu = new MainMenu(this);
         allGameCards = new AllGameCards(ClientDefaultCreator.produceClientDevCard(), ClientDefaultCreator.produceClientLeaderCard());
