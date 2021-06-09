@@ -200,7 +200,7 @@ public class ExtraDepData extends PlayerData {
         // Da Extra Dep ...
         if (origin >= 3) {
             for (int co = 0; co < extraDep.get(origin - 3).length; co++) {
-                if (extraDep.get(origin)[co] == Resource.EMPTY) {
+                if (extraDep.get(origin -3)[co] == Resource.EMPTY) {
                     break;
                 }
                 counterOr ++;
@@ -215,7 +215,7 @@ public class ExtraDepData extends PlayerData {
                     }
                     counterDes ++;
                 }
-                if (Arrays.stream(wareHouse.get(origin)).anyMatch(x -> x.equals(placeable)) && counterOr <= wareHouse.get(k).length && counterDes <= extraDep.get(origin).length && !(counterDes == 0 && counterOr == 0)) {
+                if (Arrays.stream(extraDep.get(origin-3)).anyMatch(x -> x.equals(placeable)) && counterOr <= wareHouse.get(k).length && counterDes <= extraDep.get(origin -3).length && !(counterDes == 0 && counterOr == 0)) {
                     levels.add(k);
                 }
             }
