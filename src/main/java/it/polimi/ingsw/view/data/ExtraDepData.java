@@ -234,15 +234,16 @@ public class ExtraDepData extends PlayerData {
         return allDeposits;
     }
 
+
     @Override
     public void setWareHouse(ArrayList<Resource[]> wareHouse) {
-        if (wareHouse.size() == 3) {
+        if (wareHouse.size() == 4) {
+            extraDep.set(0,wareHouse.remove(3));
             originalData.setWareHouse(wareHouse);
-        } else if (wareHouse.size() == 4) {
-            extraDep.set(0,wareHouse.get(3));
         } else if (wareHouse.size() == 5) {
-            extraDep.set(0,wareHouse.get(3));
-            extraDep.set(1,wareHouse.get(4));
+            extraDep.set(0,wareHouse.remove(3));
+            extraDep.set(1,wareHouse.remove(3));
+            originalData.setWareHouse(wareHouse);
         }
     }
 }
