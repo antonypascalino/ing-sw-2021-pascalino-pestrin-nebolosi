@@ -1,6 +1,7 @@
 package it.polimi.ingsw.view.data;
 
 import it.polimi.ingsw.Request.MappedResource;
+import it.polimi.ingsw.client.Client;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Table.Resource;
 import it.polimi.ingsw.view.clientCards.ClientDevCard;
@@ -21,6 +22,23 @@ public class DiscountData extends PlayerData{
         this.discount = discount;
     }
 
+
+    /**
+     * Needs to be overrided so it count the discount
+     * @return
+     */
+    @Override
+    public ClientDevCard getCardFromID(String cardID) {
+        ClientDevCard tmp = super.getCardFromID(cardID);
+        ArrayList<Resource> newPrice = tmp.getPrice();
+        for(Resource res : discount)
+            if(newPrice.contains(res))
+                newPrice.remove(res);
+        ClientDevCard discounted =  new ClientDevCard(tmp.getCardID(),tmp.getColor(),tmp.getLevel(), tmp.getLevel(), tmp.getRequired(), tmp.getProduces(), newPrice);
+        return discounted;
+    }
+
+    @Override
     public ArrayList<String> tableCardsFilter(ArrayList<MappedResource> mapped){
 
         ArrayList<String> cloned = new ArrayList<String>();
