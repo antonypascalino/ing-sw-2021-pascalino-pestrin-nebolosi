@@ -3,6 +3,7 @@ package it.polimi.ingsw.Request;
 import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Player.Player;
+import it.polimi.ingsw.model.Table.Resource;
 import it.polimi.ingsw.model.Updates.PlayLeaderUpdate;
 import it.polimi.ingsw.model.Updates.Update;
 import it.polimi.ingsw.model.card.LeaderCard;
@@ -49,7 +50,7 @@ public class PlayLeaderRequest implements Request {
             }
             else leadersNOTPlayed.add(leaderCard.getID());
         }
-        return new PlayLeaderUpdate(playerID, cardID, leadersPlayed, leadersNOTPlayed, player.getLeaderFromID(cardID).getPowerResource());
+        return new PlayLeaderUpdate(playerID, cardID, leadersPlayed, leadersNOTPlayed, player.getLeaderFromID(cardID).getPowerResource(), player.getVictoryPoints());
     }
 
     @Override
