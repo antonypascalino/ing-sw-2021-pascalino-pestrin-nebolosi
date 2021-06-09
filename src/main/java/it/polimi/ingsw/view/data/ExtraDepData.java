@@ -61,13 +61,20 @@ public class ExtraDepData extends PlayerData {
     public ArrayList<MarketResource> handleWarehouse(ArrayList<Resource> res) {
         ArrayList<Resource[]> wareHouseClone = new ArrayList<Resource[]>();
         ArrayList<MarketResource> marketRes = new ArrayList<MarketResource>();
+        wareHouseClone.addAll(originalData.getDeposits());
         ArrayList<Integer> tmp = new ArrayList<Integer>();
+        ArrayList<Resource> depositRes = new ArrayList<Resource>();
         ArrayList<Resource> wareHouseRes = new ArrayList<Resource>();
 
         wareHouseClone.addAll(this.getDeposits());
         for (Resource[] lv : wareHouseClone) {
             wareHouseRes.addAll(Arrays.asList(lv));
         }
+        for (Resource[] ly : extraDep) {
+            depositRes.addAll(Arrays.asList(ly));
+        }
+        res = changeEmpty(res);
+
         for (Resource re : res) {
             tmp.clear();
             if (re.equals(Resource.EMPTY)) {
@@ -101,6 +108,13 @@ public class ExtraDepData extends PlayerData {
                     }
                 }
             }
+            //If the player has more than one extraDep card played each extraProd is an element of the array
+            for (int d = 3; d < extraDep.size() + 3; d++) {
+                if (re.equals(placeableRes.get(d - 3)) && Arrays.stream(extraDep.get(d - 3)).anyMatch(r -> r.equals(Resource.EMPTY))) {
+                    tmp.add(d);
+                }
+
+            }
             if(tmp.size() == 0) {
                 originalData.getPrinter().printMessage("You hav no space for " + re + ". It was discarded!");
                 MarketResource mr = new MarketResource(re, -1);
@@ -108,15 +122,15 @@ public class ExtraDepData extends PlayerData {
                 continue;
             }
             originalData.getPrinter().printMessage("\nWhere do you wanna put " + re + "?");
-            int wareHouseLevel = printer.printIntegers(tmp, false);
+            int wareHouseLevel = originalData.getPrinter().printIntegers(tmp, false);
             MarketResource mr = new MarketResource(re, wareHouseLevel);
             if (wareHouseLevel == -1)
             {
-                printer.printMessage("The resource " + re + " was discarded!");
+                originalData.getPrinter().printMessage("The resource " + re + " was discarded!");
                 marketRes.add(mr);
                 continue;
             }
-            else printer.printMessage("The resource " + re + " " + "was put in level " + (wareHouseLevel + 1));
+            else originalData.getPrinter().printMessage("The resource " + re + " " + "was put in level " + (wareHouseLevel + 1));
             marketRes.add(mr);
             for(int d = 0; d < wareHouseClone.get(wareHouseLevel).length; d++){
                 if(wareHouseClone.get(wareHouseLevel)[d] == Resource.EMPTY){
@@ -127,81 +141,6 @@ public class ExtraDepData extends PlayerData {
                 }
             }
         }
-        return marketRes;
-    }
-
-    public ArrayList<MarketResource> oldHandle(ArrayList<Resource> res) {
-        ArrayList<Resource[]> wareHouse = new ArrayList<Resource[]>();
-        wareHouse.addAll(originalData.getDeposits());
-        ArrayList<MarketResource> marketRes = new ArrayList<MarketResource>();
-        ArrayList<Integer> tmp = new ArrayList<Integer>();
-        ArrayList<Resource> wareHouseRes = new ArrayList<Resource>();
-        ArrayList<Resource> depositRes = new ArrayList<Resource>();
-
-        for (Resource[] lv : wareHouse) {
-            wareHouseRes.addAll(Arrays.asList(lv));
-        }
-        for (Resource[] ly : extraDep) {
-            depositRes.addAll(Arrays.asList(ly));
-        }
-
-        for (int p = 0; p < res.size(); p++) {
-            if (res.get(p).equals(Resource.EMPTY)) {
-                MarketResource m = new MarketResource(res.get(p), -2);
-                marketRes.add(m);
-                p++;
-            }
-
-            if (res.get(p).equals(Resource.FAITH)) {
-                MarketResource m = new MarketResource(res.get(p), -1);
-                marketRes.add(m);
-                p++;
-            }
-
-            for (int l = 0; l < wareHouse.size(); l++) {
-                Resource resource = res.get(p);
-                //se è pieno
-                if (!Arrays.stream(wareHouse.get(l)).anyMatch(null)) {
-                    continue;
-                }
-                //se ha degli spazi vuoti
-                if (Arrays.stream(wareHouse.get(l)).anyMatch(null)) {
-                    //se è vuoto
-                    if (wareHouse.get(l)[0] == null) {
-                        boolean empty = true;
-                        for (int x = 0; x < wareHouse.size(); x++) {
-                            if (x != l) {
-                                if (Arrays.stream(wareHouse.get(l)).anyMatch(z -> z.equals(resource))) {
-                                    empty = false;
-                                    break;
-                                }
-                            }
-                        }
-                        if (empty) {
-                            tmp.add(l);
-                        }
-                    }
-                    //se ha la mia risorsa
-                    else if (wareHouse.get(l)[0] == res.get(p)) {
-                        tmp.add(l);
-                    }
-                }
-            }
-
-            //If the player has more than one extraDep card played each extraProd is an element of the array
-            for (int d = 3; d < extraDep.size() + 3; d++) {
-                if (res.get(p).equals(placeableRes.get(d - 3)) && Arrays.stream(extraDep.get(d - 3)).anyMatch(null)) {
-                    tmp.add(d);
-                }
-
-            }
-
-            int wareHouseLevel = originalData.getPrinter().printIntegers(tmp, false);
-            MarketResource mr = new MarketResource(res.get(p), wareHouseLevel);
-            System.out.println("The resource " + res.get(p) + "" + "was put in level " + wareHouseLevel);
-            marketRes.add(mr);
-        }
-
         return marketRes;
     }
 

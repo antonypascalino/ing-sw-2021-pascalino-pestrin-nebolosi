@@ -224,6 +224,13 @@ public class BasicData extends PlayerData {
         return market;
     }
 
+    /**
+     * Per ogni riorsa prima avviene un filtraggio sulle empty e sulle faith, successivamente
+     * vengono calcolati i livelli in cui tali risordse possono essere piazzate
+     *
+     * @param res le risorse pescate dal mercato
+     * @return Un arraylist di risorse in cui per ognuna di esse è indicato il livello in cui metterla
+     */
     public ArrayList<MarketResource> handleWarehouse(ArrayList<Resource> res) {
         ArrayList<Resource[]> wareHouseClone = new ArrayList<Resource[]>();
         ArrayList<MarketResource> marketRes = new ArrayList<MarketResource>();
@@ -294,6 +301,10 @@ public class BasicData extends PlayerData {
             }
         }
         return marketRes;
+    }
+
+    public ArrayList<Resource> changeEmpty(ArrayList<Resource> res) {
+        return res;
     }
 
     public ArrayList<String> tableCardsFilter(ArrayList<MappedResource> mapped){

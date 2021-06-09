@@ -412,4 +412,8 @@ public abstract class PlayerData {
     public void newTurn() {
         originalData.newTurn();
     }
+
+    public ArrayList<Resource> changeEmpty(ArrayList<Resource> res) {
+        return originalData.changeEmpty(res);
+    }
 }

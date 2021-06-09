@@ -45,81 +45,27 @@ public class ChangeResData extends PlayerData
     {
         return changes;
     }
+
     public ArrayList<MarketResource> handleWarehouse(ArrayList<Resource> res) {
-        ArrayList<Resource[]> wareHouseClone = new ArrayList<>();
-        ArrayList<MarketResource> marketRes = new ArrayList<>();
-        ArrayList<Integer> tmp = new ArrayList<>();
-        ArrayList<Resource> wareHouseRes = new ArrayList<>();
+        return originalData.handleWarehouse(changeEmpty(res));
+    }
 
-        wareHouseClone.addAll(this.getDeposits());
-        for (Resource[] lv : wareHouseClone) {
-            wareHouseRes.addAll(Arrays.asList(lv));
-        }
+    public ArrayList<Resource> changeEmpty(ArrayList<Resource> res) {
+        ArrayList<Resource> result = new ArrayList<>();
         for (Resource re : res) {
-            tmp.clear();
-
             //If the resource is an empty resource convert it
             if (re.equals(Resource.EMPTY)) {
-                if(changes.size()==1)
+                if (changes.size() == 1) {
                     re = changes.get(0);
-                else
+                } else {
                     //Maybe the same thing can be done using the printResources method
                     re = originalData.getPrinter().printResource(changes);
-            }
+                }
 
-            if (re.equals(Resource.FAITH)) {
-                MarketResource m = new MarketResource(re, -1);
-                marketRes.add(m);
-                continue;
             }
-
-            //For each resource it decides where you can put the resources
-            for (int l = 0; l < wareHouseClone.size(); l++) {
-                //se è pieno
-                if (!Arrays.stream(wareHouseClone.get(l)).anyMatch(r -> r.equals(Resource.EMPTY))) {
-                    continue;
-                }
-                //se ha degli spazi vuoti
-                if (Arrays.stream(wareHouseClone.get(l)).anyMatch(r -> r.equals(Resource.EMPTY))) {
-                    //se è vuoto
-                    if (wareHouseClone.get(l)[0].equals(Resource.EMPTY)) {
-                        if(!wareHouseRes.contains(re)){
-                            tmp.add(l);
-                        }
-                    }
-                    //se ha la mia risorsa
-                    else if (wareHouseClone.get(l)[0] == re) {
-                        tmp.add(l);
-                    }
-                }
-            }
-            if(tmp.size() == 0) {
-                originalData.getPrinter().printMessage("You hav no space for " + re + ". It was discarded!");
-                MarketResource mr = new MarketResource(re, -1);
-                marketRes.add(mr);
-                continue;
-            }
-            originalData.getPrinter().printMessage("\nWhere do you wanna put " + re + "?");
-            int wareHouseLevel = originalData.getPrinter().printIntegers(tmp, false);
-            MarketResource mr = new MarketResource(re, wareHouseLevel);
-            if (wareHouseLevel == -1)
-            {
-                originalData.getPrinter().printMessage("The resource " + re + " was discarded!");
-                marketRes.add(mr);
-                continue;
-            }
-            else originalData.getPrinter().printMessage("The resource " + re + " " + "was put in level " + (wareHouseLevel + 1));
-            marketRes.add(mr);
-            for(int d = 0; d < wareHouseClone.get(wareHouseLevel).length; d++){
-                if(wareHouseClone.get(wareHouseLevel)[d] == Resource.EMPTY){
-                    wareHouseClone.get(wareHouseLevel)[d] = re;
-                    wareHouseRes.add(re);
-                    wareHouseRes.remove(Resource.EMPTY);
-                    break;
-                }
-            }
+            result.add(re);
         }
-        return marketRes;
+        return result;
     }
 
     /*
