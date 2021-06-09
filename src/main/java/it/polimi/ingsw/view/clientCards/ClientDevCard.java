@@ -52,6 +52,10 @@ public class ClientDevCard {
         return required;
     }
 
+    public ArrayList<Resource> getProduces() {
+        return produces;
+    }
+
     /**
      * Get price array list.
      *
