@@ -199,7 +199,7 @@ public class ExtraDepData extends PlayerData {
         }
         // Da Extra Dep ...
         if (origin >= 3) {
-            for (int co = 0; co < extraDep.get(origin).length; co++) {
+            for (int co = 0; co < extraDep.get(origin - 3).length; co++) {
                 if (extraDep.get(origin)[co] == Resource.EMPTY) {
                     break;
                 }
