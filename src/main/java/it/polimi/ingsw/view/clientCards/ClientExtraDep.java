@@ -5,6 +5,7 @@ import it.polimi.ingsw.model.Table.Resource;
 import it.polimi.ingsw.view.data.PlayerData;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * The type Client extra dep.
@@ -33,7 +34,11 @@ public class ClientExtraDep extends ClientLeaderCard {
         for (MappedResource mappedRes : data.allResources()) {
             allRes.add(mappedRes.getResource());
         }
-        return allRes.contains(required);
+        ArrayList<Resource> allDataRes = new ArrayList<>();
+        for (MappedResource mappedRes : data.allResources()) {
+            allDataRes.add(mappedRes.getResource());
+        }
+        return (Collections.frequency(allDataRes, required) >= 5);
     }
 
     public String toString() {
