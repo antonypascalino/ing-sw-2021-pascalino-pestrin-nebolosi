@@ -37,8 +37,8 @@ public class MoveRequest implements Request {
         if (!player.checkLevel(destLevel)) {
             return false;
         }
-        long originCount = Arrays.stream(player.getBoard().getWareHouse().getLevels().get(originLevel)).filter(resource -> !resource.equals(Resource.EMPTY)).count();
-        long destCount = Arrays.stream(player.getBoard().getWareHouse().getLevels().get(destLevel)).filter(resource -> !resource.equals(Resource.EMPTY)).count();
+        long originCount = Arrays.stream(player.getDeposits().get(originLevel)).filter(resource -> !resource.equals(Resource.EMPTY)).count();
+        long destCount = Arrays.stream(player.getDeposits().get(destLevel)).filter(resource -> !resource.equals(Resource.EMPTY)).count();
         if (!(originCount == 0 && destCount ==0)) {
             return originCount <= player.getBoard().getWareHouse().getLevels().get(destLevel).length && destCount <= player.getBoard().getWareHouse().getLevels().get(originLevel).length;
         }

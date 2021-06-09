@@ -157,7 +157,7 @@ public class ExtraDepData extends PlayerData {
         if (origin <= 2) {
             //conta origine
             for (int co = 0; co < wareHouse.get(origin).length; co++) {
-                if (wareHouse.get(origin)[co] == null) {
+                if (wareHouse.get(origin)[co] == Resource.EMPTY) {
                     break;
                 }
                 counterOr++;
@@ -195,10 +195,10 @@ public class ExtraDepData extends PlayerData {
                     levels.add(e);
                 }
             }
-            levels.remove(origin);
+            //levels.remove(origin);
         }
         // Da Extra Dep ...
-        if (origin > 3) {
+        if (origin >= 3) {
             for (int co = 0; co < extraDep.get(origin).length; co++) {
                 if (extraDep.get(origin)[co] == Resource.EMPTY) {
                     break;
