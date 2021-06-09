@@ -149,69 +149,77 @@ public class ExtraDepData extends PlayerData {
         wareHouse.addAll(originalData.getDeposits());
         ArrayList<Integer> levels = new ArrayList<Integer>();
         int counterOr = 0;
-        int counterDes = 0;
 
+        //da Warehouse ...
         if (origin <= 2) {
             //conta origine
             for (int co = 0; co < wareHouse.get(origin).length; co++) {
                 if (wareHouse.get(origin)[co] == null) {
                     break;
                 }
-                counterOr = co;
+                counterOr++;
             }
-
+            // ... a Warehouse
             for (int i = 0; i < wareHouse.size(); i++) {
-                //conta destinazione
-                for (int cd = 0; cd < wareHouse.get(i).length; cd++) {
-                    if (wareHouse.get(i)[cd] == null) {
-                        break;
+                if (i != origin) {
+                    //conta destinazione
+                    int counterDes = 0;
+                    for (int cd = 0; cd < wareHouse.get(i).length; cd++) {
+                        if (wareHouse.get(i)[cd] == Resource.EMPTY) {
+                            break;
+                        }
+                        counterDes++;
                     }
-                    counterDes = cd;
-                }
-                if (counterOr <= wareHouse.get(i).length && counterDes <= wareHouse.get(origin).length) {
-                    levels.add(i);
+                    if (counterOr <= wareHouse.get(i).length && counterDes <= wareHouse.get(origin).length && !(counterDes == 0 && counterOr == 0)) {
+                        levels.add(i);
+                    }
                 }
             }
+            // ... a Extra Dep
             for (int e = 3; e < extraDep.size() + 3; e++) {
+                int counterDes = 0;
                 for (int cd = 0; cd < extraDep.get(e - 3).length; cd++) {
-                    if (extraDep.get(e - 3)[cd] == null) {
+                    if (extraDep.get(e - 3)[cd] == Resource.EMPTY) {
                         break;
                     }
-                    counterDes = cd;
+                    counterDes++;
                 }
                 final Resource placeRes = placeableRes.get(e - 3);
                 int finalCounterOr = counterOr;
                 int finalCounterDes = counterDes;
                 int finalE = e;
-                if (Arrays.stream(wareHouse.get(origin)).anyMatch(x -> x.equals(placeRes) && finalCounterOr <= extraDep.get(finalE - 3).length && finalCounterDes <= wareHouse.get(origin).length)) {
+                if (Arrays.stream(wareHouse.get(origin)).anyMatch(x -> x.equals(placeRes) && finalCounterOr <= extraDep.get(finalE - 3).length && finalCounterDes <= wareHouse.get(origin).length) && !(counterDes == 0 && counterOr == 0)) {
                     levels.add(e);
                 }
-
-
             }
             levels.remove(origin);
         }
+        // Da Extra Dep ...
         if (origin > 3) {
             for (int co = 0; co < extraDep.get(origin).length; co++) {
-                if (extraDep.get(origin)[co] == null) {
+                if (extraDep.get(origin)[co] == Resource.EMPTY) {
                     break;
                 }
-                counterOr = co;
+                counterOr ++;
             }
+            // ... a Warehouse
             Resource placeable = placeableRes.get(origin - 3);
+            int counterDes = 0;
             for (int k = 0; k < wareHouse.size(); k++) {
                 for (int cd = 0; cd < wareHouse.get(k).length; cd++) {
-                    if (wareHouse.get(k)[cd] == null) {
+                    if (wareHouse.get(k)[cd] == Resource.EMPTY) {
                         break;
                     }
-                    counterDes = cd;
-
-
+                    counterDes ++;
                 }
-                if (Arrays.stream(wareHouse.get(origin)).anyMatch(x -> x.equals(placeable)) && counterOr <= wareHouse.get(k).length && counterDes <= extraDep.get(origin).length) {
+                if (Arrays.stream(wareHouse.get(origin)).anyMatch(x -> x.equals(placeable)) && counterOr <= wareHouse.get(k).length && counterDes <= extraDep.get(origin).length && !(counterDes == 0 && counterOr == 0)) {
                     levels.add(k);
                 }
             }
+        }
+        if (levels.size() == 0) {
+            originalData.getPrinter().printMessage("You can't switch this level!");
+            return -1;
         }
         return originalData.getPrinter().printIntegers(levels, false);
     }

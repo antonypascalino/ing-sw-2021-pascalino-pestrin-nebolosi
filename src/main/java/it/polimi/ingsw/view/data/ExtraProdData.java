@@ -44,6 +44,7 @@ public class ExtraProdData extends PlayerData{
                 clonedDev.add(clonedLeader.get(i));
             }
         }
+        clonedDev.add("BASIC");
         return clonedDev;
     }
 }

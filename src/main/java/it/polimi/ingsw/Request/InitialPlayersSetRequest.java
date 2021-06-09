@@ -42,7 +42,7 @@ public class InitialPlayersSetRequest implements Request {
                 }
                 if (discardedSteps > 0) game.fpAdvancement(discardedSteps, 0);
                 for (String cardID : leadersChosen) {
-                    player.addLeaderCard(DefaultCreator.getLeaderFromID(cardID));
+                    DefaultCreator.getLeaderFromID(cardID).assignTo(player);
                 }
                 game.playerReady++;
                 //If all the players are ready

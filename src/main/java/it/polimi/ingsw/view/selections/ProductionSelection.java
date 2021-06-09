@@ -56,8 +56,14 @@ public class ProductionSelection extends Selection {
                 mappedRes.add(selected2);
             }
 
-            else{
+            else if (cardID.contains("dev")){
                 mappedRes.addAll(data.createMappedRes(data.getCardFromID(cardID).getRequired()));
+            }
+            //se la carta è una leader extra prod (avrà una sola res)
+            else{
+                ArrayList<Resource> tmp = new ArrayList<>();
+                tmp.add(data.getLeaderFromID(cardID).getPowerResource());
+                mappedRes.addAll(data.createMappedRes(tmp));
             }
 
             if(cardID.contains("PROD") || cardID.contains("BASIC")){

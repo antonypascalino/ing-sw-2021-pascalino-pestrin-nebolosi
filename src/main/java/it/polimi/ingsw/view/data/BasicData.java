@@ -91,6 +91,13 @@ public class BasicData extends PlayerData {
         tmp.add(TurnState.GET_FROM_MARKET);
         tmp.add(TurnState.DISCARD_LEADER_CARD);
 
+        for(String s : leadersID){
+            if(getLeaderFromID(s).canBePlayed(this)) {
+                tmp.add(TurnState.PLAY_LEADER_CARD);
+                break;
+            }
+        }
+
         if(turnStates.contains(TurnState.BUY_DEV_CARD) || turnStates.contains(TurnState.PRODUCE) || turnStates.contains(TurnState.GET_FROM_MARKET)){
             tmp.remove(TurnState.PRODUCE);
             tmp.remove(TurnState.BUY_DEV_CARD);
@@ -130,7 +137,6 @@ public class BasicData extends PlayerData {
                 tmp.remove(TurnState.PRODUCE);
                 tmp.remove(TurnState.BUY_DEV_CARD);
                 if(allDevID.size() == 0){
-                    tmp.remove(TurnState.PLAY_LEADER_CARD);
                 }
             }
         }
@@ -149,7 +155,6 @@ public class BasicData extends PlayerData {
         for(MappedResource m : mapped){
             allRes.add(m.getResource());
         }
-
         /*
         for (String card : getFrontTableCardsID()) {
             for(Resource res : getCardFromID(card).getPrice())
@@ -158,7 +163,6 @@ public class BasicData extends PlayerData {
                     //if (allRes.containsAll(getCardFromID(card).getPrice()) && cardLevel.contains(getCardFromID(card).getLevel())) {
                     cloned.remove(card);
         }*/
-
         cloned.removeIf(card -> !allRes.containsAll(getCardFromID(card).getRequired()));
         cloned.add("BASIC");
         return cloned;
@@ -339,9 +343,7 @@ public class BasicData extends PlayerData {
             if( getCardFromID(frontCardsID.get(i)).getLevel() < getCardFromID(devID).getLevel() ){
                 slots.add(i);
             }
-
         }
-
         //It needs to stay out because if the size of frontcardsId is zero it never buys them
         //If the are empty spaces and the players is trying to buy alevel 1 card it puts it in the first position
         if(frontCardsID.size() < 3){
