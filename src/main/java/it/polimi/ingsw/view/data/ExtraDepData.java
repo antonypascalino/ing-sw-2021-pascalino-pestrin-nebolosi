@@ -26,14 +26,17 @@ public class ExtraDepData extends PlayerData {
      */
     public ExtraDepData(PlayerData originalData, ArrayList<Resource> placeableRes) {
 
-        this.placeableRes = placeableRes;
         extraDep = new ArrayList<>();
+        if(originalData instanceof ExtraDepData){
+            extraDep.addAll(((ExtraDepData) originalData).extraDep);
+
+        }
+        this.placeableRes = placeableRes;
         Resource[] tmp = new Resource[2];
         tmp[0] = Resource.EMPTY;
         tmp[1] = Resource.EMPTY;
         extraDep.add(tmp);
         this.originalData = originalData;
-
     }
 
     public ArrayList<MappedResource> allResources() {
@@ -65,15 +68,16 @@ public class ExtraDepData extends PlayerData {
 
     public ArrayList<MarketResource> handleWarehouse(ArrayList<Resource> res) {
         ArrayList<Resource[]> wareHouseClone = new ArrayList<Resource[]>();
+        ArrayList<Resource[]> helper = new ArrayList<Resource[]>();
         ArrayList<MarketResource> marketRes = new ArrayList<MarketResource>();
         ArrayList<Integer> tmp = new ArrayList<Integer>();
         ArrayList<Resource> wareHouseRes = new ArrayList<Resource>();
 
-        wareHouseClone.addAll(originalData.getDeposits());
-        for (Resource[] lv : wareHouseClone) {
+        wareHouseClone.addAll(this.getDeposits());
+        helper.addAll(originalData.getDeposits());
+        for (Resource[] lv : helper) {
             wareHouseRes.addAll(Arrays.asList(lv));
         }
-
 
         res = changeEmpty(res);
 
@@ -136,12 +140,14 @@ public class ExtraDepData extends PlayerData {
             marketRes.add(mr);
 
             //Insert the resource in a clone for checking the spaces
-            for(int d = 0; d < wareHouseClone.get(wareHouseLevel).length; d++){
-                if(wareHouseClone.get(wareHouseLevel)[d] == Resource.EMPTY){
-                    wareHouseClone.get(wareHouseLevel)[d] = re;
-                    wareHouseRes.add(re);
-                    wareHouseRes.remove(Resource.EMPTY);
-                    break;
+            if(wareHouseLevel <= 2){
+                for(int d = 0; d < wareHouseClone.get(wareHouseLevel).length; d++){
+                    if(wareHouseClone.get(wareHouseLevel)[d] == Resource.EMPTY){
+                        wareHouseClone.get(wareHouseLevel)[d] = re;
+                        wareHouseRes.add(re);
+                        wareHouseRes.remove(Resource.EMPTY);
+                        break;
+                    }
                 }
             }
         }
