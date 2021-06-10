@@ -26,17 +26,19 @@ public class ExtraDepData extends PlayerData {
      */
     public ExtraDepData(PlayerData originalData, ArrayList<Resource> placeableRes) {
 
+        this.originalData = originalData;
         extraDep = new ArrayList<>();
+        this.placeableRes = new ArrayList<>();
         if(originalData instanceof ExtraDepData){
             extraDep.addAll(((ExtraDepData) originalData).extraDep);
-            placeableRes.addAll(((ExtraDepData) originalData).placeableRes);
+            this.placeableRes.addAll(((ExtraDepData) originalData).placeableRes);
+            this.originalData = originalData.originalData;
         }
-        this.placeableRes = placeableRes;
+        this.placeableRes.addAll(placeableRes);
         Resource[] tmp = new Resource[2];
         tmp[0] = Resource.EMPTY;
         tmp[1] = Resource.EMPTY;
         extraDep.add(tmp);
-        this.originalData = originalData;
     }
 
     public ArrayList<MappedResource> allResources() {
