@@ -29,7 +29,7 @@ public class ExtraDepData extends PlayerData {
         extraDep = new ArrayList<>();
         if(originalData instanceof ExtraDepData){
             extraDep.addAll(((ExtraDepData) originalData).extraDep);
-
+            placeableRes.addAll(((ExtraDepData) originalData).placeableRes);
         }
         this.placeableRes = placeableRes;
         Resource[] tmp = new Resource[2];
