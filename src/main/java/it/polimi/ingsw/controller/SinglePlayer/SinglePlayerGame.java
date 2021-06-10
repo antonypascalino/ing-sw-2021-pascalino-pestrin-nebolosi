@@ -144,7 +144,7 @@ public class SinglePlayerGame extends Game {
     public void lorenzoWins() {
         ArrayList<PlayerVP> playersVP = new ArrayList<>();
         playersVP.add(new PlayerVP(player.getNickName(), player.getVictoryPoints()));
-        notifyAllPlayers(new EndgameUpdate("Lorenzo", playersVP));
+        notifyAllPlayers(new SPEndgameUpdate(true, player.getVictoryPoints()));
     }
 
     public void playerWins() {
@@ -153,6 +153,6 @@ public class SinglePlayerGame extends Game {
         player.getVictoryPoints();
         ArrayList<PlayerVP> playersVP = new ArrayList<>();
         playersVP.add(new PlayerVP(player.getNickName(), player.getVictoryPoints()));
-        notifyAllPlayers(new EndgameUpdate(player.getNickName(), playersVP));
+        notifyAllPlayers(new SPEndgameUpdate(false, player.getVictoryPoints()));
     }
 }
