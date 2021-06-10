@@ -73,16 +73,17 @@ public class ChangeResource implements LeaderCard
      */
     public boolean canBePlayed()
     {
-        int secondColor = 0;
-        boolean firstColor = false;
-
-        for( DevCard card : player.getBoard().getSlot().getAllCards())
-        {
-            if (card.getColor().equals(color1.toUpperCase())) firstColor = true;
-            if (card.getColor().equals(color2.toUpperCase())) secondColor++ ;
-        }
-
-        return (firstColor && secondColor >= 2);
+        return true;
+//        int secondColor = 0;
+//        boolean firstColor = false;
+//
+//        for( DevCard card : player.getBoard().getSlot().getAllCards())
+//        {
+//            if (card.getColor().equals(color1.toUpperCase())) firstColor = true;
+//            if (card.getColor().equals(color2.toUpperCase())) secondColor++ ;
+//        }
+//
+//        return (firstColor && secondColor >= 2);
     }
 
     @Override

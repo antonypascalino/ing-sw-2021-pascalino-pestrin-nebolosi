@@ -34,20 +34,21 @@ public class ClientChangeRes extends ClientLeaderCard {
 
     @Override
     public boolean canBePlayed(PlayerData data) {
-        ArrayList<ClientDevCard> clientDevCards = new ArrayList<>();
-        for(String s : data.getAllDevID()) {
-            clientDevCards.add(data.getCardFromID(s));
-        }
-
-        boolean firstColor = false;
-        int secondColor = 0;
-
-        for( ClientDevCard card : clientDevCards)
-        {
-            if (card.getColor().equals(color1)) firstColor = true;
-            if (card.getColor().equals(color2)) secondColor++ ;
-        }
-        return (firstColor && secondColor >= 2);
+        return true;
+//        ArrayList<ClientDevCard> clientDevCards = new ArrayList<>();
+//        for(String s : data.getAllDevID()) {
+//            clientDevCards.add(data.getCardFromID(s));
+//        }
+//
+//        boolean firstColor = false;
+//        int secondColor = 0;
+//
+//        for( ClientDevCard card : clientDevCards)
+//        {
+//            if (card.getColor().equals(color1)) firstColor = true;
+//            if (card.getColor().equals(color2)) secondColor++ ;
+//        }
+//        return (firstColor && secondColor >= 2);
     }
 
     public String toString() {

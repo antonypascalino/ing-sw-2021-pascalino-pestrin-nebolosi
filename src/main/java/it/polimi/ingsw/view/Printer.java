@@ -136,9 +136,10 @@ public class Printer {
         while (true) {
             for (int i = 0; i < cardID.size(); i++) {
                 if(cardID.get(i).equals("BASIC"))
-                    System.out.println("[" + (i + 1) + "] "+"Basic bitch");
-                else
+                    System.out.println("[" + (i + 1) + "] "+"Basic production");
+                else if (!cardID.get(i).contains("PROD"))
                 System.out.println("[" + (i + 1) + "] " + data.getCardFromID(cardID.get(i)).toString());
+                else System.out.println("[" + (i + 1) + "] " + data.getLeaderFromID(cardID.get(i)).toString());
             }
             System.out.println("Enter selection: ");
             selection = inputs.nextLine();
@@ -390,30 +391,30 @@ public class Printer {
      * @param data the data
      */
     public void printMyStats(PlayerData data) {
-        System.out.println("\nPlayer ID: " + data.getPlayerID());
-        System.out.println("\nMarket:");
+        System.out.println("\nPLAYER ID: " + data.getPlayerID());
+        System.out.println("\nMARKET:");
         viewMarket(data.getMarket());
-        System.out.println("\nFront cards:\n");
+        System.out.println("\nTABLE FRONT CARDS:\n");
         for (String cardID : data.getFrontTableCardsID()) {
             System.out.println(data.getCardFromID(cardID));
         }
-        System.out.println("\nWarehouse:");
+        System.out.println("\nWAREHOUSE:");
         printWareHouse(data.getDeposits());
-        System.out.println("\nStrongbox:\n" + data.getStrongBox());
-        System.out.println("\nSlots:\n" );
+        System.out.println("\nSTRONGBOX:\n" + data.getStrongBox());
+        System.out.println("\nSLOT FRONT CARD:\n" );
         for (String card : data.getFrontCardsID()) {
-            data.getCardFromID(card);
+            System.out.println(data.getCardFromID(card));
         }
-        System.out.println("\nFaith Points: " + data.getFaithPoints());
-        System.out.println("\nVictory Points: " + data.getVictoryPoints() + "\n");
-        System.out.println("Leader cards not played:");
+        System.out.println("\nFAITH POINTS: " + data.getFaithPoints());
+        System.out.println("\nVICTORY POINTS: " + data.getVictoryPoints() + "\n");
+        System.out.println("LEADER CARDS NOT PLAYED:\n");
         for(String s: data.getLeadersID()){
-            System.out.println(data.getLeaderFromID(s));
+            System.out.println(data.getLeaderFromID(s) + "\n");
         }
         System.out.println();
-        System.out.println("Leader cards played:");
+        System.out.println("LEADER CARDS PLAYED:\n");
         for(String s: data.getLeadersPlayedID()){
-            System.out.println(data.getLeaderFromID(s));
+            System.out.println(data.getLeaderFromID(s) + "\n");
         }
         System.out.println();
     }

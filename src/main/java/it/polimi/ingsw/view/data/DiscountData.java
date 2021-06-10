@@ -8,18 +8,23 @@ import it.polimi.ingsw.view.clientCards.ClientDevCard;
 import it.polimi.ingsw.view.Printer;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * The type Discount data.
  */
 public class DiscountData extends PlayerData{
-
-
     private ArrayList<Resource> discount;
 
+
     public DiscountData(ArrayList<Resource> discount, PlayerData originalData) {
+        this.discount = new ArrayList<>();
+        if (originalData instanceof DiscountData) {
+            this.discount.addAll(((DiscountData) originalData).getDiscount());
+            ((DiscountData) originalData).getDiscount().clear();
+        }
         this.originalData = originalData;
-        this.discount = discount;
+        this.discount.addAll(discount);
     }
 
 
@@ -29,8 +34,8 @@ public class DiscountData extends PlayerData{
      */
     @Override
     public ClientDevCard getCardFromID(String cardID) {
-        ClientDevCard tmp = super.getCardFromID(cardID);
-        ArrayList<Resource> newPrice = tmp.getPrice();
+        ClientDevCard tmp = originalData.getCardFromID(cardID);
+        ArrayList<Resource> newPrice = (ArrayList<Resource>) tmp.getPrice().clone();
         for(Resource res : discount)
             if(newPrice.contains(res))
                 newPrice.remove(res);
@@ -38,4 +43,41 @@ public class DiscountData extends PlayerData{
         return discounted;
     }
 
+    @Override
+    public ArrayList<String> tableCardsFilter(ArrayList<MappedResource> mapped){
+        ArrayList<String> available = new ArrayList<>();
+        ArrayList<Integer> cardLevel = new ArrayList<>(); // the levels of the cards which the player can buy
+        cardLevel.add(1); //added because if there is no card I can't add its level+1
+        ArrayList<Resource> allRes = new ArrayList<Resource>();
+        for(MappedResource m : mapped){
+            allRes.add(m.getResource());
+        }
+        for (String devCardID : getFrontCardsID()) {
+            cardLevel.add(getCardFromID(devCardID).getLevel() + 1);
+        }
+        if (cardLevel.size() == 4) {
+            cardLevel.remove(0);
+        }
+        //For every resource i have to check if the occurences match
+        for (String card : getFrontTableCardsID()) {
+            boolean canBeBought = true;
+            if (!cardLevel.contains(getCardFromID(card).getLevel())) {
+                canBeBought = false;
+                continue;
+            }
+            for (Resource res : getCardFromID(card).getPrice()) {
+                //Check if they have the same number of res for every tipe, if it doesn't have the resource remove them
+                if (Collections.frequency(allRes, res) < Collections.frequency(getCardFromID(card).getPrice(), res)) {
+                    canBeBought = false;
+                    break;
+                }
+            }
+            if (canBeBought) available.add(card);
+        }
+        return available;
+    }
+
+    public ArrayList<Resource> getDiscount() {
+        return discount;
+    }
 }

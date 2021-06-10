@@ -52,11 +52,12 @@ public class ExtraProd /*extends Producer*/ implements LeaderCard  {
 
     public boolean canBePlayed()
     {
-        if(isEnable) return false; //It can't be played twice
-        for(DevCard card : player.getBoard().getSlot().getAllCards()) {
-            if (card.getColor().equals(requires.toUpperCase()) && card.getLevel() == 2) return true;
-        }
-        return false;
+        return true;
+//        if(isEnable) return false; //It can't be played twice
+//        for(DevCard card : player.getBoard().getSlot().getAllCards()) {
+//            if (card.getColor().equals(requires.toUpperCase()) && card.getLevel() == 2) return true;
+//        }
+//        return false;
     }
 
     public String getClassName()
