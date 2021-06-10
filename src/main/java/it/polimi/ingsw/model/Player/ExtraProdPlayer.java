@@ -16,16 +16,15 @@ public class ExtraProdPlayer extends Player {
 
 
     public ExtraProdPlayer(Player original, Resource required, String extraProdID) {
+        this.extraProdIDs = new ArrayList<>();
         if (original instanceof ExtraProdPlayer) {
             this.required = new ArrayList<Resource>();
             this.required.addAll(((ExtraProdPlayer) original).getRequired());
-            this.extraProdIDs = new ArrayList<>();
             this.extraProdIDs.addAll(((ExtraProdPlayer) original).getExtraProdIDs());
         }
         this.required = new ArrayList<Resource>();
         this.required.add(required);
         this.original = original;
-        this.extraProdIDs = new ArrayList<>();
         this.extraProdIDs.add(extraProdID);
     }
 

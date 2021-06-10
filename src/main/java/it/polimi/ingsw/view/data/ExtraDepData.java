@@ -320,6 +320,29 @@ public class ExtraDepData extends PlayerData {
         return tmp;
     }
 
+    public ArrayList<MappedResource> createMappedRes(ArrayList<Resource> res){
+        ArrayList<MappedResource> tmp = new ArrayList<MappedResource>();
+        ArrayList<MappedResource> toSelect = new ArrayList<MappedResource>();
+        ArrayList<MappedResource> mappedRes = new ArrayList<MappedResource>();
+
+        //gets all the res
+        tmp.addAll(allResources());
+
+        for (Resource re : res) {
+            for (MappedResource map : tmp) {
+                if (map.getResource().equals(re)) {
+                    toSelect.add(map);
+                }
+            }
+            MappedResource selected = originalData.getPrinter().printMappedRes(toSelect);
+            mappedRes.add(selected);
+            tmp.remove(selected);
+            toSelect.clear();
+        }
+
+        return mappedRes;
+    }
+
 }
 
 

@@ -82,13 +82,16 @@ public class ProductionSelection extends Selection {
             //For every resource in the selected one check if it's contiained in the all res and removes it
             //AS IT IS NOW IT'S NOT WORKING: CAN'T REMOVE INSIDE A FOR EACH
             if (!cardID.equals("BASIC")) {
-                for(MappedResource res : mappedRes)
-                    for (MappedResource playerRes : allRes)
-                        if(res.getResource().equals(playerRes.getResource()))
-                        {
-                            allRes.remove(playerRes);
-                            break;
+                for(MappedResource res : mappedRes) {
+                    boolean removed = false;
+                    for (MappedResource playerRes : allRes) {
+                        if (removed) break;
+                        if (res.getResource().equals(playerRes.getResource())) {
+                            allRes.set(allRes.indexOf(playerRes), new MappedResource(Resource.EMPTY, "daddy"));
+                            removed = true;
                         }
+                    }
+                }
             }
             usedCards.add(cardID);
             Production p = new Production(mappedRes,cardID);
