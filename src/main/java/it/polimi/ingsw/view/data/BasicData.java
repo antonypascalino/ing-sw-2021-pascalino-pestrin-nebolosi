@@ -313,26 +313,33 @@ public class BasicData extends PlayerData {
     public ArrayList<String> tableCardsFilter(ArrayList<MappedResource> mapped){
         ArrayList<String> available = new ArrayList<>();
         ArrayList<Integer> cardLevel = new ArrayList<>(); // the levels of the cards which the player can buy
-        cardLevel.add(1);
+        cardLevel.add(1); //added because if there is no card I can't add its level+1
         ArrayList<Resource> allRes = new ArrayList<Resource>();
         for(MappedResource m : mapped){
             allRes.add(m.getResource());
         }
-        for (String devCardID : getFrontTableCardsID()) {
+        for (String devCardID : getFrontCardsID()) {
             cardLevel.add(getCardFromID(devCardID).getLevel() + 1);
-            available.add(devCardID);
         }
         if (cardLevel.size() == 4) {
             cardLevel.remove(0);
         }
         //For every resource i have to check if the occurences match
         for (String card : getFrontTableCardsID()) {
-            for(Resource res : getCardFromID(card).getPrice())
-                //Check if they have the same number of res for every tipe, if it doesn't have the resource remove them
-                if( Collections.frequency(allRes, res) < Collections.frequency(getCardFromID(card).getPrice(), res))
-            //if (allRes.containsAll(getCardFromID(card).getPrice()) && cardLevel.contains(getCardFromID(card).getLevel())) {
-                    available.remove(card);
+            boolean canBeBought = true;
+            if (!cardLevel.contains(getCardFromID(card).getLevel())) {
+                canBeBought = false;
+                continue;
             }
+            for (Resource res : getCardFromID(card).getPrice()) {
+                //Check if they have the same number of res for every tipe, if it doesn't have the resource remove them
+                if (Collections.frequency(allRes, res) < Collections.frequency(getCardFromID(card).getPrice(), res)) {
+                    canBeBought = false;
+                    break;
+                }
+            }
+            if (canBeBought) available.add(card);
+        }
         return available;
     }
 
