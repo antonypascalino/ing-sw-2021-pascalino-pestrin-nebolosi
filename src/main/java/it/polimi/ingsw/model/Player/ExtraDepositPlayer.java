@@ -81,8 +81,13 @@ public class ExtraDepositPlayer extends Player {
                 while (extraDep.get(destLevel - 3).getResources().size() < 2) { //Fintanto che non ho 2 elementi nel dest level lo riempio con EMPTY
                     extraDep.get(destLevel - 3).getResources().add(Resource.EMPTY);
                 }
-                for (int k = 0; k < original.getBoard().getWareHouse().getLevels().get(originLevel).length; k++) {
+                for (int k = 0; k < getDeposits().get(destLevel).length || k < helper.size(); k++) {
                     original.getBoard().getWareHouse().getLevels().get(originLevel)[k] = helper.get(k);
+                }
+                if (getDeposits().get(destLevel).length > helper.size()) {
+                    for (int i = helper.size(); i < getDeposits().get(destLevel).length; i++) {
+                        extraDep.get(destLevel - 3).getResources().set(i, Resource.EMPTY);
+                    }
                 }
             }
         }

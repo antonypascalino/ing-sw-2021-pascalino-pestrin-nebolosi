@@ -409,14 +409,13 @@ public class Printer {
         System.out.println("Leader cards not played:");
         for(String s: data.getLeadersID()){
             System.out.println(data.getLeaderFromID(s));
-            System.out.println(""); //depositi extra o sconti o bla bla bla
         }
+        System.out.println();
         System.out.println("Leader cards played:");
         for(String s: data.getLeadersPlayedID()){
             System.out.println(data.getLeaderFromID(s));
-            System.out.println(""); //depositi extra o sconti o bla bla bla
         }
-
+        System.out.println();
     }
 
     /**

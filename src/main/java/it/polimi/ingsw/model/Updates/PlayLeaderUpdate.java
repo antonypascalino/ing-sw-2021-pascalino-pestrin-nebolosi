@@ -1,5 +1,6 @@
 package it.polimi.ingsw.model.Updates;
 
+import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Table.Resource;
 import it.polimi.ingsw.view.Observer;
 import it.polimi.ingsw.view.data.*;
@@ -15,8 +16,9 @@ public class PlayLeaderUpdate implements Update {
     private String playerID;
     private int victoryPoints;
     private Resource powerResource;
+    private ArrayList<TurnState> turnStates;
 
-    public PlayLeaderUpdate(String playerID, String leaderPlayedID, ArrayList<String> leadersPlayed, ArrayList<String> leadersNOTPlayed, Resource powerResource, int victoryPoints) {
+    public PlayLeaderUpdate(String playerID, String leaderPlayedID, ArrayList<String> leadersPlayed, ArrayList<String> leadersNOTPlayed, Resource powerResource, int victoryPoints, ArrayList<TurnState> turnStates) {
         className = this.getClass().getName();
         this.playerID = playerID;
         this.leaderPlayedID = leaderPlayedID;
@@ -24,6 +26,7 @@ public class PlayLeaderUpdate implements Update {
         this.leadersPlayed = leadersPlayed;
         this.powerResource = powerResource;
         this.victoryPoints = victoryPoints;
+        this.turnStates = turnStates;
     }
 
     public void wrapPlayer(Observer observer) {
@@ -73,6 +76,7 @@ public class PlayLeaderUpdate implements Update {
             data.setLeadersPlayedID(leadersPlayed);
             data.setLeadersID(leadersNOTPlayed);
             data.setVictoryPoints(victoryPoints);
+            data.setTurnStates(turnStates);
             data.getPrinter().printMessage("You have played " + data.getLeaderFromID(leaderPlayedID));
             data.getMenu().menuMaker();
         }

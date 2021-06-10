@@ -50,7 +50,7 @@ public class PlayLeaderRequest implements Request {
             }
             else leadersNOTPlayed.add(leaderCard.getID());
         }
-        return new PlayLeaderUpdate(playerID, cardID, leadersPlayed, leadersNOTPlayed, player.getLeaderFromID(cardID).getPowerResource(), player.getVictoryPoints());
+        return new PlayLeaderUpdate(playerID, cardID, leadersPlayed, leadersNOTPlayed, player.getLeaderFromID(cardID).getPowerResource(), player.getVictoryPoints(), game.getTurnStates());
     }
 
     @Override

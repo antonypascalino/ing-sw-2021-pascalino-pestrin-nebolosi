@@ -137,8 +137,6 @@ public class BasicData extends PlayerData {
             if(strongBox.size() == 0){
                 tmp.remove(TurnState.PRODUCE);
                 tmp.remove(TurnState.BUY_DEV_CARD);
-                if(allDevID.size() == 0){
-                }
             }
         }
         if(leadersID.size() == 0){
@@ -529,5 +527,10 @@ public class BasicData extends PlayerData {
 
     public void newTurn() {
         turnStates.clear();
+    }
+
+    @Override
+    public ArrayList<TurnState> getTurnStates() {
+        return turnStates;
     }
 }

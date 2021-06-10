@@ -2,6 +2,7 @@ package it.polimi.ingsw.view.data;
 
 import it.polimi.ingsw.Request.MappedResource;
 import it.polimi.ingsw.Request.MarketResource;
+import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Table.Resource;
 
 
@@ -68,7 +69,7 @@ public class ExtraDepData extends PlayerData {
         ArrayList<Integer> tmp = new ArrayList<Integer>();
         ArrayList<Resource> wareHouseRes = new ArrayList<Resource>();
 
-        wareHouseClone.addAll(this.getDeposits());
+        wareHouseClone.addAll(originalData.getDeposits());
         for (Resource[] lv : wareHouseClone) {
             wareHouseRes.addAll(Arrays.asList(lv));
         }
@@ -245,6 +246,72 @@ public class ExtraDepData extends PlayerData {
             originalData.setWareHouse(wareHouse);
         }
     }
+
+    @Override
+    public ArrayList<TurnState> turnStateFilter(){
+        ArrayList<TurnState> tmp = new ArrayList<TurnState>();
+        //tmp.add(TurnState.QUIT);
+        tmp.add(TurnState.CHECK_STATS);
+        tmp.add(TurnState.PRODUCE);
+        tmp.add(TurnState.BUY_DEV_CARD);
+        tmp.add(TurnState.GET_FROM_MARKET);
+        tmp.add(TurnState.DISCARD_LEADER_CARD);
+
+        for(String s : originalData.getLeaders()){
+            if(getLeaderFromID(s).canBePlayed(this)) {
+                tmp.add(TurnState.PLAY_LEADER_CARD);
+                break;
+            }
+        }
+
+        if(originalData.getTurnStates().contains(TurnState.BUY_DEV_CARD) || originalData.getTurnStates().contains(TurnState.PRODUCE) || originalData.getTurnStates().contains(TurnState.GET_FROM_MARKET)){
+            tmp.remove(TurnState.PRODUCE);
+            tmp.remove(TurnState.BUY_DEV_CARD);
+            tmp.remove(TurnState.GET_FROM_MARKET);
+            tmp.add(TurnState.END_TURN);
+        }
+
+        if(originalData.getTurnStates().contains(TurnState.PLAY_LEADER_CARD)){
+            tmp.remove(TurnState.PLAY_LEADER_CARD);
+            tmp.remove(TurnState.DISCARD_LEADER_CARD);
+        }
+
+        if(originalData.getTurnStates().contains(TurnState.DISCARD_LEADER_CARD)){
+            tmp.remove(TurnState.PLAY_LEADER_CARD);
+            tmp.remove(TurnState.DISCARD_LEADER_CARD);
+        }
+        //Se non ha carte con cui può produrre (ha sempre almeno la basic)
+        if( allResources().size() == 0) {
+            tmp.remove(TurnState.PRODUCE);
+        }
+
+        boolean empty = true;
+        for(int i = 0; i < getDeposits().size(); i++){
+
+            for(int k = 0; k < getDeposits().get(i).length; k++){
+                if(!getDeposits().get(i)[k].equals(Resource.EMPTY)){
+                    empty = false;
+                    break;
+                }
+            }
+        }
+        if(!empty){
+            tmp.add(TurnState.MOVE_RESOURCE);
+        }
+        else{
+            if(originalData.getStrongBox().size() == 0){
+                tmp.remove(TurnState.PRODUCE);
+                tmp.remove(TurnState.BUY_DEV_CARD);
+
+            }
+        }
+        if(originalData.getLeaders().size() == 0){
+            tmp.remove(TurnState.DISCARD_LEADER_CARD);
+            tmp.remove(TurnState.PLAY_LEADER_CARD);
+        }
+        return tmp;
+    }
+
 }
 
 

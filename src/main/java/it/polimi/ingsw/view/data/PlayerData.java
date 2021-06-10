@@ -12,6 +12,7 @@ import it.polimi.ingsw.view.clientCards.ClientDevCard;
 import it.polimi.ingsw.view.clientCards.ClientLeaderCard;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * The type Player data.
@@ -415,5 +416,9 @@ public abstract class PlayerData {
 
     public ArrayList<Resource> changeEmpty(ArrayList<Resource> res) {
         return originalData.changeEmpty(res);
+    }
+
+    public ArrayList<TurnState> getTurnStates() {
+        return originalData.getTurnStates();
     }
 }
