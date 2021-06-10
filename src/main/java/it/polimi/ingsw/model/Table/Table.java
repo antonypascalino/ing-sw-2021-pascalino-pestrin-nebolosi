@@ -181,4 +181,12 @@ public class Table {
         }
         return result;
     }
+
+    public DevCard[][][] getAvaibleDev() {
+        return avaibleDev;
+    }
+
+    public int[][] getStack() {
+        return stack;
+    }
 }

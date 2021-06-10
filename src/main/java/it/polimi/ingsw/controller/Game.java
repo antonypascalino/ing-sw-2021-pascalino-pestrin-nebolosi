@@ -82,6 +82,13 @@ public class Game {
             if (/*req.validRequest(turnStates)*/true) {
                 if (req.canBePlayed(currPlayer)) {
                     turnStates.add(req.handle(getPlayerFromID(req.getPlayerID()), this));
+                    if (turnStates.contains(TurnState.END_TURN)) {
+                        turnStates.clear();
+                        currPlayer = nextPlayer;
+                    }
+                    //Notify all players except for the newGame req which is handled separetly
+                    if(!(req instanceof InitialPlayersSetRequest))
+                        notifyAllPlayers(req.createUpdate(currPlayer, this));
                     //Check if the game is finished
                     if (lastTurn) {
                         if (currPlayerInt == 0) {
@@ -91,14 +98,6 @@ public class Game {
                     if ((currPlayer.getBoard().getSlot().getAllCards().size() == 7 || currPlayer.getBoard().getFaithPath().checkPopeSpace(3)) && !lastTurn) {
                         lastTurn = true;
                     }
-                    if (turnStates.contains(TurnState.END_TURN)) {
-                        turnStates.clear();
-                        currPlayer = nextPlayer;
-                    }
-                    //Notify all players except for the newGame req which is handled separetly
-                    if(!(req instanceof InitialPlayersSetRequest))
-                        notifyAllPlayers(req.createUpdate(currPlayer, this));
-
                 } else {
                     Update error = new ErrorUpdate("You can't do that!", req.getPlayerID());
                     notifyAllPlayers(error);
@@ -172,7 +171,7 @@ public class Game {
                 winnerNickname = player.getNickName();
             }
         }
-        new EndgameUpdate(winnerNickname, playersVP);
+        notifyAllPlayers(new EndgameUpdate(winnerNickname, playersVP));
     }
 
     public ArrayList<Player> getPlayers() {

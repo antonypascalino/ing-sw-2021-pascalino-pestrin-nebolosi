@@ -1,5 +1,10 @@
 package it.polimi.ingsw.controller.SinglePlayer;
 
+import it.polimi.ingsw.model.card.DevCard;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class DiscardCards implements Token {
     private String color;
 
@@ -29,6 +34,30 @@ public class DiscardCards implements Token {
 
     public String toString(){
         return (this.getClass().getName());
+    }
+
+    @Override
+    public String announceAction(SinglePlayerGame game) {
+//        ArrayList<Integer> colorDev = new ArrayList<>();
+//        colorDev.add(0);
+//        colorDev.add(0);
+//        colorDev.add(0);
+//        for (DevCard[][] devCardMat : game.getTable().getAvaibleDev()) {
+//            for (DevCard[] devCardDim : devCardMat) {
+//                for (DevCard devCard : devCardDim) {
+//                    if (devCard.getColor().equals(color)) {
+//                        int toIncrement = colorDev.get(devCard.getLevel() - 1);
+//                        toIncrement++;
+//                        colorDev.set(devCard.getLevel() - 1, toIncrement);
+//                    }
+//                }
+//            }
+//        }
+
+        return ("\nLorenzo bought 2 " + color + " development cards!\nNow remain:\n" + game.getTable().getStack()[3][0] + " PURPLE cards of level 1, " + game.getTable().getStack()[3][1] + " PURPLE cards of level 2 and " + game.getTable().getStack()[3][2] + " PURPLE cards of level 3;\n" +
+                +game.getTable().getStack()[2][0] + " YELLOW cards of level 1, " + game.getTable().getStack()[2][1] + " YELLOW cards of level 2 and " + game.getTable().getStack()[2][2] + " YELLOW cards of level 3;\n" +
+                +game.getTable().getStack()[1][0] + " BLUE   cards of level 1, " + game.getTable().getStack()[1][1] + " BLUE   cards of level 2 and " + game.getTable().getStack()[1][2] + " BLUE   cards of level 3;\n" +
+                +game.getTable().getStack()[0][0] + " GREEN  cards of level 1, " + game.getTable().getStack()[0][1] + " GREEN  cards of level 2 and " + game.getTable().getStack()[0][2] + " GREEN  cards of level 3;\n");
     }
 }
 

@@ -28,7 +28,7 @@ public class MainView {
         System.out.println("Insert the server port");
         int serverPort = 8080;//= scanner.nextInt();
         LineClient thisPlayer = new LineClient(serverIP, serverPort);
-        Request request = new NewGameRequest(nickname, 2);
+        Request request = new NewGameRequest(nickname, 1);
         thisPlayer.startClient();
 
 

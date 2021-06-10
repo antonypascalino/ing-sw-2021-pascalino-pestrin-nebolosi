@@ -19,6 +19,7 @@ public class SinglePlayerGame extends Game {
     private FaithPath lorenzoPath;
     private ArrayList<Token> tokenList;
     private Player player;
+    private Token lastToken;
 
     public SinglePlayerGame(ArrayList<Player> players, ArrayList<DevCard> cards, int gameId) {
         super(players, cards, gameId, 1);
@@ -68,51 +69,58 @@ public class SinglePlayerGame extends Game {
         return result;
     }
 
-    public Update createNewGameUpdate() {
-        ArrayList<LeaderCard> allLeaderCards = new ArrayList<LeaderCard>();
-        allLeaderCards.addAll(DefaultCreator.produceLeaderCard()); //Produce tutte le Leader del gioco
-        Collections.shuffle(allLeaderCards); //Le mischia
-
-        //Crea un elenco di players e attibuisce ad ognungo di loro 4 leaderCard diverse
-        ArrayList<PlayerLC> playersLC = new ArrayList<PlayerLC>();
-
-        player.setTable(table);
-        ArrayList<String> leadersToChoose = new ArrayList<String>();
-        for (int addedCard = 0; addedCard < 4; addedCard++) {
-            leadersToChoose.add(allLeaderCards.remove(0).getID());
-        }
-        playersLC.add(new PlayerLC(player.getNickName(), leadersToChoose));
-
-
-        ArrayList<PlayerST> playersST = new ArrayList<>();
-
-        PlayerST player1 = new PlayerST(player.getNickName(), 0, 0);
-        playersST.add(player1);
-
-        return new NewGameUpdate(getGameId(), table.getFrontIDs(), table.market.getMarket(), playersLC, playersST);
-    }
+//    public Update createNewGameUpdate() {
+//        ArrayList<LeaderCard> allLeaderCards = new ArrayList<LeaderCard>();
+//        allLeaderCards.addAll(DefaultCreator.produceLeaderCard()); //Produce tutte le Leader del gioco
+//        Collections.shuffle(allLeaderCards); //Le mischia
+//
+//        //Crea un elenco di players e attibuisce ad ognungo di loro 4 leaderCard diverse
+//        ArrayList<PlayerLC> playersLC = new ArrayList<PlayerLC>();
+//
+//        player.setTable(table);
+//        ArrayList<String> leadersToChoose = new ArrayList<String>();
+//        for (int addedCard = 0; addedCard < 4; addedCard++) {
+//            leadersToChoose.add(allLeaderCards.remove(0).getID());
+//        }
+//        playersLC.add(new PlayerLC(player.getNickName(), leadersToChoose));
+//
+//
+//        ArrayList<PlayerST> playersST = new ArrayList<>();
+//
+//        PlayerST player1 = new PlayerST(player.getNickName(), 0, 0);
+//        playersST.add(player1);
+//
+//        return new NewGameUpdate(getGameId(), table.getFrontIDs(), table.market.getMarket(), playersLC, playersST);
+//    }
 
     public void notify(Request req) {
         if (req.validRequest(turnStates)) {
             if (req.canBePlayed(player)) {
                 turnStates.add(req.handle(player, this));
                 if (turnStates.contains(TurnState.END_TURN)) {
-                    drawToken().activateEffect(this);
+                    lastToken = drawToken();
+                    lastToken.activateEffect(this);
                     turnStates.clear();
+                    notifyAllPlayers(createLorenzoUpdate());
                 }
+                if (!(req instanceof InitialPlayersSetRequest)) {
+                    notifyAllPlayers(req.createUpdate(player, this));
+                }
+                if (player.getBoard().getSlot().getAllCards().size() == 7 || player.getBoard().getFaithPath().checkPopeSpace(3)) {
+                    playerWins();
+                }
+            } else {
+                Update error = new ErrorUpdate("You can't do that!", req.getPlayerID());
+                notifyAllPlayers(error);
             }
-        }
-        if (player.getBoard().getSlot().getAllCards().size() == 7 || player.getBoard().getFaithPath().checkPopeSpace(3)) {
-            playerWins();
-        }
-        if (!(req instanceof InitialPlayersSetRequest)) {
-            notifyAllPlayers(req.createUpdate(player, this));
-            notifyAllPlayers(createLorenzoUpdate());
+        } else {
+            Update error = new ErrorUpdate("You can't do this action in this moment!", req.getPlayerID());
+            notifyAllPlayers(error);
         }
     }
 
     private Update createLorenzoUpdate() {
-        return new LorenzoUpdate(lorenzoPath.getAdvancement(), player.getVictoryPoints(), table.getFrontIDs());
+        return new LorenzoUpdate(lorenzoPath.getAdvancement(), player.getVictoryPoints(), table.getFrontIDs(), lastToken.announceAction(this), turnStates);
     }
 
     public void fpAdvancement(int discardedSteps, int playerSteps) {

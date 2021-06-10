@@ -49,10 +49,7 @@ public class NewGameUpdate implements Update{
             if (p.getPlayerID().equals(data.getPlayerID())) {
                 leadersToChoose.addAll(p.getLeadersToChoose());
             }
-
-            else
-                data.getOtherPlayers().add(new OtherPlayerData(p.getPlayerID()));
-
+            else data.getOtherPlayers().add(new OtherPlayerData(p.getPlayerID()));
         }
         for (PlayerST p : playersST) {
             if (p.getPlayerID().equals(data.getPlayerID())) {

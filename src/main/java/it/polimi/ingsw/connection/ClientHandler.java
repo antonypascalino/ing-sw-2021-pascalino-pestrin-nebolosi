@@ -6,6 +6,7 @@ import it.polimi.ingsw.Request.NewGameRequest;
 import it.polimi.ingsw.Request.Request;
 import it.polimi.ingsw.controller.DefaultCreator;
 import it.polimi.ingsw.controller.Game;
+import it.polimi.ingsw.controller.SinglePlayer.SinglePlayerGame;
 import it.polimi.ingsw.model.Player.BasicPlayer;
 import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Updates.LobbyUpdate;
@@ -104,14 +105,24 @@ public class ClientHandler implements Runnable {
                                 this.playerId = ((NewGameRequest) request).getNickname();
                                 Player newPlayer = new BasicPlayer(((NewGameRequest) request).getNickname(), this);
                                 tmp.add(newPlayer);
-                                Game newGame = new Game(tmp, DefaultCreator.produceDevCard(), gameId, ((NewGameRequest) request).getPlayers());
+                                Game newGame;
+                                Update update;
+                                if (((NewGameRequest) request).getPlayers() == 1) {
+                                    newGame = new SinglePlayerGame(tmp,DefaultCreator.produceDevCard(), gameId);
+                                    update = newGame.createNewGameUpdate();
+                                }
+                                else {
+                                    newGame = new Game(tmp, DefaultCreator.produceDevCard(), gameId, ((NewGameRequest) request).getPlayers());
+                                    update = new LobbyUpdate(((NewGameRequest) request).getNickname(), newGame.getPlayers().size(), ((NewGameRequest) request).getPlayers());
+
+                                }
                                 newPlayer.setGame(newGame);
                                 newPlayer.setTable(newGame.getTable());
                                 games.add(newGame);
                                 System.out.println("Player " + ((NewGameRequest) request).getNickname() + " added to the new game " + newGame.getGameId());
-                                Update update = new LobbyUpdate(((NewGameRequest) request).getNickname(), newGame.getPlayers().size(), ((NewGameRequest) request).getPlayers());
                                 newGame.notifyAllPlayers(update);
                             }
+
                             //If it hasn't alrady reached the maximum numner of players
                             //add the new player
                             else {
@@ -136,7 +147,6 @@ public class ClientHandler implements Runnable {
                         } else {
                             System.out.println("Received "+request);
                             games.get(request.getGameID()).notify(request);
-
                         }
                     }
                 }

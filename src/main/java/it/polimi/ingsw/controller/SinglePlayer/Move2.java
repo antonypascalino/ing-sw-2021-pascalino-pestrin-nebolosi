@@ -15,4 +15,9 @@ public class Move2 implements Token {
         return (this.getClass().getName());
     }
 
+    @Override
+    public String announceAction(SinglePlayerGame game) {
+        return ("Lorenzo moved of 2 step on his Faith Path");
+    }
+
 }

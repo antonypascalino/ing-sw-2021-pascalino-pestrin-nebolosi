@@ -14,6 +14,11 @@ public class Move1 implements Token {
         game.fpAdvancement(0,0);
     }
 
+    @Override
+    public String announceAction(SinglePlayerGame game) {
+        return ("Lorenzo moved of 1 step on his Faith Path");
+    }
+
     public String toString(){
         return (this.getClass().getName());
     }
