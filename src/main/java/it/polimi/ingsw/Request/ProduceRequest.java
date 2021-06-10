@@ -100,10 +100,17 @@ public class ProduceRequest implements Request {
                 //Add to the temp box all the resource that
                 //Are received as choices
                 ArrayList<Resource> list = new ArrayList<>();
+
                 for (MappedResource x : prod.getMappedResources()) {
                     if (x.getPlace().equals("choice")) {
                         list.add(x.getResource());
                     }
+                }
+                //Se è una ExtraProd LeaderCard deve aggiungere oltre alla choice anche un FAITH
+                if (prod.getCardID().contains("PROD")) {
+                    ArrayList<Resource> faithPoint = new ArrayList<>();
+                    faithPoint.add(Resource.FAITH);
+                    player.getBoard().getTempBox().addResource(faithPoint);
                 }
                 player.getBoard().getTempBox().addResource(list);
             } else

@@ -136,9 +136,10 @@ public class Printer {
         while (true) {
             for (int i = 0; i < cardID.size(); i++) {
                 if(cardID.get(i).equals("BASIC"))
-                    System.out.println("[" + (i + 1) + "] "+"Basic bitch");
-                else
+                    System.out.println("[" + (i + 1) + "] "+"Basic production");
+                else if (!cardID.get(i).contains("PROD"))
                 System.out.println("[" + (i + 1) + "] " + data.getCardFromID(cardID.get(i)).toString());
+                else System.out.println("[" + (i + 1) + "] " + data.getLeaderFromID(cardID.get(i)).toString());
             }
             System.out.println("Enter selection: ");
             selection = inputs.nextLine();

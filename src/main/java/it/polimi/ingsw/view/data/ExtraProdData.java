@@ -22,8 +22,15 @@ public class ExtraProdData extends PlayerData{
      * @param prodRequired the prod required
      */
     public ExtraProdData(ArrayList<String> extraProdID, ArrayList<Resource> prodRequired, PlayerData original) {
+        this.extraProdID = new ArrayList<>();
         this.extraProdID = extraProdID;
-        this.prodRequired = prodRequired;
+        this.prodRequired = new ArrayList<>();
+        if (original instanceof ExtraProdData) {
+            prodRequired.addAll(((ExtraProdData) original).getProdRequired());
+            extraProdID.addAll(((ExtraProdData) original).getExtraProdID());
+        }
+        this.prodRequired.addAll(prodRequired);
+        this.extraProdID.addAll(extraProdID);
         this.originalData = original;
     }
 
@@ -46,5 +53,13 @@ public class ExtraProdData extends PlayerData{
         }
         clonedDev.add("BASIC");
         return clonedDev;
+    }
+
+    public ArrayList<String> getExtraProdID() {
+        return extraProdID;
+    }
+
+    public ArrayList<Resource> getProdRequired() {
+        return prodRequired;
     }
 }
