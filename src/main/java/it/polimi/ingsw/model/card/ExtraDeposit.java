@@ -109,4 +109,7 @@ public class ExtraDeposit implements LeaderCard {
         return placeableRes;
     }
 
+/*    public Resource getPlaceableRes() {
+        return placeableRes;
+    }*/
 }

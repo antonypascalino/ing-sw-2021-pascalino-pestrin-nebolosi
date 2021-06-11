@@ -43,6 +43,8 @@ public interface LeaderCard extends Convertible {
 
     public void setPlayer(Player tmp);
 
-    public Resource getPowerResource();     // return a resource that changes by the type of leaderCard: for ExtraDep is the placeable, for Change is the changeable, for Discount is the discount and for ExtraProd is the required Resource for produce
+    public Resource getPowerResource(); // return a resource that changes by the type of leaderCard: for ExtraDep is the placeable, for Change is the changeable, for Discount is the discount and for ExtraProd is the required Resource for produce
+
+    //public Resource getPlaceableRes();
 
 }

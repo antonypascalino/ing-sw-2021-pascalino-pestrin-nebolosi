@@ -141,11 +141,9 @@ public class ExtraDepositPlayer extends Player {
              }
              // ... a ExtraDep
              else {
-                 ArrayList<Resource> tmp = new ArrayList<>();
-                 tmp.addAll(extraDep.get(destLevel - 3).getResources());
-                 for (int i = 0; i < Math.min(original.getDeposits().get(originLevel).length, extraDep.get(destLevel - 3).getResources().size()); i++) {
+                 for (int i = Math.min(original.getDeposits().get(originLevel).length, extraDep.get(destLevel - 3).getResources().size()); i > 0 ; i--) {
                      extraDep.get(destLevel - 3).getResources().set(i, original.getDeposits().get(originLevel)[i]);
-                     original.getBoard().getWareHouse().getLevels().get(originLevel)[i] = tmp.get(i);
+                     original.getBoard().getWareHouse().getLevels().get(originLevel)[i] = Resource.EMPTY;
                  }
              }
          }
