@@ -105,6 +105,9 @@ public class Game {
                     Update error = new ErrorUpdate("You can't do that!", req.getPlayerID());
                     notifyAllPlayers(error);
                 }
+            } else {
+                Update error = new ErrorUpdate("You can't do this action in this moment!", req.getPlayerID());
+                notifyAllPlayers(error);
             }
         } else {
             Update error = new ErrorUpdate("It's not your turn", req.getPlayerID());
