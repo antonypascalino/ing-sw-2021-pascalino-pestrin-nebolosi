@@ -94,15 +94,14 @@ public class Discount implements LeaderCard {
 
     public boolean canBePlayed()
     {
-        return true;
-//        boolean secondColor = false;
-//        boolean firstColor = false;
-//        if (isEnable) return false; //The card can't be played twice
-//        for (DevCard card : player.getBoard().getSlot().getAllCards()) {
-//            if (card.getColor().equals(color1.toUpperCase())) firstColor = true;
-//            if (card.getColor().equals(color2.toUpperCase())) secondColor = true;
-//        }
-//        return (firstColor && secondColor);
+        boolean secondColor = false;
+        boolean firstColor = false;
+        if (isEnable) return false; //The card can't be played twice
+        for (DevCard card : player.getBoard().getSlot().getAllCards()) {
+            if (card.getColor().equals(color1.toUpperCase())) firstColor = true;
+            if (card.getColor().equals(color2.toUpperCase())) secondColor = true;
+        }
+        return (firstColor && secondColor);
     }
 
     @Override

@@ -79,24 +79,27 @@ public class Game {
     public synchronized void notify(Request req) {
         //In the case the game is starting every game can send the request
         if (req.getPlayerID().equals(currPlayer.getNickName())  || req instanceof InitialPlayersSetRequest) {
-            if (/*req.validRequest(turnStates)*/true) {
+            if (req.validRequest(turnStates)) {
                 if (req.canBePlayed(currPlayer)) {
                     turnStates.add(req.handle(getPlayerFromID(req.getPlayerID()), this));
                     if (turnStates.contains(TurnState.END_TURN)) {
                         turnStates.clear();
                         currPlayer = nextPlayer;
                     }
-                    //Notify all players except for the newGame req which is handled separetly
-                    if(!(req instanceof InitialPlayersSetRequest))
-                        notifyAllPlayers(req.createUpdate(currPlayer, this));
-                    //Check if the game is finished
                     if (lastTurn) {
                         if (currPlayerInt == 0) {
                             endgame();
                         }
                     }
+                    //Notify all players except for the newGame req which is handled separetly
+                    if(!(req instanceof InitialPlayersSetRequest))
+                        notifyAllPlayers(req.createUpdate(currPlayer, this));
+                    //Check if the game is finished
+
                     if ((currPlayer.getBoard().getSlot().getAllCards().size() == 7 || currPlayer.getBoard().getFaithPath().checkPopeSpace(3)) && !lastTurn) {
                         lastTurn = true;
+                        if (currPlayer.getBoard().getSlot().getAllCards().size() == 7) notifyAllPlayers(new lastTurnUpdate("\n" + currPlayer.getNickName() + " has bought 7 cards, it's last turn!\n"));
+                        if (currPlayer.getBoard().getFaithPath().checkPopeSpace(3)) notifyAllPlayers(new lastTurnUpdate("\n" + currPlayer.getNickName() + " has reached 30 Faith Points, it's last turn!\n"));
                     }
                 } else {
                     Update error = new ErrorUpdate("You can't do that!", req.getPlayerID());

@@ -482,12 +482,12 @@ public class Printer {
      * @param endgameUpdate the endgame update
      */
     public void endgame(EndgameUpdate endgameUpdate) {
-        System.out.println(endgameUpdate.getWinner().toUpperCase(Locale.ROOT) + "WON!");
+        System.out.println(endgameUpdate.getWinner().toUpperCase(Locale.ROOT) + " WON!");
         System.out.println("Here's the points:");
         for (PlayerVP player : endgameUpdate.getFinalPlayersVPS()) {
             System.out.println(player.getPlayerID() + ": " + player.getVictoryPoints());
         }
-        //chiudere connessione e tutto baci baci ciao ciao
+        System.exit(0);
     }
 
     /**

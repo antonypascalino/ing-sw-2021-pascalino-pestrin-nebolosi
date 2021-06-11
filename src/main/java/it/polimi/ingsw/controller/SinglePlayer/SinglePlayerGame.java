@@ -47,7 +47,8 @@ public class SinglePlayerGame extends Game {
         Collections.shuffle(tokenList);
     }
 
-    public void changePlayer(Player newPlayer) {
+    public void changePlayer(Player original, Player newPlayer)
+    {
         player = newPlayer;
     }
 

@@ -32,23 +32,21 @@ public class ClientDiscount extends ClientLeaderCard {
 
     @Override
     public boolean canBePlayed(PlayerData data) {
-        return true;
+        ArrayList<ClientDevCard> clientDevCards = new ArrayList<>();
+        for(String s : data.getAllDevID()) {
+            clientDevCards.add(data.getCardFromID(s));
+        }
+
+        boolean firstColor = false;
+        boolean secondColor = false;
+
+        for( ClientDevCard card : clientDevCards)
+        {
+            if (card.getColor().equals(color1)) firstColor = true;
+            if (card.getColor().equals(color2)) secondColor = true ;
+        }
+        return (firstColor && secondColor);
     }
-//        ArrayList<ClientDevCard> clientDevCards = new ArrayList<>();
-//        for(String s : data.getAllDevID()) {
-//            clientDevCards.add(data.getCardFromID(s));
-//        }
-//
-//        boolean firstColor = false;
-//        boolean secondColor = false;
-//
-//        for( ClientDevCard card : clientDevCards)
-//        {
-//            if (card.getColor().equals(color1)) firstColor = true;
-//            if (card.getColor().equals(color2)) secondColor = true ;
-//        }
-//        return (firstColor && secondColor);
-//    }
 
     public String toString() {
         return "Discount Leader Card:\nWhen you buy a Developement Card from table you will pay one " + discount + " less" + "\nTo play this card you need to have 1 " + color2 + " Developments card and 1 " + color1 + " Development card" ;
