@@ -18,14 +18,17 @@ public class ExtraDepositPlayer extends Player {
        // addedLevel = player.getBoard().getWareHouse().getLevels().size(); //CONTOLLARE DISCORSO INDICI: LIVELLO 1 HA INDICE 0 NELL'ARRAYLIST
         this.placeableRes = new ArrayList<>();
         extraDep = new ArrayList<>();
+        this.original = original;
         if (original instanceof ExtraDepositPlayer) {
             this.placeableRes.addAll(((ExtraDepositPlayer) original).placeableRes);
             extraDep.add(((ExtraDepositPlayer) original).getExtraDep().get(0)); //Non dovrebbe essere get 0 ma get l'ultimo elemento, ma tanto possiamo avere solo 2 carte al massimo
+            //Points to the basic
+            this.original = original.original;
         }
 
         extraDep.add(new ExtraDepositLevel(placeableRes));
         this.placeableRes.add(placeableRes);
-        this.original = original;
+
     }
 
     @Override
