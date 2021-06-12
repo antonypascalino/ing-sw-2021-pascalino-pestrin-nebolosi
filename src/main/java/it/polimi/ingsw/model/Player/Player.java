@@ -162,5 +162,10 @@ public abstract class Player {
     {
         original.notifyView(upadate);
     }
+
+    public boolean checkSwitch(int originLevel, int destLevel)
+    {
+        return original.checkSwitch(originLevel, destLevel);
+    }
 }
 

@@ -173,6 +173,21 @@ public class ExtraDepositPlayer extends Player {
     }
 
     @Override
+    public boolean checkSwitch(int originLevel, int destLevel)
+    {
+        //The player can't remove something the extra dep level but just put it in it or can't get from a level that he does'nt have
+        if(originLevel >= 3 || destLevel > extraDep.size()+2)
+            return false;
+        //In case there are no extradep required
+        if (originLevel <= 2 && destLevel <=2)
+            return original.checkSwitch(originLevel,destLevel);
+        else
+            if()
+
+
+    }
+
+    @Override
     public void addResource(int level, Resource res) {
         if (level >= 0 && level <= 2) {
             original.getBoard().getWareHouse().addResource(level, res);
