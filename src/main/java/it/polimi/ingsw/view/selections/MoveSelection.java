@@ -22,7 +22,7 @@ public class MoveSelection extends Selection{
         for(int i = 0; i < levels.size(); i++){
             l.add(i);
         }
-        int origin = data.getPrinter().printIntegers(l, false);
+        int origin = data.getPrinter().printIntegers(l, false, false);
         int destination = data.switchLevels(origin);
         if (destination == -1) {
             data.getMenu().menuMaker();

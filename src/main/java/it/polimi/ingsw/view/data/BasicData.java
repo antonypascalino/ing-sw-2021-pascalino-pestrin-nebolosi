@@ -222,13 +222,6 @@ public class BasicData extends PlayerData {
         return market;
     }
 
-    /**
-     * Per ogni riorsa prima avviene un filtraggio sulle empty e sulle faith, successivamente
-     * vengono calcolati i livelli in cui tali risordse possono essere piazzate
-     *
-     * @param res le risorse pescate dal mercato
-     * @return Un arraylist di risorse in cui per ognuna di esse è indicato il livello in cui metterla
-     */
     public ArrayList<MarketResource> handleWarehouse(ArrayList<Resource> res) {
         ArrayList<Resource[]> wareHouseClone = new ArrayList<Resource[]>();
         ArrayList<MarketResource> marketRes = new ArrayList<MarketResource>();
@@ -279,7 +272,7 @@ public class BasicData extends PlayerData {
                 continue;
             }
             printer.printMessage("\nWhere do you wanna put " + re + "?");
-            int wareHouseLevel = printer.printIntegers(tmp, false);
+            int wareHouseLevel = printer.printIntegers(tmp, false, true);
             MarketResource mr = new MarketResource(re, wareHouseLevel);
             if (wareHouseLevel == -1)
             {
@@ -351,7 +344,7 @@ public class BasicData extends PlayerData {
                 if(getCardFromID(devID).getLevel() == 1  )
                     return frontCardsID.size();
         }
-        return printer.printIntegers(slots, true);
+        return printer.printIntegers(slots, true, false);
     }
 
     public ArrayList<Resource[]> getDeposits(){
@@ -390,7 +383,7 @@ public class BasicData extends PlayerData {
             printer.printMessage("You can't switch this level!");
             return -1;
         }
-        return printer.printIntegers(levels, false);
+        return printer.printIntegers(levels, false, false);
     }
 
     public ArrayList<String> leaderCardsFilter() {

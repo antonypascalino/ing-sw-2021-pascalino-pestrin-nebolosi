@@ -60,7 +60,6 @@ public class NewGameUpdate implements Update{
 
 
         for (PlayerLC p : playersLC) {
-
             if (p.getPlayerID().equals(data.getPlayerID())) {
                 leadersToChoose.addAll(p.getLeadersToChoose());
             }

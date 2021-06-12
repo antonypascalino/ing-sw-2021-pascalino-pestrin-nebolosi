@@ -130,7 +130,7 @@ public class ExtraDepData extends PlayerData {
                 continue;
             }
             originalData.getPrinter().printMessage("\nWhere do you wanna put " + re + "?");
-            int wareHouseLevel = originalData.getPrinter().printIntegers(tmp, false);
+            int wareHouseLevel = originalData.getPrinter().printIntegers(tmp, false, true);
             MarketResource mr = new MarketResource(re, wareHouseLevel);
             if (wareHouseLevel == -1)
             {
@@ -233,7 +233,7 @@ public class ExtraDepData extends PlayerData {
             originalData.getPrinter().printMessage("You can't switch this level!");
             return -1;
         }
-        return originalData.getPrinter().printIntegers(levels, false);
+        return originalData.getPrinter().printIntegers(levels, false, false);
     }
 
     public ArrayList<Resource[]> getDeposits() {
