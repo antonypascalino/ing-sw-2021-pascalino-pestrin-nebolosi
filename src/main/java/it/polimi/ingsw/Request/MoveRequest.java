@@ -41,7 +41,7 @@ public class MoveRequest implements Request {
         //Since the check depends on the type of player (it's different if it has some extradep) this check is done by the player
         return player.checkSwitch(originLevel, destLevel);
 
-        if (Arrays.stream(player.getDeposits().get(destLevel)).anyMatch(x -> x.equals(Resource.EMPTY))) {
+  /*      if (Arrays.stream(player.getDeposits().get(destLevel)).anyMatch(x -> x.equals(Resource.EMPTY))) {
             ArrayList<LeaderCard> leaderCards = new ArrayList<>();
             for (LeaderCard card : player.getLeaderCards()) {
                 if (card.getID().contains("DEP")) {
@@ -63,7 +63,7 @@ public class MoveRequest implements Request {
             }
             return true;
         }
-        return false;
+        return false;*/
     }
 
 

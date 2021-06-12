@@ -133,36 +133,34 @@ public class ExtraDepositPlayer extends Player {
 //        //Lo switch non può avvenire da un deposito extra ad un altro deposito extra in quanto le risorse piazzabili in essi si escludono a vicenda
 //    }
 
-     @Override
-     public void switchLevels(int originLevel, int destLevel) {
+    @Override
+    public void switchLevels(int originLevel, int destLevel) {
 
-         //Da Warehouse...
-         if (originLevel <= 2) {
-             // ... a Warehouse
-             if (destLevel <= 2) {
-                 original.switchLevels(originLevel, destLevel);
-             }
-             // ... a ExtraDep
-             else {
-                 for (int i = Math.min(original.getDeposits().get(originLevel).length, extraDep.get(destLevel - 3).getResources().size()); i > 0 ; i--) {
-                     extraDep.get(destLevel - 3).getResources().set(i, original.getDeposits().get(originLevel)[i]);
-                     original.getBoard().getWareHouse().getLevels().get(originLevel)[i] = Resource.EMPTY;
-                 }
-             }
-         }
-         // Da ExtraDep...
-         else {
-             // ... a Warehouse
-             ArrayList<Resource> tmp = new ArrayList<>();
-             tmp.addAll(extraDep.get(originLevel - 3).getResources());
-             for (int i = 0; i < Math.min(original.getDeposits().get(destLevel).length, extraDep.get(originLevel - 3).getResources().size()); i++) {
-                 extraDep.get(originLevel - 3).getResources().set(i, original.getDeposits().get(destLevel)[i]);
-                 original.getBoard().getWareHouse().getLevels().get(destLevel)[i] = tmp.get(i);
-             }
-         }
+//Da Warehouse...
+if (originLevel <= 2) {
+ // ... a Warehouse
+ if (destLevel <= 2) {
+     original.switchLevels(originLevel, destLevel);
+ }
+ // ... a ExtraDep
+ else {
+     for (int i = Math.min(original.getDeposits().get(originLevel).length, extraDep.get(destLevel - 3).getResources().size()) - 1; i > -1 ; i--) {
+         extraDep.get(destLevel - 3).getResources().set(i, original.getDeposits().get(originLevel)[i]);
+         original.getBoard().getWareHouse().getLevels().get(originLevel)[i] = Resource.EMPTY;
      }
-
-
+ }
+}
+// Da ExtraDep...
+else {
+ // ... a Warehouse
+ ArrayList<Resource> tmp = new ArrayList<>();
+ tmp.addAll(extraDep.get(originLevel - 3).getResources());
+ for (int i = 0; i < Math.min(original.getDeposits().get(destLevel).length, extraDep.get(originLevel - 3).getResources().size()) - 1; i++) {
+     extraDep.get(originLevel - 3).getResources().set(i, original.getDeposits().get(destLevel)[i]);
+     original.getBoard().getWareHouse().getLevels().get(destLevel)[i] = tmp.get(i);
+ }
+}
+}
 
     private void add (Resource res, int level) {
         extraDep.get(level - 3).addResource(res);
@@ -173,18 +171,36 @@ public class ExtraDepositPlayer extends Player {
     }
 
     @Override
-    public boolean checkSwitch(int originLevel, int destLevel)
-    {
+    public boolean checkSwitch(int originLevel, int destLevel) {
         //The player can't remove something the extra dep level but just put it in it or can't get from a level that he does'nt have
-        if(originLevel >= 3 || destLevel > extraDep.size()+2)
-            return false;
+
         //In case there are no extradep required
-        if (originLevel <= 2 && destLevel <=2)
-            return original.checkSwitch(originLevel,destLevel);
-        else
-            if()
-
-
+        if (originLevel > 3 + extraDep.size() || destLevel > 3 + extraDep.size()) {
+            return false;
+        }
+        //From WareHouse...
+        else if (originLevel <= 2) {
+            //... to WareHouse
+            if (destLevel <= 2) {
+                return original.checkSwitch(originLevel, destLevel);
+                //... to ExtraDep;
+            } else {
+                return (getDeposits().get(originLevel)[0] == extraDep.get(destLevel - 3).getPlaceable() && extraDep.get(destLevel - 3).getResources().contains(Resource.EMPTY));
+            }
+        }
+        // From ExtraDep to WareHouse
+        else {
+            boolean isThere = false;
+            for(int i = 0; i < original.getDeposits().size(); i++){
+                if(i != destLevel){
+                    if(Arrays.stream(original.getDeposits().get(i)).anyMatch(x -> x.equals(extraDep.get(originLevel - 3).getPlaceable()))){
+                        isThere = true;
+                        break;
+                    }
+                }
+            }
+            return !isThere;
+        }
     }
 
     @Override
