@@ -189,9 +189,10 @@ public class Printer {
      *
      * @param ints  the number of slot or warehouse level.
      * @param slots true if player has to choose a slot, false if has to choose a warehouse level.
+     * @param canDiscard true if is possible to discard the resource, false if not.
      * @return the choice.
      */
-    public int printIntegers(ArrayList<Integer> ints, boolean slots) {
+    public int printIntegers(ArrayList<Integer> ints, boolean slots, boolean canDiscard) {
         Scanner inputs = new Scanner(System.in);
         String selection = "";
         int actions = 0;
@@ -207,7 +208,7 @@ public class Printer {
                     System.out.println("[" + (i + 1) + "]" + " " + "warehouse level" + " " + (ints.get(i) + 1));
                     actions = i + 1;
                 }
-                System.out.println("[" + (actions + 1) + "] " + "Discard" );
+                if (canDiscard) System.out.println("[" + (actions + 1) + "] " + "Discard" );
             }
             System.out.println("Enter selection: ");
             selection = inputs.nextLine();
