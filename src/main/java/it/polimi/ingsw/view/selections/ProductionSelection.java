@@ -48,6 +48,13 @@ public class ProductionSelection extends Selection {
                     break;
                 }
 
+                ArrayList<MappedResource> emptyToRemove = new ArrayList<>();
+                for (MappedResource mappedResource : allRes) {
+                    if (mappedResource.getResource().equals(Resource.EMPTY)) {
+                        emptyToRemove.add(mappedResource);
+                    }
+                }
+                allRes.removeAll(emptyToRemove);
                 MappedResource selected1 = data.getPrinter().printMappedRes(allRes);
                 mappedRes.add(selected1);
                 allRes.removeAll(mappedRes);
@@ -79,8 +86,7 @@ public class ProductionSelection extends Selection {
                 MappedResource selected = data.getPrinter().printMappedRes(choices);
                 mappedRes.add(selected);
             }
-            //For every resource in the selected one check if it's contiained in the all res and removes it
-            //AS IT IS NOW IT'S NOT WORKING: CAN'T REMOVE INSIDE A FOR EACH
+            //For every resource in the selected one check if it's contained in the all res and removes it
             if (!cardID.equals("BASIC")) {
                 for(MappedResource res : mappedRes) {
                     boolean removed = false;
