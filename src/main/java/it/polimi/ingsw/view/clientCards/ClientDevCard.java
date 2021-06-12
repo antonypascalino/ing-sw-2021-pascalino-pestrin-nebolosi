@@ -4,10 +4,11 @@ package it.polimi.ingsw.view.clientCards;
 import it.polimi.ingsw.model.Colors;
 import it.polimi.ingsw.model.Table.Resource;
 
+
 import java.util.ArrayList;
 
 /**
- * The type Client dev card.
+ * A Client development card is a light version of the Development Card on the server.
  */
 public class ClientDevCard {
     private ArrayList<Resource> required;
@@ -16,22 +17,19 @@ public class ClientDevCard {
     private String cardID;
     private Colors color;
     private int victoryPoints;
-    /**
-     * The Produces.
-     */
-    ArrayList<Resource> produces;
+    private ArrayList<Resource> produces;
 
 
     /**
-     * Instantiates a new Client dev card.
+     * Instantiates a new {@link ClientDevCard} with all its features.
      *
-     * @param cardID        the card id
-     * @param color         the color
-     * @param level         the level
-     * @param victoryPoints the victory points
-     * @param required      the required
-     * @param produces      the produces
-     * @param price         the price
+     * @param cardID        the {@link ClientDevCard}'s ID.
+     * @param color         the {@link ClientDevCard}'s color.
+     * @param level         the {@link ClientDevCard}'s level.
+     * @param victoryPoints the {@link ClientDevCard}'s victory points gave to a {@link it.polimi.ingsw.view.data.PlayerData} who will buy this card.
+     * @param required      the required {@link Resource} needed for producing.
+     * @param produces      the {@link Resource}s produced by this {@link ClientDevCard}.
+     * @param price         the price for buying this {@link Resource}.
      */
     public ClientDevCard(String cardID, Colors color, int level, int victoryPoints, ArrayList<Resource> required, ArrayList<Resource> produces, ArrayList<Resource> price ) {
         this.required = required;
@@ -43,11 +41,6 @@ public class ClientDevCard {
         this.produces = produces;
     }
 
-    /**
-     * Get required array list.
-     *
-     * @return the array list
-     */
     public ArrayList<Resource> getRequired(){
         return required;
     }
@@ -56,38 +49,18 @@ public class ClientDevCard {
         return produces;
     }
 
-    /**
-     * Get price array list.
-     *
-     * @return the array list
-     */
     public ArrayList<Resource> getPrice(){
         return price;
     }
 
-    /**
-     * Get level int.
-     *
-     * @return the int
-     */
     public int getLevel(){
         return level;
     }
 
-    /**
-     * Gets color.
-     *
-     * @return the color
-     */
     public Colors getColor() {
         return color;
     }
 
-    /**
-     * Gets card id.
-     *
-     * @return the card id
-     */
     public String getCardID() {
         return cardID;
     }

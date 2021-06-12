@@ -10,7 +10,8 @@ import it.polimi.ingsw.view.data.PlayerData;
 import java.util.ArrayList;
 
 /**
- * The type Start game selection.
+ * The {@link Selection} that guides the player during the initial part of the game, when he has to
+ * choose 2 leader cards and the resource he gained.
  */
 public class StartGameSelection extends Selection {
 
@@ -19,11 +20,11 @@ public class StartGameSelection extends Selection {
     private ArrayList<String> leadersToChoose;
 
     /**
-     * Instantiates a new Start game selection.
+     * Instantiates a new {@link StartGameSelection}.
      *
-     * @param choices         the choices
+     * @param choices         the number of resource on choice.
      * @param faithPoints     the faith points
-     * @param leadersToChoose the leaders to choose
+     * @param leadersToChoose the leader card to choose
      */
     public StartGameSelection(int choices, int faithPoints, ArrayList<String> leadersToChoose) {
         this.choices = choices;

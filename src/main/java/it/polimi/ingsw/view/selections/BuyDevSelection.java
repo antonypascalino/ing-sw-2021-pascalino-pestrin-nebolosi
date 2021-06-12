@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * The type Buy dev selection.
+ * The {@link Selection} that guides the player when he chose to buy a development card.
  */
 public class BuyDevSelection extends Selection {
 

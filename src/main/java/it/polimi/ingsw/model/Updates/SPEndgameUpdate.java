@@ -1,12 +1,24 @@
 package it.polimi.ingsw.model.Updates;
 
+import it.polimi.ingsw.model.Player.Player;
+import it.polimi.ingsw.controller.SinglePlayer.SinglePlayerGame;
 import it.polimi.ingsw.view.data.PlayerData;
 
+/**
+ * The {@link Update} sent when a {@link SinglePlayerGame} ends. It brings a different message based on
+ * the winner: Lorenzo or the {@link Player}.
+ */
 public class SPEndgameUpdate implements Update {
     private boolean lorenzoWins;
     private final String className;
     private int victoryPoints;
 
+    /**
+     * Instantiates a new {@link SPEndgameUpdate} setting the message and information about who won the {@link SinglePlayerGame}.
+     *
+     * @param lorenzoWins   true if Lorenze won, false if the {@link Player} did.
+     * @param victoryPoints the {@link Player}'s victory points.
+     */
     public SPEndgameUpdate(boolean lorenzoWins, int victoryPoints) {
         this.lorenzoWins = lorenzoWins;
         className = this.getClass().getName();

@@ -1,36 +1,27 @@
 package it.polimi.ingsw.model.Board;
 
 import it.polimi.ingsw.model.Table.Resource;
-import it.polimi.ingsw.model.card.LeaderCard;
+import it.polimi.ingsw.model.Table.Market;
 import it.polimi.ingsw.model.Player.Player;
-//import it.polimi.ingsw.model.ResourceNotAvailable;
-import it.polimi.ingsw.model.card.ExtraDeposit;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- * Contains all the resources gained by the {@link Player} from the Market.
- * Together with the {@link StrongBox} is the only place where
- * the Player keeps their {@link Resource}s.
+ * Contains the {@link Resource}s gained by the {@link Player} from the {@link Market}.
  */
 public class WareHouse {
     private Resource level1[];
     private Resource level2[];
     private Resource level3[];
-    /**
-     * The various sections of the {@link WareHouse} where the {@link Resource}s from Market
-     * can be put. Them can be expanded from {@link ExtraDeposit} card,
-     * one of the {@link LeaderCard}s.
-     */
-    ArrayList<Resource[]> levels; //Contains all the possible levels, including the leader cards ones.
+    private ArrayList<Resource[]> levels; //Contains the 3 levels of the Warehouse.
 
 
     /**
-     * Instantiates a new WareHouse (with only 3 levels)
+     * Instantiates a new WareHouse (with only 3 levels) and fills them with EMPTY {@link Resource}s.
      */
     public WareHouse() {
-        levels = new ArrayList<Resource[]>();
+        levels = new ArrayList<>();
         level1 = new Resource[1];
         level2 = new Resource[2];
         level3 = new Resource[3];
@@ -46,9 +37,9 @@ public class WareHouse {
     }
 
     /**
-     * Get all the Levels currently in the {@link WareHouse};
+     * Get all the levels in the {@link WareHouse}.
      *
-     * @return an ArrayList with the {@link WareHouse}'s levels
+     * @return an ArrayList with the {@link WareHouse}'s levels.
      */
     public ArrayList<Resource[]> getLevels() {
         return levels;
@@ -57,11 +48,10 @@ public class WareHouse {
     /**
      * Add a single {@link Resource} in the chosen level.
      * <p>
-     * This action is safe-guaranteed by {@link #checkSpace(int, Resource)} previously called.
      *
-     * @param level the level in which it wants add the the {@link Resource}.
+     * @param level the level in the {@link WareHouse} in which it wants to add the the {@link Resource}.
      * @param res the {@link Resource} to add.
-     * @return true if
+     * @return true if the {@link Resource} was actually added, false otherwise.
      */
     public boolean addResource(int level, Resource res) {
         if(checkSpace(level, res)) {
@@ -100,12 +90,11 @@ public class WareHouse {
      *
      * @param res the {@link Resource} to remove.
      * @return true if the remove was successful, false if somehow there's an error.
-     //* @throws ResourceNotAvailable if the {@link Resource} is not available.
      */
-    public Boolean removeResource(Resource res) {
-        if (!checkAvailability(res))
+    public boolean removeResource(Resource res) {
+        if (!checkAvailability(res)) {
             return false;
-
+        }
         Resource[] currentLevel;
         for (Resource[] level : levels) {
             currentLevel = level;
@@ -127,18 +116,6 @@ public class WareHouse {
     public boolean checkAvailability(Resource res) {
         return this.getResources().contains(res);
     }
-
-    /**
-     * Check if a list of {@link Resource}s is available in the {@link WareHouse}.
-     *
-     * @param resources the ArrayList with all the {@link Resource}s to check.
-     * @return true if all the {@link Resource}s in the ArrayList are available in the {@link WareHouse}, false if even
-     * a single {@link Resource} misses.
-     */
-    public boolean checkAvailability(ArrayList<Resource> resources) {
-        return this.getResources().containsAll(resources);
-    }
-
 
     /**
      * Check if the single {@link Resource} can be placed in the {@link WareHouse}'s level according to its rules.
@@ -167,11 +144,15 @@ public class WareHouse {
         return true;
     }
 
-    public void switchLevels(int originLevel, int destLevel ) {
-        int counterOr = 0;
-        int counterDes = 0;
 
-        ArrayList<Resource> helper = new ArrayList<Resource>();
+    /**
+     * Move the {@link Resource}s from a level to an other in the {@link WareHouse}.
+     *
+     * @param originLevel the level from which the movement starts.
+     * @param destLevel   the level from which the movement ends.
+     */
+    public void switchLevels(int originLevel, int destLevel ) {
+        ArrayList<Resource> helper = new ArrayList<>();
         helper.addAll(Arrays.asList(levels.get(destLevel)));
         Arrays.fill(levels.get(destLevel), Resource.EMPTY);
         for (int j = 0; j < levels.get(originLevel).length; j++) {
@@ -187,6 +168,12 @@ public class WareHouse {
         }
     }
 
+
+    /**
+     * Gets the {@link WareHouse}'s levels adding them in one ArrayList.
+     *
+     * @return the a copy of the ArrayList with the {@link WareHouse}'s levels.
+     */
     public ArrayList<Resource[]> getArrayListWareHouse() {
         ArrayList<Resource[]> wareHouse = new ArrayList<Resource[]>();
         wareHouse.add(new Resource[1]);

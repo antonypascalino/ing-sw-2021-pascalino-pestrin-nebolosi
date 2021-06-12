@@ -2,6 +2,7 @@ package it.polimi.ingsw.Request;
 
 import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.Request.MarketResource;
+import it.polimi.ingsw.model.Table.Market;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Table.Resource;
@@ -10,9 +11,13 @@ import it.polimi.ingsw.model.Updates.MarketUpdate;
 import it.polimi.ingsw.model.Updates.PlayerFP;
 import it.polimi.ingsw.model.Updates.PlayerVP;
 import it.polimi.ingsw.model.Updates.Update;
+import it.polimi.ingsw.model.card.DevCard;
 
 import java.util.ArrayList;
 
+/**
+ * The {@link Request} sent by a player when he wants to take {@link Resource} from the {@link Market}.
+ */
 public class MarketRequest implements Request {
     private String playerID;
     private int gameID;
@@ -23,6 +28,17 @@ public class MarketRequest implements Request {
     private int myFPSteps;
     private int discardedSteps;
 
+    /**
+     * Instantiates a new {@link MarketRequest} setting the information for handle the specific actions:
+     * the {@link Game}'s ID, the player's nickname, all the {@link MarketResource} and the information about
+     * the row/column take from market.
+     *
+     * @param marketDimension the market dimension
+     * @param number          the index of the market dimension.
+     * @param gameID          the {@link Game}'s ID.
+     * @param playerID        the {@link Player}'s ID.
+     * @param marketResources the market resources
+     */
     public MarketRequest(MarketDimension marketDimension, int number, int gameID, String playerID, ArrayList<MarketResource> marketResources) {
         this.marketResources = marketResources;
         this.playerID = playerID;
@@ -35,7 +51,6 @@ public class MarketRequest implements Request {
         discardedSteps = 0;
     }
 
-    //Non controlla che il player abbia effettivamente spazio per tutte le risorse
     @Override
     public boolean canBePlayed(Player player) {
         ArrayList<Resource> fromMarket = new ArrayList<Resource>();
@@ -51,7 +66,7 @@ public class MarketRequest implements Request {
             return false;
         }
         //check if the indicated levels are compatible with the player's level in his WareHouse
-        //Passa dal player perchè potrebbero essere livelli extra
+        //Passa dal player perchè potrebbero esserci livelli extra
         for (MarketResource marketRes : marketResources) {
             if (marketRes.getLevel() >= 0) {
                 if (!player.checkLevel(marketRes.getLevel())) {
@@ -113,15 +128,30 @@ public class MarketRequest implements Request {
         return requiredRes;
     }
 
+    /**
+     * Gets my fp steps.
+     *
+     * @return the my fp steps
+     */
     public int getMyFPSteps() {
         return myFPSteps;
     }
 
+    /**
+     * Gets discarded steps.
+     *
+     * @return the discarded steps
+     */
     public int getDiscardedSteps() {
         return discardedSteps;
     }
 
 
+    /**
+     * Requested res array list.
+     *
+     * @return the array list
+     */
     public ArrayList<Resource> requestedRes(){
         ArrayList<Resource> requestedRes = new ArrayList<Resource>();
         for(MarketResource marketRes : marketResources) {

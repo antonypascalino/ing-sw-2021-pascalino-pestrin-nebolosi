@@ -1,74 +1,63 @@
 package it.polimi.ingsw.model.Board;
 
 import it.polimi.ingsw.model.Player.Player;
+import it.polimi.ingsw.controller.SinglePlayer.SinglePlayerGame;
+import it.polimi.ingsw.controller.Game;
 
 /**
- * The Faith Path of one single {@link Player}: every player has his own Faith Path
+ * The Faith Path of one single {@link Player}: every player has his own Faith Path.
  */
-public class FaithPath
-{
+public class FaithPath {
     private int advancement;
-
     private Board board;
-
     private final int pope1;
     private final int pope2;
     private final int pope3;
 
-    private boolean tile1;
-    private boolean tile2;
-    private boolean tile3;
-
     /**
-     * Instantiates a new Faith path setting the advancement attribute to 0.
+     * Instantiates a new {@link FaithPath} setting the advancement attribute to 0,
+     * the positions of the pope spaces and setting the reference to the  {@link Player}'s {@link Board}
+     *
+     * @param board the board
      */
-    public FaithPath(Board board)
-    {
+    public FaithPath(Board board) {
         this.board = board;
         advancement = 0;
         pope1 = 8;
         pope2 = 16;
         pope3 = 24;
-        tile1 = true;
-        tile2 = true;
-        tile3 = true;
     }
 
-    public FaithPath()
-    {
+    /**
+     * Instantiates a new {@link FaithPath} setting the advancement attribute to 0,
+     * the positions of the pope spaces.
+     * <p>
+     * This constructor is used during a {@link SinglePlayerGame} to instantiate Lorenzo's {@link FaithPath} who doesn't
+     * own anu board.
+     */
+    public FaithPath() {
         advancement = 0;
         pope1 = 8;
         pope2 = 16;
         pope3 = 24;
-        tile1 = true;
-        tile2 = true;
-        tile3 = true;
     }
 
     /**
-     * Receive an <em>int</em> and move the move the player on his {@link FaithPath} of <em>int</em> steps.
+     * Receive an <em>int</em> and move the {@link Player} on his {@link FaithPath} of <em>int</em> steps.
      *
      * @param steps the number of steps the {@link Player} have to do on his Faith Path.
      */
-    public void moveForward(int steps)
-    {
-        if(steps != 0)
-        {
+    public void moveForward(int steps) {
+        if (steps != 0) {
             advancement = advancement + steps;
         }
     }
 
     /**
-     * Check if player's advancement reaches some <em>checkpoints</em> and gives him some Victory Points.
+     * Check if player's advancement reaches some <em>checkpoints</em> and gives him or not some Victory Points.
      * <p>
-     * This method check, after every single move of the player on the {@link FaithPath}, if the player reached any <em>checkpoint</em>.
-     * If yes, the method call the {@link it.polimi.ingsw.model.Player.Player#addVictoryPoints(int)} method passing the respective VictoryPoints.
-     *
-    // * @param a the current advancement of the {@link Player} on his {@link FaithPath}.
+     * This method is called by the {@link Game}, after every single move of the player on his {@link FaithPath}:
      */
-    //could be improved
-    //if advancement % 3 == 0, addVictoryPoints is called. The argument is the amount of VP written on
-    //faith path
     public void checkVictoryPoints()
     {
         if(advancement >= 3 && advancement < 6)
@@ -92,8 +81,8 @@ public class FaithPath
     /**
      * Check if the current {@link Player}'s advancement has reached or passed a Pope Space
      *
-     * @param toCheck the current advancement of the {@link Player}
-     * @return true if the player has reached or passed a Pope Space, false otherwise
+     * @param toCheck the Pope Space to control if {@link Player} has reached.
+     * @return true if the player has reached or passed the Pope Space, false otherwise.
      */
     //A Pope Space is located every 8 steps
     public boolean checkPopeSpace(int toCheck) {
@@ -109,14 +98,10 @@ public class FaithPath
 
 
     /**
-     * When a {@link Player} has reached or passed a Pope Space, this method is called by {@link #checkPopeSpace(int)}.
-     * Check if the current player's advancements is in the corresponding Vatican Section.
-     * <p>
-     * If the tile is true and the advancement is more than the threshold, it means it's the first time
-     * a player passes that particular pope space. If another player (that was behind) passes that
-     * same pope space later in the game, checkVaticanSection is still called but the tile remains false
+     * When a {@link Player} has reached or passed a Pope Space, this method is called by the {@link Game} on each player in it.
+     * Check if the relative player's advancements is in the corresponding Vatican Section.
      *
-     * @param popeCalled the Pope Space just reached;
+     * @param popeCalled the Pope Space just reached by someone;
      * @return true if the player advancement is in the Vatican Section of the corresponding Pope Space just reached, false otherwise
      */
     public boolean checkVaticanSection(int popeCalled)

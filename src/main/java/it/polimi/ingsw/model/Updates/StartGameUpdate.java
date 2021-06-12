@@ -1,13 +1,24 @@
 package it.polimi.ingsw.model.Updates;
 
+import it.polimi.ingsw.model.Player.Player;
+import it.polimi.ingsw.model.card.DevCard;
 import it.polimi.ingsw.view.data.PlayerData;
+import it.polimi.ingsw.controller.Game;
 
+/**
+ * The {@link Update} sent when a {@link Game} starts to announce its start.
+ */
 public class StartGameUpdate implements Update {
 
     private String playerID;
     private final String className;
 
 
+    /**
+     * Instantiates a new {@link StartGameUpdate} setting the {@link Player}'s nickname who starts.
+     *
+     * @param playerID the {@link Player}'s ID who starts.
+     */
     public StartGameUpdate(String playerID) {
 
         className = this.getClass().getName();

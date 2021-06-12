@@ -1,13 +1,16 @@
 package it.polimi.ingsw.model.Table;
 
 import it.polimi.ingsw.model.Costants;
+import it.polimi.ingsw.controller.Game;
+import it.polimi.ingsw.model.Player.Player;
+import it.polimi.ingsw.model.card.DevCard;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 
 /**
- * The type Market.
+ * The market of the {@link Game} containing all the {@link Resource} {@link Player}s can obtain without using {@link DevCard}
  */
 public class Market {
 
@@ -16,13 +19,11 @@ public class Market {
 
     /**
      * Instantiates a new Market.
-     * This method receives 13 resources and then puts 12 of them in a matrix
+     * This method receives 13 {@link Resource}s and then puts 12 of them in a matrix
      * in random order whilst keeping one outside as a "free one".
-     *
+     * Those resources are going to be in the market matrix for this game.
      * @param gameRes 13 resources as an array list.
-     *                Those resources are going to be in the market matrix for this game.
      */
-
     public Market(ArrayList<Resource> gameRes)
     {
         currentSituation = new Resource[Costants.MARKETROWS][Costants.MARKETCOLS];
@@ -55,12 +56,11 @@ public class Market {
     }
 
     /**
-     * Selects all the resources from a column, shifts it and inserts the free resource
+     * Selects all the {@link Resource}s from a column, shifts it and inserts the free one.
      *
-     * @param col a column of the market selected by the player
-     * @return the array list of resources on the selected column
+     * @param col the column of the market selected by the {@link Player}.
+     * @return the array list of {@link Resource}s on the selected column.
      */
-
     public ArrayList<Resource> getColumn(int col)
     {
         ArrayList<Resource> result = new ArrayList<Resource>();
@@ -82,10 +82,10 @@ public class Market {
     }
 
     /**
-     * Only shows the resources from a column without modifying the market
+     * Only gets the {@link Resource}s from a column without modifying the {@link Market}.
      *
-     * @param col a column of the market it wants to see
-     * @return the array list of resources on the selected column
+     * @param col the column of the {@link Market} it wants to see.
+     * @return the array list of {@link Resource}s on the selected column.
      */
     public ArrayList<Resource> seeColumn(int col) {
         ArrayList<Resource> result = new ArrayList<Resource>();
@@ -99,10 +99,10 @@ public class Market {
     }
 
     /**
-     * Selects all the resources from a row, shifts it and inserts the free resource
+     * Selects all the {@link Resource}s from a row, shifts it and inserts the free one.
      *
-     * @param row a row of the market selected by the player
-     * @return the array list of resources on the selected row
+     * @param row the row of the market selected by the {@link Player}.
+     * @return the array list of {@link Resource}s on the selected column.
      */
     public ArrayList<Resource> getRow(int row)
     {
@@ -126,10 +126,10 @@ public class Market {
     }
 
     /**
-     * Only shows the resources from a row without modifying the market
+     * Only shows the {@link Resource}s from a row without modifying the {@link Market}.
      *
-     * @param row a row of the market it wants to see
-     * @return the array list of resources on the selected row
+     * @param row a row of the {@link Market} it wants to see.
+     * @return the array list of {@link Resource}s on the selected row.
      */
     public ArrayList<Resource> seeRow(int row) {
         ArrayList<Resource> result = new ArrayList<Resource>();
@@ -143,22 +143,20 @@ public class Market {
     }
 
     /**
-     * Gets free resource
+     * Gets free one {@link Resource} in the {@link Market}.
      *
-     * @return the free resource
+     * @return the free one {@link Resource}.
      */
-
     public Resource getFreeOne()
     {
         return freeOne;
     }
 
     /**
-     * Gets the Market matrix
+     * Gets the {@link Resource} matrix of the {@link Resource}s.
      *
-     * @return a matrix representing the current market situation
+     * @return a matrix representing the current market situation.
      */
-
     public Resource[][] getMarket()
     {
         return currentSituation.clone();

@@ -6,9 +6,14 @@ import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Updates.DiscardLeaderUpdate;
 import it.polimi.ingsw.model.Updates.PlayerVP;
 import it.polimi.ingsw.model.Updates.Update;
+import it.polimi.ingsw.model.card.DevCard;
+import it.polimi.ingsw.model.card.LeaderCard;
 
 import java.util.ArrayList;
 
+/**
+ * The {@link Request} sent by a player when he wants to discard a {@link LeaderCard}.
+ */
 public class DiscardLeaderRequest implements Request{
 
     private final String className;
@@ -16,6 +21,14 @@ public class DiscardLeaderRequest implements Request{
     private String playerID;
     private int gameID;
 
+    /**
+     * Instantiates a new {@link DiscardLeaderRequest} setting the information for handle the specific actions:
+     * the {@link Game}'s ID, the player's nickname, the {@link LeaderCard}'ID the player wants to discard.
+     *
+     * @param gameID   the game id
+     * @param playerID the player id
+     * @param cardID   the card id
+     */
     public DiscardLeaderRequest(int gameID, String playerID, String cardID) {
         this.gameID = gameID;
         this.playerID = playerID;

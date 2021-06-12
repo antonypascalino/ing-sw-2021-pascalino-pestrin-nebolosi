@@ -1,12 +1,22 @@
 package it.polimi.ingsw.model.Updates;
 
+import it.polimi.ingsw.model.Player.Player;
+import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.view.data.PlayerData;
 
-public class lastTurnUpdate implements Update {
+/**
+ * The {@link Update} sent after that a {@link Player} reached the conditions to make start the last turn of the {@link Game}.
+ */
+public class LastTurnUpdate implements Update {
     private String lastTurnAnnouncement;
     private String className;
 
-    public lastTurnUpdate(String lastTurnAnnouncement) {
+    /**
+     * Instantiates a new {@link LastTurnUpdate} setting the message to show.
+     *
+     * @param lastTurnAnnouncement the last turn announcement
+     */
+    public LastTurnUpdate(String lastTurnAnnouncement) {
         this.lastTurnAnnouncement = lastTurnAnnouncement;
         this.className = this.getClass().getName();
     }

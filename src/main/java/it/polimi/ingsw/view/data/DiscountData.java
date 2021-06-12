@@ -1,22 +1,25 @@
 package it.polimi.ingsw.view.data;
 
 import it.polimi.ingsw.Request.MappedResource;
-import it.polimi.ingsw.client.Client;
-import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Table.Resource;
-import it.polimi.ingsw.view.clientCards.ClientDevCard;
-import it.polimi.ingsw.view.Printer;
+import it.polimi.ingsw.view.clientCards.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
 /**
- * The type Discount data.
+ * It's the player with the {@link ClientDiscount} {@link ClientLeaderCard} (it extends {@link PlayerData}).
  */
 public class DiscountData extends PlayerData{
     private ArrayList<Resource> discount;
 
 
+    /**
+     * Instantiates a new {@link DiscountData}.
+     *
+     * @param discount     the discount
+     * @param originalData the original data
+     */
     public DiscountData(ArrayList<Resource> discount, PlayerData originalData) {
         this.discount = new ArrayList<>();
         if (originalData instanceof DiscountData) {
@@ -77,6 +80,11 @@ public class DiscountData extends PlayerData{
         return available;
     }
 
+    /**
+     * Gets discount.
+     *
+     * @return the discount
+     */
     public ArrayList<Resource> getDiscount() {
         return discount;
     }

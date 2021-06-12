@@ -1,12 +1,17 @@
 package it.polimi.ingsw.model.Updates;
 
 import it.polimi.ingsw.controller.TurnState;
+import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Table.Resource;
+import it.polimi.ingsw.model.Table.Market;
 import it.polimi.ingsw.view.data.OtherPlayerData;
 import it.polimi.ingsw.view.data.PlayerData;
 
 import java.util.ArrayList;
 
+/**
+ * The {@link Update} sent after that a {@link Player} takes {@link Resource}s from {@link Market}.
+ */
 public class MarketUpdate implements Update {
     private ArrayList<TurnState> turnStates;
     private ArrayList<Resource[]> wareHouse;
@@ -17,7 +22,18 @@ public class MarketUpdate implements Update {
     private final String className;
 
 
-
+    /**
+     * Instantiates a new {@link MarketUpdate} setting everything can change with this actions: the {@link TurnState} list
+     * {@link Player}'s warehouse, every players' victory points, every players' faith points and the disposal of the {@link Resource}
+     * in the {@link Market}.
+     *
+     * @param playerID   the {@link Player}'s ID who went to the {@link Market}.
+     * @param turnStates the turn states list.
+     * @param wareHouse  the {@link Player}'s warehouse.
+     * @param playersVP  the {@link PlayerVP}s.
+     * @param playersFP  the {@link PlayerFP}s.
+     * @param market     the {@link Market} disposal.
+     */
     public MarketUpdate(String playerID, ArrayList<TurnState> turnStates, ArrayList<Resource[]> wareHouse, ArrayList<PlayerVP> playersVP, ArrayList<PlayerFP> playersFP, Resource[][] market) {
         this.turnStates = turnStates;
         this.wareHouse = wareHouse;

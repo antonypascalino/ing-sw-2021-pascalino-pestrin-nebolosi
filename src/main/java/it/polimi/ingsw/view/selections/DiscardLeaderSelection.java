@@ -7,7 +7,7 @@ import it.polimi.ingsw.view.data.PlayerData;
 import java.util.ArrayList;
 
 /**
- * The type Discard leader selection.
+ * The {@link Selection} that guides the player when he chose to discard a leader card.
  */
 public class DiscardLeaderSelection extends Selection {
 

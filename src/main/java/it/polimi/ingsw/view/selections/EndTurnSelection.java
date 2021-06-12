@@ -4,7 +4,7 @@ import it.polimi.ingsw.Request.EndTurnRequest;
 import it.polimi.ingsw.view.data.PlayerData;
 
 /**
- * The type End turn selection.
+ * The {@link Selection} that guides the player when he chose to buy a development card.
  */
 public class EndTurnSelection extends Selection {
 

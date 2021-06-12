@@ -2,35 +2,25 @@ package it.polimi.ingsw.model.Table;
 
 import it.polimi.ingsw.controller.DefaultCreator;
 import it.polimi.ingsw.model.card.DevCard;
+import it.polimi.ingsw.controller.Game;
+import it.polimi.ingsw.model.Player.Player;
 
 import java.util.ArrayList;
 
 /**
- * The type Table.
+ * The table with all the {@link DevCard}s and the {@link Market} of a {@link Game}.
  */
 public class Table {
     private DevCard[][][] avaibleDev;
-    /**
-     * The Stack which contains a number of cards in each position.
-     */
-    int stack[][];
-    /**
-     * Market reference.
-     */
+    private int stack[][];
     public Market market;
 
     /**
-     * Instantiates a new Table.
-     * This method sorts the dev cards in the array list by level and colour.
-     *
-     * @param gameCards array list of dev cards
-     */
-/*
-
+     * Instantiates a new {@link Table} sorting the {@link DevCard}s and the {@link Market}'s {@link Resource}s.
+     * @param gameCards all the {@link DevCard}s int the game.
      */
     public Table(ArrayList<DevCard> gameCards)
     {
-        //MESCOLARE LE CARTE PRIMA DI PASSARLE QUA
         market = new Market(DefaultCreator.getGameRes());
         int row, col;
         stack=new int[4][3]; //
@@ -47,38 +37,33 @@ public class Table {
     }
 
     /**
-     * Get top dev card [ ] [ ].
+     * Gets all the front {@link DevCard}s in the {@link Table}.
      *
-     * @return the dev card [ ] [ ]
+     * @return a matrix with the {@link DevCard}.
      */
-//Gives all the top card for each stack, that one in the 0 index
-    public DevCard[][] getTop()
-    {
+    public DevCard[][] getTop() {
         DevCard[][] result = new DevCard[4][3];
-        for(int r=0; r<4; r++)
-        {
-            for(int c=0; c<3; c++)
-            {
+        for (int r = 0; r < 4; r++) {
+            for (int c = 0; c < 3; c++) {
                 //If there are no cards in a stack return a null
-                if(stack[r][c]==0)
-                    result[r][c]=null;
+                if (stack[r][c] == 0)
+                    result[r][c] = null;
                 else
-                    result[r][c]=avaibleDev[r][c][0];
+                    result[r][c] = avaibleDev[r][c][0];
             }
         }
-
         return result;
     }
 
 
     /**
-     * Called when the player needs to buy a devCard knowing color and level parameters
+     * Called when a {@link Player} needs to buy a {@link DevCard} knowing color and level parameters:
+     * removes it from the table updating the stack.
      *
-     * @param color the color
-     * @param level the level
-     * @return the dev card and then it removes it from the table updating the stack
+     * @param color the color of the {@link DevCard}.
+     * @param level the level of the {@link DevCard}.
+     * @return the bought {@link DevCard}.
      */
-
     public DevCard buyDev(String color, int level)
     {
         DevCard result;
@@ -102,30 +87,38 @@ public class Table {
     }
 
 
-    /*
-    Used for determating the cordinates on the map of a card based on his color and level
-    @result an array where the first position is the row and the second is the columns
+    /**
+     * Used to determining the coordinates on the {@link Table} of a {@link DevCard} based on his color and level.
+     *
+     * @param color the {@link DevCard}'s color.
+     * @param level the {@link DevCard}'s level.
+     * @return an array where the first position is the row and the second is the columns.
      */
-    public static int[] getCoordinate(String color, int level)
-    {
-        int[] result=new int[2];
+    public static int[] getCoordinate(String color, int level) {
+        int[] result = new int[2];
         //Select the correct row
-        if(color.equals("GREEN"))
-            result[0]=0;
-        if(color.equals("BLUE"))
-            result[0]=1;
-        if(color.equals("YELLOW"))
-            result[0]=2;
-        if(color.equals("PURPLE"))
-            result[0]=3;
-
+        if (color.equals("GREEN"))
+            result[0] = 0;
+        if (color.equals("BLUE"))
+            result[0] = 1;
+        if (color.equals("YELLOW"))
+            result[0] = 2;
+        if (color.equals("PURPLE"))
+            result[0] = 3;
 
         //Select the correct colum
-        result[1]=level-1;
+        result[1] = level - 1;
 
         return result;
     }
 
+    /**
+     * Called when it needs to see which is the front {@link DevCard} of a specific color and level.
+     *
+     * @param color the {@link DevCard}'s color.
+     * @param level the {@link DevCard}'s level.
+     * @return the {@link DevCard}.
+     */
     public DevCard seeDev(String color, int level) {
         DevCard result;
         int[] coordinates = getCoordinate(color, level);
@@ -140,6 +133,12 @@ public class Table {
         return result;
     }
 
+    /**
+     * From the front {@link DevCard}s on the Table gets the one having the specified ID.
+     *
+     * @param cardID the ID of the {@link DevCard} it wants to get.
+     * @return the {@link DevCard}.
+     */
     public DevCard getDevFromID(String cardID) {
         DevCard[][] topCard = this.getTop();
         for (int row = 0; row < 4; row++) {
@@ -150,8 +149,6 @@ public class Table {
             }
         }
         return null;
-        //Lancia eccezione: non c'è questa carta nel mercato;
-
     }
 
     @Override
@@ -169,6 +166,11 @@ public class Table {
         return result;
     }
 
+    /**
+     * Gets an ArrayList containing the IDs of all the front {@link DevCard} on the table.
+     *
+     * @return the ArrayList with the IDs.
+     */
     public ArrayList<String> getFrontIDs() {
         ArrayList<String> result = new ArrayList<String>();
         for(int r=0; r<4; r++)
@@ -182,10 +184,11 @@ public class Table {
         return result;
     }
 
-    public DevCard[][][] getAvaibleDev() {
-        return avaibleDev;
-    }
-
+    /**
+     * Get a matrix having the number of {@link DevCard} in each position.
+     *
+     * @return the matrix.
+     */
     public int[][] getStack() {
         return stack;
     }

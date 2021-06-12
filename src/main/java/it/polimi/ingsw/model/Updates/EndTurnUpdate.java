@@ -1,19 +1,27 @@
 package it.polimi.ingsw.model.Updates;
 
 import it.polimi.ingsw.controller.TurnState;
+import it.polimi.ingsw.model.Player.Player;
+import it.polimi.ingsw.model.card.DevCard;
 import it.polimi.ingsw.view.data.PlayerData;
 
 import java.util.ArrayList;
 
+/**
+ * The {@link Update} sent after that a {@link Player} ends his turn.
+ */
 public class EndTurnUpdate implements Update{
-    private ArrayList<TurnState> turnStates;
     private String nextPlayer;
     private final String className;
 
 
-    public EndTurnUpdate(ArrayList<TurnState> turnStates, String nextPlayer) {
+    /**
+     * Instantiates a new {@link EndTurnUpdate} setting next {@link Player}'s nickname.
+     *
+     * @param nextPlayer the next player
+     */
+    public EndTurnUpdate(String nextPlayer) {
         this.nextPlayer = nextPlayer;
-        this.turnStates = turnStates;
         className = this.getClass().getName();
     }
 

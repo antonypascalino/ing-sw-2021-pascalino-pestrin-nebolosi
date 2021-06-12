@@ -7,7 +7,7 @@ import it.polimi.ingsw.view.data.PlayerData;
 import java.util.ArrayList;
 
 /**
- * The type Play leader selection.
+ * The {@link Selection} that guides the player when he chose to play a leader card.
  */
 public class PlayLeaderSelection extends Selection{
 

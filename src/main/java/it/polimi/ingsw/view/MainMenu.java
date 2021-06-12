@@ -11,7 +11,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * The type Main menu.
+ * Every player has his own reference to an object of this type. It, at the beginning of every player's turn, show him
+ * the possible actions he can do, the player chooses one of them and, once the player complete the action, the
+ * menu reappears, showing other actions based on the previous actions done by the player. The cycle goes on until
+ * the player wants to end his turn.
  */
 public class MainMenu {
 
@@ -21,9 +24,9 @@ public class MainMenu {
     private LineClient connection;
 
     /**
-     * Instantiates a new Main menu.
+     * Instantiates a new {@link MainMenu}.
      *
-     * @param data the data
+     * @param data the player owner of the new object.
      */
     public MainMenu(PlayerData data) {
         this.printer = data.getPrinter();
@@ -31,13 +34,13 @@ public class MainMenu {
         this.data = data;
     }
 
-
-    public void setData(PlayerData newData)
-    {
+    public void setData(PlayerData newData) {
         this.data = newData;
     }
+
     /**
-     * Menu maker.
+     * Show the player all the action he can do, based on the action already done or not by him. This is done checking the
+     * {@link TurnState} list received by turnStateFilter() method in the {@link PlayerData}.
      */
     public void menuMaker() {
         TurnState turnState;
@@ -47,43 +50,50 @@ public class MainMenu {
         selectionHandler(turnState, data);
     }
 
-    private void selectionHandler(TurnState state, PlayerData data){
+    /**
+     * Once the player chose the action he wants to do, this method create a new {@link Selection} based on the
+     * player's choice.
+     *
+     * @param state the action chose by the player.
+     * @param data the reference to the {@link PlayerData}.
+     */
+    private void selectionHandler(TurnState state, PlayerData data) {
         Selection selection;
 
-        switch(state){
-           case PRODUCE:
-               selection = new ProductionSelection();
-               selection.handleSelection(data);
-               break;
-           case BUY_DEV_CARD:
-               selection = new BuyDevSelection();
-               selection.handleSelection(data);
-               break;
-           case GET_FROM_MARKET:
-               selection = new MarketSelection();
-               selection.handleSelection(data);
-               break;
-           case MOVE_RESOURCE:
-               selection = new MoveSelection();
-               selection.handleSelection(data);
-               break;
-           case PLAY_LEADER_CARD:
-               selection = new PlayLeaderSelection();
-               selection.handleSelection(data);
-               break;
-           case DISCARD_LEADER_CARD:
-               selection = new DiscardLeaderSelection();
-               selection.handleSelection(data);
-               break;
-           case CHECK_STATS:
-               selection = new CheckStatsSelection();
-               selection.handleSelection(data);
-               break;
-           case END_TURN:
+        switch (state) {
+            case PRODUCE:
+                selection = new ProductionSelection();
+                selection.handleSelection(data);
+                break;
+            case BUY_DEV_CARD:
+                selection = new BuyDevSelection();
+                selection.handleSelection(data);
+                break;
+            case GET_FROM_MARKET:
+                selection = new MarketSelection();
+                selection.handleSelection(data);
+                break;
+            case MOVE_RESOURCE:
+                selection = new MoveSelection();
+                selection.handleSelection(data);
+                break;
+            case PLAY_LEADER_CARD:
+                selection = new PlayLeaderSelection();
+                selection.handleSelection(data);
+                break;
+            case DISCARD_LEADER_CARD:
+                selection = new DiscardLeaderSelection();
+                selection.handleSelection(data);
+                break;
+            case CHECK_STATS:
+                selection = new CheckStatsSelection();
+                selection.handleSelection(data);
+                break;
+            case END_TURN:
                 selection = new EndTurnSelection();
                 selection.handleSelection(data);
                 break;
-       }
+        }
     }
 }
 

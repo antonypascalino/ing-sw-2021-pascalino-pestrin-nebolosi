@@ -7,22 +7,15 @@ import it.polimi.ingsw.model.card.*;
 import java.util.ArrayList;
 
 /**
- * The type Client default creator.
+ * Class that can create all the Client cards and give them to the players when required.
  */
 public class ClientDefaultCreator {
 
-
     /**
-     Class used if the player picks to use the default settings for leader and developer cards
-     */
-
-
-    /**
-     * Static method used for generate an array List containing all the defaults
-     * DevCard in the basic game settings
+     * Static method used for generate an ArrayList containing all the defaults
+     * {@link ClientDevCard} in the basic game settings.
      *
-     * @return the array list
-     * @result An arrayList with the new cards
+     * @return the ArrayList.
      */
     public static ArrayList<ClientDevCard> produceClientDevCard() {
 
@@ -934,11 +927,10 @@ public class ClientDefaultCreator {
     }
 
     /**
-     * Static method used for generate an array List containing all the defaults
-     * ClientLeaderCards in the basic game settings
+     * Static method used for generate an ArrayList containing all the defaults
+     * {@link ClientLeaderCard  in the basic game settings.
      *
-     * @return the array list
-     * @result An arrayList with the new cards
+     * @return the ArrayList.
      */
     public static ArrayList<ClientLeaderCard> produceClientLeaderCard() {
         ArrayList<ClientLeaderCard> result = new ArrayList<ClientLeaderCard>();
@@ -1009,52 +1001,6 @@ public class ClientDefaultCreator {
         return result;
     }
 
-    /**
-     * Produce basic prod array list.
-     *
-     * @return the array list
-     */
-    public static ArrayList<BasicProduction> produceBasicProd() {
-        ArrayList<BasicProduction> result = new ArrayList<BasicProduction>();
-        ArrayList<Resource> requires = new ArrayList<Resource>();
-        ArrayList<Resource> produces = new ArrayList<Resource>();
-        BasicProduction tmp;
-
-        requires.add(Resource.CHOICE);
-        produces.add(Resource.CHOICE);
-        produces.add(Resource.CHOICE);
-
-        tmp = new BasicProduction("basicProd", Resource.cloneList(requires), Resource.cloneList(produces));
-        result.add(tmp);
-
-        requires.clear();
-        produces.clear();
-
-        return result;
-
-    }
-
-    /**
-     * Gets game res.
-     *
-     * @return the game res
-     */
-    public static ArrayList<Resource> getGameRes() {
-        ArrayList<Resource> result = new ArrayList<Resource>();
-        for (int i = 0; i < 2; i++)
-            result.add(Resource.GOLD);
-        for (int i = 0; i < 2; i++)
-            result.add(Resource.SERVANT);
-        for (int i = 0; i < 2; i++)
-            result.add(Resource.EMPTY);
-        for (int i = 0; i < 2; i++)
-            result.add(Resource.FAITH);
-        for (int i = 0; i < 2; i++)
-            result.add(Resource.STONE);
-        for (int i = 0; i < 3; i++)
-            result.add(Resource.SHIELD);
-        return result;
-    }
 }
 
 

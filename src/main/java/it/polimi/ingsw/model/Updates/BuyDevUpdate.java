@@ -4,15 +4,21 @@ import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Table.Resource;
 import it.polimi.ingsw.view.data.OtherPlayerData;
 import it.polimi.ingsw.view.data.PlayerData;
+import it.polimi.ingsw.model.card.DevCard;
+import it.polimi.ingsw.model.Board.WareHouse;
+import it.polimi.ingsw.model.Board.StrongBox;
+import it.polimi.ingsw.model.Player.Player;
 
 import java.util.ArrayList;
 
+/**
+ * The {@link Update} sent after that a {@link Player} buys a {@link DevCard}.
+ */
 public class BuyDevUpdate implements Update {
 
     private ArrayList<TurnState> turnStates;
     private String playerID;
     private ArrayList<Resource[]> wareHouse;
-    private ArrayList<Resource[]> extraDep;
     private ArrayList<Resource> strongBox;
     private ArrayList<String> tableCardsID; //just the front table cards
     private int victoryPoints;
@@ -20,7 +26,18 @@ public class BuyDevUpdate implements Update {
     private final String className;
 
 
-
+    /**
+     * Instantiates a new {@link BuyDevUpdate} setting everything can change with this actions: the {@link TurnState} list,
+     * {@link Player}'s warehouse, {@link Player}'s strongbox, {@link Player}'s victory points and the development card on the table.
+     *
+     * @param playerID      the player id
+     * @param turnStates    the turn states
+     * @param wareHouse     the ware house
+     * @param strongBox     the strong box
+     * @param tableCardsID  the table cards id
+     * @param victoryPoints the victory points
+     * @param cardsID       the cards id
+     */
     public BuyDevUpdate(String playerID, ArrayList<TurnState> turnStates, ArrayList<Resource[]> wareHouse, ArrayList<Resource> strongBox, ArrayList<String> tableCardsID, int victoryPoints, ArrayList<String> cardsID) {
         this.turnStates = turnStates;
         this.wareHouse = wareHouse;
@@ -63,9 +80,5 @@ public class BuyDevUpdate implements Update {
                 }
             }
         }
-
-
-
-
     }
 }

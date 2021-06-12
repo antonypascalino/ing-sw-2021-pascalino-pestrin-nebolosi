@@ -1,26 +1,24 @@
 package it.polimi.ingsw.model.Player;
 
 import it.polimi.ingsw.model.Table.Resource;
+import it.polimi.ingsw.model.card.ChangeResource;
+import it.polimi.ingsw.model.card.LeaderCard;
 
 import java.util.ArrayList;
 
 /**
  * The type Change Resource player (it extends {@link Player}).
- * It's the player with the change resource leader card.
+ * It's the player with the {@link ChangeResource} {@link LeaderCard}.
  */
 public class ChangeResPlayer extends Player{
-    /**
-     * The Possible resource in which a white resource can be turned into
-     */
     ArrayList<Resource> change;
 
     /**
-     * The Original.
+     * The
      *
      * @param or  the or
      * @param res the res
      */
-
     public ChangeResPlayer(Player or, Resource res)
     {
         change= new ArrayList<Resource>();

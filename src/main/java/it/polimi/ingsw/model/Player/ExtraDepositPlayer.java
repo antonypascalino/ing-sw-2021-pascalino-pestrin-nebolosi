@@ -3,17 +3,27 @@ package it.polimi.ingsw.model.Player;
 import it.polimi.ingsw.model.card.ExtraDeposit;
 import it.polimi.ingsw.model.ExtraDepositLevel;
 import it.polimi.ingsw.model.Table.Resource;
+import it.polimi.ingsw.model.card.LeaderCard;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
+/**
+ * The type Change Resource player (it extends {@link Player}).
+ * It's the player with the {@link ExtraDeposit} {@link LeaderCard}.
+ */
 public class ExtraDepositPlayer extends Player {
-    private ExtraDeposit card;
     private ArrayList<Resource> placeableRes; //the resource placeable in the added level
     private ArrayList<ExtraDepositLevel> extraDep;
 
 
+    /**
+     * Instantiates a new Extra deposit player.
+     *
+     * @param original     the original
+     * @param placeableRes the placeable res
+     */
     public ExtraDepositPlayer(Player original, Resource placeableRes) {
        // addedLevel = player.getBoard().getWareHouse().getLevels().size(); //CONTOLLARE DISCORSO INDICI: LIVELLO 1 HA INDICE 0 NELL'ARRAYLIST
         this.placeableRes = new ArrayList<>();
@@ -222,6 +232,11 @@ public class ExtraDepositPlayer extends Player {
         return deposits;
     }
 
+    /**
+     * Gets extra dep.
+     *
+     * @return the extra dep
+     */
     public ArrayList<ExtraDepositLevel> getExtraDep() {
         return extraDep;
     }

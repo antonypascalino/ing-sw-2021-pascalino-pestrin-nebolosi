@@ -6,9 +6,8 @@ import it.polimi.ingsw.Request.Request;
 import it.polimi.ingsw.view.data.PlayerData;
 import java.util.ArrayList;
 
-
 /**
- * The type Market selection.
+ * The {@link Selection} that guides the player when he chose to take resources from the market.
  */
 public class MarketSelection extends Selection {
 

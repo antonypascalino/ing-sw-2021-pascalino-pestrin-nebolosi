@@ -5,14 +5,25 @@ import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Updates.EndTurnUpdate;
 import it.polimi.ingsw.model.Updates.Update;
+import it.polimi.ingsw.model.card.DevCard;
 
 import java.util.ArrayList;
 
+/**
+ * The {@link Request} sent by a player when he wants to end his turn.
+ */
 public class EndTurnRequest implements Request {
     private final String className = this.getClass().getName();
     private String playerID;
     private int gameID;
 
+    /**
+     * Instantiates a new {@link EndTurnRequest} setting the information for handle the specific actions:
+     * the {@link Game}'s ID, the player's nickname.
+     *
+     * @param playerID the player id
+     * @param gameID   the game id
+     */
     public EndTurnRequest(String playerID, int gameID) {
         this.playerID = playerID;
         this.gameID = gameID;
@@ -51,7 +62,7 @@ public class EndTurnRequest implements Request {
 
     @Override
     public Update createUpdate(Player player, Game game) {
-        return new EndTurnUpdate(game.getTurnStates(), game.getCurrPlayer().getNickName());
+        return new EndTurnUpdate(game.getCurrPlayer().getNickName());
     }
 
     @Override

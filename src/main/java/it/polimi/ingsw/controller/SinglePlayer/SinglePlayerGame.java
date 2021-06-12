@@ -15,12 +15,22 @@ import it.polimi.ingsw.model.card.LeaderCard;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * The single player game in which a singgle player will challenge Lorenzo De Medici.
+ */
 public class SinglePlayerGame extends Game {
     private FaithPath lorenzoPath;
     private ArrayList<Token> tokenList;
     private Player player;
     private Token lastToken;
 
+    /**
+     * Instantiates a new Single player game.
+     *
+     * @param players the list of players which, in this case, will contain only one player.
+     * @param cards   the {@link DevCard}s of the game.
+     * @param gameId  the ID on the server of this particular game.
+     */
     public SinglePlayerGame(ArrayList<Player> players, ArrayList<DevCard> cards, int gameId) {
         super(players, cards, gameId, 1);
         player = players.get(0);
@@ -31,6 +41,9 @@ public class SinglePlayerGame extends Game {
         turnStates = new ArrayList<>();
     }
 
+    /**
+     * Create all the {@link Token}s of the {@link SinglePlayerGame}, shuffles them and create the stack of this game.
+     */
     private void createTokens() {
         Move1 move1 = new Move1();
         Move2 move2 = new Move2();
@@ -47,53 +60,47 @@ public class SinglePlayerGame extends Game {
         Collections.shuffle(tokenList);
     }
 
+    @Override
     public void changePlayer(Player original, Player newPlayer)
     {
         player = newPlayer;
     }
 
+    /**
+     * Gets Lorenzo path.
+     *
+     * @return the Lorenzo's path
+     */
     public FaithPath getLorenzoPath() {
         return lorenzoPath;
     }
 
+    @Override
     public Table getTable() {
         return table;
     }
 
+    /**
+     * Gets the {@link Token}s stack.
+     *
+     * @return the token stack,
+     */
     public ArrayList<Token> getTokenList() {
         return tokenList;
     }
 
+    /**
+     * Draw a {@link Token} from the top of the stack and place it to the end.
+     *
+     * @return the {@link Token} just drawn.
+     */
     public Token drawToken() {
         Token result = tokenList.remove(0);
         tokenList.add(result);
         return result;
     }
 
-//    public Update createNewGameUpdate() {
-//        ArrayList<LeaderCard> allLeaderCards = new ArrayList<LeaderCard>();
-//        allLeaderCards.addAll(DefaultCreator.produceLeaderCard()); //Produce tutte le Leader del gioco
-//        Collections.shuffle(allLeaderCards); //Le mischia
-//
-//        //Crea un elenco di players e attibuisce ad ognungo di loro 4 leaderCard diverse
-//        ArrayList<PlayerLC> playersLC = new ArrayList<PlayerLC>();
-//
-//        player.setTable(table);
-//        ArrayList<String> leadersToChoose = new ArrayList<String>();
-//        for (int addedCard = 0; addedCard < 4; addedCard++) {
-//            leadersToChoose.add(allLeaderCards.remove(0).getID());
-//        }
-//        playersLC.add(new PlayerLC(player.getNickName(), leadersToChoose));
-//
-//
-//        ArrayList<PlayerST> playersST = new ArrayList<>();
-//
-//        PlayerST player1 = new PlayerST(player.getNickName(), 0, 0);
-//        playersST.add(player1);
-//
-//        return new NewGameUpdate(getGameId(), table.getFrontIDs(), table.market.getMarket(), playersLC, playersST);
-//    }
-
+    @Override
     public void notify(Request req) {
         if (req.validRequest(turnStates)) {
             if (req.canBePlayed(player)) {
@@ -120,10 +127,16 @@ public class SinglePlayerGame extends Game {
         }
     }
 
+    /**
+     * Create an {@link Update} in which are contained all the modifies Lorenzo did during his turn.
+     *
+     * @return the {@link Update} just created.
+     */
     private Update createLorenzoUpdate() {
         return new LorenzoUpdate(lorenzoPath.getAdvancement(), player.getVictoryPoints(), table.getFrontIDs(), lastToken.announceAction(this), turnStates);
     }
 
+    @Override
     public void fpAdvancement(int discardedSteps, int playerSteps) {
         //Sposta Lorenzo per un numero di passi uguale alle risorse scartate dal giocatore
         if (discardedSteps != 0) {
@@ -142,12 +155,18 @@ public class SinglePlayerGame extends Game {
         }
     }
 
+    /**
+     * In the case of Lorenzo win the game and the {@link Player} loses create an {@link Update} in which are contained all the game's results and send it to the player.
+     */
     public void lorenzoWins() {
         ArrayList<PlayerVP> playersVP = new ArrayList<>();
         playersVP.add(new PlayerVP(player.getNickName(), player.getVictoryPoints()));
         notifyAllPlayers(new SPEndgameUpdate(true, player.getVictoryPoints()));
     }
 
+    /**
+     * In the case of the Player win the game and the Lorenzo loses create an {@link Update} in which are contained all the game's results and send it to the player..
+     */
     public void playerWins() {
         //Termina la partita e comunica al giocatore che ha vinto e il suo punteggio
         player.addVictoryPoints((int) player.getAllResources().size() / 5);

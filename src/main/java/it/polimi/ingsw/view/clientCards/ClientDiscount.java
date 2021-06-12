@@ -1,13 +1,16 @@
 package it.polimi.ingsw.view.clientCards;
 
 import it.polimi.ingsw.model.Colors;
+import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Table.Resource;
+import it.polimi.ingsw.model.card.LeaderCard;
 import it.polimi.ingsw.view.data.PlayerData;
 
 import java.util.ArrayList;
 
 /**
- * The type Client discount.
+ * The {@link ClientLeaderCard} that allows the {@link PlayerData} to pay a {@link Resource}
+ * less when buys a {@link ClientDevCard} from the table.
  */
 public class ClientDiscount extends ClientLeaderCard {
     private Colors color1;
@@ -15,13 +18,13 @@ public class ClientDiscount extends ClientLeaderCard {
     private Resource discount;
 
     /**
-     * Instantiates a new Client discount.
+     * Instantiates a new Discount {@link ClientLeaderCard}.
      *
-     * @param color1        the color 1
-     * @param color2        the color 2
-     * @param discount      the discount
-     * @param victoryPoints the victory points
-     * @param leaderID      the leader id
+     * @param color1        the first color of a {@link ClientDevCard} needed to play the {@link ClientLeaderCard}.
+     * @param color2        the second color of a {@link ClientDevCard} needed to play the {@link ClientLeaderCard}.
+     * @param discount      the {@link Resource} representing the discount given to the {@link PlayerData}.
+     * @param victoryPoints the victory points the {@link LeaderCard} is gonna give to the {@link PlayerData} when enabled.
+     * @param leaderID      the {@link LeaderCard}'s ID.
      */
     public ClientDiscount(Colors color1, Colors color2, Resource discount, int victoryPoints, String leaderID) {
         super(leaderID, victoryPoints, discount);

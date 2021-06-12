@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * The type Move selection.
+ * The {@link Selection} that guides the player when he chose tu sort his deposits.
  */
 public class MoveSelection extends Selection{
 

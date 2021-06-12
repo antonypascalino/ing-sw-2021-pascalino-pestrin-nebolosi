@@ -2,11 +2,14 @@ package it.polimi.ingsw.view.selections;
 
 import it.polimi.ingsw.Request.MarketDimension;
 import it.polimi.ingsw.model.Table.Resource;
+import it.polimi.ingsw.Request.MarketRequest;
 
 import java.util.ArrayList;
 
 /**
- * The type Market array.
+ * A type having an ArrayList of {@link Resource}s, an {@link MarketDimension} and an index of the market's matrix.
+ * It is used by the {@link MarketSelection} to create a {@link MarketRequest} so the server can check if the Resources
+ * sent by the players match those ones on the server's Market
  */
 public class MarketArray {
     private ArrayList<Resource> resources;
@@ -26,29 +29,14 @@ public class MarketArray {
         this.index = index;
     }
 
-    /**
-     * Gets resources.
-     *
-     * @return the resources
-     */
     public ArrayList<Resource> getResources() {
         return resources;
     }
 
-    /**
-     * Gets dimension.
-     *
-     * @return the dimension
-     */
     public MarketDimension getDimension() {
         return dimension;
     }
 
-    /**
-     * Gets index.
-     *
-     * @return the index
-     */
     public int getIndex() {
         return index;
     }

@@ -5,14 +5,9 @@ import it.polimi.ingsw.Request.MarketResource;
 import it.polimi.ingsw.Request.Request;
 import it.polimi.ingsw.client.LineClient;
 import it.polimi.ingsw.controller.TurnState;
-import it.polimi.ingsw.model.Board.WareHouse;
-import it.polimi.ingsw.model.Colors;
 import it.polimi.ingsw.model.Table.Resource;
-import it.polimi.ingsw.model.Updates.Update;
-import it.polimi.ingsw.model.card.LeaderCard;
 import it.polimi.ingsw.view.MainMenu;
 import it.polimi.ingsw.view.clientCards.AllGameCards;
-import it.polimi.ingsw.view.clientCards.ClientDefaultCreator;
 import it.polimi.ingsw.view.clientCards.ClientDevCard;
 import it.polimi.ingsw.view.clientCards.ClientLeaderCard;
 import it.polimi.ingsw.view.Printer;
@@ -23,7 +18,8 @@ import java.util.Arrays;
 import java.util.Collections;
 
 /**
- * The type Basic data.
+ * The default type of a player client side, it extends {@link PlayerData} and it's the player without any
+ * {@link ClientLeaderCard} played.
  */
 public class BasicData extends PlayerData {
     private String playerID;
@@ -46,10 +42,11 @@ public class BasicData extends PlayerData {
     private LineClient connection;
 
     /**
-     * Instantiates a new Basic data.
+     * Instantiates a new {@link BasicData} setting his nickname and his reference to the connection.
+     * It also instantiates all the attributes
      *
-     * @param playerID   the player id
-     * @param connection the connection
+     * @param playerID   the player's nickname.
+     * @param connection the refrence to the connection.
      */
     public BasicData(String playerID, LineClient connection) {
         this.connection = connection;
@@ -69,18 +66,16 @@ public class BasicData extends PlayerData {
         tmp[1] = Resource.EMPTY;
         tmp[2] = Resource.EMPTY;
         wareHouse.add(tmp);
-
         this.allDevID = new ArrayList<>();
         this.strongBox = new ArrayList<>();
         this.faithPoints = 0;
         this.victoryPoints = 0;
         this.frontCardsID = new ArrayList<>();
-
         this.leadersID = new ArrayList<>();
         this.leadersPlayedID = new ArrayList<>();
         this.playerID = playerID;
         menu = new MainMenu(this);
-        allGameCards = new AllGameCards(ClientDefaultCreator.produceClientDevCard(), ClientDefaultCreator.produceClientLeaderCard());
+        allGameCards = new AllGameCards();
     }
 
     public ArrayList<TurnState> turnStateFilter(){
@@ -466,22 +461,12 @@ public class BasicData extends PlayerData {
         this.tableCardsID = frontTableCardsID;
     }
 
-    public void checkOtherStats() {
-        for(OtherPlayerData p : otherPlayersData){
-            printer.printOtherStats(p);
-        }
-    }
-
     public ArrayList<OtherPlayerData> getOtherPlayers(){
         return otherPlayersData;
     }
 
     public ArrayList<Resource> getStrongBox() {
         return strongBox;
-    }
-
-    public ArrayList<String> getTableCardsID() {
-        return tableCardsID;
     }
 
     public int getFaithPoints() {
@@ -522,10 +507,6 @@ public class BasicData extends PlayerData {
 
     public MainMenu getMenu() {
         return menu;
-    }
-
-    public void refresh(Update update) {
-        update.handleUpdate(this);
     }
 
     public ArrayList<String> getFrontTableCardsID() {

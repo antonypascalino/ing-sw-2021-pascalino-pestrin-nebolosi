@@ -6,10 +6,14 @@ import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Table.Resource;
 import it.polimi.ingsw.model.Updates.PlayLeaderUpdate;
 import it.polimi.ingsw.model.Updates.Update;
+import it.polimi.ingsw.model.card.DevCard;
 import it.polimi.ingsw.model.card.LeaderCard;
 
 import java.util.ArrayList;
 
+/**
+ * The {@link Request} sent by a player when he wants to play a {@link LeaderCard}.
+ */
 public class PlayLeaderRequest implements Request {
 
     private String playerID;
@@ -17,6 +21,14 @@ public class PlayLeaderRequest implements Request {
     private String cardID;
     private final String className;
 
+    /**
+     * Instantiates a new {@link PlayLeaderRequest} setting the player's nickname, the game's ID and the {@link LeaderCard}'s
+     * ID to play.
+     *
+     * @param playerID the player id
+     * @param gameID   the game id
+     * @param cardID   the card id
+     */
     public PlayLeaderRequest(String playerID, int gameID, String cardID) {
         this.playerID = playerID;
         this.gameID = gameID;

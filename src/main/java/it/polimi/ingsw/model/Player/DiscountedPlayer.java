@@ -2,18 +2,16 @@ package it.polimi.ingsw.model.Player;
 
 import it.polimi.ingsw.model.card.DevCard;
 import it.polimi.ingsw.model.Table.Resource;
+import it.polimi.ingsw.model.card.LeaderCard;
+import it.polimi.ingsw.model.card.Discount;
 
 import java.util.ArrayList;
 
 /**
  * The type Discounted player (it extends {@link Player}).
- * It's the player with a discount leader card.
+ * It's the player with a {@link Discount} {@link LeaderCard}.
  */
-public class DiscountedPlayer extends Player
-{
-    /**
-     * The Discount.
-     */
+public class DiscountedPlayer extends Player {
     ArrayList<Resource> discount;
 
     /**

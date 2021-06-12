@@ -1,11 +1,17 @@
 package it.polimi.ingsw.model.Updates;
 
 import it.polimi.ingsw.controller.TurnState;
+import it.polimi.ingsw.controller.SinglePlayer.SinglePlayerGame;
+import it.polimi.ingsw.model.Player.Player;
+import it.polimi.ingsw.model.card.DevCard;
 import it.polimi.ingsw.view.data.OtherPlayerData;
 import it.polimi.ingsw.view.data.PlayerData;
 
 import java.util.ArrayList;
 
+/**
+ * The {@link Update} sent after every Lorenzo's action in a {@link SinglePlayerGame}.
+ */
 public class LorenzoUpdate implements Update {
     private String className;
     private int lorenzoFaithPoints;
@@ -15,6 +21,16 @@ public class LorenzoUpdate implements Update {
     private String actionDone;
     private ArrayList<TurnState> turnStates;
 
+    /**
+     * Instantiates a new {@link LorenzoUpdate} setting everything can change with this actions: the Lorenzo's victory points,
+     * {@link Player}'s victory points and the development card on the table. Set even a message about what Lorenzo actually did.
+     *
+     * @param lorenzoFaithPoints the lorenzo faith points
+     * @param playersVP          the players vp
+     * @param frontTableCards    the front table cards
+     * @param actionDone         the action done
+     * @param turnStates         the turn states
+     */
     public LorenzoUpdate(int lorenzoFaithPoints, int playersVP, ArrayList<String> frontTableCards, String actionDone, ArrayList<TurnState> turnStates) {
         className = this.getClass().getName();
         this.lorenzoFaithPoints = lorenzoFaithPoints;

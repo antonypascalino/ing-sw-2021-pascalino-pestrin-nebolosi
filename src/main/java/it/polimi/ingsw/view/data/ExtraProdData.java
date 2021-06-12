@@ -1,25 +1,25 @@
 package it.polimi.ingsw.view.data;
 
 import it.polimi.ingsw.Request.MappedResource;
-import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Table.Resource;
-import it.polimi.ingsw.view.clientCards.ClientDevCard;
-import it.polimi.ingsw.view.Printer;
+import it.polimi.ingsw.view.clientCards.ClientLeaderCard;
+import it.polimi.ingsw.view.clientCards.ClientExtraProd;
 
 import java.util.ArrayList;
 
 /**
- * The type Extra prod data.
+ * It's the player with the {@link ClientExtraProd} {@link ClientLeaderCard} (it extends {@link PlayerData}).
  */
 public class ExtraProdData extends PlayerData{
     private ArrayList<String> extraProdID;
     private ArrayList<Resource> prodRequired;
 
     /**
-     * Instantiates a new Extra prod data.
+     * Instantiates a new {@link ExtraDepData}
      *
      * @param extraProdID  the extra prod id
      * @param prodRequired the prod required
+     * @param original     the original PlayerData
      */
     public ExtraProdData(ArrayList<String> extraProdID, ArrayList<Resource> prodRequired, PlayerData original) {
         this.extraProdID = new ArrayList<>();
@@ -55,10 +55,20 @@ public class ExtraProdData extends PlayerData{
         return clonedDev;
     }
 
+    /**
+     * Gets extra prod id.
+     *
+     * @return the extra prod id
+     */
     public ArrayList<String> getExtraProdID() {
         return extraProdID;
     }
 
+    /**
+     * Gets prod required.
+     *
+     * @return the prod required
+     */
     public ArrayList<Resource> getProdRequired() {
         return prodRequired;
     }

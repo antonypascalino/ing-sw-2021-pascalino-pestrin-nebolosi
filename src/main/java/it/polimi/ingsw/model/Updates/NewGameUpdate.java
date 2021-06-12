@@ -1,15 +1,20 @@
 package it.polimi.ingsw.model.Updates;
 
-import it.polimi.ingsw.controller.TurnState;
-import it.polimi.ingsw.model.Player.Player;
+import it.polimi.ingsw.controller.Game;
+import it.polimi.ingsw.model.Table.Table;
 import it.polimi.ingsw.model.Table.Resource;
+import it.polimi.ingsw.model.Table.Market;
 import it.polimi.ingsw.view.data.OtherPlayerData;
 import it.polimi.ingsw.view.data.PlayerData;
 import it.polimi.ingsw.view.selections.Selection;
 import it.polimi.ingsw.view.selections.StartGameSelection;
+import it.polimi.ingsw.model.card.DevCard;
 
 import java.util.ArrayList;
 
+/**
+ * The {@link Update} sent when a new {@link Game} starts.
+ */
 public class NewGameUpdate implements Update{
 
     private ArrayList<String> frontTableCardsID;
@@ -19,6 +24,16 @@ public class NewGameUpdate implements Update{
     private final String className;
     private int gameID;
 
+    /**
+     * Instantiates a new {@link NewGameUpdate} setting the initial situation of both {@link Market} and {@link Table}
+     * and every initial faith point or {@link Resource}s the players receive when the game starts.
+     *
+     * @param gameID            the {@link Game}'s ID.
+     * @param frontTableCardsID the front table {@link DevCard} ID.
+     * @param market            the {@link Market}.
+     * @param playersLC         all the {@link PlayerLC}.
+     * @param playersST         all the {@link PlayerST}.
+     */
     public NewGameUpdate(int gameID, ArrayList<String> frontTableCardsID, Resource[][] market, ArrayList<PlayerLC> playersLC, ArrayList<PlayerST> playersST) {
         this.frontTableCardsID = frontTableCardsID;
         this.market = market;

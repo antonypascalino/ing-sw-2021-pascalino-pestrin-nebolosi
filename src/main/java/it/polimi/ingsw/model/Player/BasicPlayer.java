@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 /**
  * The type Basic player (it extends {@link Player})
- * It's the player without any leader card.
+ * It's the player without any {@link LeaderCard}.
  */
 public class BasicPlayer extends Player {
     private String nickName;
@@ -24,14 +24,11 @@ public class BasicPlayer extends Player {
     private ClientHandler thisPlayer;
     private Game game;
 
-//    public BasicPlayer(String nickName, Table table, ClientHandler thisPlayer) {
-//        this.nickName = nickName;
-//        this.board = new Board(this);
-//        this.victoryPoints = 0;
-//        this.table = table;
-//        leaderCards = new ArrayList<LeaderCard>();
-//    }
-
+    /**
+     * Instantiates a new Basic player.
+     *
+     * @param nickName the nick name
+     */
     //Constructor used for debugging without connection
     public BasicPlayer(String nickName) {
         leaderCards = new ArrayList<LeaderCard>();
@@ -39,15 +36,17 @@ public class BasicPlayer extends Player {
         this.board = new Board(this);
     }
 
+    /**
+     * Instantiates a new Basic player.
+     *
+     * @param nickname   the nickname
+     * @param thisPlayer the this player
+     */
     public BasicPlayer(String nickname, ClientHandler thisPlayer) {
         leaderCards = new ArrayList<LeaderCard>();
         this.nickName = nickname;
         this.board = new Board(this);
         this.thisPlayer = thisPlayer;
-    }
-
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
     }
 
     public void setTable(Table tbl)
@@ -68,27 +67,6 @@ public class BasicPlayer extends Player {
         return victoryPoints;
     }
 
-    /**
-     * When player chooses a card, this method buys the card and sets the card into the given slot
-     *
-     * @param color dev card color
-     * @param level dev card level
-     */
-
-    //DA RIVEDERE TUTTO
-    public void getDevCard(String color, int level) {
-        DevCard card = null;
-        int slot = 2;
-
-        //Dev'essere cambiato in modo che sia gestito in qualche modo dal game, tipo assegnando al giocatore un riferimento al game in cui si trova
-        //card = table.buyDev(color, level);
-        if (board.hasResources(card.getPrice()))
-
-            card.setOwner(this);
-        //richiesta al giocatore in quale slot mettere la card
-        board.getSlot().placeCard(card, slot);
-    }
-
     public Board getBoard() {
         return board;
     }
@@ -105,18 +83,6 @@ public class BasicPlayer extends Player {
         this.victoryPoints += victoryPoints;
     }
 
-    public void getProduction() {
-        for (DevCard dev : board.getSlot().getFrontCards())
-            //Used for giving the power of all cards to the view
-            //dev.getPower();
-            System.out.println("Debug");
-    }
-
-    /**
-     * Produces the resources (work in progress)
-     *
-     * @param cardID Card ID
-     */
     public void produce(String cardID) {
 
         if(cardID.contains("dev")){
@@ -141,10 +107,7 @@ public class BasicPlayer extends Player {
 
     @Override
     public boolean checkLevel(int level) {
-        if (!(level <= 2 && level >= 0)) {
-            return false; //lancia eccezione perché non ha carte che aggiungono livelli e quindi non ha livelli 3 e 4 (indici di programmazione non indici in linguaggio naturale).
-        }
-        return true;
+        return level <= 2 && level >= 0;
     }
 
     @Override

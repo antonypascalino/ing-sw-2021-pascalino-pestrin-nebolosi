@@ -6,11 +6,15 @@ import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Table.Resource;
 import it.polimi.ingsw.model.Updates.MoveUpdate;
 import it.polimi.ingsw.model.Updates.Update;
+import it.polimi.ingsw.model.card.DevCard;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 
+/**
+ * The {@link Request} sent by a player when he wants to move {@link Resource}s in his deposits.
+ */
 public class MoveRequest implements Request {
     private int originLevel;
     private int destLevel;
@@ -18,6 +22,15 @@ public class MoveRequest implements Request {
     private String playerID;
     private int gameID;
 
+    /**
+     * Instantiates a new {@link MoveRequest} setting the origin level from where the movement start and the dest level
+     * where the movement ends.
+     *
+     * @param gameID          the {@link Game}'s ID.
+     * @param playerID        the {@link Player}'s ID.
+     * @param originLevel the origin level
+     * @param destLevel   the dest level
+     */
     public MoveRequest(String playerID, int gameID, int originLevel, int destLevel) {
         this.originLevel = originLevel;
         this.destLevel = destLevel;

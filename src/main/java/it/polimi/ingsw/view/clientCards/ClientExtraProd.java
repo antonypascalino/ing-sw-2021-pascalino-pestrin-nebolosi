@@ -7,7 +7,7 @@ import it.polimi.ingsw.view.data.PlayerData;
 import java.util.ArrayList;
 
 /**
- * The type Client extra prod.
+ * The {@link ClientLeaderCard} that gives to the {@link PlayerData} an extra production power.
  */
 public class ClientExtraProd extends ClientLeaderCard {
     private Colors color;
@@ -15,12 +15,12 @@ public class ClientExtraProd extends ClientLeaderCard {
 
 
     /**
-     * Instantiates a new Client extra prod.
+     * Instantiates a new Extra Production {@link ClientLeaderCard}.
      *
-     * @param victoryPoints the victory points
-     * @param color         the color
-     * @param prodRequired  the prod required
-     * @param leaderID      the leader id
+     * @param victoryPoints the victory points the {@link ClientLeaderCard} gives the {@link PlayerData} when played.
+     * @param color         the color of a {@link ClientDevCard} of level 2 needed to play the {@link ClientLeaderCard}.
+     * @param prodRequired  the {@link ClientDevCard} needed to use this production power.
+     * @param leaderID      the {@link ClientLeaderCard}'s ID.
      */
     public ClientExtraProd(int victoryPoints, Colors color, Resource prodRequired, String leaderID) {
         super(leaderID, victoryPoints, prodRequired);

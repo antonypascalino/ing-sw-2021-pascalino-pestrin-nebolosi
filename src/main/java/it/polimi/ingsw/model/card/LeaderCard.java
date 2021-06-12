@@ -2,47 +2,72 @@ package it.polimi.ingsw.model.card;
 import it.polimi.ingsw.Convertible;
 import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Table.Resource;
+import it.polimi.ingsw.controller.Game;
 
 /**
- * The interface Leader card implemented by all the leader cards
+ * The interface implemented by all the leader cards.
+ * A leader card gives the {@link Player} new abilities he can use during a {@link Game}
  */
 public interface LeaderCard extends Convertible {
 
     /**
-     * Play card, which means setting it to enable
-     * Wrapping the player with a new player that correctly implements the
-     * new powers and adding the right amount of victory points
-     *
+     * Set the {@link LeaderCard} to enable,
+     * wrap the {@link Player} with a new player that correctly implements the
+     * new abilities and adding him the right amount of victory points.
      */
     public void playCard();
 
     /**
-     * Can be played is used to check if the player has the resource
-     * or the cards for playing a card that he already owns
+     * Used to check if the {@link Player} has the requirements for playing a {@link LeaderCard} that he already owns.
      *
-     * @return true if the player has the resources to play the card
+     * @return true if the {@link Player} has the requirements to play the {@link LeaderCard}, false otherwise.
      */
     public boolean canBePlayed();
 
     /**
-     * Assign to a player that's gonna be wrapped when the card is played.
-     * Assign in the pre-game phase when the player picks 2 out of the 4 cards
+     * Assign the {@link LeaderCard} to a {@link Player}.
      *
-     * @param p the player using the card
+     * @param p the {@link Player} to whom assign the {@link LeaderCard}.
      */
     public void assignTo(Player p);
 
     /**
-     * @return true if the card is enabled
+     * Check if the {@link LeaderCard} has been played by the {@link Player} or not.
+     *
+     * @return true if the {@link LeaderCard} has been played.
      */
     public boolean isEnable();
-    
-    public Boolean equals(LeaderCard compare);
 
+    /**
+     * Compare two {@link LeaderCard}.
+     *
+     * @param compare the {@link LeaderCard} to compare.
+     * @return true if the {@link LeaderCard match, false otherwise.
+     */
+    public boolean equals(LeaderCard compare);
+
+    /**
+     * Gets the {@link LeaderCard}'s ID.
+     *
+     * @return the {@link LeaderCard}'s ID.
+     */
     public String getID();
 
+    /**
+     * Sets the {@link Player} to this {@link LeaderCard}
+     *
+     * @param tmp the tmp
+     */
     public void setPlayer(Player tmp);
 
-    public Resource getPowerResource();     // return a resource that changes by the type of leaderCard: for ExtraDep is the placeable, for Change is the changeable, for Discount is the discount and for ExtraProd is the required Resource for produce
-
+    /**
+     * Gets a {@link Resource} that changes by the type of leaderCard:
+     * for {@link ExtraDeposit} is the placeable,
+     * for {@link ChangeResource} is the changeable,
+     * for {@link Discount} is the discount
+     * and for {@link ExtraProd} is the required resource for produce.
+     *
+     * @return the {@link Resource}.
+     */
+    public Resource getPowerResource();
 }

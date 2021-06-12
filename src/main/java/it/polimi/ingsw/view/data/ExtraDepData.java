@@ -4,25 +4,25 @@ import it.polimi.ingsw.Request.MappedResource;
 import it.polimi.ingsw.Request.MarketResource;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Table.Resource;
+import it.polimi.ingsw.view.clientCards.ClientLeaderCard;
+import it.polimi.ingsw.view.clientCards.ClientExtraDep;
 
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- * The type Extra dep data.
+ * It's the player with the {@link ClientExtraDep} {@link ClientLeaderCard} (it extends {@link PlayerData}).
  */
 public class ExtraDepData extends PlayerData {
-
     private ArrayList<Resource[]> extraDep;
     private ArrayList<Resource> placeableRes;
 
-
     /**
-     * Instantiates a new Extra dep data.
+     * Instantiates a new {@link ExtraDepData}.
      *
-     * @param originalData the original data
-     * @param placeableRes the placeable res
+     * @param originalData the original PlayerData
+     * @param placeableRes the placeable resource
      */
     public ExtraDepData(PlayerData originalData, ArrayList<Resource> placeableRes) {
 

@@ -1,16 +1,12 @@
 package it.polimi.ingsw.model;
 
+import it.polimi.ingsw.model.Table.Market;
+
 /**
- * The type Costants.
+ * The {@link Market}'s dimensions.
  */
 public class Costants {
-    /**
-     * The constant MARKETROWS.
-     */
     public static final int MARKETROWS=4;
-    /**
-     * The constant MARKETCOLS.
-     */
     public static final int MARKETCOLS=3;
     
 }

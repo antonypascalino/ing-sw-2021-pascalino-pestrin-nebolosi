@@ -4,7 +4,7 @@ import it.polimi.ingsw.view.data.OtherPlayerData;
 import it.polimi.ingsw.view.data.PlayerData;
 
 /**
- * The type Check stats selection.
+ * The {@link Selection} that show player his status.
  */
 public class CheckStatsSelection extends Selection{
 

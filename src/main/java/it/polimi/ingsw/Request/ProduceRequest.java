@@ -6,6 +6,7 @@ import it.polimi.ingsw.model.Table.Resource;
 import it.polimi.ingsw.model.Updates.PlayerVP;
 import it.polimi.ingsw.model.Updates.ProduceUpdate;
 import it.polimi.ingsw.model.Updates.Update;
+import it.polimi.ingsw.model.card.DevCard;
 import it.polimi.ingsw.model.card.ExtraProd;
 import it.polimi.ingsw.model.Player.Player;
 
@@ -16,19 +17,24 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
- * The type Produce request.
+ * The {@link Request} sent by a player when he wants to produce. It contains an ArrayList of {@link Production}s:
+ * one for each production power.
  */
-//Per ogni richiesta crea un elemento decodificando il gson
-//Questo elemento avrò un id della carta e le possibili risorse a scelta
 public class ProduceRequest implements Request {
 
     private String playerID;
     private int gameID;
     private ArrayList<Production> productions;
     private int playerSteps;
-    private int playerChoices;
     private final String className;
 
+    /**
+     * Instantiates a new {@link BuyDevRequest} setting the information for handle the specific actions:
+     * the {@link Game}'s ID, the player's nickname and all the {@link Production}s to use.
+     * @param gameID   the game id
+     * @param playerID the player id
+     * @param prod     the prod
+     */
     public ProduceRequest(int gameID, String playerID, ArrayList<Production> prod)
     {
         className = this.getClass().getName();

@@ -3,11 +3,13 @@ package it.polimi.ingsw.model.card;
 import it.polimi.ingsw.model.Player.ExtraDepositPlayer;
 import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Table.Resource;
+import it.polimi.ingsw.model.Board.WareHouse;
 
 import java.util.Collections;
 
 /**
- * The type Extra deposit.
+ * The {@link LeaderCard} that gives to the {@link Player} an extra level in his {@link WareHouse}.
+ * In that extra level the player can only place a single type of {@link Resource}.
  */
 public class ExtraDeposit implements LeaderCard {
 
@@ -20,12 +22,12 @@ public class ExtraDeposit implements LeaderCard {
     private String cardID;
 
     /**
-     * Instantiates a new Extra deposit.
+     * Instantiates a new Extra deposit {@link LeaderCard} and set enable to false.
      *
-     * @param victoryPoints  the victory points
-     * @param requires       the requires for being played
-     * @param placeableRes the depositable res
-     * @param cardID the unique id for the card
+     * @param victoryPoints the victory points the {@link LeaderCard} gives the {@link Player} when played.
+     * @param requires      the 5 required {@link Resource} the {@link Player} has to own to play the {@link LeaderCard}.
+     * @param placeableRes  the {@link Resource} which can be placed in this extra level.
+     * @param cardID        the {@link LeaderCard}'s ID.
      */
     public ExtraDeposit(int victoryPoints, Resource requires, Resource placeableRes, String cardID)
     {
@@ -37,21 +39,19 @@ public class ExtraDeposit implements LeaderCard {
         isEnable = false;
     }
 
+    @Override
     public void assignTo(Player player) {
         this.player = player;
         player.addLeaderCard(this);
     }
 
-    /**
-     * Is enable boolean.
-     *
-     * @return the boolean
-     */
+    @Override
     public boolean isEnable()
     {
         return isEnable;
     }
 
+    @Override
     public void playCard()
     {
         if (canBePlayed())
@@ -71,19 +71,21 @@ public class ExtraDeposit implements LeaderCard {
         }
     }
 
+    @Override
     public boolean canBePlayed()
     {
         if (isEnable) return false; //It can't be played twice
         return (Collections.frequency(player.getAllResources(), requires) >= 5);
     }
 
+    @Override
     public String getClassName()
     {
         return className;
     }
 
     @Override
-    public Boolean equals(LeaderCard compare)
+    public boolean equals(LeaderCard compare)
     {
         return this.cardID.equals(compare.getID());
 
@@ -98,10 +100,6 @@ public class ExtraDeposit implements LeaderCard {
     @Override
     public void setPlayer(Player tmp) {
         this.player = tmp;
-    }
-
-    public boolean checkPlaceable(Resource res) {
-        return res.equals(placeableRes);
     }
 
     @Override

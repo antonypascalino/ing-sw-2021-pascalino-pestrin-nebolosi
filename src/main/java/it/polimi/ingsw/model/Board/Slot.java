@@ -1,22 +1,22 @@
 package it.polimi.ingsw.model.Board;
+import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.card.DevCard;
 
 import java.util.ArrayList;
 
 /**
- * Contains an ArrayList of Arrays with all the Development Cards in possessions by the player.
+ * Contains an ArrayList of Arrays with all the {@link DevCard} in possessions by the {@link Player}.
  */
 public class Slot
 {
     private ArrayList<DevCard[]> slots;
 
     /**
-     * Instantiates the ArrayList with the 3 Slots: every one of the 3 slots is an array of 3 Development Cards
+     * Instantiates the ArrayList with the 3 empty lots: every one of the 3 slots is an array of 3 {@link DevCard}
      */
     public Slot()
     {
-        //Create three empty slot for three stacks
-        slots = new ArrayList<DevCard[]>();
+        slots = new ArrayList<>();
         DevCard[] tmp = new DevCard[3];
         slots.add(tmp);
         tmp = new DevCard[3];
@@ -26,7 +26,7 @@ public class Slot
     }
 
     /**
-     * Receive a {@link DevCard} from the market and add it in the first empty space in the slot chosen by the {@link it.polimi.ingsw.model.Player.Player}.
+     * Receive a {@link DevCard} and add it in the first empty space in the slot chosen by the {@link Player}.
      *
      * @param card the {@link DevCard} to add into the Slot.
      * @param slot the slot in which add the {@link DevCard}
@@ -47,23 +47,11 @@ public class Slot
         }
     }
 
-//    /**
-//     * Add external card.
-//     *
-//     * @param dev the dev
-//     */
-//    public void addExternalCard(DevCard dev)
-//    {
-//        DevCard[] tmp = new DevCard[1];
-//        tmp[0]=dev;
-//        slots.add(tmp);
-//    }
-
     /**
      * Check if the {@link DevCard} it wants to add can be add in the chosen slot according to the Slot's rules.
      *
      * @param card the {@link DevCard} it wants to add.
-     * @param slot the slot where wants add the {@link DevCard}.
+     * @param slot the slot where it wants add the {@link DevCard}.
      * @return true if the {@link DevCard} can be add in the chosen slot, false otherwise.
      */
     public boolean checkSpace(DevCard card, int slot) {
@@ -129,10 +117,9 @@ public class Slot
     }
 
     /**
-     * Get an array with all the {@link DevCard} in possession by the {@link it.polimi.ingsw.model.Player.Player} (even if not usable to produce).
-     * It may be called by some {@link it.polimi.ingsw.model.card.LeaderCard}s to check if they can be activated.
+     * Get an ArrayList with all the {@link DevCard} in possession by the {@link Player} (even if not usable to produce).
      *
-     * @return An ArrayList with all the {@link DevCard} in possession by the {@link it.polimi.ingsw.model.Player.Player}.
+     * @return An ArrayList with all the {@link DevCard} in possession by the {@link Player}.
      */
     public ArrayList<DevCard> getAllCards()
     {

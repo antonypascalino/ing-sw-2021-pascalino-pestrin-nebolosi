@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * The type Production selection.
+ * The {@link Selection} that guides the player when he chose to produce.
  */
 public class ProductionSelection extends Selection {
 

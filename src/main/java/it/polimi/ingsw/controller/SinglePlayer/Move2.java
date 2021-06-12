@@ -1,5 +1,10 @@
 package it.polimi.ingsw.controller.SinglePlayer;
 
+import it.polimi.ingsw.model.Board.FaithPath;
+
+/**
+ * That type of {@link Token} that, if drawn, makes Lorenzo move forward of two step on his {@link FaithPath} and shuffle the stack of tokens in the game;
+ */
 public class Move2 implements Token {
 
     @Override

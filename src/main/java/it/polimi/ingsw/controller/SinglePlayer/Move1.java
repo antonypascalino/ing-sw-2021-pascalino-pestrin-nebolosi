@@ -1,7 +1,13 @@
 package it.polimi.ingsw.controller.SinglePlayer;
 
+import it.polimi.ingsw.model.card.DevCard;
+import it.polimi.ingsw.model.Board.FaithPath;
+
 import java.util.Collections;
 
+/**
+ * That type of {@link Token} that, if drawn, makes Lorenzo move forward of one step on his {@link FaithPath}.
+ */
 public class Move1 implements Token {
 
     @Override

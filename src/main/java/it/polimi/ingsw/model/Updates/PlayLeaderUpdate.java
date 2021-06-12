@@ -1,12 +1,17 @@
 package it.polimi.ingsw.model.Updates;
 
 import it.polimi.ingsw.controller.TurnState;
+import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Table.Resource;
+import it.polimi.ingsw.model.card.LeaderCard;
 import it.polimi.ingsw.view.Observer;
 import it.polimi.ingsw.view.data.*;
 
 import java.util.ArrayList;
 
+/**
+ * The {@link Update} sent when a {@link Player} played a {@link LeaderCard}.
+ */
 public class PlayLeaderUpdate implements Update {
 
     private final String className;
@@ -18,6 +23,19 @@ public class PlayLeaderUpdate implements Update {
     private Resource powerResource;
     private ArrayList<TurnState> turnStates;
 
+    /**
+     * Instantiates a new {@link PlayLeaderUpdate} setting everything can change with this actions:
+     * {@link Player}'s victory points, the {@link TurnState} and the lists of the {@link LeaderCard}s played or not
+     * by the player.
+     *
+     * @param playerID         the {@link Player}' ID.
+     * @param leaderPlayedID   the {@link LeaderCard} played by the player in this turn.
+     * @param leadersPlayed    all the {@link LeaderCard}s played by the player during this game.
+     * @param leadersNOTPlayed the {@link LeaderCard}s NOT played by the player.
+     * @param powerResource    the power resource
+     * @param victoryPoints    the victory points
+     * @param turnStates       the the {@link TurnState}s list.
+     */
     public PlayLeaderUpdate(String playerID, String leaderPlayedID, ArrayList<String> leadersPlayed, ArrayList<String> leadersNOTPlayed, Resource powerResource, int victoryPoints, ArrayList<TurnState> turnStates) {
         className = this.getClass().getName();
         this.playerID = playerID;
@@ -29,6 +47,12 @@ public class PlayLeaderUpdate implements Update {
         this.turnStates = turnStates;
     }
 
+    /**
+     * Once the {@link PlayLeaderUpdate} is received, client side, this method is called to create a new {@link PlayerData}
+     * with his new ability and changing his reference in the {@link Observer}.
+     *
+     * @param observer the {@link Observer}.
+     */
     public void wrapPlayer(Observer observer) {
         if(observer.getData().getPlayerID().equals(playerID))
         {
@@ -62,7 +86,6 @@ public class PlayLeaderUpdate implements Update {
                     newPlayer = new ExtraDepData(observer.getData(), placeable);
                     break;
                 }
-
             }
             observer.setPlayer(newPlayer);
             observer.getData().getMenu().setData(newPlayer);

@@ -24,32 +24,6 @@ public class BasicDevSpace {
     }
 
     /**
-     * Produces a resource using the Basic Production Power
-     * player chooses two resources in input to pay and one in output to receive
-     *
-     * @param res1 the first resource chosen by player to pay
-     * @param res2 the second resource chosen by player to pay
-     * @return the resource the player chose to receive
-     */
-//    public Resource use(Resource res1, Resource res2)
-//    {
-//        ArrayList<Resource> tmp= new ArrayList<Resource>();
-//        tmp.add(res1);
-//        tmp.add(res2);
-//        if(canBeUsed(res1,res2))
-//        try
-//        {
-//               board.removeResources(tmp);
-//        }
-//        catch (ResourceNotAvailable ex)
-//        {
-//            System.out.println("Risorsa non disponibile");
-//        }
-//       return Resource.SHIELD;
-//        return View.chooseRes();
-//    }
-
-    /**
      * Checks if player has the two chosen resources to pay, uses Board.hasResource
      * to check into all player's resources
      *

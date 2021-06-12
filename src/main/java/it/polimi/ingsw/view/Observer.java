@@ -64,10 +64,20 @@ public class Observer implements Runnable{
 
     }
 
+    /**
+     * Sets player.
+     *
+     * @param data the data
+     */
     public void setPlayer(PlayerData data) {
         this.data = data;
     }
 
+    /**
+     * Gets data.
+     *
+     * @return the data
+     */
     public PlayerData getData() {
         return data;
     }

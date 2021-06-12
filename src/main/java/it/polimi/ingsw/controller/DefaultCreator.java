@@ -6,19 +6,18 @@ import it.polimi.ingsw.model.Table.Resource;
 import java.util.ArrayList;
 
 /**
-Class used if the player picks to use the default settings for leader and developer cards
+ * Class used if the player picks to use the default settings for leader and developer cards.
  */
 public class DefaultCreator {
-
-
     private static ArrayList<DevCard> allDevCards = new ArrayList<DevCard>();
     private static ArrayList<LeaderCard> allLeadersCards = new ArrayList<LeaderCard>();
 
-
     /**
      * Static method used for generate an array List containing all the defaults
-     * DevCard in the basic game settings
-     * @result An arrayList with the new cards
+     * DevCard in the basic game settings. Once the method is called for the first time
+     * saves the cards in his attribute and the other calls will return the attribute.
+     *
+     * @return the array list containing all the {@link DevCard}s.
      */
     public static ArrayList<DevCard> produceDevCard() {
 
@@ -935,7 +934,8 @@ public class DefaultCreator {
     /**
      * Static method used for generate an array List containing all the defaults
      * LeaderCards in the basic game settings
-     * @result An arrayList with the new cards
+     *
+     * @return the array list containing all the {@link LeaderCard}s.
      */
     public static ArrayList<LeaderCard> produceLeaderCard()
     {
@@ -1010,6 +1010,11 @@ public class DefaultCreator {
         return result;
     }
 
+    /**
+     * Produce basic prod array list.
+     *
+     * @return the array list
+     */
     public static ArrayList<BasicProduction> produceBasicProd(){
         ArrayList<BasicProduction> result = new ArrayList<BasicProduction>();
         ArrayList<Resource> requires = new ArrayList<Resource>();
@@ -1030,6 +1035,11 @@ public class DefaultCreator {
 
     }
 
+    /**
+     * Create all the {@link Resource}s needed during a game.
+     *
+     * @return the ArrayList containing all the {@link Resource}s
+     */
     public static ArrayList<Resource> getGameRes() {
         ArrayList<Resource> result = new ArrayList<Resource>();
         for (int i = 0; i < 2; i++)
@@ -1047,6 +1057,12 @@ public class DefaultCreator {
         return result;
     }
 
+    /**
+     * Receiving an devCardID returns the object {@link DevCard}
+     *
+     * @param cardID the card id
+     * @return the dev from id
+     */
     public static DevCard getDevFromID(String cardID) {
         for (DevCard card : allDevCards) {
             if (card.getCardID().equals(cardID)) {
@@ -1056,6 +1072,12 @@ public class DefaultCreator {
         return null;
     }
 
+    /**
+     * Receiving an {@link LeaderCard}'s ID obtains the respective {@link LeaderCard} object
+     *
+     * @param cardID the ID of the {@link LeaderCard}.
+     * @return the object {@link LeaderCard}.
+     */
     public static LeaderCard getLeaderFromID(String cardID) {
         for (LeaderCard card : allLeadersCards) {
             if (card.getID().equals(cardID)) {

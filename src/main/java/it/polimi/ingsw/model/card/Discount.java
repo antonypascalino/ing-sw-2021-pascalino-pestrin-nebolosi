@@ -3,9 +3,11 @@ package it.polimi.ingsw.model.card;
 import it.polimi.ingsw.model.Player.DiscountedPlayer;
 import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Table.Resource;
+import it.polimi.ingsw.model.Table.Table;
 
 /**
- * The type Discount.
+ * The {@link LeaderCard} that allows the {@link Player} to pay a {@link Resource}
+ * less when buys {@link DevCard} from the {@link Table}
  */
 public class Discount implements LeaderCard {
 
@@ -19,13 +21,13 @@ public class Discount implements LeaderCard {
     private final String cardID;
 
     /**
-     * Instantiates a new Discount.
+     * Instantiates a new Discount {@link LeaderCard}, and sets enable to false.
      *
-     * @param color1 : the color of the first card needed to play the card
-     * @param color2 : the color of the second card needed to play the card
-     * @param dis : the resource rappresenting the discount given to the player
-     * @param cardID the unique id for the card
-     * @param vp  the victory points the card is gonna give to the player
+     * @param color1  the first color of a {@link DevCard} needed to play the {@link LeaderCard}.
+     * @param color2  the second color of a {@link DevCard} needed to play the {@link LeaderCard}.
+     * @param dis     the {@link Resource} representing the discount given to the {@link Player}.
+     * @param vp     the victory points the {@link LeaderCard} is gonna give to the {@link Player} when enabled.
+     * @param cardID the {@link LeaderCard}'s ID.
      */
     public Discount(String color1, String color2, Resource dis, int vp, String cardID)
     {
@@ -43,22 +45,19 @@ public class Discount implements LeaderCard {
         this.player = tmp;
     }
 
+    @Override
     public void assignTo(Player player) {
         this.player = player;
         player.addLeaderCard(this);
     }
 
-    /**
-     * Is enable boolean.
-     *
-     * @return true if the card is enabled
-     */
+    @Override
     public boolean isEnable() {
         return isEnable;
     }
 
     @Override
-    public Boolean equals(LeaderCard compare) {
+    public boolean equals(LeaderCard compare) {
         return this.cardID.equals(compare.getID());
     }
 
@@ -72,6 +71,7 @@ public class Discount implements LeaderCard {
         return className;
     }
 
+    @Override
     public void playCard()
     {
         if (canBePlayed())
@@ -91,7 +91,7 @@ public class Discount implements LeaderCard {
         }
     }
 
-
+    @Override
     public boolean canBePlayed()
     {
         boolean secondColor = false;

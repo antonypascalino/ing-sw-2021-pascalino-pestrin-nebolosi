@@ -1,7 +1,11 @@
 package it.polimi.ingsw.controller;
 
-public enum TurnState {
+import it.polimi.ingsw.model.Player.Player;
 
+/**
+ * The list of all the possible actions a {@link Player} can do during his turn.
+ */
+public enum TurnState {
     LOBBY,
     CHECK_STATS,
     PLAY_LEADER_CARD,
@@ -10,7 +14,5 @@ public enum TurnState {
     PRODUCE,
     MOVE_RESOURCE,
     DISCARD_LEADER_CARD,
-    CONVERT_CHOICE,
     END_TURN,
-    QUIT;
 }

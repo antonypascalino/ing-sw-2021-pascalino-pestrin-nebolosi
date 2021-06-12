@@ -16,7 +16,8 @@ import java.util.Locale;
 import java.util.Scanner;
 
 /**
- * The type Printer.
+ * Everything that has to be shown on the player's CLI is printed out by this class.
+ * It also read every player's input.
  */
 public class Printer {
 
@@ -59,10 +60,10 @@ public class Printer {
     }
 
     /**
-     * Print mapped res mapped resource.
+     * Prints the {@link MappedResource}s received as parameter and make player choose one of them.
      *
-     * @param mappedRes the mapped res
-     * @return the mapped resource
+     * @param mappedRes the {@link MappedResource}s.
+     * @return          the chosen {@link MappedResource}.
      */
     public MappedResource printMappedRes(ArrayList<MappedResource> mappedRes) {
         Scanner inputs = new Scanner(System.in);
@@ -92,10 +93,10 @@ public class Printer {
 
 
     /**
-     * Print turn states turn state.
+     * Prints all the possible action that can be done by the player at the moment and make him choose one of them.
      *
-     * @param turnStates the turn states
-     * @return the turn state
+     * @param turnStates the actions the player can do.
+     * @return the action chose by the player.
      */
     public TurnState printTurnStates(ArrayList<TurnState> turnStates) {
         Scanner inputs = new Scanner(System.in);
@@ -123,11 +124,11 @@ public class Printer {
     }
 
     /**
-     * Print card id string.
+     * Prints all the production power the player can use when wants to produce and make him choose one of them.
      *
-     * @param cardID the card id
+     * @param cardID the IDs of the productions the player can use.
      * @param data   the data
-     * @return the string
+     * @return the production power's string the player chose.
      */
     public String printDevCardID(ArrayList<String> cardID, PlayerData data) {
         Scanner inputs = new Scanner(System.in);
@@ -136,7 +137,7 @@ public class Printer {
         while (true) {
             for (int i = 0; i < cardID.size(); i++) {
                 if(cardID.get(i).equals("BASIC"))
-                    System.out.println("[" + (i + 1) + "] "+"Basic production");
+                    System.out.println("[" + (i + 1) + "] " + "Basic production");
                 else if (!cardID.get(i).contains("PROD"))
                 System.out.println("[" + (i + 1) + "] " + data.getCardFromID(cardID.get(i)).toString());
                 else System.out.println("[" + (i + 1) + "] " + data.getLeaderFromID(cardID.get(i)).toString());
@@ -154,6 +155,13 @@ public class Printer {
         }
     }
 
+    /**
+     * Prints all the leader cards the player can choose and make him choose one of them.
+     *
+     * @param cardID the IDs of the leader card the player chose.
+     * @param data   the player that has to do the choice.
+     * @return the leader card's string the player chose.
+     */
     public String printLeaderCardID(ArrayList<String> cardID, PlayerData data) {
         Scanner inputs = new Scanner(System.in);
         String selection = "";
@@ -176,11 +184,12 @@ public class Printer {
     }
 
     /**
-     * Print integers int.
+     * Used to make player choose one of warehouse levels when he takes resources from market or to make player
+     * choose one of the board's slot when he buy a development card.
      *
-     * @param ints  the ints
-     * @param slots the slots
-     * @return the int
+     * @param ints  the number of slot or warehouse level.
+     * @param slots true if player has to choose a slot, false if has to choose a warehouse level.
+     * @return the choice.
      */
     public int printIntegers(ArrayList<Integer> ints, boolean slots) {
         Scanner inputs = new Scanner(System.in);
@@ -217,9 +226,10 @@ public class Printer {
     }
 
     /**
-     * Ask the player which resource it needs using a number as input from the stdin
-     * @param resource the resources that the player might choose
-     * @return the resource chosen by the user
+     * Ask the player which resource it needs using a number as input from the stdin.
+     *
+     * @param resource the resources that the player might choose.
+     * @return the resource chosen by the user.
      */
     public Resource printResource(ArrayList<Resource> resource) {
         Scanner inputs = new Scanner(System.in);
@@ -245,11 +255,12 @@ public class Printer {
             }
         }
     }
+
     /**
-     * Print matrix market array.
+     * Print market's matrix and ask the player to choose one between row or column and then the index.
      *
-     * @param matrix the matrix
-     * @return the market array
+     * @param matrix the market situation at the moment.
+     * @return a {@link MarketArray}.
      */
     public MarketArray printMatrix(Resource[][] matrix) {
         Scanner inputs = new Scanner(System.in);
@@ -321,9 +332,9 @@ public class Printer {
     }
 
     /**
-     * Ask question boolean.
+     * Used when it needs to simply print a question which required an Yes/No answer.
      *
-     * @return the boolean
+     * @return the true if the answer is Yes, false if it is no.
      */
     public boolean askQuestion() {
         Scanner inputs = new Scanner(System.in);
@@ -343,9 +354,9 @@ public class Printer {
     }
 
     /**
-     * Choose stats boolean.
+     * Used when player wants to see his status or other players' to ask which one wants to see.
      *
-     * @return the boolean
+     * @return true if wants to see his, false if wants to see other players'.
      */
     public boolean chooseStats() {
         Scanner inputs = new Scanner(System.in);
@@ -368,9 +379,9 @@ public class Printer {
     }
 
     /**
-     * Print other stats.
+     * Print other player's status.
      *
-     * @param data the data
+     * @param data the player who wants to see other players' status.
      */
     public void printOtherStats(OtherPlayerData data){
         System.out.println("Player ID: " + data.getPlayerID());
@@ -386,9 +397,9 @@ public class Printer {
     }
 
     /**
-     * Print my stats.
+     * Print player's status.
      *
-     * @param data the data
+     * @param data the player.
      */
     public void printMyStats(PlayerData data) {
         System.out.println("\nPLAYER ID: " + data.getPlayerID());
@@ -420,11 +431,12 @@ public class Printer {
     }
 
     /**
-     * Choose leader card array list.
+     * Used at the start phase of the game when player has to choose 2 out of 4 leader card: print them and makes
+     * the player choose.
      *
-     * @param leadersToChoose the leaders to choose
-     * @param data            the data
-     * @return the array list
+     * @param leadersToChoose the 4 leader cards to choose.
+     * @param data            the player.
+     * @return the 2 leader card chosen.
      */
     public ArrayList<String> chooseLeaderCard(ArrayList<String> leadersToChoose, PlayerData data) {
         ArrayList<String> chosen = new ArrayList<String>();
@@ -451,13 +463,13 @@ public class Printer {
     }
 
     /**
-     * Choose resource resource.
+     * Used at the start phase of the game when player can choose some resources to add to his warehouse. Print them and makes
+     * the player choose.
      *
      * @return the resource
      */
     public Resource chooseResource() {
         Scanner input = new Scanner(System.in);
-        boolean validInput;
 
         while(true) {
             System.out.println("You can choose a Resource to add to your Warehouse, which one do you want?");
@@ -471,15 +483,15 @@ public class Printer {
                 case (2): return Resource.STONE;
                 case (3): return Resource.SHIELD;
                 case (4): return Resource.SERVANT;
-                default : System.out.println("Invalid input");
+                default : System.out.println("Invalid input!");
             }
         }
     }
 
     /**
-     * Endgame.
+     * At the end of the game prints the winner and each player's victory points.
      *
-     * @param endgameUpdate the endgame update
+     * @param endgameUpdate the {@link EndgameUpdate}.
      */
     public void endgame(EndgameUpdate endgameUpdate) {
         System.out.println(endgameUpdate.getWinner().toUpperCase(Locale.ROOT) + " WON!");
@@ -491,18 +503,18 @@ public class Printer {
     }
 
     /**
-     * Print message.
+     * Used to print a simple message to the player, doesn't need any input.
      *
-     * @param message the message
+     * @param message the message to print.
      */
     public void printMessage(String message) {
         System.out.println(message);
     }
 
     /**
-     * View market.
+     * Used to simple print the market's matrix situation, doesn't need any input.
      *
-     * @param matrix the matrix
+     * @param matrix the market's matrix.
      */
     public void viewMarket(Resource[][] matrix) {
         Scanner inputs = new Scanner(System.in);
@@ -519,9 +531,9 @@ public class Printer {
     }
 
     /**
-     * Print ware house.
+     * Used to simple print the player's warehouse situation, doesn't need any input.
      *
-     * @param warehouse the warehouse
+     * @param warehouse the player's warehouse.
      */
     public void printWareHouse(ArrayList<Resource[]> warehouse) {
         for(int i = 0; i< warehouse.size(); i++)

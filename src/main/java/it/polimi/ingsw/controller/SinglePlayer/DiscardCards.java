@@ -1,13 +1,20 @@
 package it.polimi.ingsw.controller.SinglePlayer;
 
 import it.polimi.ingsw.model.card.DevCard;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * That type of {@link Token} that, if drawn, remove two {@link DevCard} from the table.
+ */
 public class DiscardCards implements Token {
     private String color;
 
+    /**
+     * Instantiates a new {@link DiscardCards} token.
+     *
+     * @param color the color of the {@link DevCard}s that will be removed if the {@link Token} will be drawn.
+     */
     public DiscardCards(String color) {
         this.color = color;
     }

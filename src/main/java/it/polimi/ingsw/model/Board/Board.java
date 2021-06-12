@@ -7,11 +7,10 @@ import it.polimi.ingsw.model.Player.Player;
 import java.util.ArrayList;
 
 /**
- * The player's Board with the references to player's {@link WareHouse}, {@link StrongBox}, {@link Slot}, {@link FaithPath}, {@link BasicDevSpace}
+ * The player's Board with the references to player's {@link WareHouse}, {@link StrongBox}, {@link Slot}, {@link FaithPath} and {@link BasicDevSpace}
  */
 public class Board
 {
-    //references to all the classes mentioned below
     private WareHouse wareHouse;
     private StrongBox strongBox;
     private Slot slot;
@@ -21,7 +20,10 @@ public class Board
     private Player player;
 
     /**
-     * Instantiates a new Board building the objects it needs: {@link WareHouse}, {@link StrongBox}, {@link Slot}, {@link FaithPath}, {@link BasicDevSpace}, {@link TempBox}.
+     * Instantiates a new Board for the {@link Player} building the objects it needs:
+     * {@link WareHouse}, {@link StrongBox}, {@link Slot}, {@link FaithPath}, {@link BasicDevSpace} and {@link TempBox}.
+     *
+     * @param player the {@link Player} who owns the Board.
      */
     public Board(Player player)
     {
@@ -34,25 +36,35 @@ public class Board
         this.player = player;
     }
 
+    /**
+     * Gets the {@link Player}.
+     *
+     * @return the {@link Player}.
+     */
     public Player getPlayer() {
         return player;
     }
 
+    /**
+     * Sets {@link Player}.
+     *
+     * @param player the {@link Player} to set.
+     */
     public void setPlayer(Player player) {
         this.player = player;
     }
 
     /**
-     * Gets the {@link WareHouse}.
+     * Gets the {@link WareHouse} linked to the {@link Board}.
      *
-     * @return the reference to the {@link WareHouse} of the board
+     * @return the reference to the {@link WareHouse} of the board.
      */
     public WareHouse getWareHouse() {
         return wareHouse;
     }
 
     /**
-     * Gets the {@link StrongBox}.
+     * Gets the {@link StrongBox} linked to the {@link Board}.
      *
      * @return the reference to the {@link StrongBox} of the board
      */
@@ -61,7 +73,7 @@ public class Board
     }
 
     /**
-     * Gets the {@link Slot}.
+     * Gets the {@link Slot}s linked to the {@link Board}.
      *
      * @return the reference to the {@link Slot} of the board
      */
@@ -70,7 +82,7 @@ public class Board
     }
 
     /**
-     * Gets the {@link TempBox}.
+     * Gets the {@link TempBox} linked to the {@link Board}.
      *
      * @return the reference to the {@link TempBox} of the board
      */
@@ -79,7 +91,7 @@ public class Board
     }
 
     /**
-     * Gets the {@link FaithPath}.
+     * Gets the {@link FaithPath} linked to the {@link Board}.
      *
      * @return the reference to the {@link FaithPath} of the board.
      */
@@ -88,8 +100,9 @@ public class Board
     }
 
     /**
-     * Check if player has all the resources received as parameters, watching in both {@link WareHouse} and {@link StrongBox}
-     * Use {@link StrongBox#getResources()} and {@link WareHouse#getResources()} to build an ArrayList with all player's resources.
+     * Check if {@link Player} has all the {@link Resource}s received as parameters,
+     * watching in both {@link WareHouse} and {@link StrongBox}.
+     *
      * @param needed the ArrayList with all the resources to check
      * @return true if the player has all needed resources, false otherwise.
      */
@@ -101,35 +114,34 @@ public class Board
         return tmp.containsAll(needed);
     }
 
+
     /**
-     * Remove the resources after check his availability, asking through the Connection where to get them.
-     * <p>
-     * First of all, check if player actually has the resources to remove.
-     * Then, for every resource in toRem, ask him from where remove it:
-     * • He choose to take it from WareHouse - check if there's it - if yes remove it, if no automatically remove it from StrongBox
-     * • He choose to take it from StrongBox - check if there's it - if yes remove it, if no automatically remove it from WareHouse
-     * The automatic remove is possible because the method previously checked the player's possession.
+     * Gets the {@link DevCard} with the cardID received as parameter.
      *
-     * @param cardID the ArrayList with the resources to remove.
-     *
-     * */
+     * @param cardID the card's ID of the {@link DevCard} it wants.
+     * @return the {@link DevCard}
+     */
     public DevCard getDevFromID (String cardID) {
         for(DevCard devCard : this.slot.getAllCards()) {
             if (devCard.getCardID().equals(cardID)) {
                 return devCard;
             }
         }
-        //LANCIA ECCEZIONE NON HA QUESTA CARTA
         return null;
     }
 
+    /**
+     * Gets the IDs of the {@link DevCard}s with which the {@link Player} can produce.
+     *
+     * @return an ArrayList with all the IDs of the {@link DevCard}s.
+     */
     public ArrayList<String> getProdID() {
         ArrayList<String> prodID = new ArrayList<String>();
         DevCard[] tmp = slot.getFrontCards();
 
         prodID.add(basicDevSpace.getCardID());
         for (DevCard dev : tmp) {
-            //if it contains an empty space it can't get get card id
+            //if it contains an empty space it can't get any card Id
             if(dev != null)
                 prodID.add(dev.getCardID());
         }

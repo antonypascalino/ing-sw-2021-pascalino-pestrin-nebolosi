@@ -1,11 +1,16 @@
 package it.polimi.ingsw.model.Updates;
 
 import it.polimi.ingsw.controller.TurnState;
+import it.polimi.ingsw.model.Player.Player;
+import it.polimi.ingsw.model.card.LeaderCard;
 import it.polimi.ingsw.view.data.OtherPlayerData;
 import it.polimi.ingsw.view.data.PlayerData;
 
 import java.util.ArrayList;
 
+/**
+ * The {@link Update} sent after that a {@link Player} discard a {@link LeaderCard}.
+ */
 public class DiscardLeaderUpdate implements Update {
     private ArrayList<TurnState> turnStates;
     private int faithPoints;
@@ -15,6 +20,16 @@ public class DiscardLeaderUpdate implements Update {
     private final String className;
 
 
+    /**
+     * Instantiates a new {@link DiscardLeaderUpdate} setting everything can change with this actions:
+     * the {@link TurnState} list, all {@link Player}'s victory points and the {@link Player}'s faith points.
+     *
+     * @param playerID    the player id
+     * @param turnStates  the turn states
+     * @param faithPoints the faith points
+     * @param leadersID   the leaders id
+     * @param playersVP   the players vp
+     */
     public DiscardLeaderUpdate(String playerID, ArrayList<TurnState> turnStates, int faithPoints, ArrayList<String> leadersID, ArrayList<PlayerVP> playersVP) {
         this.turnStates = turnStates;
         this.faithPoints = faithPoints;

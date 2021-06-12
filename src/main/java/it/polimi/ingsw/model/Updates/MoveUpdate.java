@@ -1,12 +1,17 @@
 package it.polimi.ingsw.model.Updates;
 
 import it.polimi.ingsw.controller.TurnState;
+import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Table.Resource;
+import it.polimi.ingsw.model.Board.WareHouse;
 import it.polimi.ingsw.view.data.OtherPlayerData;
 import it.polimi.ingsw.view.data.PlayerData;
 
 import java.util.ArrayList;
 
+/**
+ * The {@link Update} sent after that a {@link Player} moves his {@link Resource}s in his {@link WareHouse}.
+ */
 public class MoveUpdate implements Update {
     private ArrayList<TurnState> turnStates;
     private ArrayList<Resource[]> wareHouse;
@@ -15,6 +20,14 @@ public class MoveUpdate implements Update {
     private final String className;
 
 
+    /**
+     * Instantiates a new {@link MoveUpdate} setting everything can change with this actions:
+     * {@link Player}'s {@link WareHouse}, {@link TurnState}'s list.
+     *
+     * @param playerID   the {@link Player}'s ID.
+     * @param turnStates the turn states' list
+     * @param wareHouse  the {@link WareHouse} of the player.
+     */
     public MoveUpdate(String playerID, ArrayList<TurnState> turnStates, ArrayList<Resource[]> wareHouse) {
         this.turnStates = turnStates;
         this.wareHouse = wareHouse;

@@ -6,9 +6,16 @@ import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Updates.StartGameUpdate;
 import it.polimi.ingsw.model.Updates.Update;
+import it.polimi.ingsw.model.card.DevCard;
+import it.polimi.ingsw.model.card.LeaderCard;
 
 import java.util.ArrayList;
 
+/**
+ * The {@link Request} sent by a player after the {@link Game} starts. It contains the {@link LeaderCard}s
+ * and the resources the player chose.
+ *
+ */
 public class InitialPlayersSetRequest implements Request {
     private int gameID;
     private String playerID;
@@ -16,6 +23,15 @@ public class InitialPlayersSetRequest implements Request {
     private ArrayList<String> leadersChosen;
     private String className;
 
+    /**
+     * Instantiates a new {@link InitialPlayersSetRequest} setting the information for handle the specific actions:
+     * the {@link Game}'s ID, the player's nickname, the {@link LeaderCard}s and the resources he chose.
+     *
+     * @param gameID        the {@link Game}'s ID.
+     * @param playerID      the {@link Player}'s ID.
+     * @param marketRes     all the {@link MarketResource}s.
+     * @param leadersChosen all the {@link LeaderCard}s' ID the player chosen.
+     */
     public InitialPlayersSetRequest(int gameID, String playerID, ArrayList<MarketResource> marketRes, ArrayList<String> leadersChosen) {
         this.gameID = gameID;
         this.playerID = playerID;
@@ -49,8 +65,6 @@ public class InitialPlayersSetRequest implements Request {
                 if(game.playerReady == game.maxPlayer)
                     game.start();
             }
-
-
         }
         return null;
     }

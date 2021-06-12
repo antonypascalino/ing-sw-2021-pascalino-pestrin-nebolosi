@@ -4,9 +4,13 @@ import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Updates.Update;
+import it.polimi.ingsw.model.card.DevCard;
 
 import java.util.ArrayList;
 
+/**
+ * The {@link Request} sent by a player when he wants to join a {@link Game}.
+ */
 public class JoinGameRequest implements Request{
 
     private final String className;
@@ -14,6 +18,12 @@ public class JoinGameRequest implements Request{
     private String nickName;
     private String playerID;
 
+    /**
+     * Instantiates a new {@link JoinGameRequest} setting the {@link Game}'s ID and the player's nickname.
+     *
+     * @param gameId     the {@link Game}'s ID.
+     * @param nickName   the {@link Player}'s ID.
+     */
     public JoinGameRequest(int gameId, String nickName)
     {
         className=this.getClass().getName();
@@ -51,6 +61,11 @@ public class JoinGameRequest implements Request{
         return gameId;
     }
 
+    /**
+     * Gets nick name.
+     *
+     * @return the nick name
+     */
     public String getNickName()
     {
         return nickName;

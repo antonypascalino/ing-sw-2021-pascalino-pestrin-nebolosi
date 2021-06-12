@@ -2,13 +2,12 @@ package it.polimi.ingsw.view.clientCards;
 
 import it.polimi.ingsw.model.Colors;
 import it.polimi.ingsw.model.Table.Resource;
-import it.polimi.ingsw.model.card.DevCard;
 import it.polimi.ingsw.view.data.PlayerData;
 
 import java.util.ArrayList;
 
 /**
- * The type Client change res.
+ * The {@link ClientLeaderCard} that gives the {@link PlayerData} the possibility to change an white marble with an other {@link Resource}.
  */
 public class ClientChangeRes extends ClientLeaderCard {
     private Colors color1;
@@ -16,20 +15,19 @@ public class ClientChangeRes extends ClientLeaderCard {
     private Resource change;
 
     /**
-     * Instantiates a new Client change res.
+     * Instantiates a new {@link ClientChangeRes} setting the requirements to be be played and the changeable {@link Resource}.
      *
      * @param victoryPoints the victory points
-     * @param color1        the color 1
-     * @param color2        the color 2
-     * @param change        the change
-     * @param leaderID      the leader id
+     * @param color1        the color of a {@link ClientDevCard} required for being played.
+     * @param color2        the color of a 2 {@link ClientDevCard}s required for being played.
+     * @param change        the {@link Resource} in which the new {@link PlayerData} can turn the white marbles.
+     * @param leaderID      the leader card's ID.
      */
     public ClientChangeRes(int victoryPoints, Colors color1, Colors color2, Resource change, String leaderID) {
         super(leaderID, victoryPoints, change);
         this.color1 = color1;
         this.color2 = color2;
         this.change = change;
-
     }
 
     @Override

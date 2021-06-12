@@ -5,7 +5,7 @@ import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Table.Resource;
 
 /**
- * The leader card that gives the player the possibility to change a resource
+ * The {@link LeaderCard} that gives the {@link Player} the possibility to change an white marble with an other {@link Resource}.
  */
 public class ChangeResource implements LeaderCard
 {
@@ -17,14 +17,15 @@ public class ChangeResource implements LeaderCard
     private Resource change;
     private final String className;
     public String cardID;
+
     /**
-     * Instantiates a new Change resource and sets the enable to false
+     * Instantiates a new ChangeResource {@link LeaderCard} and sets enable to false.
      *
-     * @param victoryPoints the victory points the card gives to the player
-     * @param color1        the color of the first card required for being played
-     * @param color2        the color of the second card required for being played
-     * @param change        the resource in which the new player turns the white resource
-     * @param cardID the unique id for the card
+     * @param victoryPoints the victory points the {@link LeaderCard} gives the {@link Player} when played.
+     * @param color1        the color of a {@link DevCard} required for being played.
+     * @param color2        the color of a 2 {@link DevCard}s required for being played.
+     * @param change        the {@link Resource} in which the new {@link Player} can turn the white marbles.
+     * @param cardID        the unique id for the card
      */
     public ChangeResource(int victoryPoints, String color1, String color2, Resource change, String cardID)
     {
@@ -52,7 +53,7 @@ public class ChangeResource implements LeaderCard
     }
 
     @Override
-    public Boolean equals(LeaderCard compare) {
+    public boolean equals(LeaderCard compare) {
         return this.cardID.equals(compare.getID());
     }
 
@@ -61,16 +62,13 @@ public class ChangeResource implements LeaderCard
         return cardID;
     }
 
-
+    @Override
     public void assignTo(Player player) {
         this.player = player;
         player.addLeaderCard(this);
     }
 
-    /**
-     * Check if the player can play the card
-     * @return true if he has one card of the first color e two card of the second color
-     */
+    @Override
     public boolean canBePlayed()
     {
         int secondColor = 0;
@@ -91,6 +89,7 @@ public class ChangeResource implements LeaderCard
         return className;
     }
 
+    @Override
     public void playCard()
     {
         if (canBePlayed())

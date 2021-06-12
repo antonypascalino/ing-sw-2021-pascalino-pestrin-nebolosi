@@ -2,42 +2,35 @@ package it.polimi.ingsw.model.card;
 
 import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Table.Resource;
+import it.polimi.ingsw.controller.Game;
 
 import java.util.ArrayList;
 
+
 /**
- * The type Dev card.
+ * The card that allows the {@link Player} to produce {@link Resource} from other {@link Resource}.
  */
-public class DevCard /*extends Producer*/ {
+public class DevCard {
     private final String color;
     private final int level;
     private final int victoryPoint;
     private boolean isEnable;
     private String cardID;
-    /**
-     * The Owner.
-     */
-    protected Player owner;
-
-    /**
-     * The Requires for production
-     */
-    ArrayList<Resource> requires;
+    private Player owner;
+    private ArrayList<Resource> requires;
     private final ArrayList<Resource> produces;
-
     private final ArrayList<Resource> price;
 
-
     /**
-     * Instantiates a new Dev card and set its enable to false
-     * Gets all the information from the it.polimi.ingsw.controller which deserializes from the json
-     * the  and istantiate a new card to be set on the game table
-     * @param col the color
-     * @param lev the level
-     * @param vp  the victory points
-     * @param req the requires needed for producing
-     * @param pro the resource produced by the card
-     * @param pri the price for buying the card
+     * Instantiates a new {@link DevCard} with all its features and set its enable to false.
+     *
+     * @param id  the {@link DevCard}'s ID.
+     * @param col the {@link DevCard}'s color.
+     * @param lev the {@link DevCard}'s level.
+     * @param vp  the {@link DevCard}'s victory points gave to a {@link Player} who will buy this card.
+     * @param req the required {@link Resource} needed for producing.
+     * @param pro the {@link Resource}s produced by this {@link DevCard}.
+     * @param pri the price for buying this {@link Resource}.
      */
     public DevCard(String id, String col, int lev, int vp, ArrayList<Resource> req, ArrayList<Resource> pro, ArrayList<Resource> pri) {
         cardID = id;
@@ -53,7 +46,7 @@ public class DevCard /*extends Producer*/ {
     }
 
     /**
-     * Sets owner when the player buys a card
+     * Sets owner when the {@link Resource} buys a {@link DevCard}.
      *
      * @param owner the owner
      */
@@ -62,91 +55,65 @@ public class DevCard /*extends Producer*/ {
     }
 
     /**
-     * Gets color.
+     * Gets the {@link DevCard}'s color.
      *
-     * @return the color
+     * @return the {@link DevCard}'s color
      */
     public String getColor() {
         return color;
     }
 
     /**
-     * Gets level.
+     * Gets the {@link DevCard}'s level.
      *
-     * @return the level
+     * @return the {@link DevCard}'s level
      */
     public int getLevel() {
         return level;
     }
 
     /**
-     * When used gives back the resources and remove the resources
-     * from the strongBox or from the wareHouse
+     * Gets the produced {@link Resource}s.
      *
-     *
-     * @return the array list of the produced resourced
+     * @return the array list of the produced {@link Resource}.
      */
-    //PLACE IT IN THE STRONGBOX
 
-    public ArrayList<Resource> producedResources()
-    {
+    public ArrayList<Resource> producedResources() {
         return (ArrayList<Resource>) produces.clone();
     }
 
     /**
-     * Can produce boolean.
+     * Gets the {@link DevCard}'s price
      *
-     * @return the true if the player has the resource for using the card
-     */
-    public boolean canProduce()
-    {
-        return owner.getBoard().hasResources(requires);
-    }
-
-    /**
-     * Can be used boolean.
-     *
-     * @return true if the card is enabled
-     */
-    public boolean canBeUsed() {
-            return isEnable;
-    }
-
-    /**
-     * Used when the card is covered and it gets disabled
-     * Disable.
-     */
-    public void disable() {
-        isEnable = false;
-    }
-
-    /**
-     * Used when the card is bought and set on top
-     */
-    public void enable() {
-        isEnable = true;
-    }
-
-    /**
-     * Gets price
-     *
-     * @return the price that the player needs to pay the card
+     * @return the price that the {@link Player} needs to buy the {@link DevCard}.
      */
     public ArrayList<Resource> getPrice() {
         return price;
     }
 
+    /**
+     * Gets {@link DevCard}'s ID.
+     *
+     * @return the {@link DevCard}'s ID.
+     */
     public String getCardID() {
         return cardID;
     }
 
     /**
-     * @return the resources needed for using this production card
+     * Get the required {@link Resource} to produce whit this {@link DevCard}.
+     *
+     * @return the resources needed for using this {@link DevCard}.
      */
     public ArrayList<Resource> getRequirements(){
         return requires;
     }
 
+    /**
+     * Gets the {@link DevCard}'s victory points.
+     *
+     * @return the victory points
+     */
     public int getVictoryPoints() {
         return victoryPoint;
     }
