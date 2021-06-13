@@ -29,4 +29,19 @@ public enum Resource {
         }
         return clone;
     }
+
+    /**
+     * Used to pretty print the resources in the CLI.
+     * 
+     * @return the string to print.
+     */
+    public String inLine() {
+        if (this == GOLD) return "GOLD   ";
+        else if (this == STONE) return "STONE  ";
+        else if (this == SHIELD) return "SHIELD ";
+        else if (this == SERVANT) return "SERVANT";
+        else if (this == EMPTY) return "EMPTY  ";
+        else if (this == FAITH) return "FAITH  ";
+        return null;
+    }
 }

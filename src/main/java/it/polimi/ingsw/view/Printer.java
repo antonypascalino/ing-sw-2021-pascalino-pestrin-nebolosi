@@ -6,12 +6,13 @@ import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Table.Resource;
 import it.polimi.ingsw.model.Updates.EndgameUpdate;
 import it.polimi.ingsw.model.Updates.PlayerVP;
-import it.polimi.ingsw.view.clientCards.ClientDevCard;
+import it.polimi.ingsw.model.Updates.Update;
 import it.polimi.ingsw.view.data.OtherPlayerData;
 import it.polimi.ingsw.view.data.PlayerData;
 import it.polimi.ingsw.view.selections.MarketArray;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -267,14 +268,16 @@ public class Printer {
         Scanner inputs = new Scanner(System.in);
         String selection = "";
         ArrayList<Resource> res = new ArrayList<Resource>();
-        //da fare meglio la matrice a schermo
-        //System.out.println("1  2   3  4");
+        System.out.println("     1       2       3");
         for (int r = 0; r < matrix.length; r++) {
+            System.out.print( (r + 1) + "  ");
             for (int c = 0; c < matrix[r].length; c++) {
-                System.out.print(matrix[r][c] + " ");
+                System.out.print(matrix[r][c].inLine() + " ");
             }
-            System.out.println("");
+            System.out.println(" <");
         }
+        System.out.println("     ^       ^       ^ ");
+        System.out.println("Free one: " + getFreeOne(matrix) + "\n");
         while (true) {
             System.out.println("Select if you want a row or a column: ");
             System.out.println("[1] Row");
@@ -386,7 +389,7 @@ public class Printer {
      */
     public void printOtherStats(OtherPlayerData data){
         System.out.println("Player ID: " + data.getPlayerID());
-        System.out.println("Warehouse:\n" );
+        System.out.println("Warehouse:\n" + data.getWareHouse());
         System.out.println("Strongbox:\n" + data.getStrongBox());
         System.out.println("Slots:\n" + data.getSlotFrontCards());
         System.out.println("Faith Points: " + data.getFaithPoints());
@@ -518,17 +521,14 @@ public class Printer {
      * @param matrix the market's matrix.
      */
     public void viewMarket(Resource[][] matrix) {
-        Scanner inputs = new Scanner(System.in);
-        String selection = "";
         ArrayList<Resource> res = new ArrayList<Resource>();
-        //da fare meglio la matrice a schermo
-        //System.out.println("1  2   3  4");
         for (int r = 0; r < matrix.length; r++) {
             for (int c = 0; c < matrix[r].length; c++) {
-                System.out.print(matrix[r][c] + " ");
+                System.out.print(matrix[r][c].inLine() + " ");
             }
             System.out.println("");
         }
+        System.out.println("Free one: " + getFreeOne(matrix) + "\n");
     }
 
     /**
@@ -542,10 +542,32 @@ public class Printer {
             System.out.print("Level " +(i+1)+ ": ");
             for(int k = 0; k<warehouse.get(i).length; k++)
             {
-                System.out.print(warehouse.get(i)[k]+" ");
+                System.out.print(warehouse.get(i)[k].inLine() + " ");
             }
             System.out.println();
         }
 
+    }
+
+    /**
+     * From market's situation derives the free one resource, in this way is not necessary to
+     * send the information into the {@link Update}.
+     *
+     * @param market the market situation.
+     * @return the free one.
+     */
+    public Resource getFreeOne(Resource[][] market) {
+        ArrayList<Resource> marketRes = new ArrayList<>();
+        for (Resource[] dimension : market) {
+            for (Resource res : dimension) {
+                marketRes.add(res);
+            }
+        }
+        if (Collections.frequency(marketRes, Resource.EMPTY) == 3) return Resource.EMPTY;
+        else if (Collections.frequency(marketRes, Resource.FAITH) == 0) return Resource.FAITH;
+        else if (Collections.frequency(marketRes, Resource.GOLD) == 1) return Resource.GOLD;
+        else if (Collections.frequency(marketRes, Resource.SHIELD) == 1) return Resource.SHIELD;
+        else if (Collections.frequency(marketRes, Resource.STONE) == 1) return Resource.STONE;
+        else return Resource.SERVANT;
     }
 }
