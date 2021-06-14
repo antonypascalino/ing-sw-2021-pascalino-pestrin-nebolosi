@@ -1,5 +1,7 @@
 package it.polimi.ingsw.connection;
 
+import it.polimi.ingsw.model.Updates.CheckUpdate;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -7,16 +9,11 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 public class PingConnection implements Runnable {
-    Socket socket;
-    String player;
-    private BufferedReader in;
-    private PrintWriter out;
+    ClientHandler clientHandler;
 
-    public PingConnection(Socket socket, String playerNick) throws IOException {
-        this.socket = socket;
-        this.player = playerNick;
-        in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        out = new PrintWriter(socket.getOutputStream(),true);
+    public PingConnection(ClientHandler clientHandler) throws IOException {
+        this.clientHandler = clientHandler;
+
 
     }
 
@@ -24,14 +21,10 @@ public class PingConnection implements Runnable {
     {
         while (true)
         {
-            out.println("Ping");
+            clientHandler.notifyView(new CheckUpdate());
             try {
-                if(!in.ready());
-                    //Chiudi partita
-                else if(!in.readLine().equals("pong"));
-                //Chiud partita
-
-            } catch (IOException e) {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }

@@ -15,9 +15,9 @@ public class MultiEchoServer {
 
     //Array list used for handle different threads
     private ArrayList<ClientHandler> clients = new ArrayList<ClientHandler>();
-    private ArrayList<Game> games = new ArrayList<Game>();
     //Id of the lastPlayer who joined
     private String lastPlayer;
+    private GameHolder games;
 
     public MultiEchoServer(int port){
         this.port = port;
@@ -27,6 +27,7 @@ public class MultiEchoServer {
         //It creates threads when necessary, otherwise it re-uses existing one when possible
         ExecutorService executor = Executors.newFixedThreadPool(10);
         ServerSocket serverSocket;
+        games = new GameHolder();
         try{
             serverSocket = new ServerSocket(port);
             System.out.println(port);
@@ -40,7 +41,7 @@ public class MultiEchoServer {
                 Socket socket = serverSocket.accept();
                 //Create the new game id
                 //lastPlayer = newPlayer(lastPlayer);
-                executor.execute(new ClientHandler(socket,games));
+                new ClientHandler(socket,games);
             }catch(IOException e){
                 break; //In case the serverSocket gets closed
             }

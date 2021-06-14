@@ -49,14 +49,15 @@ public class Observer implements Runnable{
     {
         try{
             while(true) {
-                String input = in.readLine();
-                Update update = JsonReader.readUpdate(input);
-                //PROBLEMA: la handleUpdate si fa prima o dopo aver wrapparo? Devo andare a mangiare ci penso dopo
-                if (update instanceof PlayLeaderUpdate) {
-                    ((PlayLeaderUpdate) update).wrapPlayer(this);
+                if(in.ready()) {
+                    String input = in.readLine();
+                    Update update = JsonReader.readUpdate(input);
+                    //PROBLEMA: la handleUpdate si fa prima o dopo aver wrapparo? Devo andare a mangiare ci penso dopo
+                    if (update instanceof PlayLeaderUpdate) {
+                        ((PlayLeaderUpdate) update).wrapPlayer(this);
+                    }
+                    update.handleUpdate(data);
                 }
-                update.handleUpdate(data);
-
             }
         }catch (IOException e) {
         }

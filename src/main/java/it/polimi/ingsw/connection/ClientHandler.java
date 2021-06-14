@@ -9,33 +9,38 @@ import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.controller.SinglePlayer.SinglePlayerGame;
 import it.polimi.ingsw.model.Player.BasicPlayer;
 import it.polimi.ingsw.model.Player.Player;
-import it.polimi.ingsw.model.Updates.LobbyUpdate;
-import it.polimi.ingsw.model.Updates.NewGameUpdate;
-import it.polimi.ingsw.model.Updates.Update;
+import it.polimi.ingsw.model.Updates.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.net.SocketException;
 import java.util.ArrayList;
 
-public class ClientHandler implements Runnable {
+public class ClientHandler extends Thread {
 
         private Socket socket;
         private BufferedReader in;
         private PrintWriter out;
-        private ArrayList<Game> games;
+        private GameHolder games;
         //Each clientHandler has a playerId so it's sure the requests comes from the right socket
         public String playerId;
+        private Game thisGame; //Game to which the player is connected
         Gson json;
 
-        public ClientHandler(Socket socket, ArrayList<Game> games) throws IOException {
+        public ClientHandler(Socket socket, GameHolder games) throws IOException {
             json = new Gson();
             this.games = games;
             this.socket = socket;
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             out = new PrintWriter(socket.getOutputStream(),true);
+
+            this.start();
+            PingConnection pingConnection = new PingConnection(this);
+            Thread ping = new Thread(pingConnection);
+            //ping.start();
         }
 
         @Override
@@ -89,6 +94,7 @@ public class ClientHandler implements Runnable {
                         }
                     }*/
                         if (request instanceof NewGameRequest) {
+                            //games.add(playerId);
                             //If there's no game on the server create the first one
                             Game lastGame = null;
                             if (games.size() != 0)
@@ -116,6 +122,7 @@ public class ClientHandler implements Runnable {
                                     update = new LobbyUpdate(((NewGameRequest) request).getNickname(), newGame.getPlayers().size(), ((NewGameRequest) request).getPlayers());
 
                                 }
+                                thisGame = newGame;
                                 newPlayer.setGame(newGame);
                                 newPlayer.setTable(newGame.getTable());
                                 games.add(newGame);
@@ -128,6 +135,7 @@ public class ClientHandler implements Runnable {
                             else {
                                 Player newPlayer = new BasicPlayer(((NewGameRequest) request).getNickname(), this);
                                 lastGame.addPlayer(newPlayer);
+                                thisGame = lastGame;
                                 newPlayer.setTable(lastGame.getTable());
                                 newPlayer.setGame(lastGame);
                                 System.out.println("Player " + ((NewGameRequest) request).getNickname() + " added to game " + lastGame.getGameId());
@@ -154,16 +162,34 @@ public class ClientHandler implements Runnable {
                 //in.close();
                 //out.close();
                 //socket.close();
-            } catch (IOException e){
+            //If the client is dead
+            } catch (SocketException e){
                 System.err.println(e.getMessage());
+                System.out.println("Player "+playerId+"disconnected");
+                thisGame.notifyAllPlayers(new ErrorUpdate("Player "+playerId+ " disconnected", playerId));
+                games.remove(thisGame);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
 
-        public void notifyView(Update update)
+        //Synchronyzed because it's used by both thread (once for the actual game and another one for checking the status
+        public synchronized void notifyView(Update update)
         {
+            try {
+                out = new PrintWriter(socket.getOutputStream(),true);
+            }catch (SocketException e){
+                System.err.println(e.getMessage());
+                System.out.println("Player "+playerId+"disconnected");
+                thisGame.notifyAllPlayers(new ErrorUpdate("Player "+playerId+ " disconnected", playerId));
+                games.remove(thisGame);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             String message = json.toJson(update);
             out.println(message);
             out.flush();
+            out.close();
         }
 }
 
