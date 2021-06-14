@@ -31,7 +31,7 @@ public class MoveSelection extends Selection{
             return;
         }
 
-        int origin = data.getPrinter().printIntegers(l, false);
+        int origin = data.getPrinter().printIntegers(l, false, true);
         int destination = data.switchLevels(origin);
         if (destination == -1) {
             data.getMenu().menuMaker();
