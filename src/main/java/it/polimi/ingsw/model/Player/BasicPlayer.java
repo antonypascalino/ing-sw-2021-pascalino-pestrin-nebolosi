@@ -10,6 +10,7 @@ import it.polimi.ingsw.model.Table.Resource;
 import it.polimi.ingsw.model.Table.Table;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * The type Basic player (it extends {@link Player})
@@ -105,6 +106,20 @@ public class BasicPlayer extends Player {
         return true;
     }
 
+    //This code has been copied from the can be played so it should work
+    @Override
+    public boolean checkSwitch(int originLevel, int destLevel)
+    {
+        long originCount = Arrays.stream(getDeposits().get(originLevel)).filter(resource -> !resource.equals(Resource.EMPTY)).count();
+        long destCount = Arrays.stream(getDeposits().get(destLevel)).filter(resource -> !resource.equals(Resource.EMPTY)).count();
+        if (!(originCount == 0 && destCount == 0)) {
+            //return true if both the original and dest level have space for holding the new resources
+            return ((originCount <= getDeposits().get(destLevel).length) && (destCount <= getDeposits().get(originLevel).length));
+        }
+        //If both the original and destination level have zero resource there's no point in switching so return false
+        else return false;
+
+    }
     @Override
     public boolean checkLevel(int level) {
         return level <= 2 && level >= 0;

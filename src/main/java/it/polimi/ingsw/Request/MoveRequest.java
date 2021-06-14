@@ -7,6 +7,7 @@ import it.polimi.ingsw.model.Table.Resource;
 import it.polimi.ingsw.model.Updates.MoveUpdate;
 import it.polimi.ingsw.model.Updates.Update;
 import it.polimi.ingsw.model.card.DevCard;
+import it.polimi.ingsw.model.card.LeaderCard;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -50,13 +51,34 @@ public class MoveRequest implements Request {
         if (!player.checkLevel(destLevel)) {
             return false;
         }
-        long originCount = Arrays.stream(player.getDeposits().get(originLevel)).filter(resource -> !resource.equals(Resource.EMPTY)).count();
-        long destCount = Arrays.stream(player.getDeposits().get(destLevel)).filter(resource -> !resource.equals(Resource.EMPTY)).count();
-        if (!(originCount == 0 && destCount == 0)) {
-            return originCount <= player.getDeposits().get(destLevel).length && destCount <= player.getDeposits().get(originLevel).length;
+        //Since the check depends on the type of player (it's different if it has some extradep) this check is done by the player
+        return player.checkSwitch(originLevel, destLevel);
+
+  /*      if (Arrays.stream(player.getDeposits().get(destLevel)).anyMatch(x -> x.equals(Resource.EMPTY))) {
+            ArrayList<LeaderCard> leaderCards = new ArrayList<>();
+            for (LeaderCard card : player.getLeaderCards()) {
+                if (card.getID().contains("DEP")) {
+                    leaderCards.add(card);
+                }
+            }
+            return player.getDeposits().get(originLevel)[0] == leaderCards.get(destLevel - 3).getPowerResource();
         }
-        return false;
+
+
+        //Da ExtraDep a...
+        else {
+            for (int i = 0; i < 3; i++) {
+                if (i != destLevel) {
+                    if (Arrays.stream(player.getDeposits().get(i)).anyMatch(x -> x.equals(player.getDeposits().get(originLevel)[0]))) {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+        return false;*/
     }
+
 
     @Override
     public int getGameID() {

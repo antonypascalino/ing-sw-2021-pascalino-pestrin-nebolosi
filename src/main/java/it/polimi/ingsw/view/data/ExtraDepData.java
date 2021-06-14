@@ -189,6 +189,11 @@ public class ExtraDepData extends PlayerData {
             }
             // ... a Extra Dep
             for (int e = 3; e < extraDep.size() + 3; e++) {
+                if(wareHouse.get(origin)[0] == placeableRes.get(e - 3) && Arrays.stream(extraDep.get(e - 3)).anyMatch(x -> x.equals(Resource.EMPTY))){
+                    levels.add(e);
+                }
+            }
+            /*for (int e = 3; e < extraDep.size() + 3; e++) {
                 int counterDes = 0;
                 for (int cd = 0; cd < extraDep.get(e - 3).length; cd++) {
                     if (extraDep.get(e - 3)[cd] == Resource.EMPTY) {
@@ -203,7 +208,7 @@ public class ExtraDepData extends PlayerData {
                 if (Arrays.stream(wareHouse.get(origin)).anyMatch(x -> x.equals(placeRes) && finalCounterOr <= extraDep.get(finalE - 3).length && finalCounterDes <= wareHouse.get(origin).length) && !(counterDes == 0 && counterOr == 0)) {
                     levels.add(e);
                 }
-            }
+            }*/
             //levels.remove(origin);
         }
         // Da Extra Dep ...

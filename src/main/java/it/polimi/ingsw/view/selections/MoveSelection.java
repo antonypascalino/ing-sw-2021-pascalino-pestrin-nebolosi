@@ -6,6 +6,7 @@ import it.polimi.ingsw.model.Table.Resource;
 import it.polimi.ingsw.view.data.PlayerData;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -20,9 +21,17 @@ public class MoveSelection extends Selection{
         ArrayList<Integer> l = new ArrayList<Integer>();
         ArrayList<Resource[]> levels = data.getDeposits();
         for(int i = 0; i < levels.size(); i++){
-            l.add(i);
+            if(Arrays.stream(levels.get(i)).anyMatch(x -> !x.equals(Resource.EMPTY))){
+                l.add(i);
+            }
         }
-        int origin = data.getPrinter().printIntegers(l, false, false);
+        if(l.isEmpty()){
+            data.getPrinter().printMessage("You can't switch any level");
+            data.getMenu().menuMaker();
+            return;
+        }
+
+        int origin = data.getPrinter().printIntegers(l, false);
         int destination = data.switchLevels(origin);
         if (destination == -1) {
             data.getMenu().menuMaker();

@@ -28,14 +28,17 @@ public class ExtraDepositPlayer extends Player {
        // addedLevel = player.getBoard().getWareHouse().getLevels().size(); //CONTOLLARE DISCORSO INDICI: LIVELLO 1 HA INDICE 0 NELL'ARRAYLIST
         this.placeableRes = new ArrayList<>();
         extraDep = new ArrayList<>();
+        this.original = original;
         if (original instanceof ExtraDepositPlayer) {
             this.placeableRes.addAll(((ExtraDepositPlayer) original).placeableRes);
             extraDep.add(((ExtraDepositPlayer) original).getExtraDep().get(0)); //Non dovrebbe essere get 0 ma get l'ultimo elemento, ma tanto possiamo avere solo 2 carte al massimo
+            //Points to the basic
+            this.original = original.original;
         }
 
         extraDep.add(new ExtraDepositLevel(placeableRes));
         this.placeableRes.add(placeableRes);
-        this.original = original;
+
     }
 
     @Override
@@ -140,38 +143,34 @@ public class ExtraDepositPlayer extends Player {
 //        //Lo switch non può avvenire da un deposito extra ad un altro deposito extra in quanto le risorse piazzabili in essi si escludono a vicenda
 //    }
 
-     @Override
-     public void switchLevels(int originLevel, int destLevel) {
+    @Override
+    public void switchLevels(int originLevel, int destLevel) {
 
-         //Da Warehouse...
-         if (originLevel <= 2) {
-             // ... a Warehouse
-             if (destLevel <= 2) {
-                 original.switchLevels(originLevel, destLevel);
-             }
-             // ... a ExtraDep
-             else {
-                 ArrayList<Resource> tmp = new ArrayList<>();
-                 tmp.addAll(extraDep.get(destLevel - 3).getResources());
-                 for (int i = 0; i < Math.min(original.getDeposits().get(originLevel).length, extraDep.get(destLevel - 3).getResources().size()); i++) {
-                     extraDep.get(destLevel - 3).getResources().set(i, original.getDeposits().get(originLevel)[i]);
-                     original.getBoard().getWareHouse().getLevels().get(originLevel)[i] = tmp.get(i);
-                 }
-             }
-         }
-         // Da ExtraDep...
-         else {
-             // ... a Warehouse
-             ArrayList<Resource> tmp = new ArrayList<>();
-             tmp.addAll(extraDep.get(originLevel - 3).getResources());
-             for (int i = 0; i < Math.min(original.getDeposits().get(destLevel).length, extraDep.get(originLevel - 3).getResources().size()); i++) {
-                 extraDep.get(originLevel - 3).getResources().set(i, original.getDeposits().get(destLevel)[i]);
-                 original.getBoard().getWareHouse().getLevels().get(destLevel)[i] = tmp.get(i);
-             }
-         }
-     }
-
-
+//Da Warehouse...
+        if (originLevel <= 2) {
+            // ... a Warehouse
+            if (destLevel <= 2) {
+                original.switchLevels(originLevel, destLevel);
+            }
+            // ... a ExtraDep
+            else {
+                for (int i = 0 ; i < Math.min(original.getDeposits().get(originLevel).length, extraDep.get(destLevel - 3).getResources().size()); i++) {
+                    extraDep.get(destLevel - 3).getResources().set(extraDep.get(destLevel - 3).getResources().size() - i - 1, original.getDeposits().get(originLevel)[original.getDeposits().get(originLevel).length - i - 1]);
+                    original.getBoard().getWareHouse().getLevels().get(originLevel)[original.getBoard().getWareHouse().getLevels().get(originLevel).length - i - 1] = Resource.EMPTY;
+                }
+            }
+        }
+// Da ExtraDep...
+        else {
+            // ... a Warehouse
+            ArrayList<Resource> tmp = new ArrayList<>();
+            tmp.addAll(extraDep.get(originLevel - 3).getResources());
+            for (int i = 0; i < Math.min(original.getDeposits().get(destLevel).length, extraDep.get(originLevel - 3).getResources().size()); i++) {
+                extraDep.get(originLevel - 3).getResources().set(i, original.getDeposits().get(destLevel)[i]);
+                original.getBoard().getWareHouse().getLevels().get(destLevel)[i] = tmp.get(i);
+            }
+        }
+    }
 
     private void add (Resource res, int level) {
         extraDep.get(level - 3).addResource(res);
@@ -179,6 +178,39 @@ public class ExtraDepositPlayer extends Player {
 
     private void remove (Resource res, int level) {
         extraDep.get(level).removeResource(res);
+    }
+
+    @Override
+    public boolean checkSwitch(int originLevel, int destLevel) {
+        //The player can't remove something the extra dep level but just put it in it or can't get from a level that he does'nt have
+
+        //In case there are no extradep required
+        if (originLevel > 3 + extraDep.size() || destLevel > 3 + extraDep.size()) {
+            return false;
+        }
+        //From WareHouse...
+        else if (originLevel <= 2) {
+            //... to WareHouse
+            if (destLevel <= 2) {
+                return original.checkSwitch(originLevel, destLevel);
+                //... to ExtraDep;
+            } else {
+                return (getDeposits().get(originLevel)[0] == extraDep.get(destLevel - 3).getPlaceable() && extraDep.get(destLevel - 3).getResources().contains(Resource.EMPTY));
+            }
+        }
+        // From ExtraDep to WareHouse
+        else {
+            boolean isThere = false;
+            for(int i = 0; i < original.getDeposits().size(); i++){
+                if(i != destLevel){
+                    if(Arrays.stream(original.getDeposits().get(i)).anyMatch(x -> x.equals(extraDep.get(originLevel - 3).getPlaceable()))){
+                        isThere = true;
+                        break;
+                    }
+                }
+            }
+            return !isThere;
+        }
     }
 
     @Override
