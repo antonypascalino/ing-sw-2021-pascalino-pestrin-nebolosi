@@ -137,30 +137,30 @@ public class ExtraDepositPlayer extends Player {
     public void switchLevels(int originLevel, int destLevel) {
 
 //Da Warehouse...
-if (originLevel <= 2) {
- // ... a Warehouse
- if (destLevel <= 2) {
-     original.switchLevels(originLevel, destLevel);
- }
- // ... a ExtraDep
- else {
-     for (int i = Math.min(original.getDeposits().get(originLevel).length, extraDep.get(destLevel - 3).getResources().size()) - 1; i > -1 ; i--) {
-         extraDep.get(destLevel - 3).getResources().set(i, original.getDeposits().get(originLevel)[i]);
-         original.getBoard().getWareHouse().getLevels().get(originLevel)[i] = Resource.EMPTY;
-     }
- }
-}
+        if (originLevel <= 2) {
+            // ... a Warehouse
+            if (destLevel <= 2) {
+                original.switchLevels(originLevel, destLevel);
+            }
+            // ... a ExtraDep
+            else {
+                for (int i = 0 ; i < Math.min(original.getDeposits().get(originLevel).length, extraDep.get(destLevel - 3).getResources().size()); i++) {
+                    extraDep.get(destLevel - 3).getResources().set(extraDep.get(destLevel - 3).getResources().size() - i - 1, original.getDeposits().get(originLevel)[original.getDeposits().get(originLevel).length - i - 1]);
+                    original.getBoard().getWareHouse().getLevels().get(originLevel)[original.getBoard().getWareHouse().getLevels().get(originLevel).length - i - 1] = Resource.EMPTY;
+                }
+            }
+        }
 // Da ExtraDep...
-else {
- // ... a Warehouse
- ArrayList<Resource> tmp = new ArrayList<>();
- tmp.addAll(extraDep.get(originLevel - 3).getResources());
- for (int i = 0; i < Math.min(original.getDeposits().get(destLevel).length, extraDep.get(originLevel - 3).getResources().size()) - 1; i++) {
-     extraDep.get(originLevel - 3).getResources().set(i, original.getDeposits().get(destLevel)[i]);
-     original.getBoard().getWareHouse().getLevels().get(destLevel)[i] = tmp.get(i);
- }
-}
-}
+        else {
+            // ... a Warehouse
+            ArrayList<Resource> tmp = new ArrayList<>();
+            tmp.addAll(extraDep.get(originLevel - 3).getResources());
+            for (int i = 0; i < Math.min(original.getDeposits().get(destLevel).length, extraDep.get(originLevel - 3).getResources().size()); i++) {
+                extraDep.get(originLevel - 3).getResources().set(i, original.getDeposits().get(destLevel)[i]);
+                original.getBoard().getWareHouse().getLevels().get(destLevel)[i] = tmp.get(i);
+            }
+        }
+    }
 
     private void add (Resource res, int level) {
         extraDep.get(level - 3).addResource(res);
