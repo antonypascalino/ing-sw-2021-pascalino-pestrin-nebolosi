@@ -1,6 +1,7 @@
 package it.polimi.ingsw.model.Updates;
 
 
+import it.polimi.ingsw.Request.PongRequest;
 import it.polimi.ingsw.view.data.PlayerData;
 
 /**
@@ -17,7 +18,8 @@ public class CheckUpdate implements Update{
     @Override
     public void handleUpdate(PlayerData data)
     {
-        System.out.println("Connected");
+        System.out.println("Sono ancora connesso");
+        data.sendRequest(new PongRequest());
     }
 
     @Override

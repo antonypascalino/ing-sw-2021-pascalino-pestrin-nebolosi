@@ -3,6 +3,7 @@ package it.polimi.ingsw.connection;
 import com.google.gson.Gson;
 import it.polimi.ingsw.Request.JoinGameRequest;
 import it.polimi.ingsw.Request.NewGameRequest;
+import it.polimi.ingsw.Request.PongRequest;
 import it.polimi.ingsw.Request.Request;
 import it.polimi.ingsw.controller.DefaultCreator;
 import it.polimi.ingsw.controller.Game;
@@ -17,6 +18,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.SocketException;
+import java.net.SocketTimeoutException;
 import java.util.ArrayList;
 
 public class ClientHandler extends Thread {
@@ -38,20 +40,28 @@ public class ClientHandler extends Thread {
             out = new PrintWriter(socket.getOutputStream(),true);
 
             this.start();
-            PingConnection pingConnection = new PingConnection(this);
-            Thread ping = new Thread(pingConnection);
-            //ping.start();
+
         }
 
         @Override
         public void run() {
+
+            PingConnection pingConnection = null;
+            try {
+                pingConnection = new PingConnection(this);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Thread ping = new Thread(pingConnection);
+            ping.start();
+
             try
             {
                 while (true)
                 {
+                    socket.setSoTimeout(20000);
                     String line = null;
-                    if(in.ready())
-                         line = in.readLine() ;
+                    line = in.readLine() ;
                     if(line != null) {
                         Request request = JsonReader.readSingleRequest(line);
                         //It doesn't exist the idea of a new game or join game, there's just a join game that creates a game
@@ -153,8 +163,13 @@ public class ClientHandler extends Thread {
                                 lastGame.notifyAllPlayers(update);
                             }
                         } else {
-                            System.out.println("Received "+request);
-                            games.get(request.getGameID()).notify(request);
+                            //If i recive a pong request ignore it
+                            if(!(request instanceof PongRequest))
+                            {
+                                System.out.println("Received "+request);
+                                games.get(request.getGameID()).notify(request);
+                            }
+
                         }
                     }
                 }
@@ -168,7 +183,14 @@ public class ClientHandler extends Thread {
                 System.out.println("Player "+playerId+"disconnected");
                 thisGame.notifyAllPlayers(new ErrorUpdate("Player "+playerId+ " disconnected", playerId));
                 games.remove(thisGame);
-            } catch (IOException e) {
+            } catch (SocketTimeoutException e) {
+                System.err.println(e.getMessage());
+                System.out.println("Player "+playerId+"disconnected");
+                thisGame.notifyAllPlayers(new ErrorUpdate("Player "+playerId+ " disconnected", playerId));
+                games.remove(thisGame);
+            }
+            catch(IOException e)
+            {
                 e.printStackTrace();
             }
         }
@@ -176,20 +198,9 @@ public class ClientHandler extends Thread {
         //Synchronyzed because it's used by both thread (once for the actual game and another one for checking the status
         public synchronized void notifyView(Update update)
         {
-            try {
-                out = new PrintWriter(socket.getOutputStream(),true);
-            }catch (SocketException e){
-                System.err.println(e.getMessage());
-                System.out.println("Player "+playerId+"disconnected");
-                thisGame.notifyAllPlayers(new ErrorUpdate("Player "+playerId+ " disconnected", playerId));
-                games.remove(thisGame);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
             String message = json.toJson(update);
             out.println(message);
             out.flush();
-            out.close();
         }
 }
 
