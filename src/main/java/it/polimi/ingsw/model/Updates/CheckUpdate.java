@@ -19,7 +19,7 @@ public class CheckUpdate implements Update{
     public void handleUpdate(PlayerData data)
     {
         System.out.println("Sono ancora connesso");
-        data.sendRequest(new PongRequest());
+        //data.sendRequest(new PongRequest());
     }
 
     @Override

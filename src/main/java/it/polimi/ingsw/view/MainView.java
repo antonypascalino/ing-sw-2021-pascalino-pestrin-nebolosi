@@ -36,6 +36,11 @@ public class MainView {
         Observer observer = new Observer(thisPlayer,data);
         Thread t = new Thread(observer);
         t.start();
+
+        Ponger pong = new Ponger(thisPlayer,nickname);
+        Thread p = new Thread(pong);
+        p.start();
+
         //Aggiungere a tutti i PlayerData il gameID
         thisPlayer.sendRequest(request);
 

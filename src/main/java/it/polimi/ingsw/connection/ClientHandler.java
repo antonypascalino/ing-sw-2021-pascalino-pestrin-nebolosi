@@ -180,7 +180,7 @@ public class ClientHandler extends Thread {
             //If the client is dead
             } catch (SocketException e){
                 System.err.println(e.getMessage());
-                System.out.println("Player "+playerId+"disconnected");
+                System.out.println("Player "+playerId+" disconnected");
                 thisGame.notifyAllPlayers(new ErrorUpdate("Player "+playerId+ " disconnected", playerId));
                 games.remove(thisGame);
             } catch (SocketTimeoutException e) {

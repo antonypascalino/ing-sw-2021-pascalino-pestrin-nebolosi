@@ -54,7 +54,7 @@ public class LineClient {
         //In case there's an error
     }
 
-    public void sendRequest(Request input) throws IOException {
+    public synchronized void sendRequest(Request input) throws IOException {
         message = json.toJson(input);
 
         try {
