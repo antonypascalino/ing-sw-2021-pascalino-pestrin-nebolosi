@@ -29,7 +29,9 @@ public abstract class Player {
      *
      * @param game the game's reference.
      */
-    public void setGame(Game game){ original.setGame(game);}
+    public void setGame(Game game) {
+        original.setGame(game);
+    }
 
     /**
      * Gets player's nickname.
@@ -236,7 +238,7 @@ public abstract class Player {
      */
     public void setTable(Table tbl ){
         original.setTable(tbl);
-    };
+    }
 
     /**
      * Gets the IDs of all the {@link LeaderCard} owns by the player.

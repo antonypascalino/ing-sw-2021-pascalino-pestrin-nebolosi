@@ -268,7 +268,7 @@ public class Printer {
         Scanner inputs = new Scanner(System.in);
         String selection = "";
         ArrayList<Resource> res = new ArrayList<Resource>();
-        System.out.println("     1       2       3");
+        System.out.println("     1       2       3       4");
         for (int r = 0; r < matrix.length; r++) {
             System.out.print( (r + 1) + "  ");
             for (int c = 0; c < matrix[r].length; c++) {
@@ -276,7 +276,7 @@ public class Printer {
             }
             System.out.println(" <");
         }
-        System.out.println("     ^       ^       ^ ");
+        System.out.println("     ^       ^       ^       ^");
         System.out.println("Free one: " + getFreeOne(matrix) + "\n");
         while (true) {
             System.out.println("Select if you want a row or a column: ");

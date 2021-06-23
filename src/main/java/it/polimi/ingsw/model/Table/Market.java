@@ -1,6 +1,6 @@
 package it.polimi.ingsw.model.Table;
 
-import it.polimi.ingsw.model.Costants;
+import it.polimi.ingsw.model.Constants;
 import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.card.DevCard;
@@ -26,7 +26,7 @@ public class Market {
      */
     public Market(ArrayList<Resource> gameRes)
     {
-        currentSituation = new Resource[Costants.MARKETROWS][Costants.MARKETCOLS];
+        currentSituation = new Resource[Constants.MARKETROWS][Constants.MARKETCOLS];
         Random rnd = new Random();
         int i;
 
@@ -36,8 +36,8 @@ public class Market {
            System.out.println("Not enough resources");
         }
 
-        for (int r = 0; r< Costants.MARKETROWS; r++)
-            for(int c = 0; c< Costants.MARKETCOLS; c++)
+        for (int r = 0; r< Constants.MARKETROWS; r++)
+            for(int c = 0; c< Constants.MARKETCOLS; c++)
             {
 
                 //Gets a new random passing the size of the array
@@ -65,18 +65,18 @@ public class Market {
     {
         ArrayList<Resource> result = new ArrayList<Resource>();
         Resource tmp;
-        for(int r = 0; r< Costants.MARKETROWS; r++)
+        for(int r = 0; r< Constants.MARKETROWS; r++)
         {
             tmp=currentSituation[r][col];
             result.add(tmp);
         }
         //Once the result array is ready move the market resources
         tmp=currentSituation[0][col];
-        for(int r = 0; r< Costants.MARKETROWS-1; r++)
+        for(int r = 0; r< Constants.MARKETROWS-1; r++)
         {
            currentSituation[r][col] = currentSituation[r+1][col];
         }
-        currentSituation[Costants.MARKETROWS-1][col]=freeOne;
+        currentSituation[Constants.MARKETROWS-1][col]=freeOne;
         freeOne=tmp;
         return result;
     }
@@ -90,7 +90,7 @@ public class Market {
     public ArrayList<Resource> seeColumn(int col) {
         ArrayList<Resource> result = new ArrayList<Resource>();
         Resource tmp;
-        for(int r = 0; r< Costants.MARKETROWS; r++)
+        for(int r = 0; r< Constants.MARKETROWS; r++)
         {
             tmp=currentSituation[r][col];
             result.add(tmp);
@@ -108,7 +108,7 @@ public class Market {
     {
         ArrayList<Resource> result = new ArrayList<Resource>();
         Resource tmp;
-        for(int c = 0; c< Costants.MARKETCOLS; c++)
+        for(int c = 0; c< Constants.MARKETCOLS; c++)
         {
             tmp = currentSituation[row][c];
             result.add(tmp);
@@ -116,11 +116,11 @@ public class Market {
 
         //Once the result array is ready move the market resources
         tmp=currentSituation[row][0];
-        for(int c = 0; c< Costants.MARKETCOLS-1; c++)
+        for(int c = 0; c< Constants.MARKETCOLS-1; c++)
         {
             currentSituation[row][c] = currentSituation[row][c+1];
         }
-        currentSituation[row][Costants.MARKETCOLS-1]=freeOne;
+        currentSituation[row][Constants.MARKETCOLS-1]=freeOne;
         freeOne=tmp;
         return result;
     }
@@ -134,7 +134,7 @@ public class Market {
     public ArrayList<Resource> seeRow(int row) {
         ArrayList<Resource> result = new ArrayList<Resource>();
         Resource tmp;
-        for(int c = 0; c< Costants.MARKETCOLS; c++)
+        for(int c = 0; c< Constants.MARKETCOLS; c++)
         {
             tmp = currentSituation[row][c];
             result.add(tmp);

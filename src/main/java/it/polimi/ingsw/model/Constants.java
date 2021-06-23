@@ -5,8 +5,8 @@ import it.polimi.ingsw.model.Table.Market;
 /**
  * The {@link Market}'s dimensions.
  */
-public class Costants {
-    public static final int MARKETROWS=4;
-    public static final int MARKETCOLS=3;
+public class Constants {
+    public static final int MARKETROWS = 3;
+    public static final int MARKETCOLS = 4;
     
 }
