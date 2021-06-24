@@ -43,6 +43,10 @@ public class ClientHandler extends Thread {
 
         }
 
+        public void setPlayerId(String playerId)
+        {
+            this.playerId = playerId;
+        }
         @Override
         public void run() {
 
@@ -104,64 +108,7 @@ public class ClientHandler extends Thread {
                         }
                     }*/
                         if (request instanceof NewGameRequest) {
-                            //games.add(playerId);
-                            //If there's no game on the server create the first one
-                            Game lastGame = null;
-                            if (games.size() != 0)
-                                lastGame = games.get(games.size() - 1);
-                            //If there's no game or the last one has reached the maximum player, it doesn't check it if games.size==0
-                            //Create a new game
-                            if (games.size() == 0 || !(lastGame.getPlayers().size() < lastGame.getMax())) {
-                                int gameId;
-                                if (games.size() != 0)
-                                    gameId = games.get(games.size() - 1).getGameId() + 1;
-                                else
-                                    gameId = 0;
-                                ArrayList<Player> tmp = new ArrayList<Player>();
-                                this.playerId = ((NewGameRequest) request).getNickname();
-                                Player newPlayer = new BasicPlayer(((NewGameRequest) request).getNickname(), this);
-                                tmp.add(newPlayer);
-                                Game newGame;
-                                Update update;
-                                if (((NewGameRequest) request).getPlayers() == 1) {
-                                    newGame = new SinglePlayerGame(tmp,DefaultCreator.produceDevCard(), gameId);
-                                    update = newGame.createNewGameUpdate();
-                                }
-                                else {
-                                    newGame = new Game(tmp, DefaultCreator.produceDevCard(), gameId, ((NewGameRequest) request).getPlayers());
-                                    update = new LobbyUpdate(((NewGameRequest) request).getNickname(), newGame.getPlayers().size(), ((NewGameRequest) request).getPlayers());
-
-                                }
-                                thisGame = newGame;
-                                newPlayer.setGame(newGame);
-                                newPlayer.setTable(newGame.getTable());
-                                games.add(newGame);
-                                System.out.println("Player " + ((NewGameRequest) request).getNickname() + " added to the new game " + newGame.getGameId());
-                                newGame.notifyAllPlayers(update);
-                            }
-
-                            //If it hasn't alrady reached the maximum numner of players
-                            //add the new player
-                            else {
-                                Player newPlayer = new BasicPlayer(((NewGameRequest) request).getNickname(), this);
-                                lastGame.addPlayer(newPlayer);
-                                thisGame = lastGame;
-                                newPlayer.setTable(lastGame.getTable());
-                                newPlayer.setGame(lastGame);
-                                System.out.println("Player " + ((NewGameRequest) request).getNickname() + " added to game " + lastGame.getGameId());
-                                Update update;
-                                //If the game has reached the max level of players with this new one
-                                if(lastGame.getPlayers().size() == lastGame.getMax())
-                                {
-                                    update = lastGame.createNewGameUpdate();
-                                }
-                                else
-                                {
-                                    System.out.println("Player " + ((NewGameRequest) request).getNickname() + " added to game " + lastGame.getGameId());
-                                    update = new LobbyUpdate(((NewGameRequest) request).getNickname(), lastGame.getPlayers().size(), ((NewGameRequest) request).getPlayers());
-                                }
-                                lastGame.notifyAllPlayers(update);
-                            }
+                            games.add(request,this);
                         } else {
                             //If i recive a pong request ignore it
                             if(!(request instanceof PongRequest))
@@ -181,12 +128,12 @@ public class ClientHandler extends Thread {
             } catch (SocketException e){
                 System.err.println(e.getMessage());
                 System.out.println("Player "+playerId+" disconnected");
-                thisGame.notifyAllPlayers(new ErrorUpdate("Player "+playerId+ " disconnected", playerId));
+                thisGame.notifyAllPlayers(new ConnectionErrorUpdate(playerId));
                 games.remove(thisGame);
             } catch (SocketTimeoutException e) {
                 System.err.println(e.getMessage());
                 System.out.println("Player "+playerId+"disconnected");
-                thisGame.notifyAllPlayers(new ErrorUpdate("Player "+playerId+ " disconnected", playerId));
+                thisGame.notifyAllPlayers(new ConnectionErrorUpdate(playerId));
                 games.remove(thisGame);
             }
             catch(IOException e)
@@ -202,6 +149,10 @@ public class ClientHandler extends Thread {
             out.println(message);
             out.flush();
         }
+
+    public void setGame(Game newGame) {
+            thisGame = newGame;
+    }
 }
 
 
