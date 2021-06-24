@@ -24,11 +24,12 @@ public class MainView {
         System.out.println("Insert a new nickname");
         String nickname = scanner.nextLine();
         System.out.println("Insert the server IP");
-        String serverIP = "127.0.0.1";//= scanner.nextLine();
-        System.out.println("Insert the server port");
-        int serverPort = 8080;//= scanner.nextInt();
+        String serverIP = scanner.nextLine();
+        int serverPort = 8080;
         LineClient thisPlayer = new LineClient(serverIP, serverPort);
-        Request request = new NewGameRequest(nickname, 2);
+        System.out.println("We're gonna try to find an existing game to add you\n\rin case there are none, how many players do you want in your game?");
+        int maxPlayers = scanner.nextInt();
+        Request request = new NewGameRequest(nickname, maxPlayers);
         thisPlayer.startClient();
 
 

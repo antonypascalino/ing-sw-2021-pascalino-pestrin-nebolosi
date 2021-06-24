@@ -129,12 +129,10 @@ public class ClientHandler extends Thread {
                 System.err.println(e.getMessage());
                 System.out.println("Player "+playerId+" disconnected");
                 thisGame.notifyAllPlayers(new ConnectionErrorUpdate(playerId));
-                games.remove(thisGame);
             } catch (SocketTimeoutException e) {
                 System.err.println(e.getMessage());
                 System.out.println("Player "+playerId+"disconnected");
                 thisGame.notifyAllPlayers(new ConnectionErrorUpdate(playerId));
-                games.remove(thisGame);
             }
             catch(IOException e)
             {

@@ -25,10 +25,6 @@ public class GameHolder {
     {
         return games.size();
     }
-    public synchronized void addGame(Game game)
-    {
-        games.add(game);
-    }
 
     public synchronized Game get(int i)
     {
