@@ -570,4 +570,10 @@ public class Printer {
         else if (Collections.frequency(marketRes, Resource.STONE) == 1) return Resource.STONE;
         else return Resource.SERVANT;
     }
+
+    public String insertNickname() {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Insert a new nickname");
+        return input.nextLine();
+    }
 }
