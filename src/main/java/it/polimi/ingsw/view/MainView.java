@@ -31,7 +31,7 @@ public class MainView extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/FXMLs/Project1.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/FXMLs/Insert_nickname.fxml"));
         primaryStage.setTitle("Maestri del rinascimeto!");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();

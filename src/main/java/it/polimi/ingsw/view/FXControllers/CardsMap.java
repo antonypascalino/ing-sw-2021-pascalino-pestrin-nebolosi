@@ -4,9 +4,10 @@ import java.util.HashMap;
 
 public class CardsMap {
     private static HashMap<String, String> cardsMap;
+    private static boolean created;
 
     public static HashMap<String, String> createMap() {
-        if (cardsMap.size() != 0) return cardsMap;
+        if (created) return cardsMap;
 
         cardsMap = new HashMap<String, String>();
         //GREEN
@@ -97,11 +98,12 @@ public class CardsMap {
         cardsMap.put("PROD03","/images/front/Masters_of_Renaissance_Cards_FRONT_3mmBleed_1-63-1.png");
         cardsMap.put("PROD04","/images/front/Masters_of_Renaissance_Cards_FRONT_3mmBleed_1-61-1.png");
 
+        created = true;
         return cardsMap;
     }
 
     public static String getCardURLFromID(String cardID) {
-        if (cardsMap.size() == 0) {
+        if (!created) {
             createMap();
         }
         return cardsMap.get(cardID);

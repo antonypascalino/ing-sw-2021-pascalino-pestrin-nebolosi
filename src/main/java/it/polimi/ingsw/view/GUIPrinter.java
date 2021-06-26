@@ -14,8 +14,9 @@ public class GUIPrinter extends Printer {
     public ArrayList<String> chooseLeaderCard(ArrayList<String> leadersToChoose, PlayerData data) {
 
         FXMLLoader loader = new FXMLLoader(
-                getClass().getResource("/FXMLs/Project1.fxml")
+                getClass().getResource("/FXMLs/Insert_nickname.fxml")
         );
+        try{loader.load();} catch (IOException e) {}
         NicknameController nicknameController = loader.getController();
         nicknameController.showLeaderCards(leadersToChoose, data);
         return null;

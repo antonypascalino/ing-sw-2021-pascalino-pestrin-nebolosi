@@ -95,7 +95,5 @@ public class NicknameController {
         image4.setImage(new Image(CardsMap.getCardURLFromID(leadersToChoose.get(3))));
         chooseLeaderCardPane.setVisible(true);
     }
-
-
 }
 
