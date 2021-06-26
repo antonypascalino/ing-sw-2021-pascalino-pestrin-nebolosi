@@ -113,6 +113,7 @@ public class ClientHandler extends Thread {
                             //If i recive a pong request ignore it
                             if(!(request instanceof PongRequest))
                             {
+                                //Controllare che il il GameID sia presente;
                                 System.out.println("Received "+request);
                                 games.get(request.getGameID()).notify(request);
                             }
