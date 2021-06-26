@@ -6,11 +6,7 @@ import java.io.IOException;
 
 public class Launcher {
     public static void main(String[] args) {
-        try {
-            MainView.main(args);
-        } catch (IOException e) {
-
-        }
+        MainView.main(args);
     }
 
 }

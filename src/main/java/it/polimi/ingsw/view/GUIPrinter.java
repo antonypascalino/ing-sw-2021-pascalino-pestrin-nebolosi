@@ -1,30 +1,24 @@
 package it.polimi.ingsw.view;
 
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.DialogPane;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import it.polimi.ingsw.view.FXControllers.NicknameController;
+import it.polimi.ingsw.view.data.PlayerData;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class GUIPrinter extends Printer {
 
-    boolean textReady;
-    @FXML
-    TextField nicknameField;
-    @FXML
-    Button confirmNickname;
-
     @Override
-    public String insertNickname() {
-        while (!textReady) {
-        }
-        return nicknameField.getText();
-    }
+    public ArrayList<String> chooseLeaderCard(ArrayList<String> leadersToChoose, PlayerData data) {
 
-    @FXML
-    public void setNickname(ActionEvent actionEvent) {
-        textReady = true;
+        FXMLLoader loader = new FXMLLoader(
+                getClass().getResource("/FXMLs/Project1.fxml")
+        );
+        NicknameController nicknameController = loader.getController();
+        nicknameController.showLeaderCards(leadersToChoose, data);
+        return null;
     }
 }
 

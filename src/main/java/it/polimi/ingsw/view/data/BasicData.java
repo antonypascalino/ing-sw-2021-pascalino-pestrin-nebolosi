@@ -6,6 +6,7 @@ import it.polimi.ingsw.Request.Request;
 import it.polimi.ingsw.client.LineClient;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Table.Resource;
+import it.polimi.ingsw.view.GUIPrinter;
 import it.polimi.ingsw.view.MainMenu;
 import it.polimi.ingsw.view.clientCards.AllGameCards;
 import it.polimi.ingsw.view.clientCards.ClientDevCard;
@@ -51,7 +52,7 @@ public class BasicData extends PlayerData {
     public BasicData(String playerID, LineClient connection) {
         this.connection = connection;
         this.otherPlayersData = new ArrayList<>();
-        printer = new Printer();
+        printer = new GUIPrinter();
         this.turnStates = new ArrayList<>();
         this.wareHouse = new ArrayList<Resource[]>();
         Resource[] tmp = new Resource[1];

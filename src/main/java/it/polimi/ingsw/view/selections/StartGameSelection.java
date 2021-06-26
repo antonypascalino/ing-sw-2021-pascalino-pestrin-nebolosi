@@ -34,7 +34,7 @@ public class StartGameSelection extends Selection {
 
     @Override
     public void handleSelection(PlayerData data) {
-        data.setLeadersID(data.getPrinter().chooseLeaderCard(leadersToChoose, data));
+        data.getPrinter().chooseLeaderCard(leadersToChoose, data);
         data.setFaithPoints(faithPoints);
         ArrayList<Resource> chosen = new ArrayList<Resource>();
         for (int i = choices; i > 0; i--) {
