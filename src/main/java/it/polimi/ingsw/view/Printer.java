@@ -396,7 +396,6 @@ public class Printer {
         System.out.println("Victory Points: " + data.getVictoryPoints());
         for(String s: data.getPlayedLeadersID()){
             System.out.println("Leader ID: " + s);
-            System.out.println(""); //depositi extra o sconti o bla bla bla
         }
     }
 
@@ -445,24 +444,45 @@ public class Printer {
     public ArrayList<String> chooseLeaderCard(ArrayList<String> leadersToChoose, PlayerData data) {
         ArrayList<String> chosen = new ArrayList<String>();
         Scanner inputs = new Scanner(System.in);
-        int index = 1;
-        System.out.println("\nChoose 2 Leaders Cards between this 4:");
-        for(String s : leadersToChoose) {
-            System.out.print("\n[" + index + "] ");
-            System.out.println(data.getLeaderFromID(s).toString() + "\n");
-            index++;
+        while (true) {
+            int index = 1;
+            System.out.println("\nChoose 2 Leaders Cards between this 4:");
+            for (String s : leadersToChoose) {
+                System.out.print("\n[" + index + "] ");
+                System.out.println(data.getLeaderFromID(s).toString() + "\n");
+                index++;
+            }
+            System.out.println("What is your first choice?");
+            try {
+                int choice = Integer.parseInt(inputs.nextLine());
+                if (choice <= 0 || choice >= index) System.out.println("Invalid input!");
+                else {
+                    chosen.add(leadersToChoose.remove(choice - 1));
+                    break;
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input!");
+            }
         }
-        System.out.println("What is your first choice?");
-        chosen.add(leadersToChoose.remove(inputs.nextInt() - 1));
-        index = 1;
-        System.out.println("What is your second choice?");
-        for(String s : leadersToChoose) {
-            System.out.print("\n[" + index + "] ");
-            System.out.println(data.getLeaderFromID(s).toString());
-            index++;
+        while (true) {
+            int index = 1;
+            for (String s : leadersToChoose) {
+                System.out.print("\n[" + index + "] ");
+                System.out.println(data.getLeaderFromID(s).toString());
+                index++;
+            }
+            System.out.println("\nWhat is your second choice?");
+            try {
+                int choice = Integer.parseInt(inputs.nextLine());
+                if (choice <= 0 || choice >= index) System.out.println("Invalid input!");
+                else {
+                    chosen.add(leadersToChoose.remove(choice - 1));
+                    break;
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input!");
+            }
         }
-        chosen.add(leadersToChoose.remove(inputs.nextInt() - 1));
-
         return chosen;
     }
 
