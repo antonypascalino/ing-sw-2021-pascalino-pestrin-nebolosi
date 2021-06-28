@@ -1,7 +1,6 @@
 import it.polimi.ingsw.controller.DefaultCreator;
 import it.polimi.ingsw.model.Player.BasicPlayer;
 import it.polimi.ingsw.model.Player.Player;
-import it.polimi.ingsw.model.card.ChangeResource;
 import it.polimi.ingsw.model.card.ExtraProd;
 import it.polimi.ingsw.model.card.LeaderCard;
 import org.junit.Test;
@@ -25,7 +24,6 @@ public class CardsTest {
         card.equals(card1);
         card.getPowerResource();
         ((ExtraProd)card).getProducedRes();
-
 
 
         card = DefaultCreator.getLeaderFromID("DIS01");

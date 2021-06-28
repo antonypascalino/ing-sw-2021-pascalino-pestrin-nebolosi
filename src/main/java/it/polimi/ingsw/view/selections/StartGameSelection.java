@@ -42,6 +42,7 @@ public class StartGameSelection extends Selection {
         }
         ArrayList<MarketResource> marketChosen = data.handleWarehouse(chosen);
         ArrayList<String> leaderChosen = data.getLeaders();
+        data.getPrinter().printMessage("\nPlease wait until all players make their choices...");
         Request initialSet = new InitialPlayersSetRequest(data.getGameID(), data.getPlayerID(), marketChosen, leaderChosen);
         data.sendRequest(initialSet);
     }

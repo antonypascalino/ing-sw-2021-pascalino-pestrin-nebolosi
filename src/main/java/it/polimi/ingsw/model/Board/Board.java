@@ -97,19 +97,6 @@ public class Board {
         return faithPath;
     }
 
-    /**
-     * Check if {@link Player} has all the {@link Resource}s received as parameters,
-     * watching in both {@link WareHouse} and {@link StrongBox}.
-     *
-     * @param needed the ArrayList with all the resources to check
-     * @return true if the player has all needed resources, false otherwise.
-     */
-    public boolean hasResources(ArrayList<Resource> needed) {
-        ArrayList<Resource> tmp = new ArrayList<>();
-        tmp.addAll(strongBox.getResources());
-        tmp.addAll(wareHouse.getResources());
-        return tmp.containsAll(needed);
-    }
 
     /**
      * Gets the {@link DevCard} with the cardID received as parameter, searching among player's DevCards.

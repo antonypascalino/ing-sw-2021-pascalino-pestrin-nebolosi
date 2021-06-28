@@ -63,19 +63,19 @@ public class FaithPath {
         if(advancement >= 3 && advancement < 6)
             board.getPlayer().addVictoryPoints(1);
         else if(advancement >= 6 && advancement < 9)
-            board.getPlayer().addVictoryPoints(2);
+            board.getPlayer().addVictoryPoints(1);
         else if(advancement >= 9 && advancement < 12)
-            board.getPlayer().addVictoryPoints(4);
+            board.getPlayer().addVictoryPoints(2);
         else if(advancement >= 12 && advancement < 15)
-            board.getPlayer().addVictoryPoints(6);
+            board.getPlayer().addVictoryPoints(2);
         else if(advancement >= 15 && advancement < 18)
-            board.getPlayer().addVictoryPoints(9);
+            board.getPlayer().addVictoryPoints(3);
         else if(advancement >= 18 && advancement < 21)
-            board.getPlayer().addVictoryPoints(12);
+            board.getPlayer().addVictoryPoints(3);
         else if(advancement >= 21 && advancement < 24)
-            board.getPlayer().addVictoryPoints(16);
+            board.getPlayer().addVictoryPoints(4);
         else if(advancement == 24)
-            board.getPlayer().addVictoryPoints(20);
+            board.getPlayer().addVictoryPoints(4);
     }
 
     /**
