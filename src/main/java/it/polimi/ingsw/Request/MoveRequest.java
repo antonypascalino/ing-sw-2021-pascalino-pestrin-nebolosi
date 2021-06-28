@@ -43,7 +43,7 @@ public class MoveRequest implements Request {
 
     @Override
     public boolean canBePlayed(Player player) {
-        //Controlla che il giocatore possegga il livello di destinazione
+        //check if the player has the dest level
         if (!player.checkLevel(destLevel)) {
             return false;
         }
@@ -64,7 +64,7 @@ public class MoveRequest implements Request {
 
     @Override
     public boolean validRequest(ArrayList<TurnState> turnStates) {
-        return true; //perché le risorse si possono spostare nel WareHouse in ogni momento
+        return true; //you can always move resources
     }
 
     @Override

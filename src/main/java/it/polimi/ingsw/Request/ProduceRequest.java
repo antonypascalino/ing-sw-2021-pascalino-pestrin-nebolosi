@@ -42,15 +42,14 @@ public class ProduceRequest implements Request {
     @Override
     public boolean canBePlayed(Player player) {
 
-        //Controlla che il giocatore abbia le carte con cui vuole produrre
+        //checks if the player has production cards
         for (Production prod : productions) {
             if (!player.getProductionID().contains(prod.getCardID())) {
-                // lancia eccezione : non hai questa carta per produrre
                 return false;
             }
         }
 
-        //controlla che il giocatore abbia le risorse aggiungendole in un array temporaneo per controllare che le abbia tutte
+        //checks if the player has the resources by placing them in a temporary array
         ArrayList<Resource> resTemp = new ArrayList<>();
         for (Production prod : productions) {
             for (MappedResource map : prod.getMappedResources()) {
@@ -65,26 +64,23 @@ public class ProduceRequest implements Request {
             }
         }
 
-        //controlla che le risorse e le requires della carta siano giuste
+        //compares player resources to card's required resources
         for (Production pr : productions) {
             for (MappedResource mp : pr.getMappedResources()) {
                 if (pr.getCardID().contains("dev")) {
                     if (player.getBoard().getDevFromID(pr.getCardID()).getRequirements().size() != pr.getMappedResources().size() || !player.getBoard().getDevFromID(pr.getCardID()).getRequirements().contains(mp.getResource())) {
-                        //lancia eccezione "resources selected do not match card requirements"
                         return false;
                     }
                 }
                 if (pr.getCardID().contains("PROD")) {
-                    //If the card
                     if (((ExtraProd) (player.getLeaderFromID(pr.getCardID()))).getProducedRes().contains(mp.getResource())) {
-                        //lancia eccezione
                         return false;
                     }
                 }
             }
         }
 
-        //Controlla che non ci siano due carte uguali con cui il giocatore vuole produrre
+        //checks whether duplicate cards are present
         return productions.stream().map(Production::getCardID).distinct().count() == productions.size();
     }
 
@@ -106,7 +102,7 @@ public class ProduceRequest implements Request {
                         list.add(x.getResource());
                     }
                 }
-                //Se è una ExtraProd LeaderCard deve aggiungere oltre alla choice anche un FAITH
+                //if extra production : it adds an additional faith point
                 if (prod.getCardID().contains("PROD")) {
                     ArrayList<Resource> faithPoint = new ArrayList<>();
                     faithPoint.add(Resource.FAITH);

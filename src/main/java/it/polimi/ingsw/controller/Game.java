@@ -157,7 +157,7 @@ public class Game {
      * @param playerSteps    the number of FAITH resources obtained by the player in his turn that make him move.
      */
     public void fpAdvancement(int discardedSteps, int playerSteps) {
-        //Sposta gli altri giocatori per le risorse scartate dal current player
+        //Other players move as much as resources are discarded by the current player
         if (discardedSteps != 0) {
             for (Player player : players) {
                 if (player != currPlayer) {
@@ -166,27 +166,27 @@ public class Game {
                 }
             }
         }
-        //Sposta il curr player per i FAITH ottenuti nel suo turno
+        //Current player moves as much as faith points are gained in their turn
         if (playerSteps != 0) {
             currPlayer.getBoard().getFaithPath().moveForward(playerSteps);
             currPlayer.getBoard().getFaithPath().checkVictoryPoints();
         }
 
         boolean popeSpace = false;
-        //Controlla se, a seguito dei movimenti di tutti, qualcuno ha raggiunto la popeSpace corrente
+        //checks whether the nearest pope space was reached by one of the players
         for (Player player : players) {
             if (player.getBoard().getFaithPath().checkPopeSpace(currPopeSpace)) {
                 popeSpace = true;
                 break;
             }
         }
-        //Se qualcuno ha raggiunto la pope space corrente chiamo la checkVaticanSection per tutti
+        //Calls checkVaticanSection for every single player
         if (popeSpace) {
             for (Player player : players) {
                 player.getBoard().getFaithPath().checkVaticanSection(currPopeSpace);
             }
             currPopeSpace++;
-            //Chiamata ricorsiva nel caso in cui un giocatore abbia ottenuto abbastanza punti da superare più di una Pope space nello stesso turno.
+            //Recursive call needed if a player has enough faith points to pass through multiple pope spaces
             this.fpAdvancement(0, 0);
         }
     }
@@ -257,18 +257,16 @@ public class Game {
      */
     public Update createNewGameUpdate() {
         ArrayList<LeaderCard> allLeaderCards = new ArrayList<>();
-        allLeaderCards.addAll(DefaultCreator.produceLeaderCard()); //Produce tutte le Leader del gioco
-        Collections.shuffle(allLeaderCards); //Le mischia
+        allLeaderCards.addAll(DefaultCreator.produceLeaderCard()); //creates all leader cards
+        Collections.shuffle(allLeaderCards); //shuffles the cards
 
-        //Crea un elenco di players e attibuisce ad ognungo di loro 4 leaderCard diverse
+        //Creates an array of players and it makes them choose 2 cards out of the 4 assigned
         ArrayList<PlayerLC> playersLC = new ArrayList<>();
         for (Player player : players) {
             player.setTable(table);
             ArrayList<String> leadersToChoose = new ArrayList<>();
             for (int addedCard = 0; addedCard < 4; addedCard++) {
                 leadersToChoose.add(allLeaderCards.remove(0).getID());
-                //Qui si potrebbe aggiungere anche la carta al player nel model e poi la request successiva ne rimuoverebbe 2
-                //Oppure (come ora) non aggiungerle al player nel model ma nelle request successiva aggiungere le uniche 2
             }
             playersLC.add(new PlayerLC(player.getNickName(), leadersToChoose));
         }

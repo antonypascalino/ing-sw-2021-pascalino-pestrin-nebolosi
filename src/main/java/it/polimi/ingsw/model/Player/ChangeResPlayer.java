@@ -37,7 +37,7 @@ public class ChangeResPlayer extends Player {
         for (int i = 0; i < marketRes.size(); i++) {
             if (!marketRes.get(i).equals(requestedRes.get(i))) {
                 if (!change.contains(requestedRes.get(i))) {
-                    return false; //o chiama eccezione
+                    return false;
                 }
             }
         }

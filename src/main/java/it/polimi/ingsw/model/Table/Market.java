@@ -30,7 +30,7 @@ public class Market {
         Random rnd = new Random();
         int i;
 
-        //Solo per il debug, aggiungere ai test
+        //Just for debug
         if (gameRes.size() != 13) {
             System.out.println("Not enough resources");
         }
@@ -46,7 +46,7 @@ public class Market {
                 gameRes.remove(i);
             }
 
-        //Solo per il debug, aggiungere ai test
+        //Just for debug
         if (gameRes.size() == 1)
             System.out.println("Everything worked fine");
 

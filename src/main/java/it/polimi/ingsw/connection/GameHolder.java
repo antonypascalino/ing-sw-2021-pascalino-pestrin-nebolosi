@@ -76,7 +76,7 @@ public class GameHolder {
             newGame.notifyAllPlayers(update);
         }
 
-        //If it hasn't already reached the maximum numner of players
+        //If it hasn't already reached the maximum number of players
         //add the new player
         else {
             Player newPlayer = new BasicPlayer(((NewGameRequest) request).getNickname(), clientHandler);

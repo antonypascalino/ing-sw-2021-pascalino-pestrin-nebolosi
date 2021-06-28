@@ -30,12 +30,12 @@ public class EndTurnRequest implements Request {
 
     @Override
     public TurnState handle(Player player, Game game) {
-        if (game.getCurrPlayerInt() + 1 >= game.getMax()) { //Se è già stato completato il giro, ricomincia
+        if (game.getCurrPlayerInt() + 1 >= game.getMax()) { //if loop already completed : restart
             game.setCurrPlayerInt(0);
         } else {
-            game.setCurrPlayerInt(game.getCurrPlayerInt() + 1); //Se il giro non è ancora stato completato, contiunua
+            game.setCurrPlayerInt(game.getCurrPlayerInt() + 1); //if loop not completed : continue
         }
-        game.setNextPlayer(game.getPlayers().get(game.getCurrPlayerInt())); //Setta il successivo currPlayer
+        game.setNextPlayer(game.getPlayers().get(game.getCurrPlayerInt())); //set next current player
         return TurnState.END_TURN;
     }
 

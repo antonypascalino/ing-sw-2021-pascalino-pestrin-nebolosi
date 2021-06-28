@@ -393,7 +393,7 @@ public class Printer {
         System.out.println("Victory Points: " + data.getVictoryPoints());
         for (String s : data.getPlayedLeadersID()) {
             System.out.println("Leader ID: " + s);
-            System.out.println(" "); //depositi extra o sconti o bla bla bla
+            System.out.println(" ");
         }
     }
 

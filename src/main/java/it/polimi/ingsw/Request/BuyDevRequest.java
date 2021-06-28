@@ -31,7 +31,7 @@ public class BuyDevRequest implements Request {
      * @param gameID          the {@link Game}'s ID.
      * @param playerID        the {@link Player}'s ID.
      * @param cardID          the card's ID.
-     * @param mappedResources alle the {@link MappedResource}s.
+     * @param mappedResources the {@link MappedResource}s.
      * @param slot            the number of the slot.
      */
     public BuyDevRequest(int gameID, String playerID, String cardID, ArrayList<MappedResource> mappedResources, int slot) {
@@ -62,15 +62,11 @@ public class BuyDevRequest implements Request {
         boolean checkSpace = true;
 
         if (!player.canBuy(devCard, player.getAllResources())) {
-            //lancia eccezione: non hai risorse per comprare questa carta
             hasResource = false;
         }
         if (!player.getBoard().getSlot().checkSpace(devCard, slot)) {
-            //lancia eccezione: questa carta non può essere messa in questo slot
             checkSpace = false;
         }
-        //else Lancia eccezione; non la puoi mettere qua
-
         return hasResource && checkSpace;
     }
 
