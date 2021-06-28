@@ -1,5 +1,6 @@
 import it.polimi.ingsw.Request.*;
 import it.polimi.ingsw.connection.ClientHandler;
+import it.polimi.ingsw.connection.GameHolder;
 import it.polimi.ingsw.controller.DefaultCreator;
 import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.controller.SinglePlayer.SinglePlayerGame;
@@ -22,7 +23,7 @@ public class SinglePlayerTest {
     public void GetFromMarketRequest()
     {
         final Socket socket = mock(Socket.class);
-        ArrayList<Game> games = new ArrayList<>();
+        GameHolder games= new GameHolder();
         ArrayList<Player> players = new ArrayList<>();
         try {
             final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -70,7 +71,7 @@ public class SinglePlayerTest {
     @Test
     public void TestSinglePlayerWins(){
         final Socket socket = mock(Socket.class);
-        ArrayList<Game> games = new ArrayList<>();
+        GameHolder games= new GameHolder();
         ArrayList<Player> players = new ArrayList<>();
         try {
             final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();

@@ -1,5 +1,6 @@
 import it.polimi.ingsw.Request.*;
 import it.polimi.ingsw.connection.ClientHandler;
+import it.polimi.ingsw.connection.GameHolder;
 import it.polimi.ingsw.controller.DefaultCreator;
 import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.Request.MappedResource;
@@ -30,7 +31,7 @@ public class RequestTest {
     {
 
         final Socket socket = mock(Socket.class);
-        ArrayList<Game> games = new ArrayList<>();
+        GameHolder games= new GameHolder();
         ArrayList<Player> players = new ArrayList<>();
         try {
             final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -72,7 +73,7 @@ public class RequestTest {
     public void DoubleMarket()
     {
         final Socket socket = mock(Socket.class);
-        ArrayList<Game> games = new ArrayList<>();
+        GameHolder games= new GameHolder();
         ArrayList<Player> players = new ArrayList<>();
         try {
             final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -138,7 +139,7 @@ public class RequestTest {
     public void BuyDevTest()
     {
         final Socket socket = mock(Socket.class);
-        ArrayList<Game> games = new ArrayList<>();
+        GameHolder games= new GameHolder();
         ArrayList<Player> players = new ArrayList<>();
         try {
             final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -197,7 +198,7 @@ public class RequestTest {
     public void doubleBuyDev()
     {
         final Socket socket = mock(Socket.class);
-        ArrayList<Game> games = new ArrayList<>();
+        GameHolder games= new GameHolder();
         ArrayList<Player> players = new ArrayList<>();
         try {
             final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -284,7 +285,7 @@ public class RequestTest {
     public void buySameLevel()
     {
         final Socket socket = mock(Socket.class);
-        ArrayList<Game> games = new ArrayList<>();
+        GameHolder games= new GameHolder();
         ArrayList<Player> players = new ArrayList<>();
         try {
             final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -369,7 +370,7 @@ public class RequestTest {
     public void testProduce()
     {
         final Socket socket = mock(Socket.class);
-        ArrayList<Game> games = new ArrayList<>();
+        GameHolder games= new GameHolder();
         ArrayList<Player> players = new ArrayList<>();
         try {
             final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
