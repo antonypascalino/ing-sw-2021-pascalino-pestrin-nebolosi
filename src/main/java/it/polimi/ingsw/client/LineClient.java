@@ -76,4 +76,14 @@ public class LineClient {
             e.printStackTrace();
         }
     }
+
+    public void setIP(String serverIP) {
+        this.ip = serverIP;
+        try {
+            this.startClient();
+        } catch (IOException e) {
+            System.out.println("Server not found");
+            System.exit(1);
+        }
+    }
 }

@@ -35,13 +35,15 @@ public class MainView {
             thisPlayer.startClient();
         }catch (SocketException e)
         {
-            System.out.println("No server found");
-            System.exit(0);
+            System.out.println("Insert the server IP");
+            serverIP = scanner.nextLine();
+            thisPlayer.setIP(serverIP);
         }
         catch (IOException e)
         {
-            System.out.println("No server found");
-            System.exit(0);
+            System.out.println("Insert the server IP");
+            serverIP = scanner.nextLine();
+            thisPlayer.setIP(serverIP);
         }
 
         PlayerData data = new BasicData(nickname, thisPlayer);
