@@ -7,6 +7,7 @@ import it.polimi.ingsw.view.data.BasicData;
 import it.polimi.ingsw.view.data.PlayerData;
 
 import java.io.IOException;
+import java.net.SocketException;
 import java.util.Scanner;
 
 /**
@@ -30,7 +31,19 @@ public class MainView {
         System.out.println("We're gonna try to find an existing game to add you\n\rin case there are none, how many players do you want in your game?");
         int maxPlayers = scanner.nextInt();
         Request request = new NewGameRequest(nickname, maxPlayers);
-        thisPlayer.startClient();
+        try{
+            thisPlayer.startClient();
+        }catch (SocketException e)
+        {
+            System.out.println("No server found");
+            System.exit(0);
+        }
+        catch (IOException e)
+        {
+            System.out.println("No server found");
+            System.exit(0);
+        }
+
         PlayerData data = new BasicData(nickname, thisPlayer);
         Observer observer = new Observer(thisPlayer, data);
         Thread t = new Thread(observer);
