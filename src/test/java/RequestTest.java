@@ -1,4 +1,5 @@
 import it.polimi.ingsw.Request.*;
+import it.polimi.ingsw.connection.ClientHandler;
 import it.polimi.ingsw.controller.DefaultCreator;
 import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.Request.MappedResource;
@@ -9,6 +10,9 @@ import it.polimi.ingsw.model.Table.Resource;
 import it.polimi.ingsw.model.card.DevCard;
 import org.junit.Test;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -22,42 +26,18 @@ public class RequestTest {
     //Request to get a column first and then a row from the market
     public void GetFromMarketRequest()
     {
-        //First create a new game and add a player
+
+        final Socket socket = mock(Socket.class);
         ArrayList<Game> games = new ArrayList<>();
-        Request request = new NewGameRequest("SickNebo", 3);
-        //This code has been copied from the client handler class
-        if(request instanceof NewGameRequest)
-        {
-            //If there's no game on the server create the first one
-            Game lastGame = null;
-            if (games.size() != 0)
-                lastGame = games.get(games.size()-1);
-            //If there's no game or the last one has reached the maximum player, it doesn't check it if games.size==0
-            //Create a new game
-            if (games.size() == 0 || !(lastGame.getPlayers().size() < lastGame.getMax()))
-            {
-                int gameId;
-                if(games.size() != 0)
-                    gameId = games.get(games.size()-1).getGameId() +1;
-                else
-                    gameId=0;
-                ArrayList<Player> tmp = new ArrayList<Player>();
-                tmp.add(new BasicPlayer(((NewGameRequest) request).getNickname()));
-                Game newGame = new Game(tmp, DefaultCreator.produceDevCard(),gameId,((NewGameRequest) request).getPlayers());
-                games.add(newGame);
-                System.out.println("Player "+((NewGameRequest) request).getNickname()+ " added to the new game "+newGame.getGameId());
-            }
-            //If it hasn't alrady reached the maximum numner of players
-            //add the new player
-            else
-            {
-                Player newPlayer = new BasicPlayer(((NewGameRequest) request).getNickname());
-                lastGame.addPlayer(newPlayer);
-                System.out.println("Player "+((NewGameRequest) request).getNickname()+ " added to game "+lastGame.getGameId());
-
-            }
-
+        ArrayList<Player> players = new ArrayList<>();
+        try {
+            final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            when(socket.getOutputStream()).thenReturn(byteArrayOutputStream);
+            when(socket.getInputStream()).thenReturn(System.in);
+            players.add(new BasicPlayer("Tester1", new ClientHandler(socket, games)));
+            players.add(new BasicPlayer("Tester2", new ClientHandler(socket, games)));
         }
+        catch (IOException e) {System.out.println("IOException!");}
 
 
         //Now send a new request for buying
