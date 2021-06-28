@@ -498,6 +498,12 @@ public class BasicData extends PlayerData {
     }
 
     @Override
+    public void setNickname(String newNickname)
+    {
+        this.playerID = newNickname;
+    }
+
+    @Override
     public ArrayList<TurnState> getTurnStates() {
         return turnStates;
     }

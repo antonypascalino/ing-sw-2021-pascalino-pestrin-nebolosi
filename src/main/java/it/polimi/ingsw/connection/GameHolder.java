@@ -7,6 +7,7 @@ import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.controller.SinglePlayer.SinglePlayerGame;
 import it.polimi.ingsw.model.Player.BasicPlayer;
 import it.polimi.ingsw.model.Player.Player;
+import it.polimi.ingsw.model.Updates.ExistingPlayerUpdate;
 import it.polimi.ingsw.model.Updates.LobbyUpdate;
 import it.polimi.ingsw.model.Updates.Update;
 
@@ -79,6 +80,18 @@ public class GameHolder {
         //If it hasn't already reached the maximum number of players
         //add the new player
         else {
+            Update update;
+            //If there's already a player with the new name return an error
+            for(Player p: lastGame.getPlayers())
+            {
+                if(p.getNickName().equals(((NewGameRequest) request).getNickname()))
+                {
+                    update = new ExistingPlayerUpdate();
+                    clientHandler.notifyView(update);
+                    return;
+                }
+
+            }
             Player newPlayer = new BasicPlayer(((NewGameRequest) request).getNickname(), clientHandler);
             clientHandler.setPlayerId(newPlayer.getNickName());
             lastGame.addPlayer(newPlayer);
@@ -86,7 +99,7 @@ public class GameHolder {
             newPlayer.setTable(lastGame.getTable());
             newPlayer.setGame(lastGame);
             System.out.println("Player " + ((NewGameRequest) request).getNickname() + " added to game " + lastGame.getGameId());
-            Update update;
+
             //If the game has reached the max level of players with this new one
             if (lastGame.getPlayers().size() == lastGame.getMax()) {
                 update = lastGame.createNewGameUpdate();

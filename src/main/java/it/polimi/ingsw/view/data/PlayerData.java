@@ -35,6 +35,8 @@ public abstract class PlayerData {
         return originalData.turnStateFilter();
     }
 
+    public void setNickname(String newNickname){ originalData.setNickname(newNickname);}
+
     /**
      * Called when the player wants to produce: it, based on player's resource and production powers,
      * return all the production he can use to produce.
