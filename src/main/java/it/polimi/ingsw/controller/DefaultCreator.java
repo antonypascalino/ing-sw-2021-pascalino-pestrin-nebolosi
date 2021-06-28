@@ -1040,6 +1040,7 @@ public class DefaultCreator {
      * @return the dev from id
      */
     public static DevCard getDevFromID(String cardID) {
+        if (allDevCards.size() == 0) produceDevCard();
         for (DevCard card : allDevCards) {
             if (card.getCardID().equals(cardID)) {
                 return card;
@@ -1055,6 +1056,7 @@ public class DefaultCreator {
      * @return the object {@link LeaderCard}.
      */
     public static LeaderCard getLeaderFromID(String cardID) {
+        if (allLeadersCards.size() == 0) produceLeaderCard();
         for (LeaderCard card : allLeadersCards) {
             if (card.getID().equals(cardID)) {
                 return card;

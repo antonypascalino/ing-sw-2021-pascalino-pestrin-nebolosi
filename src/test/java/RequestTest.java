@@ -133,7 +133,6 @@ public class RequestTest {
 
     }
 
-
     @Test
     //Test a dev card purchase
     public void BuyDevTest()
@@ -464,6 +463,7 @@ public class RequestTest {
                 prodResources.add(boh);
             }
         }
+        interessata.setOwner(tmp);
         System.out.println("Prima della produzione ci sono queste risorse "+tmp.getAllResources());
         ArrayList<Production> produzioni = new ArrayList<>();
         Production nuovaProduzione = new Production(prodResources, interessata.getCardID());
@@ -471,7 +471,8 @@ public class RequestTest {
         Request request = new ProduceRequest(games.get(0).getGameId(), tmp.getNickName(), produzioni);
         System.out.println("Il giocatore prima della produzione si trova in posizione "+tmp.getBoard().getFaithPath().getAdvancement());
         games.get(0).notify(request);
-        System.out.println("Dopo della produzione ci sono queste risorse "+tmp.getAllResources());
+        System.out.println("La carta richiede per la produzione queste risorse "+ interessata.getRequirements());
+        System.out.println("Dopo la produzione ci sono queste risorse "+ tmp.getAllResources());
         System.out.println("Il giocatore dopo la produzione si trova in posizione "+tmp.getBoard().getFaithPath().getAdvancement());
     }
 }

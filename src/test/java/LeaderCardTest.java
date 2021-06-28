@@ -90,6 +90,8 @@ public class LeaderCardTest {
         //it gets the first card which is a n extra prod card that requires
         LeaderCard card = DefaultCreator.produceLeaderCard().get(0);
         card.assignTo(tmp);
+        LeaderCard card1 = DefaultCreator.produceLeaderCard().get(3);
+        card1.assignTo(tmp);
         //Assigns to the player what it needs for using the leader card
         tmp.getBoard().getSlot().placeCard(DefaultCreator.getDevFromID("devB201"),0);
         System.out.println(card.getClassName() + " " +card.getID());
@@ -166,6 +168,8 @@ public class LeaderCardTest {
         //it gets the first card which is a n extra prod card that requires
         LeaderCard card = DefaultCreator.produceLeaderCard().get(4);
         card.assignTo(tmp);
+        LeaderCard card1 = DefaultCreator.produceLeaderCard().get(3);
+        card1.assignTo(tmp);
         tmp.getBoard().getSlot().placeCard(DefaultCreator.getDevFromID("devP101"),0);
         tmp.getBoard().getSlot().placeCard(DefaultCreator.getDevFromID("devG101"),1);
         tmp.getBoard().getSlot().placeCard(DefaultCreator.getDevFromID("devG102"),2);
@@ -243,6 +247,8 @@ public class LeaderCardTest {
         //it gets the first card which is a n extra prod card that requires
         LeaderCard card = DefaultCreator.produceLeaderCard().get(9);
         card.assignTo(tmp);
+        LeaderCard card1 = DefaultCreator.produceLeaderCard().get(3);
+        card1.assignTo(tmp);
         tmp.getBoard().getSlot().placeCard(DefaultCreator.getDevFromID("devY101"),1);
         tmp.getBoard().getSlot().placeCard(DefaultCreator.getDevFromID("devG101"),2);
         System.out.println(card.getClassName() + " " +card.getID());
@@ -319,6 +325,8 @@ public class LeaderCardTest {
         //it gets the first card which is a n extra prod card that requires
         LeaderCard card = DefaultCreator.produceLeaderCard().get(13);
         card.assignTo(tmp);
+        LeaderCard card1 = DefaultCreator.produceLeaderCard().get(3);
+        card1.assignTo(tmp);
         tmp.getBoard().getStrongBox().addResource(Resource.SHIELD);
         tmp.getBoard().getStrongBox().addResource(Resource.SHIELD);
         tmp.getBoard().getStrongBox().addResource(Resource.SHIELD);
