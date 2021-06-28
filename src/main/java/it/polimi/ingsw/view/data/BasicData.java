@@ -265,7 +265,7 @@ public class BasicData extends PlayerData {
                 }
             }
             if (tmp.size() == 0) {
-                printer.printMessage("You hav no space for " + re + ". It was discarded!");
+                printer.printMessage("You have no space for " + re + ". It was discarded!");
                 MarketResource mr = new MarketResource(re, -1);
                 marketRes.add(mr);
                 continue;

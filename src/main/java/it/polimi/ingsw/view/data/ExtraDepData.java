@@ -124,7 +124,7 @@ public class ExtraDepData extends PlayerData {
 
             }
             if (tmp.size() == 0) {
-                originalData.getPrinter().printMessage("You hav no space for " + re + ". It was discarded!");
+                originalData.getPrinter().printMessage("You have no space for " + re + ". It was discarded!");
                 MarketResource mr = new MarketResource(re, -1);
                 marketRes.add(mr);
                 continue;
