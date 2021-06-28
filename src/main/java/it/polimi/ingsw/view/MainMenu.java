@@ -41,8 +41,9 @@ public class MainMenu {
      */
     public void menuMaker() {
         Scanner inputs = new Scanner(System.in);
-        //while(inputs.hasNext())
-        //    inputs.next();
+
+        if(inputs.hasNext())
+           inputs.next();
         TurnState turnState;
         turnStates.clear();
         turnStates.addAll(data.turnStateFilter());

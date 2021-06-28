@@ -7,6 +7,7 @@ import it.polimi.ingsw.model.Table.Resource;
 import it.polimi.ingsw.view.data.PlayerData;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * The {@link Selection} that guides the player during the initial part of the game, when he has to
