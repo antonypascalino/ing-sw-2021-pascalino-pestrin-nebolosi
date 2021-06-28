@@ -3,7 +3,6 @@ package it.polimi.ingsw.connection;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -12,7 +11,6 @@ public class MultiEchoServer {
     private int port;
 
     //Array list used for handle different threads
-    private ArrayList<ClientHandler> clients = new ArrayList<>();
     //Id of the lastPlayer who joined
     private GameHolder games;
 
