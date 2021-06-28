@@ -266,8 +266,8 @@ public class Printer {
     public MarketArray printMatrix(Resource[][] matrix) {
         Scanner inputs = new Scanner(System.in);
         String selection;
-        ArrayList<Resource> res = new ArrayList<>();
-        System.out.println("     1       2       3");
+        ArrayList<Resource> res = new ArrayList<Resource>();
+        System.out.println("     1       2       3       4");
         for (int r = 0; r < matrix.length; r++) {
             System.out.print((r + 1) + "  ");
             for (int c = 0; c < matrix[r].length; c++) {
@@ -275,7 +275,7 @@ public class Printer {
             }
             System.out.println(" <");
         }
-        System.out.println("     ^       ^       ^ ");
+        System.out.println("     ^       ^       ^       ^");
         System.out.println("Free one: " + getFreeOne(matrix) + "\n");
         while (true) {
             System.out.println("Select if you want a row or a column: ");
@@ -393,7 +393,6 @@ public class Printer {
         System.out.println("Victory Points: " + data.getVictoryPoints());
         for (String s : data.getPlayedLeadersID()) {
             System.out.println("Leader ID: " + s);
-            System.out.println(" "); //depositi extra o sconti o bla bla bla
         }
     }
 
@@ -442,24 +441,45 @@ public class Printer {
     public ArrayList<String> chooseLeaderCard(ArrayList<String> leadersToChoose, PlayerData data) {
         ArrayList<String> chosen = new ArrayList<>();
         Scanner inputs = new Scanner(System.in);
-        int index = 1;
-        System.out.println("\nChoose 2 Leaders Cards between this 4:");
-        for (String s : leadersToChoose) {
-            System.out.print("\n[" + index + "] ");
-            System.out.println(data.getLeaderFromID(s).toString() + "\n");
-            index++;
+        while (true) {
+            int index = 1;
+            System.out.println("\nChoose 2 Leaders Cards between this 4:");
+            for (String s : leadersToChoose) {
+                System.out.print("\n[" + index + "] ");
+                System.out.println(data.getLeaderFromID(s).toString() + "\n");
+                index++;
+            }
+            System.out.println("What is your first choice?");
+            try {
+                int choice = Integer.parseInt(inputs.nextLine());
+                if (choice <= 0 || choice >= index) System.out.println("Invalid input!");
+                else {
+                    chosen.add(leadersToChoose.remove(choice - 1));
+                    break;
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input!");
+            }
         }
-        System.out.println("What is your first choice?");
-        chosen.add(leadersToChoose.remove(inputs.nextInt() - 1));
-        index = 1;
-        System.out.println("What is your second choice?");
-        for (String s : leadersToChoose) {
-            System.out.print("\n[" + index + "] ");
-            System.out.println(data.getLeaderFromID(s).toString());
-            index++;
+        while (true) {
+            int index = 1;
+            for (String s : leadersToChoose) {
+                System.out.print("\n[" + index + "] ");
+                System.out.println(data.getLeaderFromID(s).toString());
+                index++;
+            }
+            System.out.println("\nWhat is your second choice?");
+            try {
+                int choice = Integer.parseInt(inputs.nextLine());
+                if (choice <= 0 || choice >= index) System.out.println("Invalid input!");
+                else {
+                    chosen.add(leadersToChoose.remove(choice - 1));
+                    break;
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input!");
+            }
         }
-        chosen.add(leadersToChoose.remove(inputs.nextInt() - 1));
-
         return chosen;
     }
 

@@ -32,10 +32,10 @@ public class TestProvaJSon{
         nonFuzionaMaSeFunziona.add(card2);
 
         GsonBuilder builder = new GsonBuilder();
-        Gson gson = builder.setPrettyPrinting().create();
-        String jsonString = gson.toJson(nonFuzionaMaSeFunziona);
+        Gson traduttore = builder.setPrettyPrinting().create();
+        String jsonString = traduttore.toJson(nonFuzionaMaSeFunziona);
         System.out.println(jsonString);
-        jsonString = gson.toJson(DefaultCreator.produceLeaderCard());
+        jsonString = traduttore.toJson(DefaultCreator.produceLeaderCard());
         System.out.println(jsonString);
         ArrayList<LeaderCard> risultato = JsonReader.readLeaderCard(jsonString);
         assertTrue(risultato.get(0).equals(DefaultCreator.produceLeaderCard().get(0)));

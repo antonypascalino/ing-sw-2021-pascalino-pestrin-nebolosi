@@ -17,8 +17,8 @@ public class DiscountedPlayer extends Player {
     /**
      * Instantiates a new Discounted player.
      *
-     * @param ori original player (without "mods")
-     * @param dis array list of resources indicating the discount
+     * @param ori original player.
+     * @param dis array list of resources indicating the discount.
      */
     public DiscountedPlayer(Player ori, Resource dis)
     {

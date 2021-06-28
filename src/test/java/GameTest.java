@@ -11,12 +11,15 @@
     import it.polimi.ingsw.model.Table.Table;
     import org.junit.Test;
 
+    import java.io.ByteArrayOutputStream;
     import java.io.IOException;
     import java.net.Socket;
     import java.util.ArrayList;
     import java.util.Collections;
 
     import static org.junit.Assert.assertEquals;
+    import static org.mockito.Mockito.mock;
+    import static org.mockito.Mockito.when;
 
     //First test of the server
     public class GameTest
@@ -125,9 +128,17 @@
 
         @Test
         public void TestEndGame(){
+            final Socket socket = mock(Socket.class);
+            ArrayList<Game> games = new ArrayList<>();
             ArrayList<Player> players = new ArrayList<>();
-            players.add(new BasicPlayer("Tester1"));
-            players.add(new BasicPlayer("Tester2"));
+            try {
+                final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                when(socket.getOutputStream()).thenReturn(byteArrayOutputStream);
+                when(socket.getInputStream()).thenReturn(System.in);
+                players.add(new BasicPlayer("Tester1", new ClientHandler(socket, games)));
+                players.add(new BasicPlayer("Tester2", new ClientHandler(socket, games)));
+            }
+            catch (IOException e) {System.out.println("IOException!");}
             Game game = new Game(players, DefaultCreator.produceDevCard(), 1, 2);
             players.get(0).addVictoryPoints(10);
             game.endgame();
@@ -135,15 +146,24 @@
 
         @Test
         public void TestStartGame(){
+            final Socket socket = mock(Socket.class);
+            ArrayList<Game> games = new ArrayList<>();
             ArrayList<Player> players = new ArrayList<>();
-            players.add(new BasicPlayer("Tester1"));
-            players.add(new BasicPlayer("Tester2"));
+            try {
+                final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                when(socket.getOutputStream()).thenReturn(byteArrayOutputStream);
+                when(socket.getInputStream()).thenReturn(System.in);
+                players.add(new BasicPlayer("Tester1", new ClientHandler(socket, games)));
+                players.add(new BasicPlayer("Tester2", new ClientHandler(socket, games)));
+            }
+            catch (IOException e) {System.out.println("IOException!");}
             Game game = new Game(players, DefaultCreator.produceDevCard(), 1, 2);
+            games.add(game);
             game.start();
         }
 
         @Test
-        public void TestFPAdvancement(){
+        public void TestFPAdvancement() {
             ArrayList<Player> players = new ArrayList<>();
             players.add(new BasicPlayer("Tester1"));
             players.add(new BasicPlayer("Tester2"));

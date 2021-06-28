@@ -14,10 +14,10 @@ public class ChangeResPlayer extends Player {
     ArrayList<Resource> change;
 
     /**
-     * The
+     * Instantiates a new {@link ChangeResPlayer}.
      *
-     * @param or  the or
-     * @param res the res
+     * @param or original {@link Player}.
+     * @param res array list of resources indicating the possible changes.
      */
     public ChangeResPlayer(Player or, Resource res) {
         change = new ArrayList<>();

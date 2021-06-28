@@ -83,7 +83,6 @@ public class Table {
         return result;
     }
 
-
     /**
      * Used to determining the coordinates on the {@link Table} of a {@link DevCard} based on his color and level.
      *
@@ -121,7 +120,6 @@ public class Table {
         int[] coordinates = getCoordinate(color, level);
         int row = coordinates[0];
         int col = coordinates[1];
-
         //If the stack for that type is empty return a null pointer
         if (stack[row][col] == 0)
             return null;
@@ -134,12 +132,13 @@ public class Table {
      * From the front {@link DevCard}s on the Table gets the one having the specified ID.
      *
      * @param cardID the ID of the {@link DevCard} it wants to get.
-     * @return the {@link DevCard}.
+     * @return the {@link DevCard}, null if the card is not on the front ones.
      */
     public DevCard getDevFromID(String cardID) {
         DevCard[][] topCard = this.getTop();
         for (int row = 0; row < 4; row++) {
             for (int col = 0; col < 3; col++) {
+                if (topCard[row][col] == null) return null;
                 if (topCard[row][col].getCardID().equals(cardID)) {
                     return topCard[row][col];
                 }
@@ -182,7 +181,5 @@ public class Table {
      *
      * @return the matrix.
      */
-    public int[][] getStack() {
-        return stack;
-    }
+    public int[][] getStack() { return stack; }
 }

@@ -47,7 +47,7 @@ public class Market {
             }
 
         //Solo per il debug, aggiungere ai test
-        if (gameRes.size() == 1)
+        if(gameRes.size() == 1)
             System.out.println("Everything worked fine");
 
         freeOne = gameRes.get(0);
@@ -152,6 +152,6 @@ public class Market {
 
     @Override
     public String toString() {
-        return "" + this.seeRow(0) + "\n\r" + this.seeRow(1) + "\n\r" + this.seeRow(2) + "\n\r" + this.seeRow(3) + "\n\r" + "THe free resource is: " + freeOne;
+        return ""+this.seeRow(0)+"\n\r"+this.seeRow(1)+"\n\r"+this.seeRow(2)+"\n\r"+"The free resource is: "+freeOne;
     }
 }

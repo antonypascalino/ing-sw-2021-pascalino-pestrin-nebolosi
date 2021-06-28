@@ -112,10 +112,10 @@ public class Board {
     }
 
     /**
-     * Gets the {@link DevCard} with the cardID received as parameter.
+     * Gets the {@link DevCard} with the cardID received as parameter, searching among player's DevCards.
      *
      * @param cardID the card's ID of the {@link DevCard} it wants.
-     * @return the {@link DevCard}
+     * @return the {@link DevCard}, null
      */
     public DevCard getDevFromID(String cardID) {
         for (DevCard devCard : this.slot.getAllCards()) {

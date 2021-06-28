@@ -1009,30 +1009,6 @@ public class DefaultCreator {
         return result;
     }
 
-    /**
-     * Produce basic prod array list.
-     *
-     * @return the array list
-     */
-    public static ArrayList<BasicProduction> produceBasicProd() {
-        ArrayList<BasicProduction> result = new ArrayList<>();
-        ArrayList<Resource> requires = new ArrayList<>();
-        ArrayList<Resource> produces = new ArrayList<>();
-        BasicProduction tmp;
-
-        requires.add(Resource.CHOICE);
-        produces.add(Resource.CHOICE);
-        produces.add(Resource.CHOICE);
-
-        tmp = new BasicProduction("basicProd", Resource.cloneList(requires), Resource.cloneList(produces));
-        result.add(tmp);
-
-        requires.clear();
-        produces.clear();
-
-        return result;
-
-    }
 
     /**
      * Create all the {@link Resource}s needed during a game.
@@ -1063,6 +1039,7 @@ public class DefaultCreator {
      * @return the dev from id
      */
     public static DevCard getDevFromID(String cardID) {
+        if (allDevCards.size() == 0) produceDevCard();
         for (DevCard card : allDevCards) {
             if (card.getCardID().equals(cardID)) {
                 return card;
@@ -1078,6 +1055,7 @@ public class DefaultCreator {
      * @return the object {@link LeaderCard}.
      */
     public static LeaderCard getLeaderFromID(String cardID) {
+        if (allLeadersCards.size() == 0) produceLeaderCard();
         for (LeaderCard card : allLeadersCards) {
             if (card.getID().equals(cardID)) {
                 return card;

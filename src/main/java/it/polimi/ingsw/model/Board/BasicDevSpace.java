@@ -22,21 +22,6 @@ public class BasicDevSpace {
         this.board = board;
     }
 
-    /**
-     * Checks if player has the two chosen resources to pay, uses Board.hasResource
-     * to check into all player's resources
-     *
-     * @param res1 the first resource to check
-     * @param res2 the second resource to check
-     * @return true if the Basic Power Production can be used using the resources chosen by the player, false otherwise
-     */
-    public boolean canBeUsed(Resource res1, Resource res2) {
-        ArrayList<Resource> tmp = new ArrayList<>();
-        tmp.add(res1);
-        tmp.add(res2);
-        return board.hasResources(tmp);
-    }
-
     public String getCardID() {
         return cardID;
     }

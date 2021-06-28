@@ -56,7 +56,7 @@ public interface LeaderCard extends Convertible {
     /**
      * Sets the {@link Player} to this {@link LeaderCard}
      *
-     * @param tmp the tmp
+     * @param tmp the Player who has to be setted the card
      */
     void setPlayer(Player tmp);
 
