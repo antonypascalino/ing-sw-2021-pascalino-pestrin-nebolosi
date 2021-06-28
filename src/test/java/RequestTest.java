@@ -63,6 +63,7 @@ public class RequestTest {
 
 
         Request test = new MarketRequest(MarketDimension.ROW, 2, games.get(0).getGameId(), tmp.getNickName(), mappedRes);
+        games.get(0).getTurnStates().clear();
         games.get(0).notify(test);
         System.out.println(tmp.getAllResources());
         System.out.println(games.get(0).getTable().market.toString());
@@ -105,6 +106,7 @@ public class RequestTest {
 
 
         Request test = new MarketRequest(MarketDimension.ROW, 2, games.get(0).getGameId(), tmp.getNickName(), mappedRes);
+        games.get(0).getTurnStates().clear();
         games.get(0).notify(test);
         System.out.println(tmp.getAllResources());
         System.out.println(games.get(0).getTable().market.toString());
@@ -128,6 +130,7 @@ public class RequestTest {
 
 
         test = new MarketRequest(MarketDimension.ROW, 2, games.get(0).getGameId(), tmp.getNickName(), mappedRes);
+        games.get(0).getTurnStates().clear();
         games.get(0).notify(test);
         System.out.println(tmp.getAllResources());
         System.out.println(games.get(0).getTable().market.toString());
@@ -180,6 +183,7 @@ public class RequestTest {
 
 
         Request buyDevRequest = new BuyDevRequest(games.get(0).getGameId(),tmp.getNickName(), interessata.getCardID(), test, 1);
+        games.get(0).getTurnStates().clear();
         games.get(0).notify(buyDevRequest);
         for(int i = 0; i< 3; i++)
         {
@@ -239,6 +243,7 @@ public class RequestTest {
 
 
         Request buyDevRequest = new BuyDevRequest(games.get(0).getGameId(),tmp.getNickName(), interessata.getCardID(), test, 1);
+        games.get(0).getTurnStates().clear();
         games.get(0).notify(buyDevRequest);
         for(int i = 0; i< 3; i++)
         {
@@ -266,6 +271,7 @@ public class RequestTest {
         }
 
         buyDevRequest = new BuyDevRequest(games.get(0).getGameId(),tmp.getNickName(), interessata.getCardID(), test, 1);
+        games.get(0).getTurnStates().clear();
         games.get(0).notify(buyDevRequest);
         for(int i = 0; i< 3; i++)
         {
@@ -325,6 +331,7 @@ public class RequestTest {
         }
 
         Request buyDevRequest = new BuyDevRequest(games.get(0).getGameId(),tmp.getNickName(), interessata.getCardID(), test, 1);
+        games.get(0).getTurnStates().clear();
         games.get(0).notify(buyDevRequest);
         for(int i = 0; i< 3; i++)
         {
@@ -352,6 +359,7 @@ public class RequestTest {
         }
 
         buyDevRequest = new BuyDevRequest(games.get(0).getGameId(),tmp.getNickName(), interessata.getCardID(), test, 1);
+        games.get(0).getTurnStates().clear();
         games.get(0).notify(buyDevRequest);
         for(int i = 0; i< 3; i++)
         {
@@ -377,7 +385,6 @@ public class RequestTest {
             when(socket.getOutputStream()).thenReturn(byteArrayOutputStream);
             when(socket.getInputStream()).thenReturn(System.in);
             players.add(new BasicPlayer("Tester1", new ClientHandler(socket, games)));
-            players.add(new BasicPlayer("Tester2", new ClientHandler(socket, games)));
         }
         catch (IOException e) {System.out.println("IOException!");}
         Game game = new Game(players, DefaultCreator.produceDevCard(), 1, 2);
@@ -410,6 +417,7 @@ public class RequestTest {
 
 
         Request buyDevRequest = new BuyDevRequest(games.get(0).getGameId(),tmp.getNickName(), interessata.getCardID(), test, 1);
+        games.get(0).getTurnStates().clear();
         games.get(0).notify(buyDevRequest);
         System.out.println("Carte dopo aver completato l'acquisto");
         for(int i = 0; i< 3; i++)
@@ -438,6 +446,7 @@ public class RequestTest {
         }
 
         buyDevRequest = new BuyDevRequest(games.get(0).getGameId(),tmp.getNickName(), interessata.getCardID(), test, 0);
+        games.get(0).getTurnStates().clear();
         games.get(0).notify(buyDevRequest);
         System.out.println("Carte dopo aver completato l'acquisto");
         for(int i = 0; i< 3; i++)
@@ -467,10 +476,12 @@ public class RequestTest {
         interessata.setOwner(tmp);
         System.out.println("Prima della produzione ci sono queste risorse "+tmp.getAllResources());
         ArrayList<Production> produzioni = new ArrayList<>();
+        System.out.println("Il giocatore ha queste carte per produrre: " + tmp.getProductionID());
         Production nuovaProduzione = new Production(prodResources, interessata.getCardID());
         produzioni.add(nuovaProduzione);
         Request request = new ProduceRequest(games.get(0).getGameId(), tmp.getNickName(), produzioni);
         System.out.println("Il giocatore prima della produzione si trova in posizione "+tmp.getBoard().getFaithPath().getAdvancement());
+        games.get(0).getTurnStates().clear();
         games.get(0).notify(request);
         System.out.println("La carta richiede per la produzione queste risorse "+ interessata.getRequirements());
         System.out.println("Dopo la produzione ci sono queste risorse "+ tmp.getAllResources());
