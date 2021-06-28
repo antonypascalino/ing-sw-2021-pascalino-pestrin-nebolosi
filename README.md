@@ -1,5 +1,5 @@
 # Maestri del Rinascimento - GC12
-![alt text] (https://github.com/pasca99/ing-sw-2021-pascalino-pestrin-nebolosi/blob/main/Copertina-Maestri-del-Rinascimento-Logo.jpg)
+![alt text](https://github.com/pasca99/ing-sw-2021-pascalino-pestrin-nebolosi/blob/main/Copertina-Maestri-del-Rinascimento-Logo.jpg)
 ### Software engineering final project 2021 - Politecnico di Milano
 ## Students:
 * Lorenzo Nebolosi - 10649263
