@@ -2,6 +2,7 @@ package it.polimi.ingsw.view;
 
 import it.polimi.ingsw.client.LineClient;
 import it.polimi.ingsw.connection.JsonReader;
+import it.polimi.ingsw.model.Updates.ConnectionErrorUpdate;
 import it.polimi.ingsw.model.Updates.PlayLeaderUpdate;
 import it.polimi.ingsw.model.Updates.Update;
 import it.polimi.ingsw.view.data.PlayerData;
@@ -10,6 +11,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
+import java.net.SocketException;
+import java.net.SocketTimeoutException;
 
 /**
  * The type Observer.
@@ -46,6 +49,7 @@ public class Observer implements Runnable {
     @Override
     public void run() {
         try {
+            socket.setSoTimeout(20000);
             while (true) {
                 if (in.ready()) {
                     String input = in.readLine();
@@ -56,7 +60,14 @@ public class Observer implements Runnable {
                     update.handleUpdate(data);
                 }
             }
+        } catch (SocketException e) {
+            System.out.println("Server crashed");
+            System.exit(1);
+        } catch (SocketTimeoutException e) {
+            System.out.println("Server crashed");
+            System.exit(1);
         } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
