@@ -14,7 +14,7 @@ public class CheckUpdate implements Update {
 
     @Override
     public void handleUpdate(PlayerData data) {
-        System.out.println("I'm still connected");
+        //System.out.println("I'm still connected");
         //data.sendRequest(new PongRequest());
     }
 
