@@ -9,8 +9,8 @@ import java.util.ArrayList;
  * Class used if the player picks to use the default settings for leader and developer cards.
  */
 public class DefaultCreator {
-    private static ArrayList<DevCard> allDevCards = new ArrayList<DevCard>();
-    private static ArrayList<LeaderCard> allLeadersCards = new ArrayList<LeaderCard>();
+    private static ArrayList<DevCard> allDevCards = new ArrayList<>();
+    private static ArrayList<LeaderCard> allLeadersCards = new ArrayList<>();
 
     /**
      * Static method used for generate an array List containing all the defaults
@@ -23,10 +23,10 @@ public class DefaultCreator {
 
         if (allDevCards.size() != 0) return allDevCards;
 
-        ArrayList<DevCard> result = new ArrayList<DevCard>();
-        ArrayList<Resource> requires = new ArrayList<Resource>();
-        ArrayList<Resource> produces = new ArrayList<Resource>();
-        ArrayList<Resource> price = new ArrayList<Resource>();
+        ArrayList<DevCard> result = new ArrayList<>();
+        ArrayList<Resource> requires = new ArrayList<>();
+        ArrayList<Resource> produces = new ArrayList<>();
+        ArrayList<Resource> price = new ArrayList<>();
         DevCard tmp;
 
         //devP101
@@ -937,11 +937,10 @@ public class DefaultCreator {
      *
      * @return the array list containing all the {@link LeaderCard}s.
      */
-    public static ArrayList<LeaderCard> produceLeaderCard()
-    {
+    public static ArrayList<LeaderCard> produceLeaderCard() {
         if (allLeadersCards.size() != 0) return allLeadersCards;
 
-        ArrayList<LeaderCard> result = new ArrayList<LeaderCard>();
+        ArrayList<LeaderCard> result = new ArrayList<>();
         //PROD01
         ExtraProd tmp = new ExtraProd(4, "Blue", Resource.SERVANT, "PROD01");
         result.add(tmp);
@@ -959,7 +958,7 @@ public class DefaultCreator {
         result.add(tmp4);
 
         //CNG01
-        ChangeResource cng1 = new ChangeResource(5,"Purple", "Green", Resource.GOLD, "CNG01");
+        ChangeResource cng1 = new ChangeResource(5, "Purple", "Green", Resource.GOLD, "CNG01");
         result.add(cng1);
 
         //CNG02
@@ -967,11 +966,11 @@ public class DefaultCreator {
         result.add(cng2);
 
         //CNG03
-        ChangeResource cng3 = new ChangeResource(5, "Green","Purple", Resource.SHIELD, "CNG03");
+        ChangeResource cng3 = new ChangeResource(5, "Green", "Purple", Resource.SHIELD, "CNG03");
         result.add(cng3);
 
         //CNG04
-        ChangeResource cng4 = new ChangeResource(5,"Yellow", "Blue", Resource.SERVANT, "CNG04");
+        ChangeResource cng4 = new ChangeResource(5, "Yellow", "Blue", Resource.SERVANT, "CNG04");
         result.add(cng4);
 
         //DIS01
@@ -1003,7 +1002,7 @@ public class DefaultCreator {
         result.add(dep3);
 
         //DEP04
-        ExtraDeposit dep4 = new ExtraDeposit(3,Resource.GOLD,Resource.STONE, "DEP04");
+        ExtraDeposit dep4 = new ExtraDeposit(3, Resource.GOLD, Resource.STONE, "DEP04");
         result.add(dep4);
 
         allLeadersCards = result;
@@ -1015,10 +1014,10 @@ public class DefaultCreator {
      *
      * @return the array list
      */
-    public static ArrayList<BasicProduction> produceBasicProd(){
-        ArrayList<BasicProduction> result = new ArrayList<BasicProduction>();
-        ArrayList<Resource> requires = new ArrayList<Resource>();
-        ArrayList<Resource> produces = new ArrayList<Resource>();
+    public static ArrayList<BasicProduction> produceBasicProd() {
+        ArrayList<BasicProduction> result = new ArrayList<>();
+        ArrayList<Resource> requires = new ArrayList<>();
+        ArrayList<Resource> produces = new ArrayList<>();
         BasicProduction tmp;
 
         requires.add(Resource.CHOICE);
@@ -1041,7 +1040,7 @@ public class DefaultCreator {
      * @return the ArrayList containing all the {@link Resource}s
      */
     public static ArrayList<Resource> getGameRes() {
-        ArrayList<Resource> result = new ArrayList<Resource>();
+        ArrayList<Resource> result = new ArrayList<>();
         for (int i = 0; i < 2; i++)
             result.add(Resource.GOLD);
         for (int i = 0; i < 2; i++)

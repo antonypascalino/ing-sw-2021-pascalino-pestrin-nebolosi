@@ -54,13 +54,12 @@ public class PlayLeaderUpdate implements Update {
      * @param observer the {@link Observer}.
      */
     public void wrapPlayer(Observer observer) {
-        if(observer.getData().getPlayerID().equals(playerID))
-        {
-            String leaderType = leaderPlayedID.substring(0,3); //considers only the firsts 3 char of the string
+        if (observer.getData().getPlayerID().equals(playerID)) {
+            String leaderType = leaderPlayedID.substring(0, 3); //considers only the firsts 3 char of the string
             PlayerData newPlayer = null;
             switch (leaderType) {
 
-                case ("PRO") : {
+                case ("PRO"): {
                     ArrayList<String> leaderProdID = new ArrayList<>();
                     ArrayList<Resource> prodRequired = new ArrayList<>();
                     leaderProdID.add(leaderPlayedID);
@@ -68,19 +67,19 @@ public class PlayLeaderUpdate implements Update {
                     newPlayer = new ExtraProdData(leaderProdID, prodRequired, observer.getData());
                     break;
                 }
-                case ("CNG") : {
+                case ("CNG"): {
                     ArrayList<Resource> changes = new ArrayList<>();
                     changes.add(powerResource);
                     newPlayer = new ChangeResData(changes, observer.getData());
                     break;
                 }
-                case ("DIS") : {
+                case ("DIS"): {
                     ArrayList<Resource> discount = new ArrayList<>();
                     discount.add(powerResource);
                     newPlayer = new DiscountData(discount, observer.getData());
                     break;
                 }
-                case ("DEP") : {
+                case ("DEP"): {
                     ArrayList<Resource> placeable = new ArrayList<>();
                     placeable.add(powerResource);
                     newPlayer = new ExtraDepData(observer.getData(), placeable);
@@ -102,8 +101,7 @@ public class PlayLeaderUpdate implements Update {
             data.setTurnStates(turnStates);
             data.getPrinter().printMessage("You have played " + data.getLeaderFromID(leaderPlayedID));
             data.getMenu().menuMaker();
-        }
-        else {
+        } else {
             for (OtherPlayerData otherPlayer : data.getOtherPlayers()) {
                 if (otherPlayer.getPlayerID().equals(playerID)) {
                     otherPlayer.setPlayedLeadersID(leadersPlayed);

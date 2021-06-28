@@ -4,12 +4,11 @@ import it.polimi.ingsw.Request.MappedResource;
 import it.polimi.ingsw.Request.ProduceRequest;
 import it.polimi.ingsw.Request.Production;
 import it.polimi.ingsw.Request.Request;
-import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Table.Resource;
 import it.polimi.ingsw.view.data.PlayerData;
 
 import java.util.ArrayList;
-import java.util.Scanner;
+
 
 /**
  * The {@link Selection} that guides the player when he chose to produce.
@@ -17,33 +16,31 @@ import java.util.Scanner;
 public class ProductionSelection extends Selection {
 
 
-
     @Override
     public void handleSelection(PlayerData data) {
-        ArrayList<String> cards = new ArrayList<String>();
-        ArrayList<String> usedCards = new ArrayList<String>();
-        ArrayList<Production> mappedProduction = new ArrayList<Production>();
-        ArrayList<MappedResource> allRes = new ArrayList<MappedResource>();
+        ArrayList<String> cards = new ArrayList<>();
+        ArrayList<String> usedCards = new ArrayList<>();
+        ArrayList<Production> mappedProduction = new ArrayList<>();
+        ArrayList<MappedResource> allRes = new ArrayList<>();
         ArrayList<MappedResource> mappedRes;
-        //Add the bsdic prod since the players always has it
+        //Add the basic prod since the players always has it
         allRes.addAll(data.allResources());
 
-        do{
+        do {
             mappedRes = new ArrayList<>();
             cards.clear();
             cards.addAll(data.slotCardsFilter(allRes));
             cards.removeAll(usedCards);
-            if(cards.size() == 0){
+            if (cards.size() == 0) {
                 data.getPrinter().printMessage("You have no more card which can produce!");
                 break;
             }
             String cardID = data.getPrinter().printDevCardID(cards, data);
 
-            if(cardID.contains("BASIC") ){
+            if (cardID.contains("BASIC")) {
 
                 //If the non empty resources are more than two
-                if(allRes.stream().map(MappedResource::getResource).filter(x -> !x.equals(Resource.EMPTY)).count() <=1)
-                {
+                if (allRes.stream().map(MappedResource::getResource).filter(x -> !x.equals(Resource.EMPTY)).count() <= 1) {
                     data.getPrinter().printMessage("You don't have enough resource for using the basic production");
                     break;
                 }
@@ -61,20 +58,18 @@ public class ProductionSelection extends Selection {
 
                 MappedResource selected2 = data.getPrinter().printMappedRes(allRes);
                 mappedRes.add(selected2);
-            }
-
-            else if (cardID.contains("dev")){
+            } else if (cardID.contains("dev")) {
                 mappedRes.addAll(data.createMappedRes(data.getCardFromID(cardID).getRequired()));
             }
             //se la carta è una leader extra prod (avrà una sola res)
-            else{
+            else {
                 ArrayList<Resource> tmp = new ArrayList<>();
                 tmp.add(data.getLeaderFromID(cardID).getPowerResource());
                 mappedRes.addAll(data.createMappedRes(tmp));
             }
 
-            if(cardID.contains("PROD") || cardID.contains("BASIC")){
-                ArrayList<MappedResource> choices = new ArrayList<MappedResource>();
+            if (cardID.contains("PROD") || cardID.contains("BASIC")) {
+                ArrayList<MappedResource> choices = new ArrayList<>();
                 MappedResource mapped1 = new MappedResource(Resource.GOLD, "choice");
                 MappedResource mapped2 = new MappedResource(Resource.SERVANT, "choice");
                 MappedResource mapped3 = new MappedResource(Resource.SHIELD, "choice");
@@ -88,7 +83,7 @@ public class ProductionSelection extends Selection {
             }
             //For every resource in the selected one check if it's contained in the all res and removes it
             if (!cardID.equals("BASIC")) {
-                for(MappedResource res : mappedRes) {
+                for (MappedResource res : mappedRes) {
                     boolean removed = false;
                     for (MappedResource playerRes : allRes) {
                         if (removed) break;
@@ -100,14 +95,13 @@ public class ProductionSelection extends Selection {
                 }
             }
             usedCards.add(cardID);
-            Production p = new Production(mappedRes,cardID);
+            Production p = new Production(mappedRes, cardID);
             mappedProduction.add(p);
-        }while(data.getPrinter().askQuestion());
+        } while (data.getPrinter().askQuestion());
 
-        //If the userce chose what to send
-        if(mappedProduction.size() != 0)
-        {
-            Request produceReq = new ProduceRequest(data.getGameID(), data.getPlayerID(), mappedProduction );
+        //If the user choose what to send
+        if (mappedProduction.size() != 0) {
+            Request produceReq = new ProduceRequest(data.getGameID(), data.getPlayerID(), mappedProduction);
             data.sendRequest(produceReq);
         }
 

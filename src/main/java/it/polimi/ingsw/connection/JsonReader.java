@@ -23,7 +23,7 @@ public class JsonReader{
         //Gson gson = new Gson();
         GsonBuilder builder = new GsonBuilder();
         //Register a deseralizer made for this LeaderCardInterface
-        builder.registerTypeAdapter(LeaderCard.class, new ConvertableDeserializer<LeaderCard>());
+        builder.registerTypeAdapter(LeaderCard.class, new ConvertibleDeserializer<LeaderCard>());
         Gson gson = builder.setPrettyPrinting().create();
 
         //Token made for deserializing a whole arrayList
@@ -42,7 +42,7 @@ public class JsonReader{
     {
         //Gson gson = new Gson();
         GsonBuilder builder = new GsonBuilder();
-        builder.registerTypeAdapter(Request.class, new ConvertableDeserializer<Request>());
+        builder.registerTypeAdapter(Request.class, new ConvertibleDeserializer<Request>());
         Gson gson = builder.setPrettyPrinting().create();
 
 
@@ -61,7 +61,7 @@ public class JsonReader{
     {
         //Gson gson = new Gson();
         GsonBuilder builder = new GsonBuilder();
-        builder.registerTypeAdapter(Request.class, new ConvertableDeserializer<Request>());
+        builder.registerTypeAdapter(Request.class, new ConvertibleDeserializer<Request>());
         Gson gson = builder.setPrettyPrinting().create();
         Request empObject = gson.fromJson(input, Request.class );
         return empObject;
@@ -69,7 +69,7 @@ public class JsonReader{
 
     public static Update readUpdate(String input) {
         GsonBuilder builder = new GsonBuilder();
-        builder.registerTypeAdapter(Update.class, new ConvertableDeserializer<Update>());
+        builder.registerTypeAdapter(Update.class, new ConvertibleDeserializer<Update>());
         Gson gson = builder.create();
         Update empObject = gson.fromJson(input, Update.class );
         return empObject;

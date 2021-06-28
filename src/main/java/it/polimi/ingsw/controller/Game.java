@@ -14,7 +14,7 @@ import java.util.Collections;
 
 /**
  * An object {@link Game} is created every time some players start a game. It contains the references to all the {@link Player}s
- * and the informations about the game in progress, such for example the {@link DevCard}s available on the {@link Table}
+ * and the information about the game in progress, such for example the {@link DevCard}s available on the {@link Table}
  * or the actions done by the players during their turns.
  * <p>
  * It also receive the information from the connection containing what a player wants to do and, in case it is possible,
@@ -31,7 +31,7 @@ public class Game {
     protected int currPopeSpace;
     private final int gameId;
     private boolean lastTurn;
-    public int playerReady; //Players ready to start the game that have choosen their leaderCards
+    public int playerReady; //Players ready to start the game that have chosen their leaderCards
 
     /**
      * Instantiates a new {@link Game} saving all the information about it, such for example the reference to the {@link Player}s,
@@ -51,7 +51,7 @@ public class Game {
         this.players = players;
         Collections.shuffle(cards);
         this.table = new Table(cards);
-        this.turnStates = new ArrayList<TurnState>();
+        this.turnStates = new ArrayList<>();
         this.currPlayer = players.get(0);
         this.currPopeSpace = 1;
     }
@@ -120,7 +120,7 @@ public class Game {
                             endgame();
                         }
                     }
-                    //Notify all players except for the newGame req which is handled separetly
+                    //Notify all players except for the newGame req which is handled separately
                     if(!(req instanceof InitialPlayersSetRequest))
                         notifyAllPlayers(req.createUpdate(currPlayer, this));
                     //Check if the game is finished
@@ -196,7 +196,7 @@ public class Game {
      *
      * @param newPlayer the new player
      */
-//Synchronyzed player because two players can't register at the same time
+//Synchronized player because two players can't register at the same time
     public synchronized void addPlayer(Player newPlayer) {
         if(players.size() < maxPlayer)
             players.add(newPlayer);
@@ -211,7 +211,7 @@ public class Game {
         String winnerNickname = null;
         ArrayList<PlayerVP> playersVP = new ArrayList<>();
         for (Player player : players) {
-            player.addVictoryPoints((int)player.getAllResources().size()/5);
+            player.addVictoryPoints(player.getAllResources().size() /5);
             playersVP.add(new PlayerVP(player.getNickName(), player.getVictoryPoints()));
             if (player.getVictoryPoints() > winnerPoints) {
                 winnerPoints = player.getVictoryPoints();
@@ -256,15 +256,15 @@ public class Game {
      * @return the {@link NewGameUpdate}.
      */
     public Update createNewGameUpdate() {
-        ArrayList<LeaderCard> allLeaderCards = new ArrayList<LeaderCard>();
+        ArrayList<LeaderCard> allLeaderCards = new ArrayList<>();
         allLeaderCards.addAll(DefaultCreator.produceLeaderCard()); //Produce tutte le Leader del gioco
         Collections.shuffle(allLeaderCards); //Le mischia
 
         //Crea un elenco di players e attibuisce ad ognungo di loro 4 leaderCard diverse
-        ArrayList<PlayerLC> playersLC = new ArrayList<PlayerLC>();
+        ArrayList<PlayerLC> playersLC = new ArrayList<>();
         for (Player player : players) {
             player.setTable(table);
-            ArrayList<String> leadersToChoose = new ArrayList<String>();
+            ArrayList<String> leadersToChoose = new ArrayList<>();
             for (int addedCard = 0; addedCard < 4; addedCard++) {
                 leadersToChoose.add(allLeaderCards.remove(0).getID());
                 //Qui si potrebbe aggiungere anche la carta al player nel model e poi la request successiva ne rimuoverebbe 2

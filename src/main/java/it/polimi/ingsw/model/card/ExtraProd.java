@@ -1,6 +1,5 @@
 package it.polimi.ingsw.model.card;
 
-import it.polimi.ingsw.model.Board.WareHouse;
 import it.polimi.ingsw.model.Player.ExtraProdPlayer;
 import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Table.Resource;
@@ -100,7 +99,7 @@ public class ExtraProd implements LeaderCard {
      * @return the array list
      */
     public ArrayList<Resource> getProducedRes() {
-        ArrayList<Resource> temp = new ArrayList<Resource>();
+        ArrayList<Resource> temp = new ArrayList<>();
         temp.add(Resource.FAITH);
         temp.add(Resource.CHOICE);
         return temp;

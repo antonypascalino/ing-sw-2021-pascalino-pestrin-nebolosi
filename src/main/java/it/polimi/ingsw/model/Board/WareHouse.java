@@ -11,9 +11,9 @@ import java.util.Arrays;
  * Contains the {@link Resource}s gained by the {@link Player} from the {@link Market}.
  */
 public class WareHouse {
-    private Resource level1[];
-    private Resource level2[];
-    private Resource level3[];
+    private Resource[] level1;
+    private Resource[] level2;
+    private Resource[] level3;
     private ArrayList<Resource[]> levels; //Contains the 3 levels of the Warehouse.
 
 
@@ -74,7 +74,7 @@ public class WareHouse {
      * @return an ArrayList containing all the {@link Resource}s
      */
     public ArrayList<Resource> getResources() {
-        ArrayList<Resource> result = new ArrayList<Resource>();
+        ArrayList<Resource> result = new ArrayList<>();
         Resource[] currentLevel;
         for (int i = 0; i < levels.size(); i++) {
             currentLevel = levels.get(i);
@@ -130,7 +130,7 @@ public class WareHouse {
             currentLevel = levels.get(i);
 
             //If the level doesn't contain any empty space
-            if (i == level && !(Arrays.stream(currentLevel).anyMatch(x -> x.equals(Resource.EMPTY))))
+            if (i == level && Arrays.stream(currentLevel).noneMatch(x -> x.equals(Resource.EMPTY)))
                 return false;
             for (int j = 0; j < currentLevel.length; j++) {
                 //If there's the same resource on another level
@@ -175,7 +175,7 @@ public class WareHouse {
      * @return the a copy of the ArrayList with the {@link WareHouse}'s levels.
      */
     public ArrayList<Resource[]> getArrayListWareHouse() {
-        ArrayList<Resource[]> wareHouse = new ArrayList<Resource[]>();
+        ArrayList<Resource[]> wareHouse = new ArrayList<>();
         wareHouse.add(new Resource[1]);
         wareHouse.add(new Resource[2]);
         wareHouse.add(new Resource[3]);

@@ -10,7 +10,7 @@ import java.util.Collections;
 /**
  * It's the player with the {@link ClientDiscount} {@link ClientLeaderCard} (it extends {@link PlayerData}).
  */
-public class DiscountData extends PlayerData{
+public class DiscountData extends PlayerData {
     private ArrayList<Resource> discount;
 
 
@@ -32,27 +32,26 @@ public class DiscountData extends PlayerData{
 
 
     /**
-     * Needs to be overrided so it count the discount
-     * @return
+     * Needs to be overriden so it count the discount
+     *
+     * @return discounted
      */
     @Override
     public ClientDevCard getCardFromID(String cardID) {
         ClientDevCard tmp = originalData.getCardFromID(cardID);
         ArrayList<Resource> newPrice = (ArrayList<Resource>) tmp.getPrice().clone();
-        for(Resource res : discount)
-            if(newPrice.contains(res))
-                newPrice.remove(res);
-        ClientDevCard discounted =  new ClientDevCard(tmp.getCardID(),tmp.getColor(),tmp.getLevel(), tmp.getLevel(), tmp.getRequired(), tmp.getProduces(), newPrice);
-        return discounted;
+        for (Resource res : discount)
+            newPrice.remove(res);
+        return new ClientDevCard(tmp.getCardID(), tmp.getColor(), tmp.getLevel(), tmp.getLevel(), tmp.getRequired(), tmp.getProduces(), newPrice);
     }
 
     @Override
-    public ArrayList<String> tableCardsFilter(ArrayList<MappedResource> mapped){
+    public ArrayList<String> tableCardsFilter(ArrayList<MappedResource> mapped) {
         ArrayList<String> available = new ArrayList<>();
         ArrayList<Integer> cardLevel = new ArrayList<>(); // the levels of the cards which the player can buy
         cardLevel.add(1); //added because if there is no card I can't add its level+1
-        ArrayList<Resource> allRes = new ArrayList<Resource>();
-        for(MappedResource m : mapped){
+        ArrayList<Resource> allRes = new ArrayList<>();
+        for (MappedResource m : mapped) {
             allRes.add(m.getResource());
         }
         for (String devCardID : getFrontCardsID()) {
@@ -61,7 +60,7 @@ public class DiscountData extends PlayerData{
         if (cardLevel.size() == 4) {
             cardLevel.remove(0);
         }
-        //For every resource i have to check if the occurences match
+        //For every resource i have to check if the occurrences match
         for (String card : getFrontTableCardsID()) {
             boolean canBeBought = true;
             if (!cardLevel.contains(getCardFromID(card).getLevel())) {
@@ -69,7 +68,7 @@ public class DiscountData extends PlayerData{
                 continue;
             }
             for (Resource res : getCardFromID(card).getPrice()) {
-                //Check if they have the same number of res for every tipe, if it doesn't have the resource remove them
+                //Check if they have the same number of res for every type, if it doesn't have the resource remove them
                 if (Collections.frequency(allRes, res) < Collections.frequency(getCardFromID(card).getPrice(), res)) {
                     canBeBought = false;
                     break;

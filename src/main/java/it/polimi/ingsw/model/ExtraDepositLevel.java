@@ -51,8 +51,8 @@ public class ExtraDepositLevel {
      */
     public void addResource(Resource res) {
         if (res.equals(placeable)) {
-            for(Resource r : extraLevel)
-                if(r.equals(Resource.EMPTY)) {
+            for (Resource r : extraLevel)
+                if (r.equals(Resource.EMPTY)) {
                     extraLevel.set(extraLevel.indexOf(r), res);
                     break;
                 }
@@ -70,5 +70,4 @@ public class ExtraDepositLevel {
             extraLevel.add(Resource.EMPTY);
         }
     }
-
 }

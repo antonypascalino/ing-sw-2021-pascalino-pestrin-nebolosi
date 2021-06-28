@@ -1,16 +1,13 @@
 package it.polimi.ingsw.model.Updates;
 
-import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Player.Player;
-import it.polimi.ingsw.model.card.DevCard;
 import it.polimi.ingsw.view.data.PlayerData;
 
-import java.util.ArrayList;
 
 /**
  * The {@link Update} sent after that a {@link Player} ends his turn.
  */
-public class EndTurnUpdate implements Update{
+public class EndTurnUpdate implements Update {
     private String nextPlayer;
     private final String className;
 
@@ -36,8 +33,7 @@ public class EndTurnUpdate implements Update{
             data.newTurn();
             data.getPrinter().printMessage("\nNow it's your turn!");
             data.getMenu().menuMaker();
-        }
-        else {
+        } else {
             data.getPrinter().printMessage("\nIt's " + nextPlayer + "'s turn!");
         }
     }

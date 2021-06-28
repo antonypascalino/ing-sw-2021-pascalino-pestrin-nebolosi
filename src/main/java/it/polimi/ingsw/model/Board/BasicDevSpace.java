@@ -17,8 +17,7 @@ public class BasicDevSpace {
      *
      * @param board player's board where the Basic Production Power is
      */
-    public BasicDevSpace(Board board)
-    {
+    public BasicDevSpace(Board board) {
         this.cardID = "BASIC";
         this.board = board;
     }
@@ -31,9 +30,8 @@ public class BasicDevSpace {
      * @param res2 the second resource to check
      * @return true if the Basic Power Production can be used using the resources chosen by the player, false otherwise
      */
-    public boolean canBeUsed(Resource res1, Resource res2)
-    {
-        ArrayList<Resource> tmp= new ArrayList<Resource>();
+    public boolean canBeUsed(Resource res1, Resource res2) {
+        ArrayList<Resource> tmp = new ArrayList<>();
         tmp.add(res1);
         tmp.add(res2);
         return board.hasResources(tmp);

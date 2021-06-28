@@ -25,7 +25,7 @@ public class ExtraDepositPlayer extends Player {
      * @param placeableRes the placeable res
      */
     public ExtraDepositPlayer(Player original, Resource placeableRes) {
-       // addedLevel = player.getBoard().getWareHouse().getLevels().size(); //CONTOLLARE DISCORSO INDICI: LIVELLO 1 HA INDICE 0 NELL'ARRAYLIST
+        // addedLevel = player.getBoard().getWareHouse().getLevels().size(); //CONTOLLARE DISCORSO INDICI: LIVELLO 1 HA INDICE 0 NELL'ARRAYLIST
         this.placeableRes = new ArrayList<>();
         extraDep = new ArrayList<>();
         this.original = original;
@@ -43,21 +43,17 @@ public class ExtraDepositPlayer extends Player {
 
     @Override
     public boolean checkLevel(int level) {
-        if (!(level <= extraDep.size() + 2 && level >= 0)) {
-            // lancia eccezione perché non ha carte che aggiungono il livello indicato
-            return false;
-        }
-        return true;
+        // lancia eccezione perché non ha carte che aggiungono il livello indicato
+        return level <= extraDep.size() + 2 && level >= 0;
     }
 
     @Override
     public boolean checkSpace(Resource res, int level) {
-        if(level >= 0 && level <= 2) {
+        if (level >= 0 && level <= 2) {
             return getBoard().getWareHouse().checkSpace(level, res);
-        }
-        else if(level >= 3 && level <= extraDep.size() + 2) {
+        } else if (level >= 3 && level <= extraDep.size() + 2) {
             if (extraDep.get(level - 3).getPlaceable().equals(res)) {
-                return Collections.frequency(extraDep.get(level - 3).getResources(),Resource.EMPTY) >=1;
+                return Collections.frequency(extraDep.get(level - 3).getResources(), Resource.EMPTY) >= 1;
             }
             return false;
         }
@@ -154,7 +150,7 @@ public class ExtraDepositPlayer extends Player {
             }
             // ... a ExtraDep
             else {
-                for (int i = 0 ; i < Math.min(original.getDeposits().get(originLevel).length, extraDep.get(destLevel - 3).getResources().size()); i++) {
+                for (int i = 0; i < Math.min(original.getDeposits().get(originLevel).length, extraDep.get(destLevel - 3).getResources().size()); i++) {
                     extraDep.get(destLevel - 3).getResources().set(extraDep.get(destLevel - 3).getResources().size() - i - 1, original.getDeposits().get(originLevel)[original.getDeposits().get(originLevel).length - i - 1]);
                     original.getBoard().getWareHouse().getLevels().get(originLevel)[original.getBoard().getWareHouse().getLevels().get(originLevel).length - i - 1] = Resource.EMPTY;
                 }
@@ -172,11 +168,11 @@ public class ExtraDepositPlayer extends Player {
         }
     }
 
-    private void add (Resource res, int level) {
+    private void add(Resource res, int level) {
         extraDep.get(level - 3).addResource(res);
     }
 
-    private void remove (Resource res, int level) {
+    private void remove(Resource res, int level) {
         extraDep.get(level).removeResource(res);
     }
 
@@ -201,9 +197,9 @@ public class ExtraDepositPlayer extends Player {
         // From ExtraDep to WareHouse
         else {
             boolean isThere = false;
-            for(int i = 0; i < original.getDeposits().size(); i++){
-                if(i != destLevel){
-                    if(Arrays.stream(original.getDeposits().get(i)).anyMatch(x -> x.equals(extraDep.get(originLevel - 3).getPlaceable()))){
+            for (int i = 0; i < original.getDeposits().size(); i++) {
+                if (i != destLevel) {
+                    if (Arrays.stream(original.getDeposits().get(i)).anyMatch(x -> x.equals(extraDep.get(originLevel - 3).getPlaceable()))) {
                         isThere = true;
                         break;
                     }
@@ -225,25 +221,29 @@ public class ExtraDepositPlayer extends Player {
     @Override
     public void removeResource(Resource res, String place) {
         //If the player doesn't have the resources throw a new exception
-        if (place.equals("strongbox")) {
-            original.getBoard().getStrongBox().removeResource(res);
-        } else if (place.equals("warehouse")) {
-            original.getBoard().getWareHouse().removeResource(res);
-            //lancia eccezione: non hai questo posto da dove prendere la risorsa
-        } else if (place.equals("extradeposit")) {
-            for (ExtraDepositLevel extralevel : extraDep) {
-                if (extralevel.getPlaceable() == res) {
-                    remove(res, extraDep.indexOf(extralevel));
+        switch (place) {
+            case "strongbox":
+                original.getBoard().getStrongBox().removeResource(res);
+                break;
+            case "warehouse":
+                original.getBoard().getWareHouse().removeResource(res);
+                //lancia eccezione: non hai questo posto da dove prendere la risorsa
+                break;
+            case "extradeposit":
+                for (ExtraDepositLevel extralevel : extraDep) {
+                    if (extralevel.getPlaceable() == res) {
+                        remove(res, extraDep.indexOf(extralevel));
 
+                    }
                 }
-            }
+                break;
         }
         //Non hai depositi extra che contengono questa risorsa.
     }
 
     @Override
     public ArrayList<Resource> getAllResources() {
-        ArrayList<Resource> tmp = new ArrayList<Resource>();
+        ArrayList<Resource> tmp = new ArrayList<>();
         tmp.addAll(this.getBoard().getStrongBox().getResources());
         tmp.addAll(this.getBoard().getWareHouse().getResources());
         for (ExtraDepositLevel extraLevel : extraDep) {
@@ -257,10 +257,10 @@ public class ExtraDepositPlayer extends Player {
         ArrayList<Resource[]> deposits = new ArrayList<>();
         deposits.addAll(original.getBoard().getWareHouse().getArrayListWareHouse());
 
-        for(ExtraDepositLevel e : extraDep) {
+        for (ExtraDepositLevel e : extraDep) {
             Resource[] extraLevel = e.getResources().toArray(new Resource[2]);
             deposits.add(extraLevel);
-            }
+        }
         return deposits;
     }
 

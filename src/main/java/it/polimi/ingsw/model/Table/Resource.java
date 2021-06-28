@@ -23,16 +23,14 @@ public enum Resource {
      * @return an ArrayList with all kinds of {@link Resource}s.
      */
     public static ArrayList<Resource> cloneList(ArrayList<Resource> list) {
-        ArrayList<Resource> clone = new ArrayList<Resource>(list.size());
-        for (Resource item : list) {
-            clone.add((item));
-        }
+        ArrayList<Resource> clone = new ArrayList<>(list.size());
+        clone.addAll(list);
         return clone;
     }
 
     /**
      * Used to pretty print the resources in the CLI.
-     * 
+     *
      * @return the string to print.
      */
     public String inLine() {

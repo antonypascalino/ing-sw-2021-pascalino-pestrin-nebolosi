@@ -5,7 +5,6 @@ import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Updates.EndTurnUpdate;
 import it.polimi.ingsw.model.Updates.Update;
-import it.polimi.ingsw.model.card.DevCard;
 
 import java.util.ArrayList;
 

@@ -10,13 +10,12 @@ import it.polimi.ingsw.model.Updates.*;
 import it.polimi.ingsw.model.card.DevCard;
 import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Table.Table;
-import it.polimi.ingsw.model.card.LeaderCard;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
 /**
- * The single player game in which a singgle player will challenge Lorenzo De Medici.
+ * The single player game in which a single player will challenge Lorenzo De Medici.
  */
 public class SinglePlayerGame extends Game {
     private FaithPath lorenzoPath;
@@ -61,8 +60,7 @@ public class SinglePlayerGame extends Game {
     }
 
     @Override
-    public void changePlayer(Player original, Player newPlayer)
-    {
+    public void changePlayer(Player original, Player newPlayer) {
         player = newPlayer;
     }
 
@@ -169,7 +167,7 @@ public class SinglePlayerGame extends Game {
      */
     public void playerWins() {
         //Termina la partita e comunica al giocatore che ha vinto e il suo punteggio
-        player.addVictoryPoints((int) player.getAllResources().size() / 5);
+        player.addVictoryPoints(player.getAllResources().size() / 5);
         player.getVictoryPoints();
         ArrayList<PlayerVP> playersVP = new ArrayList<>();
         playersVP.add(new PlayerVP(player.getNickName(), player.getVictoryPoints()));

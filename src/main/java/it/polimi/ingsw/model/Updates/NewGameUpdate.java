@@ -15,7 +15,7 @@ import java.util.ArrayList;
 /**
  * The {@link Update} sent when a new {@link Game} starts.
  */
-public class NewGameUpdate implements Update{
+public class NewGameUpdate implements Update {
 
     private ArrayList<String> frontTableCardsID;
     private Resource[][] market;
@@ -56,14 +56,12 @@ public class NewGameUpdate implements Update{
 
         int dataFaithPoint = 0;
         int dataChoices = 0;
-        ArrayList<String> leadersToChoose = new ArrayList<String>();
-
+        ArrayList<String> leadersToChoose = new ArrayList<>();
 
         for (PlayerLC p : playersLC) {
             if (p.getPlayerID().equals(data.getPlayerID())) {
                 leadersToChoose.addAll(p.getLeadersToChoose());
-            }
-            else data.getOtherPlayers().add(new OtherPlayerData(p.getPlayerID()));
+            } else data.getOtherPlayers().add(new OtherPlayerData(p.getPlayerID()));
         }
         for (PlayerST p : playersST) {
             if (p.getPlayerID().equals(data.getPlayerID())) {
@@ -74,6 +72,4 @@ public class NewGameUpdate implements Update{
         Selection startGameSelection = new StartGameSelection(dataChoices, dataFaithPoint, leadersToChoose);
         startGameSelection.handleSelection(data);
     }
-
-
 }

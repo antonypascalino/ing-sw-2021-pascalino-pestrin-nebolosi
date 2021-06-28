@@ -23,7 +23,7 @@ public class DiscountedPlayer extends Player {
     public DiscountedPlayer(Player ori, Resource dis)
     {
         original = ori;
-        discount = new ArrayList<Resource>();
+        discount = new ArrayList<>();
         discount.add(dis);
         //If the original already had a discount it counts its discounts as well
         if(original instanceof DiscountedPlayer)
@@ -45,13 +45,9 @@ public class DiscountedPlayer extends Player {
 
     @Override
     public boolean canBuy(DevCard devCard, ArrayList<Resource> allPlayerRes) {
-        ArrayList<Resource> discountedRes = new ArrayList<Resource>();
+        ArrayList<Resource> discountedRes = new ArrayList<>();
         discountedRes.addAll(allPlayerRes);
         discountedRes.addAll(discount);
-        if (discountedRes.containsAll(devCard.getPrice())) {
-            return true;
-        }
-        //else lancia eccezione: non hai risorse per comprare questa carta.
-        return false;
+        return discountedRes.containsAll(devCard.getPrice());
     }
 }

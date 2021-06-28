@@ -22,12 +22,13 @@ public class LobbyUpdate implements Update {
      * @param playerNum  the player num
      * @param maxPlayers the max players
      */
-    public LobbyUpdate(String nickName, int playerNum, int maxPlayers){
+    public LobbyUpdate(String nickName, int playerNum, int maxPlayers) {
         className = this.getClass().getName();
         this.nickname = nickName;
         this.maxPlayer = maxPlayers;
         this.playerNum = playerNum;
     }
+
     @Override
     public String getClassName() {
         return className;
@@ -35,7 +36,6 @@ public class LobbyUpdate implements Update {
 
     @Override
     public void handleUpdate(PlayerData data) {
-        data.getPrinter().printMessage("New game created with "+ maxPlayer+ " max players\n\rActually there are "+playerNum+" players in the lobby\n\rThe last one to join was "+nickname);
-
+        data.getPrinter().printMessage("New game created with " + maxPlayer + " max players\n\rActually there are " + playerNum + " players in the lobby\n\rThe last one to join was " + nickname);
     }
 }

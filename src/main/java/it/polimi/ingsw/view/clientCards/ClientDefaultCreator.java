@@ -2,7 +2,6 @@ package it.polimi.ingsw.view.clientCards;
 
 import it.polimi.ingsw.model.Colors;
 import it.polimi.ingsw.model.Table.Resource;
-import it.polimi.ingsw.model.card.*;
 
 import java.util.ArrayList;
 
@@ -19,10 +18,10 @@ public class ClientDefaultCreator {
      */
     public static ArrayList<ClientDevCard> produceClientDevCard() {
 
-        ArrayList<ClientDevCard> result = new ArrayList<ClientDevCard>();
-        ArrayList<Resource> requires = new ArrayList<Resource>();
-        ArrayList<Resource> produces = new ArrayList<Resource>();
-        ArrayList<Resource> price = new ArrayList<Resource>();
+        ArrayList<ClientDevCard> result = new ArrayList<>();
+        ArrayList<Resource> requires = new ArrayList<>();
+        ArrayList<Resource> produces = new ArrayList<>();
+        ArrayList<Resource> price = new ArrayList<>();
         ClientDevCard tmp;
 
         //devP101
@@ -933,7 +932,7 @@ public class ClientDefaultCreator {
      * @return the ArrayList.
      */
     public static ArrayList<ClientLeaderCard> produceClientLeaderCard() {
-        ArrayList<ClientLeaderCard> result = new ArrayList<ClientLeaderCard>();
+        ArrayList<ClientLeaderCard> result = new ArrayList<>();
         //PROD01
         ClientExtraProd tmp = new ClientExtraProd(4, Colors.BLUE, Resource.SERVANT, "PROD01");
         result.add(tmp);
@@ -1000,7 +999,6 @@ public class ClientDefaultCreator {
 
         return result;
     }
-
 }
 
 

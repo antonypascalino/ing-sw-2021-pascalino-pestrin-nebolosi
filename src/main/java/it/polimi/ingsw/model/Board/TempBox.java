@@ -21,7 +21,7 @@ public class TempBox {
      * @param strongBox the {@link StrongBox} to whom save the reference.
      */
     public TempBox(StrongBox strongBox) {
-        tempRes = new ArrayList<Resource>();
+        tempRes = new ArrayList<>();
         this.strongBox = strongBox;
     }
 
@@ -41,7 +41,7 @@ public class TempBox {
      * @return the number of Faith points produced by the {@link Player} during the turn.
      */
     public int filterFaithPoints() {
-        ArrayList<Resource> faithPoints = new ArrayList<Resource>();
+        ArrayList<Resource> faithPoints = new ArrayList<>();
         for (Resource r : tempRes) {
             if (r.equals(Resource.FAITH)) {
                 faithPoints.add(Resource.FAITH);

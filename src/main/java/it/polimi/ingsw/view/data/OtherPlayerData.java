@@ -1,7 +1,6 @@
 package it.polimi.ingsw.view.data;
 
 import it.polimi.ingsw.model.Table.Resource;
-import it.polimi.ingsw.view.clientCards.AllGameCards;
 
 import java.util.ArrayList;
 
@@ -25,10 +24,10 @@ public class OtherPlayerData {
      */
     public OtherPlayerData(String playerID) {
         this.playerID = playerID;
-        wareHouse = new ArrayList<Resource>();
-        strongBox = new ArrayList<Resource>();
-        slotFrontCards = new ArrayList<String>();
-        playedLeadersID = new ArrayList<String>();
+        wareHouse = new ArrayList<>();
+        strongBox = new ArrayList<>();
+        slotFrontCards = new ArrayList<>();
+        playedLeadersID = new ArrayList<>();
         faithPoints = 0;
         victoryPoints = 0;
     }

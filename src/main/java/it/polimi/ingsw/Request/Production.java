@@ -15,8 +15,7 @@ public class Production {
      * @param resources the resources
      * @param cardID    the card id
      */
-    public Production(ArrayList<MappedResource> resources, String cardID)
-    {
+    public Production(ArrayList<MappedResource> resources, String cardID) {
         this.cardID = cardID;
         this.resources = resources;
     }
@@ -38,5 +37,4 @@ public class Production {
     public ArrayList<MappedResource> getMappedResources() {
         return resources;
     }
-
 }

@@ -11,27 +11,26 @@ import java.util.ArrayList;
  * The table with all the {@link DevCard}s and the {@link Market} of a {@link Game}.
  */
 public class Table {
-    private DevCard[][][] avaibleDev;
-    private int stack[][];
+    private DevCard[][][] availableDev;
+    private int[][] stack;
     public Market market;
 
     /**
      * Instantiates a new {@link Table} sorting the {@link DevCard}s and the {@link Market}'s {@link Resource}s.
+     *
      * @param gameCards all the {@link DevCard}s int the game.
      */
-    public Table(ArrayList<DevCard> gameCards)
-    {
+    public Table(ArrayList<DevCard> gameCards) {
         market = new Market(DefaultCreator.getGameRes());
         int row, col;
-        stack=new int[4][3]; //
-        int coordinates[]; //Coordinates of the card that is being inserted
-        avaibleDev = new DevCard[4][3][4];
-        for(DevCard dev:gameCards)
-        {
+        stack = new int[4][3]; //
+        int[] coordinates; //Coordinates of the card that is being inserted
+        availableDev = new DevCard[4][3][4];
+        for (DevCard dev : gameCards) {
             coordinates = getCoordinate(dev.getColor(), dev.getLevel());
             row = coordinates[0];
             col = coordinates[1];
-            avaibleDev[row][col][stack[row][col]]=dev;
+            availableDev[row][col][stack[row][col]] = dev;
             stack[row][col]++;
         }
     }
@@ -49,7 +48,7 @@ public class Table {
                 if (stack[r][c] == 0)
                     result[r][c] = null;
                 else
-                    result[r][c] = avaibleDev[r][c][0];
+                    result[r][c] = availableDev[r][c][0];
             }
         }
         return result;
@@ -64,22 +63,20 @@ public class Table {
      * @param level the level of the {@link DevCard}.
      * @return the bought {@link DevCard}.
      */
-    public DevCard buyDev(String color, int level)
-    {
+    public DevCard buyDev(String color, int level) {
         DevCard result;
         int[] coordinates = getCoordinate(color, level);
         int row = coordinates[0];
         int col = coordinates[1];
         //If the stack for that type is empty return a null pointer
-        if(stack[row][col]==0)
+        if (stack[row][col] == 0)
             return null;
         //Get the top card as result
-        result=avaibleDev[row][col][0];
+        result = availableDev[row][col][0];
 
         //Shift the other cards in the stack
-        for(int i=0; i< stack[row][col]-1; i++)
-        {
-            avaibleDev[row][col][i]=avaibleDev[row][col][i+1];
+        for (int i = 0; i < stack[row][col] - 1; i++) {
+            availableDev[row][col][i] = availableDev[row][col][i + 1];
         }
         stack[row][col]--;
 
@@ -106,7 +103,7 @@ public class Table {
         if (color.equals("PURPLE"))
             result[0] = 3;
 
-        //Select the correct colum
+        //Select the correct column
         result[1] = level - 1;
 
         return result;
@@ -126,10 +123,10 @@ public class Table {
         int col = coordinates[1];
 
         //If the stack for that type is empty return a null pointer
-        if(stack[row][col]==0)
+        if (stack[row][col] == 0)
             return null;
         //Get the top card as result
-        result=avaibleDev[row][col][0];
+        result = availableDev[row][col][0];
         return result;
     }
 
@@ -154,13 +151,11 @@ public class Table {
     @Override
     public String toString() {
         String result = "";
-        for(int r=0; r<4; r++)
-        {
-            for(int c=0; c<3; c++)
-            {
-                    result+=" " +avaibleDev[r][c][0].getCardID();
+        for (int r = 0; r < 4; r++) {
+            for (int c = 0; c < 3; c++) {
+                result += " " + availableDev[r][c][0].getCardID();
             }
-            result+="\n\r";
+            result += "\n\r";
         }
 
         return result;
@@ -172,13 +167,11 @@ public class Table {
      * @return the ArrayList with the IDs.
      */
     public ArrayList<String> getFrontIDs() {
-        ArrayList<String> result = new ArrayList<String>();
-        for(int r=0; r<4; r++)
-        {
-            for(int c=0; c<3; c++)
-            {
-                if(stack[r][c]!=0)
-                    result.add(avaibleDev[r][c][0].getCardID());
+        ArrayList<String> result = new ArrayList<>();
+        for (int r = 0; r < 4; r++) {
+            for (int c = 0; c < 3; c++) {
+                if (stack[r][c] != 0)
+                    result.add(availableDev[r][c][0].getCardID());
             }
         }
         return result;

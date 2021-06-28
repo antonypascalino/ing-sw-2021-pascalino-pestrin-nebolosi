@@ -11,10 +11,10 @@ import it.polimi.ingsw.Convertible;
 import java.lang.reflect.Type;
 
 /**
- * Classe used for deserialize any type of interface that extends the convertable interface
+ * Class used for deserialize any type of interface that extends the convertible interface
  * @param <T> The interface that needs to be deserialized
  */
-class ConvertableDeserializer<T extends Convertible> implements JsonDeserializer<T> {
+class ConvertibleDeserializer<T extends Convertible> implements JsonDeserializer<T> {
 
     private static final String CLASSNAME = "className";
 

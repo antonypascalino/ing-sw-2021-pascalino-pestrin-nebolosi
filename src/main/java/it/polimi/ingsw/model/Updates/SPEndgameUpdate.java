@@ -16,7 +16,7 @@ public class SPEndgameUpdate implements Update {
     /**
      * Instantiates a new {@link SPEndgameUpdate} setting the message and information about who won the {@link SinglePlayerGame}.
      *
-     * @param lorenzoWins   true if Lorenze won, false if the {@link Player} did.
+     * @param lorenzoWins   true if Lorenzo won, false if the {@link Player} did.
      * @param victoryPoints the {@link Player}'s victory points.
      */
     public SPEndgameUpdate(boolean lorenzoWins, int victoryPoints) {

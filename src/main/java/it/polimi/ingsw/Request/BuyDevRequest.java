@@ -34,14 +34,14 @@ public class BuyDevRequest implements Request {
      * @param mappedResources alle the {@link MappedResource}s.
      * @param slot            the number of the slot.
      */
-    public BuyDevRequest(int gameID, String playerID, String cardID, ArrayList<MappedResource> mappedResources, int slot)
-    {
+    public BuyDevRequest(int gameID, String playerID, String cardID, ArrayList<MappedResource> mappedResources, int slot) {
         this.gameID = gameID;
         this.playerID = playerID;
         this.cardID = cardID;
         this.resources = mappedResources;
         this.slot = slot;
     }
+
     @Override
     public String getClassName() {
         return className;

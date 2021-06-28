@@ -29,8 +29,7 @@ public class ExtraDeposit implements LeaderCard {
      * @param placeableRes  the {@link Resource} which can be placed in this extra level.
      * @param cardID        the {@link LeaderCard}'s ID.
      */
-    public ExtraDeposit(int victoryPoints, Resource requires, Resource placeableRes, String cardID)
-    {
+    public ExtraDeposit(int victoryPoints, Resource requires, Resource placeableRes, String cardID) {
         this.cardID = cardID;
         className = this.getClass().getName();
         this.victoryPoints = victoryPoints;
@@ -46,25 +45,21 @@ public class ExtraDeposit implements LeaderCard {
     }
 
     @Override
-    public boolean isEnable()
-    {
+    public boolean isEnable() {
         return isEnable;
     }
 
     @Override
-    public void playCard()
-    {
-        if (canBePlayed())
-        {
+    public void playCard() {
+        if (canBePlayed()) {
             isEnable = true;
             player.addVictoryPoints(victoryPoints);
             Player tmp = new ExtraDepositPlayer(player, placeableRes);
-            //Add the new powered player in substitition to the actual one if the game references
+            //Add the new powered player in substitution to the actual one if the game references
             player.getGame().changePlayer(player, tmp);
-            for (LeaderCard card : player.getLeaderCards())
-            {
+            for (LeaderCard card : player.getLeaderCards()) {
                 //Do not change the reference on this card
-                if(!card.getID().equals(this.getID()))
+                if (!card.getID().equals(this.getID()))
                     card.setPlayer(tmp);
             }
             this.player = tmp;
@@ -72,28 +67,24 @@ public class ExtraDeposit implements LeaderCard {
     }
 
     @Override
-    public boolean canBePlayed()
-    {
+    public boolean canBePlayed() {
         if (isEnable) return false; //It can't be played twice
         return (Collections.frequency(player.getAllResources(), requires) >= 5);
     }
 
     @Override
-    public String getClassName()
-    {
+    public String getClassName() {
         return className;
     }
 
     @Override
-    public boolean equals(LeaderCard compare)
-    {
+    public boolean equals(LeaderCard compare) {
         return this.cardID.equals(compare.getID());
 
     }
 
     @Override
-    public String getID()
-    {
+    public String getID() {
         return cardID;
     }
 
@@ -106,8 +97,4 @@ public class ExtraDeposit implements LeaderCard {
     public Resource getPowerResource() {
         return placeableRes;
     }
-
-/*    public Resource getPlaceableRes() {
-        return placeableRes;
-    }*/
 }

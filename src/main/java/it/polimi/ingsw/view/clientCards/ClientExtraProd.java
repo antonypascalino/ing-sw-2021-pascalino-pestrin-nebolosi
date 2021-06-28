@@ -31,11 +31,10 @@ public class ClientExtraProd extends ClientLeaderCard {
     @Override
     public boolean canBePlayed(PlayerData data) {
         ArrayList<ClientDevCard> clientDevCards = new ArrayList<>();
-        for(String s : data.getAllDevID()) {
+        for (String s : data.getAllDevID()) {
             clientDevCards.add(data.getCardFromID(s));
         }
-        for( ClientDevCard card : clientDevCards)
-        {
+        for (ClientDevCard card : clientDevCards) {
             if (card.getLevel() == 2 && card.getColor().equals(color)) return true;
         }
         return false;

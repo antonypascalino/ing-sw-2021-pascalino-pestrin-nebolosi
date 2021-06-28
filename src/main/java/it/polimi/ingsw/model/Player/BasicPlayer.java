@@ -32,7 +32,7 @@ public class BasicPlayer extends Player {
      */
     //Constructor used for debugging without connection
     public BasicPlayer(String nickName) {
-        leaderCards = new ArrayList<LeaderCard>();
+        leaderCards = new ArrayList<>();
         this.nickName = nickName;
         this.board = new Board(this);
     }
@@ -44,19 +44,17 @@ public class BasicPlayer extends Player {
      * @param thisPlayer the this player
      */
     public BasicPlayer(String nickname, ClientHandler thisPlayer) {
-        leaderCards = new ArrayList<LeaderCard>();
+        leaderCards = new ArrayList<>();
         this.nickName = nickname;
         this.board = new Board(this);
         this.thisPlayer = thisPlayer;
     }
 
-    public void setTable(Table tbl)
-    {
+    public void setTable(Table tbl) {
         this.table = tbl;
     }
 
-    public void setGame(Game game)
-    {
+    public void setGame(Game game) {
         this.game = game;
     }
 
@@ -86,7 +84,7 @@ public class BasicPlayer extends Player {
 
     public void produce(String cardID) {
 
-        if(cardID.contains("dev")){
+        if (cardID.contains("dev")) {
             getBoard().getTempBox().addResource(getBoard().getDevFromID(cardID).producedResources());
         }
     }
@@ -108,8 +106,7 @@ public class BasicPlayer extends Player {
 
     //This code has been copied from the can be played so it should work
     @Override
-    public boolean checkSwitch(int originLevel, int destLevel)
-    {
+    public boolean checkSwitch(int originLevel, int destLevel) {
         long originCount = Arrays.stream(getDeposits().get(originLevel)).filter(resource -> !resource.equals(Resource.EMPTY)).count();
         long destCount = Arrays.stream(getDeposits().get(destLevel)).filter(resource -> !resource.equals(Resource.EMPTY)).count();
         if (!(originCount == 0 && destCount == 0)) {
@@ -120,6 +117,7 @@ public class BasicPlayer extends Player {
         else return false;
 
     }
+
     @Override
     public boolean checkLevel(int level) {
         return level <= 2 && level >= 0;
@@ -142,13 +140,13 @@ public class BasicPlayer extends Player {
             board.getStrongBox().removeResource(res);
         } else if (place.toLowerCase().equals("warehouse")) {
             board.getWareHouse().removeResource(res);
-        //lancia eccezione: non hai questo posto da dove prendere la risorsa
+            //lancia eccezione: non hai questo posto da dove prendere la risorsa
         }
     }
 
     @Override
     public ArrayList<Resource> getAllResources() {
-        ArrayList<Resource> tmp = new ArrayList<Resource>();
+        ArrayList<Resource> tmp = new ArrayList<>();
         tmp.addAll(this.getBoard().getStrongBox().getResources());
         tmp.addAll(this.getBoard().getWareHouse().getResources());
         return tmp;
@@ -156,17 +154,14 @@ public class BasicPlayer extends Player {
 
     @Override
     public boolean canBuy(DevCard devCard, ArrayList<Resource> allPlayerRes) {
-        if (allPlayerRes.containsAll(devCard.getPrice())) {
-            return true;
-        }
+        return allPlayerRes.containsAll(devCard.getPrice());
         //else lancia eccezione: non hai risorse per comprare questa carta.
-        return false;
     }
 
     @Override
-    public LeaderCard getLeaderFromID(String cardID){
-        for(LeaderCard leader : leaderCards){
-            if(cardID.equals(leader.getID())){
+    public LeaderCard getLeaderFromID(String cardID) {
+        for (LeaderCard leader : leaderCards) {
+            if (cardID.equals(leader.getID())) {
                 return leader;
             }
         }
@@ -178,14 +173,13 @@ public class BasicPlayer extends Player {
         return board.getProdID();
     }
 
-    public Table getTable()
-    {
+    public Table getTable() {
         return table;
     }
 
     @Override
     public ArrayList<String> getLeadersID() {
-        ArrayList<String> leadersID = new ArrayList<String>();
+        ArrayList<String> leadersID = new ArrayList<>();
         for (LeaderCard leader : leaderCards) {
             leadersID.add(leader.getID());
         }
@@ -202,14 +196,12 @@ public class BasicPlayer extends Player {
      * The requests calls the game and the game calls this method on each player connected to the game
      */
     @Override
-    public void notifyView(Update update)
-    {
+    public void notifyView(Update update) {
         thisPlayer.notifyView(update);
     }
 
     @Override
-    public Game getGame()
-    {
+    public Game getGame() {
         return game;
     }
 

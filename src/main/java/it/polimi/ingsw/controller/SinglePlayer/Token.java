@@ -14,7 +14,7 @@ public interface Token {
      *
      * @param game the game
      */
-    public void activateEffect(SinglePlayerGame game);
+    void activateEffect(SinglePlayerGame game);
 
     /**
      * Create a string in which is explained the action just done by the token that is been drawn and Lorenzo's status.
@@ -22,5 +22,5 @@ public interface Token {
      * @param game the {@link SinglePlayerGame} relative of this {@link Token}
      * @return the string explaining what Lorenzo did on his turn.
      */
-    public String announceAction(SinglePlayerGame game);
+    String announceAction(SinglePlayerGame game);
 }

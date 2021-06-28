@@ -1,9 +1,7 @@
 package it.polimi.ingsw.view;
 
-import it.polimi.ingsw.Request.Request;
 import it.polimi.ingsw.client.LineClient;
 import it.polimi.ingsw.connection.JsonReader;
-import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Updates.PlayLeaderUpdate;
 import it.polimi.ingsw.model.Updates.Update;
 import it.polimi.ingsw.view.data.PlayerData;
@@ -17,7 +15,7 @@ import java.net.Socket;
  * The type Observer.
  */
 //Keep listening on the server and print any message that is received
-public class Observer implements Runnable{
+public class Observer implements Runnable {
 
     /**
      * The Socket.
@@ -44,25 +42,22 @@ public class Observer implements Runnable{
         this.socket = connection.getSocket();
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
     }
+
     @Override
-    public void run()
-    {
-        try{
-            while(true) {
-                if(in.ready()) {
+    public void run() {
+        try {
+            while (true) {
+                if (in.ready()) {
                     String input = in.readLine();
                     Update update = JsonReader.readUpdate(input);
-                    //PROBLEMA: la handleUpdate si fa prima o dopo aver wrapparo? Devo andare a mangiare ci penso dopo
                     if (update instanceof PlayLeaderUpdate) {
                         ((PlayLeaderUpdate) update).wrapPlayer(this);
                     }
                     update.handleUpdate(data);
                 }
             }
-        }catch (IOException e) {
+        } catch (IOException e) {
         }
-
-
     }
 
     /**

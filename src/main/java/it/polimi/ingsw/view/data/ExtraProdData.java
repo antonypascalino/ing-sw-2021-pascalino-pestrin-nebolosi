@@ -10,7 +10,7 @@ import java.util.ArrayList;
 /**
  * It's the player with the {@link ClientExtraProd} {@link ClientLeaderCard} (it extends {@link PlayerData}).
  */
-public class ExtraProdData extends PlayerData{
+public class ExtraProdData extends PlayerData {
     private ArrayList<String> extraProdID;
     private ArrayList<Resource> prodRequired;
 
@@ -34,20 +34,20 @@ public class ExtraProdData extends PlayerData{
         this.originalData = original;
     }
 
-    public ArrayList<String> slotCardsFilter(ArrayList<MappedResource> mapped){
-        ArrayList<String> clonedDev = new ArrayList<String>();
-        ArrayList<String> clonedLeader = new ArrayList<String>();
+    public ArrayList<String> slotCardsFilter(ArrayList<MappedResource> mapped) {
+        ArrayList<String> clonedDev = new ArrayList<>();
+        ArrayList<String> clonedLeader = new ArrayList<>();
 
         clonedDev.addAll(originalData.getFrontCardsID());
         clonedLeader.addAll(extraProdID);
-        ArrayList<Resource> allRes = new ArrayList<Resource>();
-        for(MappedResource m : mapped){
+        ArrayList<Resource> allRes = new ArrayList<>();
+        for (MappedResource m : mapped) {
             allRes.add(m.getResource());
         }
 
         clonedDev.removeIf(card -> !allRes.containsAll(originalData.getCardFromID(card).getRequired()));
-        for(int i = 0; i < prodRequired.size(); i++){
-            if(allRes.contains(prodRequired.get(i))){
+        for (int i = 0; i < prodRequired.size(); i++) {
+            if (allRes.contains(prodRequired.get(i))) {
                 clonedDev.add(clonedLeader.get(i));
             }
         }

@@ -1,7 +1,6 @@
 package it.polimi.ingsw.model.Updates;
 
 import it.polimi.ingsw.model.Player.Player;
-import it.polimi.ingsw.model.card.DevCard;
 import it.polimi.ingsw.view.data.PlayerData;
 import it.polimi.ingsw.controller.Game;
 

@@ -3,7 +3,6 @@ package it.polimi.ingsw.model.Updates;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Table.Resource;
-import it.polimi.ingsw.model.card.DevCard;
 import it.polimi.ingsw.view.data.OtherPlayerData;
 import it.polimi.ingsw.view.data.PlayerData;
 
@@ -61,28 +60,25 @@ public class ProduceUpdate implements Update {
                 }
             }
         }
-        if(playerID.equals(data.getPlayerID())){
+        if (playerID.equals(data.getPlayerID())) {
             data.setFaithPoints(faithPoints);
             data.setTurnStates(turnStates);
             data.setWareHouse(wareHouse);
             data.setStrongBox(strongBox);
             data.getMenu().menuMaker();
-        }
-        else{
-            for(OtherPlayerData p: data.getOtherPlayers()){
-                if(playerID.equals(p.getPlayerID())){
+        } else {
+            for (OtherPlayerData p : data.getOtherPlayers()) {
+                if (playerID.equals(p.getPlayerID())) {
                     p.setFaithPoints(faithPoints);
                     p.setStrongBox(strongBox);
                     p.getWareHouse().clear();
-                    for(Resource[] l : wareHouse){
-                        for(Resource r: l){
+                    for (Resource[] l : wareHouse) {
+                        for (Resource r : l) {
                             p.getWareHouse().add(r);
                         }
                     }
                 }
-
             }
         }
-
     }
 }

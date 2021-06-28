@@ -1,8 +1,6 @@
 package it.polimi.ingsw.controller.SinglePlayer;
 
 import it.polimi.ingsw.model.card.DevCard;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * That type of {@link Token} that, if drawn, remove two {@link DevCard} from the table.
@@ -31,7 +29,7 @@ public class DiscardCards implements Token {
             }
         }
         //Check if the are no more cards of the selected color
-        for(int level = 1; level <= 3; level++) {
+        for (int level = 1; level <= 3; level++) {
             if (game.getTable().seeDev(color, level) != null) {
                 return;
             }
@@ -39,7 +37,7 @@ public class DiscardCards implements Token {
         game.lorenzoWins();
     }
 
-    public String toString(){
+    public String toString() {
         return (this.getClass().getName());
     }
 

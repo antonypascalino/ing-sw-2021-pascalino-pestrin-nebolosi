@@ -6,7 +6,6 @@ import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Updates.StartGameUpdate;
 import it.polimi.ingsw.model.Updates.Update;
-import it.polimi.ingsw.model.card.DevCard;
 import it.polimi.ingsw.model.card.LeaderCard;
 
 import java.util.ArrayList;
@@ -50,11 +49,10 @@ public class InitialPlayersSetRequest implements Request {
         for (Player player : game.getPlayers()) {
             if (playerID.equals(player.getNickName())) {
                 int discardedSteps = 0;
-                for(MarketResource mRes : marketRes) {
+                for (MarketResource mRes : marketRes) {
                     if (mRes.getLevel() != -1) {
                         player.addResource(mRes.getLevel(), mRes.getResource());
-                    }
-                    else discardedSteps++;
+                    } else discardedSteps++;
                 }
                 if (discardedSteps > 0) game.fpAdvancement(discardedSteps, 0);
                 for (String cardID : leadersChosen) {
@@ -62,7 +60,7 @@ public class InitialPlayersSetRequest implements Request {
                 }
                 game.playerReady++;
                 //If all the players are ready
-                if(game.playerReady == game.maxPlayer)
+                if (game.playerReady == game.maxPlayer)
                     game.start();
             }
         }

@@ -29,7 +29,7 @@ public class ExtraDepData extends PlayerData {
         this.originalData = originalData;
         extraDep = new ArrayList<>();
         this.placeableRes = new ArrayList<>();
-        if(originalData instanceof ExtraDepData){
+        if (originalData instanceof ExtraDepData) {
             extraDep.addAll(((ExtraDepData) originalData).extraDep);
             this.placeableRes.addAll(((ExtraDepData) originalData).placeableRes);
             this.originalData = originalData.originalData;
@@ -43,7 +43,7 @@ public class ExtraDepData extends PlayerData {
 
     public ArrayList<MappedResource> allResources() {
 
-        ArrayList<MappedResource> tmp = new ArrayList<MappedResource>();
+        ArrayList<MappedResource> tmp = new ArrayList<>();
 
         for (Resource[] l : originalData.getDeposits()) {
             for (Resource w : l) {
@@ -69,11 +69,11 @@ public class ExtraDepData extends PlayerData {
 
 
     public ArrayList<MarketResource> handleWarehouse(ArrayList<Resource> res) {
-        ArrayList<Resource[]> wareHouseClone = new ArrayList<Resource[]>();
-        ArrayList<Resource[]> helper = new ArrayList<Resource[]>();
-        ArrayList<MarketResource> marketRes = new ArrayList<MarketResource>();
-        ArrayList<Integer> tmp = new ArrayList<Integer>();
-        ArrayList<Resource> wareHouseRes = new ArrayList<Resource>();
+        ArrayList<Resource[]> wareHouseClone = new ArrayList<>();
+        ArrayList<Resource[]> helper = new ArrayList<>();
+        ArrayList<MarketResource> marketRes = new ArrayList<>();
+        ArrayList<Integer> tmp = new ArrayList<>();
+        ArrayList<Resource> wareHouseRes = new ArrayList<>();
 
         wareHouseClone.addAll(this.getDeposits());
         helper.addAll(originalData.getDeposits());
@@ -106,7 +106,7 @@ public class ExtraDepData extends PlayerData {
                 if (Arrays.stream(wareHouseClone.get(l)).anyMatch(r -> r.equals(Resource.EMPTY))) {
                     //se è vuoto
                     if (wareHouseClone.get(l)[0].equals(Resource.EMPTY)) {
-                        if(!wareHouseRes.contains(re)){
+                        if (!wareHouseRes.contains(re)) {
                             tmp.add(l);
                         }
                     }
@@ -123,7 +123,7 @@ public class ExtraDepData extends PlayerData {
                 }
 
             }
-            if(tmp.size() == 0) {
+            if (tmp.size() == 0) {
                 originalData.getPrinter().printMessage("You hav no space for " + re + ". It was discarded!");
                 MarketResource mr = new MarketResource(re, -1);
                 marketRes.add(mr);
@@ -132,19 +132,18 @@ public class ExtraDepData extends PlayerData {
             originalData.getPrinter().printMessage("\nWhere do you wanna put " + re + "?");
             int wareHouseLevel = originalData.getPrinter().printIntegers(tmp, false, true);
             MarketResource mr = new MarketResource(re, wareHouseLevel);
-            if (wareHouseLevel == -1)
-            {
+            if (wareHouseLevel == -1) {
                 originalData.getPrinter().printMessage("The resource " + re + " was discarded!");
                 marketRes.add(mr);
                 continue;
-            }
-            else originalData.getPrinter().printMessage("The resource " + re + " " + "was put in level " + (wareHouseLevel + 1));
+            } else
+                originalData.getPrinter().printMessage("The resource " + re + " " + "was put in level " + (wareHouseLevel + 1));
             marketRes.add(mr);
 
             //Insert the resource in a clone for checking the spaces
-            if(wareHouseLevel <= 2){
-                for(int d = 0; d < wareHouseClone.get(wareHouseLevel).length; d++){
-                    if(wareHouseClone.get(wareHouseLevel)[d] == Resource.EMPTY){
+            if (wareHouseLevel <= 2) {
+                for (int d = 0; d < wareHouseClone.get(wareHouseLevel).length; d++) {
+                    if (wareHouseClone.get(wareHouseLevel)[d] == Resource.EMPTY) {
                         wareHouseClone.get(wareHouseLevel)[d] = re;
                         wareHouseRes.add(re);
                         wareHouseRes.remove(Resource.EMPTY);
@@ -157,9 +156,9 @@ public class ExtraDepData extends PlayerData {
     }
 
     public int switchLevels(int origin) {
-        ArrayList<Resource[]> wareHouse = new ArrayList<Resource[]>();
+        ArrayList<Resource[]> wareHouse = new ArrayList<>();
         wareHouse.addAll(originalData.getDeposits());
-        ArrayList<Integer> levels = new ArrayList<Integer>();
+        ArrayList<Integer> levels = new ArrayList<>();
         int counterOr = 0;
 
         //da Warehouse ...
@@ -189,35 +188,18 @@ public class ExtraDepData extends PlayerData {
             }
             // ... a Extra Dep
             for (int e = 3; e < extraDep.size() + 3; e++) {
-                if(wareHouse.get(origin)[0] == placeableRes.get(e - 3) && Arrays.stream(extraDep.get(e - 3)).anyMatch(x -> x.equals(Resource.EMPTY))){
+                if (wareHouse.get(origin)[0] == placeableRes.get(e - 3) && Arrays.stream(extraDep.get(e - 3)).anyMatch(x -> x.equals(Resource.EMPTY))) {
                     levels.add(e);
                 }
             }
-            /*for (int e = 3; e < extraDep.size() + 3; e++) {
-                int counterDes = 0;
-                for (int cd = 0; cd < extraDep.get(e - 3).length; cd++) {
-                    if (extraDep.get(e - 3)[cd] == Resource.EMPTY) {
-                        break;
-                    }
-                    counterDes++;
-                }
-                final Resource placeRes = placeableRes.get(e - 3);
-                int finalCounterOr = counterOr;
-                int finalCounterDes = counterDes;
-                int finalE = e;
-                if (Arrays.stream(wareHouse.get(origin)).anyMatch(x -> x.equals(placeRes) && finalCounterOr <= extraDep.get(finalE - 3).length && finalCounterDes <= wareHouse.get(origin).length) && !(counterDes == 0 && counterOr == 0)) {
-                    levels.add(e);
-                }
-            }*/
-            //levels.remove(origin);
         }
         // Da Extra Dep ...
         if (origin >= 3) {
             for (int co = 0; co < extraDep.get(origin - 3).length; co++) {
-                if (extraDep.get(origin -3)[co] == Resource.EMPTY) {
+                if (extraDep.get(origin - 3)[co] == Resource.EMPTY) {
                     break;
                 }
-                counterOr ++;
+                counterOr++;
             }
             // ... a Warehouse
             Resource placeable = placeableRes.get(origin - 3);
@@ -227,9 +209,9 @@ public class ExtraDepData extends PlayerData {
                     if (wareHouse.get(k)[cd] == Resource.EMPTY) {
                         break;
                     }
-                    counterDes ++;
+                    counterDes++;
                 }
-                if (Arrays.stream(extraDep.get(origin-3)).anyMatch(x -> x.equals(placeable)) && counterOr <= wareHouse.get(k).length && counterDes <= extraDep.get(origin -3).length && !(counterDes == 0 && counterOr == 0)) {
+                if (Arrays.stream(extraDep.get(origin - 3)).anyMatch(x -> x.equals(placeable)) && counterOr <= wareHouse.get(k).length && counterDes <= extraDep.get(origin - 3).length && !(counterDes == 0 && counterOr == 0)) {
                     levels.add(k);
                 }
             }
@@ -242,7 +224,7 @@ public class ExtraDepData extends PlayerData {
     }
 
     public ArrayList<Resource[]> getDeposits() {
-        ArrayList<Resource[]> allDeposits = new ArrayList<Resource[]>();
+        ArrayList<Resource[]> allDeposits = new ArrayList<>();
         allDeposits.addAll(originalData.getDeposits());
         allDeposits.addAll(extraDep);
         return allDeposits;
@@ -251,18 +233,18 @@ public class ExtraDepData extends PlayerData {
     @Override
     public void setWareHouse(ArrayList<Resource[]> wareHouse) {
         if (wareHouse.size() == 4) {
-            extraDep.set(0,wareHouse.remove(3));
+            extraDep.set(0, wareHouse.remove(3));
             originalData.setWareHouse(wareHouse);
         } else if (wareHouse.size() == 5) {
-            extraDep.set(0,wareHouse.remove(3));
-            extraDep.set(1,wareHouse.remove(3));
+            extraDep.set(0, wareHouse.remove(3));
+            extraDep.set(1, wareHouse.remove(3));
             originalData.setWareHouse(wareHouse);
         }
     }
 
     @Override
-    public ArrayList<TurnState> turnStateFilter(){
-        ArrayList<TurnState> tmp = new ArrayList<TurnState>();
+    public ArrayList<TurnState> turnStateFilter() {
+        ArrayList<TurnState> tmp = new ArrayList<>();
         //tmp.add(TurnState.QUIT);
         tmp.add(TurnState.CHECK_STATS);
         tmp.add(TurnState.PRODUCE);
@@ -270,65 +252,64 @@ public class ExtraDepData extends PlayerData {
         tmp.add(TurnState.GET_FROM_MARKET);
         tmp.add(TurnState.DISCARD_LEADER_CARD);
 
-        for(String s : originalData.getLeaders()){
-            if(getLeaderFromID(s).canBePlayed(this)) {
+        for (String s : originalData.getLeaders()) {
+            if (getLeaderFromID(s).canBePlayed(this)) {
                 tmp.add(TurnState.PLAY_LEADER_CARD);
                 break;
             }
         }
 
-        if(originalData.getTurnStates().contains(TurnState.BUY_DEV_CARD) || originalData.getTurnStates().contains(TurnState.PRODUCE) || originalData.getTurnStates().contains(TurnState.GET_FROM_MARKET)){
+        if (originalData.getTurnStates().contains(TurnState.BUY_DEV_CARD) || originalData.getTurnStates().contains(TurnState.PRODUCE) || originalData.getTurnStates().contains(TurnState.GET_FROM_MARKET)) {
             tmp.remove(TurnState.PRODUCE);
             tmp.remove(TurnState.BUY_DEV_CARD);
             tmp.remove(TurnState.GET_FROM_MARKET);
             tmp.add(TurnState.END_TURN);
         }
 
-        if(originalData.getTurnStates().contains(TurnState.PLAY_LEADER_CARD)){
+        if (originalData.getTurnStates().contains(TurnState.PLAY_LEADER_CARD)) {
             tmp.remove(TurnState.PLAY_LEADER_CARD);
             tmp.remove(TurnState.DISCARD_LEADER_CARD);
         }
 
-        if(originalData.getTurnStates().contains(TurnState.DISCARD_LEADER_CARD)){
+        if (originalData.getTurnStates().contains(TurnState.DISCARD_LEADER_CARD)) {
             tmp.remove(TurnState.PLAY_LEADER_CARD);
             tmp.remove(TurnState.DISCARD_LEADER_CARD);
         }
         //Se non ha carte con cui può produrre (ha sempre almeno la basic)
-        if( allResources().size() == 0) {
+        if (allResources().size() == 0) {
             tmp.remove(TurnState.PRODUCE);
         }
 
         boolean empty = true;
-        for(int i = 0; i < getDeposits().size(); i++){
+        for (int i = 0; i < getDeposits().size(); i++) {
 
-            for(int k = 0; k < getDeposits().get(i).length; k++){
-                if(!getDeposits().get(i)[k].equals(Resource.EMPTY)){
+            for (int k = 0; k < getDeposits().get(i).length; k++) {
+                if (!getDeposits().get(i)[k].equals(Resource.EMPTY)) {
                     empty = false;
                     break;
                 }
             }
         }
-        if(!empty){
+        if (!empty) {
             tmp.add(TurnState.MOVE_RESOURCE);
-        }
-        else{
-            if(originalData.getStrongBox().size() == 0){
+        } else {
+            if (originalData.getStrongBox().size() == 0) {
                 tmp.remove(TurnState.PRODUCE);
                 tmp.remove(TurnState.BUY_DEV_CARD);
 
             }
         }
-        if(originalData.getLeaders().size() == 0){
+        if (originalData.getLeaders().size() == 0) {
             tmp.remove(TurnState.DISCARD_LEADER_CARD);
             tmp.remove(TurnState.PLAY_LEADER_CARD);
         }
         return tmp;
     }
 
-    public ArrayList<MappedResource> createMappedRes(ArrayList<Resource> res){
-        ArrayList<MappedResource> tmp = new ArrayList<MappedResource>();
-        ArrayList<MappedResource> toSelect = new ArrayList<MappedResource>();
-        ArrayList<MappedResource> mappedRes = new ArrayList<MappedResource>();
+    public ArrayList<MappedResource> createMappedRes(ArrayList<Resource> res) {
+        ArrayList<MappedResource> tmp = new ArrayList<>();
+        ArrayList<MappedResource> toSelect = new ArrayList<>();
+        ArrayList<MappedResource> mappedRes = new ArrayList<>();
 
         //gets all the res
         tmp.addAll(allResources());
@@ -347,7 +328,6 @@ public class ExtraDepData extends PlayerData {
 
         return mappedRes;
     }
-
 }
 
 

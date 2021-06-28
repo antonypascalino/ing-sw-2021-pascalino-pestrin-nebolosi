@@ -13,10 +13,10 @@ public class Move2 implements Token {
         if (game.getLorenzoPath().checkPopeSpace(3)) {
             game.lorenzoWins();
         }
-        game.fpAdvancement(0,0);
+        game.fpAdvancement(0, 0);
     }
 
-    public String toString(){
+    public String toString() {
         return (this.getClass().getName());
     }
 
@@ -24,5 +24,4 @@ public class Move2 implements Token {
     public String announceAction(SinglePlayerGame game) {
         return ("Lorenzo moved of 2 step on his Faith Path");
     }
-
 }

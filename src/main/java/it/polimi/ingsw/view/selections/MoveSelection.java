@@ -7,25 +7,21 @@ import it.polimi.ingsw.view.data.PlayerData;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Scanner;
 
 /**
  * The {@link Selection} that guides the player when he chose tu sort his deposits.
  */
-public class MoveSelection extends Selection{
+public class MoveSelection extends Selection {
 
-    public void handleSelection(PlayerData data){
-
-        Scanner inputs = new Scanner(System.in);
-        String selection = "";
-        ArrayList<Integer> l = new ArrayList<Integer>();
+    public void handleSelection(PlayerData data) {
+        ArrayList<Integer> l = new ArrayList<>();
         ArrayList<Resource[]> levels = data.getDeposits();
-        for(int i = 0; i < levels.size(); i++){
-            if(Arrays.stream(levels.get(i)).anyMatch(x -> !x.equals(Resource.EMPTY))){
+        for (int i = 0; i < levels.size(); i++) {
+            if (Arrays.stream(levels.get(i)).anyMatch(x -> !x.equals(Resource.EMPTY))) {
                 l.add(i);
             }
         }
-        if(l.isEmpty()){
+        if (l.isEmpty()) {
             data.getPrinter().printMessage("You can't switch any level");
             data.getMenu().menuMaker();
             return;

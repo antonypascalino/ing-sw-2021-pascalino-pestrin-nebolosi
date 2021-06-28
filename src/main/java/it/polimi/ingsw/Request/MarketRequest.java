@@ -1,17 +1,14 @@
 package it.polimi.ingsw.Request;
 
 import it.polimi.ingsw.controller.Game;
-import it.polimi.ingsw.Request.MarketResource;
 import it.polimi.ingsw.model.Table.Market;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Table.Resource;
-import it.polimi.ingsw.Request.MarketDimension;
 import it.polimi.ingsw.model.Updates.MarketUpdate;
 import it.polimi.ingsw.model.Updates.PlayerFP;
 import it.polimi.ingsw.model.Updates.PlayerVP;
 import it.polimi.ingsw.model.Updates.Update;
-import it.polimi.ingsw.model.card.DevCard;
 
 import java.util.ArrayList;
 
@@ -53,8 +50,7 @@ public class MarketRequest implements Request {
 
     @Override
     public boolean canBePlayed(Player player) {
-        ArrayList<Resource> fromMarket = new ArrayList<Resource>();
-        boolean canBePlayed;
+        ArrayList<Resource> fromMarket = new ArrayList<>();
 
         if (marketDimension.equals(MarketDimension.ROW)) {
             fromMarket = player.getTable().market.seeRow(number);
@@ -62,7 +58,7 @@ public class MarketRequest implements Request {
             fromMarket = player.getTable().market.seeColumn(number);
         }
         //check if the Required resources match the relative market resources and if the empty marbles have been correctly indicated
-        if(!player.checkMarketRes(this.requestedRes(), fromMarket)) {
+        if (!player.checkMarketRes(this.requestedRes(), fromMarket)) {
             return false;
         }
         //check if the indicated levels are compatible with the player's level in his WareHouse
@@ -104,7 +100,7 @@ public class MarketRequest implements Request {
             player.getTable().market.getColumn(number);
         }
 
-        game.fpAdvancement(discardedSteps,myFPSteps);
+        game.fpAdvancement(discardedSteps, myFPSteps);
         return TurnState.GET_FROM_MARKET;
     }
 
@@ -114,14 +110,13 @@ public class MarketRequest implements Request {
     }
 
 
-
     @Override
     public String getClassName() {
         return className;
     }
 
     private ArrayList<Resource> requiredRes() {
-        ArrayList<Resource> requiredRes = new ArrayList<Resource>();
+        ArrayList<Resource> requiredRes = new ArrayList<>();
         for (MarketResource marketRes : marketResources) {
             requiredRes.add(marketRes.getResource());
         }
@@ -152,9 +147,9 @@ public class MarketRequest implements Request {
      *
      * @return the array list
      */
-    public ArrayList<Resource> requestedRes(){
-        ArrayList<Resource> requestedRes = new ArrayList<Resource>();
-        for(MarketResource marketRes : marketResources) {
+    public ArrayList<Resource> requestedRes() {
+        ArrayList<Resource> requestedRes = new ArrayList<>();
+        for (MarketResource marketRes : marketResources) {
             requestedRes.add(marketRes.getResource());
         }
         return requestedRes;
@@ -162,8 +157,8 @@ public class MarketRequest implements Request {
 
     @Override
     public Update createUpdate(Player player, Game game) {
-        ArrayList<PlayerVP> playersVP = new ArrayList<PlayerVP>();
-        ArrayList<PlayerFP> playersFP = new ArrayList<PlayerFP>();
+        ArrayList<PlayerVP> playersVP = new ArrayList<>();
+        ArrayList<PlayerFP> playersFP = new ArrayList<>();
         for (Player p : game.getPlayers()) {
             playersVP.add(new PlayerVP(p.getNickName(), p.getVictoryPoints()));
             playersFP.add(new PlayerFP(p.getNickName(), p.getBoard().getFaithPath().getAdvancement()));

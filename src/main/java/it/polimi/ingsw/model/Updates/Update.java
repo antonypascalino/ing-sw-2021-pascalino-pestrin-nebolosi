@@ -22,6 +22,6 @@ public interface Update extends Convertible {
      * The {@link Update} is handled in two different ways by the players based on
      * whether the update is relative to an action the player did himself or if the update involves an other player.
      */
-    public void handleUpdate(PlayerData data);
+    void handleUpdate(PlayerData data);
 
 }

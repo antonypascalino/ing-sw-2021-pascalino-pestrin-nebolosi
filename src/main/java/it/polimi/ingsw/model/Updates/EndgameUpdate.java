@@ -1,9 +1,7 @@
 package it.polimi.ingsw.model.Updates;
 
 import it.polimi.ingsw.controller.Game;
-import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Player.Player;
-import it.polimi.ingsw.model.card.DevCard;
 import it.polimi.ingsw.view.data.PlayerData;
 
 import java.util.ArrayList;
@@ -19,6 +17,7 @@ public class EndgameUpdate implements Update {
 
     /**
      * Instantiates a new {@link EndgameUpdate} setting the winner's nickname and every {@link Player}'s victory points.
+     *
      * @param winner          the winner's nickname.
      * @param finalPlayersVPS the players' nicknames and their victory points at the end of the game.
      */

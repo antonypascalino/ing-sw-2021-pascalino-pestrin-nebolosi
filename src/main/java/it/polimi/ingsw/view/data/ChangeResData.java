@@ -21,7 +21,7 @@ public class ChangeResData extends PlayerData {
     public ChangeResData(ArrayList<Resource> changes, PlayerData originalData) {
         this.originalData = originalData;
         this.changes = new ArrayList<>();
-        if(originalData instanceof ChangeResData)
+        if (originalData instanceof ChangeResData)
             changes.addAll(((ChangeResData) originalData).getChanges());
         this.changes.addAll(changes);
     }
@@ -31,8 +31,7 @@ public class ChangeResData extends PlayerData {
      *
      * @return the changes
      */
-    public ArrayList<Resource> getChanges()
-    {
+    public ArrayList<Resource> getChanges() {
         return changes;
     }
 

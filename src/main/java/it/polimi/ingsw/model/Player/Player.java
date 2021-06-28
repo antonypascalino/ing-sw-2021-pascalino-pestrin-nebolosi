@@ -29,15 +29,16 @@ public abstract class Player {
      *
      * @param game the game's reference.
      */
-    public void setGame(Game game){ original.setGame(game);}
+    public void setGame(Game game) {
+        original.setGame(game);
+    }
 
     /**
      * Gets player's nickname.
      *
      * @return the nickname.
      */
-    public String getNickName()
-    {
+    public String getNickName() {
         return original.getNickName();
     }
 
@@ -46,8 +47,7 @@ public abstract class Player {
      *
      * @return the victory points.
      */
-    public int getVictoryPoints()
-    {
+    public int getVictoryPoints() {
         return original.getVictoryPoints();
     }
 
@@ -56,8 +56,7 @@ public abstract class Player {
      *
      * @return the {@link Board}.
      */
-    public Board getBoard()
-    {
+    public Board getBoard() {
         return original.getBoard();
     }
 
@@ -66,7 +65,9 @@ public abstract class Player {
      *
      * @return the {@link Game}.
      */
-    public Game getGame() { return original.getGame(); }
+    public Game getGame() {
+        return original.getGame();
+    }
 
     /**
      * Adds {@link LeaderCard}s to the player.
@@ -75,8 +76,7 @@ public abstract class Player {
      *
      * @param card the card that needs to be added to the player.
      */
-    public void addLeaderCard(LeaderCard card)
-    {
+    public void addLeaderCard(LeaderCard card) {
         original.addLeaderCard(card);
     }
 
@@ -85,8 +85,7 @@ public abstract class Player {
      *
      * @param vp the victory points added throughout the game.
      */
-    public void addVictoryPoints(int vp)
-    {
+    public void addVictoryPoints(int vp) {
         original.addVictoryPoints(vp);
     }
 
@@ -95,8 +94,7 @@ public abstract class Player {
      *
      * @return the leader cards
      */
-    public ArrayList<LeaderCard> getLeaderCards()
-    {
+    public ArrayList<LeaderCard> getLeaderCards() {
         return original.getLeaderCards();
     }
 
@@ -110,13 +108,13 @@ public abstract class Player {
     }
 
     /**
-     * Check if player has space in the received as paramter level in his deposits.
+     * Check if player has space in the received as parameter level in his deposits.
      *
      * @param res   the {@link Resource}.
      * @param level the level in the deposits
      * @return true if there's space, false otherwise.
      */
-    public boolean checkSpace(Resource res, int level){
+    public boolean checkSpace(Resource res, int level) {
         return original.checkSpace(res, level);
     }
 
@@ -127,7 +125,7 @@ public abstract class Player {
      * @param res   the {@link Resource}.
      */
     public void addResource(int level, Resource res) {
-        original.addResource(level,res);
+        original.addResource(level, res);
     }
 
     /**
@@ -143,7 +141,7 @@ public abstract class Player {
     /**
      * Gets player's reference to the {@link Table}.
      *
-     * @return the table's refrence.
+     * @return the table's reference.
      */
     public Table getTable() {
         return original.getTable();
@@ -180,8 +178,7 @@ public abstract class Player {
      *
      * @return all the {@link Resource}s.
      */
-    public ArrayList<Resource> getAllResources()
-    {
+    public ArrayList<Resource> getAllResources() {
         return original.getAllResources();
     }
 
@@ -215,7 +212,7 @@ public abstract class Player {
      * @param cardID the leader card's ID.
      * @return the reference to the {@link LeaderCard}, null if the player doesn't own it.
      */
-    public LeaderCard getLeaderFromID(String cardID){
+    public LeaderCard getLeaderFromID(String cardID) {
         return original.getLeaderFromID(cardID);
     }
 
@@ -234,9 +231,9 @@ public abstract class Player {
      *
      * @param tbl the table reference.
      */
-    public void setTable(Table tbl ){
+    public void setTable(Table tbl) {
         original.setTable(tbl);
-    };
+    }
 
     /**
      * Gets the IDs of all the {@link LeaderCard} owns by the player.
@@ -262,13 +259,11 @@ public abstract class Player {
      *
      * @param update the update to send.
      */
-    public void notifyView(Update update)
-    {
+    public void notifyView(Update update) {
         original.notifyView(update);
     }
 
-    public boolean checkSwitch(int originLevel, int destLevel)
-    {
+    public boolean checkSwitch(int originLevel, int destLevel) {
         return original.checkSwitch(originLevel, destLevel);
     }
 }

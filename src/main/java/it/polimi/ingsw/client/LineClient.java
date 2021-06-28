@@ -7,48 +7,46 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.NoSuchElementException;
-import java.util.Scanner;
+
 
 public class LineClient {
     private String ip;
     private int port;
     //Message to sent to the server
     private String message;
-    private boolean avaible = false;
     private Socket socket;
     private Gson json;
     PrintWriter socketOut;
 
-    public LineClient(String ip, int port){
+    public LineClient(String ip, int port) {
         json = new Gson();
         this.ip = ip;
         this.port = port;
     }
+
     public void startClient() throws IOException {
         socket = new Socket(ip, port);
         System.out.println("Connection established");
-        socketOut = new PrintWriter(socket.getOutputStream(),true);
+        socketOut = new PrintWriter(socket.getOutputStream(), true);
     }
-
 
     /**
      * Send a message to the server and return the feedback from the server
+     *
      * @param input the string that needs to be sent to the server
-     * @return the server response
+     * the server response
      * @throws IOException
      */
-    public void sendMessage(String input) throws IOException
-    {
+    public void sendMessage(String input) throws IOException {
         message = input;
-        PrintWriter socketOut = new PrintWriter(socket.getOutputStream());;
-        try{
-                String inputLine = message;
-                socketOut.println(inputLine);
-                socketOut.flush();
-        } catch(NoSuchElementException e) {
+        PrintWriter socketOut = new PrintWriter(socket.getOutputStream());
+        try {
+            String inputLine = message;
+            socketOut.println(inputLine);
+            socketOut.flush();
+        } catch (NoSuchElementException e) {
             System.out.println("Connection closed");
-        }
-        finally {
+        } finally {
             socketOut.close();
         }
         //In case there's an error
@@ -71,14 +69,11 @@ public class LineClient {
         return socket;
     }
 
-    public void closeClient()
-    {
+    public void closeClient() {
         try {
             socket.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
-
 }

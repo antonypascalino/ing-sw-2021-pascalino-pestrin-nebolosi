@@ -6,7 +6,6 @@ import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Updates.DiscardLeaderUpdate;
 import it.polimi.ingsw.model.Updates.PlayerVP;
 import it.polimi.ingsw.model.Updates.Update;
-import it.polimi.ingsw.model.card.DevCard;
 import it.polimi.ingsw.model.card.LeaderCard;
 
 import java.util.ArrayList;
@@ -14,7 +13,7 @@ import java.util.ArrayList;
 /**
  * The {@link Request} sent by a player when he wants to discard a {@link LeaderCard}.
  */
-public class DiscardLeaderRequest implements Request{
+public class DiscardLeaderRequest implements Request {
 
     private final String className;
     private String cardID;
@@ -43,10 +42,9 @@ public class DiscardLeaderRequest implements Request{
 
     @Override
     public TurnState handle(Player player, Game game) {
-        //Forse non lo stiamo rimuovendo dal player ma solo da un clone di quell'arrayList
         player.getLeaderCards().remove(player.getLeaderFromID(cardID));
         //Notify all the players that this handle didn't discard any steps but moved the player forward by one
-        game.fpAdvancement(0,1);
+        game.fpAdvancement(0, 1);
         return TurnState.DISCARD_LEADER_CARD;
     }
 
@@ -67,7 +65,7 @@ public class DiscardLeaderRequest implements Request{
 
     @Override
     public Update createUpdate(Player player, Game game) {
-        ArrayList<PlayerVP> playersVP = new ArrayList<PlayerVP>();
+        ArrayList<PlayerVP> playersVP = new ArrayList<>();
         for (Player p : game.getPlayers()) {
             playersVP.add(new PlayerVP(p.getNickName(), p.getVictoryPoints()));
         }

@@ -23,14 +23,13 @@ public class Discount implements LeaderCard {
     /**
      * Instantiates a new Discount {@link LeaderCard}, and sets enable to false.
      *
-     * @param color1  the first color of a {@link DevCard} needed to play the {@link LeaderCard}.
-     * @param color2  the second color of a {@link DevCard} needed to play the {@link LeaderCard}.
-     * @param dis     the {@link Resource} representing the discount given to the {@link Player}.
+     * @param color1 the first color of a {@link DevCard} needed to play the {@link LeaderCard}.
+     * @param color2 the second color of a {@link DevCard} needed to play the {@link LeaderCard}.
+     * @param dis    the {@link Resource} representing the discount given to the {@link Player}.
      * @param vp     the victory points the {@link LeaderCard} is gonna give to the {@link Player} when enabled.
      * @param cardID the {@link LeaderCard}'s ID.
      */
-    public Discount(String color1, String color2, Resource dis, int vp, String cardID)
-    {
+    public Discount(String color1, String color2, Resource dis, int vp, String cardID) {
         this.cardID = cardID;
         className = this.getClass().getName();
         this.color1 = color1;
@@ -72,19 +71,16 @@ public class Discount implements LeaderCard {
     }
 
     @Override
-    public void playCard()
-    {
-        if (canBePlayed())
-        {
+    public void playCard() {
+        if (canBePlayed()) {
             player.addVictoryPoints(victoryPoints);
             isEnable = true;
             Player tmp = new DiscountedPlayer(player, discount);
-            //Add the new powered player in substitition to the actual one if the game references
+            //Add the new powered player in substitution to the actual one if the game references
             player.getGame().changePlayer(player, tmp);
-            for (LeaderCard card : player.getLeaderCards())
-            {
+            for (LeaderCard card : player.getLeaderCards()) {
                 //Do not change the reference on this card
-                if(!card.getID().equals(this.getID()))
+                if (!card.getID().equals(this.getID()))
                     card.setPlayer(tmp);
             }
             this.player = tmp;
@@ -92,8 +88,7 @@ public class Discount implements LeaderCard {
     }
 
     @Override
-    public boolean canBePlayed()
-    {
+    public boolean canBePlayed() {
         boolean secondColor = false;
         boolean firstColor = false;
         if (isEnable) return false; //The card can't be played twice

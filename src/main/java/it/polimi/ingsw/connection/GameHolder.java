@@ -16,37 +16,32 @@ import java.util.ArrayList;
 public class GameHolder {
     private ArrayList<Game> games;
 
-    public GameHolder()
-    {
+    public GameHolder() {
         games = new ArrayList<>();
     }
 
-    public synchronized int size()
-    {
+    public synchronized int size() {
         return games.size();
     }
 
-    public synchronized Game get(int i)
-    {
+    public synchronized Game get(int i) {
         return games.get(i);
     }
 
-    public synchronized void remove(Game game)
-    {
+    public synchronized void remove(Game game) {
         games.remove(game);
     }
 
-    public synchronized void add(Game game)
-    {
+    public synchronized void add(Game game) {
         games.add(game);
     }
 
     /**
      * Adding a new player to an existing game or creating a new game
+     *
      * @param request the request used for creating a player
      */
     public synchronized void add(Request request, ClientHandler clientHandler) {
-        //games.add(playerId);
         //If there's no game on the server create the first one
         Game lastGame = null;
         if (games.size() != 0)
@@ -59,7 +54,7 @@ public class GameHolder {
                 gameId = games.get(games.size() - 1).getGameId() + 1;
             else
                 gameId = 0;
-            ArrayList<Player> tmp = new ArrayList<Player>();
+            ArrayList<Player> tmp = new ArrayList<>();
             clientHandler.setPlayerId(((NewGameRequest) request).getNickname());
             Player newPlayer = new BasicPlayer(((NewGameRequest) request).getNickname(), clientHandler);
             tmp.add(newPlayer);
@@ -68,8 +63,7 @@ public class GameHolder {
             if (((NewGameRequest) request).getPlayers() == 1) {
                 newGame = new SinglePlayerGame(tmp, DefaultCreator.produceDevCard(), gameId);
                 update = newGame.createNewGameUpdate();
-            }
-            else {
+            } else {
                 newGame = new Game(tmp, DefaultCreator.produceDevCard(), gameId, ((NewGameRequest) request).getPlayers());
                 update = new LobbyUpdate(((NewGameRequest) request).getNickname(), newGame.getPlayers().size(), ((NewGameRequest) request).getPlayers());
 
@@ -82,7 +76,7 @@ public class GameHolder {
             newGame.notifyAllPlayers(update);
         }
 
-        //If it hasn't alrady reached the maximum numner of players
+        //If it hasn't already reached the maximum numner of players
         //add the new player
         else {
             Player newPlayer = new BasicPlayer(((NewGameRequest) request).getNickname(), clientHandler);
@@ -94,12 +88,9 @@ public class GameHolder {
             System.out.println("Player " + ((NewGameRequest) request).getNickname() + " added to game " + lastGame.getGameId());
             Update update;
             //If the game has reached the max level of players with this new one
-            if(lastGame.getPlayers().size() == lastGame.getMax())
-            {
+            if (lastGame.getPlayers().size() == lastGame.getMax()) {
                 update = lastGame.createNewGameUpdate();
-            }
-            else
-            {
+            } else {
                 System.out.println("Player " + ((NewGameRequest) request).getNickname() + " added to game " + lastGame.getGameId());
                 update = new LobbyUpdate(((NewGameRequest) request).getNickname(), lastGame.getPlayers().size(), ((NewGameRequest) request).getPlayers());
             }

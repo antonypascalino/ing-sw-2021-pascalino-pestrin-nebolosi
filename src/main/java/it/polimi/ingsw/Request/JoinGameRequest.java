@@ -4,14 +4,13 @@ import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Updates.Update;
-import it.polimi.ingsw.model.card.DevCard;
 
 import java.util.ArrayList;
 
 /**
  * The {@link Request} sent by a player when he wants to join a {@link Game}.
  */
-public class JoinGameRequest implements Request{
+public class JoinGameRequest implements Request {
 
     private final String className;
     private int gameId;
@@ -21,15 +20,15 @@ public class JoinGameRequest implements Request{
     /**
      * Instantiates a new {@link JoinGameRequest} setting the {@link Game}'s ID and the player's nickname.
      *
-     * @param gameId     the {@link Game}'s ID.
-     * @param nickName   the {@link Player}'s ID.
+     * @param gameId   the {@link Game}'s ID.
+     * @param nickName the {@link Player}'s ID.
      */
-    public JoinGameRequest(int gameId, String nickName)
-    {
-        className=this.getClass().getName();
+    public JoinGameRequest(int gameId, String nickName) {
+        className = this.getClass().getName();
         this.gameId = gameId;
         this.nickName = nickName;
     }
+
     @Override
     public TurnState handle(Player player, Game game) {
 
@@ -66,12 +65,11 @@ public class JoinGameRequest implements Request{
      *
      * @return the nick name
      */
-    public String getNickName()
-    {
+    public String getNickName() {
         return nickName;
     }
 
-    public String getPlayerID(){
+    public String getPlayerID() {
         return playerID;
     }
 }

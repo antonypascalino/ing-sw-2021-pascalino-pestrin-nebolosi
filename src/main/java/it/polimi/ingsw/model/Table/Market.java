@@ -1,6 +1,6 @@
 package it.polimi.ingsw.model.Table;
 
-import it.polimi.ingsw.model.Costants;
+import it.polimi.ingsw.model.Constants;
 import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.card.DevCard;
@@ -22,23 +22,21 @@ public class Market {
      * This method receives 13 {@link Resource}s and then puts 12 of them in a matrix
      * in random order whilst keeping one outside as a "free one".
      * Those resources are going to be in the market matrix for this game.
+     *
      * @param gameRes 13 resources as an array list.
      */
-    public Market(ArrayList<Resource> gameRes)
-    {
-        currentSituation = new Resource[Costants.MARKETROWS][Costants.MARKETCOLS];
+    public Market(ArrayList<Resource> gameRes) {
+        currentSituation = new Resource[Constants.MARKETROWS][Constants.MARKETCOLS];
         Random rnd = new Random();
         int i;
 
         //Solo per il debug, aggiungere ai test
-        if(gameRes.size()!=13)
-        {
-           System.out.println("Not enough resources");
+        if (gameRes.size() != 13) {
+            System.out.println("Not enough resources");
         }
 
-        for (int r = 0; r< Costants.MARKETROWS; r++)
-            for(int c = 0; c< Costants.MARKETCOLS; c++)
-            {
+        for (int r = 0; r < Constants.MARKETROWS; r++)
+            for (int c = 0; c < Constants.MARKETCOLS; c++) {
 
                 //Gets a new random passing the size of the array
                 i = rnd.nextInt(gameRes.size());
@@ -49,7 +47,7 @@ public class Market {
             }
 
         //Solo per il debug, aggiungere ai test
-        if(gameRes.size()==1)
+        if (gameRes.size() == 1)
             System.out.println("Everything worked fine");
 
         freeOne = gameRes.get(0);
@@ -61,23 +59,20 @@ public class Market {
      * @param col the column of the market selected by the {@link Player}.
      * @return the array list of {@link Resource}s on the selected column.
      */
-    public ArrayList<Resource> getColumn(int col)
-    {
-        ArrayList<Resource> result = new ArrayList<Resource>();
+    public ArrayList<Resource> getColumn(int col) {
+        ArrayList<Resource> result = new ArrayList<>();
         Resource tmp;
-        for(int r = 0; r< Costants.MARKETROWS; r++)
-        {
-            tmp=currentSituation[r][col];
+        for (int r = 0; r < Constants.MARKETROWS; r++) {
+            tmp = currentSituation[r][col];
             result.add(tmp);
         }
         //Once the result array is ready move the market resources
-        tmp=currentSituation[0][col];
-        for(int r = 0; r< Costants.MARKETROWS-1; r++)
-        {
-           currentSituation[r][col] = currentSituation[r+1][col];
+        tmp = currentSituation[0][col];
+        for (int r = 0; r < Constants.MARKETROWS - 1; r++) {
+            currentSituation[r][col] = currentSituation[r + 1][col];
         }
-        currentSituation[Costants.MARKETROWS-1][col]=freeOne;
-        freeOne=tmp;
+        currentSituation[Constants.MARKETROWS - 1][col] = freeOne;
+        freeOne = tmp;
         return result;
     }
 
@@ -88,11 +83,10 @@ public class Market {
      * @return the array list of {@link Resource}s on the selected column.
      */
     public ArrayList<Resource> seeColumn(int col) {
-        ArrayList<Resource> result = new ArrayList<Resource>();
+        ArrayList<Resource> result = new ArrayList<>();
         Resource tmp;
-        for(int r = 0; r< Costants.MARKETROWS; r++)
-        {
-            tmp=currentSituation[r][col];
+        for (int r = 0; r < Constants.MARKETROWS; r++) {
+            tmp = currentSituation[r][col];
             result.add(tmp);
         }
         return result;
@@ -104,24 +98,21 @@ public class Market {
      * @param row the row of the market selected by the {@link Player}.
      * @return the array list of {@link Resource}s on the selected column.
      */
-    public ArrayList<Resource> getRow(int row)
-    {
-        ArrayList<Resource> result = new ArrayList<Resource>();
+    public ArrayList<Resource> getRow(int row) {
+        ArrayList<Resource> result = new ArrayList<>();
         Resource tmp;
-        for(int c = 0; c< Costants.MARKETCOLS; c++)
-        {
+        for (int c = 0; c < Constants.MARKETCOLS; c++) {
             tmp = currentSituation[row][c];
             result.add(tmp);
         }
 
         //Once the result array is ready move the market resources
-        tmp=currentSituation[row][0];
-        for(int c = 0; c< Costants.MARKETCOLS-1; c++)
-        {
-            currentSituation[row][c] = currentSituation[row][c+1];
+        tmp = currentSituation[row][0];
+        for (int c = 0; c < Constants.MARKETCOLS - 1; c++) {
+            currentSituation[row][c] = currentSituation[row][c + 1];
         }
-        currentSituation[row][Costants.MARKETCOLS-1]=freeOne;
-        freeOne=tmp;
+        currentSituation[row][Constants.MARKETCOLS - 1] = freeOne;
+        freeOne = tmp;
         return result;
     }
 
@@ -132,10 +123,9 @@ public class Market {
      * @return the array list of {@link Resource}s on the selected row.
      */
     public ArrayList<Resource> seeRow(int row) {
-        ArrayList<Resource> result = new ArrayList<Resource>();
+        ArrayList<Resource> result = new ArrayList<>();
         Resource tmp;
-        for(int c = 0; c< Costants.MARKETCOLS; c++)
-        {
+        for (int c = 0; c < Constants.MARKETCOLS; c++) {
             tmp = currentSituation[row][c];
             result.add(tmp);
         }
@@ -147,8 +137,7 @@ public class Market {
      *
      * @return the free one {@link Resource}.
      */
-    public Resource getFreeOne()
-    {
+    public Resource getFreeOne() {
         return freeOne;
     }
 
@@ -157,13 +146,12 @@ public class Market {
      *
      * @return a matrix representing the current market situation.
      */
-    public Resource[][] getMarket()
-    {
+    public Resource[][] getMarket() {
         return currentSituation.clone();
     }
 
     @Override
     public String toString() {
-        return ""+this.seeRow(0)+"\n\r"+this.seeRow(1)+"\n\r"+this.seeRow(2)+"\n\r"+this.seeRow(3)+"\n\r"+"THe free resource is: "+freeOne;
+        return "" + this.seeRow(0) + "\n\r" + this.seeRow(1) + "\n\r" + this.seeRow(2) + "\n\r" + this.seeRow(3) + "\n\r" + "THe free resource is: " + freeOne;
     }
 }

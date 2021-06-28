@@ -25,11 +25,11 @@ public class ExtraProdPlayer extends Player {
     public ExtraProdPlayer(Player original, Resource required, String extraProdID) {
         this.extraProdIDs = new ArrayList<>();
         if (original instanceof ExtraProdPlayer) {
-            this.required = new ArrayList<Resource>();
+            this.required = new ArrayList<>();
             this.required.addAll(((ExtraProdPlayer) original).getRequired());
             this.extraProdIDs.addAll(((ExtraProdPlayer) original).getExtraProdIDs());
         }
-        this.required = new ArrayList<Resource>();
+        this.required = new ArrayList<>();
         this.required.add(required);
         this.original = original;
         this.extraProdIDs.add(extraProdID);
@@ -42,7 +42,7 @@ public class ExtraProdPlayer extends Player {
 
         }
         if (cardID.contains("PROD")) {
-            ArrayList<Resource> extraProd = new ArrayList<Resource>();
+            ArrayList<Resource> extraProd = new ArrayList<>();
             //LA choice viene gestita nella handleRequest
             extraProd.add(Resource.FAITH);
             getBoard().getTempBox().addResource(extraProd);
@@ -55,7 +55,7 @@ public class ExtraProdPlayer extends Player {
 
     @Override
     public ArrayList<String> getProductionID() {
-        ArrayList<String> productions = new ArrayList<String>();
+        ArrayList<String> productions = new ArrayList<>();
         productions.addAll(original.getBoard().getProdID());
         productions.addAll(extraProdIDs);
         return productions;

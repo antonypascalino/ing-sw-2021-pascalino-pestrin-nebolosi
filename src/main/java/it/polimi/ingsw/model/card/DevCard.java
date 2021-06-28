@@ -2,10 +2,8 @@ package it.polimi.ingsw.model.card;
 
 import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Table.Resource;
-import it.polimi.ingsw.controller.Game;
 
 import java.util.ArrayList;
-
 
 /**
  * The card that allows the {@link Player} to produce {@link Resource} from other {@link Resource}.

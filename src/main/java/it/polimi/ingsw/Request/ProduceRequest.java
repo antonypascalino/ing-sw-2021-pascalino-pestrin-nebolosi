@@ -6,15 +6,11 @@ import it.polimi.ingsw.model.Table.Resource;
 import it.polimi.ingsw.model.Updates.PlayerVP;
 import it.polimi.ingsw.model.Updates.ProduceUpdate;
 import it.polimi.ingsw.model.Updates.Update;
-import it.polimi.ingsw.model.card.DevCard;
 import it.polimi.ingsw.model.card.ExtraProd;
 import it.polimi.ingsw.model.Player.Player;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 /**
  * The {@link Request} sent by a player when he wants to produce. It contains an ArrayList of {@link Production}s:
@@ -31,12 +27,12 @@ public class ProduceRequest implements Request {
     /**
      * Instantiates a new {@link BuyDevRequest} setting the information for handle the specific actions:
      * the {@link Game}'s ID, the player's nickname and all the {@link Production}s to use.
+     *
      * @param gameID   the game id
      * @param playerID the player id
      * @param prod     the prod
      */
-    public ProduceRequest(int gameID, String playerID, ArrayList<Production> prod)
-    {
+    public ProduceRequest(int gameID, String playerID, ArrayList<Production> prod) {
         className = this.getClass().getName();
         this.gameID = gameID;
         this.playerID = playerID;
@@ -48,15 +44,15 @@ public class ProduceRequest implements Request {
 
         //Controlla che il giocatore abbia le carte con cui vuole produrre
         for (Production prod : productions) {
-            if(!player.getProductionID().contains(prod.getCardID())) {
+            if (!player.getProductionID().contains(prod.getCardID())) {
                 // lancia eccezione : non hai questa carta per produrre
                 return false;
             }
         }
 
         //controlla che il giocatore abbia le risorse aggiungendole in un array temporaneo per controllare che le abbia tutte
-        ArrayList<Resource> resTemp = new ArrayList<Resource>();
-        for(Production prod : productions) {
+        ArrayList<Resource> resTemp = new ArrayList<>();
+        for (Production prod : productions) {
             for (MappedResource map : prod.getMappedResources()) {
                 if (!map.getPlace().equals("choice")) {
                     resTemp.add(map.getResource());
@@ -70,8 +66,8 @@ public class ProduceRequest implements Request {
         }
 
         //controlla che le risorse e le requires della carta siano giuste
-        for(Production pr : productions){
-            for(MappedResource mp : pr.getMappedResources()) {
+        for (Production pr : productions) {
+            for (MappedResource mp : pr.getMappedResources()) {
                 if (pr.getCardID().contains("dev")) {
                     if (player.getBoard().getDevFromID(pr.getCardID()).getRequirements().size() != pr.getMappedResources().size() || !player.getBoard().getDevFromID(pr.getCardID()).getRequirements().contains(mp.getResource())) {
                         //lancia eccezione "resources selected do not match card requirements"
@@ -80,7 +76,7 @@ public class ProduceRequest implements Request {
                 }
                 if (pr.getCardID().contains("PROD")) {
                     //If the card
-                    if (((ExtraProd)(player.getLeaderFromID(pr.getCardID()))).getProducedRes().contains(mp.getResource())) {
+                    if (((ExtraProd) (player.getLeaderFromID(pr.getCardID()))).getProducedRes().contains(mp.getResource())) {
                         //lancia eccezione
                         return false;
                     }
@@ -89,9 +85,7 @@ public class ProduceRequest implements Request {
         }
 
         //Controlla che non ci siano due carte uguali con cui il giocatore vuole produrre
-        if( productions.stream().map(Production::getCardID).distinct().count() != productions.size() )
-            return false;
-        return true;
+        return productions.stream().map(Production::getCardID).distinct().count() == productions.size();
     }
 
     @Override
@@ -135,16 +129,14 @@ public class ProduceRequest implements Request {
     }
 
 
-
     @Override
-    public String getClassName()
-    {
+    public String getClassName() {
         return className;
     }
 
     @Override
     public Update createUpdate(Player player, Game game) {
-        ArrayList<PlayerVP> playersVP = new ArrayList<PlayerVP>();
+        ArrayList<PlayerVP> playersVP = new ArrayList<>();
         for (Player p : game.getPlayers()) {
             playersVP.add(new PlayerVP(p.getNickName(), p.getVictoryPoints()));
         }

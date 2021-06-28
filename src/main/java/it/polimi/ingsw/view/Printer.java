@@ -46,7 +46,7 @@ public class Printer {
                     System.out.println("Invalid input!");
                 } else {
                     if (res.get(index - 1).equals(Resource.CHOICE)) {
-                        ArrayList<Resource> choices = new ArrayList<Resource>();
+                        ArrayList<Resource> choices = new ArrayList<>();
                         choices.add(Resource.GOLD);
                         choices.add(Resource.SERVANT);
                         choices.add(Resource.SHIELD);
@@ -64,16 +64,16 @@ public class Printer {
      * Prints the {@link MappedResource}s received as parameter and make player choose one of them.
      *
      * @param mappedRes the {@link MappedResource}s.
-     * @return          the chosen {@link MappedResource}.
+     * @return the chosen {@link MappedResource}.
      */
     public MappedResource printMappedRes(ArrayList<MappedResource> mappedRes) {
         Scanner inputs = new Scanner(System.in);
-        String selection = "";
+        String selection;
 
         while (true) {
             int actions = 0;
             for (int i = 0; i < mappedRes.size(); i++) {
-                if(mappedRes.get(i).getResource().equals(Resource.EMPTY)){
+                if (mappedRes.get(i).getResource().equals(Resource.EMPTY)) {
                     continue;
                 }
                 System.out.println("[" + (i + 1) + "] " + mappedRes.get(i).getResource() + " " + mappedRes.get(i).getPlace());
@@ -101,7 +101,7 @@ public class Printer {
      */
     public TurnState printTurnStates(ArrayList<TurnState> turnStates) {
         Scanner inputs = new Scanner(System.in);
-        String selection = "";
+        String selection;
         int actions = 0;
 
         while (true) {
@@ -114,11 +114,10 @@ public class Printer {
             selection = inputs.nextLine();
             try {
                 int index = Integer.parseInt(selection);
-                if ( index > actions || index <= 0) {
+                if (index > actions || index <= 0) {
                     System.out.println("Invalid input!");
-                } else return turnStates.get(index - 1);;
-            }
-            catch (NumberFormatException e) {
+                } else return turnStates.get(index - 1);
+            } catch (NumberFormatException e) {
                 System.out.println("Invalid input!");
             }
         }
@@ -133,14 +132,14 @@ public class Printer {
      */
     public String printDevCardID(ArrayList<String> cardID, PlayerData data) {
         Scanner inputs = new Scanner(System.in);
-        String selection = "";
+        String selection;
 
         while (true) {
             for (int i = 0; i < cardID.size(); i++) {
-                if(cardID.get(i).equals("BASIC"))
+                if (cardID.get(i).equals("BASIC"))
                     System.out.println("[" + (i + 1) + "] " + "Basic production");
                 else if (!cardID.get(i).contains("PROD"))
-                System.out.println("[" + (i + 1) + "] " + data.getCardFromID(cardID.get(i)).toString());
+                    System.out.println("[" + (i + 1) + "] " + data.getCardFromID(cardID.get(i)).toString());
                 else System.out.println("[" + (i + 1) + "] " + data.getLeaderFromID(cardID.get(i)).toString());
             }
             System.out.println("Enter selection: ");
@@ -165,7 +164,7 @@ public class Printer {
      */
     public String printLeaderCardID(ArrayList<String> cardID, PlayerData data) {
         Scanner inputs = new Scanner(System.in);
-        String selection = "";
+        String selection;
 
         while (true) {
             for (int i = 0; i < cardID.size(); i++) {
@@ -188,14 +187,14 @@ public class Printer {
      * Used to make player choose one of warehouse levels when he takes resources from market or to make player
      * choose one of the board's slot when he buy a development card.
      *
-     * @param ints  the number of slot or warehouse level.
-     * @param slots true if player has to choose a slot, false if has to choose a warehouse level.
+     * @param ints       the number of slot or warehouse level.
+     * @param slots      true if player has to choose a slot, false if has to choose a warehouse level.
      * @param canDiscard true if is possible to discard the resource, false if not.
      * @return the choice.
      */
     public int printIntegers(ArrayList<Integer> ints, boolean slots, boolean canDiscard) {
         Scanner inputs = new Scanner(System.in);
-        String selection = "";
+        String selection;
         int actions = 0;
 
         while (true) {
@@ -209,7 +208,7 @@ public class Printer {
                     System.out.println("[" + (i + 1) + "]" + " " + "warehouse level" + " " + (ints.get(i) + 1));
                     actions = i + 1;
                 }
-                if (canDiscard) System.out.println("[" + (actions + 1) + "] " + "Discard" );
+                if (canDiscard) System.out.println("[" + (actions + 1) + "] " + "Discard");
             }
             System.out.println("Enter selection: ");
             selection = inputs.nextLine();
@@ -235,14 +234,14 @@ public class Printer {
      */
     public Resource printResource(ArrayList<Resource> resource) {
         Scanner inputs = new Scanner(System.in);
-        String selection = "";
+        String selection;
         int actions = 0;
 
         while (true) {
             for (int i = 0; i < resource.size(); i++) {
-                    System.out.println("[" + (i + 1) + "]" + " "+ resource.get(i));
-                    actions = i + 1;
-                }
+                System.out.println("[" + (i + 1) + "]" + " " + resource.get(i));
+                actions = i + 1;
+            }
             System.out.println("Enter selection: ");
             selection = inputs.nextLine();
             try {
@@ -266,11 +265,11 @@ public class Printer {
      */
     public MarketArray printMatrix(Resource[][] matrix) {
         Scanner inputs = new Scanner(System.in);
-        String selection = "";
-        ArrayList<Resource> res = new ArrayList<Resource>();
+        String selection;
+        ArrayList<Resource> res = new ArrayList<>();
         System.out.println("     1       2       3");
         for (int r = 0; r < matrix.length; r++) {
-            System.out.print( (r + 1) + "  ");
+            System.out.print((r + 1) + "  ");
             for (int c = 0; c < matrix[r].length; c++) {
                 System.out.print(matrix[r][c].inLine() + " ");
             }
@@ -297,9 +296,8 @@ public class Printer {
                     try {
                         int indexRow = Integer.parseInt(selection);
                         if (indexRow <= 0 || indexRow > matrix.length) {
-                            System.out.println ("Invalid input!");
-                        }
-                        else {
+                            System.out.println("Invalid input!");
+                        } else {
                             for (int k = 0; k < matrix[indexRow - 1].length; k++) {
                                 res.add(matrix[indexRow - 1][k]);
                             }
@@ -319,8 +317,7 @@ public class Printer {
                         int indexColumn = Integer.parseInt(selection);
                         if (indexColumn <= 0 || indexColumn > matrix[0].length) {
                             System.out.println("Invalid input!");
-                        }
-                        else {
+                        } else {
                             for (int z = 0; z < matrix.length; z++) {
                                 res.add(matrix[z][indexColumn - 1]);
                             }
@@ -342,16 +339,16 @@ public class Printer {
      */
     public boolean askQuestion() {
         Scanner inputs = new Scanner(System.in);
-        String selection = "";
+        String selection;
         System.out.println("Continue?");
         System.out.println("[1] Yes");
         System.out.println("[2] No");
 
         selection = inputs.nextLine();
-        switch(selection){
-            case("1"):
+        switch (selection) {
+            case ("1"):
                 return true;
-            case("2"):
+            case ("2"):
                 return false;
         }
         return false;
@@ -364,7 +361,7 @@ public class Printer {
      */
     public boolean chooseStats() {
         Scanner inputs = new Scanner(System.in);
-        String selection = "";
+        String selection;
         System.out.println("Whose stats do you wanna see?");
         System.out.println("[1] Yours");
         System.out.println("[2] Others players' stats");
@@ -387,16 +384,16 @@ public class Printer {
      *
      * @param data the player who wants to see other players' status.
      */
-    public void printOtherStats(OtherPlayerData data){
+    public void printOtherStats(OtherPlayerData data) {
         System.out.println("Player ID: " + data.getPlayerID());
         System.out.println("Warehouse:\n" + data.getWareHouse());
         System.out.println("Strongbox:\n" + data.getStrongBox());
         System.out.println("Slots:\n" + data.getSlotFrontCards());
         System.out.println("Faith Points: " + data.getFaithPoints());
         System.out.println("Victory Points: " + data.getVictoryPoints());
-        for(String s: data.getPlayedLeadersID()){
+        for (String s : data.getPlayedLeadersID()) {
             System.out.println("Leader ID: " + s);
-            System.out.println(""); //depositi extra o sconti o bla bla bla
+            System.out.println(" "); //depositi extra o sconti o bla bla bla
         }
     }
 
@@ -416,19 +413,19 @@ public class Printer {
         System.out.println("\nWAREHOUSE:");
         printWareHouse(data.getDeposits());
         System.out.println("\nSTRONGBOX:\n" + data.getStrongBox());
-        System.out.println("\nSLOT FRONT CARD:\n" );
+        System.out.println("\nSLOT FRONT CARD:\n");
         for (String card : data.getFrontCardsID()) {
             System.out.println(data.getCardFromID(card));
         }
         System.out.println("\nFAITH POINTS: " + data.getFaithPoints());
         System.out.println("\nVICTORY POINTS: " + data.getVictoryPoints() + "\n");
         System.out.println("LEADER CARDS NOT PLAYED:\n");
-        for(String s: data.getLeadersID()){
+        for (String s : data.getLeadersID()) {
             System.out.println(data.getLeaderFromID(s) + "\n");
         }
         System.out.println();
         System.out.println("LEADER CARDS PLAYED:\n");
-        for(String s: data.getLeadersPlayedID()){
+        for (String s : data.getLeadersPlayedID()) {
             System.out.println(data.getLeaderFromID(s) + "\n");
         }
         System.out.println();
@@ -443,11 +440,11 @@ public class Printer {
      * @return the 2 leader card chosen.
      */
     public ArrayList<String> chooseLeaderCard(ArrayList<String> leadersToChoose, PlayerData data) {
-        ArrayList<String> chosen = new ArrayList<String>();
+        ArrayList<String> chosen = new ArrayList<>();
         Scanner inputs = new Scanner(System.in);
         int index = 1;
         System.out.println("\nChoose 2 Leaders Cards between this 4:");
-        for(String s : leadersToChoose) {
+        for (String s : leadersToChoose) {
             System.out.print("\n[" + index + "] ");
             System.out.println(data.getLeaderFromID(s).toString() + "\n");
             index++;
@@ -456,7 +453,7 @@ public class Printer {
         chosen.add(leadersToChoose.remove(inputs.nextInt() - 1));
         index = 1;
         System.out.println("What is your second choice?");
-        for(String s : leadersToChoose) {
+        for (String s : leadersToChoose) {
             System.out.print("\n[" + index + "] ");
             System.out.println(data.getLeaderFromID(s).toString());
             index++;
@@ -475,7 +472,7 @@ public class Printer {
     public Resource chooseResource() {
         Scanner input = new Scanner(System.in);
 
-        while(true) {
+        while (true) {
             System.out.println("You can choose a Resource to add to your Warehouse, which one do you want?");
             System.out.println("[1] GOLD");
             System.out.println("[2] STONE");
@@ -483,11 +480,16 @@ public class Printer {
             System.out.println("[4] SERVANT");
 
             switch (input.nextInt()) {
-                case (1): return Resource.GOLD;
-                case (2): return Resource.STONE;
-                case (3): return Resource.SHIELD;
-                case (4): return Resource.SERVANT;
-                default : System.out.println("Invalid input!");
+                case (1):
+                    return Resource.GOLD;
+                case (2):
+                    return Resource.STONE;
+                case (3):
+                    return Resource.SHIELD;
+                case (4):
+                    return Resource.SERVANT;
+                default:
+                    System.out.println("Invalid input!");
             }
         }
     }
@@ -521,12 +523,11 @@ public class Printer {
      * @param matrix the market's matrix.
      */
     public void viewMarket(Resource[][] matrix) {
-        ArrayList<Resource> res = new ArrayList<Resource>();
         for (int r = 0; r < matrix.length; r++) {
             for (int c = 0; c < matrix[r].length; c++) {
                 System.out.print(matrix[r][c].inLine() + " ");
             }
-            System.out.println("");
+            System.out.println(" ");
         }
         System.out.println("Free one: " + getFreeOne(matrix) + "\n");
     }
@@ -537,11 +538,9 @@ public class Printer {
      * @param warehouse the player's warehouse.
      */
     public void printWareHouse(ArrayList<Resource[]> warehouse) {
-        for(int i = 0; i< warehouse.size(); i++)
-        {
-            System.out.print("Level " +(i+1)+ ": ");
-            for(int k = 0; k<warehouse.get(i).length; k++)
-            {
+        for (int i = 0; i < warehouse.size(); i++) {
+            System.out.print("Level " + (i + 1) + ": ");
+            for (int k = 0; k < warehouse.get(i).length; k++) {
                 System.out.print(warehouse.get(i)[k].inLine() + " ");
             }
             System.out.println();

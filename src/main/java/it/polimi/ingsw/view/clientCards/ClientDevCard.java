@@ -31,7 +31,7 @@ public class ClientDevCard {
      * @param produces      the {@link Resource}s produced by this {@link ClientDevCard}.
      * @param price         the price for buying this {@link Resource}.
      */
-    public ClientDevCard(String cardID, Colors color, int level, int victoryPoints, ArrayList<Resource> required, ArrayList<Resource> produces, ArrayList<Resource> price ) {
+    public ClientDevCard(String cardID, Colors color, int level, int victoryPoints, ArrayList<Resource> required, ArrayList<Resource> produces, ArrayList<Resource> price) {
         this.required = required;
         this.price = price;
         this.level = level;
@@ -41,7 +41,7 @@ public class ClientDevCard {
         this.produces = produces;
     }
 
-    public ArrayList<Resource> getRequired(){
+    public ArrayList<Resource> getRequired() {
         return required;
     }
 
@@ -49,11 +49,11 @@ public class ClientDevCard {
         return produces;
     }
 
-    public ArrayList<Resource> getPrice(){
+    public ArrayList<Resource> getPrice() {
         return price;
     }
 
-    public int getLevel(){
+    public int getLevel() {
         return level;
     }
 

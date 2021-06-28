@@ -10,10 +10,10 @@ import java.util.ArrayList;
 /**
  * Whenever the client wants to answer
  */
-public class PongRequest implements Request{
+public class PongRequest implements Request {
     private final String className;
-    public PongRequest()
-    {
+
+    public PongRequest() {
         this.className = this.getClass().getName();
     }
 

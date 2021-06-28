@@ -9,8 +9,7 @@ import java.util.ArrayList;
 /**
  * The player's Board with the references to player's {@link WareHouse}, {@link StrongBox}, {@link Slot}, {@link FaithPath} and {@link BasicDevSpace}
  */
-public class Board
-{
+public class Board {
     private WareHouse wareHouse;
     private StrongBox strongBox;
     private Slot slot;
@@ -25,8 +24,7 @@ public class Board
      *
      * @param player the {@link Player} who owns the Board.
      */
-    public Board(Player player)
-    {
+    public Board(Player player) {
         wareHouse = new WareHouse();
         strongBox = new StrongBox();
         slot = new Slot();
@@ -106,14 +104,12 @@ public class Board
      * @param needed the ArrayList with all the resources to check
      * @return true if the player has all needed resources, false otherwise.
      */
-    public boolean hasResources(ArrayList<Resource> needed)
-    {
-        ArrayList<Resource> tmp = new ArrayList<Resource>();
+    public boolean hasResources(ArrayList<Resource> needed) {
+        ArrayList<Resource> tmp = new ArrayList<>();
         tmp.addAll(strongBox.getResources());
         tmp.addAll(wareHouse.getResources());
         return tmp.containsAll(needed);
     }
-
 
     /**
      * Gets the {@link DevCard} with the cardID received as parameter.
@@ -121,8 +117,8 @@ public class Board
      * @param cardID the card's ID of the {@link DevCard} it wants.
      * @return the {@link DevCard}
      */
-    public DevCard getDevFromID (String cardID) {
-        for(DevCard devCard : this.slot.getAllCards()) {
+    public DevCard getDevFromID(String cardID) {
+        for (DevCard devCard : this.slot.getAllCards()) {
             if (devCard.getCardID().equals(cardID)) {
                 return devCard;
             }
@@ -136,19 +132,15 @@ public class Board
      * @return an ArrayList with all the IDs of the {@link DevCard}s.
      */
     public ArrayList<String> getProdID() {
-        ArrayList<String> prodID = new ArrayList<String>();
+        ArrayList<String> prodID = new ArrayList<>();
         DevCard[] tmp = slot.getFrontCards();
 
         prodID.add(basicDevSpace.getCardID());
         for (DevCard dev : tmp) {
             //if it contains an empty space it can't get any card Id
-            if(dev != null)
+            if (dev != null)
                 prodID.add(dev.getCardID());
         }
         return prodID;
     }
-
-
-
-
 }

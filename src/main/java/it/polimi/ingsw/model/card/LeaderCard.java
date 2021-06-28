@@ -15,28 +15,28 @@ public interface LeaderCard extends Convertible {
      * wrap the {@link Player} with a new player that correctly implements the
      * new abilities and adding him the right amount of victory points.
      */
-    public void playCard();
+    void playCard();
 
     /**
      * Used to check if the {@link Player} has the requirements for playing a {@link LeaderCard} that he already owns.
      *
      * @return true if the {@link Player} has the requirements to play the {@link LeaderCard}, false otherwise.
      */
-    public boolean canBePlayed();
+    boolean canBePlayed();
 
     /**
      * Assign the {@link LeaderCard} to a {@link Player}.
      *
      * @param p the {@link Player} to whom assign the {@link LeaderCard}.
      */
-    public void assignTo(Player p);
+    void assignTo(Player p);
 
     /**
      * Check if the {@link LeaderCard} has been played by the {@link Player} or not.
      *
      * @return true if the {@link LeaderCard} has been played.
      */
-    public boolean isEnable();
+    boolean isEnable();
 
     /**
      * Compare two {@link LeaderCard}.
@@ -44,21 +44,21 @@ public interface LeaderCard extends Convertible {
      * @param compare the {@link LeaderCard} to compare.
      * @return true if the {@link LeaderCard match, false otherwise.
      */
-    public boolean equals(LeaderCard compare);
+    boolean equals(LeaderCard compare);
 
     /**
      * Gets the {@link LeaderCard}'s ID.
      *
      * @return the {@link LeaderCard}'s ID.
      */
-    public String getID();
+    String getID();
 
     /**
      * Sets the {@link Player} to this {@link LeaderCard}
      *
      * @param tmp the tmp
      */
-    public void setPlayer(Player tmp);
+    void setPlayer(Player tmp);
 
     /**
      * Gets a {@link Resource} that changes by the type of leaderCard:
@@ -69,5 +69,5 @@ public interface LeaderCard extends Convertible {
      *
      * @return the {@link Resource}.
      */
-    public Resource getPowerResource();
+    Resource getPowerResource();
 }

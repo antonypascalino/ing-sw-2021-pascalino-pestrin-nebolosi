@@ -13,7 +13,7 @@ public class DiscardLeaderSelection extends Selection {
 
 
     public void handleSelection(PlayerData data) {
-        ArrayList<String> leadersID = new ArrayList<String>();
+        ArrayList<String> leadersID = new ArrayList<>();
         leadersID.addAll(data.getLeaders());
         String discarded = data.getPrinter().printLeaderCardID(leadersID, data);
         Request discardLeaderReq = new DiscardLeaderRequest(data.getGameID(), data.getPlayerID(), discarded);

@@ -3,8 +3,6 @@ package it.polimi.ingsw.model.Updates;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.controller.SinglePlayer.SinglePlayerGame;
 import it.polimi.ingsw.model.Player.Player;
-import it.polimi.ingsw.model.card.DevCard;
-import it.polimi.ingsw.view.data.OtherPlayerData;
 import it.polimi.ingsw.view.data.PlayerData;
 
 import java.util.ArrayList;
@@ -47,7 +45,7 @@ public class LorenzoUpdate implements Update {
         data.setFrontTableCardsID(frontTableCards);
         data.getPrinter().printMessage(actionDone);
         data.getPrinter().printMessage("Lorenzo's advancement on his Faith Path is now " + lorenzoFaithPoints);
-        //data.getMenu().menuMaker(); Se si lascia questo vengono prodotti due menuMaker, ma se aggiungiamo un messaggio con quello che ha fatto il player apparirà prima quello che ha fatto Lorenzo e poi quello che ha fatto il player
+
     }
 
     @Override

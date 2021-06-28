@@ -7,8 +7,7 @@ import it.polimi.ingsw.model.Table.Resource;
 /**
  * The {@link LeaderCard} that gives the {@link Player} the possibility to change an white marble with an other {@link Resource}.
  */
-public class ChangeResource implements LeaderCard
-{
+public class ChangeResource implements LeaderCard {
     private int victoryPoints;
     private boolean isEnable;
     private Player player;
@@ -27,15 +26,14 @@ public class ChangeResource implements LeaderCard
      * @param change        the {@link Resource} in which the new {@link Player} can turn the white marbles.
      * @param cardID        the unique id for the card
      */
-    public ChangeResource(int victoryPoints, String color1, String color2, Resource change, String cardID)
-    {
+    public ChangeResource(int victoryPoints, String color1, String color2, Resource change, String cardID) {
         this.cardID = cardID;
         className = this.getClass().getName();
         this.victoryPoints = victoryPoints;
         this.color1 = color1;
         this.color2 = color2;
         this.change = change;
-        isEnable=false;
+        isEnable = false;
     }
 
     @Override
@@ -69,46 +67,38 @@ public class ChangeResource implements LeaderCard
     }
 
     @Override
-    public boolean canBePlayed()
-    {
+    public boolean canBePlayed() {
         int secondColor = 0;
         boolean firstColor = false;
 
-        for( DevCard card : player.getBoard().getSlot().getAllCards())
-        {
+        for (DevCard card : player.getBoard().getSlot().getAllCards()) {
             if (card.getColor().equals(color1.toUpperCase())) firstColor = true;
-            if (card.getColor().equals(color2.toUpperCase())) secondColor++ ;
+            if (card.getColor().equals(color2.toUpperCase())) secondColor++;
         }
 
         return (firstColor && secondColor >= 2);
     }
 
     @Override
-    public String getClassName()
-    {
+    public String getClassName() {
         return className;
     }
 
     @Override
-    public void playCard()
-    {
-        if (canBePlayed())
-        {
+    public void playCard() {
+        if (canBePlayed()) {
             player.addVictoryPoints(victoryPoints);
-            isEnable= true;
+            isEnable = true;
             Player tmp = new ChangeResPlayer(player, change);
-            //Add the new powered player in substitition to the actual one if the game references
+            //Add the new powered player in substitution to the actual one if the game references
             player.getGame().changePlayer(player, tmp);
-            for (LeaderCard card : player.getLeaderCards())
-            {
+            for (LeaderCard card : player.getLeaderCards()) {
                 //Do not change the reference on this card
-                if(!card.getID().equals(this.getID()))
+                if (!card.getID().equals(this.getID()))
                     card.setPlayer(tmp);
             }
             this.player = tmp;
         }
 
     }
-
-
 }

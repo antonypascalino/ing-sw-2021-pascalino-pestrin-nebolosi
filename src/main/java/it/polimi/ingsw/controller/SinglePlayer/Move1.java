@@ -1,6 +1,5 @@
 package it.polimi.ingsw.controller.SinglePlayer;
 
-import it.polimi.ingsw.model.card.DevCard;
 import it.polimi.ingsw.model.Board.FaithPath;
 
 import java.util.Collections;

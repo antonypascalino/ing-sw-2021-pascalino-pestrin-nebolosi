@@ -5,8 +5,6 @@ import it.polimi.ingsw.model.Table.Resource;
 import it.polimi.ingsw.view.data.OtherPlayerData;
 import it.polimi.ingsw.view.data.PlayerData;
 import it.polimi.ingsw.model.card.DevCard;
-import it.polimi.ingsw.model.Board.WareHouse;
-import it.polimi.ingsw.model.Board.StrongBox;
 import it.polimi.ingsw.model.Player.Player;
 
 import java.util.ArrayList;
@@ -59,21 +57,20 @@ public class BuyDevUpdate implements Update {
         //Since the basic production is handled separately and the client handle it itself, we don't need to pass the basic prod
         cardsID.remove("BASIC");
         data.setFrontTableCardsID(tableCardsID);
-        if(playerID.equals(data.getPlayerID())){
+        if (playerID.equals(data.getPlayerID())) {
             data.setTurnStates(turnStates);
             data.setWareHouse(wareHouse);
             data.setStrongBox(strongBox);
             data.setFrontCardsID(cardsID);
             data.getMenu().menuMaker();
-        }
-        else {
+        } else {
             for (OtherPlayerData p : data.getOtherPlayers()) {
                 if (playerID.equals(p.getPlayerID())) {
                     p.setStrongBox(strongBox);
                     p.setSlotFrontCards(cardsID);
                     p.getWareHouse().clear();
-                    for(Resource[] l : wareHouse){
-                        for(Resource r: l){
+                    for (Resource[] l : wareHouse) {
+                        for (Resource r : l) {
                             p.getWareHouse().add(r);
                         }
                     }
