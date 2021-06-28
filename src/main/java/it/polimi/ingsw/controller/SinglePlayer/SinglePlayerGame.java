@@ -136,20 +136,20 @@ public class SinglePlayerGame extends Game {
 
     @Override
     public void fpAdvancement(int discardedSteps, int playerSteps) {
-        //Sposta Lorenzo per un numero di passi uguale alle risorse scartate dal giocatore
+        //Lorenzo moves the same amount of discarded resources
         if (discardedSteps != 0) {
             lorenzoPath.moveForward(discardedSteps);
         }
-        //Sposta il player per i FAITH ottenuti nel suo turno
+        //The player moves as much as faith points are gained in their turn
         if (playerSteps != 0) {
             player.getBoard().getFaithPath().moveForward(playerSteps);
         }
-        //Controlla se, a seguito dei movimenti del player e/o di Lorenzo, qualcuno ha raggiunto la popeSpace corrente
-        // in caso affermativo chiama la checkVaticanSection del player per vedere se assegnargli o meno i punti
+        //Checks if either Lorenzo or the player reached the Pope Section
+        // if so, CheckVaticanSection is called to assign the respective points
         if (player.getBoard().getFaithPath().checkPopeSpace(currPopeSpace) || lorenzoPath.checkPopeSpace(currPopeSpace)) {
             player.getBoard().getFaithPath().checkVaticanSection(currPopeSpace);
             currPopeSpace++;
-            this.fpAdvancement(0, 0); //Richiama se stessa per verificare se qualche giocatore abbia superato più di una popeSpace
+            this.fpAdvancement(0, 0); //Recursive call to check another pope space
         }
     }
 
@@ -166,7 +166,7 @@ public class SinglePlayerGame extends Game {
      * In the case of the Player win the game and the Lorenzo loses create an {@link Update} in which are contained all the game's results and send it to the player..
      */
     public void playerWins() {
-        //Termina la partita e comunica al giocatore che ha vinto e il suo punteggio
+        //Ends the match and tells the player who won
         player.addVictoryPoints(player.getAllResources().size() / 5);
         player.getVictoryPoints();
         ArrayList<PlayerVP> playersVP = new ArrayList<>();

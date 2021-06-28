@@ -62,7 +62,7 @@ public class MarketRequest implements Request {
             return false;
         }
         //check if the indicated levels are compatible with the player's level in his WareHouse
-        //Passa dal player perchè potrebbero esserci livelli extra
+        //player reference since there could be extra levels
         for (MarketResource marketRes : marketResources) {
             if (marketRes.getLevel() >= 0) {
                 if (!player.checkLevel(marketRes.getLevel())) {
@@ -91,9 +91,6 @@ public class MarketRequest implements Request {
                 } else player.addResource(marketRes.getLevel(), marketRes.getResource());
             }
         }
-        //Abbiamo già confrontato che le risorse richieste dal player matchano le corrispondenti risorse del mercato (tenenedo anche conto delle Changes)
-        // per cui si possono usare quelle, già matchate e changeate per aggiungerle al Player e modificare il mercato di conseguenza.
-        // altrimenti si dovrebbe fare un altro giro di chiamate per prendere le risorse dal mercato cambiare le empty e aggiungerle al player.
         if (marketDimension.equals(MarketDimension.ROW)) {
             player.getTable().market.getRow(number);
         } else if (marketDimension.equals(MarketDimension.COL)) {

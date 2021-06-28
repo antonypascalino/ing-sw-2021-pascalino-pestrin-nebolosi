@@ -98,19 +98,19 @@ public class ExtraDepData extends PlayerData {
             }
 
             for (int l = 0; l < 3; l++) {
-                //se è pieno
+                //if full
                 if (!Arrays.stream(wareHouseClone.get(l)).anyMatch(r -> r.equals(Resource.EMPTY))) {
                     continue;
                 }
-                //se ha degli spazi vuoti
+                //if there are empty spaces
                 if (Arrays.stream(wareHouseClone.get(l)).anyMatch(r -> r.equals(Resource.EMPTY))) {
-                    //se è vuoto
+                    //if completely empty
                     if (wareHouseClone.get(l)[0].equals(Resource.EMPTY)) {
                         if (!wareHouseRes.contains(re)) {
                             tmp.add(l);
                         }
                     }
-                    //se ha la mia risorsa
+                    //if it contains my resource
                     else if (wareHouseClone.get(l)[0] == re) {
                         tmp.add(l);
                     }
@@ -161,19 +161,19 @@ public class ExtraDepData extends PlayerData {
         ArrayList<Integer> levels = new ArrayList<>();
         int counterOr = 0;
 
-        //da Warehouse ...
+        //from Warehouse ...
         if (origin <= 2) {
-            //conta origine
+            //counts origin
             for (int co = 0; co < wareHouse.get(origin).length; co++) {
                 if (wareHouse.get(origin)[co] == Resource.EMPTY) {
                     break;
                 }
                 counterOr++;
             }
-            // ... a Warehouse
+            // ... to Warehouse
             for (int i = 0; i < wareHouse.size(); i++) {
                 if (i != origin) {
-                    //conta destinazione
+                    //counts destination
                     int counterDes = 0;
                     for (int cd = 0; cd < wareHouse.get(i).length; cd++) {
                         if (wareHouse.get(i)[cd] == Resource.EMPTY) {
@@ -186,14 +186,14 @@ public class ExtraDepData extends PlayerData {
                     }
                 }
             }
-            // ... a Extra Dep
+            // ... to Extra Dep
             for (int e = 3; e < extraDep.size() + 3; e++) {
                 if (wareHouse.get(origin)[0] == placeableRes.get(e - 3) && Arrays.stream(extraDep.get(e - 3)).anyMatch(x -> x.equals(Resource.EMPTY))) {
                     levels.add(e);
                 }
             }
         }
-        // Da Extra Dep ...
+        // from Extra Dep ...
         if (origin >= 3) {
             for (int co = 0; co < extraDep.get(origin - 3).length; co++) {
                 if (extraDep.get(origin - 3)[co] == Resource.EMPTY) {
@@ -201,7 +201,7 @@ public class ExtraDepData extends PlayerData {
                 }
                 counterOr++;
             }
-            // ... a Warehouse
+            // ... to Warehouse
             Resource placeable = placeableRes.get(origin - 3);
             int counterDes = 0;
             for (int k = 0; k < wareHouse.size(); k++) {
@@ -275,7 +275,6 @@ public class ExtraDepData extends PlayerData {
             tmp.remove(TurnState.PLAY_LEADER_CARD);
             tmp.remove(TurnState.DISCARD_LEADER_CARD);
         }
-        //Se non ha carte con cui può produrre (ha sempre almeno la basic)
         if (allResources().size() == 0) {
             tmp.remove(TurnState.PRODUCE);
         }

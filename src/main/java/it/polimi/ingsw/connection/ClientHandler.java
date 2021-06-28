@@ -61,9 +61,9 @@ public class ClientHandler extends Thread {
                     if (request instanceof NewGameRequest) {
                         games.add(request, this);
                     } else {
-                        //If i recive a pong request ignore it
+                        //If i receive a pong request ignore it
                         if (!(request instanceof PongRequest)) {
-                            //Controllare che il il GameID sia presente;
+                            //check if the gameID is present
                             System.out.println("Received " + request);
                             games.get(request.getGameID()).notify(request);
                         }
@@ -83,7 +83,7 @@ public class ClientHandler extends Thread {
         }
     }
 
-    //Synchronyzed because it's used by both thread (once for the actual game and another one for checking the status
+    //Synchronized because it's used by both threads (once for the actual game and another one for checking the status)
     public synchronized void notifyView(Update update) {
         String message = json.toJson(update);
         out.println(message);

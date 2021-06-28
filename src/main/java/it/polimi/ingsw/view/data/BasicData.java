@@ -46,7 +46,7 @@ public class BasicData extends PlayerData {
      * It also instantiates all the attributes
      *
      * @param playerID   the player's nickname.
-     * @param connection the refrence to the connection.
+     * @param connection the reference to the connection.
      */
     public BasicData(String playerID, LineClient connection) {
         this.connection = connection;
@@ -110,7 +110,7 @@ public class BasicData extends PlayerData {
             tmp.remove(TurnState.PLAY_LEADER_CARD);
             tmp.remove(TurnState.DISCARD_LEADER_CARD);
         }
-        //Se non ha carte con cui può produrre (ha sempre almeno la basic)
+        //you always have the basic production
         if (allResources().size() == 0) {
             tmp.remove(TurnState.PRODUCE);
         }
@@ -148,14 +148,6 @@ public class BasicData extends PlayerData {
         for (MappedResource m : mapped) {
             allRes.add(m.getResource());
         }
-        /*
-        for (String card : getFrontTableCardsID()) {
-            for(Resource res : getCardFromID(card).getPrice())
-                //Check if they have the same number of res for every tipe, if it doesn't have the resource remove them
-                if( Collections.frequency(allRes, res) < Collections.frequency(getCardFromID(card).getPrice(), res))
-                    //if (allRes.containsAll(getCardFromID(card).getPrice()) && cardLevel.contains(getCardFromID(card).getLevel())) {
-                    cloned.remove(card);
-        }*/
         cloned.removeIf(card -> !allRes.containsAll(getCardFromID(card).getRequired()));
         cloned.add("BASIC");
         return cloned;
@@ -246,19 +238,19 @@ public class BasicData extends PlayerData {
             }
 
             for (int l = 0; l < wareHouseClone.size(); l++) {
-                //se è pieno
+                //if full
                 if (!Arrays.stream(wareHouseClone.get(l)).anyMatch(r -> r.equals(Resource.EMPTY))) {
                     continue;
                 }
-                //se ha degli spazi vuoti
+                //if it has empty spaces
                 if (Arrays.stream(wareHouseClone.get(l)).anyMatch(r -> r.equals(Resource.EMPTY))) {
-                    //se è vuoto
+                    //if totally empty
                     if (wareHouseClone.get(l)[0].equals(Resource.EMPTY)) {
                         if (!wareHouseRes.contains(re)) {
                             tmp.add(l);
                         }
                     }
-                    //se ha la mia risorsa
+                    //if it contains my resource
                     else if (wareHouseClone.get(l)[0] == re) {
                         tmp.add(l);
                     }
@@ -352,7 +344,7 @@ public class BasicData extends PlayerData {
         ArrayList<Integer> levels = new ArrayList<>();
         int counterOr = 0;
 
-        //conta origine
+        //counts origin
         for (int co = 0; co < wareHouse.get(origin).length; co++) {
             if (wareHouse.get(origin)[co] == Resource.EMPTY) {
                 break;
@@ -362,7 +354,7 @@ public class BasicData extends PlayerData {
 
         for (int i = 0; i < wareHouse.size(); i++) {
             if (i != origin) {
-                //conta destinazione
+                //counts destination
                 int counterDes = 0;
                 for (int cd = 0; cd < wareHouse.get(i).length; cd++) {
                     if (wareHouse.get(i)[cd] == Resource.EMPTY) {

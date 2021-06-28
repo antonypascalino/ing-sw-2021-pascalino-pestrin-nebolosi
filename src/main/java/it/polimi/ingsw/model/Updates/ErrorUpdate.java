@@ -8,7 +8,7 @@ import it.polimi.ingsw.view.data.PlayerData;
  * Based on the reason of the error, the update brings with him a different message.
  */
 public class ErrorUpdate implements Update {
-    private String error; //una descrizione verbale dell'errore
+    private String error; //error description
     private String playerID;
 
     private final String className;

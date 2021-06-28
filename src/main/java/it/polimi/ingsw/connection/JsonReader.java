@@ -10,11 +10,11 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 /**
- * An auxiliary class used for deserialaizing leaderCards and requests
+ * An auxiliary class used for deserializing leaderCards and requests
  */
 public class JsonReader{
     /**
-     * Static metod used for reading a sequence of devCard from a json file
+     * Static method used for reading a sequence of devCard from a json file
      * @param input the string containing the input information for deserialize
      * @return an array list with the deserialized devCards
      */
@@ -22,7 +22,7 @@ public class JsonReader{
     {
         //Gson gson = new Gson();
         GsonBuilder builder = new GsonBuilder();
-        //Register a deseralizer made for this LeaderCardInterface
+        //Register a deserializer made for this LeaderCardInterface
         builder.registerTypeAdapter(LeaderCard.class, new ConvertibleDeserializer<LeaderCard>());
         Gson gson = builder.setPrettyPrinting().create();
 
@@ -34,7 +34,7 @@ public class JsonReader{
     }
 
     /**
-     * Static metod used for reading a sequence of requests from a json file
+     * Static method used for reading a sequence of requests from a json file
      * @param input the string containing the input information for deserialize
      * @return an array list with the deserialized requests
      */
@@ -53,7 +53,7 @@ public class JsonReader{
     }
 
     /**
-     * Static metod used for reading a requests from a json file
+     * Static method used for reading a requests from a json file
      * @param input the string containing the input information for deserialize
      * @return an array list with the deserialized request
      */

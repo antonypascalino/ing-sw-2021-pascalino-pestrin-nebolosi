@@ -31,19 +31,13 @@ public class MainView {
         int maxPlayers = scanner.nextInt();
         Request request = new NewGameRequest(nickname, maxPlayers);
         thisPlayer.startClient();
-
-
-        PlayerData data = new BasicData(nickname,thisPlayer);
-        Observer observer = new Observer(thisPlayer,data);
+        PlayerData data = new BasicData(nickname, thisPlayer);
+        Observer observer = new Observer(thisPlayer, data);
         Thread t = new Thread(observer);
         t.start();
-
-        Ponger pong = new Ponger(thisPlayer,nickname);
+        Ponger pong = new Ponger(thisPlayer, nickname);
         Thread p = new Thread(pong);
         p.start();
-
-        //Aggiungere a tutti i PlayerData il gameID
         thisPlayer.sendRequest(request);
-
     }
 }

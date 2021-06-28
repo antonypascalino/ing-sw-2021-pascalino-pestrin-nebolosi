@@ -156,7 +156,7 @@ public class WareHouse {
         helper.addAll(Arrays.asList(levels.get(destLevel)));
         Arrays.fill(levels.get(destLevel), Resource.EMPTY);
         for (int j = 0; j < levels.get(originLevel).length; j++) {
-            if (!levels.get(originLevel)[j].equals(Resource.EMPTY)) { //If necessario perché level.get(originLevel) potrebbe essere più lungo di levels.get(destLevel), ma avendo già controllato prima, gli elementi in più sarebbero solo gli EMPTY
+            if (!levels.get(originLevel)[j].equals(Resource.EMPTY)) { //needed to check levels length
                 levels.get(destLevel)[j] = levels.get(originLevel)[j];
             }
         }

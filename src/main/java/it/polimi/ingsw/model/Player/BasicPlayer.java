@@ -140,7 +140,6 @@ public class BasicPlayer extends Player {
             board.getStrongBox().removeResource(res);
         } else if (place.toLowerCase().equals("warehouse")) {
             board.getWareHouse().removeResource(res);
-            //lancia eccezione: non hai questo posto da dove prendere la risorsa
         }
     }
 
@@ -155,7 +154,6 @@ public class BasicPlayer extends Player {
     @Override
     public boolean canBuy(DevCard devCard, ArrayList<Resource> allPlayerRes) {
         return allPlayerRes.containsAll(devCard.getPrice());
-        //else lancia eccezione: non hai risorse per comprare questa carta.
     }
 
     @Override
@@ -165,7 +163,7 @@ public class BasicPlayer extends Player {
                 return leader;
             }
         }
-        return null; //lancia eccezione ("non hai la leader card")
+        return null;
     }
 
     @Override

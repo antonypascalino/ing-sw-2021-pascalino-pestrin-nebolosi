@@ -61,7 +61,7 @@ public class ProductionSelection extends Selection {
             } else if (cardID.contains("dev")) {
                 mappedRes.addAll(data.createMappedRes(data.getCardFromID(cardID).getRequired()));
             }
-            //se la carta è una leader extra prod (avrà una sola res)
+            //if extra prod it has just one resource
             else {
                 ArrayList<Resource> tmp = new ArrayList<>();
                 tmp.add(data.getLeaderFromID(cardID).getPowerResource());

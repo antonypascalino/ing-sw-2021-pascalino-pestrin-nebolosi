@@ -43,7 +43,7 @@ public class ExtraProdPlayer extends Player {
         }
         if (cardID.contains("PROD")) {
             ArrayList<Resource> extraProd = new ArrayList<>();
-            //LA choice viene gestita nella handleRequest
+            //choices are handled in the Requests
             extraProd.add(Resource.FAITH);
             getBoard().getTempBox().addResource(extraProd);
         }
