@@ -6,6 +6,7 @@ import it.polimi.ingsw.view.data.PlayerData;
 import it.polimi.ingsw.view.selections.*;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * Every player has his own reference to an object of this type. It, at the beginning of every player's turn, show him
@@ -39,6 +40,9 @@ public class MainMenu {
      * {@link TurnState} list received by turnStateFilter() method in the {@link PlayerData}.
      */
     public void menuMaker() {
+        Scanner inputs = new Scanner(System.in);
+        //while(inputs.hasNext())
+        //    inputs.next();
         TurnState turnState;
         turnStates.clear();
         turnStates.addAll(data.turnStateFilter());
