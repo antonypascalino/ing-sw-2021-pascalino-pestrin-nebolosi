@@ -3,7 +3,7 @@ package it.polimi.ingsw.view.clientCards;
 import java.util.ArrayList;
 
 /**
- * The type containg all the {@link ClientDevCard} and all the {@link ClientLeaderCard}.
+ * The type containing all the {@link ClientDevCard} and all the {@link ClientLeaderCard}.
  */
 public class AllGameCards {
     private ArrayList<ClientDevCard> allDevCards;

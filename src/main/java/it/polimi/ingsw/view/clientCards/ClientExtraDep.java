@@ -31,7 +31,7 @@ public class ClientExtraDep extends ClientLeaderCard {
     }
 
     public boolean canBePlayed(PlayerData data) {
-        ArrayList<Resource> allRes = new ArrayList<Resource>();
+        ArrayList<Resource> allRes = new ArrayList<>();
         for (MappedResource mappedRes : data.allResources()) {
             allRes.add(mappedRes.getResource());
         }
@@ -46,6 +46,4 @@ public class ClientExtraDep extends ClientLeaderCard {
     public String toString() {
         return "Extra Deposit Leader Card:\nYou will have an Extra Deposit of 2 spaces in you Warehouse; in it you can deposit " + placeableRes + "S" + "\nTo play this card you need to have 5 " + required + "S";
     }
-
-
 }

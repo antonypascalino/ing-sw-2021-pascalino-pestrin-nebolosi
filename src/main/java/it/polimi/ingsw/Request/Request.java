@@ -15,14 +15,14 @@ import java.util.ArrayList;
 public interface Request extends Convertible {
 
     /**
-     * Handle the request sent by the {@link Player} modifying his statuts on the server according to
+     * Handle the request sent by the {@link Player} modifying his status on the server according to
      * what he said wants to do.
      *
      * @param curr the curr
      * @param game the game
      * @return the action just done. Used by the {@link Game} so can have all the information  about of what every Player did in his turn.
      */
-    public TurnState handle(Player curr, Game game);
+    TurnState handle(Player curr, Game game);
 
     /**
      * Check if the {@link Player} who sent the request can do the actions he wants in this moment of his turn
@@ -31,7 +31,7 @@ public interface Request extends Convertible {
      * @param turnStates the turn states
      * @return true if he can, false otherwise.
      */
-    public boolean validRequest(ArrayList<TurnState> turnStates);
+    boolean validRequest(ArrayList<TurnState> turnStates);
 
     /**
      * Check if the {@link Player}'s status satisfied all the requirements needed to handle the request he sent.
@@ -39,7 +39,7 @@ public interface Request extends Convertible {
      * @param player the {@link Player} who sent the request.
      * @return true if the player satisfied all the requirements, false otherwise.
      */
-    public boolean canBePlayed(Player player);
+    boolean canBePlayed(Player player);
 
     /**
      * According to the modifies bring to the model by the request, this method create the relative {@link Update}
@@ -49,19 +49,19 @@ public interface Request extends Convertible {
      * @param game   the {@link Game} who received the request reference.
      * @return the update
      */
-    public Update createUpdate(Player player, Game game);
+    Update createUpdate(Player player, Game game);
 
     /**
      * Gets the {@link Player}'s ID who sent the request.
      *
      * @return the {@link Player's ID.
      */
-    public String getPlayerID();
+    String getPlayerID();
 
     /**
      * Gets the {@link Game}'IdD which received the request.
      *
      * @return the game's ID.
      */
-    public int getGameID();
+    int getGameID();
 }

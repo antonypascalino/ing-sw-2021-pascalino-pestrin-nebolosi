@@ -14,15 +14,15 @@ public class Ponger implements Runnable {
 
     private LineClient connection;
     private String nickname;
-    public Ponger(LineClient client, String nickname)
-    {
+
+    public Ponger(LineClient client, String nickname) {
         this.connection = client;
         this.nickname = nickname;
     }
+
     @Override
     public void run() {
-        while(true)
-        {
+        while (true) {
             try {
                 connection.sendRequest(new PongRequest());
             } catch (IOException e) {
@@ -30,6 +30,5 @@ public class Ponger implements Runnable {
                 e.printStackTrace();
             }
         }
-
     }
 }

@@ -4,14 +4,13 @@ import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Updates.Update;
-import it.polimi.ingsw.model.card.DevCard;
 
 import java.util.ArrayList;
 
 /**
  * The {@link Request} sent when it wants to start a new {@link Game}.
  */
-public class NewGameRequest implements Request{
+public class NewGameRequest implements Request {
 
     private String nickname; //Name of the first player
     private int players; //Number of players in the game
@@ -25,8 +24,7 @@ public class NewGameRequest implements Request{
      * @param nickname the nickname
      * @param players  the players
      */
-    public NewGameRequest(String nickname, int players)
-    {
+    public NewGameRequest(String nickname, int players) {
         this.className = this.getClass().getName();
         this.nickname = nickname;
         this.players = players;
@@ -85,6 +83,4 @@ public class NewGameRequest implements Request{
     public int getPlayers() {
         return players;
     }
-
-
 }

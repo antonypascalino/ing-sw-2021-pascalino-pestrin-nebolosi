@@ -3,10 +3,8 @@ package it.polimi.ingsw.Request;
 import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Player.Player;
-import it.polimi.ingsw.model.Table.Resource;
 import it.polimi.ingsw.model.Updates.PlayLeaderUpdate;
 import it.polimi.ingsw.model.Updates.Update;
-import it.polimi.ingsw.model.card.DevCard;
 import it.polimi.ingsw.model.card.LeaderCard;
 
 import java.util.ArrayList;
@@ -37,7 +35,7 @@ public class PlayLeaderRequest implements Request {
     }
 
     @Override
-    public TurnState handle(Player player, Game gane) {
+    public TurnState handle(Player player, Game game) {
         player.getLeaderFromID(cardID).playCard();
         return TurnState.PLAY_LEADER_CARD;
     }
@@ -59,8 +57,7 @@ public class PlayLeaderRequest implements Request {
         for (LeaderCard leaderCard : player.getLeaderCards()) {
             if (leaderCard.isEnable()) {
                 leadersPlayed.add(leaderCard.getID());
-            }
-            else leadersNOTPlayed.add(leaderCard.getID());
+            } else leadersNOTPlayed.add(leaderCard.getID());
         }
         return new PlayLeaderUpdate(playerID, cardID, leadersPlayed, leadersNOTPlayed, player.getLeaderFromID(cardID).getPowerResource(), player.getVictoryPoints(), game.getTurnStates());
     }
@@ -74,6 +71,7 @@ public class PlayLeaderRequest implements Request {
     public String getPlayerID() {
         return playerID;
     }
+
     @Override
     public int getGameID() {
         return gameID;

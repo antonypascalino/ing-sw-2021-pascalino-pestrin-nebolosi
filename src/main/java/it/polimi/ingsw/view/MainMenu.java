@@ -2,13 +2,10 @@ package it.polimi.ingsw.view;
 
 import it.polimi.ingsw.client.LineClient;
 import it.polimi.ingsw.controller.TurnState;
-import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.view.data.PlayerData;
 import it.polimi.ingsw.view.selections.*;
 
-import java.net.Socket;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  * Every player has his own reference to an object of this type. It, at the beginning of every player's turn, show him
@@ -21,7 +18,6 @@ public class MainMenu {
     private ArrayList<TurnState> turnStates;
     private PlayerData data;
     private Printer printer;
-    private LineClient connection;
 
     /**
      * Instantiates a new {@link MainMenu}.
@@ -30,7 +26,7 @@ public class MainMenu {
      */
     public MainMenu(PlayerData data) {
         this.printer = data.getPrinter();
-        this.turnStates = new ArrayList<TurnState>();
+        this.turnStates = new ArrayList<>();
         this.data = data;
     }
 
@@ -55,7 +51,7 @@ public class MainMenu {
      * player's choice.
      *
      * @param state the action chose by the player.
-     * @param data the reference to the {@link PlayerData}.
+     * @param data  the reference to the {@link PlayerData}.
      */
     private void selectionHandler(TurnState state, PlayerData data) {
         Selection selection;

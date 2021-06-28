@@ -39,7 +39,7 @@ public abstract class PlayerData {
      * Called when the player wants to produce: it, based on player's resource and production powers,
      * return all the production he can use to produce.
      * <p>
-     * It is called after every single production, because, for exemple, the
+     * It is called after every single production, because, for example, the
      * player could use more then one production at the start of his turn but after using one of them
      * he couldn't use any more production.
      *
@@ -141,7 +141,7 @@ public abstract class PlayerData {
      * Gets all the deposits in which the player can puts resources takes from the market; if the player is
      * an {@link ExtraDepData} considers even the extra deposits.
      *
-     * @return all the players's deposits.
+     * @return all the players' deposits.
      */
     public ArrayList<Resource[]> getDeposits() {
         return originalData.getDeposits();

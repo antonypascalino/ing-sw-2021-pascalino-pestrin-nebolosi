@@ -38,5 +38,4 @@ public class MarketResource {
     public int getLevel() {
         return level;
     }
-
 }

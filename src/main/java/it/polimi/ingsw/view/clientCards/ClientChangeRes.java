@@ -33,22 +33,21 @@ public class ClientChangeRes extends ClientLeaderCard {
     @Override
     public boolean canBePlayed(PlayerData data) {
         ArrayList<ClientDevCard> clientDevCards = new ArrayList<>();
-        for(String s : data.getAllDevID()) {
+        for (String s : data.getAllDevID()) {
             clientDevCards.add(data.getCardFromID(s));
         }
 
         boolean firstColor = false;
         int secondColor = 0;
 
-        for( ClientDevCard card : clientDevCards)
-        {
+        for (ClientDevCard card : clientDevCards) {
             if (card.getColor().equals(color1)) firstColor = true;
-            if (card.getColor().equals(color2)) secondColor++ ;
+            if (card.getColor().equals(color2)) secondColor++;
         }
         return (firstColor && secondColor >= 2);
     }
 
     public String toString() {
-        return "Change Resource Leader Card:\nYou can change an EMPTY from market with a " + change + "\nTo play this card you need to have 2 " + color2 + " Developments card and 1 " + color1 + " Development card" ;
+        return "Change Resource Leader Card:\nYou can change an EMPTY from market with a " + change + "\nTo play this card you need to have 2 " + color2 + " Developments card and 1 " + color1 + " Development card";
     }
 }
