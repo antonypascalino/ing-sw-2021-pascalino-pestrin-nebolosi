@@ -51,14 +51,12 @@ public class Observer implements Runnable {
         try {
             socket.setSoTimeout(20000);
             while (true) {
-                if (in.ready()) {
                     String input = in.readLine();
                     Update update = JsonReader.readUpdate(input);
                     if (update instanceof PlayLeaderUpdate) {
                         ((PlayLeaderUpdate) update).wrapPlayer(this);
                     }
                     update.handleUpdate(data);
-                }
             }
         } catch (SocketException e) {
             System.out.println("Server crashed");

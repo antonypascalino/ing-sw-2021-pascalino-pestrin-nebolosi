@@ -57,7 +57,7 @@ public class JsonReader{
      * @param input the string containing the input information for deserialize
      * @return an array list with the deserialized request
      */
-    public static Request readSingleRequest(String input)
+    public static Request readSingleRequest(String input) throws JsonSyntaxException
     {
         //Gson gson = new Gson();
         GsonBuilder builder = new GsonBuilder();

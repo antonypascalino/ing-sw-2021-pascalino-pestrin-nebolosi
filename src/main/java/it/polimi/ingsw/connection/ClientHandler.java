@@ -1,6 +1,7 @@
 package it.polimi.ingsw.connection;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import it.polimi.ingsw.Request.NewGameRequest;
 import it.polimi.ingsw.Request.PongRequest;
 import it.polimi.ingsw.Request.Request;
@@ -56,18 +57,25 @@ public class ClientHandler extends Thread {
                 socket.setSoTimeout(20000);
                 String line = in.readLine();
                 if (line != null) {
-                    Request request = JsonReader.readSingleRequest(line);
-                    //It doesn't exist the idea of a new game or join game, there's just a join game that creates a game
-                    if (request instanceof NewGameRequest) {
-                        games.add(request, this);
-                    } else {
-                        //If i receive a pong request ignore it
-                        if (!(request instanceof PongRequest)) {
-                            //check if the gameID is present
-                            System.out.println("Received " + request);
-                            games.get(request.getGameID()).notify(request);
+                    Request request;
+                    try{
+                         request = JsonReader.readSingleRequest(line);
+                        if (request instanceof NewGameRequest) {
+                            games.add(request, this);
+                        } else {
+                            //If i receive a pong request ignore it
+                            if (!(request instanceof PongRequest)) {
+                                //check if the gameID is present
+                                System.out.println("Received " + request);
+                                games.get(request.getGameID()).notify(request);
+                            }
                         }
                     }
+                    catch(JsonSyntaxException e)
+                    {
+                        //In case the request can't be translated don't do anything
+                    }
+
                 }
             }
         } catch (SocketException e) {

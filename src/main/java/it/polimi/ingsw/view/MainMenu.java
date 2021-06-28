@@ -40,10 +40,9 @@ public class MainMenu {
      * {@link TurnState} list received by turnStateFilter() method in the {@link PlayerData}.
      */
     public void menuMaker() {
-        Scanner inputs = new Scanner(System.in);
-
-        if(inputs.hasNext())
-           inputs.next();
+        //Scanner inputs = new Scanner(System.in);
+        //if(inputs.hasNext())
+        //inputs.next();
         TurnState turnState;
         turnStates.clear();
         turnStates.addAll(data.turnStateFilter());
