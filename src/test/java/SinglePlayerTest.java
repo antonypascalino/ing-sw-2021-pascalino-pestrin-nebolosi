@@ -1,4 +1,5 @@
 import it.polimi.ingsw.Request.*;
+import it.polimi.ingsw.connection.ClientHandler;
 import it.polimi.ingsw.controller.DefaultCreator;
 import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.controller.SinglePlayer.SinglePlayerGame;
@@ -7,51 +8,33 @@ import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Table.Resource;
 import org.junit.Test;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.net.Socket;
 import java.util.ArrayList;
+
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class SinglePlayerTest {
 
     @Test
     public void GetFromMarketRequest()
     {
-        //First create a new game and add a player
+        final Socket socket = mock(Socket.class);
         ArrayList<Game> games = new ArrayList<>();
-        Request request = new NewGameRequest("Tester1", 1);
-        //This code has been copied from the client handler class
-        if(request instanceof NewGameRequest)
-        {
-            //If there's no game on the server create the first one
-            Game lastGame = null;
-            if (games.size() != 0)
-                lastGame = games.get(games.size()-1);
-            //If there's no game or the last one has reached the maximum player, it doesn't check it if games.size==0
-            //Create a new game
-            if (games.size() == 0 || !(lastGame.getPlayers().size() < lastGame.getMax()))
-            {
-                int gameId;
-                if(games.size() != 0)
-                    gameId = games.get(games.size()-1).getGameId() +1;
-                else
-                    gameId=0;
-                ArrayList<Player> tmp = new ArrayList<Player>();
-                Player player = new BasicPlayer(((NewGameRequest) request).getNickname());
-                tmp.add(player);
-                Game newGame = new SinglePlayerGame(tmp, DefaultCreator.produceDevCard(), gameId);
-                player.setTable(newGame.getTable());
-                games.add(newGame);
-                System.out.println("Player "+((NewGameRequest) request).getNickname()+ " added to the new game "+newGame.getGameId());
-            }
-            //If it hasn't alrady reached the maximum numner of players
-            //add the new player
-            else
-            {
-                Player newPlayer = new BasicPlayer(((NewGameRequest) request).getNickname());
-                lastGame.addPlayer(newPlayer);
-                System.out.println("Player "+((NewGameRequest) request).getNickname()+ " added to game "+lastGame.getGameId());
-
-            }
-
+        ArrayList<Player> players = new ArrayList<>();
+        try {
+            final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            when(socket.getOutputStream()).thenReturn(byteArrayOutputStream);
+            when(socket.getInputStream()).thenReturn(System.in);
+            players.add(new BasicPlayer("Tester1", new ClientHandler(socket, games)));
         }
+        catch (IOException e) {System.out.println("IOException!");}
+        Game game = new Game(players, DefaultCreator.produceDevCard(), 1, 2);
+        games.add(game);
+        players.get(0).setTable(game.getTable());
+        players.get(0).setGame(game);
 
         //Now send a new request for buying
         Player tmp = games.get(0).getPlayers().get(0);
@@ -59,7 +42,7 @@ public class SinglePlayerTest {
         ArrayList<Resource> resources = games.get(0).getTable().market.seeRow(2);
         System.out.println(games.get(0).getTable().market.toString());
         ArrayList<MarketResource> mappedRes = new ArrayList<MarketResource>();
-        for (int i=0; i<3;i++)
+        for (int i=0; i<4;i++)
         {
             Resource res= resources.get(i);
             System.out.println(res);
@@ -86,10 +69,17 @@ public class SinglePlayerTest {
 
     @Test
     public void TestSinglePlayerWins(){
-        ArrayList<Player> tmp = new ArrayList<Player>();
-        Player player = new BasicPlayer("Tester1");
-        tmp.add(player);
-        SinglePlayerGame game = new SinglePlayerGame(tmp, DefaultCreator.produceDevCard(), 0);
+        final Socket socket = mock(Socket.class);
+        ArrayList<Game> games = new ArrayList<>();
+        ArrayList<Player> players = new ArrayList<>();
+        try {
+            final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            when(socket.getOutputStream()).thenReturn(byteArrayOutputStream);
+            when(socket.getInputStream()).thenReturn(System.in);
+            players.add(new BasicPlayer("Tester1", new ClientHandler(socket, games)));
+        }
+        catch (IOException e) {System.out.println("IOException!");}
+        SinglePlayerGame game = new SinglePlayerGame(players, DefaultCreator.produceDevCard(), 0);
         game.playerWins();
     }
 

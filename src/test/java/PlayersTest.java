@@ -140,7 +140,6 @@ public class PlayersTest {
         players.add(player);
         Game game = new Game(players, DefaultCreator.produceDevCard(), 1, 4);
         player.setGame(game);
-        player.notifyView(new EndTurnUpdate("Tester2"));
     }
 
 }

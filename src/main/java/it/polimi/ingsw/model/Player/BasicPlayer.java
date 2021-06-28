@@ -100,7 +100,7 @@ public class BasicPlayer extends Player {
     public boolean checkMarketRes(ArrayList<Resource> requestedRes, ArrayList<Resource> marketRes) {
         for (int i = 0; i < marketRes.size(); i++) {
             if (!marketRes.get(i).equals(requestedRes.get(i))) {
-                //lancia eccezione: le risorse richieste e le risorse del mercato non corrispondono e non hai changes
+                return false;
             }
         }
         return true;
