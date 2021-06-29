@@ -185,5 +185,19 @@
             game.fpAdvancement(3, 1);
         }
 
+        @Test
+        public void genericGameTest() {
+            ArrayList<Player> players = new ArrayList<>();
+            players.add(new BasicPlayer("Tester1"));
+            players.add(new BasicPlayer("Tester2"));
+            Game game = new Game(players, DefaultCreator.produceDevCard(), 1, 3);
+            game.addPlayer(new BasicPlayer("Tester3"));
+            assert game.getMax() == 3;
+            game.setCurrPlayerInt(1);
+            assert game.getCurrPlayerInt() == 1;
+            Player currPlayer = game.getCurrPlayer();
+            game.setNextPlayer(currPlayer);
+        }
+
 
     }

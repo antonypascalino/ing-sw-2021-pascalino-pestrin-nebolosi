@@ -69,6 +69,7 @@ public class MarketRequest implements Request {
                     return false;
                 }
             }
+            else return false;
         }
         return true;
     }
