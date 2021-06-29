@@ -332,6 +332,7 @@ public class BasicData extends PlayerData {
             if (getCardFromID(devID).getLevel() == 1)
                 return frontCardsID.size();
         }
+        printer.printMessage("In which slot do you wanna put the card?: ");
         return printer.printIntegers(slots, true, false);
     }
 

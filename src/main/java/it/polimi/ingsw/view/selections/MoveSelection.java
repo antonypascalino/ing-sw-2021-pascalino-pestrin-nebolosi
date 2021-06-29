@@ -26,8 +26,9 @@ public class MoveSelection extends Selection {
             data.getMenu().menuMaker();
             return;
         }
-
-        int origin = data.getPrinter().printIntegers(l, false, true);
+        data.getPrinter().printMessage("Select the origin level: ");
+        int origin = data.getPrinter().printIntegers(l, false, false);
+        data.getPrinter().printMessage("Select the destination level: ");
         int destination = data.switchLevels(origin);
         if (destination == -1) {
             data.getMenu().menuMaker();
