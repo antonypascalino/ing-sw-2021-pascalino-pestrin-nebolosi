@@ -1,6 +1,6 @@
 package it.polimi.ingsw.connection;
 
-import it.polimi.ingsw.model.Updates.CheckUpdate;
+import it.polimi.ingsw.Updates.CheckUpdate;
 
 import java.io.IOException;
 

@@ -6,7 +6,7 @@ import it.polimi.ingsw.Request.NewGameRequest;
 import it.polimi.ingsw.Request.PongRequest;
 import it.polimi.ingsw.Request.Request;
 import it.polimi.ingsw.controller.Game;
-import it.polimi.ingsw.model.Updates.*;
+import it.polimi.ingsw.Updates.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;

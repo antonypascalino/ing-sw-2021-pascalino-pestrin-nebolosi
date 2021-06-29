@@ -1,4 +1,4 @@
-package it.polimi.ingsw.model.Updates;
+package it.polimi.ingsw.Updates;
 
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.controller.SinglePlayer.SinglePlayerGame;

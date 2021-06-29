@@ -3,7 +3,7 @@ package it.polimi.ingsw.model.Player;
 import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.model.Board.Board;
 import it.polimi.ingsw.model.Table.Resource;
-import it.polimi.ingsw.model.Updates.Update;
+import it.polimi.ingsw.Updates.Update;
 import it.polimi.ingsw.model.Table.Table;
 import it.polimi.ingsw.Request.MarketResource;
 import it.polimi.ingsw.Request.MarketRequest;

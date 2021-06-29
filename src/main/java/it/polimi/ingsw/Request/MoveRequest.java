@@ -4,8 +4,8 @@ import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Table.Resource;
-import it.polimi.ingsw.model.Updates.MoveUpdate;
-import it.polimi.ingsw.model.Updates.Update;
+import it.polimi.ingsw.Updates.MoveUpdate;
+import it.polimi.ingsw.Updates.Update;
 
 import java.util.ArrayList;
 

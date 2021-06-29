@@ -7,9 +7,9 @@ import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.controller.SinglePlayer.SinglePlayerGame;
 import it.polimi.ingsw.model.Player.BasicPlayer;
 import it.polimi.ingsw.model.Player.Player;
-import it.polimi.ingsw.model.Updates.ExistingPlayerUpdate;
-import it.polimi.ingsw.model.Updates.LobbyUpdate;
-import it.polimi.ingsw.model.Updates.Update;
+import it.polimi.ingsw.Updates.ExistingPlayerUpdate;
+import it.polimi.ingsw.Updates.LobbyUpdate;
+import it.polimi.ingsw.Updates.Update;
 
 import java.util.ArrayList;
 

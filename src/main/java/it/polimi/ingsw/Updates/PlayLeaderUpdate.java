@@ -1,11 +1,11 @@
-package it.polimi.ingsw.model.Updates;
+package it.polimi.ingsw.Updates;
 
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Table.Resource;
 import it.polimi.ingsw.model.card.LeaderCard;
-import it.polimi.ingsw.view.Observer;
 import it.polimi.ingsw.view.data.*;
+import it.polimi.ingsw.view.*;
 
 import java.util.ArrayList;
 
@@ -49,9 +49,9 @@ public class PlayLeaderUpdate implements Update {
 
     /**
      * Once the {@link PlayLeaderUpdate} is received, client side, this method is called to create a new {@link PlayerData}
-     * with his new ability and changing his reference in the {@link Observer}.
+     * with his new ability and changing his reference in the Observer.
      *
-     * @param observer the {@link Observer}.
+     * @param observer the Observer..
      */
     public void wrapPlayer(Observer observer) {
         if (observer.getData().getPlayerID().equals(playerID)) {

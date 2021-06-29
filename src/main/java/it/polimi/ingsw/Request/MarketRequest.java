@@ -5,10 +5,10 @@ import it.polimi.ingsw.model.Table.Market;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Table.Resource;
-import it.polimi.ingsw.model.Updates.MarketUpdate;
-import it.polimi.ingsw.model.Updates.PlayerFP;
-import it.polimi.ingsw.model.Updates.PlayerVP;
-import it.polimi.ingsw.model.Updates.Update;
+import it.polimi.ingsw.Updates.MarketUpdate;
+import it.polimi.ingsw.Updates.PlayerFP;
+import it.polimi.ingsw.Updates.PlayerVP;
+import it.polimi.ingsw.Updates.Update;
 
 import java.util.ArrayList;
 

@@ -1,45 +1,43 @@
-package it.polimi.ingsw.model.Updates;
+package it.polimi.ingsw.Updates;
 
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Table.Resource;
-import it.polimi.ingsw.model.Table.Market;
 import it.polimi.ingsw.view.data.OtherPlayerData;
 import it.polimi.ingsw.view.data.PlayerData;
 
 import java.util.ArrayList;
 
 /**
- * The {@link Update} sent after that a {@link Player} takes {@link Resource}s from {@link Market}.
+ * The {@link Update} sent after that a {@link Player} produced {@link Resource}s.
  */
-public class MarketUpdate implements Update {
+public class ProduceUpdate implements Update {
     private ArrayList<TurnState> turnStates;
     private ArrayList<Resource[]> wareHouse;
+    private ArrayList<Resource> strongBox;
+    private int faithPoints;
     private ArrayList<PlayerVP> playersVP;
-    private ArrayList<PlayerFP> playersFP;
-    private Resource[][] market;
     private String playerID;
     private final String className;
 
-
     /**
-     * Instantiates a new {@link MarketUpdate} setting everything can change with this actions: the {@link TurnState} list
-     * {@link Player}'s warehouse, every players' victory points, every players' faith points and the disposal of the {@link Resource}
-     * in the {@link Market}.
+     * Instantiates a new {@link ProduceUpdate} setting everything can change with this actions: the {@link TurnState} list,
+     * {@link Player}'s warehouse, {@link Player}'s strongbox, {@link Player}'s faith points,
+     * every {@link Player}'s
      *
-     * @param playerID   the {@link Player}'s ID who went to the {@link Market}.
-     * @param turnStates the turn states list.
-     * @param wareHouse  the {@link Player}'s warehouse.
-     * @param playersVP  the {@link PlayerVP}s.
-     * @param playersFP  the {@link PlayerFP}s.
-     * @param market     the {@link Market} disposal.
+     * @param playerID    the {@link Player}'s ID.
+     * @param turnStates  the turn states.
+     * @param wareHouse   the ware house.
+     * @param strongBox   the strong box.
+     * @param faithPoints the faith points.
+     * @param playersVP   all the {@link PlayerVP}.
      */
-    public MarketUpdate(String playerID, ArrayList<TurnState> turnStates, ArrayList<Resource[]> wareHouse, ArrayList<PlayerVP> playersVP, ArrayList<PlayerFP> playersFP, Resource[][] market) {
+    public ProduceUpdate(String playerID, ArrayList<TurnState> turnStates, ArrayList<Resource[]> wareHouse, ArrayList<Resource> strongBox, int faithPoints, ArrayList<PlayerVP> playersVP) {
         this.turnStates = turnStates;
         this.wareHouse = wareHouse;
+        this.strongBox = strongBox;
+        this.faithPoints = faithPoints;
         this.playersVP = playersVP;
-        this.playersFP = playersFP;
-        this.market = market;
         this.playerID = playerID;
         className = this.getClass().getName();
     }
@@ -51,7 +49,6 @@ public class MarketUpdate implements Update {
 
     @Override
     public void handleUpdate(PlayerData data) {
-        data.setMarket(market);
         for (PlayerVP pvp : playersVP) {
             if (pvp.getPlayerID().equals(data.getPlayerID())) {
                 data.setVictoryPoints(pvp.getVictoryPoints());
@@ -63,24 +60,18 @@ public class MarketUpdate implements Update {
                 }
             }
         }
-        for (PlayerFP pfp : playersFP) {
-            if (pfp.getPlayerID().equals(data.getPlayerID())) {
-                data.setFaithPoints(pfp.getFaithPoints());
-            } else {
-                for (OtherPlayerData p : data.getOtherPlayers()) {
-                    if (pfp.getPlayerID().equals(p.getPlayerID())) {
-                        p.setFaithPoints(pfp.getFaithPoints());
-                    }
-                }
-            }
-        }
         if (playerID.equals(data.getPlayerID())) {
+            data.setFaithPoints(faithPoints);
             data.setTurnStates(turnStates);
             data.setWareHouse(wareHouse);
+            data.setStrongBox(strongBox);
             data.getMenu().menuMaker();
         } else {
             for (OtherPlayerData p : data.getOtherPlayers()) {
                 if (playerID.equals(p.getPlayerID())) {
+                    p.setFaithPoints(faithPoints);
+                    p.setStrongBox(strongBox);
+                    p.getWareHouse().clear();
                     for (Resource[] l : wareHouse) {
                         for (Resource r : l) {
                             p.getWareHouse().add(r);

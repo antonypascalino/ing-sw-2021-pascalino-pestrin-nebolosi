@@ -1,4 +1,4 @@
-package it.polimi.ingsw.model.Updates;
+package it.polimi.ingsw.Updates;
 
 import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.model.Table.Table;
@@ -7,7 +7,7 @@ import it.polimi.ingsw.model.Table.Market;
 import it.polimi.ingsw.view.data.OtherPlayerData;
 import it.polimi.ingsw.view.data.PlayerData;
 import it.polimi.ingsw.view.selections.Selection;
-import it.polimi.ingsw.view.selections.StartGameSelection;
+import it.polimi.ingsw.view.selections.*;
 import it.polimi.ingsw.model.card.DevCard;
 
 import java.util.ArrayList;

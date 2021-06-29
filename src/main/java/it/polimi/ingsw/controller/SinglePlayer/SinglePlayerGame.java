@@ -6,7 +6,7 @@ import it.polimi.ingsw.controller.DefaultCreator;
 import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Board.FaithPath;
-import it.polimi.ingsw.model.Updates.*;
+import it.polimi.ingsw.Updates.*;
 import it.polimi.ingsw.model.card.DevCard;
 import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Table.Table;

@@ -3,7 +3,7 @@ package it.polimi.ingsw.model.Player;
 import it.polimi.ingsw.connection.ClientHandler;
 import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.model.Board.Board;
-import it.polimi.ingsw.model.Updates.Update;
+import it.polimi.ingsw.Updates.Update;
 import it.polimi.ingsw.model.card.DevCard;
 import it.polimi.ingsw.model.card.LeaderCard;
 import it.polimi.ingsw.model.Table.Resource;

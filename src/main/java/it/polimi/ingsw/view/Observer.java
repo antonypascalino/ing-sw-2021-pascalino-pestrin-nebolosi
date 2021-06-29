@@ -2,9 +2,8 @@ package it.polimi.ingsw.view;
 
 import it.polimi.ingsw.client.LineClient;
 import it.polimi.ingsw.connection.JsonReader;
-import it.polimi.ingsw.model.Updates.ConnectionErrorUpdate;
-import it.polimi.ingsw.model.Updates.PlayLeaderUpdate;
-import it.polimi.ingsw.model.Updates.Update;
+import it.polimi.ingsw.Updates.PlayLeaderUpdate;
+import it.polimi.ingsw.Updates.Update;
 import it.polimi.ingsw.view.data.PlayerData;
 
 import java.io.BufferedReader;
@@ -20,17 +19,8 @@ import java.net.SocketTimeoutException;
 //Keep listening on the server and print any message that is received
 public class Observer implements Runnable {
 
-    /**
-     * The Socket.
-     */
     Socket socket;
-    /**
-     * The In.
-     */
     BufferedReader in;
-    /**
-     * The Data.
-     */
     PlayerData data;
 
     /**
@@ -54,7 +44,7 @@ public class Observer implements Runnable {
                     String input = in.readLine();
                     Update update = JsonReader.readUpdate(input);
                     if (update instanceof PlayLeaderUpdate) {
-                        ((PlayLeaderUpdate) update).wrapPlayer(this);
+                        ((PlayLeaderUpdate)update).wrapPlayer(this);
                     }
                     update.handleUpdate(data);
             }

@@ -3,9 +3,9 @@ package it.polimi.ingsw.Request;
 import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Table.Resource;
-import it.polimi.ingsw.model.Updates.PlayerVP;
-import it.polimi.ingsw.model.Updates.ProduceUpdate;
-import it.polimi.ingsw.model.Updates.Update;
+import it.polimi.ingsw.Updates.PlayerVP;
+import it.polimi.ingsw.Updates.ProduceUpdate;
+import it.polimi.ingsw.Updates.Update;
 import it.polimi.ingsw.model.card.ExtraProd;
 import it.polimi.ingsw.model.Player.Player;
 

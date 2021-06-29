@@ -4,7 +4,7 @@ import it.polimi.ingsw.Convertible;
 import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Player.Player;
-import it.polimi.ingsw.model.Updates.Update;
+import it.polimi.ingsw.Updates.Update;
 
 import java.util.ArrayList;
 

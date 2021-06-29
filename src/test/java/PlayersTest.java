@@ -4,7 +4,7 @@ import it.polimi.ingsw.controller.DefaultCreator;
 import it.polimi.ingsw.model.Player.*;
 import it.polimi.ingsw.model.Table.Resource;
 import it.polimi.ingsw.model.Table.Table;
-import it.polimi.ingsw.model.Updates.ErrorUpdate;
+import it.polimi.ingsw.Updates.ErrorUpdate;
 import it.polimi.ingsw.model.card.ChangeResource;
 import it.polimi.ingsw.model.card.DevCard;
 import org.junit.Test;
