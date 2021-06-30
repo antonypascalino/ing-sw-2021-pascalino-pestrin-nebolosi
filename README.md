@@ -13,6 +13,11 @@
 * Socket
 * Multiple games 
 
+## Tests' coverage
+|Package|Method coverage [%]|Line coverage [%]|
+|--------------|------------|-----------------|
+|__model__|98%|96%|
+|__controller__|95%|96%|
 
 ## Libraries e Plugins
 |Library/Plugin|Description|

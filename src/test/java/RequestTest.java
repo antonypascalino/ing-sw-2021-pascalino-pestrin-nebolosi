@@ -508,6 +508,13 @@ public class RequestTest {
         System.out.println("Il giocatore ha queste carte per produrre: " + tmp.getProductionID());
         Production nuovaProduzione = new Production(prodResources, interessata.getCardID());
         produzioni.add(nuovaProduzione);
+        tmp.getBoard().getStrongBox().addResource(Resource.GOLD);
+        tmp.getBoard().getStrongBox().addResource(Resource.GOLD);
+        ArrayList<MappedResource> prodResources2 = new ArrayList<>();
+        prodResources2.add(new MappedResource(Resource.GOLD, "strongbox"));
+        prodResources2.add(new MappedResource(Resource.GOLD, "strongbox"));
+        prodResources2.add(new MappedResource(Resource.STONE, "choice"));
+        produzioni.add(new Production(prodResources2, "BASIC"));
         Request request = new ProduceRequest(games.get(0).getGameId(), tmp.getNickName(), produzioni);
         System.out.println("Il giocatore prima della produzione si trova in posizione "+tmp.getBoard().getFaithPath().getAdvancement());
         games.get(0).notify(request);               //Questo fallisce perché non si possomno fare due azioni nello stesso turno
@@ -516,6 +523,8 @@ public class RequestTest {
         System.out.println("La carta richiede per la produzione queste risorse "+ interessata.getRequirements());
         System.out.println("Dopo la produzione ci sono queste risorse "+ tmp.getAllResources());
         System.out.println("Il giocatore dopo la produzione si trova in posizione "+tmp.getBoard().getFaithPath().getAdvancement());
+        request.getClassName();
+        assert request.getGameID() == 1;
     }
 
     @Test
@@ -585,7 +594,7 @@ public class RequestTest {
     }
 
     @Test
-    public void InitalPlayersSetRequest() {
+    public void InitalPlayersSetRequestTest() {
         final Socket socket = mock(Socket.class);
         GameHolder games= new GameHolder();
         ArrayList<Player> players = new ArrayList<>();
@@ -629,7 +638,96 @@ public class RequestTest {
         assert request.getGameID() == 1;
         assert player.getLeaderCards().size() == 2;
         assert player.getBoard().getWareHouse().getResources().contains(Resource.GOLD);
-        assert player.getBoard().getWareHouse().getResources().size() == 2;
     }
 
+    @Test
+    public void MoveRequestTest() {
+        final Socket socket = mock(Socket.class);
+        GameHolder games= new GameHolder();
+        ArrayList<Player> players = new ArrayList<>();
+        try {
+            final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            when(socket.getOutputStream()).thenReturn(byteArrayOutputStream);
+            when(socket.getInputStream()).thenReturn(System.in);
+            players.add(new BasicPlayer("Tester1", new ClientHandler(socket, games)));
+            players.add(new BasicPlayer("Tester2", new ClientHandler(socket, games)));
+        }
+        catch (IOException e) {System.out.println("IOException!");}
+        Game game = new Game(players, DefaultCreator.produceDevCard(), 1, 2);
+        games.add(game);
+
+        Player player = game.getPlayers().get(0);
+        player.getBoard().getWareHouse().addResource(0, Resource.GOLD);
+        //Questa prima request fallisce perchè il giocatore non ha extra deposits
+        MoveRequest request = new MoveRequest(player.getNickName(), 1, 0, 4);
+        game.notify(request);
+        //Questa request invece ha ha successo
+        request = new MoveRequest(player.getNickName(), 1, 0, 1);
+        game.notify(request);
+        assert request.getGameID() == 1;
+        request.getClassName();
+        assert player.getBoard().getWareHouse().getLevels().get(0)[0] == Resource.EMPTY;
+        assert player.getBoard().getWareHouse().getLevels().get(1)[0] == Resource.GOLD;
+    }
+
+    @Test
+    public void playLeaderRequestTest() {
+        final Socket socket = mock(Socket.class);
+        GameHolder games= new GameHolder();
+        ArrayList<Player> players = new ArrayList<>();
+        try {
+            final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            when(socket.getOutputStream()).thenReturn(byteArrayOutputStream);
+            when(socket.getInputStream()).thenReturn(System.in);
+            players.add(new BasicPlayer("Tester1", new ClientHandler(socket, games)));
+            players.add(new BasicPlayer("Tester2", new ClientHandler(socket, games)));
+        }
+        catch (IOException e) {System.out.println("IOException!");}
+        Game game = new Game(players, DefaultCreator.produceDevCard(), 1, 2);
+        games.add(game);
+        Player player = game.getPlayers().get(0);
+        player.setGame(game);
+        LeaderCard leaderCard = DefaultCreator.getLeaderFromID("DEP01");
+        leaderCard.setPlayer(player);
+        player.addLeaderCard(leaderCard);
+        leaderCard = DefaultCreator.getLeaderFromID("DEP02");
+        leaderCard.setPlayer(player);
+        player.addLeaderCard(leaderCard);
+        player.getBoard().getStrongBox().addResource(Resource.STONE);
+        player.getBoard().getStrongBox().addResource(Resource.STONE);
+        player.getBoard().getStrongBox().addResource(Resource.STONE);
+        player.getBoard().getStrongBox().addResource(Resource.STONE);
+        player.getBoard().getStrongBox().addResource(Resource.STONE);
+        PlayLeaderRequest request = new PlayLeaderRequest(player.getNickName(), 1, "DEP01");
+        game.notify(request);
+        assert request.getGameID() == 1;
+        request.getClassName();
+    }
+
+    //Non testa niente, metodo creato per coerenza coverage
+    @Test
+    public void PongRequestTest() {
+        final Socket socket = mock(Socket.class);
+        GameHolder games= new GameHolder();
+        ArrayList<Player> players = new ArrayList<>();
+        try {
+            final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            when(socket.getOutputStream()).thenReturn(byteArrayOutputStream);
+            when(socket.getInputStream()).thenReturn(System.in);
+            players.add(new BasicPlayer("Tester1", new ClientHandler(socket, games)));
+            players.add(new BasicPlayer("Tester2", new ClientHandler(socket, games)));
+        }
+        catch (IOException e) {System.out.println("IOException!");}
+        Game game = new Game(players, DefaultCreator.produceDevCard(), 1, 2);
+        games.add(game);
+        Player player = game.getPlayers().get(0);
+        PongRequest request = new PongRequest();
+        request.validRequest(game.getTurnStates());
+        request.canBePlayed(player);
+        request.getGameID();
+        request.getPlayerID();
+        request.createUpdate(player, game);
+        request.handle(player, game);
+        request.getClassName();
+    }
 }
