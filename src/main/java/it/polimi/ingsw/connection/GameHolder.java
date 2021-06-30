@@ -65,7 +65,11 @@ public class GameHolder {
                 newGame = new SinglePlayerGame(tmp, DefaultCreator.produceDevCard(), gameId);
                 update = newGame.createNewGameUpdate();
             } else {
-                newGame = new Game(tmp, DefaultCreator.produceDevCard(), gameId, ((NewGameRequest) request).getPlayers());
+                //If the client requires a number of player above 4, creates a game with 4 players
+                if(((NewGameRequest) request).getPlayers()<=4 && ((NewGameRequest) request).getPlayers() >=2)
+                    newGame = new Game(tmp, DefaultCreator.produceDevCard(), gameId, ((NewGameRequest) request).getPlayers());
+                else
+                    newGame = new Game(tmp, DefaultCreator.produceDevCard(), gameId, 4);
                 update = new LobbyUpdate(((NewGameRequest) request).getNickname(), newGame.getPlayers().size(), ((NewGameRequest) request).getPlayers());
 
             }
