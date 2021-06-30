@@ -1,7 +1,7 @@
 package it.polimi.ingsw.view.selections;
 
-import it.polimi.ingsw.Request.PlayLeaderRequest;
-import it.polimi.ingsw.Request.Request;
+import it.polimi.ingsw.controller.Request.PlayLeaderRequest;
+import it.polimi.ingsw.controller.Request.Request;
 import it.polimi.ingsw.view.data.PlayerData;
 
 import java.util.ArrayList;

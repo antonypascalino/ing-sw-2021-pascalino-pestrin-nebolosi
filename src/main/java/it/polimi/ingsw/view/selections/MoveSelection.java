@@ -1,7 +1,7 @@
 package it.polimi.ingsw.view.selections;
 
-import it.polimi.ingsw.Request.MoveRequest;
-import it.polimi.ingsw.Request.Request;
+import it.polimi.ingsw.controller.Request.MoveRequest;
+import it.polimi.ingsw.controller.Request.Request;
 import it.polimi.ingsw.model.Table.Resource;
 import it.polimi.ingsw.view.data.PlayerData;
 

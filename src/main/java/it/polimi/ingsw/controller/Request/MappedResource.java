@@ -1,4 +1,4 @@
-package it.polimi.ingsw.Request;
+package it.polimi.ingsw.controller.Request;
 
 import it.polimi.ingsw.model.Table.Resource;
 

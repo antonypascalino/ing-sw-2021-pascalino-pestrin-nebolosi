@@ -1,8 +1,8 @@
 package it.polimi.ingsw.view.data;
 
-import it.polimi.ingsw.Request.MappedResource;
-import it.polimi.ingsw.Request.MarketResource;
-import it.polimi.ingsw.Request.Request;
+import it.polimi.ingsw.controller.Request.MappedResource;
+import it.polimi.ingsw.controller.Request.MarketResource;
+import it.polimi.ingsw.controller.Request.Request;
 import it.polimi.ingsw.client.LineClient;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Table.Resource;

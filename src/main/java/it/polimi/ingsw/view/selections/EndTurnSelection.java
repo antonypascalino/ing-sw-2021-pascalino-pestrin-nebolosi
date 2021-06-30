@@ -1,6 +1,6 @@
 package it.polimi.ingsw.view.selections;
 
-import it.polimi.ingsw.Request.EndTurnRequest;
+import it.polimi.ingsw.controller.Request.EndTurnRequest;
 import it.polimi.ingsw.view.data.PlayerData;
 
 /**

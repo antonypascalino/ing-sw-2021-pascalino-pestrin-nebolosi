@@ -1,4 +1,4 @@
-package it.polimi.ingsw.Request;
+package it.polimi.ingsw.controller.Request;
 
 /**
  * The enum used to indicate a dimension of the Market's matrix.

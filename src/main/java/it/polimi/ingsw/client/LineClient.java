@@ -1,7 +1,7 @@
 package it.polimi.ingsw.client;
 
 import com.google.gson.Gson;
-import it.polimi.ingsw.Request.Request;
+import it.polimi.ingsw.controller.Request.Request;
 
 import java.io.IOException;
 import java.io.PrintWriter;

@@ -1,7 +1,7 @@
 package it.polimi.ingsw.view.selections;
 
 import it.polimi.ingsw.view.data.PlayerData;
-import it.polimi.ingsw.Request.Request;
+import it.polimi.ingsw.controller.Request.Request;
 
 /**
  * A Selection guides the player through the choices he has to take when he choose the actions to do in his turn.

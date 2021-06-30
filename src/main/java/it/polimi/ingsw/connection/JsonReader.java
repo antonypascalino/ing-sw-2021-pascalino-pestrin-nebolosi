@@ -2,7 +2,7 @@ package it.polimi.ingsw.connection;
 
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
-import it.polimi.ingsw.Request.Request;
+import it.polimi.ingsw.controller.Request.Request;
 import it.polimi.ingsw.Updates.Update;
 import it.polimi.ingsw.model.card.*;
 

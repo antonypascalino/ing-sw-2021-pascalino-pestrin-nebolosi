@@ -1,7 +1,7 @@
 package it.polimi.ingsw.Updates;
 
-import it.polimi.ingsw.Request.NewGameRequest;
-import it.polimi.ingsw.Request.Request;
+import it.polimi.ingsw.controller.Request.NewGameRequest;
+import it.polimi.ingsw.controller.Request.Request;
 import it.polimi.ingsw.view.data.PlayerData;
 
 import java.util.Scanner;

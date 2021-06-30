@@ -1,13 +1,12 @@
 package it.polimi.ingsw.view.selections;
 
-import it.polimi.ingsw.Request.InitialPlayersSetRequest;
-import it.polimi.ingsw.Request.MarketResource;
-import it.polimi.ingsw.Request.Request;
+import it.polimi.ingsw.controller.Request.InitialPlayersSetRequest;
+import it.polimi.ingsw.controller.Request.MarketResource;
+import it.polimi.ingsw.controller.Request.Request;
 import it.polimi.ingsw.model.Table.Resource;
 import it.polimi.ingsw.view.data.PlayerData;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  * The {@link Selection} that guides the player during the initial part of the game, when he has to

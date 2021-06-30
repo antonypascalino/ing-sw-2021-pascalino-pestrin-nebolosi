@@ -1,6 +1,6 @@
 package it.polimi.ingsw.view.data;
 
-import it.polimi.ingsw.Request.MarketResource;
+import it.polimi.ingsw.controller.Request.MarketResource;
 import it.polimi.ingsw.model.Table.Resource;
 import it.polimi.ingsw.view.clientCards.*;
 

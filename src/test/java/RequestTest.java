@@ -1,10 +1,10 @@
-import it.polimi.ingsw.Request.*;
+import it.polimi.ingsw.controller.Request.*;
 import it.polimi.ingsw.connection.ClientHandler;
 import it.polimi.ingsw.connection.GameHolder;
 import it.polimi.ingsw.controller.DefaultCreator;
 import it.polimi.ingsw.controller.Game;
-import it.polimi.ingsw.Request.MappedResource;
-import it.polimi.ingsw.Request.MarketResource;
+import it.polimi.ingsw.controller.Request.MappedResource;
+import it.polimi.ingsw.controller.Request.MarketResource;
 import it.polimi.ingsw.model.Player.BasicPlayer;
 import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Table.Resource;
@@ -15,7 +15,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;

@@ -1,4 +1,4 @@
-import it.polimi.ingsw.Request.*;
+import it.polimi.ingsw.controller.Request.*;
 import it.polimi.ingsw.connection.ClientHandler;
 import it.polimi.ingsw.connection.GameHolder;
 import it.polimi.ingsw.controller.DefaultCreator;

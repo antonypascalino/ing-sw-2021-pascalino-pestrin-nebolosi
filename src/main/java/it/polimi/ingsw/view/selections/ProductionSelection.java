@@ -1,9 +1,9 @@
 package it.polimi.ingsw.view.selections;
 
-import it.polimi.ingsw.Request.MappedResource;
-import it.polimi.ingsw.Request.ProduceRequest;
-import it.polimi.ingsw.Request.Production;
-import it.polimi.ingsw.Request.Request;
+import it.polimi.ingsw.controller.Request.MappedResource;
+import it.polimi.ingsw.controller.Request.ProduceRequest;
+import it.polimi.ingsw.controller.Request.Production;
+import it.polimi.ingsw.controller.Request.Request;
 import it.polimi.ingsw.model.Table.Resource;
 import it.polimi.ingsw.view.data.PlayerData;
 

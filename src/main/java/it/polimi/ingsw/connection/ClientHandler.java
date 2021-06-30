@@ -2,9 +2,9 @@ package it.polimi.ingsw.connection;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
-import it.polimi.ingsw.Request.NewGameRequest;
-import it.polimi.ingsw.Request.PongRequest;
-import it.polimi.ingsw.Request.Request;
+import it.polimi.ingsw.controller.Request.NewGameRequest;
+import it.polimi.ingsw.controller.Request.PongRequest;
+import it.polimi.ingsw.controller.Request.Request;
 import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.Updates.*;
 

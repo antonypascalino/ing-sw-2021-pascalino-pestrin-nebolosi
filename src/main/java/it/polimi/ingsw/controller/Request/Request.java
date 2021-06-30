@@ -1,4 +1,4 @@
-package it.polimi.ingsw.Request;
+package it.polimi.ingsw.controller.Request;
 
 import it.polimi.ingsw.Convertible;
 import it.polimi.ingsw.controller.Game;

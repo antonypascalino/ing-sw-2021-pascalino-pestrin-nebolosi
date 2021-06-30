@@ -1,16 +1,3 @@
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import it.polimi.ingsw.Request.NewGameRequest;
-import it.polimi.ingsw.Request.Request;
-import it.polimi.ingsw.client.LineClient;
-import it.polimi.ingsw.controller.DefaultCreator;
-import it.polimi.ingsw.model.card.DevCard;
-import it.polimi.ingsw.model.card.LeaderCard;
-import org.junit.Test;
-
-import java.io.IOException;
-import java.util.ArrayList;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 

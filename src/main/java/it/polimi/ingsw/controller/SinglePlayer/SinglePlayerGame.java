@@ -1,7 +1,7 @@
 package it.polimi.ingsw.controller.SinglePlayer;
 
-import it.polimi.ingsw.Request.InitialPlayersSetRequest;
-import it.polimi.ingsw.Request.Request;
+import it.polimi.ingsw.controller.Request.InitialPlayersSetRequest;
+import it.polimi.ingsw.controller.Request.Request;
 import it.polimi.ingsw.controller.DefaultCreator;
 import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.controller.TurnState;

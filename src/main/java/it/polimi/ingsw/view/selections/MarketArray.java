@@ -1,8 +1,8 @@
 package it.polimi.ingsw.view.selections;
 
-import it.polimi.ingsw.Request.MarketDimension;
+import it.polimi.ingsw.controller.Request.MarketDimension;
 import it.polimi.ingsw.model.Table.Resource;
-import it.polimi.ingsw.Request.MarketRequest;
+import it.polimi.ingsw.controller.Request.MarketRequest;
 
 import java.util.ArrayList;
 

@@ -1,8 +1,8 @@
 package it.polimi.ingsw.view.selections;
 
-import it.polimi.ingsw.Request.BuyDevRequest;
-import it.polimi.ingsw.Request.MappedResource;
-import it.polimi.ingsw.Request.Request;
+import it.polimi.ingsw.controller.Request.BuyDevRequest;
+import it.polimi.ingsw.controller.Request.MappedResource;
+import it.polimi.ingsw.controller.Request.Request;
 import it.polimi.ingsw.view.data.PlayerData;
 
 import java.util.ArrayList;

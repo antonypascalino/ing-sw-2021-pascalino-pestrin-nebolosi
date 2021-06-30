@@ -1,7 +1,7 @@
 package it.polimi.ingsw.controller;
 
-import it.polimi.ingsw.Request.InitialPlayersSetRequest;
-import it.polimi.ingsw.Request.Request;
+import it.polimi.ingsw.controller.Request.InitialPlayersSetRequest;
+import it.polimi.ingsw.controller.Request.Request;
 import it.polimi.ingsw.model.Board.FaithPath;
 import it.polimi.ingsw.Updates.*;
 import it.polimi.ingsw.model.card.DevCard;

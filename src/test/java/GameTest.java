@@ -1,7 +1,6 @@
 
-    import it.polimi.ingsw.Request.JoinGameRequest;
-    import it.polimi.ingsw.Request.NewGameRequest;
-    import it.polimi.ingsw.Request.Request;
+    import it.polimi.ingsw.controller.Request.NewGameRequest;
+    import it.polimi.ingsw.controller.Request.Request;
     import it.polimi.ingsw.connection.ClientHandler;
     import it.polimi.ingsw.connection.GameHolder;
     import it.polimi.ingsw.controller.DefaultCreator;
@@ -9,14 +8,12 @@
     import it.polimi.ingsw.model.card.DevCard;
     import it.polimi.ingsw.model.Player.BasicPlayer;
     import it.polimi.ingsw.model.Player.Player;
-    import it.polimi.ingsw.model.Table.Table;
     import org.junit.Test;
 
     import java.io.ByteArrayOutputStream;
     import java.io.IOException;
     import java.net.Socket;
     import java.util.ArrayList;
-    import java.util.Collections;
 
     import static org.junit.Assert.assertEquals;
     import static org.mockito.Mockito.mock;

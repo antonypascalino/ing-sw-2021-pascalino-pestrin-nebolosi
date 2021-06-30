@@ -1,4 +1,4 @@
-package it.polimi.ingsw.Request;
+package it.polimi.ingsw.controller.Request;
 
 import java.util.ArrayList;
 
