@@ -13,8 +13,8 @@ import org.junit.Test;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+
 
 public class TestProvaJSon{
 
@@ -22,25 +22,24 @@ public class TestProvaJSon{
     //Tries to serialize amd deserialize a couple of leadr card
     public void TestJsonLeader()
     {
-        ArrayList<Resource> tmp = new ArrayList<Resource>();
+        ArrayList<Resource> tmp = new ArrayList<>();
         tmp.add(Resource.GOLD);
         tmp.add(Resource.FAITH);
         ExtraProd card = new ExtraProd(3, "Green", Resource.GOLD, "prod01") ;
         ExtraDeposit card2 = new ExtraDeposit(2, Resource.SERVANT, Resource.STONE, "extra01");
-        ArrayList<LeaderCard> nonFuzionaMaSeFunziona = new ArrayList<LeaderCard>();
-        nonFuzionaMaSeFunziona.add(card);
-        nonFuzionaMaSeFunziona.add(card2);
+        ArrayList<LeaderCard> leaderCards = new ArrayList<>();
+        leaderCards.add(card);
+        leaderCards.add(card2);
 
         GsonBuilder builder = new GsonBuilder();
         Gson traduttore = builder.setPrettyPrinting().create();
-        String jsonString = traduttore.toJson(nonFuzionaMaSeFunziona);
+        String jsonString = traduttore.toJson(leaderCards);
         System.out.println(jsonString);
         jsonString = traduttore.toJson(DefaultCreator.produceLeaderCard());
         System.out.println(jsonString);
         ArrayList<LeaderCard> risultato = JsonReader.readLeaderCard(jsonString);
         assertTrue(risultato.get(0).equals(DefaultCreator.produceLeaderCard().get(0)));
     }
-
     @Test
     //Tries to deserialize and deserialize all the DevCards
     public void TestDevTranslation()

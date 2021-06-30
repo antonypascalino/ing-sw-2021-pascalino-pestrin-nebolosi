@@ -5,10 +5,12 @@ import it.polimi.ingsw.controller.DefaultCreator;
 import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.controller.Request.MappedResource;
 import it.polimi.ingsw.controller.Request.MarketResource;
+import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Player.BasicPlayer;
 import it.polimi.ingsw.model.Player.Player;
 import it.polimi.ingsw.model.Table.Resource;
 import it.polimi.ingsw.model.card.DevCard;
+import it.polimi.ingsw.model.card.LeaderCard;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
@@ -182,6 +184,8 @@ public class RequestTest {
 
 
         Request buyDevRequest = new BuyDevRequest(games.get(0).getGameId(),tmp.getNickName(), interessata.getCardID(), test, 1);
+        System.out.println(buyDevRequest.getClassName());
+        assert buyDevRequest.getGameID() == 1;
         games.get(0).getTurnStates().clear();
         games.get(0).notify(buyDevRequest);
         for(int i = 0; i< 3; i++)
@@ -480,10 +484,126 @@ public class RequestTest {
         produzioni.add(nuovaProduzione);
         Request request = new ProduceRequest(games.get(0).getGameId(), tmp.getNickName(), produzioni);
         System.out.println("Il giocatore prima della produzione si trova in posizione "+tmp.getBoard().getFaithPath().getAdvancement());
-        games.get(0).getTurnStates().clear();
+        games.get(0).notify(request);               //Questo fallisce perché non si possomno fare due azioni nello stesso turno
+        games.get(0).getTurnStates().clear();       //clear() è chiamata sui turn state del Game per permettere l'acquisto di una carta e la propduzione nello stesso turno
         games.get(0).notify(request);
         System.out.println("La carta richiede per la produzione queste risorse "+ interessata.getRequirements());
         System.out.println("Dopo la produzione ci sono queste risorse "+ tmp.getAllResources());
         System.out.println("Il giocatore dopo la produzione si trova in posizione "+tmp.getBoard().getFaithPath().getAdvancement());
     }
+
+    @Test
+    public void DiscardLeaderRequestTest() {
+        final Socket socket = mock(Socket.class);
+        GameHolder games= new GameHolder();
+        ArrayList<Player> players = new ArrayList<>();
+        try {
+            final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            when(socket.getOutputStream()).thenReturn(byteArrayOutputStream);
+            when(socket.getInputStream()).thenReturn(System.in);
+            players.add(new BasicPlayer("Tester1", new ClientHandler(socket, games)));
+            players.add(new BasicPlayer("Tester2", new ClientHandler(socket, games)));
+        }
+        catch (IOException e) {System.out.println("IOException!");}
+        Game game = new Game(players, DefaultCreator.produceDevCard(), 1, 2);
+        games.add(game);
+
+        Player tmp = games.get(0).getPlayers().get(0);
+        tmp.setTable(games.get(0).getTable());
+        LeaderCard leaderCard = DefaultCreator.produceLeaderCard().get(0);
+        tmp.addLeaderCard(leaderCard);
+        leaderCard = DefaultCreator.produceLeaderCard().get(1);
+        tmp.addLeaderCard(leaderCard);
+        System.out.println(tmp.getLeaderCards());
+        DiscardLeaderRequest discardReq = new DiscardLeaderRequest(1, "Tester1", leaderCard.getID());
+        game.notify(discardReq);
+        assert tmp.getLeadersID().size() == 1;
+        assert tmp.getBoard().getFaithPath().getAdvancement() == 1;
+        discardReq.getClassName();
+        assert discardReq.getGameID() == 1;
+    }
+
+    @Test
+    public void EndTurnRequestTest() {
+        final Socket socket = mock(Socket.class);
+        GameHolder games= new GameHolder();
+        ArrayList<Player> players = new ArrayList<>();
+        try {
+            final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            when(socket.getOutputStream()).thenReturn(byteArrayOutputStream);
+            when(socket.getInputStream()).thenReturn(System.in);
+            players.add(new BasicPlayer("Tester1", new ClientHandler(socket, games)));
+            players.add(new BasicPlayer("Tester2", new ClientHandler(socket, games)));
+        }
+        catch (IOException e) {System.out.println("IOException!");}
+        Game game = new Game(players, DefaultCreator.produceDevCard(), 1, 2);
+        games.add(game);
+
+        Player tmp = games.get(0).getPlayers().get(0);
+        tmp.setTable(games.get(0).getTable());
+        EndTurnRequest endTurnReq = new EndTurnRequest(tmp.getNickName(), 1);
+        game.notify(endTurnReq); //Non va a buon fine perché non è possibile finire il turno senza aver fatto prima un'azione
+        game.getTurnStates().add(TurnState.GET_FROM_MARKET); //Per far si che al game risulti che sia stata fatta un azione
+        game.notify(endTurnReq);
+        endTurnReq.getClassName();
+        assert endTurnReq.getGameID() == 1;
+
+        //Ripete la stessa azione per verificare quando, a finire il turno, è l'ultmo player del giro
+        tmp = games.get(0).getPlayers().get(1);
+        endTurnReq = new EndTurnRequest(tmp.getNickName(), 1);
+        game.notify(endTurnReq); //Non va a buon fine perché non è possibile finire il turno senza aver fatto prima un'azione
+        game.getTurnStates().add(TurnState.GET_FROM_MARKET); //Per far si che al game risulti che sia stata fatta un azione
+        game.notify(endTurnReq);
+        endTurnReq.getClassName();
+        assert endTurnReq.getGameID() == 1;
+    }
+
+    @Test
+    public void InitalPlayersSetRequest() {
+        final Socket socket = mock(Socket.class);
+        GameHolder games= new GameHolder();
+        ArrayList<Player> players = new ArrayList<>();
+        try {
+            final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            when(socket.getOutputStream()).thenReturn(byteArrayOutputStream);
+            when(socket.getInputStream()).thenReturn(System.in);
+            players.add(new BasicPlayer("Tester1", new ClientHandler(socket, games)));
+            players.add(new BasicPlayer("Tester2", new ClientHandler(socket, games)));
+        }
+        catch (IOException e) {System.out.println("IOException!");}
+        Game game = new Game(players, DefaultCreator.produceDevCard(), 1, 2);
+        games.add(game);
+
+        Player player = game.getPlayers().get(0);
+        ArrayList<MarketResource> marketRes = new ArrayList<>();
+        marketRes.add(new MarketResource(Resource.GOLD, 2));
+        marketRes.add(new MarketResource(Resource.GOLD, 2));
+        ArrayList<String> leadersChosen = new ArrayList<>();
+        leadersChosen.add(DefaultCreator.produceLeaderCard().get(0).getID());
+        leadersChosen.add(DefaultCreator.produceLeaderCard().get(1).getID());
+        InitialPlayersSetRequest request = new InitialPlayersSetRequest(1, player.getNickName(), marketRes, leadersChosen);
+        game.notify(request);
+        request.getClassName();
+        request.createUpdate(player, game);
+        assert request.getGameID() == 1;
+        assert player.getLeaderCards().size() == 2;
+
+        //Ripete la stessa azione per far si che tutti i giocatori nella partita abbiano fatto le proprie scelte così da far iniziare la partita
+        player = game.getPlayers().get(1);
+        marketRes = new ArrayList<>();
+        marketRes.add(new MarketResource(Resource.GOLD, 2));
+        marketRes.add(new MarketResource(Resource.GOLD, 2));
+        leadersChosen = new ArrayList<>();
+        leadersChosen.add(DefaultCreator.produceLeaderCard().get(2).getID());
+        leadersChosen.add(DefaultCreator.produceLeaderCard().get(3).getID());
+        request = new InitialPlayersSetRequest(1, player.getNickName(), marketRes, leadersChosen);
+        game.notify(request);
+        request.getClassName();
+        request.createUpdate(player, game);
+        assert request.getGameID() == 1;
+        assert player.getLeaderCards().size() == 2;
+        assert player.getBoard().getWareHouse().getResources().contains(Resource.GOLD);
+        assert player.getBoard().getWareHouse().getResources().size() == 2;
+    }
+
 }
