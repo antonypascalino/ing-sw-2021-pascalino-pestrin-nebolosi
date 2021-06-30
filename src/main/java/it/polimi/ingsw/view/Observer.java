@@ -1,7 +1,6 @@
 package it.polimi.ingsw.view;
 
-import it.polimi.ingsw.client.LineClient;
-import it.polimi.ingsw.connection.JsonReader;
+import it.polimi.ingsw.server.JsonReader;
 import it.polimi.ingsw.Updates.PlayLeaderUpdate;
 import it.polimi.ingsw.Updates.Update;
 import it.polimi.ingsw.view.data.PlayerData;
@@ -26,7 +25,7 @@ public class Observer implements Runnable {
     /**
      * Instantiates a new Observer.
      *
-     * @param connection the connection
+     * @param connection the server
      * @param data       the data
      * @throws IOException the io exception
      */

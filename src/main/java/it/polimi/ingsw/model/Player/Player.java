@@ -255,7 +255,7 @@ public abstract class Player {
     }
 
     /**
-     * Receives an {@link Update} and sends it, through the connection, to the player on client side.
+     * Receives an {@link Update} and sends it, through the server, to the player on client side.
      *
      * @param update the update to send.
      */

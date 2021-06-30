@@ -1,4 +1,4 @@
-package it.polimi.ingsw.connection;
+package it.polimi.ingsw.server;
 
 import it.polimi.ingsw.controller.Request.NewGameRequest;
 import it.polimi.ingsw.controller.Request.Request;

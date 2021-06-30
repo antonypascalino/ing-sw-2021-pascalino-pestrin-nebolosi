@@ -17,7 +17,7 @@ import java.util.Collections;
  * and the information about the game in progress, such for example the {@link DevCard}s available on the {@link Table}
  * or the actions done by the players during their turns.
  * <p>
- * It also receive the information from the connection containing what a player wants to do and, in case it is possible,
+ * It also receive the information from the server containing what a player wants to do and, in case it is possible,
  * handle them modifying the players' status on the server.
  */
 public class Game {

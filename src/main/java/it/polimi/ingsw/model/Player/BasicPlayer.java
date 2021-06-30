@@ -1,6 +1,6 @@
 package it.polimi.ingsw.model.Player;
 
-import it.polimi.ingsw.connection.ClientHandler;
+import it.polimi.ingsw.server.ClientHandler;
 import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.model.Board.Board;
 import it.polimi.ingsw.Updates.Update;
@@ -30,7 +30,7 @@ public class BasicPlayer extends Player {
      *
      * @param nickName the nick name
      */
-    //Constructor used for debugging without connection
+    //Constructor used for debugging without server
     public BasicPlayer(String nickName) {
         leaderCards = new ArrayList<>();
         this.nickName = nickName;

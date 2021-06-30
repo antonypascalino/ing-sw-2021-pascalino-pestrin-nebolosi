@@ -1,6 +1,6 @@
 import it.polimi.ingsw.controller.Request.*;
-import it.polimi.ingsw.connection.ClientHandler;
-import it.polimi.ingsw.connection.GameHolder;
+import it.polimi.ingsw.server.ClientHandler;
+import it.polimi.ingsw.server.GameHolder;
 import it.polimi.ingsw.controller.DefaultCreator;
 import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.controller.Request.MappedResource;

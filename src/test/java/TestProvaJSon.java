@@ -1,7 +1,7 @@
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import it.polimi.ingsw.connection.JsonReader;
+import it.polimi.ingsw.server.JsonReader;
 import it.polimi.ingsw.controller.DefaultCreator;
 import it.polimi.ingsw.model.card.DevCard;
 import it.polimi.ingsw.model.card.ExtraDeposit;

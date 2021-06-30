@@ -1,12 +1,10 @@
 package it.polimi.ingsw.view;
 
-import it.polimi.ingsw.client.LineClient;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.view.data.PlayerData;
 import it.polimi.ingsw.view.selections.*;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  * Every player has his own reference to an object of this type. It, at the beginning of every player's turn, show him

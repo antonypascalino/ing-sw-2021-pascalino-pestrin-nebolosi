@@ -13,7 +13,7 @@ public abstract class Selection {
      * The method of the {@link Selection}s which guides the player through his choices. Different for every type o action.
      * <p>
      * At the end of all the choices the player had to do, the method create a {@link Request} with all the information
-     * about the action just done and send him, through the connection, to the server.
+     * about the action just done and send him, through the server, to the server.
      *
      * @param data the player to guide.
      */

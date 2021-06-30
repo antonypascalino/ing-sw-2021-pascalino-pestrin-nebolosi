@@ -3,7 +3,7 @@ package it.polimi.ingsw.view.data;
 import it.polimi.ingsw.controller.Request.MappedResource;
 import it.polimi.ingsw.controller.Request.MarketResource;
 import it.polimi.ingsw.controller.Request.Request;
-import it.polimi.ingsw.client.LineClient;
+import it.polimi.ingsw.view.LineClient;
 import it.polimi.ingsw.controller.TurnState;
 import it.polimi.ingsw.model.Table.Resource;
 import it.polimi.ingsw.view.MainMenu;
@@ -42,11 +42,11 @@ public class BasicData extends PlayerData {
     private LineClient connection;
 
     /**
-     * Instantiates a new {@link BasicData} setting his nickname and his reference to the connection.
+     * Instantiates a new {@link BasicData} setting his nickname and his reference to the server.
      * It also instantiates all the attributes
      *
      * @param playerID   the player's nickname.
-     * @param connection the reference to the connection.
+     * @param connection the reference to the server.
      */
     public BasicData(String playerID, LineClient connection) {
         this.connection = connection;

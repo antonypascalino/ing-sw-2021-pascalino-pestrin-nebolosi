@@ -1,5 +1,5 @@
-import it.polimi.ingsw.connection.ClientHandler;
-import it.polimi.ingsw.connection.GameHolder;
+import it.polimi.ingsw.server.ClientHandler;
+import it.polimi.ingsw.server.GameHolder;
 import it.polimi.ingsw.controller.DefaultCreator;
 import it.polimi.ingsw.model.Player.*;
 import it.polimi.ingsw.model.Table.Resource;

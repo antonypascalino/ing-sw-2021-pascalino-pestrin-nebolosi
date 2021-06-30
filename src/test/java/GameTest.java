@@ -1,8 +1,8 @@
 
     import it.polimi.ingsw.controller.Request.NewGameRequest;
     import it.polimi.ingsw.controller.Request.Request;
-    import it.polimi.ingsw.connection.ClientHandler;
-    import it.polimi.ingsw.connection.GameHolder;
+    import it.polimi.ingsw.server.ClientHandler;
+    import it.polimi.ingsw.server.GameHolder;
     import it.polimi.ingsw.controller.DefaultCreator;
     import it.polimi.ingsw.controller.Game;
     import it.polimi.ingsw.model.card.DevCard;
@@ -25,7 +25,7 @@
         /**
          * Test the generation of a basic game and getting the front cards
          * from the table
-         * After testing the correct sarialization and deserialization of the Request through the connection
+         * After testing the correct sarialization and deserialization of the Request through the server
          */
         @Test
         public void TestRequestGame()

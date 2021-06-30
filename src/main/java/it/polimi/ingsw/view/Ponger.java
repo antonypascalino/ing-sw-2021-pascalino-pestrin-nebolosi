@@ -1,7 +1,6 @@
 package it.polimi.ingsw.view;
 
 import it.polimi.ingsw.controller.Request.PongRequest;
-import it.polimi.ingsw.client.LineClient;
 
 import java.io.IOException;
 

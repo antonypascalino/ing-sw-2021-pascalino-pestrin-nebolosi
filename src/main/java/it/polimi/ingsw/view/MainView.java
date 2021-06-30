@@ -2,7 +2,6 @@ package it.polimi.ingsw.view;
 
 import it.polimi.ingsw.controller.Request.NewGameRequest;
 import it.polimi.ingsw.controller.Request.Request;
-import it.polimi.ingsw.client.LineClient;
 import it.polimi.ingsw.view.data.BasicData;
 import it.polimi.ingsw.view.data.PlayerData;
 

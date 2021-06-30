@@ -1,4 +1,4 @@
-package it.polimi.ingsw.connection;
+package it.polimi.ingsw.server;
 
 import it.polimi.ingsw.Updates.CheckUpdate;
 
