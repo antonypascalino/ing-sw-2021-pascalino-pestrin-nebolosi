@@ -19,6 +19,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -30,7 +31,6 @@ public class RequestTest {
     //Request to get a column first and then a row from the market
     public void GetFromMarketRequest()
     {
-
         final Socket socket = mock(Socket.class);
         GameHolder games= new GameHolder();
         ArrayList<Player> players = new ArrayList<>();
@@ -49,11 +49,11 @@ public class RequestTest {
         Player tmp = games.get(0).getPlayers().get(0);
         tmp.setTable(games.get(0).getTable());
 
-        //Get the second row of the market
-        ArrayList<Resource> resources = games.get(0).getTable().market.seeRow(2);
+        //Get the second column of the market
+        ArrayList<Resource> resources = games.get(0).getTable().market.seeColumn(2);
         System.out.println(games.get(0).getTable().market.toString());
         ArrayList<MarketResource> mappedRes = new ArrayList<MarketResource>();
-        for (int i=0; i<4;i++)
+        for (int i=0; i<3;i++)
         {
             Resource res= resources.get(i);
             System.out.println(res);
@@ -63,13 +63,39 @@ public class RequestTest {
 
 
 
-        Request test = new MarketRequest(MarketDimension.ROW, 2, games.get(0).getGameId(), tmp.getNickName(), mappedRes);
+        Request test = new MarketRequest(MarketDimension.COL, 2, games.get(0).getGameId(), tmp.getNickName(), mappedRes);
+        assertTrue(test.getGameID() == (games.get(0).getGameId()));
+        test.getClassName();
+        games.get(0).getTurnStates().clear();
+        games.get(0).notify(test);
+        System.out.println(tmp.getAllResources());
+        System.out.println(games.get(0).getTable().market.toString());
+
+        /*
+        NEW REQUEST
+
+
+         */
+        //Get the second row of the market and it should fail
+        resources = games.get(0).getTable().market.seeRow(2);
+        System.out.println(games.get(0).getTable().market.toString());
+        mappedRes = new ArrayList<MarketResource>();
+        for (int i=0; i<4;i++)
+        {
+            Resource res= resources.get(i);
+            System.out.println(res);
+            MarketResource resource = new MarketResource(res, i);
+            mappedRes.add(resource);
+        }
+
+        test = new MarketRequest(MarketDimension.ROW, 2, games.get(0).getGameId(), tmp.getNickName(), mappedRes);
         games.get(0).getTurnStates().clear();
         games.get(0).notify(test);
         System.out.println(tmp.getAllResources());
         System.out.println(games.get(0).getTable().market.toString());
 
     }
+
 
     @Test
     public void DoubleMarket()

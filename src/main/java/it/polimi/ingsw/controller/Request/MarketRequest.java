@@ -113,33 +113,6 @@ public class MarketRequest implements Request {
         return className;
     }
 
-    private ArrayList<Resource> requiredRes() {
-        ArrayList<Resource> requiredRes = new ArrayList<>();
-        for (MarketResource marketRes : marketResources) {
-            requiredRes.add(marketRes.getResource());
-        }
-        return requiredRes;
-    }
-
-    /**
-     * Gets my fp steps.
-     *
-     * @return the my fp steps
-     */
-    public int getMyFPSteps() {
-        return myFPSteps;
-    }
-
-    /**
-     * Gets discarded steps.
-     *
-     * @return the discarded steps
-     */
-    public int getDiscardedSteps() {
-        return discardedSteps;
-    }
-
-
     /**
      * Requested res array list.
      *
