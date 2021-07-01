@@ -18,7 +18,8 @@
 |--------------|:------------:|:-----------------:|
 |__model__|99%|96%|
 |__controller__|100%|97%|
-To see a more specific coverage report : [Coverage_Report](https://github.com/pasca99/ing-sw-2021-pascalino-pestrin-nebolosi/tree/main/attachments/Coverage_Report)
+
+To see a more specific [coverage report](https://github.com/pasca99/ing-sw-2021-pascalino-pestrin-nebolosi/tree/main/attachments/Coverage_Report)
 
 ## Libraries e Plugins
 |Library/Plugin|Description|
