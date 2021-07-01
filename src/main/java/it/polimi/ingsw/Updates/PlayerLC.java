@@ -34,6 +34,7 @@ public class PlayerLC {
 
     /**
      * Sets {@link Player}'s ID.
+     * @param playerID the playerNickname
      */
     public void setPlayerID(String playerID) {
         this.playerID = playerID;

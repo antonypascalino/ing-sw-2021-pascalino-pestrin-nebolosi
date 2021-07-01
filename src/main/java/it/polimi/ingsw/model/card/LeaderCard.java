@@ -41,8 +41,8 @@ public interface LeaderCard extends Convertible {
     /**
      * Compare two {@link LeaderCard}.
      *
-     * @param compare the {@link LeaderCard} to compare.
-     * @return true if the {@link LeaderCard match, false otherwise.
+     * @param compare the leader to compare.
+     * @return true if the leadercard match, false otherwise.
      */
     boolean equals(LeaderCard compare);
 

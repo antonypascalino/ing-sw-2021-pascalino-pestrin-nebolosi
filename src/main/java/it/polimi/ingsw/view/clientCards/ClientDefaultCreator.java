@@ -927,7 +927,7 @@ public class ClientDefaultCreator {
 
     /**
      * Static method used for generate an ArrayList containing all the defaults
-     * {@link ClientLeaderCard  in the basic game settings.
+     * clientLeaderCards  in the basic game settings.
      *
      * @return the ArrayList.
      */

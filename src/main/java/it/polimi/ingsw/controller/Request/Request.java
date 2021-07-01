@@ -52,9 +52,9 @@ public interface Request extends Convertible {
     Update createUpdate(Player player, Game game);
 
     /**
-     * Gets the {@link Player}'s ID who sent the request.
+     * Gets the player's ID who sent the request.
      *
-     * @return the {@link Player's ID.
+     * @return the player's ID.
      */
     String getPlayerID();
 
