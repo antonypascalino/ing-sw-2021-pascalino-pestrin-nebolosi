@@ -16,17 +16,33 @@ import java.net.Socket;
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
 
+/**
+ * The type Client handler.
+ */
 public class ClientHandler extends Thread {
 
     private Socket socket;
     private BufferedReader in;
     private PrintWriter out;
     private GameHolder games;
-    //Each clientHandler has a playerId so it's sure the requests comes from the right socket
+    /**
+     * The Player id.
+     */
+//Each clientHandler has a playerId so it's sure the requests comes from the right socket
     public String playerId;
     private Game thisGame; //Game to which the player is connected
+    /**
+     * The Json.
+     */
     Gson json;
 
+    /**
+     * Instantiates a new Client handler.
+     *
+     * @param socket the socket for this player
+     * @param games  the game holder containing all the games
+     * @throws IOException the io exception
+     */
     public ClientHandler(Socket socket, GameHolder games) throws IOException {
         json = new Gson();
         this.games = games;
@@ -36,10 +52,19 @@ public class ClientHandler extends Thread {
         this.start();
     }
 
+    /**
+     * Sets player id, it's called by the GameHolder when it creates a new game
+     *
+     * @param playerId the player id
+     */
     public void setPlayerId(String playerId) {
         this.playerId = playerId;
     }
 
+    /**
+     * Keeps reading from the socket every update and doesn't handle any request that doesn't corrispond to the default
+     * ones
+     */
     @Override
     public void run() {
 
@@ -91,13 +116,24 @@ public class ClientHandler extends Thread {
         }
     }
 
-    //Synchronized because it's used by both threads (once for the actual game and another one for checking the status)
+    /**
+     * Notify with an update every time a player edits the model.
+     * Synchronized because it's used by both threads (one for the actual game and another one for checking the connection
+     * status)
+     * @param update the update
+     */
+    //
     public synchronized void notifyView(Update update) {
         String message = json.toJson(update);
         out.println(message);
         out.flush();
     }
 
+    /**
+     * Sets game, it's called by the GameHolder when it creates a new game
+     *
+     * @param newGame the new game
+     */
     public void setGame(Game newGame) {
         thisGame = newGame;
     }

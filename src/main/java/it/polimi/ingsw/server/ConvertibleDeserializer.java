@@ -12,6 +12,7 @@ import java.lang.reflect.Type;
 
 /**
  * Class used for deserialize any type of interface that extends the convertible interface
+ *
  * @param <T> The interface that needs to be deserialized
  */
 class ConvertibleDeserializer<T extends Convertible> implements JsonDeserializer<T> {
@@ -27,6 +28,12 @@ class ConvertibleDeserializer<T extends Convertible> implements JsonDeserializer
         return deserializationContext.deserialize(jsonObject, clazz);
     }
 
+    /**
+     * Gets class instance.
+     *
+     * @param className the class name
+     * @return the class instance
+     */
     @SuppressWarnings("unchecked")
     public Class<T> getClassInstance(String className) {
         try {

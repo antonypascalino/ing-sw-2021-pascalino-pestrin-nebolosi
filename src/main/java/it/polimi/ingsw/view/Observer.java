@@ -13,20 +13,27 @@ import java.net.SocketException;
 import java.net.SocketTimeoutException;
 
 /**
- * The type Observer.
+ * The server Observer.
+ * Keeps listening on the server and handle any update
  */
-//Keep listening on the server and print any message that is received
 public class Observer implements Runnable {
 
+
     Socket socket;
+    /**
+     * The In.
+     */
     BufferedReader in;
+    /**
+     * The Data.
+     */
     PlayerData data;
 
     /**
      * Instantiates a new Observer.
      *
-     * @param connection the server
-     * @param data       the data
+     * @param connection the serverConnection
+     * @param data       the Player data
      * @throws IOException the io exception
      */
     public Observer(LineClient connection, PlayerData data) throws IOException {
@@ -35,6 +42,10 @@ public class Observer implements Runnable {
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
     }
 
+    /**
+     * Keeps reading updates from the server and handle them.
+     * It also handles the server crash in case it occures
+     */
     @Override
     public void run() {
         try {
@@ -61,7 +72,7 @@ public class Observer implements Runnable {
     /**
      * Sets player.
      *
-     * @param data the data
+     * @param data the playerData
      */
     public void setPlayer(PlayerData data) {
         this.data = data;
@@ -70,7 +81,7 @@ public class Observer implements Runnable {
     /**
      * Gets data.
      *
-     * @return the data
+     * @return the PlayerData
      */
     public PlayerData getData() {
         return data;

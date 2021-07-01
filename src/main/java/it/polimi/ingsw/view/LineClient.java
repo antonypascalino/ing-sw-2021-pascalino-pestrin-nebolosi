@@ -9,6 +9,9 @@ import java.net.Socket;
 import java.util.NoSuchElementException;
 
 
+/**
+ * The serverHandler from the client
+ */
 public class LineClient {
     private String ip;
     private int port;
@@ -16,14 +19,25 @@ public class LineClient {
     private String message;
     private Socket socket;
     private Gson json;
-    PrintWriter socketOut;
+    private PrintWriter socketOut;
 
+    /**
+     * Instantiates a new Line client.
+     *
+     * @param ip   the ip
+     * @param port the port
+     */
     public LineClient(String ip, int port) {
         json = new Gson();
         this.ip = ip;
         this.port = port;
     }
 
+    /**
+     * Start client and open connection with the server
+     *
+     * @throws IOException the io exception
+     */
     public void startClient() throws IOException {
         socket = new Socket(ip, port);
         System.out.println("Connection established");
@@ -31,27 +45,11 @@ public class LineClient {
     }
 
     /**
-     * Send a message to the server and return the feedback from the server
+     * Serialize and send a request to the server, it's synchronzied becuas both the game and the ponger use ths
      *
-     * @param input the string that needs to be sent to the server
-     * the server response
-     * @throws IOException
+     * @param input the request before being serialized
+     * @throws IOException the io exception
      */
-    public void sendMessage(String input) throws IOException {
-        message = input;
-        PrintWriter socketOut = new PrintWriter(socket.getOutputStream());
-        try {
-            String inputLine = message;
-            socketOut.println(inputLine);
-            socketOut.flush();
-        } catch (NoSuchElementException e) {
-            System.out.println("Connection closed");
-        } finally {
-            socketOut.close();
-        }
-        //In case there's an error
-    }
-
     public synchronized void sendRequest(Request input) throws IOException {
         message = json.toJson(input);
 
@@ -65,18 +63,20 @@ public class LineClient {
         //In case there's an error
     }
 
+    /**
+     * Gets socket.
+     *
+     * @return the socket
+     */
     public Socket getSocket() {
         return socket;
     }
 
-    public void closeClient() {
-        try {
-            socket.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
+    /**
+     * Sets ip for communicating to the server and starts the server
+     *
+     * @param serverIP the server ip
+     */
     public void setIP(String serverIP) {
         this.ip = serverIP;
         try {

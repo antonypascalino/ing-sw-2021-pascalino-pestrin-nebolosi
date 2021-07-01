@@ -14,6 +14,12 @@ public class Ponger implements Runnable {
     private LineClient connection;
     private String nickname;
 
+    /**
+     * Instantiates a new Ponger.
+     *
+     * @param client   the LineClient used for sending an update
+     * @param nickname the nickname of the player
+     */
     public Ponger(LineClient client, String nickname) {
         this.connection = client;
         this.nickname = nickname;

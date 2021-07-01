@@ -13,26 +13,53 @@ import it.polimi.ingsw.Updates.Update;
 
 import java.util.ArrayList;
 
+/**
+ * The lobby containing every game on the server
+ */
 //This class is used so that the creation of a new game is synchronized
 public class GameHolder {
     private ArrayList<Game> games;
 
+    /**
+     * Instantiates a new Game holder.
+     */
     public GameHolder() {
         games = new ArrayList<>();
     }
 
+    /**
+     * Size the size of the games
+     *
+     * @return the int
+     */
     public synchronized int size() {
         return games.size();
     }
 
+    /**
+     * Get game.
+     *
+     * @param i the
+     * @return the game
+     */
     public synchronized Game get(int i) {
         return games.get(i);
     }
 
+    /**
+     * Remove a game
+     *
+     * @param game the game
+     */
     public synchronized void remove(Game game) {
         games.remove(game);
     }
 
+    /**
+     * Add a game
+     *
+     * @param game the game
+     */
     public synchronized void add(Game game) {
         games.add(game);
     }
@@ -40,7 +67,8 @@ public class GameHolder {
     /**
      * Adding a new player to an existing game or creating a new game
      *
-     * @param request the request used for creating a player
+     * @param request       the request used for creating a player and the new game
+     * @param clientHandler the client handler
      */
     public synchronized void add(Request request, ClientHandler clientHandler) {
         //If there's no game on the server create the first one

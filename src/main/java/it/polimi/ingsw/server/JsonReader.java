@@ -15,6 +15,7 @@ import java.util.ArrayList;
 public class JsonReader{
     /**
      * Static method used for reading a sequence of devCard from a json file
+     *
      * @param input the string containing the input information for deserialize
      * @return an array list with the deserialized devCards
      */
@@ -35,6 +36,7 @@ public class JsonReader{
 
     /**
      * Static method used for reading a sequence of requests from a json file
+     *
      * @param input the string containing the input information for deserialize
      * @return an array list with the deserialized requests
      */
@@ -54,8 +56,10 @@ public class JsonReader{
 
     /**
      * Static method used for reading a requests from a json file
+     *
      * @param input the string containing the input information for deserialize
      * @return an array list with the deserialized request
+     * @throws JsonSyntaxException the json syntax exception
      */
     public static Request readSingleRequest(String input) throws JsonSyntaxException
     {
@@ -67,6 +71,12 @@ public class JsonReader{
         return empObject;
     }
 
+    /**
+     * Static method used for reading a update from a json file, called by the client
+     *
+     * @param input the input
+     * @return the update
+     */
     public static Update readUpdate(String input) {
         GsonBuilder builder = new GsonBuilder();
         builder.registerTypeAdapter(Update.class, new ConvertibleDeserializer<Update>());

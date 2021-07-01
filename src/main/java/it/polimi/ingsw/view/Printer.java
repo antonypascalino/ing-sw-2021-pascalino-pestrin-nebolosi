@@ -23,44 +23,6 @@ import java.util.Scanner;
 public class Printer {
 
     /**
-     * Print resources resource.
-     *
-     * @param res the res
-     * @return the resource
-     */
-    public Resource printResources(ArrayList<Resource> res) {
-        Scanner inputs = new Scanner(System.in);
-        String selection;
-
-        int actions = 0;
-        while (true) {
-            for (int i = 0; i < res.size(); i++) {
-                System.out.println("[" + (i + 1) + "] " + res.get(i));
-                actions = i + 1;
-            }
-            System.out.println("Enter selection: ");
-            selection = inputs.nextLine();
-            try {
-                int index = Integer.parseInt(selection);
-                if (index > actions || index <= 0) {
-                    System.out.println("Invalid input!");
-                } else {
-                    if (res.get(index - 1).equals(Resource.CHOICE)) {
-                        ArrayList<Resource> choices = new ArrayList<>();
-                        choices.add(Resource.GOLD);
-                        choices.add(Resource.SERVANT);
-                        choices.add(Resource.SHIELD);
-                        choices.add(Resource.STONE);
-                    }
-                    return res.get(index - 1);
-                }
-            } catch (NumberFormatException e) {
-                System.out.println("Invalid input!");
-            }
-        }
-    }
-
-    /**
      * Prints the {@link MappedResource}s received as parameter and make player choose one of them.
      *
      * @param mappedRes the {@link MappedResource}s.
