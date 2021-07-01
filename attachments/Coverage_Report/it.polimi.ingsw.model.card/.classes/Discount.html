@@ -1,0 +1,189 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: Discount</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">it.polimi.ingsw.model.card</a> ]
+</div>
+
+<h1>Coverage Summary for Class: Discount (it.polimi.ingsw.model.card)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Discount</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (10/ 10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (38/ 38)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package it.polimi.ingsw.model.card;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import it.polimi.ingsw.model.Player.DiscountedPlayer;
+<i>4</i>&nbsp;import it.polimi.ingsw.model.Player.Player;
+<i>5</i>&nbsp;import it.polimi.ingsw.model.Table.Resource;
+<i>6</i>&nbsp;import it.polimi.ingsw.model.Table.Table;
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;/**
+<i>9</i>&nbsp; * The {@link LeaderCard} that allows the {@link Player} to pay a {@link Resource}
+<i>10</i>&nbsp; * less when buys {@link DevCard} from the {@link Table}
+<i>11</i>&nbsp; */
+<i>12</i>&nbsp;public class Discount implements LeaderCard {
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;    private final String color1;
+<i>15</i>&nbsp;    private final String color2;
+<i>16</i>&nbsp;    private final Resource discount;
+<i>17</i>&nbsp;    private final int victoryPoints;
+<i>18</i>&nbsp;    private boolean isEnable;
+<i>19</i>&nbsp;    private Player player;
+<i>20</i>&nbsp;    private final String className;
+<i>21</i>&nbsp;    private final String cardID;
+<i>22</i>&nbsp;
+<i>23</i>&nbsp;    /**
+<i>24</i>&nbsp;     * Instantiates a new Discount {@link LeaderCard}, and sets enable to false.
+<i>25</i>&nbsp;     *
+<i>26</i>&nbsp;     * @param color1 the first color of a {@link DevCard} needed to play the {@link LeaderCard}.
+<i>27</i>&nbsp;     * @param color2 the second color of a {@link DevCard} needed to play the {@link LeaderCard}.
+<i>28</i>&nbsp;     * @param dis    the {@link Resource} representing the discount given to the {@link Player}.
+<i>29</i>&nbsp;     * @param vp     the victory points the {@link LeaderCard} is gonna give to the {@link Player} when enabled.
+<i>30</i>&nbsp;     * @param cardID the {@link LeaderCard}&#39;s ID.
+<i>31</i>&nbsp;     */
+<b class="fc"><i>32</i>&nbsp;    public Discount(String color1, String color2, Resource dis, int vp, String cardID) {</b>
+<b class="fc"><i>33</i>&nbsp;        this.cardID = cardID;</b>
+<b class="fc"><i>34</i>&nbsp;        className = this.getClass().getName();</b>
+<b class="fc"><i>35</i>&nbsp;        this.color1 = color1;</b>
+<b class="fc"><i>36</i>&nbsp;        this.color2 = color2;</b>
+<b class="fc"><i>37</i>&nbsp;        discount = dis;</b>
+<b class="fc"><i>38</i>&nbsp;        victoryPoints = vp;</b>
+<b class="fc"><i>39</i>&nbsp;        isEnable = false;</b>
+<b class="fc"><i>40</i>&nbsp;    }</b>
+<i>41</i>&nbsp;
+<i>42</i>&nbsp;    @Override
+<i>43</i>&nbsp;    public void setPlayer(Player tmp) {
+<b class="fc"><i>44</i>&nbsp;        this.player = tmp;</b>
+<b class="fc"><i>45</i>&nbsp;    }</b>
+<i>46</i>&nbsp;
+<i>47</i>&nbsp;    @Override
+<i>48</i>&nbsp;    public void assignTo(Player player) {
+<b class="fc"><i>49</i>&nbsp;        this.player = player;</b>
+<b class="fc"><i>50</i>&nbsp;        player.addLeaderCard(this);</b>
+<b class="fc"><i>51</i>&nbsp;    }</b>
+<i>52</i>&nbsp;
+<i>53</i>&nbsp;    @Override
+<i>54</i>&nbsp;    public boolean isEnable() {
+<b class="fc"><i>55</i>&nbsp;        return isEnable;</b>
+<i>56</i>&nbsp;    }
+<i>57</i>&nbsp;
+<i>58</i>&nbsp;    @Override
+<i>59</i>&nbsp;    public boolean equals(LeaderCard compare) {
+<b class="fc"><i>60</i>&nbsp;        return this.cardID.equals(compare.getID());</b>
+<i>61</i>&nbsp;    }
+<i>62</i>&nbsp;
+<i>63</i>&nbsp;    @Override
+<i>64</i>&nbsp;    public String getID() {
+<b class="fc"><i>65</i>&nbsp;        return cardID;</b>
+<i>66</i>&nbsp;    }
+<i>67</i>&nbsp;
+<i>68</i>&nbsp;    @Override
+<i>69</i>&nbsp;    public String getClassName() {
+<b class="fc"><i>70</i>&nbsp;        return className;</b>
+<i>71</i>&nbsp;    }
+<i>72</i>&nbsp;
+<i>73</i>&nbsp;    @Override
+<i>74</i>&nbsp;    public void playCard() {
+<b class="fc"><i>75</i>&nbsp;        if (canBePlayed()) {</b>
+<b class="fc"><i>76</i>&nbsp;            player.addVictoryPoints(victoryPoints);</b>
+<b class="fc"><i>77</i>&nbsp;            isEnable = true;</b>
+<b class="fc"><i>78</i>&nbsp;            Player tmp = new DiscountedPlayer(player, discount);</b>
+<i>79</i>&nbsp;            //Add the new powered player in substitution to the actual one if the game references
+<b class="fc"><i>80</i>&nbsp;            player.getGame().changePlayer(player, tmp);</b>
+<b class="fc"><i>81</i>&nbsp;            for (LeaderCard card : player.getLeaderCards()) {</b>
+<i>82</i>&nbsp;                //Do not change the reference on this card
+<b class="fc"><i>83</i>&nbsp;                if (!card.getID().equals(this.getID()))</b>
+<b class="fc"><i>84</i>&nbsp;                    card.setPlayer(tmp);</b>
+<b class="fc"><i>85</i>&nbsp;            }</b>
+<b class="fc"><i>86</i>&nbsp;            this.player = tmp;</b>
+<i>87</i>&nbsp;        }
+<b class="fc"><i>88</i>&nbsp;    }</b>
+<i>89</i>&nbsp;
+<i>90</i>&nbsp;    @Override
+<i>91</i>&nbsp;    public boolean canBePlayed() {
+<b class="fc"><i>92</i>&nbsp;        boolean secondColor = false;</b>
+<b class="fc"><i>93</i>&nbsp;        boolean firstColor = false;</b>
+<b class="fc"><i>94</i>&nbsp;        if (isEnable) return false; //The card can&#39;t be played twice</b>
+<b class="fc"><i>95</i>&nbsp;        for (DevCard card : player.getBoard().getSlot().getAllCards()) {</b>
+<b class="fc"><i>96</i>&nbsp;            if (card.getColor().equals(color1.toUpperCase())) firstColor = true;</b>
+<b class="fc"><i>97</i>&nbsp;            if (card.getColor().equals(color2.toUpperCase())) secondColor = true;</b>
+<b class="fc"><i>98</i>&nbsp;        }</b>
+<b class="fc"><i>99</i>&nbsp;        return (firstColor &amp;&amp; secondColor);</b>
+<i>100</i>&nbsp;    }
+<i>101</i>&nbsp;
+<i>102</i>&nbsp;    @Override
+<i>103</i>&nbsp;    public Resource getPowerResource() {
+<b class="fc"><i>104</i>&nbsp;        return discount;</b>
+<i>105</i>&nbsp;    }
+<i>106</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-07-02 00:02</div>
+</div>
+</body>
+</html>

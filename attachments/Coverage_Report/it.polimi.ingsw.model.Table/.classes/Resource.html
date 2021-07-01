@@ -1,0 +1,128 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: Resource</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">it.polimi.ingsw.model.Table</a> ]
+</div>
+
+<h1>Coverage Summary for Class: Resource (it.polimi.ingsw.model.Table)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Resource</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/ 4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    94,4%
+  </span>
+  <span class="absValue">
+    (17/ 18)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package it.polimi.ingsw.model.Table;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import java.util.ArrayList;
+<i>4</i>&nbsp;import it.polimi.ingsw.model.Board.FaithPath;
+<i>5</i>&nbsp;
+<i>6</i>&nbsp;/**
+<i>7</i>&nbsp; * A resource is used in the game by the players whenever they want to buy a development card or produce other resources.
+<i>8</i>&nbsp; * The FAITH resource make the players move on their {@link FaithPath}.
+<i>9</i>&nbsp; */
+<b class="fc"><i>10</i>&nbsp;public enum Resource {</b>
+<b class="fc"><i>11</i>&nbsp;    GOLD,</b>
+<b class="fc"><i>12</i>&nbsp;    SHIELD,</b>
+<b class="fc"><i>13</i>&nbsp;    SERVANT,</b>
+<b class="fc"><i>14</i>&nbsp;    STONE,</b>
+<b class="fc"><i>15</i>&nbsp;    FAITH,</b>
+<b class="fc"><i>16</i>&nbsp;    EMPTY,</b>
+<b class="fc"><i>17</i>&nbsp;    CHOICE;</b>
+<i>18</i>&nbsp;
+<i>19</i>&nbsp;    /**
+<i>20</i>&nbsp;     * Gets all kinds of {@link Resource}s.
+<i>21</i>&nbsp;     *
+<i>22</i>&nbsp;     * @param list the list
+<i>23</i>&nbsp;     * @return an ArrayList with all kinds of {@link Resource}s.
+<i>24</i>&nbsp;     */
+<i>25</i>&nbsp;    public static ArrayList&lt;Resource&gt; cloneList(ArrayList&lt;Resource&gt; list) {
+<b class="fc"><i>26</i>&nbsp;        ArrayList&lt;Resource&gt; clone = new ArrayList&lt;&gt;(list.size());</b>
+<b class="fc"><i>27</i>&nbsp;        clone.addAll(list);</b>
+<b class="fc"><i>28</i>&nbsp;        return clone;</b>
+<i>29</i>&nbsp;    }
+<i>30</i>&nbsp;
+<i>31</i>&nbsp;    /**
+<i>32</i>&nbsp;     * Used to pretty print the resources in the CLI.
+<i>33</i>&nbsp;     *
+<i>34</i>&nbsp;     * @return the string to print.
+<i>35</i>&nbsp;     */
+<i>36</i>&nbsp;    public String inLine() {
+<b class="fc"><i>37</i>&nbsp;        if (this == GOLD) return &quot;GOLD   &quot;;</b>
+<b class="fc"><i>38</i>&nbsp;        else if (this == STONE) return &quot;STONE  &quot;;</b>
+<b class="fc"><i>39</i>&nbsp;        else if (this == SHIELD) return &quot;SHIELD &quot;;</b>
+<b class="fc"><i>40</i>&nbsp;        else if (this == SERVANT) return &quot;SERVANT&quot;;</b>
+<b class="fc"><i>41</i>&nbsp;        else if (this == EMPTY) return &quot;EMPTY  &quot;;</b>
+<b class="fc"><i>42</i>&nbsp;        else if (this == FAITH) return &quot;FAITH  &quot;;</b>
+<b class="nc"><i>43</i>&nbsp;        return null;</b>
+<i>44</i>&nbsp;    }
+<i>45</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-07-02 00:02</div>
+</div>
+</body>
+</html>

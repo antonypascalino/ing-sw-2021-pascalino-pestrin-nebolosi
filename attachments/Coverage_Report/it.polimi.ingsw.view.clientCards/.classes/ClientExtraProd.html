@@ -1,0 +1,147 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: ClientExtraProd</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">it.polimi.ingsw.view.clientCards</a> ]
+</div>
+
+<h1>Coverage Summary for Class: ClientExtraProd (it.polimi.ingsw.view.clientCards)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ClientExtraProd</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 14)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package it.polimi.ingsw.view.clientCards;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import it.polimi.ingsw.model.Colors;
+<i>4</i>&nbsp;import it.polimi.ingsw.model.Table.Resource;
+<i>5</i>&nbsp;import it.polimi.ingsw.view.data.PlayerData;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;import java.util.ArrayList;
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;/**
+<i>10</i>&nbsp; * The {@link ClientLeaderCard} that gives to the {@link PlayerData} an extra production power.
+<i>11</i>&nbsp; */
+<i>12</i>&nbsp;public class ClientExtraProd extends ClientLeaderCard {
+<i>13</i>&nbsp;    private Colors color;
+<i>14</i>&nbsp;    private Resource prodRequired;
+<i>15</i>&nbsp;
+<i>16</i>&nbsp;
+<i>17</i>&nbsp;    /**
+<i>18</i>&nbsp;     * Instantiates a new Extra Production {@link ClientLeaderCard}.
+<i>19</i>&nbsp;     *
+<i>20</i>&nbsp;     * @param victoryPoints the victory points the {@link ClientLeaderCard} gives the {@link PlayerData} when played.
+<i>21</i>&nbsp;     * @param color         the color of a {@link ClientDevCard} of level 2 needed to play the {@link ClientLeaderCard}.
+<i>22</i>&nbsp;     * @param prodRequired  the {@link ClientDevCard} needed to use this production power.
+<i>23</i>&nbsp;     * @param leaderID      the {@link ClientLeaderCard}&#39;s ID.
+<i>24</i>&nbsp;     */
+<i>25</i>&nbsp;    public ClientExtraProd(int victoryPoints, Colors color, Resource prodRequired, String leaderID) {
+<b class="nc"><i>26</i>&nbsp;        super(leaderID, victoryPoints, prodRequired);</b>
+<b class="nc"><i>27</i>&nbsp;        this.prodRequired = prodRequired;</b>
+<b class="nc"><i>28</i>&nbsp;        this.color = color;</b>
+<i>29</i>&nbsp;    }
+<i>30</i>&nbsp;
+<i>31</i>&nbsp;    @Override
+<i>32</i>&nbsp;    public boolean canBePlayed(PlayerData data) {
+<b class="nc"><i>33</i>&nbsp;        ArrayList&lt;ClientDevCard&gt; clientDevCards = new ArrayList&lt;&gt;();</b>
+<b class="nc"><i>34</i>&nbsp;        for (String s : data.getAllDevID()) {</b>
+<b class="nc"><i>35</i>&nbsp;            clientDevCards.add(data.getCardFromID(s));</b>
+<b class="nc"><i>36</i>&nbsp;        }</b>
+<b class="nc"><i>37</i>&nbsp;        for (ClientDevCard card : clientDevCards) {</b>
+<b class="nc"><i>38</i>&nbsp;            if (card.getLevel() == 2 &amp;&amp; card.getColor().equals(color)) return true;</b>
+<b class="nc"><i>39</i>&nbsp;        }</b>
+<b class="nc"><i>40</i>&nbsp;        return false;</b>
+<i>41</i>&nbsp;    }
+<i>42</i>&nbsp;
+<i>43</i>&nbsp;    /**
+<i>44</i>&nbsp;     * Gets color.
+<i>45</i>&nbsp;     *
+<i>46</i>&nbsp;     * @return the color
+<i>47</i>&nbsp;     */
+<i>48</i>&nbsp;    public Colors getColor() {
+<b class="nc"><i>49</i>&nbsp;        return color;</b>
+<i>50</i>&nbsp;    }
+<i>51</i>&nbsp;
+<i>52</i>&nbsp;    /**
+<i>53</i>&nbsp;     * Gets prod required.
+<i>54</i>&nbsp;     *
+<i>55</i>&nbsp;     * @return the prod required
+<i>56</i>&nbsp;     */
+<i>57</i>&nbsp;    public Resource getProdRequired() {
+<b class="nc"><i>58</i>&nbsp;        return prodRequired;</b>
+<i>59</i>&nbsp;    }
+<i>60</i>&nbsp;
+<i>61</i>&nbsp;    public String toString() {
+<b class="nc"><i>62</i>&nbsp;        return &quot;Extra Production Leader Card:\nYou will have an Extra Production power which you can use to produce a CHOICE resource and a FAITH point, paying a &quot; + prodRequired + &quot;\nTo play this card you need to have a &quot; + color + &quot; Development card of level 2&quot;;</b>
+<i>63</i>&nbsp;    }
+<i>64</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-07-02 00:02</div>
+</div>
+</body>
+</html>

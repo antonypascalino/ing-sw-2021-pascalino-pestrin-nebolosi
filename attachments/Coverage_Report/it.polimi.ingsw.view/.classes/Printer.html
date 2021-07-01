@@ -1,0 +1,637 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: Printer</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">it.polimi.ingsw.view</a> ]
+</div>
+
+<h1>Coverage Summary for Class: Printer (it.polimi.ingsw.view)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Printer</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 19)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 263)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package it.polimi.ingsw.view;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import it.polimi.ingsw.controller.Request.MappedResource;
+<i>4</i>&nbsp;import it.polimi.ingsw.controller.Request.MarketDimension;
+<i>5</i>&nbsp;import it.polimi.ingsw.controller.TurnState;
+<i>6</i>&nbsp;import it.polimi.ingsw.model.Table.Resource;
+<i>7</i>&nbsp;import it.polimi.ingsw.Updates.EndgameUpdate;
+<i>8</i>&nbsp;import it.polimi.ingsw.Updates.PlayerVP;
+<i>9</i>&nbsp;import it.polimi.ingsw.Updates.Update;
+<i>10</i>&nbsp;import it.polimi.ingsw.view.data.OtherPlayerData;
+<i>11</i>&nbsp;import it.polimi.ingsw.view.data.PlayerData;
+<i>12</i>&nbsp;import it.polimi.ingsw.view.selections.MarketArray;
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;import java.util.ArrayList;
+<i>15</i>&nbsp;import java.util.Collections;
+<i>16</i>&nbsp;import java.util.Locale;
+<i>17</i>&nbsp;import java.util.Scanner;
+<i>18</i>&nbsp;
+<i>19</i>&nbsp;/**
+<i>20</i>&nbsp; * Everything that has to be shown on the player&#39;s CLI is printed out by this class.
+<i>21</i>&nbsp; * It also read every player&#39;s input.
+<i>22</i>&nbsp; */
+<b class="nc"><i>23</i>&nbsp;public class Printer {</b>
+<i>24</i>&nbsp;
+<i>25</i>&nbsp;    /**
+<i>26</i>&nbsp;     * Prints the {@link MappedResource}s received as parameter and make player choose one of them.
+<i>27</i>&nbsp;     *
+<i>28</i>&nbsp;     * @param mappedRes the {@link MappedResource}s.
+<i>29</i>&nbsp;     * @return the chosen {@link MappedResource}.
+<i>30</i>&nbsp;     */
+<i>31</i>&nbsp;    public MappedResource printMappedRes(ArrayList&lt;MappedResource&gt; mappedRes) {
+<b class="nc"><i>32</i>&nbsp;        Scanner inputs = new Scanner(System.in);</b>
+<i>33</i>&nbsp;        String selection;
+<i>34</i>&nbsp;
+<i>35</i>&nbsp;        while (true) {
+<b class="nc"><i>36</i>&nbsp;            int actions = 0;</b>
+<b class="nc"><i>37</i>&nbsp;            for (int i = 0; i &lt; mappedRes.size(); i++) {</b>
+<b class="nc"><i>38</i>&nbsp;                if (mappedRes.get(i).getResource().equals(Resource.EMPTY)) {</b>
+<b class="nc"><i>39</i>&nbsp;                    continue;</b>
+<i>40</i>&nbsp;                }
+<b class="nc"><i>41</i>&nbsp;                System.out.println(&quot;[&quot; + (i + 1) + &quot;] &quot; + mappedRes.get(i).getResource() + &quot; &quot; + mappedRes.get(i).getPlace());</b>
+<b class="nc"><i>42</i>&nbsp;                actions = i + 1;</b>
+<i>43</i>&nbsp;            }
+<b class="nc"><i>44</i>&nbsp;            System.out.println(&quot;Enter selection: &quot;);</b>
+<b class="nc"><i>45</i>&nbsp;            selection = inputs.nextLine();</b>
+<i>46</i>&nbsp;            try {
+<b class="nc"><i>47</i>&nbsp;                int index = Integer.parseInt(selection);</b>
+<b class="nc"><i>48</i>&nbsp;                if (index &gt; actions || index &lt;= 0) {</b>
+<b class="nc"><i>49</i>&nbsp;                    System.out.println(&quot;Invalid input!&quot;);</b>
+<b class="nc"><i>50</i>&nbsp;                } else return mappedRes.get(index - 1);</b>
+<b class="nc"><i>51</i>&nbsp;            } catch (NumberFormatException e) {</b>
+<b class="nc"><i>52</i>&nbsp;                System.out.println(&quot;Invalid input!&quot;);</b>
+<b class="nc"><i>53</i>&nbsp;            }</b>
+<b class="nc"><i>54</i>&nbsp;        }</b>
+<i>55</i>&nbsp;    }
+<i>56</i>&nbsp;
+<i>57</i>&nbsp;
+<i>58</i>&nbsp;    /**
+<i>59</i>&nbsp;     * Prints all the possible action that can be done by the player at the moment and make him choose one of them.
+<i>60</i>&nbsp;     *
+<i>61</i>&nbsp;     * @param turnStates the actions the player can do.
+<i>62</i>&nbsp;     * @return the action chose by the player.
+<i>63</i>&nbsp;     */
+<i>64</i>&nbsp;    public TurnState printTurnStates(ArrayList&lt;TurnState&gt; turnStates) {
+<b class="nc"><i>65</i>&nbsp;        Scanner inputs = new Scanner(System.in);</b>
+<i>66</i>&nbsp;        String selection;
+<b class="nc"><i>67</i>&nbsp;        int actions = 0;</b>
+<i>68</i>&nbsp;
+<i>69</i>&nbsp;        while (true) {
+<b class="nc"><i>70</i>&nbsp;            System.out.println(&quot;What do you wanna do?&quot;);</b>
+<b class="nc"><i>71</i>&nbsp;            for (int i = 0; i &lt; turnStates.size(); i++) {</b>
+<b class="nc"><i>72</i>&nbsp;                System.out.println(&quot;[&quot; + (i + 1) + &quot;] &quot; + turnStates.get(i));</b>
+<b class="nc"><i>73</i>&nbsp;                actions = i + 1;</b>
+<i>74</i>&nbsp;            }
+<b class="nc"><i>75</i>&nbsp;            System.out.println(&quot;Enter selection: &quot;);</b>
+<b class="nc"><i>76</i>&nbsp;            selection = inputs.nextLine();</b>
+<i>77</i>&nbsp;            try {
+<b class="nc"><i>78</i>&nbsp;                int index = Integer.parseInt(selection);</b>
+<b class="nc"><i>79</i>&nbsp;                if (index &gt; actions || index &lt;= 0) {</b>
+<b class="nc"><i>80</i>&nbsp;                    System.out.println(&quot;Invalid input!&quot;);</b>
+<b class="nc"><i>81</i>&nbsp;                } else return turnStates.get(index - 1);</b>
+<b class="nc"><i>82</i>&nbsp;            } catch (NumberFormatException e) {</b>
+<b class="nc"><i>83</i>&nbsp;                System.out.println(&quot;Invalid input!&quot;);</b>
+<b class="nc"><i>84</i>&nbsp;            }</b>
+<i>85</i>&nbsp;        }
+<i>86</i>&nbsp;    }
+<i>87</i>&nbsp;
+<i>88</i>&nbsp;    /**
+<i>89</i>&nbsp;     * Prints all the production power the player can use when wants to produce and make him choose one of them.
+<i>90</i>&nbsp;     *
+<i>91</i>&nbsp;     * @param cardID the IDs of the productions the player can use.
+<i>92</i>&nbsp;     * @param data   the data
+<i>93</i>&nbsp;     * @return the production power&#39;s string the player chose.
+<i>94</i>&nbsp;     */
+<i>95</i>&nbsp;    public String printDevCardID(ArrayList&lt;String&gt; cardID, PlayerData data) {
+<b class="nc"><i>96</i>&nbsp;        Scanner inputs = new Scanner(System.in);</b>
+<i>97</i>&nbsp;        String selection;
+<i>98</i>&nbsp;
+<i>99</i>&nbsp;        while (true) {
+<b class="nc"><i>100</i>&nbsp;            for (int i = 0; i &lt; cardID.size(); i++) {</b>
+<b class="nc"><i>101</i>&nbsp;                if (cardID.get(i).equals(&quot;BASIC&quot;))</b>
+<b class="nc"><i>102</i>&nbsp;                    System.out.println(&quot;[&quot; + (i + 1) + &quot;] &quot; + &quot;Basic production&quot;);</b>
+<b class="nc"><i>103</i>&nbsp;                else if (!cardID.get(i).contains(&quot;PROD&quot;))</b>
+<b class="nc"><i>104</i>&nbsp;                    System.out.println(&quot;[&quot; + (i + 1) + &quot;] &quot; + data.getCardFromID(cardID.get(i)).toString());</b>
+<b class="nc"><i>105</i>&nbsp;                else System.out.println(&quot;[&quot; + (i + 1) + &quot;] &quot; + data.getLeaderFromID(cardID.get(i)).toString());</b>
+<i>106</i>&nbsp;            }
+<b class="nc"><i>107</i>&nbsp;            System.out.println(&quot;Enter selection: &quot;);</b>
+<b class="nc"><i>108</i>&nbsp;            selection = inputs.nextLine();</b>
+<i>109</i>&nbsp;            try {
+<b class="nc"><i>110</i>&nbsp;                int index = Integer.parseInt(selection);</b>
+<b class="nc"><i>111</i>&nbsp;                if (index &lt;= 0 || index &gt; cardID.size()) {</b>
+<b class="nc"><i>112</i>&nbsp;                    System.out.println(&quot;Invalid input&quot;);</b>
+<b class="nc"><i>113</i>&nbsp;                } else return cardID.get(index - 1);</b>
+<b class="nc"><i>114</i>&nbsp;            } catch (NumberFormatException e) {</b>
+<b class="nc"><i>115</i>&nbsp;                System.out.println(&quot;Invalid input&quot;);</b>
+<b class="nc"><i>116</i>&nbsp;            }</b>
+<i>117</i>&nbsp;        }
+<i>118</i>&nbsp;    }
+<i>119</i>&nbsp;
+<i>120</i>&nbsp;    /**
+<i>121</i>&nbsp;     * Prints all the leader cards the player can choose and make him choose one of them.
+<i>122</i>&nbsp;     *
+<i>123</i>&nbsp;     * @param cardID the IDs of the leader card the player chose.
+<i>124</i>&nbsp;     * @param data   the player that has to do the choice.
+<i>125</i>&nbsp;     * @return the leader card&#39;s string the player chose.
+<i>126</i>&nbsp;     */
+<i>127</i>&nbsp;    public String printLeaderCardID(ArrayList&lt;String&gt; cardID, PlayerData data) {
+<b class="nc"><i>128</i>&nbsp;        Scanner inputs = new Scanner(System.in);</b>
+<i>129</i>&nbsp;        String selection;
+<i>130</i>&nbsp;
+<i>131</i>&nbsp;        while (true) {
+<b class="nc"><i>132</i>&nbsp;            for (int i = 0; i &lt; cardID.size(); i++) {</b>
+<b class="nc"><i>133</i>&nbsp;                System.out.println(&quot;[&quot; + (i + 1) + &quot;] &quot; + data.getLeaderFromID(cardID.get(i)).toString());</b>
+<i>134</i>&nbsp;            }
+<b class="nc"><i>135</i>&nbsp;            System.out.println(&quot;Enter selection: &quot;);</b>
+<b class="nc"><i>136</i>&nbsp;            selection = inputs.nextLine();</b>
+<i>137</i>&nbsp;            try {
+<b class="nc"><i>138</i>&nbsp;                int index = Integer.parseInt(selection);</b>
+<b class="nc"><i>139</i>&nbsp;                if (index &lt;= 0 || index &gt; cardID.size()) {</b>
+<b class="nc"><i>140</i>&nbsp;                    System.out.println(&quot;Invalid input&quot;);</b>
+<b class="nc"><i>141</i>&nbsp;                } else return cardID.get(index - 1);</b>
+<b class="nc"><i>142</i>&nbsp;            } catch (NumberFormatException e) {</b>
+<b class="nc"><i>143</i>&nbsp;                System.out.println(&quot;Invalid input&quot;);</b>
+<b class="nc"><i>144</i>&nbsp;            }</b>
+<i>145</i>&nbsp;        }
+<i>146</i>&nbsp;    }
+<i>147</i>&nbsp;
+<i>148</i>&nbsp;    /**
+<i>149</i>&nbsp;     * Used to make player choose one of warehouse levels when he takes resources from market or to make player
+<i>150</i>&nbsp;     * choose one of the board&#39;s slot when he buy a development card.
+<i>151</i>&nbsp;     *
+<i>152</i>&nbsp;     * @param ints       the number of slot or warehouse level.
+<i>153</i>&nbsp;     * @param slots      true if player has to choose a slot, false if has to choose a warehouse level.
+<i>154</i>&nbsp;     * @param canDiscard true if is possible to discard the resource, false if not.
+<i>155</i>&nbsp;     * @return the choice.
+<i>156</i>&nbsp;     */
+<i>157</i>&nbsp;    public int printIntegers(ArrayList&lt;Integer&gt; ints, boolean slots, boolean canDiscard) {
+<b class="nc"><i>158</i>&nbsp;        Scanner inputs = new Scanner(System.in);</b>
+<i>159</i>&nbsp;        String selection;
+<b class="nc"><i>160</i>&nbsp;        int actions = 0;</b>
+<i>161</i>&nbsp;
+<i>162</i>&nbsp;        while (true) {
+<b class="nc"><i>163</i>&nbsp;            if (slots) {</b>
+<b class="nc"><i>164</i>&nbsp;                for (int i = 0; i &lt; ints.size(); i++) {</b>
+<b class="nc"><i>165</i>&nbsp;                    System.out.println(&quot;[&quot; + (i + 1) + &quot;]&quot; + &quot; &quot; + &quot;slot&quot; + &quot; &quot; + (ints.get(i) + 1));</b>
+<b class="nc"><i>166</i>&nbsp;                    actions = i + 1;</b>
+<i>167</i>&nbsp;                }
+<i>168</i>&nbsp;            } else {
+<b class="nc"><i>169</i>&nbsp;                for (int i = 0; i &lt; ints.size(); i++) {</b>
+<b class="nc"><i>170</i>&nbsp;                    System.out.println(&quot;[&quot; + (i + 1) + &quot;]&quot; + &quot; &quot; + &quot;warehouse level&quot; + &quot; &quot; + (ints.get(i) + 1));</b>
+<b class="nc"><i>171</i>&nbsp;                    actions = i + 1;</b>
+<i>172</i>&nbsp;                }
+<b class="nc"><i>173</i>&nbsp;                if (canDiscard) System.out.println(&quot;[&quot; + (actions + 1) + &quot;] &quot; + &quot;Discard&quot;);</b>
+<i>174</i>&nbsp;            }
+<b class="nc"><i>175</i>&nbsp;            System.out.println(&quot;Enter selection: &quot;);</b>
+<b class="nc"><i>176</i>&nbsp;            selection = inputs.nextLine();</b>
+<i>177</i>&nbsp;            try {
+<b class="nc"><i>178</i>&nbsp;                int index = Integer.parseInt(selection);</b>
+<b class="nc"><i>179</i>&nbsp;                if (index &gt; actions + 1 || index &lt;= 0) {</b>
+<b class="nc"><i>180</i>&nbsp;                    System.out.println(&quot;Invalid input!&quot;);</b>
+<i>181</i>&nbsp;                } else {
+<b class="nc"><i>182</i>&nbsp;                    if (index == actions + 1) return -1;</b>
+<b class="nc"><i>183</i>&nbsp;                    return ints.get(index - 1);</b>
+<i>184</i>&nbsp;                }
+<b class="nc"><i>185</i>&nbsp;            } catch (NumberFormatException e) {</b>
+<b class="nc"><i>186</i>&nbsp;                System.out.println(&quot;Invalid input!&quot;);</b>
+<b class="nc"><i>187</i>&nbsp;            }</b>
+<i>188</i>&nbsp;        }
+<i>189</i>&nbsp;    }
+<i>190</i>&nbsp;
+<i>191</i>&nbsp;    /**
+<i>192</i>&nbsp;     * Ask the player which resource it needs using a number as input from the stdin.
+<i>193</i>&nbsp;     *
+<i>194</i>&nbsp;     * @param resource the resources that the player might choose.
+<i>195</i>&nbsp;     * @return the resource chosen by the user.
+<i>196</i>&nbsp;     */
+<i>197</i>&nbsp;    public Resource printResource(ArrayList&lt;Resource&gt; resource) {
+<b class="nc"><i>198</i>&nbsp;        Scanner inputs = new Scanner(System.in);</b>
+<i>199</i>&nbsp;        String selection;
+<b class="nc"><i>200</i>&nbsp;        int actions = 0;</b>
+<i>201</i>&nbsp;
+<i>202</i>&nbsp;        while (true) {
+<b class="nc"><i>203</i>&nbsp;            for (int i = 0; i &lt; resource.size(); i++) {</b>
+<b class="nc"><i>204</i>&nbsp;                System.out.println(&quot;[&quot; + (i + 1) + &quot;]&quot; + &quot; &quot; + resource.get(i));</b>
+<b class="nc"><i>205</i>&nbsp;                actions = i + 1;</b>
+<i>206</i>&nbsp;            }
+<b class="nc"><i>207</i>&nbsp;            System.out.println(&quot;Enter selection: &quot;);</b>
+<b class="nc"><i>208</i>&nbsp;            selection = inputs.nextLine();</b>
+<i>209</i>&nbsp;            try {
+<b class="nc"><i>210</i>&nbsp;                int index = Integer.parseInt(selection);</b>
+<b class="nc"><i>211</i>&nbsp;                if (index &gt; actions + 1 || index &lt;= 0) {</b>
+<b class="nc"><i>212</i>&nbsp;                    System.out.println(&quot;Invalid input!&quot;);</b>
+<i>213</i>&nbsp;                } else {
+<b class="nc"><i>214</i>&nbsp;                    return resource.get(index - 1);</b>
+<i>215</i>&nbsp;                }
+<b class="nc"><i>216</i>&nbsp;            } catch (NumberFormatException e) {</b>
+<b class="nc"><i>217</i>&nbsp;                System.out.println(&quot;Invalid input!&quot;);</b>
+<b class="nc"><i>218</i>&nbsp;            }</b>
+<i>219</i>&nbsp;        }
+<i>220</i>&nbsp;    }
+<i>221</i>&nbsp;
+<i>222</i>&nbsp;    /**
+<i>223</i>&nbsp;     * Print market&#39;s matrix and ask the player to choose one between row or column and then the index.
+<i>224</i>&nbsp;     *
+<i>225</i>&nbsp;     * @param matrix the market situation at the moment.
+<i>226</i>&nbsp;     * @return a {@link MarketArray}.
+<i>227</i>&nbsp;     */
+<i>228</i>&nbsp;    public MarketArray printMatrix(Resource[][] matrix) {
+<b class="nc"><i>229</i>&nbsp;        Scanner inputs = new Scanner(System.in);</b>
+<i>230</i>&nbsp;        String selection;
+<b class="nc"><i>231</i>&nbsp;        ArrayList&lt;Resource&gt; res = new ArrayList&lt;Resource&gt;();</b>
+<b class="nc"><i>232</i>&nbsp;        System.out.println(&quot;     1       2       3       4&quot;);</b>
+<b class="nc"><i>233</i>&nbsp;        for (int r = 0; r &lt; matrix.length; r++) {</b>
+<b class="nc"><i>234</i>&nbsp;            System.out.print((r + 1) + &quot;  &quot;);</b>
+<b class="nc"><i>235</i>&nbsp;            for (int c = 0; c &lt; matrix[r].length; c++) {</b>
+<b class="nc"><i>236</i>&nbsp;                System.out.print(matrix[r][c].inLine() + &quot; &quot;);</b>
+<i>237</i>&nbsp;            }
+<b class="nc"><i>238</i>&nbsp;            System.out.println(&quot; &lt;&quot;);</b>
+<i>239</i>&nbsp;        }
+<b class="nc"><i>240</i>&nbsp;        System.out.println(&quot;     ^       ^       ^       ^&quot;);</b>
+<b class="nc"><i>241</i>&nbsp;        System.out.println(&quot;Free one: &quot; + getFreeOne(matrix) + &quot;\n&quot;);</b>
+<i>242</i>&nbsp;        while (true) {
+<b class="nc"><i>243</i>&nbsp;            System.out.println(&quot;Select if you want a row or a column: &quot;);</b>
+<b class="nc"><i>244</i>&nbsp;            System.out.println(&quot;[1] Row&quot;);</b>
+<b class="nc"><i>245</i>&nbsp;            System.out.println(&quot;[2] Column&quot;);</b>
+<i>246</i>&nbsp;
+<b class="nc"><i>247</i>&nbsp;            selection = inputs.nextLine();</b>
+<b class="nc"><i>248</i>&nbsp;            if (!selection.equals(&quot;1&quot;) &amp;&amp; !selection.equals(&quot;2&quot;)) {</b>
+<b class="nc"><i>249</i>&nbsp;                System.out.println(&quot;Invalid input&quot;);</b>
+<i>250</i>&nbsp;            } else break;
+<i>251</i>&nbsp;        }
+<i>252</i>&nbsp;
+<b class="nc"><i>253</i>&nbsp;        switch (selection) {</b>
+<i>254</i>&nbsp;            case (&quot;1&quot;):
+<i>255</i>&nbsp;                while (true) {
+<b class="nc"><i>256</i>&nbsp;                    System.out.println(&quot;Select your row: &quot;);</b>
+<b class="nc"><i>257</i>&nbsp;                    selection = inputs.nextLine();</b>
+<i>258</i>&nbsp;                    try {
+<b class="nc"><i>259</i>&nbsp;                        int indexRow = Integer.parseInt(selection);</b>
+<b class="nc"><i>260</i>&nbsp;                        if (indexRow &lt;= 0 || indexRow &gt; matrix.length) {</b>
+<b class="nc"><i>261</i>&nbsp;                            System.out.println(&quot;Invalid input!&quot;);</b>
+<i>262</i>&nbsp;                        } else {
+<b class="nc"><i>263</i>&nbsp;                            for (int k = 0; k &lt; matrix[indexRow - 1].length; k++) {</b>
+<b class="nc"><i>264</i>&nbsp;                                res.add(matrix[indexRow - 1][k]);</b>
+<i>265</i>&nbsp;                            }
+<b class="nc"><i>266</i>&nbsp;                            System.out.println(&quot;You chose these resources: &quot; + res);</b>
+<b class="nc"><i>267</i>&nbsp;                            return new MarketArray(res, MarketDimension.ROW, indexRow - 1);</b>
+<i>268</i>&nbsp;                        }
+<b class="nc"><i>269</i>&nbsp;                    } catch (NumberFormatException e) {</b>
+<b class="nc"><i>270</i>&nbsp;                        System.out.println(&quot;Invalid input!&quot;);</b>
+<b class="nc"><i>271</i>&nbsp;                    }</b>
+<i>272</i>&nbsp;
+<i>273</i>&nbsp;                }
+<i>274</i>&nbsp;            case (&quot;2&quot;):
+<i>275</i>&nbsp;                while (true) {
+<b class="nc"><i>276</i>&nbsp;                    System.out.println(&quot;Select your column: &quot;);</b>
+<b class="nc"><i>277</i>&nbsp;                    selection = inputs.nextLine();</b>
+<i>278</i>&nbsp;                    try {
+<b class="nc"><i>279</i>&nbsp;                        int indexColumn = Integer.parseInt(selection);</b>
+<b class="nc"><i>280</i>&nbsp;                        if (indexColumn &lt;= 0 || indexColumn &gt; matrix[0].length) {</b>
+<b class="nc"><i>281</i>&nbsp;                            System.out.println(&quot;Invalid input!&quot;);</b>
+<i>282</i>&nbsp;                        } else {
+<b class="nc"><i>283</i>&nbsp;                            for (int z = 0; z &lt; matrix.length; z++) {</b>
+<b class="nc"><i>284</i>&nbsp;                                res.add(matrix[z][indexColumn - 1]);</b>
+<i>285</i>&nbsp;                            }
+<b class="nc"><i>286</i>&nbsp;                            System.out.println(&quot;You chose these resources: &quot; + res);</b>
+<b class="nc"><i>287</i>&nbsp;                            return new MarketArray(res, MarketDimension.COL, indexColumn - 1);</b>
+<i>288</i>&nbsp;                        }
+<b class="nc"><i>289</i>&nbsp;                    } catch (NumberFormatException e) {</b>
+<b class="nc"><i>290</i>&nbsp;                        System.out.println(&quot;Invalid input!&quot;);</b>
+<b class="nc"><i>291</i>&nbsp;                    }</b>
+<i>292</i>&nbsp;                }
+<i>293</i>&nbsp;        }
+<b class="nc"><i>294</i>&nbsp;        return null;</b>
+<i>295</i>&nbsp;    }
+<i>296</i>&nbsp;
+<i>297</i>&nbsp;    /**
+<i>298</i>&nbsp;     * Used when it needs to simply print a question which required an Yes/No answer.
+<i>299</i>&nbsp;     *
+<i>300</i>&nbsp;     * @return the true if the answer is Yes, false if it is no.
+<i>301</i>&nbsp;     */
+<i>302</i>&nbsp;    public boolean askQuestion() {
+<b class="nc"><i>303</i>&nbsp;        Scanner inputs = new Scanner(System.in);</b>
+<i>304</i>&nbsp;        String selection;
+<b class="nc"><i>305</i>&nbsp;        System.out.println(&quot;Continue?&quot;);</b>
+<b class="nc"><i>306</i>&nbsp;        System.out.println(&quot;[1] Yes&quot;);</b>
+<b class="nc"><i>307</i>&nbsp;        System.out.println(&quot;[2] No&quot;);</b>
+<i>308</i>&nbsp;
+<b class="nc"><i>309</i>&nbsp;        selection = inputs.nextLine();</b>
+<b class="nc"><i>310</i>&nbsp;        switch (selection) {</b>
+<i>311</i>&nbsp;            case (&quot;1&quot;):
+<b class="nc"><i>312</i>&nbsp;                return true;</b>
+<i>313</i>&nbsp;            case (&quot;2&quot;):
+<b class="nc"><i>314</i>&nbsp;                return false;</b>
+<i>315</i>&nbsp;        }
+<b class="nc"><i>316</i>&nbsp;        return false;</b>
+<i>317</i>&nbsp;    }
+<i>318</i>&nbsp;
+<i>319</i>&nbsp;    /**
+<i>320</i>&nbsp;     * Used when player wants to see his status or other players&#39; to ask which one wants to see.
+<i>321</i>&nbsp;     *
+<i>322</i>&nbsp;     * @return true if wants to see his, false if wants to see other players&#39;.
+<i>323</i>&nbsp;     */
+<i>324</i>&nbsp;    public boolean chooseStats() {
+<b class="nc"><i>325</i>&nbsp;        Scanner inputs = new Scanner(System.in);</b>
+<i>326</i>&nbsp;        String selection;
+<b class="nc"><i>327</i>&nbsp;        System.out.println(&quot;Whose stats do you wanna see?&quot;);</b>
+<b class="nc"><i>328</i>&nbsp;        System.out.println(&quot;[1] Yours&quot;);</b>
+<b class="nc"><i>329</i>&nbsp;        System.out.println(&quot;[2] Others players&#39; stats&quot;);</b>
+<i>330</i>&nbsp;
+<i>331</i>&nbsp;        while (true) {
+<b class="nc"><i>332</i>&nbsp;            selection = inputs.nextLine();</b>
+<b class="nc"><i>333</i>&nbsp;            switch (selection) {</b>
+<i>334</i>&nbsp;                case (&quot;1&quot;):
+<b class="nc"><i>335</i>&nbsp;                    return true;</b>
+<i>336</i>&nbsp;                case (&quot;2&quot;):
+<b class="nc"><i>337</i>&nbsp;                    return false;</b>
+<i>338</i>&nbsp;                default:
+<b class="nc"><i>339</i>&nbsp;                    System.out.println(&quot;Invalid input!&quot;);</b>
+<i>340</i>&nbsp;            }
+<i>341</i>&nbsp;        }
+<i>342</i>&nbsp;    }
+<i>343</i>&nbsp;
+<i>344</i>&nbsp;    /**
+<i>345</i>&nbsp;     * Print other player&#39;s status.
+<i>346</i>&nbsp;     *
+<i>347</i>&nbsp;     * @param data the player who wants to see other players&#39; status.
+<i>348</i>&nbsp;     */
+<i>349</i>&nbsp;    public void printOtherStats(OtherPlayerData data) {
+<b class="nc"><i>350</i>&nbsp;        System.out.println(&quot;Player ID: &quot; + data.getPlayerID());</b>
+<b class="nc"><i>351</i>&nbsp;        System.out.println(&quot;Warehouse:\n&quot; + data.getWareHouse());</b>
+<b class="nc"><i>352</i>&nbsp;        System.out.println(&quot;Strongbox:\n&quot; + data.getStrongBox());</b>
+<b class="nc"><i>353</i>&nbsp;        System.out.println(&quot;Slots:\n&quot; + data.getSlotFrontCards());</b>
+<b class="nc"><i>354</i>&nbsp;        System.out.println(&quot;Faith Points: &quot; + data.getFaithPoints());</b>
+<b class="nc"><i>355</i>&nbsp;        System.out.println(&quot;Victory Points: &quot; + data.getVictoryPoints());</b>
+<b class="nc"><i>356</i>&nbsp;        for (String s : data.getPlayedLeadersID()) {</b>
+<b class="nc"><i>357</i>&nbsp;            System.out.println(&quot;Leader ID: &quot; + s);</b>
+<b class="nc"><i>358</i>&nbsp;        }</b>
+<i>359</i>&nbsp;    }
+<i>360</i>&nbsp;
+<i>361</i>&nbsp;    /**
+<i>362</i>&nbsp;     * Print player&#39;s status.
+<i>363</i>&nbsp;     *
+<i>364</i>&nbsp;     * @param data the player.
+<i>365</i>&nbsp;     */
+<i>366</i>&nbsp;    public void printMyStats(PlayerData data) {
+<b class="nc"><i>367</i>&nbsp;        System.out.println(&quot;\nPLAYER ID: &quot; + data.getPlayerID());</b>
+<b class="nc"><i>368</i>&nbsp;        System.out.println(&quot;\nMARKET:&quot;);</b>
+<b class="nc"><i>369</i>&nbsp;        viewMarket(data.getMarket());</b>
+<b class="nc"><i>370</i>&nbsp;        System.out.println(&quot;\nTABLE FRONT CARDS:\n&quot;);</b>
+<b class="nc"><i>371</i>&nbsp;        for (String cardID : data.getFrontTableCardsID()) {</b>
+<b class="nc"><i>372</i>&nbsp;            System.out.println(data.getCardFromID(cardID));</b>
+<b class="nc"><i>373</i>&nbsp;        }</b>
+<b class="nc"><i>374</i>&nbsp;        System.out.println(&quot;\nWAREHOUSE:&quot;);</b>
+<b class="nc"><i>375</i>&nbsp;        printWareHouse(data.getDeposits());</b>
+<b class="nc"><i>376</i>&nbsp;        System.out.println(&quot;\nSTRONGBOX:\n&quot; + data.getStrongBox());</b>
+<b class="nc"><i>377</i>&nbsp;        System.out.println(&quot;\nSLOT FRONT CARD:\n&quot;);</b>
+<b class="nc"><i>378</i>&nbsp;        for (String card : data.getFrontCardsID()) {</b>
+<b class="nc"><i>379</i>&nbsp;            System.out.println(data.getCardFromID(card));</b>
+<b class="nc"><i>380</i>&nbsp;        }</b>
+<b class="nc"><i>381</i>&nbsp;        System.out.println(&quot;\nFAITH POINTS: &quot; + data.getFaithPoints());</b>
+<b class="nc"><i>382</i>&nbsp;        System.out.println(&quot;\nVICTORY POINTS: &quot; + data.getVictoryPoints() + &quot;\n&quot;);</b>
+<b class="nc"><i>383</i>&nbsp;        System.out.println(&quot;LEADER CARDS NOT PLAYED:\n&quot;);</b>
+<b class="nc"><i>384</i>&nbsp;        for (String s : data.getLeadersID()) {</b>
+<b class="nc"><i>385</i>&nbsp;            System.out.println(data.getLeaderFromID(s) + &quot;\n&quot;);</b>
+<b class="nc"><i>386</i>&nbsp;        }</b>
+<b class="nc"><i>387</i>&nbsp;        System.out.println();</b>
+<b class="nc"><i>388</i>&nbsp;        System.out.println(&quot;LEADER CARDS PLAYED:\n&quot;);</b>
+<b class="nc"><i>389</i>&nbsp;        for (String s : data.getLeadersPlayedID()) {</b>
+<b class="nc"><i>390</i>&nbsp;            System.out.println(data.getLeaderFromID(s) + &quot;\n&quot;);</b>
+<b class="nc"><i>391</i>&nbsp;        }</b>
+<b class="nc"><i>392</i>&nbsp;        System.out.println();</b>
+<i>393</i>&nbsp;    }
+<i>394</i>&nbsp;
+<i>395</i>&nbsp;    /**
+<i>396</i>&nbsp;     * Used at the start phase of the game when player has to choose 2 out of 4 leader card: print them and makes
+<i>397</i>&nbsp;     * the player choose.
+<i>398</i>&nbsp;     *
+<i>399</i>&nbsp;     * @param leadersToChoose the 4 leader cards to choose.
+<i>400</i>&nbsp;     * @param data            the player.
+<i>401</i>&nbsp;     * @return the 2 leader card chosen.
+<i>402</i>&nbsp;     */
+<i>403</i>&nbsp;    public ArrayList&lt;String&gt; chooseLeaderCard(ArrayList&lt;String&gt; leadersToChoose, PlayerData data) {
+<b class="nc"><i>404</i>&nbsp;        ArrayList&lt;String&gt; chosen = new ArrayList&lt;&gt;();</b>
+<b class="nc"><i>405</i>&nbsp;        Scanner inputs = new Scanner(System.in);</b>
+<i>406</i>&nbsp;        while (true) {
+<b class="nc"><i>407</i>&nbsp;            int index = 1;</b>
+<b class="nc"><i>408</i>&nbsp;            System.out.println(&quot;\nChoose 2 Leaders Cards between this 4:&quot;);</b>
+<b class="nc"><i>409</i>&nbsp;            for (String s : leadersToChoose) {</b>
+<b class="nc"><i>410</i>&nbsp;                System.out.print(&quot;\n[&quot; + index + &quot;] &quot;);</b>
+<b class="nc"><i>411</i>&nbsp;                System.out.println(data.getLeaderFromID(s).toString() + &quot;\n&quot;);</b>
+<b class="nc"><i>412</i>&nbsp;                index++;</b>
+<b class="nc"><i>413</i>&nbsp;            }</b>
+<b class="nc"><i>414</i>&nbsp;            System.out.println(&quot;What is your first choice?&quot;);</b>
+<i>415</i>&nbsp;            try {
+<b class="nc"><i>416</i>&nbsp;                int choice = Integer.parseInt(inputs.nextLine());</b>
+<b class="nc"><i>417</i>&nbsp;                if (choice &lt;= 0 || choice &gt;= index) System.out.println(&quot;Invalid input!&quot;);</b>
+<i>418</i>&nbsp;                else {
+<b class="nc"><i>419</i>&nbsp;                    chosen.add(leadersToChoose.remove(choice - 1));</b>
+<b class="nc"><i>420</i>&nbsp;                    break;</b>
+<i>421</i>&nbsp;                }
+<b class="nc"><i>422</i>&nbsp;            } catch (NumberFormatException e) {</b>
+<b class="nc"><i>423</i>&nbsp;                System.out.println(&quot;Invalid input!&quot;);</b>
+<b class="nc"><i>424</i>&nbsp;            }</b>
+<b class="nc"><i>425</i>&nbsp;        }</b>
+<i>426</i>&nbsp;        while (true) {
+<b class="nc"><i>427</i>&nbsp;            int index = 1;</b>
+<b class="nc"><i>428</i>&nbsp;            for (String s : leadersToChoose) {</b>
+<b class="nc"><i>429</i>&nbsp;                System.out.print(&quot;\n[&quot; + index + &quot;] &quot;);</b>
+<b class="nc"><i>430</i>&nbsp;                System.out.println(data.getLeaderFromID(s).toString());</b>
+<b class="nc"><i>431</i>&nbsp;                index++;</b>
+<b class="nc"><i>432</i>&nbsp;            }</b>
+<b class="nc"><i>433</i>&nbsp;            System.out.println(&quot;\nWhat is your second choice?&quot;);</b>
+<i>434</i>&nbsp;            try {
+<b class="nc"><i>435</i>&nbsp;                int choice = Integer.parseInt(inputs.nextLine());</b>
+<b class="nc"><i>436</i>&nbsp;                if (choice &lt;= 0 || choice &gt;= index) System.out.println(&quot;Invalid input!&quot;);</b>
+<i>437</i>&nbsp;                else {
+<b class="nc"><i>438</i>&nbsp;                    chosen.add(leadersToChoose.remove(choice - 1));</b>
+<b class="nc"><i>439</i>&nbsp;                    break;</b>
+<i>440</i>&nbsp;                }
+<b class="nc"><i>441</i>&nbsp;            } catch (NumberFormatException e) {</b>
+<b class="nc"><i>442</i>&nbsp;                System.out.println(&quot;Invalid input!&quot;);</b>
+<b class="nc"><i>443</i>&nbsp;            }</b>
+<b class="nc"><i>444</i>&nbsp;        }</b>
+<b class="nc"><i>445</i>&nbsp;        return chosen;</b>
+<i>446</i>&nbsp;    }
+<i>447</i>&nbsp;
+<i>448</i>&nbsp;    /**
+<i>449</i>&nbsp;     * Used at the start phase of the game when player can choose some resources to add to his warehouse. Print them and makes
+<i>450</i>&nbsp;     * the player choose.
+<i>451</i>&nbsp;     *
+<i>452</i>&nbsp;     * @return the resource
+<i>453</i>&nbsp;     */
+<i>454</i>&nbsp;    public Resource chooseResource() {
+<b class="nc"><i>455</i>&nbsp;        Scanner input = new Scanner(System.in);</b>
+<i>456</i>&nbsp;
+<i>457</i>&nbsp;        while (true) {
+<b class="nc"><i>458</i>&nbsp;            System.out.println(&quot;You can choose a Resource to add to your Warehouse, which one do you want?&quot;);</b>
+<b class="nc"><i>459</i>&nbsp;            System.out.println(&quot;[1] GOLD&quot;);</b>
+<b class="nc"><i>460</i>&nbsp;            System.out.println(&quot;[2] STONE&quot;);</b>
+<b class="nc"><i>461</i>&nbsp;            System.out.println(&quot;[3] SHIELD&quot;);</b>
+<b class="nc"><i>462</i>&nbsp;            System.out.println(&quot;[4] SERVANT&quot;);</b>
+<i>463</i>&nbsp;
+<b class="nc"><i>464</i>&nbsp;            switch (input.nextInt()) {</b>
+<i>465</i>&nbsp;                case (1):
+<b class="nc"><i>466</i>&nbsp;                    return Resource.GOLD;</b>
+<i>467</i>&nbsp;                case (2):
+<b class="nc"><i>468</i>&nbsp;                    return Resource.STONE;</b>
+<i>469</i>&nbsp;                case (3):
+<b class="nc"><i>470</i>&nbsp;                    return Resource.SHIELD;</b>
+<i>471</i>&nbsp;                case (4):
+<b class="nc"><i>472</i>&nbsp;                    return Resource.SERVANT;</b>
+<i>473</i>&nbsp;                default:
+<b class="nc"><i>474</i>&nbsp;                    System.out.println(&quot;Invalid input!&quot;);</b>
+<i>475</i>&nbsp;            }
+<i>476</i>&nbsp;        }
+<i>477</i>&nbsp;    }
+<i>478</i>&nbsp;
+<i>479</i>&nbsp;    /**
+<i>480</i>&nbsp;     * At the end of the game prints the winner and each player&#39;s victory points.
+<i>481</i>&nbsp;     *
+<i>482</i>&nbsp;     * @param endgameUpdate the {@link EndgameUpdate}.
+<i>483</i>&nbsp;     */
+<i>484</i>&nbsp;    public void endgame(EndgameUpdate endgameUpdate) {
+<b class="nc"><i>485</i>&nbsp;        System.out.println(endgameUpdate.getWinner().toUpperCase(Locale.ROOT) + &quot; WON!&quot;);</b>
+<b class="nc"><i>486</i>&nbsp;        System.out.println(&quot;Here&#39;s the points:&quot;);</b>
+<b class="nc"><i>487</i>&nbsp;        for (PlayerVP player : endgameUpdate.getFinalPlayersVPS()) {</b>
+<b class="nc"><i>488</i>&nbsp;            System.out.println(player.getPlayerID() + &quot;: &quot; + player.getVictoryPoints());</b>
+<b class="nc"><i>489</i>&nbsp;        }</b>
+<b class="nc"><i>490</i>&nbsp;        System.exit(0);</b>
+<i>491</i>&nbsp;    }
+<i>492</i>&nbsp;
+<i>493</i>&nbsp;    /**
+<i>494</i>&nbsp;     * Used to print a simple message to the player, doesn&#39;t need any input.
+<i>495</i>&nbsp;     *
+<i>496</i>&nbsp;     * @param message the message to print.
+<i>497</i>&nbsp;     */
+<i>498</i>&nbsp;    public void printMessage(String message) {
+<b class="nc"><i>499</i>&nbsp;        System.out.println(message);</b>
+<i>500</i>&nbsp;    }
+<i>501</i>&nbsp;
+<i>502</i>&nbsp;    /**
+<i>503</i>&nbsp;     * Used to simple print the market&#39;s matrix situation, doesn&#39;t need any input.
+<i>504</i>&nbsp;     *
+<i>505</i>&nbsp;     * @param matrix the market&#39;s matrix.
+<i>506</i>&nbsp;     */
+<i>507</i>&nbsp;    public void viewMarket(Resource[][] matrix) {
+<b class="nc"><i>508</i>&nbsp;        for (int r = 0; r &lt; matrix.length; r++) {</b>
+<b class="nc"><i>509</i>&nbsp;            for (int c = 0; c &lt; matrix[r].length; c++) {</b>
+<b class="nc"><i>510</i>&nbsp;                System.out.print(matrix[r][c].inLine() + &quot; &quot;);</b>
+<i>511</i>&nbsp;            }
+<b class="nc"><i>512</i>&nbsp;            System.out.println(&quot; &quot;);</b>
+<i>513</i>&nbsp;        }
+<b class="nc"><i>514</i>&nbsp;        System.out.println(&quot;Free one: &quot; + getFreeOne(matrix) + &quot;\n&quot;);</b>
+<i>515</i>&nbsp;    }
+<i>516</i>&nbsp;
+<i>517</i>&nbsp;    /**
+<i>518</i>&nbsp;     * Used to simple print the player&#39;s warehouse situation, doesn&#39;t need any input.
+<i>519</i>&nbsp;     *
+<i>520</i>&nbsp;     * @param warehouse the player&#39;s warehouse.
+<i>521</i>&nbsp;     */
+<i>522</i>&nbsp;    public void printWareHouse(ArrayList&lt;Resource[]&gt; warehouse) {
+<b class="nc"><i>523</i>&nbsp;        for (int i = 0; i &lt; warehouse.size(); i++) {</b>
+<b class="nc"><i>524</i>&nbsp;            System.out.print(&quot;Level &quot; + (i + 1) + &quot;: &quot;);</b>
+<b class="nc"><i>525</i>&nbsp;            for (int k = 0; k &lt; warehouse.get(i).length; k++) {</b>
+<b class="nc"><i>526</i>&nbsp;                System.out.print(warehouse.get(i)[k].inLine() + &quot; &quot;);</b>
+<i>527</i>&nbsp;            }
+<b class="nc"><i>528</i>&nbsp;            System.out.println();</b>
+<i>529</i>&nbsp;        }
+<i>530</i>&nbsp;
+<i>531</i>&nbsp;    }
+<i>532</i>&nbsp;
+<i>533</i>&nbsp;    /**
+<i>534</i>&nbsp;     * From market&#39;s situation derives the free one resource, in this way is not necessary to
+<i>535</i>&nbsp;     * send the information into the {@link Update}.
+<i>536</i>&nbsp;     *
+<i>537</i>&nbsp;     * @param market the market situation.
+<i>538</i>&nbsp;     * @return the free one.
+<i>539</i>&nbsp;     */
+<i>540</i>&nbsp;    public Resource getFreeOne(Resource[][] market) {
+<b class="nc"><i>541</i>&nbsp;        ArrayList&lt;Resource&gt; marketRes = new ArrayList&lt;&gt;();</b>
+<b class="nc"><i>542</i>&nbsp;        for (Resource[] dimension : market) {</b>
+<b class="nc"><i>543</i>&nbsp;            for (Resource res : dimension) {</b>
+<b class="nc"><i>544</i>&nbsp;                marketRes.add(res);</b>
+<i>545</i>&nbsp;            }
+<i>546</i>&nbsp;        }
+<b class="nc"><i>547</i>&nbsp;        if (Collections.frequency(marketRes, Resource.EMPTY) == 3) return Resource.EMPTY;</b>
+<b class="nc"><i>548</i>&nbsp;        else if (Collections.frequency(marketRes, Resource.FAITH) == 0) return Resource.FAITH;</b>
+<b class="nc"><i>549</i>&nbsp;        else if (Collections.frequency(marketRes, Resource.GOLD) == 1) return Resource.GOLD;</b>
+<b class="nc"><i>550</i>&nbsp;        else if (Collections.frequency(marketRes, Resource.SHIELD) == 1) return Resource.SHIELD;</b>
+<b class="nc"><i>551</i>&nbsp;        else if (Collections.frequency(marketRes, Resource.STONE) == 1) return Resource.STONE;</b>
+<b class="nc"><i>552</i>&nbsp;        else return Resource.SERVANT;</b>
+<i>553</i>&nbsp;    }
+<i>554</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-07-02 00:02</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,140 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: MainView</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">it.polimi.ingsw.view</a> ]
+</div>
+
+<h1>Coverage Summary for Class: MainView (it.polimi.ingsw.view)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">MainView</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 29)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package it.polimi.ingsw.view;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import it.polimi.ingsw.controller.Request.NewGameRequest;
+<i>4</i>&nbsp;import it.polimi.ingsw.controller.Request.Request;
+<i>5</i>&nbsp;import it.polimi.ingsw.view.data.BasicData;
+<i>6</i>&nbsp;import it.polimi.ingsw.view.data.PlayerData;
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;import java.io.IOException;
+<i>9</i>&nbsp;import java.net.SocketException;
+<i>10</i>&nbsp;import java.util.Scanner;
+<i>11</i>&nbsp;
+<i>12</i>&nbsp;/**
+<i>13</i>&nbsp; * The type Main view.
+<i>14</i>&nbsp; */
+<b class="nc"><i>15</i>&nbsp;public class MainView {</b>
+<i>16</i>&nbsp;    /**
+<i>17</i>&nbsp;     * The entry point of application.
+<i>18</i>&nbsp;     *
+<i>19</i>&nbsp;     * @param args the input arguments
+<i>20</i>&nbsp;     * @throws IOException the io exception
+<i>21</i>&nbsp;     */
+<i>22</i>&nbsp;    public static void main(String[] args) throws IOException {
+<b class="nc"><i>23</i>&nbsp;        Scanner scanner = new Scanner(System.in);</b>
+<b class="nc"><i>24</i>&nbsp;        System.out.println(&quot;Insert a new nickname&quot;);</b>
+<b class="nc"><i>25</i>&nbsp;        String nickname = scanner.nextLine();</b>
+<b class="nc"><i>26</i>&nbsp;        System.out.println(&quot;Insert the server IP&quot;);</b>
+<b class="nc"><i>27</i>&nbsp;        String serverIP = scanner.nextLine();</b>
+<b class="nc"><i>28</i>&nbsp;        int serverPort = 8080;</b>
+<b class="nc"><i>29</i>&nbsp;        LineClient thisPlayer = new LineClient(serverIP, serverPort);</b>
+<b class="nc"><i>30</i>&nbsp;        System.out.println(&quot;We&#39;re gonna try to find an existing game to add you\n\rin case there are none, how many players do you want in your game?&quot;);</b>
+<b class="nc"><i>31</i>&nbsp;        int maxPlayers = scanner.nextInt();</b>
+<b class="nc"><i>32</i>&nbsp;        Request request = new NewGameRequest(nickname, maxPlayers);</b>
+<i>33</i>&nbsp;        try{
+<b class="nc"><i>34</i>&nbsp;            thisPlayer.startClient();</b>
+<b class="nc"><i>35</i>&nbsp;        }catch (SocketException e)</b>
+<i>36</i>&nbsp;        {
+<b class="nc"><i>37</i>&nbsp;            System.out.println(&quot;Insert the server IP&quot;);</b>
+<b class="nc"><i>38</i>&nbsp;            serverIP = scanner.nextLine();</b>
+<b class="nc"><i>39</i>&nbsp;            thisPlayer.setIP(serverIP);</b>
+<i>40</i>&nbsp;        }
+<b class="nc"><i>41</i>&nbsp;        catch (IOException e)</b>
+<i>42</i>&nbsp;        {
+<b class="nc"><i>43</i>&nbsp;            System.out.println(&quot;Insert the server IP&quot;);</b>
+<b class="nc"><i>44</i>&nbsp;            serverIP = scanner.nextLine();</b>
+<b class="nc"><i>45</i>&nbsp;            thisPlayer.setIP(serverIP);</b>
+<b class="nc"><i>46</i>&nbsp;        }</b>
+<i>47</i>&nbsp;
+<b class="nc"><i>48</i>&nbsp;        PlayerData data = new BasicData(nickname, thisPlayer);</b>
+<b class="nc"><i>49</i>&nbsp;        Observer observer = new Observer(thisPlayer, data);</b>
+<b class="nc"><i>50</i>&nbsp;        Thread t = new Thread(observer);</b>
+<b class="nc"><i>51</i>&nbsp;        t.start();</b>
+<b class="nc"><i>52</i>&nbsp;        Ponger pong = new Ponger(thisPlayer, nickname);</b>
+<b class="nc"><i>53</i>&nbsp;        Thread p = new Thread(pong);</b>
+<b class="nc"><i>54</i>&nbsp;        p.start();</b>
+<b class="nc"><i>55</i>&nbsp;        thisPlayer.sendRequest(request);</b>
+<i>56</i>&nbsp;    }
+<i>57</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-07-02 00:02</div>
+</div>
+</body>
+</html>

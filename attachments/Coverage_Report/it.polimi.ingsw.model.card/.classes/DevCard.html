@@ -1,0 +1,201 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: DevCard</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">it.polimi.ingsw.model.card</a> ]
+</div>
+
+<h1>Coverage Summary for Class: DevCard (it.polimi.ingsw.model.card)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">DevCard</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (9/ 9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (21/ 21)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package it.polimi.ingsw.model.card;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import it.polimi.ingsw.model.Player.Player;
+<i>4</i>&nbsp;import it.polimi.ingsw.model.Table.Resource;
+<i>5</i>&nbsp;
+<i>6</i>&nbsp;import java.util.ArrayList;
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;/**
+<i>9</i>&nbsp; * The card that allows the {@link Player} to produce {@link Resource} from other {@link Resource}.
+<i>10</i>&nbsp; */
+<i>11</i>&nbsp;public class DevCard {
+<i>12</i>&nbsp;    private final String color;
+<i>13</i>&nbsp;    private final int level;
+<i>14</i>&nbsp;    private final int victoryPoint;
+<i>15</i>&nbsp;    private boolean isEnable;
+<i>16</i>&nbsp;    private String cardID;
+<i>17</i>&nbsp;    private Player owner;
+<i>18</i>&nbsp;    private ArrayList&lt;Resource&gt; requires;
+<i>19</i>&nbsp;    private final ArrayList&lt;Resource&gt; produces;
+<i>20</i>&nbsp;    private final ArrayList&lt;Resource&gt; price;
+<i>21</i>&nbsp;
+<i>22</i>&nbsp;    /**
+<i>23</i>&nbsp;     * Instantiates a new {@link DevCard} with all its features and set its enable to false.
+<i>24</i>&nbsp;     *
+<i>25</i>&nbsp;     * @param id  the {@link DevCard}&#39;s ID.
+<i>26</i>&nbsp;     * @param col the {@link DevCard}&#39;s color.
+<i>27</i>&nbsp;     * @param lev the {@link DevCard}&#39;s level.
+<i>28</i>&nbsp;     * @param vp  the {@link DevCard}&#39;s victory points gave to a {@link Player} who will buy this card.
+<i>29</i>&nbsp;     * @param req the required {@link Resource} needed for producing.
+<i>30</i>&nbsp;     * @param pro the {@link Resource}s produced by this {@link DevCard}.
+<i>31</i>&nbsp;     * @param pri the price for buying this {@link Resource}.
+<i>32</i>&nbsp;     */
+<b class="fc"><i>33</i>&nbsp;    public DevCard(String id, String col, int lev, int vp, ArrayList&lt;Resource&gt; req, ArrayList&lt;Resource&gt; pro, ArrayList&lt;Resource&gt; pri) {</b>
+<b class="fc"><i>34</i>&nbsp;        cardID = id;</b>
+<b class="fc"><i>35</i>&nbsp;        color = col;</b>
+<b class="fc"><i>36</i>&nbsp;        level = lev;</b>
+<b class="fc"><i>37</i>&nbsp;        victoryPoint = vp;</b>
+<b class="fc"><i>38</i>&nbsp;        requires = req;</b>
+<b class="fc"><i>39</i>&nbsp;        produces = pro;</b>
+<b class="fc"><i>40</i>&nbsp;        price = pri;</b>
+<b class="fc"><i>41</i>&nbsp;        isEnable = false;</b>
+<b class="fc"><i>42</i>&nbsp;        owner = null;</b>
+<b class="fc"><i>43</i>&nbsp;        cardID = id;</b>
+<b class="fc"><i>44</i>&nbsp;    }</b>
+<i>45</i>&nbsp;
+<i>46</i>&nbsp;    /**
+<i>47</i>&nbsp;     * Sets owner when the {@link Resource} buys a {@link DevCard}.
+<i>48</i>&nbsp;     *
+<i>49</i>&nbsp;     * @param owner the owner
+<i>50</i>&nbsp;     */
+<i>51</i>&nbsp;    public void setOwner(Player owner) {
+<b class="fc"><i>52</i>&nbsp;        this.owner = owner;</b>
+<b class="fc"><i>53</i>&nbsp;    }</b>
+<i>54</i>&nbsp;
+<i>55</i>&nbsp;    /**
+<i>56</i>&nbsp;     * Gets the {@link DevCard}&#39;s color.
+<i>57</i>&nbsp;     *
+<i>58</i>&nbsp;     * @return the {@link DevCard}&#39;s color
+<i>59</i>&nbsp;     */
+<i>60</i>&nbsp;    public String getColor() {
+<b class="fc"><i>61</i>&nbsp;        return color;</b>
+<i>62</i>&nbsp;    }
+<i>63</i>&nbsp;
+<i>64</i>&nbsp;    /**
+<i>65</i>&nbsp;     * Gets the {@link DevCard}&#39;s level.
+<i>66</i>&nbsp;     *
+<i>67</i>&nbsp;     * @return the {@link DevCard}&#39;s level
+<i>68</i>&nbsp;     */
+<i>69</i>&nbsp;    public int getLevel() {
+<b class="fc"><i>70</i>&nbsp;        return level;</b>
+<i>71</i>&nbsp;    }
+<i>72</i>&nbsp;
+<i>73</i>&nbsp;    /**
+<i>74</i>&nbsp;     * Gets the produced {@link Resource}s.
+<i>75</i>&nbsp;     *
+<i>76</i>&nbsp;     * @return the array list of the produced {@link Resource}.
+<i>77</i>&nbsp;     */
+<i>78</i>&nbsp;
+<i>79</i>&nbsp;    public ArrayList&lt;Resource&gt; producedResources() {
+<b class="fc"><i>80</i>&nbsp;        return (ArrayList&lt;Resource&gt;) produces.clone();</b>
+<i>81</i>&nbsp;    }
+<i>82</i>&nbsp;
+<i>83</i>&nbsp;    /**
+<i>84</i>&nbsp;     * Gets the {@link DevCard}&#39;s price
+<i>85</i>&nbsp;     *
+<i>86</i>&nbsp;     * @return the price that the {@link Player} needs to buy the {@link DevCard}.
+<i>87</i>&nbsp;     */
+<i>88</i>&nbsp;    public ArrayList&lt;Resource&gt; getPrice() {
+<b class="fc"><i>89</i>&nbsp;        return price;</b>
+<i>90</i>&nbsp;    }
+<i>91</i>&nbsp;
+<i>92</i>&nbsp;    /**
+<i>93</i>&nbsp;     * Gets {@link DevCard}&#39;s ID.
+<i>94</i>&nbsp;     *
+<i>95</i>&nbsp;     * @return the {@link DevCard}&#39;s ID.
+<i>96</i>&nbsp;     */
+<i>97</i>&nbsp;    public String getCardID() {
+<b class="fc"><i>98</i>&nbsp;        return cardID;</b>
+<i>99</i>&nbsp;    }
+<i>100</i>&nbsp;
+<i>101</i>&nbsp;    /**
+<i>102</i>&nbsp;     * Get the required {@link Resource} to produce whit this {@link DevCard}.
+<i>103</i>&nbsp;     *
+<i>104</i>&nbsp;     * @return the resources needed for using this {@link DevCard}.
+<i>105</i>&nbsp;     */
+<i>106</i>&nbsp;    public ArrayList&lt;Resource&gt; getRequirements(){
+<b class="fc"><i>107</i>&nbsp;        return requires;</b>
+<i>108</i>&nbsp;    }
+<i>109</i>&nbsp;
+<i>110</i>&nbsp;    /**
+<i>111</i>&nbsp;     * Gets the {@link DevCard}&#39;s victory points.
+<i>112</i>&nbsp;     *
+<i>113</i>&nbsp;     * @return the victory points
+<i>114</i>&nbsp;     */
+<i>115</i>&nbsp;    public int getVictoryPoints() {
+<b class="fc"><i>116</i>&nbsp;        return victoryPoint;</b>
+<i>117</i>&nbsp;    }
+<i>118</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-07-02 00:02</div>
+</div>
+</body>
+</html>

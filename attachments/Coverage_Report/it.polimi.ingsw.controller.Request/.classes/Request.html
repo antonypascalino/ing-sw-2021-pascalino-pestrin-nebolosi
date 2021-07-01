@@ -1,0 +1,114 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: Request</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">it.polimi.ingsw.controller.Request</a> ]
+</div>
+
+<h1>Coverage Summary for Class: Request (it.polimi.ingsw.controller.Request)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">Request</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package it.polimi.ingsw.controller.Request;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import it.polimi.ingsw.Convertible;
+<i>4</i>&nbsp;import it.polimi.ingsw.controller.Game;
+<i>5</i>&nbsp;import it.polimi.ingsw.controller.TurnState;
+<i>6</i>&nbsp;import it.polimi.ingsw.model.Player.Player;
+<i>7</i>&nbsp;import it.polimi.ingsw.Updates.Update;
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;import java.util.ArrayList;
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;/**
+<i>12</i>&nbsp; * The interface used by all type of request the player could send.
+<i>13</i>&nbsp; * A request contains the information about of the action a player would like to do.
+<i>14</i>&nbsp; */
+<i>15</i>&nbsp;public interface Request extends Convertible {
+<i>16</i>&nbsp;
+<i>17</i>&nbsp;    /**
+<i>18</i>&nbsp;     * Handle the request sent by the {@link Player} modifying his status on the server according to
+<i>19</i>&nbsp;     * what he said wants to do.
+<i>20</i>&nbsp;     *
+<i>21</i>&nbsp;     * @param curr the curr
+<i>22</i>&nbsp;     * @param game the game
+<i>23</i>&nbsp;     * @return the action just done. Used by the {@link Game} so can have all the information  about of what every Player did in his turn.
+<i>24</i>&nbsp;     */
+<i>25</i>&nbsp;    TurnState handle(Player curr, Game game);
+<i>26</i>&nbsp;
+<i>27</i>&nbsp;    /**
+<i>28</i>&nbsp;     * Check if the {@link Player} who sent the request can do the actions he wants in this moment of his turn
+<i>29</i>&nbsp;     * and in this moment of the {@link Game}.
+<i>30</i>&nbsp;     *
+<i>31</i>&nbsp;     * @param turnStates the turn states
+<i>32</i>&nbsp;     * @return true if he can, false otherwise.
+<i>33</i>&nbsp;     */
+<i>34</i>&nbsp;    boolean validRequest(ArrayList&lt;TurnState&gt; turnStates);
+<i>35</i>&nbsp;
+<i>36</i>&nbsp;    /**
+<i>37</i>&nbsp;     * Check if the {@link Player}&#39;s status satisfied all the requirements needed to handle the request he sent.
+<i>38</i>&nbsp;     *
+<i>39</i>&nbsp;     * @param player the {@link Player} who sent the request.
+<i>40</i>&nbsp;     * @return true if the player satisfied all the requirements, false otherwise.
+<i>41</i>&nbsp;     */
+<i>42</i>&nbsp;    boolean canBePlayed(Player player);
+<i>43</i>&nbsp;
+<i>44</i>&nbsp;    /**
+<i>45</i>&nbsp;     * According to the modifies bring to the model by the request, this method create the relative {@link Update}
+<i>46</i>&nbsp;     * that will send to the players client side.
+<i>47</i>&nbsp;     *
+<i>48</i>&nbsp;     * @param player the {@link Player} who sent this request.
+<i>49</i>&nbsp;     * @param game   the {@link Game} who received the request reference.
+<i>50</i>&nbsp;     * @return the update
+<i>51</i>&nbsp;     */
+<i>52</i>&nbsp;    Update createUpdate(Player player, Game game);
+<i>53</i>&nbsp;
+<i>54</i>&nbsp;    /**
+<i>55</i>&nbsp;     * Gets the player&#39;s ID who sent the request.
+<i>56</i>&nbsp;     *
+<i>57</i>&nbsp;     * @return the player&#39;s ID.
+<i>58</i>&nbsp;     */
+<i>59</i>&nbsp;    String getPlayerID();
+<i>60</i>&nbsp;
+<i>61</i>&nbsp;    /**
+<i>62</i>&nbsp;     * Gets the {@link Game}&#39;IdD which received the request.
+<i>63</i>&nbsp;     *
+<i>64</i>&nbsp;     * @return the game&#39;s ID.
+<i>65</i>&nbsp;     */
+<i>66</i>&nbsp;    int getGameID();
+<i>67</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-07-02 00:02</div>
+</div>
+</body>
+</html>

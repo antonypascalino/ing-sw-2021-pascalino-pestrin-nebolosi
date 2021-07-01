@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>it.polimi.ingsw.controller</OriginalElement>
+  <nodes>
+    <node x="2583.6085762483135" y="1769.0">it.polimi.ingsw.controller.Request.PlayLeaderRequest</node>
+    <node x="3840.6628397917875" y="2127.0">it.polimi.ingsw.controller.Request.ProduceRequest</node>
+    <node x="3919.6085762483135" y="1266.0">it.polimi.ingsw.controller.Request.MappedResource</node>
+    <node x="1072.8166859456337" y="1255.0">it.polimi.ingsw.controller.Request.MarketDimension</node>
+    <node x="1863.2500000000005" y="1780.5">it.polimi.ingsw.controller.Request.PongRequest</node>
+    <node x="1442.7500000000005" y="1758.5">it.polimi.ingsw.controller.Request.NewGameRequest</node>
+    <node x="437.5666859456337" y="2216.5">it.polimi.ingsw.controller.SinglePlayer.Token</node>
+    <node x="1147.5666859456337" y="419.0">it.polimi.ingsw.controller.Request.MarketResource</node>
+    <node x="430.12500000000045" y="1714.0">it.polimi.ingsw.controller.SinglePlayer.SinglePlayerGame</node>
+    <node x="2066.5371476768846" y="1067.0">it.polimi.ingsw.controller.Game</node>
+    <node x="4048.6085762483135" y="1836.0">it.polimi.ingsw.controller.Request.Production</node>
+    <node x="1390.5666859456337" y="682.0">it.polimi.ingsw.controller.Request.InitialPlayersSetRequest</node>
+    <node x="290.00000000000045" y="1266.5">it.polimi.ingsw.controller.SinglePlayer.Move1</node>
+    <node x="614.0000000000005" y="1266.5">it.polimi.ingsw.controller.SinglePlayer.Move2</node>
+    <node x="0.0" y="1243.5">it.polimi.ingsw.controller.SinglePlayer.DiscardCards</node>
+    <node x="1574.3219221129734" y="375.0">it.polimi.ingsw.controller.DefaultCreator</node>
+    <node x="2885.6085762483135" y="1769.0">it.polimi.ingsw.controller.Request.DiscardLeaderRequest</node>
+    <node x="899.0666859456337" y="1714.0">it.polimi.ingsw.controller.Request.MarketRequest</node>
+    <node x="2232.719521881626" y="0.0">it.polimi.ingsw.controller.TurnState</node>
+    <node x="2281.6085762483135" y="1780.5">it.polimi.ingsw.controller.Request.EndTurnRequest</node>
+    <node x="3489.6085762483135" y="1736.0">it.polimi.ingsw.controller.Request.BuyDevRequest</node>
+    <node x="2245.3585762483135" y="386.0">it.polimi.ingsw.controller.Request.Request</node>
+    <node x="3187.6085762483135" y="1758.0">it.polimi.ingsw.controller.Request.MoveRequest</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="it.polimi.ingsw.controller.SinglePlayer.SinglePlayerGame" target="it.polimi.ingsw.controller.Request.Request">
+      <point x="25.200000000000045" y="-171.5" />
+      <point x="644.3250000000005" y="1604.0" />
+      <point x="592.5000000000005" y="1604.0" />
+      <point x="592.5000000000005" y="1027.0" />
+      <point x="1307.3177361673402" y="1027.0" />
+      <point x="1307.3177361673402" y="612.0" />
+      <point x="2256.204730094467" y="612.0" />
+      <point x="-130.1538461538462" y="82.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller.SinglePlayer.SinglePlayerGame" target="it.polimi.ingsw.controller.SinglePlayer.Move2">
+      <point x="75.60000000000002" y="-171.5" />
+      <point x="694.7250000000004" y="1584.0" />
+      <point x="647.7500000000005" y="1584.0" />
+      <point x="-101.25" y="49.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller.SinglePlayer.SinglePlayerGame" target="it.polimi.ingsw.controller.SinglePlayer.Move1">
+      <point x="-100.79999999999995" y="-171.5" />
+      <point x="518.3250000000005" y="1654.0" />
+      <point x="391.25000000000045" y="1654.0" />
+      <point x="-33.75" y="49.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller.Request.BuyDevRequest" target="it.polimi.ingsw.controller.TurnState">
+      <point x="0.0" y="-149.5" />
+      <point x="3694.1085762483135" y="1694.0" />
+      <point x="3689.6766647387685" y="1694.0" />
+      <point x="3689.6766647387685" y="305.0" />
+      <point x="2394.3266647387686" y="305.0" />
+      <point x="71.10714285714266" y="137.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller.Request.DiscardLeaderRequest" target="it.polimi.ingsw.controller.Game">
+      <point x="-94.0" y="-116.5" />
+      <point x="2932.6085762483135" y="1674.0" />
+      <point x="2324.6280567677936" y="1674.0" />
+      <point x="91.09090909090901" y="248.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller.Request.Production" target="it.polimi.ingsw.controller.Request.MappedResource">
+      <point x="-77.0" y="-49.5" />
+      <point x="4125.6085762483135" y="1694.0" />
+      <point x="4085.508576248313" y="1694.0" />
+      <point x="47.399999999999636" y="49.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller.Game" target="it.polimi.ingsw.controller.Request.Request">
+      <point x="143.14285714285734" y="-248.5" />
+      <point x="2376.680004819742" y="1047.0" />
+      <point x="2382.5666859456337" y="1047.0" />
+      <point x="2382.5666859456337" y="662.0" />
+      <point x="2386.3585762483135" y="662.0" />
+      <point x="0.0" y="82.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller.SinglePlayer.SinglePlayerGame" target="it.polimi.ingsw.controller.DefaultCreator">
+      <point x="0.0" y="-171.5" />
+      <point x="619.1250000000005" y="1614.0" />
+      <point x="581.5000000000005" y="1614.0" />
+      <point x="581.5000000000005" y="997.0" />
+      <point x="994.0371476768846" y="997.0" />
+      <point x="994.0371476768846" y="602.0" />
+      <point x="1621.4885887796402" y="602.0" />
+      <point x="-94.33333333333326" y="93.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller.Request.ProduceRequest" target="it.polimi.ingsw.controller.Request.MappedResource">
+      <point x="-26.75" y="-127.5" />
+      <point x="3974.4128397917875" y="2077.0" />
+      <point x="4038.1085762483135" y="2077.0" />
+      <point x="0.0" y="49.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller.Request.MarketRequest" target="it.polimi.ingsw.controller.Request.Request">
+      <point x="131.42857142857133" y="-171.5" />
+      <point x="1260.495257374205" y="1644.0" />
+      <point x="1308.3166859456337" y="1644.0" />
+      <point x="1308.3166859456337" y="1037.0" />
+      <point x="1380.0666859456337" y="1037.0" />
+      <point x="1380.0666859456337" y="622.0" />
+      <point x="2277.8970377867745" y="622.0" />
+      <point x="-108.46153846153857" y="82.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller.SinglePlayer.DiscardCards" target="it.polimi.ingsw.controller.SinglePlayer.Token">
+      <point x="-101.25" y="72.0" />
+      <point x="33.75" y="1694.0" />
+      <point x="82.7004935415448" y="1694.0" />
+      <point x="82.7004935415448" y="2107.0" />
+      <point x="456.85240023134793" y="2107.0" />
+      <point x="-115.71428571428578" y="-38.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller.SinglePlayer.Move1" target="it.polimi.ingsw.controller.SinglePlayer.SinglePlayerGame">
+      <point x="101.25" y="49.0" />
+      <point x="526.2500000000005" y="1634.0" />
+      <point x="568.7250000000006" y="1634.0" />
+      <point x="-50.399999999999864" y="-171.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller.Request.BuyDevRequest" target="it.polimi.ingsw.controller.Game">
+      <point x="-163.5999999999999" y="-149.5" />
+      <point x="3530.508576248313" y="1654.0" />
+      <point x="2385.3553294950666" y="1654.0" />
+      <point x="151.81818181818198" y="248.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller.Request.PongRequest" target="it.polimi.ingsw.controller.Game">
+      <point x="94.0" y="-105.0" />
+      <point x="2098.2500000000005" y="1694.0" />
+      <point x="2203.173511313248" y="1694.0" />
+      <point x="-30.363636363636488" y="248.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller.Request.PongRequest" target="it.polimi.ingsw.controller.Request.Request">
+      <point x="0.0" y="-105.0" />
+      <point x="2004.2500000000005" y="1644.0" />
+      <point x="2056.0371476768846" y="1644.0" />
+      <point x="2056.0371476768846" y="652.0" />
+      <point x="2342.9739608636983" y="652.0" />
+      <point x="-43.384615384615245" y="82.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller.Request.InitialPlayersSetRequest" target="it.polimi.ingsw.controller.Request.MarketResource">
+      <point x="-194.0" y="-127.5" />
+      <point x="1439.0666859456337" y="592.0" />
+      <point x="1279.4416859456337" y="592.0" />
+      <point x="26.375" y="49.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller.Request.InitialPlayersSetRequest" target="it.polimi.ingsw.controller.Request.Request">
+      <point x="194.0" y="-127.5" />
+      <point x="1827.0666859456337" y="632.0" />
+      <point x="2299.589345479082" y="632.0" />
+      <point x="-86.76923076923094" y="82.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller.Request.ProduceRequest" target="it.polimi.ingsw.controller.TurnState">
+      <point x="133.75" y="-127.5" />
+      <point x="4134.9128397917875" y="2107.0" />
+      <point x="4367.1085762483135" y="2107.0" />
+      <point x="4367.1085762483135" y="295.0" />
+      <point x="2407.25523616734" y="295.0" />
+      <point x="84.03571428571422" y="137.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller.Request.MoveRequest" target="it.polimi.ingsw.controller.TurnState">
+      <point x="94.00000000000023" y="-127.5" />
+      <point x="3422.6085762483135" y="1694.0" />
+      <point x="3412.076664738769" y="1694.0" />
+      <point x="3412.076664738769" y="315.0" />
+      <point x="2381.3980933101975" y="315.0" />
+      <point x="58.17857142857156" y="137.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller.Request.ProduceRequest" target="it.polimi.ingsw.controller.Game">
+      <point x="-133.75" y="-127.5" />
+      <point x="3867.4128397917875" y="2107.0" />
+      <point x="2233.5371476768846" y="2107.0" />
+      <point x="0.0" y="248.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller.SinglePlayer.Move2" target="it.polimi.ingsw.controller.SinglePlayer.Token">
+      <point x="101.25" y="49.0" />
+      <point x="850.2500000000005" y="1644.0" />
+      <point x="888.5666859456337" y="1644.0" />
+      <point x="888.5666859456337" y="2107.0" />
+      <point x="688.2809716599195" y="2107.0" />
+      <point x="115.71428571428578" y="-38.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller.Request.EndTurnRequest" target="it.polimi.ingsw.controller.Game">
+      <point x="-94.0" y="-105.0" />
+      <point x="2328.6085762483135" y="1694.0" />
+      <point x="2263.900784040521" y="1694.0" />
+      <point x="30.363636363636488" y="248.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller.Request.PlayLeaderRequest" target="it.polimi.ingsw.controller.TurnState">
+      <point x="94.0" y="-116.5" />
+      <point x="2818.6085762483135" y="1694.0" />
+      <point x="2808.076664738769" y="1694.0" />
+      <point x="2808.076664738769" y="335.0" />
+      <point x="2355.5409504530544" y="335.0" />
+      <point x="32.32142857142844" y="137.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller.Request.ProduceRequest" target="it.polimi.ingsw.controller.Request.Production">
+      <point x="26.75" y="-127.5" />
+      <point x="4027.9128397917875" y="2087.0" />
+      <point x="4125.6085762483135" y="2087.0" />
+      <point x="-77.0" y="49.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller.Request.NewGameRequest" target="it.polimi.ingsw.controller.TurnState">
+      <point x="-94.0" y="-127.0" />
+      <point x="1489.7500000000005" y="1644.0" />
+      <point x="1367.0719221129734" y="1644.0" />
+      <point x="1367.0719221129734" y="997.0" />
+      <point x="1137.0666859456337" y="997.0" />
+      <point x="1137.0666859456337" y="315.0" />
+      <point x="2265.0409504530544" y="315.0" />
+      <point x="-58.17857142857156" y="137.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller.Request.MarketRequest" target="it.polimi.ingsw.controller.TurnState">
+      <point x="-197.1428571428571" y="-171.5" />
+      <point x="931.9238288027766" y="1644.0" />
+      <point x="948.2500000000005" y="1644.0" />
+      <point x="948.2500000000005" y="305.0" />
+      <point x="2252.1123790244833" y="305.0" />
+      <point x="-71.10714285714266" y="137.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller.SinglePlayer.SinglePlayerGame" target="it.polimi.ingsw.controller.SinglePlayer.Token">
+      <point x="-47.25" y="171.5" />
+      <point x="0.0" y="-38.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller.Request.DiscardLeaderRequest" target="it.polimi.ingsw.controller.TurnState">
+      <point x="94.0" y="-116.5" />
+      <point x="3120.6085762483135" y="1694.0" />
+      <point x="3110.076664738769" y="1694.0" />
+      <point x="3110.076664738769" y="325.0" />
+      <point x="2368.469521881626" y="325.0" />
+      <point x="45.25" y="137.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller.Request.Request" target="it.polimi.ingsw.controller.TurnState">
+      <point x="0.0" y="-82.5" />
+      <point x="2386.3585762483135" y="355.0" />
+      <point x="2329.6838075959117" y="355.0" />
+      <point x="6.464285714285779" y="137.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller.Game" target="it.polimi.ingsw.controller.DefaultCreator">
+      <point x="-47.71428571428578" y="-248.5" />
+      <point x="2185.822861962599" y="957.0" />
+      <point x="2135.1085762483135" y="957.0" />
+      <point x="2135.1085762483135" y="592.0" />
+      <point x="1810.1552554463067" y="592.0" />
+      <point x="94.33333333333326" y="93.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller.SinglePlayer.SinglePlayerGame" target="it.polimi.ingsw.controller.Request.InitialPlayersSetRequest">
+      <point x="50.40000000000009" y="-171.5" />
+      <point x="669.5250000000005" y="1594.0" />
+      <point x="603.5000000000005" y="1594.0" />
+      <point x="603.5000000000005" y="1047.0" />
+      <point x="1471.4000192789667" y="1047.0" />
+      <point x="-161.66666666666674" y="127.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller.Request.InitialPlayersSetRequest" target="it.polimi.ingsw.controller.TurnState">
+      <point x="97.0" y="-127.5" />
+      <point x="1730.0666859456337" y="602.0" />
+      <point x="1867.8219221129734" y="602.0" />
+      <point x="1867.8219221129734" y="335.0" />
+      <point x="2290.8980933101975" y="335.0" />
+      <point x="-32.32142857142844" y="137.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller.SinglePlayer.Move1" target="it.polimi.ingsw.controller.SinglePlayer.Token">
+      <point x="-101.25" y="49.0" />
+      <point x="323.75000000000045" y="1694.0" />
+      <point x="362.0666859456337" y="1694.0" />
+      <point x="362.0666859456337" y="2097.0" />
+      <point x="495.42382880277637" y="2097.0" />
+      <point x="-77.14285714285734" y="-38.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller.SinglePlayer.SinglePlayerGame" target="it.polimi.ingsw.controller.SinglePlayer.DiscardCards">
+      <point x="-176.39999999999986" y="-171.5" />
+      <point x="442.7250000000006" y="1684.0" />
+      <point x="101.25" y="1684.0" />
+      <point x="-33.75" y="72.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller.Game" target="it.polimi.ingsw.controller.TurnState">
+      <point x="47.71428571428578" y="-248.5" />
+      <point x="2281.2514333911704" y="1037.0" />
+      <point x="2234.8585762483135" y="1037.0" />
+      <point x="2234.8585762483135" y="355.0" />
+      <point x="2316.75523616734" y="355.0" />
+      <point x="-6.464285714285779" y="137.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller.SinglePlayer.DiscardCards" target="it.polimi.ingsw.controller.SinglePlayer.SinglePlayerGame">
+      <point x="101.25" y="72.0" />
+      <point x="236.25" y="1664.0" />
+      <point x="493.12500000000045" y="1664.0" />
+      <point x="-126.0" y="-171.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller.Game" target="it.polimi.ingsw.controller.Request.InitialPlayersSetRequest">
+      <point x="-143.14285714285688" y="-248.5" />
+      <point x="2090.3942905340277" y="977.0" />
+      <point x="1633.0666859456337" y="977.0" />
+      <point x="0.0" y="127.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller.Request.EndTurnRequest" target="it.polimi.ingsw.controller.Request.Request">
+      <point x="0.0" y="-105.0" />
+      <point x="2422.6085762483135" y="1694.0" />
+      <point x="2464.1085762483135" y="1694.0" />
+      <point x="2464.1085762483135" y="662.0" />
+      <point x="2408.050883940621" y="662.0" />
+      <point x="21.692307692307622" y="82.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller.Request.PlayLeaderRequest" target="it.polimi.ingsw.controller.Request.Request">
+      <point x="0.0" y="-116.5" />
+      <point x="2724.6085762483135" y="1694.0" />
+      <point x="2766.1085762483135" y="1694.0" />
+      <point x="2766.1085762483135" y="652.0" />
+      <point x="2429.7431916329288" y="652.0" />
+      <point x="43.384615384615245" y="82.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller.Request.InitialPlayersSetRequest" target="it.polimi.ingsw.controller.Game">
+      <point x="161.66666666666652" y="127.5" />
+      <point x="1794.7333526123002" y="967.0" />
+      <point x="2138.108576248313" y="967.0" />
+      <point x="-95.42857142857156" y="-248.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller.Request.BuyDevRequest" target="it.polimi.ingsw.controller.Request.Request">
+      <point x="-81.80000000000018" y="-149.5" />
+      <point x="3612.3085762483133" y="1694.0" />
+      <point x="3634.6675824175827" y="1694.0" />
+      <point x="3634.6675824175827" y="622.0" />
+      <point x="2494.8201147098516" y="622.0" />
+      <point x="108.46153846153857" y="82.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller.Request.MoveRequest" target="it.polimi.ingsw.controller.Request.Request">
+      <point x="2.2737367544323206E-13" y="-127.5" />
+      <point x="3328.6085762483135" y="1694.0" />
+      <point x="3370.1085762483135" y="1694.0" />
+      <point x="3370.1085762483135" y="632.0" />
+      <point x="2473.127807017544" y="632.0" />
+      <point x="86.76923076923094" y="82.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller.Request.ProduceRequest" target="it.polimi.ingsw.controller.Request.Request">
+      <point x="-80.25" y="-127.5" />
+      <point x="3920.9128397917875" y="2107.0" />
+      <point x="3909.1085762483135" y="2107.0" />
+      <point x="3909.1085762483135" y="612.0" />
+      <point x="2516.5124224021592" y="612.0" />
+      <point x="130.1538461538462" y="82.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller.SinglePlayer.SinglePlayerGame" target="it.polimi.ingsw.controller.TurnState">
+      <point x="-25.199999999999818" y="-171.5" />
+      <point x="593.9250000000006" y="1624.0" />
+      <point x="570.5000000000005" y="1624.0" />
+      <point x="570.5000000000005" y="295.0" />
+      <point x="2239.1838075959117" y="295.0" />
+      <point x="-84.03571428571422" y="137.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller.Request.PlayLeaderRequest" target="it.polimi.ingsw.controller.Game">
+      <point x="-94.0" y="-116.5" />
+      <point x="2630.6085762483135" y="1684.0" />
+      <point x="2294.2644204041576" y="1684.0" />
+      <point x="60.727272727272975" y="248.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller.Request.MarketRequest" target="it.polimi.ingsw.controller.Game">
+      <point x="197.1428571428571" y="-171.5" />
+      <point x="1326.2095430884908" y="1674.0" />
+      <point x="2142.4462385859756" y="1674.0" />
+      <point x="-91.09090909090901" y="248.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller.Request.PongRequest" target="it.polimi.ingsw.controller.TurnState">
+      <point x="-94.0" y="-105.0" />
+      <point x="1910.2500000000005" y="1644.0" />
+      <point x="1715.8219221129734" y="1644.0" />
+      <point x="1715.8219221129734" y="987.0" />
+      <point x="1369.0666859456337" y="987.0" />
+      <point x="1369.0666859456337" y="325.0" />
+      <point x="2277.969521881626" y="325.0" />
+      <point x="-45.25" y="137.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller.Request.BuyDevRequest" target="it.polimi.ingsw.controller.Request.MappedResource">
+      <point x="81.80000000000018" y="-149.5" />
+      <point x="3775.9085762483137" y="1684.0" />
+      <point x="3943.3085762483133" y="1684.0" />
+      <point x="-94.80000000000018" y="49.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller.Request.MoveRequest" target="it.polimi.ingsw.controller.Game">
+      <point x="-93.99999999999977" y="-127.5" />
+      <point x="3234.6085762483135" y="1664.0" />
+      <point x="2354.99169313143" y="1664.0" />
+      <point x="121.4545454545455" y="248.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller.Request.EndTurnRequest" target="it.polimi.ingsw.controller.TurnState">
+      <point x="94.0" y="-105.0" />
+      <point x="2516.6085762483135" y="1694.0" />
+      <point x="2598.4647792558308" y="1694.0" />
+      <point x="2598.4647792558308" y="345.0" />
+      <point x="2342.6123790244833" y="345.0" />
+      <point x="19.392857142857338" y="137.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller.SinglePlayer.Move2" target="it.polimi.ingsw.controller.SinglePlayer.SinglePlayerGame">
+      <point x="33.75" y="49.0" />
+      <point x="782.7500000000005" y="1644.0" />
+      <point x="745.1250000000005" y="1644.0" />
+      <point x="126.0" y="-171.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller.SinglePlayer.SinglePlayerGame" target="it.polimi.ingsw.controller.Game">
+      <point x="151.20000000000005" y="-171.5" />
+      <point x="770.3250000000005" y="1654.0" />
+      <point x="2081.7189658587026" y="1654.0" />
+      <point x="-151.81818181818198" y="248.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller.Request.Request" target="it.polimi.ingsw.controller.Game">
+      <point x="-21.692307692307622" y="82.5" />
+      <point x="2364.666268556006" y="662.0" />
+      <point x="2328.9175824175827" y="662.0" />
+      <point x="95.42857142857156" y="-248.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller.Request.DiscardLeaderRequest" target="it.polimi.ingsw.controller.Request.Request">
+      <point x="0.0" y="-116.5" />
+      <point x="3026.6085762483135" y="1694.0" />
+      <point x="3068.1085762483135" y="1694.0" />
+      <point x="3068.1085762483135" y="642.0" />
+      <point x="2451.4354993252364" y="642.0" />
+      <point x="65.07692307692332" y="82.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller.Request.NewGameRequest" target="it.polimi.ingsw.controller.Request.Request">
+      <point x="0.0" y="-127.0" />
+      <point x="1583.7500000000005" y="1047.0" />
+      <point x="1886.0666859456337" y="1047.0" />
+      <point x="1886.0666859456337" y="642.0" />
+      <point x="2321.2816531713906" y="642.0" />
+      <point x="-65.07692307692287" y="82.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller.Request.InitialPlayersSetRequest" target="it.polimi.ingsw.controller.DefaultCreator">
+      <point x="0.0" y="-127.5" />
+      <point x="1633.0666859456337" y="602.0" />
+      <point x="1715.8219221129734" y="602.0" />
+      <point x="0.0" y="93.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller.Request.NewGameRequest" target="it.polimi.ingsw.controller.Game">
+      <point x="94.0" y="-127.0" />
+      <point x="1677.7500000000005" y="1684.0" />
+      <point x="2172.809874949612" y="1684.0" />
+      <point x="-60.72727272727252" y="248.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller.Request.MarketRequest" target="it.polimi.ingsw.controller.Request.MarketDimension">
+      <point x="0.0" y="-171.5" />
+      <point x="-56.25" y="60.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller.Request.MarketRequest" target="it.polimi.ingsw.controller.Request.MarketResource">
+      <point x="-65.71428571428578" y="-171.5" />
+      <point x="1063.352400231348" y="1644.0" />
+      <point x="1015.0625000000005" y="1644.0" />
+      <point x="1015.0625000000005" y="1017.0" />
+      <point x="1205.8166859456337" y="1017.0" />
+      <point x="1205.8166859456337" y="592.0" />
+      <point x="1226.6916859456337" y="592.0" />
+      <point x="-26.375" y="49.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller.SinglePlayer.Token" target="it.polimi.ingsw.controller.SinglePlayer.SinglePlayerGame">
+      <point x="-38.57142857142867" y="-38.0" />
+      <point x="533.995257374205" y="2087.0" />
+      <point x="477.37500000000045" y="2087.0" />
+      <point x="-141.75" y="171.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.20000000000000015" x="1423.9999999999984" y="1531.9999999999986" />
+  <SelectedNodes>
+    <node>it.polimi.ingsw.controller.Request.PlayLeaderRequest</node>
+    <node>it.polimi.ingsw.controller.Request.ProduceRequest</node>
+    <node>it.polimi.ingsw.controller.Request.MappedResource</node>
+    <node>it.polimi.ingsw.controller.Request.MarketDimension</node>
+    <node>it.polimi.ingsw.controller.Request.PongRequest</node>
+    <node>it.polimi.ingsw.controller.Request.NewGameRequest</node>
+    <node>it.polimi.ingsw.controller.SinglePlayer.Token</node>
+    <node>it.polimi.ingsw.controller.Request.MarketResource</node>
+    <node>it.polimi.ingsw.controller.SinglePlayer.SinglePlayerGame</node>
+    <node>it.polimi.ingsw.controller.Game</node>
+    <node>it.polimi.ingsw.controller.Request.Production</node>
+    <node>it.polimi.ingsw.controller.Request.InitialPlayersSetRequest</node>
+    <node>it.polimi.ingsw.controller.SinglePlayer.Move1</node>
+    <node>it.polimi.ingsw.controller.SinglePlayer.Move2</node>
+    <node>it.polimi.ingsw.controller.SinglePlayer.DiscardCards</node>
+    <node>it.polimi.ingsw.controller.DefaultCreator</node>
+    <node>it.polimi.ingsw.controller.Request.DiscardLeaderRequest</node>
+    <node>it.polimi.ingsw.controller.Request.MarketRequest</node>
+    <node>it.polimi.ingsw.controller.TurnState</node>
+    <node>it.polimi.ingsw.controller.Request.EndTurnRequest</node>
+    <node>it.polimi.ingsw.controller.Request.BuyDevRequest</node>
+    <node>it.polimi.ingsw.controller.Request.Request</node>
+    <node>it.polimi.ingsw.controller.Request.MoveRequest</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

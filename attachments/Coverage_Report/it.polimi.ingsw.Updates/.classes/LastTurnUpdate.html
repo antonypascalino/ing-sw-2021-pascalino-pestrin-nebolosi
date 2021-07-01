@@ -1,0 +1,116 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: LastTurnUpdate</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">it.polimi.ingsw.Updates</a> ]
+</div>
+
+<h1>Coverage Summary for Class: LastTurnUpdate (it.polimi.ingsw.Updates)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">LastTurnUpdate</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 5)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package it.polimi.ingsw.Updates;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import it.polimi.ingsw.model.Player.Player;
+<i>4</i>&nbsp;import it.polimi.ingsw.controller.Game;
+<i>5</i>&nbsp;import it.polimi.ingsw.view.data.PlayerData;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;/**
+<i>8</i>&nbsp; * The {@link Update} sent after that a {@link Player} reached the conditions to make start the last turn of the {@link Game}.
+<i>9</i>&nbsp; */
+<i>10</i>&nbsp;public class LastTurnUpdate implements Update {
+<i>11</i>&nbsp;    private String lastTurnAnnouncement;
+<i>12</i>&nbsp;    private String className;
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;    /**
+<i>15</i>&nbsp;     * Instantiates a new {@link LastTurnUpdate} setting the message to show.
+<i>16</i>&nbsp;     *
+<i>17</i>&nbsp;     * @param lastTurnAnnouncement the last turn announcement
+<i>18</i>&nbsp;     */
+<b class="nc"><i>19</i>&nbsp;    public LastTurnUpdate(String lastTurnAnnouncement) {</b>
+<b class="nc"><i>20</i>&nbsp;        this.lastTurnAnnouncement = lastTurnAnnouncement;</b>
+<b class="nc"><i>21</i>&nbsp;        this.className = this.getClass().getName();</b>
+<i>22</i>&nbsp;    }
+<i>23</i>&nbsp;
+<i>24</i>&nbsp;    @Override
+<i>25</i>&nbsp;    public String getClassName() {
+<b class="nc"><i>26</i>&nbsp;        return className;</b>
+<i>27</i>&nbsp;    }
+<i>28</i>&nbsp;
+<i>29</i>&nbsp;    @Override
+<i>30</i>&nbsp;    public void handleUpdate(PlayerData data) {
+<b class="nc"><i>31</i>&nbsp;        data.getPrinter().printMessage(lastTurnAnnouncement);</b>
+<i>32</i>&nbsp;    }
+<i>33</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-07-02 00:02</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,600 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>it.polimi.ingsw.view</OriginalElement>
+  <nodes>
+    <node x="810.8727272727274" y="2337.5">it.polimi.ingsw.view.clientCards.ClientExtraProd</node>
+    <node x="2368.9146226248477" y="496.0">it.polimi.ingsw.view.selections.MarketSelection</node>
+    <node x="3332.1855223282364" y="77.5">it.polimi.ingsw.view.selections.Selection</node>
+    <node x="2640.130005006876" y="2348.5">it.polimi.ingsw.view.data.ExtraProdData</node>
+    <node x="3121.166769712758" y="496.0">it.polimi.ingsw.view.selections.DiscardLeaderSelection</node>
+    <node x="3064.130005006876" y="2348.5">it.polimi.ingsw.view.data.ChangeResData</node>
+    <node x="977.9966334393473" y="847.0">it.polimi.ingsw.view.clientCards.ClientDevCard</node>
+    <node x="1962.0521889949027" y="44.0">it.polimi.ingsw.view.selections.MarketArray</node>
+    <node x="4405.509089974196" y="4045.0">it.polimi.ingsw.view.MainView</node>
+    <node x="3580.3840899741963" y="496.0">it.polimi.ingsw.view.selections.BuyDevSelection</node>
+    <node x="4064.3840899741963" y="496.0">it.polimi.ingsw.view.selections.PlayLeaderSelection</node>
+    <node x="458.8727272727274" y="2326.5">it.polimi.ingsw.view.clientCards.ClientChangeRes</node>
+    <node x="2879.166769712758" y="496.0">it.polimi.ingsw.view.selections.EndTurnSelection</node>
+    <node x="2637.166769712758" y="496.0">it.polimi.ingsw.view.selections.ProductionSelection</node>
+    <node x="900.2283858743745" y="2831.0">it.polimi.ingsw.view.clientCards.AllGameCards</node>
+    <node x="4270.905555555556" y="2337.5">it.polimi.ingsw.view.selections.StartGameSelection</node>
+    <node x="2604.6667697127587" y="1360.0">it.polimi.ingsw.view.data.PlayerData</node>
+    <node x="118.87272727272739" y="2326.5">it.polimi.ingsw.view.clientCards.ClientDiscount</node>
+    <node x="4709.655555555556" y="3500.5">it.polimi.ingsw.view.Ponger</node>
+    <node x="4629.334126984128" y="2753.0">it.polimi.ingsw.view.LineClient</node>
+    <node x="4282.134089974196" y="3478.0">it.polimi.ingsw.view.Observer</node>
+    <node x="409.0543360828133" y="891.0">it.polimi.ingsw.view.clientCards.ClientLeaderCard</node>
+    <node x="2201.130005006876" y="2282.0">it.polimi.ingsw.view.data.ExtraDepData</node>
+    <node x="3822.3840899741963" y="496.0">it.polimi.ingsw.view.selections.MoveSelection</node>
+    <node x="1682.3855223282362" y="0.0">it.polimi.ingsw.view.data.OtherPlayerData</node>
+    <node x="2080.3979559581812" y="496.0">it.polimi.ingsw.view.selections.CheckStatsSelection</node>
+    <node x="1114.8727272727274" y="2337.5">it.polimi.ingsw.view.clientCards.ClientExtraDep</node>
+    <node x="1656.3979559581812" y="309.0">it.polimi.ingsw.view.Printer</node>
+    <node x="3401.334089974196" y="880.0">it.polimi.ingsw.view.MainMenu</node>
+    <node x="887.7283858743745" y="3148.0">it.polimi.ingsw.view.data.BasicData</node>
+    <node x="696.6706832309085" y="2617.0">it.polimi.ingsw.view.clientCards.ClientDefaultCreator</node>
+    <node x="1647.0543360828133" y="2348.5">it.polimi.ingsw.view.data.DiscountData</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="it.polimi.ingsw.view.data.ExtraDepData" target="it.polimi.ingsw.view.data.PlayerData">
+      <point x="104.5" y="-127.5" />
+      <point x="2514.630005006876" y="2242.0" />
+      <point x="2789.0785344186406" y="2242.0" />
+      <point x="-24.588235294117567" y="391.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.MainMenu" target="it.polimi.ingsw.view.selections.MarketSelection">
+      <point x="-70.5" y="-83.5" />
+      <point x="3471.834089974196" y="797.0" />
+      <point x="2535.4146226248477" y="797.0" />
+      <point x="55.5" y="27.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.selections.ProductionSelection" target="it.polimi.ingsw.view.data.PlayerData">
+      <point x="-55.5" y="27.0" />
+      <point x="2692.666769712758" y="1100.0" />
+      <point x="2802.0556586016473" y="1100.0" />
+      <point x="-11.611111111111313" y="-391.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.clientCards.AllGameCards" target="it.polimi.ingsw.view.clientCards.ClientDefaultCreator">
+      <point x="0.0" y="-49.5" />
+      <point x="1031.2283858743745" y="2713.0" />
+      <point x="867.6706832309085" y="2713.0" />
+      <point x="0.0" y="38.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.clientCards.ClientExtraProd" target="it.polimi.ingsw.view.clientCards.ClientLeaderCard">
+      <point x="-106.5" y="-72.0" />
+      <point x="846.3727272727274" y="2162.0" />
+      <point x="906.3727272727274" y="2162.0" />
+      <point x="906.3727272727274" y="1290.0" />
+      <point x="562.0543360828133" y="1290.0" />
+      <point x="27.0" y="72.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.Ponger" target="it.polimi.ingsw.view.LineClient">
+      <point x="-46.0" y="-61.0" />
+      <point x="4755.655555555556" y="3128.0" />
+      <point x="4781.762698412699" y="3128.0" />
+      <point x="55.42857142857156" y="127.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.MainMenu" target="it.polimi.ingsw.view.selections.CheckStatsSelection">
+      <point x="-98.69999999999982" y="-83.5" />
+      <point x="3443.6340899741963" y="807.0" />
+      <point x="2246.8979559581812" y="807.0" />
+      <point x="55.5" y="27.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.clientCards.ClientExtraProd" target="it.polimi.ingsw.view.data.PlayerData">
+      <point x="106.5" y="-72.0" />
+      <point x="1059.3727272727274" y="2192.0" />
+      <point x="2666.1373579480523" y="2192.0" />
+      <point x="-147.52941176470586" y="391.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.selections.CheckStatsSelection" target="it.polimi.ingsw.view.data.OtherPlayerData">
+      <point x="-55.5" y="-27.0" />
+      <point x="2135.8979559581812" y="269.0" />
+      <point x="1877.6855223282364" y="269.0" />
+      <point x="86.80000000000018" y="104.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.clientCards.ClientDiscount" target="it.polimi.ingsw.view.clientCards.ClientLeaderCard">
+      <point x="-120.0" y="-83.0" />
+      <point x="158.8727272727274" y="2262.0" />
+      <point x="227.8727272727274" y="2262.0" />
+      <point x="227.8727272727274" y="1300.0" />
+      <point x="490.0543360828133" y="1300.0" />
+      <point x="-45.0" y="72.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.data.PlayerData" target="it.polimi.ingsw.view.clientCards.ClientDevCard">
+      <point x="-150.94444444444434" y="-391.0" />
+      <point x="2662.7223252683143" y="1160.0" />
+      <point x="1541.1784516211656" y="1160.0" />
+      <point x="268.18181818181824" y="116.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.data.BasicData" target="it.polimi.ingsw.view.data.OtherPlayerData">
+      <point x="-167.20000000000005" y="-413.5" />
+      <point x="929.5283858743744" y="3118.0" />
+      <point x="11.0" y="3118.0" />
+      <point x="11.0" y="269.0" />
+      <point x="1747.4855223282361" y="269.0" />
+      <point x="-43.40000000000009" y="104.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.data.BasicData" target="it.polimi.ingsw.view.clientCards.ClientLeaderCard">
+      <point x="-55.73333333333335" y="-413.5" />
+      <point x="1040.995052541041" y="3078.0" />
+      <point x="55.0" y="3078.0" />
+      <point x="55.0" y="1260.0" />
+      <point x="418.0543360828133" y="1260.0" />
+      <point x="-117.0" y="72.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.clientCards.ClientChangeRes" target="it.polimi.ingsw.view.clientCards.ClientDevCard">
+      <point x="41.5" y="-83.0" />
+      <point x="666.3727272727274" y="2162.0" />
+      <point x="594.3727272727274" y="2162.0" />
+      <point x="594.3727272727274" y="1330.0" />
+      <point x="1058.4511788938928" y="1330.0" />
+      <point x="-214.5454545454545" y="116.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.clientCards.ClientDiscount" target="it.polimi.ingsw.view.clientCards.ClientDevCard">
+      <point x="40.0" y="-83.0" />
+      <point x="318.8727272727274" y="2262.0" />
+      <point x="249.8727272727274" y="2262.0" />
+      <point x="249.8727272727274" y="1320.0" />
+      <point x="1004.8148152575291" y="1320.0" />
+      <point x="-268.18181818181824" y="116.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.clientCards.ClientExtraDep" target="it.polimi.ingsw.view.clientCards.ClientLeaderCard">
+      <point x="-98.0" y="-72.0" />
+      <point x="1163.8727272727274" y="2162.0" />
+      <point x="1207.3727272727274" y="2162.0" />
+      <point x="1207.3727272727274" y="1270.0" />
+      <point x="598.0543360828133" y="1270.0" />
+      <point x="63.0" y="72.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.data.BasicData" target="it.polimi.ingsw.view.Printer">
+      <point x="-111.4666666666667" y="-413.5" />
+      <point x="985.2617192077078" y="3098.0" />
+      <point x="33.0" y="3098.0" />
+      <point x="33.0" y="817.0" />
+      <point x="1757.3979559581812" y="817.0" />
+      <point x="-101.0" y="214.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.MainView" target="it.polimi.ingsw.view.Observer">
+      <point x="-27.5625" y="-27.0" />
+      <point x="4451.446589974196" y="4005.0" />
+      <point x="4336.884089974196" y="4005.0" />
+      <point x="-54.75" y="83.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.selections.PlayLeaderSelection" target="it.polimi.ingsw.view.selections.Selection">
+      <point x="0.0" y="-27.0" />
+      <point x="4175.384089974196" y="269.0" />
+      <point x="3503.730976873691" y="269.0" />
+      <point x="60.545454545454504" y="27.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.clientCards.AllGameCards" target="it.polimi.ingsw.view.clientCards.ClientLeaderCard">
+      <point x="-52.39999999999998" y="-49.5" />
+      <point x="978.8283858743745" y="2723.0" />
+      <point x="89.85000000000014" y="2723.0" />
+      <point x="89.85000000000014" y="1280.0" />
+      <point x="454.0543360828133" y="1280.0" />
+      <point x="-81.0" y="72.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.selections.EndTurnSelection" target="it.polimi.ingsw.view.data.PlayerData">
+      <point x="-55.5" y="27.0" />
+      <point x="2934.666769712758" y="1260.0" />
+      <point x="2825.277880823869" y="1260.0" />
+      <point x="11.611111111110858" y="-391.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.data.BasicData" target="it.polimi.ingsw.view.clientCards.ClientDevCard">
+      <point x="27.866666666666674" y="-413.5" />
+      <point x="1124.5950525410412" y="3028.0" />
+      <point x="2044.5543360828133" y="3028.0" />
+      <point x="2044.5543360828133" y="1190.0" />
+      <point x="1487.5420879848018" y="1190.0" />
+      <point x="214.5454545454545" y="116.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.data.ExtraProdData" target="it.polimi.ingsw.view.data.PlayerData">
+      <point x="-101.0" y="-61.0" />
+      <point x="2741.130005006876" y="2262.0" />
+      <point x="2838.2550050068758" y="2262.0" />
+      <point x="24.588235294117567" y="391.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.selections.Selection" target="it.polimi.ingsw.view.data.PlayerData">
+      <point x="80.72727272727298" y="27.0" />
+      <point x="3523.9127950555094" y="259.0" />
+      <point x="4296.884089974196" y="259.0" />
+      <point x="4296.884089974196" y="1340.0" />
+      <point x="3011.0556586016473" y="1340.0" />
+      <point x="197.3888888888887" y="-391.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.clientCards.ClientExtraDep" target="it.polimi.ingsw.view.data.PlayerData">
+      <point x="98.0" y="-72.0" />
+      <point x="1359.8727272727274" y="2202.0" />
+      <point x="2690.7255932421704" y="2202.0" />
+      <point x="-122.94117647058829" y="391.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.Observer" target="it.polimi.ingsw.view.data.PlayerData">
+      <point x="-73.0" y="-83.5" />
+      <point x="4318.634089974196" y="3068.0" />
+      <point x="4037.130555555556" y="3068.0" />
+      <point x="4037.130555555556" y="2222.0" />
+      <point x="2961.196181477465" y="2222.0" />
+      <point x="147.5294117647063" y="391.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.clientCards.ClientDefaultCreator" target="it.polimi.ingsw.view.clientCards.ClientExtraDep">
+      <point x="62.181818181818244" y="-38.0" />
+      <point x="929.8525014127267" y="2567.0" />
+      <point x="1188.3727272727274" y="2567.0" />
+      <point x="-73.5" y="72.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.selections.BuyDevSelection" target="it.polimi.ingsw.view.data.PlayerData">
+      <point x="55.5" y="27.0" />
+      <point x="3746.8840899741963" y="1310.0" />
+      <point x="2941.3889919349804" y="1310.0" />
+      <point x="127.72222222222217" y="-391.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.clientCards.ClientDefaultCreator" target="it.polimi.ingsw.view.clientCards.ClientDiscount">
+      <point x="-124.36363636363626" y="-38.0" />
+      <point x="743.3070468672722" y="2587.0" />
+      <point x="198.8727272727274" y="2587.0" />
+      <point x="-80.0" y="83.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.data.DiscountData" target="it.polimi.ingsw.view.clientCards.ClientDevCard">
+      <point x="-145.125" y="-61.0" />
+      <point x="1695.4293360828133" y="2162.0" />
+      <point x="1679.5408858743745" y="2162.0" />
+      <point x="1679.5408858743745" y="1210.0" />
+      <point x="1380.2693607120746" y="1210.0" />
+      <point x="107.27272727272725" y="116.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.MainMenu" target="it.polimi.ingsw.view.selections.BuyDevSelection">
+      <point x="70.5" y="-83.5" />
+      <point x="3612.834089974196" y="827.0" />
+      <point x="3635.8840899741963" y="827.0" />
+      <point x="-55.5" y="27.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.Printer" target="it.polimi.ingsw.view.selections.MarketArray">
+      <point x="0.0" y="-214.0" />
+      <point x="1858.3979559581812" y="279.0" />
+      <point x="2020.7188556615693" y="279.0" />
+      <point x="-117.33333333333348" y="60.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.clientCards.ClientDefaultCreator" target="it.polimi.ingsw.view.clientCards.ClientLeaderCard">
+      <point x="-155.45454545454527" y="-38.0" />
+      <point x="712.2161377763632" y="2597.0" />
+      <point x="108.37272727272739" y="2597.0" />
+      <point x="108.37272727272739" y="1290.0" />
+      <point x="472.0543360828133" y="1290.0" />
+      <point x="-63.0" y="72.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.data.BasicData" target="it.polimi.ingsw.view.LineClient">
+      <point x="167.20000000000005" y="-413.5" />
+      <point x="1263.9283858743745" y="3078.0" />
+      <point x="4643.191269841271" y="3078.0" />
+      <point x="-83.14285714285688" y="127.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.data.PlayerData" target="it.polimi.ingsw.view.data.OtherPlayerData">
+      <point x="-127.72222222222217" y="-391.0" />
+      <point x="2685.944547490536" y="1150.0" />
+      <point x="1645.8979559581812" y="1150.0" />
+      <point x="1645.8979559581812" y="279.0" />
+      <point x="1790.8855223282362" y="279.0" />
+      <point x="0.0" y="104.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.selections.MarketSelection" target="it.polimi.ingsw.view.selections.MarketArray">
+      <point x="-55.5" y="-27.0" />
+      <point x="2424.4146226248477" y="229.0" />
+      <point x="2255.385522328236" y="229.0" />
+      <point x="117.33333333333348" y="60.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.selections.ProductionSelection" target="it.polimi.ingsw.view.selections.Selection">
+      <point x="0.0" y="-27.0" />
+      <point x="2748.166769712758" y="259.0" />
+      <point x="3382.640067782782" y="259.0" />
+      <point x="-60.545454545454504" y="27.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.selections.CheckStatsSelection" target="it.polimi.ingsw.view.selections.Selection">
+      <point x="55.5" y="-27.0" />
+      <point x="2246.8979559581812" y="239.0" />
+      <point x="3342.2764314191454" y="239.0" />
+      <point x="-100.90909090909099" y="27.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.selections.StartGameSelection" target="it.polimi.ingsw.view.selections.Selection">
+      <point x="73.25" y="-72.0" />
+      <point x="4490.655555555556" y="249.0" />
+      <point x="3544.0946132373274" y="249.0" />
+      <point x="100.90909090909099" y="27.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.data.PlayerData" target="it.polimi.ingsw.view.MainMenu">
+      <point x="58.05555555555566" y="-391.0" />
+      <point x="2871.7223252683143" y="1280.0" />
+      <point x="3424.834089974196" y="1280.0" />
+      <point x="-117.5" y="83.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.data.BasicData" target="it.polimi.ingsw.view.data.PlayerData">
+      <point x="55.73333333333335" y="-413.5" />
+      <point x="1152.4617192077078" y="3038.0" />
+      <point x="2629.630005006876" y="3038.0" />
+      <point x="2629.630005006876" y="2252.0" />
+      <point x="2813.6667697127587" y="2252.0" />
+      <point x="0.0" y="391.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.clientCards.ClientDefaultCreator" target="it.polimi.ingsw.view.clientCards.ClientDevCard">
+      <point x="155.4545454545455" y="-38.0" />
+      <point x="1023.125228685454" y="2597.0" />
+      <point x="1430.3727272727274" y="2597.0" />
+      <point x="1430.3727272727274" y="1240.0" />
+      <point x="1219.3602698029838" y="1240.0" />
+      <point x="-53.63636363636351" y="116.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.clientCards.ClientDefaultCreator" target="it.polimi.ingsw.view.clientCards.ClientExtraProd">
+      <point x="0.0" y="-38.0" />
+      <point x="867.6706832309085" y="2597.0" />
+      <point x="881.8727272727274" y="2597.0" />
+      <point x="-71.0" y="72.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.selections.EndTurnSelection" target="it.polimi.ingsw.view.selections.Selection">
+      <point x="0.0" y="-27.0" />
+      <point x="2990.166769712758" y="269.0" />
+      <point x="3402.8218859646" y="269.0" />
+      <point x="-40.36363636363649" y="27.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.MainView" target="it.polimi.ingsw.view.data.BasicData">
+      <point x="-64.3125" y="-27.0" />
+      <point x="4414.696589974196" y="4025.0" />
+      <point x="1096.7283858743745" y="4025.0" />
+      <point x="0.0" y="413.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.MainMenu" target="it.polimi.ingsw.view.selections.Selection">
+      <point x="42.30000000000018" y="-83.5" />
+      <point x="3584.6340899741963" y="757.0" />
+      <point x="3355.666769712758" y="757.0" />
+      <point x="3355.666769712758" y="289.0" />
+      <point x="3443.1855223282364" y="289.0" />
+      <point x="0.0" y="27.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.data.DiscountData" target="it.polimi.ingsw.view.data.PlayerData">
+      <point x="145.125" y="-61.0" />
+      <point x="1985.6793360828133" y="2222.0" />
+      <point x="2739.9020638304055" y="2222.0" />
+      <point x="-73.76470588235316" y="391.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.Printer" target="it.polimi.ingsw.view.data.OtherPlayerData">
+      <point x="-134.66666666666652" y="-214.0" />
+      <point x="1723.7312892915147" y="289.0" />
+      <point x="1834.2855223282363" y="289.0" />
+      <point x="43.40000000000009" y="104.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.MainMenu" target="it.polimi.ingsw.view.selections.DiscardLeaderSelection">
+      <point x="14.099999999999909" y="-83.5" />
+      <point x="3556.434089974196" y="767.0" />
+      <point x="3289.166769712758" y="767.0" />
+      <point x="56.0" y="27.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.selections.BuyDevSelection" target="it.polimi.ingsw.view.selections.Selection">
+      <point x="0.0" y="-27.0" />
+      <point x="3691.3840899741963" y="289.0" />
+      <point x="3463.3673405100544" y="289.0" />
+      <point x="20.181818181818016" y="27.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.MainMenu" target="it.polimi.ingsw.view.selections.MoveSelection">
+      <point x="98.69999999999982" y="-83.5" />
+      <point x="3641.034089974196" y="817.0" />
+      <point x="3877.8840899741963" y="817.0" />
+      <point x="-55.5" y="27.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.clientCards.ClientChangeRes" target="it.polimi.ingsw.view.data.PlayerData">
+      <point x="124.5" y="-83.0" />
+      <point x="749.3727272727274" y="2182.0" />
+      <point x="2641.5491226539352" y="2182.0" />
+      <point x="-172.11764705882342" y="391.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.MainMenu" target="it.polimi.ingsw.view.selections.PlayLeaderSelection">
+      <point x="126.90000000000009" y="-83.5" />
+      <point x="3669.234089974196" y="827.0" />
+      <point x="4119.884089974196" y="827.0" />
+      <point x="-55.5" y="27.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.clientCards.ClientDefaultCreator" target="it.polimi.ingsw.view.clientCards.ClientChangeRes">
+      <point x="-62.181818181818244" y="-38.0" />
+      <point x="805.4888650490902" y="2567.0" />
+      <point x="541.8727272727274" y="2567.0" />
+      <point x="-83.0" y="83.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.Observer" target="it.polimi.ingsw.view.LineClient">
+      <point x="73.0" y="-83.5" />
+      <point x="4464.634089974196" y="3098.0" />
+      <point x="4698.619841269842" y="3098.0" />
+      <point x="-27.714285714285325" y="127.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.clientCards.ClientLeaderCard" target="it.polimi.ingsw.view.data.PlayerData">
+      <point x="117.0" y="72.5" />
+      <point x="652.0543360828133" y="1170.0" />
+      <point x="2639.5001030460917" y="1170.0" />
+      <point x="-174.16666666666697" y="-391.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.MainMenu" target="it.polimi.ingsw.view.selections.ProductionSelection">
+      <point x="-42.30000000000018" y="-83.5" />
+      <point x="3500.034089974196" y="787.0" />
+      <point x="2803.666769712758" y="787.0" />
+      <point x="55.5" y="27.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.Printer" target="it.polimi.ingsw.view.data.PlayerData">
+      <point x="101.0" y="214.0" />
+      <point x="1959.3979559581812" y="827.0" />
+      <point x="2042.1479559581812" y="827.0" />
+      <point x="2042.1479559581812" y="1130.0" />
+      <point x="2732.3889919349804" y="1130.0" />
+      <point x="-81.27777777777783" y="-391.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.selections.DiscardLeaderSelection" target="it.polimi.ingsw.view.selections.Selection">
+      <point x="0.0" y="-27.0" />
+      <point x="3233.166769712758" y="279.0" />
+      <point x="3423.0037041464184" y="279.0" />
+      <point x="-20.181818181818016" y="27.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.selections.MoveSelection" target="it.polimi.ingsw.view.selections.Selection">
+      <point x="0.0" y="-27.0" />
+      <point x="3933.3840899741963" y="279.0" />
+      <point x="3483.549158691873" y="279.0" />
+      <point x="40.36363636363649" y="27.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.selections.MarketSelection" target="it.polimi.ingsw.view.data.PlayerData">
+      <point x="-55.5" y="27.0" />
+      <point x="2424.4146226248477" y="1110.0" />
+      <point x="2778.8334363794247" y="1110.0" />
+      <point x="-34.833333333333485" y="-391.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.selections.PlayLeaderSelection" target="it.polimi.ingsw.view.data.PlayerData">
+      <point x="55.5" y="27.0" />
+      <point x="4230.884089974196" y="1330.0" />
+      <point x="2987.8334363794247" y="1330.0" />
+      <point x="174.16666666666652" y="-391.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.MainView" target="it.polimi.ingsw.view.LineClient">
+      <point x="9.1875" y="-27.0" />
+      <point x="4488.196589974196" y="3995.0" />
+      <point x="4688.155555555556" y="3995.0" />
+      <point x="4688.155555555556" y="3108.0" />
+      <point x="4726.334126984128" y="3108.0" />
+      <point x="0.0" y="127.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.data.ChangeResData" target="it.polimi.ingsw.view.data.PlayerData">
+      <point x="-102.25" y="-61.0" />
+      <point x="3166.380005006876" y="2252.0" />
+      <point x="2887.431475595112" y="2252.0" />
+      <point x="73.76470588235316" y="391.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.MainMenu" target="it.polimi.ingsw.view.selections.EndTurnSelection">
+      <point x="-14.099999999999909" y="-83.5" />
+      <point x="3528.234089974196" y="777.0" />
+      <point x="3045.666769712758" y="777.0" />
+      <point x="55.5" y="27.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.data.BasicData" target="it.polimi.ingsw.view.MainMenu">
+      <point x="83.60000000000002" y="-413.5" />
+      <point x="1180.3283858743744" y="3048.0" />
+      <point x="3750.7055555555557" y="3048.0" />
+      <point x="3750.7055555555557" y="1300.0" />
+      <point x="3565.834089974196" y="1300.0" />
+      <point x="23.5" y="83.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.selections.MarketSelection" target="it.polimi.ingsw.view.selections.Selection">
+      <point x="55.5" y="-27.0" />
+      <point x="2535.4146226248477" y="249.0" />
+      <point x="3362.458249600964" y="249.0" />
+      <point x="-80.72727272727252" y="27.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.clientCards.ClientChangeRes" target="it.polimi.ingsw.view.clientCards.ClientLeaderCard">
+      <point x="-124.5" y="-83.0" />
+      <point x="500.3727272727274" y="2162.0" />
+      <point x="572.3727272727274" y="2162.0" />
+      <point x="572.3727272727274" y="1310.0" />
+      <point x="526.0543360828133" y="1310.0" />
+      <point x="-9.0" y="72.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.selections.MoveSelection" target="it.polimi.ingsw.view.data.PlayerData">
+      <point x="55.5" y="27.0" />
+      <point x="3988.8840899741963" y="1320.0" />
+      <point x="2964.611214157203" y="1320.0" />
+      <point x="150.94444444444434" y="-391.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.selections.DiscardLeaderSelection" target="it.polimi.ingsw.view.data.PlayerData">
+      <point x="-56.0" y="27.0" />
+      <point x="3177.166769712758" y="827.0" />
+      <point x="3150.366769712758" y="827.0" />
+      <point x="3150.366769712758" y="1270.0" />
+      <point x="2848.5001030460917" y="1270.0" />
+      <point x="34.833333333333485" y="-391.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.MainMenu" target="it.polimi.ingsw.view.data.PlayerData">
+      <point x="-70.5" y="83.5" />
+      <point x="3471.834089974196" y="1290.0" />
+      <point x="2894.944547490536" y="1290.0" />
+      <point x="81.27777777777783" y="-391.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.MainMenu" target="it.polimi.ingsw.view.Printer">
+      <point x="-126.90000000000009" y="-83.5" />
+      <point x="3415.434089974196" y="817.0" />
+      <point x="2026.7312892915147" y="817.0" />
+      <point x="168.33333333333348" y="214.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.clientCards.ClientExtraProd" target="it.polimi.ingsw.view.clientCards.ClientDevCard">
+      <point x="35.5" y="-72.0" />
+      <point x="988.3727272727274" y="2162.0" />
+      <point x="928.3727272727274" y="2162.0" />
+      <point x="928.3727272727274" y="1340.0" />
+      <point x="1112.0875425302563" y="1340.0" />
+      <point x="-160.909090909091" y="116.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.MainView" target="it.polimi.ingsw.view.data.PlayerData">
+      <point x="-45.9375" y="-27.0" />
+      <point x="4433.071589974196" y="4015.0" />
+      <point x="4008.130555555556" y="4015.0" />
+      <point x="4008.130555555556" y="2232.0" />
+      <point x="2936.607946183347" y="2232.0" />
+      <point x="122.94117647058829" y="391.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.clientCards.ClientDiscount" target="it.polimi.ingsw.view.data.PlayerData">
+      <point x="120.0" y="-83.0" />
+      <point x="398.8727272727274" y="2172.0" />
+      <point x="2616.960887359817" y="2172.0" />
+      <point x="-196.705882352941" y="391.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.selections.CheckStatsSelection" target="it.polimi.ingsw.view.data.PlayerData">
+      <point x="-55.5" y="27.0" />
+      <point x="2135.8979559581812" y="1120.0" />
+      <point x="2755.611214157203" y="1120.0" />
+      <point x="-58.05555555555566" y="-391.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.clientCards.AllGameCards" target="it.polimi.ingsw.view.clientCards.ClientDevCard">
+      <point x="52.39999999999998" y="-49.5" />
+      <point x="1083.6283858743745" y="2723.0" />
+      <point x="1441.3727272727274" y="2723.0" />
+      <point x="1441.3727272727274" y="1230.0" />
+      <point x="1272.9966334393473" y="1230.0" />
+      <point x="0.0" y="116.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.data.BasicData" target="it.polimi.ingsw.view.clientCards.AllGameCards">
+      <point x="-27.866666666666674" y="-413.5" />
+      <point x="1068.8617192077077" y="3068.0" />
+      <point x="965.7283858743745" y="3068.0" />
+      <point x="-65.5" y="49.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.selections.StartGameSelection" target="it.polimi.ingsw.view.data.PlayerData">
+      <point x="-73.25" y="-72.0" />
+      <point x="4344.155555555556" y="2212.0" />
+      <point x="2985.784416771582" y="2212.0" />
+      <point x="172.11764705882388" y="391.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.data.PlayerData" target="it.polimi.ingsw.view.Printer">
+      <point x="-104.5" y="-391.0" />
+      <point x="2709.1667697127587" y="1140.0" />
+      <point x="1920.2312892915145" y="1140.0" />
+      <point x="1920.2312892915145" y="827.0" />
+      <point x="1892.0646226248477" y="827.0" />
+      <point x="33.666666666666515" y="214.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.data.PlayerData" target="it.polimi.ingsw.view.clientCards.ClientLeaderCard">
+      <point x="-197.38888888888914" y="-391.0" />
+      <point x="2616.277880823869" y="1180.0" />
+      <point x="634.0543360828133" y="1180.0" />
+      <point x="99.0" y="72.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.view.MainView" target="it.polimi.ingsw.view.Ponger">
+      <point x="45.9375" y="-27.0" />
+      <point x="4524.946589974196" y="4015.0" />
+      <point x="4755.655555555556" y="4015.0" />
+      <point x="-46.0" y="61.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.5000000000000001" x="1298.9999999999998" y="2862.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

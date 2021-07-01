@@ -1,0 +1,122 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: PingConnection</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">it.polimi.ingsw.server</a> ]
+</div>
+
+<h1>Coverage Summary for Class: PingConnection (it.polimi.ingsw.server)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PingConnection</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    62,5%
+  </span>
+  <span class="absValue">
+    (5/ 8)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package it.polimi.ingsw.server;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import it.polimi.ingsw.Updates.CheckUpdate;
+<i>4</i>&nbsp;
+<i>5</i>&nbsp;import java.io.IOException;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;/**
+<i>8</i>&nbsp; * The type Ping connection.
+<i>9</i>&nbsp; */
+<i>10</i>&nbsp;public class PingConnection implements Runnable {
+<i>11</i>&nbsp;    /**
+<i>12</i>&nbsp;     * The Client handler.
+<i>13</i>&nbsp;     */
+<i>14</i>&nbsp;    ClientHandler clientHandler;
+<i>15</i>&nbsp;
+<i>16</i>&nbsp;    /**
+<i>17</i>&nbsp;     * Instantiates a new Ping connection for every socket
+<i>18</i>&nbsp;     *
+<i>19</i>&nbsp;     * @param clientHandler the client handler
+<i>20</i>&nbsp;     * @throws IOException the io exception
+<i>21</i>&nbsp;     */
+<b class="fc"><i>22</i>&nbsp;    public PingConnection(ClientHandler clientHandler) throws IOException {</b>
+<b class="fc"><i>23</i>&nbsp;        this.clientHandler = clientHandler;</b>
+<b class="fc"><i>24</i>&nbsp;    }</b>
+<i>25</i>&nbsp;
+<i>26</i>&nbsp;    /**
+<i>27</i>&nbsp;     * Pings constatly the client so it knows that the server didn&#39;t disconnect
+<i>28</i>&nbsp;     */
+<i>29</i>&nbsp;    public void run() {
+<i>30</i>&nbsp;        while (true) {
+<b class="fc"><i>31</i>&nbsp;            clientHandler.notifyView(new CheckUpdate());</b>
+<i>32</i>&nbsp;            try {
+<b class="fc"><i>33</i>&nbsp;                Thread.sleep(2000);</b>
+<b class="nc"><i>34</i>&nbsp;            } catch (InterruptedException e) {</b>
+<b class="nc"><i>35</i>&nbsp;                e.printStackTrace();</b>
+<b class="nc"><i>36</i>&nbsp;            }</b>
+<i>37</i>&nbsp;        }
+<i>38</i>&nbsp;    }
+<i>39</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-07-02 00:02</div>
+</div>
+</body>
+</html>

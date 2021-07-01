@@ -16,8 +16,9 @@
 ## Tests' coverage
 |Package|Method coverage [%]|Line coverage [%]|
 |--------------|:------------:|:-----------------:|
-|__model__|98%|96%|
+|__model__|99%|96%|
 |__controller__|100%|97%|
+To see a more specific coverage report :
 
 ## Libraries e Plugins
 |Library/Plugin|Description|

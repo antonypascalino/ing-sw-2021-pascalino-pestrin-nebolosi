@@ -1,0 +1,127 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: ClientLeaderCard</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">it.polimi.ingsw.view.clientCards</a> ]
+</div>
+
+<h1>Coverage Summary for Class: ClientLeaderCard (it.polimi.ingsw.view.clientCards)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ClientLeaderCard</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 6)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package it.polimi.ingsw.view.clientCards;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import it.polimi.ingsw.model.Table.Resource;
+<i>4</i>&nbsp;import it.polimi.ingsw.view.data.PlayerData;
+<i>5</i>&nbsp;
+<i>6</i>&nbsp;/**
+<i>7</i>&nbsp; * A Client Leader card is a light version of the Leader Card on the server.
+<i>8</i>&nbsp; * This abstract class is extended by every Leader card client side.
+<i>9</i>&nbsp; */
+<i>10</i>&nbsp;public abstract class ClientLeaderCard {
+<i>11</i>&nbsp;
+<i>12</i>&nbsp;    private String leaderID;
+<i>13</i>&nbsp;    private Resource powerResource; //A resource that change by the type of leaderCard: for ExtraDep is the placeable, for Change is the changeable, for Discount is the discount and for ExtraProd is the required Resource for produce
+<i>14</i>&nbsp;    protected int victoryPoints;
+<i>15</i>&nbsp;
+<i>16</i>&nbsp;    /**
+<i>17</i>&nbsp;     * Called by the classes who extends a {@link ClientLeaderCard}.
+<i>18</i>&nbsp;     *
+<i>19</i>&nbsp;     * @param leaderID      the leader id
+<i>20</i>&nbsp;     * @param victoryPoints the victory points
+<i>21</i>&nbsp;     * @param powerResource the power resource
+<i>22</i>&nbsp;     */
+<b class="nc"><i>23</i>&nbsp;    public ClientLeaderCard(String leaderID, int victoryPoints, Resource powerResource) {</b>
+<b class="nc"><i>24</i>&nbsp;        this.powerResource = powerResource;</b>
+<b class="nc"><i>25</i>&nbsp;        this.leaderID = leaderID;</b>
+<b class="nc"><i>26</i>&nbsp;        this.victoryPoints = victoryPoints;</b>
+<i>27</i>&nbsp;    }
+<i>28</i>&nbsp;
+<i>29</i>&nbsp;    public String getLeaderID() {
+<b class="nc"><i>30</i>&nbsp;        return leaderID;</b>
+<i>31</i>&nbsp;    }
+<i>32</i>&nbsp;
+<i>33</i>&nbsp;    /**
+<i>34</i>&nbsp;     * Check if the {@link ClientLeaderCard} can be played by the player according to its requirements.
+<i>35</i>&nbsp;     *
+<i>36</i>&nbsp;     * @param data the {@link PlayerData} who wants to play the card.
+<i>37</i>&nbsp;     * @return true if the card can be played, false otherwise.
+<i>38</i>&nbsp;     */
+<i>39</i>&nbsp;    public abstract boolean canBePlayed(PlayerData data);
+<i>40</i>&nbsp;
+<i>41</i>&nbsp;    public Resource getPowerResource() {
+<b class="nc"><i>42</i>&nbsp;        return powerResource;</b>
+<i>43</i>&nbsp;    }
+<i>44</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-07-02 00:02</div>
+</div>
+</body>
+</html>

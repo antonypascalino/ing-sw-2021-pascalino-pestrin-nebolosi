@@ -1,0 +1,106 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: DiscardLeaderSelection</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">it.polimi.ingsw.view.selections</a> ]
+</div>
+
+<h1>Coverage Summary for Class: DiscardLeaderSelection (it.polimi.ingsw.view.selections)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">DiscardLeaderSelection</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 6)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package it.polimi.ingsw.view.selections;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import it.polimi.ingsw.controller.Request.DiscardLeaderRequest;
+<i>4</i>&nbsp;import it.polimi.ingsw.controller.Request.Request;
+<i>5</i>&nbsp;import it.polimi.ingsw.view.data.PlayerData;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;import java.util.ArrayList;
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;/**
+<i>10</i>&nbsp; * The {@link Selection} that guides the player when he chose to discard a leader card.
+<i>11</i>&nbsp; */
+<b class="nc"><i>12</i>&nbsp;public class DiscardLeaderSelection extends Selection {</b>
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;
+<i>15</i>&nbsp;    public void handleSelection(PlayerData data) {
+<b class="nc"><i>16</i>&nbsp;        ArrayList&lt;String&gt; leadersID = new ArrayList&lt;&gt;();</b>
+<b class="nc"><i>17</i>&nbsp;        leadersID.addAll(data.getLeaders());</b>
+<b class="nc"><i>18</i>&nbsp;        String discarded = data.getPrinter().printLeaderCardID(leadersID, data);</b>
+<b class="nc"><i>19</i>&nbsp;        Request discardLeaderReq = new DiscardLeaderRequest(data.getGameID(), data.getPlayerID(), discarded);</b>
+<b class="nc"><i>20</i>&nbsp;        data.sendRequest(discardLeaderReq);</b>
+<i>21</i>&nbsp;    }
+<i>22</i>&nbsp;
+<i>23</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-07-02 00:02</div>
+</div>
+</body>
+</html>

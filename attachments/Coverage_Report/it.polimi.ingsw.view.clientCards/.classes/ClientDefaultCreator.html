@@ -1,0 +1,1087 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: ClientDefaultCreator</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">it.polimi.ingsw.view.clientCards</a> ]
+</div>
+
+<h1>Coverage Summary for Class: ClientDefaultCreator (it.polimi.ingsw.view.clientCards)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ClientDefaultCreator</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 747)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package it.polimi.ingsw.view.clientCards;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import it.polimi.ingsw.model.Colors;
+<i>4</i>&nbsp;import it.polimi.ingsw.model.Table.Resource;
+<i>5</i>&nbsp;
+<i>6</i>&nbsp;import java.util.ArrayList;
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;/**
+<i>9</i>&nbsp; * Class that can create all the Client cards and give them to the players when required.
+<i>10</i>&nbsp; */
+<b class="nc"><i>11</i>&nbsp;public class ClientDefaultCreator {</b>
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;    /**
+<i>14</i>&nbsp;     * Static method used for generate an ArrayList containing all the defaults
+<i>15</i>&nbsp;     * {@link ClientDevCard} in the basic game settings.
+<i>16</i>&nbsp;     *
+<i>17</i>&nbsp;     * @return the ArrayList.
+<i>18</i>&nbsp;     */
+<i>19</i>&nbsp;    public static ArrayList&lt;ClientDevCard&gt; produceClientDevCard() {
+<i>20</i>&nbsp;
+<b class="nc"><i>21</i>&nbsp;        ArrayList&lt;ClientDevCard&gt; result = new ArrayList&lt;&gt;();</b>
+<b class="nc"><i>22</i>&nbsp;        ArrayList&lt;Resource&gt; requires = new ArrayList&lt;&gt;();</b>
+<b class="nc"><i>23</i>&nbsp;        ArrayList&lt;Resource&gt; produces = new ArrayList&lt;&gt;();</b>
+<b class="nc"><i>24</i>&nbsp;        ArrayList&lt;Resource&gt; price = new ArrayList&lt;&gt;();</b>
+<i>25</i>&nbsp;        ClientDevCard tmp;
+<i>26</i>&nbsp;
+<i>27</i>&nbsp;        //devP101
+<b class="nc"><i>28</i>&nbsp;        requires.add(Resource.STONE);</b>
+<b class="nc"><i>29</i>&nbsp;        produces.add(Resource.FAITH);</b>
+<b class="nc"><i>30</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<b class="nc"><i>31</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<i>32</i>&nbsp;
+<b class="nc"><i>33</i>&nbsp;        tmp = new ClientDevCard(&quot;devP101&quot;, Colors.PURPLE, 1, 1, Resource.cloneList(requires), Resource.cloneList(produces), Resource.cloneList(price));</b>
+<b class="nc"><i>34</i>&nbsp;        result.add(tmp);</b>
+<i>35</i>&nbsp;
+<b class="nc"><i>36</i>&nbsp;        requires.clear();</b>
+<b class="nc"><i>37</i>&nbsp;        produces.clear();</b>
+<b class="nc"><i>38</i>&nbsp;        price.clear();</b>
+<i>39</i>&nbsp;
+<i>40</i>&nbsp;        //devP102
+<b class="nc"><i>41</i>&nbsp;        requires.add(Resource.GOLD);</b>
+<b class="nc"><i>42</i>&nbsp;        produces.add(Resource.SHIELD);</b>
+<b class="nc"><i>43</i>&nbsp;        price.add(Resource.GOLD);</b>
+<b class="nc"><i>44</i>&nbsp;        price.add(Resource.SHIELD);</b>
+<b class="nc"><i>45</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<i>46</i>&nbsp;
+<b class="nc"><i>47</i>&nbsp;        tmp = new ClientDevCard(&quot;devP102&quot;, Colors.PURPLE, 1, 2, Resource.cloneList(requires), Resource.cloneList(produces), Resource.cloneList(price));</b>
+<b class="nc"><i>48</i>&nbsp;        result.add(tmp);</b>
+<i>49</i>&nbsp;
+<b class="nc"><i>50</i>&nbsp;        requires.clear();</b>
+<b class="nc"><i>51</i>&nbsp;        produces.clear();</b>
+<b class="nc"><i>52</i>&nbsp;        price.clear();</b>
+<i>53</i>&nbsp;
+<i>54</i>&nbsp;        //devP103
+<b class="nc"><i>55</i>&nbsp;        requires.add(Resource.GOLD);</b>
+<b class="nc"><i>56</i>&nbsp;        requires.add(Resource.GOLD);</b>
+<b class="nc"><i>57</i>&nbsp;        produces.add(Resource.SERVANT);</b>
+<b class="nc"><i>58</i>&nbsp;        produces.add(Resource.SHIELD);</b>
+<b class="nc"><i>59</i>&nbsp;        produces.add(Resource.STONE);</b>
+<b class="nc"><i>60</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<b class="nc"><i>61</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<b class="nc"><i>62</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<i>63</i>&nbsp;
+<b class="nc"><i>64</i>&nbsp;        tmp = new ClientDevCard(&quot;devP103&quot;, Colors.PURPLE, 1, 3, Resource.cloneList(requires), Resource.cloneList(produces), Resource.cloneList(price));</b>
+<b class="nc"><i>65</i>&nbsp;        result.add(tmp);</b>
+<i>66</i>&nbsp;
+<b class="nc"><i>67</i>&nbsp;        requires.clear();</b>
+<b class="nc"><i>68</i>&nbsp;        produces.clear();</b>
+<b class="nc"><i>69</i>&nbsp;        price.clear();</b>
+<i>70</i>&nbsp;
+<i>71</i>&nbsp;        //devP104
+<b class="nc"><i>72</i>&nbsp;        requires.add(Resource.GOLD);</b>
+<b class="nc"><i>73</i>&nbsp;        requires.add(Resource.SHIELD);</b>
+<b class="nc"><i>74</i>&nbsp;        produces.add(Resource.FAITH);</b>
+<b class="nc"><i>75</i>&nbsp;        produces.add(Resource.STONE);</b>
+<b class="nc"><i>76</i>&nbsp;        produces.add(Resource.STONE);</b>
+<b class="nc"><i>77</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<b class="nc"><i>78</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<b class="nc"><i>79</i>&nbsp;        price.add(Resource.STONE);</b>
+<b class="nc"><i>80</i>&nbsp;        price.add(Resource.STONE);</b>
+<i>81</i>&nbsp;
+<b class="nc"><i>82</i>&nbsp;        tmp = new ClientDevCard(&quot;devP104&quot;, Colors.PURPLE, 1, 4, Resource.cloneList(requires), Resource.cloneList(produces), Resource.cloneList(price));</b>
+<b class="nc"><i>83</i>&nbsp;        result.add(tmp);</b>
+<i>84</i>&nbsp;
+<b class="nc"><i>85</i>&nbsp;        requires.clear();</b>
+<b class="nc"><i>86</i>&nbsp;        produces.clear();</b>
+<b class="nc"><i>87</i>&nbsp;        price.clear();</b>
+<i>88</i>&nbsp;
+<i>89</i>&nbsp;        //devP201
+<b class="nc"><i>90</i>&nbsp;        requires.add(Resource.GOLD);</b>
+<b class="nc"><i>91</i>&nbsp;        produces.add(Resource.FAITH);</b>
+<b class="nc"><i>92</i>&nbsp;        produces.add(Resource.FAITH);</b>
+<b class="nc"><i>93</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<b class="nc"><i>94</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<b class="nc"><i>95</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<b class="nc"><i>96</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<i>97</i>&nbsp;
+<b class="nc"><i>98</i>&nbsp;        tmp = new ClientDevCard(&quot;devP201&quot;, Colors.PURPLE, 2, 5, Resource.cloneList(requires), Resource.cloneList(produces), Resource.cloneList(price));</b>
+<b class="nc"><i>99</i>&nbsp;        result.add(tmp);</b>
+<i>100</i>&nbsp;
+<b class="nc"><i>101</i>&nbsp;        requires.clear();</b>
+<b class="nc"><i>102</i>&nbsp;        produces.clear();</b>
+<b class="nc"><i>103</i>&nbsp;        price.clear();</b>
+<i>104</i>&nbsp;
+<i>105</i>&nbsp;        //devP202
+<b class="nc"><i>106</i>&nbsp;        requires.add(Resource.GOLD);</b>
+<b class="nc"><i>107</i>&nbsp;        requires.add(Resource.SERVANT);</b>
+<b class="nc"><i>108</i>&nbsp;        produces.add(Resource.SHIELD);</b>
+<b class="nc"><i>109</i>&nbsp;        produces.add(Resource.SHIELD);</b>
+<b class="nc"><i>110</i>&nbsp;        produces.add(Resource.SHIELD);</b>
+<b class="nc"><i>111</i>&nbsp;        price.add(Resource.GOLD);</b>
+<b class="nc"><i>112</i>&nbsp;        price.add(Resource.GOLD);</b>
+<b class="nc"><i>113</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<b class="nc"><i>114</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<b class="nc"><i>115</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<i>116</i>&nbsp;
+<b class="nc"><i>117</i>&nbsp;        tmp = new ClientDevCard(&quot;devP202&quot;, Colors.PURPLE, 2, 6, Resource.cloneList(requires), Resource.cloneList(produces), Resource.cloneList(price));</b>
+<b class="nc"><i>118</i>&nbsp;        result.add(tmp);</b>
+<i>119</i>&nbsp;
+<b class="nc"><i>120</i>&nbsp;        requires.clear();</b>
+<b class="nc"><i>121</i>&nbsp;        produces.clear();</b>
+<b class="nc"><i>122</i>&nbsp;        price.clear();</b>
+<i>123</i>&nbsp;
+<i>124</i>&nbsp;        //devP203
+<b class="nc"><i>125</i>&nbsp;        requires.add(Resource.STONE);</b>
+<b class="nc"><i>126</i>&nbsp;        requires.add(Resource.STONE);</b>
+<b class="nc"><i>127</i>&nbsp;        produces.add(Resource.GOLD);</b>
+<b class="nc"><i>128</i>&nbsp;        produces.add(Resource.GOLD);</b>
+<b class="nc"><i>129</i>&nbsp;        produces.add(Resource.FAITH);</b>
+<b class="nc"><i>130</i>&nbsp;        produces.add(Resource.FAITH);</b>
+<b class="nc"><i>131</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<b class="nc"><i>132</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<b class="nc"><i>133</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<b class="nc"><i>134</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<b class="nc"><i>135</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<i>136</i>&nbsp;
+<b class="nc"><i>137</i>&nbsp;        tmp = new ClientDevCard(&quot;devP203&quot;, Colors.PURPLE, 2, 7, Resource.cloneList(requires), Resource.cloneList(produces), Resource.cloneList(price));</b>
+<b class="nc"><i>138</i>&nbsp;        result.add(tmp);</b>
+<i>139</i>&nbsp;
+<b class="nc"><i>140</i>&nbsp;        requires.clear();</b>
+<b class="nc"><i>141</i>&nbsp;        produces.clear();</b>
+<b class="nc"><i>142</i>&nbsp;        price.clear();</b>
+<i>143</i>&nbsp;
+<i>144</i>&nbsp;        //devP204
+<b class="nc"><i>145</i>&nbsp;        requires.add(Resource.STONE);</b>
+<b class="nc"><i>146</i>&nbsp;        produces.add(Resource.FAITH);</b>
+<b class="nc"><i>147</i>&nbsp;        produces.add(Resource.SERVANT);</b>
+<b class="nc"><i>148</i>&nbsp;        produces.add(Resource.SERVANT);</b>
+<b class="nc"><i>149</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<b class="nc"><i>150</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<b class="nc"><i>151</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<b class="nc"><i>152</i>&nbsp;        price.add(Resource.SHIELD);</b>
+<b class="nc"><i>153</i>&nbsp;        price.add(Resource.SHIELD);</b>
+<b class="nc"><i>154</i>&nbsp;        price.add(Resource.SHIELD);</b>
+<i>155</i>&nbsp;
+<b class="nc"><i>156</i>&nbsp;        tmp = new ClientDevCard(&quot;devP204&quot;, Colors.PURPLE, 2, 8, Resource.cloneList(requires), Resource.cloneList(produces), Resource.cloneList(price));</b>
+<b class="nc"><i>157</i>&nbsp;        result.add(tmp);</b>
+<i>158</i>&nbsp;
+<b class="nc"><i>159</i>&nbsp;        requires.clear();</b>
+<b class="nc"><i>160</i>&nbsp;        produces.clear();</b>
+<b class="nc"><i>161</i>&nbsp;        price.clear();</b>
+<i>162</i>&nbsp;
+<i>163</i>&nbsp;        //devP301
+<b class="nc"><i>164</i>&nbsp;        requires.add(Resource.STONE);</b>
+<b class="nc"><i>165</i>&nbsp;        requires.add(Resource.STONE);</b>
+<b class="nc"><i>166</i>&nbsp;        produces.add(Resource.FAITH);</b>
+<b class="nc"><i>167</i>&nbsp;        produces.add(Resource.FAITH);</b>
+<b class="nc"><i>168</i>&nbsp;        produces.add(Resource.GOLD);</b>
+<b class="nc"><i>169</i>&nbsp;        produces.add(Resource.GOLD);</b>
+<b class="nc"><i>170</i>&nbsp;        produces.add(Resource.GOLD);</b>
+<b class="nc"><i>171</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<b class="nc"><i>172</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<b class="nc"><i>173</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<b class="nc"><i>174</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<b class="nc"><i>175</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<b class="nc"><i>176</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<i>177</i>&nbsp;
+<b class="nc"><i>178</i>&nbsp;        tmp = new ClientDevCard(&quot;devP301&quot;, Colors.PURPLE, 3, 9, Resource.cloneList(requires), Resource.cloneList(produces), Resource.cloneList(price));</b>
+<b class="nc"><i>179</i>&nbsp;        result.add(tmp);</b>
+<i>180</i>&nbsp;
+<b class="nc"><i>181</i>&nbsp;        requires.clear();</b>
+<b class="nc"><i>182</i>&nbsp;        produces.clear();</b>
+<b class="nc"><i>183</i>&nbsp;        price.clear();</b>
+<i>184</i>&nbsp;
+<i>185</i>&nbsp;        //devP302
+<b class="nc"><i>186</i>&nbsp;        requires.add(Resource.STONE);</b>
+<b class="nc"><i>187</i>&nbsp;        requires.add(Resource.SHIELD);</b>
+<b class="nc"><i>188</i>&nbsp;        produces.add(Resource.GOLD);</b>
+<b class="nc"><i>189</i>&nbsp;        produces.add(Resource.GOLD);</b>
+<b class="nc"><i>190</i>&nbsp;        produces.add(Resource.SERVANT);</b>
+<b class="nc"><i>191</i>&nbsp;        produces.add(Resource.SERVANT);</b>
+<b class="nc"><i>192</i>&nbsp;        produces.add(Resource.FAITH);</b>
+<b class="nc"><i>193</i>&nbsp;        price.add(Resource.GOLD);</b>
+<b class="nc"><i>194</i>&nbsp;        price.add(Resource.GOLD);</b>
+<b class="nc"><i>195</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<b class="nc"><i>196</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<b class="nc"><i>197</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<b class="nc"><i>198</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<b class="nc"><i>199</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<i>200</i>&nbsp;
+<b class="nc"><i>201</i>&nbsp;        tmp = new ClientDevCard(&quot;devP302&quot;, Colors.PURPLE, 3, 10, Resource.cloneList(requires), Resource.cloneList(produces), Resource.cloneList(price));</b>
+<b class="nc"><i>202</i>&nbsp;        result.add(tmp);</b>
+<i>203</i>&nbsp;
+<b class="nc"><i>204</i>&nbsp;        requires.clear();</b>
+<b class="nc"><i>205</i>&nbsp;        produces.clear();</b>
+<b class="nc"><i>206</i>&nbsp;        price.clear();</b>
+<i>207</i>&nbsp;
+<i>208</i>&nbsp;        //devP303
+<b class="nc"><i>209</i>&nbsp;        requires.add(Resource.GOLD);</b>
+<b class="nc"><i>210</i>&nbsp;        produces.add(Resource.GOLD);</b>
+<b class="nc"><i>211</i>&nbsp;        produces.add(Resource.STONE);</b>
+<b class="nc"><i>212</i>&nbsp;        produces.add(Resource.FAITH);</b>
+<b class="nc"><i>213</i>&nbsp;        produces.add(Resource.FAITH);</b>
+<b class="nc"><i>214</i>&nbsp;        produces.add(Resource.FAITH);</b>
+<b class="nc"><i>215</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<b class="nc"><i>216</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<b class="nc"><i>217</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<b class="nc"><i>218</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<b class="nc"><i>219</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<b class="nc"><i>220</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<b class="nc"><i>221</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<i>222</i>&nbsp;
+<b class="nc"><i>223</i>&nbsp;        tmp = new ClientDevCard(&quot;devP303&quot;, Colors.PURPLE, 3, 11, Resource.cloneList(requires), Resource.cloneList(produces), Resource.cloneList(price));</b>
+<b class="nc"><i>224</i>&nbsp;        result.add(tmp);</b>
+<i>225</i>&nbsp;
+<b class="nc"><i>226</i>&nbsp;        requires.clear();</b>
+<b class="nc"><i>227</i>&nbsp;        produces.clear();</b>
+<b class="nc"><i>228</i>&nbsp;        price.clear();</b>
+<i>229</i>&nbsp;
+<i>230</i>&nbsp;        //devP304
+<b class="nc"><i>231</i>&nbsp;        requires.add(Resource.GOLD);</b>
+<b class="nc"><i>232</i>&nbsp;        produces.add(Resource.STONE);</b>
+<b class="nc"><i>233</i>&nbsp;        produces.add(Resource.STONE);</b>
+<b class="nc"><i>234</i>&nbsp;        produces.add(Resource.STONE);</b>
+<b class="nc"><i>235</i>&nbsp;        produces.add(Resource.SERVANT);</b>
+<b class="nc"><i>236</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<b class="nc"><i>237</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<b class="nc"><i>238</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<b class="nc"><i>239</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<b class="nc"><i>240</i>&nbsp;        price.add(Resource.SHIELD);</b>
+<b class="nc"><i>241</i>&nbsp;        price.add(Resource.SHIELD);</b>
+<b class="nc"><i>242</i>&nbsp;        price.add(Resource.SHIELD);</b>
+<b class="nc"><i>243</i>&nbsp;        price.add(Resource.SHIELD);</b>
+<i>244</i>&nbsp;
+<b class="nc"><i>245</i>&nbsp;        tmp = new ClientDevCard(&quot;devP304&quot;, Colors.PURPLE, 3, 12, Resource.cloneList(requires), Resource.cloneList(produces), Resource.cloneList(price));</b>
+<b class="nc"><i>246</i>&nbsp;        result.add(tmp);</b>
+<i>247</i>&nbsp;
+<b class="nc"><i>248</i>&nbsp;        requires.clear();</b>
+<b class="nc"><i>249</i>&nbsp;        produces.clear();</b>
+<b class="nc"><i>250</i>&nbsp;        price.clear();</b>
+<i>251</i>&nbsp;
+<i>252</i>&nbsp;        //devG101
+<b class="nc"><i>253</i>&nbsp;        requires.add(Resource.GOLD);</b>
+<b class="nc"><i>254</i>&nbsp;        produces.add(Resource.FAITH);</b>
+<b class="nc"><i>255</i>&nbsp;        price.add(Resource.SHIELD);</b>
+<b class="nc"><i>256</i>&nbsp;        price.add(Resource.SHIELD);</b>
+<i>257</i>&nbsp;
+<b class="nc"><i>258</i>&nbsp;        tmp = new ClientDevCard(&quot;devG101&quot;, Colors.GREEN, 1, 1, Resource.cloneList(requires), Resource.cloneList(produces), Resource.cloneList(price));</b>
+<b class="nc"><i>259</i>&nbsp;        result.add(tmp);</b>
+<i>260</i>&nbsp;
+<b class="nc"><i>261</i>&nbsp;        requires.clear();</b>
+<b class="nc"><i>262</i>&nbsp;        produces.clear();</b>
+<b class="nc"><i>263</i>&nbsp;        price.clear();</b>
+<i>264</i>&nbsp;
+<i>265</i>&nbsp;        //devG102
+<b class="nc"><i>266</i>&nbsp;        requires.add(Resource.STONE);</b>
+<b class="nc"><i>267</i>&nbsp;        produces.add(Resource.SERVANT);</b>
+<b class="nc"><i>268</i>&nbsp;        price.add(Resource.STONE);</b>
+<b class="nc"><i>269</i>&nbsp;        price.add(Resource.SHIELD);</b>
+<b class="nc"><i>270</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<i>271</i>&nbsp;
+<b class="nc"><i>272</i>&nbsp;        tmp = new ClientDevCard(&quot;devG102&quot;, Colors.GREEN, 1, 2, Resource.cloneList(requires), Resource.cloneList(produces), Resource.cloneList(price));</b>
+<b class="nc"><i>273</i>&nbsp;        result.add(tmp);</b>
+<i>274</i>&nbsp;
+<b class="nc"><i>275</i>&nbsp;        requires.clear();</b>
+<b class="nc"><i>276</i>&nbsp;        produces.clear();</b>
+<b class="nc"><i>277</i>&nbsp;        price.clear();</b>
+<i>278</i>&nbsp;
+<i>279</i>&nbsp;        //devP103
+<b class="nc"><i>280</i>&nbsp;        requires.add(Resource.SERVANT);</b>
+<b class="nc"><i>281</i>&nbsp;        requires.add(Resource.SERVANT);</b>
+<b class="nc"><i>282</i>&nbsp;        produces.add(Resource.GOLD);</b>
+<b class="nc"><i>283</i>&nbsp;        produces.add(Resource.SHIELD);</b>
+<b class="nc"><i>284</i>&nbsp;        produces.add(Resource.STONE);</b>
+<b class="nc"><i>285</i>&nbsp;        price.add(Resource.SHIELD);</b>
+<b class="nc"><i>286</i>&nbsp;        price.add(Resource.SHIELD);</b>
+<b class="nc"><i>287</i>&nbsp;        price.add(Resource.SHIELD);</b>
+<i>288</i>&nbsp;
+<b class="nc"><i>289</i>&nbsp;        tmp = new ClientDevCard(&quot;devG103&quot;, Colors.GREEN, 1, 3, Resource.cloneList(requires), Resource.cloneList(produces), Resource.cloneList(price));</b>
+<b class="nc"><i>290</i>&nbsp;        result.add(tmp);</b>
+<i>291</i>&nbsp;
+<b class="nc"><i>292</i>&nbsp;        requires.clear();</b>
+<b class="nc"><i>293</i>&nbsp;        produces.clear();</b>
+<b class="nc"><i>294</i>&nbsp;        price.clear();</b>
+<i>295</i>&nbsp;
+<i>296</i>&nbsp;        //devG104
+<b class="nc"><i>297</i>&nbsp;        requires.add(Resource.STONE);</b>
+<b class="nc"><i>298</i>&nbsp;        requires.add(Resource.SERVANT);</b>
+<b class="nc"><i>299</i>&nbsp;        produces.add(Resource.FAITH);</b>
+<b class="nc"><i>300</i>&nbsp;        produces.add(Resource.GOLD);</b>
+<b class="nc"><i>301</i>&nbsp;        produces.add(Resource.GOLD);</b>
+<b class="nc"><i>302</i>&nbsp;        price.add(Resource.SHIELD);</b>
+<b class="nc"><i>303</i>&nbsp;        price.add(Resource.SHIELD);</b>
+<b class="nc"><i>304</i>&nbsp;        price.add(Resource.GOLD);</b>
+<b class="nc"><i>305</i>&nbsp;        price.add(Resource.GOLD);</b>
+<i>306</i>&nbsp;
+<b class="nc"><i>307</i>&nbsp;        tmp = new ClientDevCard(&quot;devG104&quot;, Colors.GREEN, 1, 4, Resource.cloneList(requires), Resource.cloneList(produces), Resource.cloneList(price));</b>
+<b class="nc"><i>308</i>&nbsp;        result.add(tmp);</b>
+<i>309</i>&nbsp;
+<b class="nc"><i>310</i>&nbsp;        requires.clear();</b>
+<b class="nc"><i>311</i>&nbsp;        produces.clear();</b>
+<b class="nc"><i>312</i>&nbsp;        price.clear();</b>
+<i>313</i>&nbsp;
+<i>314</i>&nbsp;        //devG201
+<b class="nc"><i>315</i>&nbsp;        requires.add(Resource.STONE);</b>
+<b class="nc"><i>316</i>&nbsp;        produces.add(Resource.FAITH);</b>
+<b class="nc"><i>317</i>&nbsp;        produces.add(Resource.FAITH);</b>
+<b class="nc"><i>318</i>&nbsp;        price.add(Resource.SHIELD);</b>
+<b class="nc"><i>319</i>&nbsp;        price.add(Resource.SHIELD);</b>
+<b class="nc"><i>320</i>&nbsp;        price.add(Resource.SHIELD);</b>
+<b class="nc"><i>321</i>&nbsp;        price.add(Resource.SHIELD);</b>
+<i>322</i>&nbsp;
+<b class="nc"><i>323</i>&nbsp;        tmp = new ClientDevCard(&quot;devG201&quot;, Colors.GREEN, 2, 5, Resource.cloneList(requires), Resource.cloneList(produces), Resource.cloneList(price));</b>
+<b class="nc"><i>324</i>&nbsp;        result.add(tmp);</b>
+<i>325</i>&nbsp;
+<b class="nc"><i>326</i>&nbsp;        requires.clear();</b>
+<b class="nc"><i>327</i>&nbsp;        produces.clear();</b>
+<b class="nc"><i>328</i>&nbsp;        price.clear();</b>
+<i>329</i>&nbsp;
+<i>330</i>&nbsp;        //devG202
+<b class="nc"><i>331</i>&nbsp;        requires.add(Resource.SERVANT);</b>
+<b class="nc"><i>332</i>&nbsp;        requires.add(Resource.SHIELD);</b>
+<b class="nc"><i>333</i>&nbsp;        produces.add(Resource.STONE);</b>
+<b class="nc"><i>334</i>&nbsp;        produces.add(Resource.STONE);</b>
+<b class="nc"><i>335</i>&nbsp;        produces.add(Resource.STONE);</b>
+<b class="nc"><i>336</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<b class="nc"><i>337</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<b class="nc"><i>338</i>&nbsp;        price.add(Resource.SHIELD);</b>
+<b class="nc"><i>339</i>&nbsp;        price.add(Resource.SHIELD);</b>
+<b class="nc"><i>340</i>&nbsp;        price.add(Resource.SHIELD);</b>
+<i>341</i>&nbsp;
+<b class="nc"><i>342</i>&nbsp;        tmp = new ClientDevCard(&quot;devG202&quot;, Colors.GREEN, 2, 6, Resource.cloneList(requires), Resource.cloneList(produces), Resource.cloneList(price));</b>
+<b class="nc"><i>343</i>&nbsp;        result.add(tmp);</b>
+<i>344</i>&nbsp;
+<b class="nc"><i>345</i>&nbsp;        requires.clear();</b>
+<b class="nc"><i>346</i>&nbsp;        produces.clear();</b>
+<b class="nc"><i>347</i>&nbsp;        price.clear();</b>
+<i>348</i>&nbsp;
+<i>349</i>&nbsp;        //devG203
+<b class="nc"><i>350</i>&nbsp;        requires.add(Resource.GOLD);</b>
+<b class="nc"><i>351</i>&nbsp;        requires.add(Resource.GOLD);</b>
+<b class="nc"><i>352</i>&nbsp;        produces.add(Resource.STONE);</b>
+<b class="nc"><i>353</i>&nbsp;        produces.add(Resource.STONE);</b>
+<b class="nc"><i>354</i>&nbsp;        produces.add(Resource.FAITH);</b>
+<b class="nc"><i>355</i>&nbsp;        produces.add(Resource.FAITH);</b>
+<b class="nc"><i>356</i>&nbsp;        price.add(Resource.SHIELD);</b>
+<b class="nc"><i>357</i>&nbsp;        price.add(Resource.SHIELD);</b>
+<b class="nc"><i>358</i>&nbsp;        price.add(Resource.SHIELD);</b>
+<b class="nc"><i>359</i>&nbsp;        price.add(Resource.SHIELD);</b>
+<b class="nc"><i>360</i>&nbsp;        price.add(Resource.SHIELD);</b>
+<i>361</i>&nbsp;
+<b class="nc"><i>362</i>&nbsp;        tmp = new ClientDevCard(&quot;devG203&quot;, Colors.GREEN, 2, 7, Resource.cloneList(requires), Resource.cloneList(produces), Resource.cloneList(price));</b>
+<b class="nc"><i>363</i>&nbsp;        result.add(tmp);</b>
+<i>364</i>&nbsp;
+<b class="nc"><i>365</i>&nbsp;        requires.clear();</b>
+<b class="nc"><i>366</i>&nbsp;        produces.clear();</b>
+<b class="nc"><i>367</i>&nbsp;        price.clear();</b>
+<i>368</i>&nbsp;
+<i>369</i>&nbsp;        //devG204
+<b class="nc"><i>370</i>&nbsp;        requires.add(Resource.GOLD);</b>
+<b class="nc"><i>371</i>&nbsp;        produces.add(Resource.FAITH);</b>
+<b class="nc"><i>372</i>&nbsp;        produces.add(Resource.SHIELD);</b>
+<b class="nc"><i>373</i>&nbsp;        produces.add(Resource.SHIELD);</b>
+<b class="nc"><i>374</i>&nbsp;        price.add(Resource.GOLD);</b>
+<b class="nc"><i>375</i>&nbsp;        price.add(Resource.GOLD);</b>
+<b class="nc"><i>376</i>&nbsp;        price.add(Resource.GOLD);</b>
+<b class="nc"><i>377</i>&nbsp;        price.add(Resource.SHIELD);</b>
+<b class="nc"><i>378</i>&nbsp;        price.add(Resource.SHIELD);</b>
+<b class="nc"><i>379</i>&nbsp;        price.add(Resource.SHIELD);</b>
+<i>380</i>&nbsp;
+<b class="nc"><i>381</i>&nbsp;        tmp = new ClientDevCard(&quot;devG204&quot;, Colors.GREEN, 2, 8, Resource.cloneList(requires), Resource.cloneList(produces), Resource.cloneList(price));</b>
+<b class="nc"><i>382</i>&nbsp;        result.add(tmp);</b>
+<i>383</i>&nbsp;
+<b class="nc"><i>384</i>&nbsp;        requires.clear();</b>
+<b class="nc"><i>385</i>&nbsp;        produces.clear();</b>
+<b class="nc"><i>386</i>&nbsp;        price.clear();</b>
+<i>387</i>&nbsp;
+<i>388</i>&nbsp;        //devG301
+<b class="nc"><i>389</i>&nbsp;        requires.add(Resource.SERVANT);</b>
+<b class="nc"><i>390</i>&nbsp;        requires.add(Resource.SERVANT);</b>
+<b class="nc"><i>391</i>&nbsp;        produces.add(Resource.FAITH);</b>
+<b class="nc"><i>392</i>&nbsp;        produces.add(Resource.FAITH);</b>
+<b class="nc"><i>393</i>&nbsp;        produces.add(Resource.STONE);</b>
+<b class="nc"><i>394</i>&nbsp;        produces.add(Resource.STONE);</b>
+<b class="nc"><i>395</i>&nbsp;        produces.add(Resource.STONE);</b>
+<b class="nc"><i>396</i>&nbsp;        price.add(Resource.SHIELD);</b>
+<b class="nc"><i>397</i>&nbsp;        price.add(Resource.SHIELD);</b>
+<b class="nc"><i>398</i>&nbsp;        price.add(Resource.SHIELD);</b>
+<b class="nc"><i>399</i>&nbsp;        price.add(Resource.SHIELD);</b>
+<b class="nc"><i>400</i>&nbsp;        price.add(Resource.SHIELD);</b>
+<b class="nc"><i>401</i>&nbsp;        price.add(Resource.SHIELD);</b>
+<i>402</i>&nbsp;
+<b class="nc"><i>403</i>&nbsp;        tmp = new ClientDevCard(&quot;devG301&quot;, Colors.GREEN, 3, 9, Resource.cloneList(requires), Resource.cloneList(produces), Resource.cloneList(price));</b>
+<b class="nc"><i>404</i>&nbsp;        result.add(tmp);</b>
+<i>405</i>&nbsp;
+<b class="nc"><i>406</i>&nbsp;        requires.clear();</b>
+<b class="nc"><i>407</i>&nbsp;        produces.clear();</b>
+<b class="nc"><i>408</i>&nbsp;        price.clear();</b>
+<i>409</i>&nbsp;
+<i>410</i>&nbsp;        //devG302
+<b class="nc"><i>411</i>&nbsp;        requires.add(Resource.GOLD);</b>
+<b class="nc"><i>412</i>&nbsp;        requires.add(Resource.SERVANT);</b>
+<b class="nc"><i>413</i>&nbsp;        produces.add(Resource.SHIELD);</b>
+<b class="nc"><i>414</i>&nbsp;        produces.add(Resource.SHIELD);</b>
+<b class="nc"><i>415</i>&nbsp;        produces.add(Resource.STONE);</b>
+<b class="nc"><i>416</i>&nbsp;        produces.add(Resource.STONE);</b>
+<b class="nc"><i>417</i>&nbsp;        produces.add(Resource.FAITH);</b>
+<b class="nc"><i>418</i>&nbsp;        price.add(Resource.SHIELD);</b>
+<b class="nc"><i>419</i>&nbsp;        price.add(Resource.SHIELD);</b>
+<b class="nc"><i>420</i>&nbsp;        price.add(Resource.SHIELD);</b>
+<b class="nc"><i>421</i>&nbsp;        price.add(Resource.SHIELD);</b>
+<b class="nc"><i>422</i>&nbsp;        price.add(Resource.SHIELD);</b>
+<b class="nc"><i>423</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<b class="nc"><i>424</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<i>425</i>&nbsp;
+<b class="nc"><i>426</i>&nbsp;        tmp = new ClientDevCard(&quot;devG302&quot;, Colors.GREEN, 3, 10, Resource.cloneList(requires), Resource.cloneList(produces), Resource.cloneList(price));</b>
+<b class="nc"><i>427</i>&nbsp;        result.add(tmp);</b>
+<i>428</i>&nbsp;
+<b class="nc"><i>429</i>&nbsp;        requires.clear();</b>
+<b class="nc"><i>430</i>&nbsp;        produces.clear();</b>
+<b class="nc"><i>431</i>&nbsp;        price.clear();</b>
+<i>432</i>&nbsp;
+<i>433</i>&nbsp;        //devG303
+<b class="nc"><i>434</i>&nbsp;        requires.add(Resource.SERVANT);</b>
+<b class="nc"><i>435</i>&nbsp;        produces.add(Resource.SERVANT);</b>
+<b class="nc"><i>436</i>&nbsp;        produces.add(Resource.GOLD);</b>
+<b class="nc"><i>437</i>&nbsp;        produces.add(Resource.FAITH);</b>
+<b class="nc"><i>438</i>&nbsp;        produces.add(Resource.FAITH);</b>
+<b class="nc"><i>439</i>&nbsp;        produces.add(Resource.FAITH);</b>
+<b class="nc"><i>440</i>&nbsp;        price.add(Resource.SHIELD);</b>
+<b class="nc"><i>441</i>&nbsp;        price.add(Resource.SHIELD);</b>
+<b class="nc"><i>442</i>&nbsp;        price.add(Resource.SHIELD);</b>
+<b class="nc"><i>443</i>&nbsp;        price.add(Resource.SHIELD);</b>
+<b class="nc"><i>444</i>&nbsp;        price.add(Resource.SHIELD);</b>
+<b class="nc"><i>445</i>&nbsp;        price.add(Resource.SHIELD);</b>
+<b class="nc"><i>446</i>&nbsp;        price.add(Resource.SHIELD);</b>
+<i>447</i>&nbsp;
+<b class="nc"><i>448</i>&nbsp;        tmp = new ClientDevCard(&quot;devG303&quot;, Colors.GREEN, 3, 11, Resource.cloneList(requires), Resource.cloneList(produces), Resource.cloneList(price));</b>
+<b class="nc"><i>449</i>&nbsp;        result.add(tmp);</b>
+<i>450</i>&nbsp;
+<b class="nc"><i>451</i>&nbsp;        requires.clear();</b>
+<b class="nc"><i>452</i>&nbsp;        produces.clear();</b>
+<b class="nc"><i>453</i>&nbsp;        price.clear();</b>
+<i>454</i>&nbsp;
+<i>455</i>&nbsp;        //devG304
+<b class="nc"><i>456</i>&nbsp;        requires.add(Resource.STONE);</b>
+<b class="nc"><i>457</i>&nbsp;        produces.add(Resource.GOLD);</b>
+<b class="nc"><i>458</i>&nbsp;        produces.add(Resource.GOLD);</b>
+<b class="nc"><i>459</i>&nbsp;        produces.add(Resource.GOLD);</b>
+<b class="nc"><i>460</i>&nbsp;        produces.add(Resource.SHIELD);</b>
+<b class="nc"><i>461</i>&nbsp;        price.add(Resource.GOLD);</b>
+<b class="nc"><i>462</i>&nbsp;        price.add(Resource.GOLD);</b>
+<b class="nc"><i>463</i>&nbsp;        price.add(Resource.GOLD);</b>
+<b class="nc"><i>464</i>&nbsp;        price.add(Resource.GOLD);</b>
+<b class="nc"><i>465</i>&nbsp;        price.add(Resource.SHIELD);</b>
+<b class="nc"><i>466</i>&nbsp;        price.add(Resource.SHIELD);</b>
+<b class="nc"><i>467</i>&nbsp;        price.add(Resource.SHIELD);</b>
+<b class="nc"><i>468</i>&nbsp;        price.add(Resource.SHIELD);</b>
+<i>469</i>&nbsp;
+<b class="nc"><i>470</i>&nbsp;        tmp = new ClientDevCard(&quot;devG304&quot;, Colors.GREEN, 3, 12, Resource.cloneList(requires), Resource.cloneList(produces), Resource.cloneList(price));</b>
+<b class="nc"><i>471</i>&nbsp;        result.add(tmp);</b>
+<i>472</i>&nbsp;
+<b class="nc"><i>473</i>&nbsp;        requires.clear();</b>
+<b class="nc"><i>474</i>&nbsp;        produces.clear();</b>
+<b class="nc"><i>475</i>&nbsp;        price.clear();</b>
+<i>476</i>&nbsp;
+<i>477</i>&nbsp;        //devY101
+<b class="nc"><i>478</i>&nbsp;        requires.add(Resource.SERVANT);</b>
+<b class="nc"><i>479</i>&nbsp;        produces.add(Resource.FAITH);</b>
+<b class="nc"><i>480</i>&nbsp;        price.add(Resource.STONE);</b>
+<i>481</i>&nbsp;
+<b class="nc"><i>482</i>&nbsp;        tmp = new ClientDevCard(&quot;devY101&quot;, Colors.YELLOW, 1, 1, Resource.cloneList(requires), Resource.cloneList(produces), Resource.cloneList(price));</b>
+<b class="nc"><i>483</i>&nbsp;        result.add(tmp);</b>
+<i>484</i>&nbsp;
+<b class="nc"><i>485</i>&nbsp;        requires.clear();</b>
+<b class="nc"><i>486</i>&nbsp;        produces.clear();</b>
+<b class="nc"><i>487</i>&nbsp;        price.clear();</b>
+<i>488</i>&nbsp;
+<i>489</i>&nbsp;        //devY102
+<b class="nc"><i>490</i>&nbsp;        requires.add(Resource.SHIELD);</b>
+<b class="nc"><i>491</i>&nbsp;        produces.add(Resource.GOLD);</b>
+<b class="nc"><i>492</i>&nbsp;        price.add(Resource.STONE);</b>
+<b class="nc"><i>493</i>&nbsp;        price.add(Resource.GOLD);</b>
+<b class="nc"><i>494</i>&nbsp;        price.add(Resource.SHIELD);</b>
+<i>495</i>&nbsp;
+<b class="nc"><i>496</i>&nbsp;        tmp = new ClientDevCard(&quot;devY102&quot;, Colors.YELLOW, 1, 2, Resource.cloneList(requires), Resource.cloneList(produces), Resource.cloneList(price));</b>
+<b class="nc"><i>497</i>&nbsp;        result.add(tmp);</b>
+<i>498</i>&nbsp;
+<b class="nc"><i>499</i>&nbsp;        requires.clear();</b>
+<b class="nc"><i>500</i>&nbsp;        produces.clear();</b>
+<b class="nc"><i>501</i>&nbsp;        price.clear();</b>
+<i>502</i>&nbsp;
+<i>503</i>&nbsp;        //devY103
+<b class="nc"><i>504</i>&nbsp;        requires.add(Resource.SHIELD);</b>
+<b class="nc"><i>505</i>&nbsp;        requires.add(Resource.SHIELD);</b>
+<b class="nc"><i>506</i>&nbsp;        produces.add(Resource.GOLD);</b>
+<b class="nc"><i>507</i>&nbsp;        produces.add(Resource.SERVANT);</b>
+<b class="nc"><i>508</i>&nbsp;        produces.add(Resource.STONE);</b>
+<b class="nc"><i>509</i>&nbsp;        price.add(Resource.STONE);</b>
+<b class="nc"><i>510</i>&nbsp;        price.add(Resource.STONE);</b>
+<b class="nc"><i>511</i>&nbsp;        price.add(Resource.STONE);</b>
+<i>512</i>&nbsp;
+<b class="nc"><i>513</i>&nbsp;        tmp = new ClientDevCard(&quot;devY103&quot;, Colors.YELLOW, 1, 3, Resource.cloneList(requires), Resource.cloneList(produces), Resource.cloneList(price));</b>
+<b class="nc"><i>514</i>&nbsp;        result.add(tmp);</b>
+<i>515</i>&nbsp;
+<b class="nc"><i>516</i>&nbsp;        requires.clear();</b>
+<b class="nc"><i>517</i>&nbsp;        produces.clear();</b>
+<b class="nc"><i>518</i>&nbsp;        price.clear();</b>
+<i>519</i>&nbsp;
+<i>520</i>&nbsp;        //devY104
+<b class="nc"><i>521</i>&nbsp;        requires.add(Resource.GOLD);</b>
+<b class="nc"><i>522</i>&nbsp;        requires.add(Resource.SERVANT);</b>
+<b class="nc"><i>523</i>&nbsp;        produces.add(Resource.SHIELD);</b>
+<b class="nc"><i>524</i>&nbsp;        produces.add(Resource.SHIELD);</b>
+<b class="nc"><i>525</i>&nbsp;        produces.add(Resource.FAITH);</b>
+<b class="nc"><i>526</i>&nbsp;        price.add(Resource.STONE);</b>
+<b class="nc"><i>527</i>&nbsp;        price.add(Resource.STONE);</b>
+<b class="nc"><i>528</i>&nbsp;        price.add(Resource.SHIELD);</b>
+<b class="nc"><i>529</i>&nbsp;        price.add(Resource.SHIELD);</b>
+<i>530</i>&nbsp;
+<b class="nc"><i>531</i>&nbsp;        tmp = new ClientDevCard(&quot;devY104&quot;, Colors.YELLOW, 1, 4, Resource.cloneList(requires), Resource.cloneList(produces), Resource.cloneList(price));</b>
+<b class="nc"><i>532</i>&nbsp;        result.add(tmp);</b>
+<i>533</i>&nbsp;
+<b class="nc"><i>534</i>&nbsp;        requires.clear();</b>
+<b class="nc"><i>535</i>&nbsp;        produces.clear();</b>
+<b class="nc"><i>536</i>&nbsp;        price.clear();</b>
+<i>537</i>&nbsp;
+<i>538</i>&nbsp;        //devY201
+<b class="nc"><i>539</i>&nbsp;        requires.add(Resource.SHIELD);</b>
+<b class="nc"><i>540</i>&nbsp;        produces.add(Resource.FAITH);</b>
+<b class="nc"><i>541</i>&nbsp;        produces.add(Resource.FAITH);</b>
+<b class="nc"><i>542</i>&nbsp;        price.add(Resource.STONE);</b>
+<b class="nc"><i>543</i>&nbsp;        price.add(Resource.STONE);</b>
+<b class="nc"><i>544</i>&nbsp;        price.add(Resource.STONE);</b>
+<b class="nc"><i>545</i>&nbsp;        price.add(Resource.STONE);</b>
+<i>546</i>&nbsp;
+<b class="nc"><i>547</i>&nbsp;        tmp = new ClientDevCard(&quot;devY201&quot;, Colors.YELLOW, 2, 5, Resource.cloneList(requires), Resource.cloneList(produces), Resource.cloneList(price));</b>
+<b class="nc"><i>548</i>&nbsp;        result.add(tmp);</b>
+<i>549</i>&nbsp;
+<b class="nc"><i>550</i>&nbsp;        requires.clear();</b>
+<b class="nc"><i>551</i>&nbsp;        produces.clear();</b>
+<b class="nc"><i>552</i>&nbsp;        price.clear();</b>
+<i>553</i>&nbsp;
+<i>554</i>&nbsp;        //devY202
+<b class="nc"><i>555</i>&nbsp;        requires.add(Resource.SHIELD);</b>
+<b class="nc"><i>556</i>&nbsp;        requires.add(Resource.STONE);</b>
+<b class="nc"><i>557</i>&nbsp;        produces.add(Resource.GOLD);</b>
+<b class="nc"><i>558</i>&nbsp;        produces.add(Resource.GOLD);</b>
+<b class="nc"><i>559</i>&nbsp;        produces.add(Resource.GOLD);</b>
+<b class="nc"><i>560</i>&nbsp;        price.add(Resource.STONE);</b>
+<b class="nc"><i>561</i>&nbsp;        price.add(Resource.STONE);</b>
+<b class="nc"><i>562</i>&nbsp;        price.add(Resource.STONE);</b>
+<b class="nc"><i>563</i>&nbsp;        price.add(Resource.SHIELD);</b>
+<b class="nc"><i>564</i>&nbsp;        price.add(Resource.SHIELD);</b>
+<i>565</i>&nbsp;
+<b class="nc"><i>566</i>&nbsp;        tmp = new ClientDevCard(&quot;devY202&quot;, Colors.YELLOW, 2, 6, Resource.cloneList(requires), Resource.cloneList(produces), Resource.cloneList(price));</b>
+<b class="nc"><i>567</i>&nbsp;        result.add(tmp);</b>
+<i>568</i>&nbsp;
+<b class="nc"><i>569</i>&nbsp;        requires.clear();</b>
+<b class="nc"><i>570</i>&nbsp;        produces.clear();</b>
+<b class="nc"><i>571</i>&nbsp;        price.clear();</b>
+<i>572</i>&nbsp;
+<i>573</i>&nbsp;        //devY203
+<b class="nc"><i>574</i>&nbsp;        requires.add(Resource.SHIELD);</b>
+<b class="nc"><i>575</i>&nbsp;        requires.add(Resource.SHIELD);</b>
+<b class="nc"><i>576</i>&nbsp;        produces.add(Resource.SERVANT);</b>
+<b class="nc"><i>577</i>&nbsp;        produces.add(Resource.SERVANT);</b>
+<b class="nc"><i>578</i>&nbsp;        produces.add(Resource.FAITH);</b>
+<b class="nc"><i>579</i>&nbsp;        produces.add(Resource.FAITH);</b>
+<b class="nc"><i>580</i>&nbsp;        price.add(Resource.STONE);</b>
+<b class="nc"><i>581</i>&nbsp;        price.add(Resource.STONE);</b>
+<b class="nc"><i>582</i>&nbsp;        price.add(Resource.STONE);</b>
+<b class="nc"><i>583</i>&nbsp;        price.add(Resource.STONE);</b>
+<b class="nc"><i>584</i>&nbsp;        price.add(Resource.STONE);</b>
+<i>585</i>&nbsp;
+<b class="nc"><i>586</i>&nbsp;        tmp = new ClientDevCard(&quot;devY203&quot;, Colors.YELLOW, 2, 7, Resource.cloneList(requires), Resource.cloneList(produces), Resource.cloneList(price));</b>
+<b class="nc"><i>587</i>&nbsp;        result.add(tmp);</b>
+<i>588</i>&nbsp;
+<b class="nc"><i>589</i>&nbsp;        requires.clear();</b>
+<b class="nc"><i>590</i>&nbsp;        produces.clear();</b>
+<b class="nc"><i>591</i>&nbsp;        price.clear();</b>
+<i>592</i>&nbsp;
+<i>593</i>&nbsp;        //devY204
+<b class="nc"><i>594</i>&nbsp;        requires.add(Resource.SHIELD);</b>
+<b class="nc"><i>595</i>&nbsp;        produces.add(Resource.FAITH);</b>
+<b class="nc"><i>596</i>&nbsp;        produces.add(Resource.GOLD);</b>
+<b class="nc"><i>597</i>&nbsp;        produces.add(Resource.GOLD);</b>
+<b class="nc"><i>598</i>&nbsp;        price.add(Resource.STONE);</b>
+<b class="nc"><i>599</i>&nbsp;        price.add(Resource.STONE);</b>
+<b class="nc"><i>600</i>&nbsp;        price.add(Resource.STONE);</b>
+<b class="nc"><i>601</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<b class="nc"><i>602</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<b class="nc"><i>603</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<i>604</i>&nbsp;
+<b class="nc"><i>605</i>&nbsp;        tmp = new ClientDevCard(&quot;devY204&quot;, Colors.YELLOW, 2, 8, Resource.cloneList(requires), Resource.cloneList(produces), Resource.cloneList(price));</b>
+<b class="nc"><i>606</i>&nbsp;        result.add(tmp);</b>
+<i>607</i>&nbsp;
+<b class="nc"><i>608</i>&nbsp;        requires.clear();</b>
+<b class="nc"><i>609</i>&nbsp;        produces.clear();</b>
+<b class="nc"><i>610</i>&nbsp;        price.clear();</b>
+<i>611</i>&nbsp;
+<i>612</i>&nbsp;        //devY301
+<b class="nc"><i>613</i>&nbsp;        requires.add(Resource.SHIELD);</b>
+<b class="nc"><i>614</i>&nbsp;        requires.add(Resource.SHIELD);</b>
+<b class="nc"><i>615</i>&nbsp;        produces.add(Resource.FAITH);</b>
+<b class="nc"><i>616</i>&nbsp;        produces.add(Resource.FAITH);</b>
+<b class="nc"><i>617</i>&nbsp;        produces.add(Resource.SERVANT);</b>
+<b class="nc"><i>618</i>&nbsp;        produces.add(Resource.SERVANT);</b>
+<b class="nc"><i>619</i>&nbsp;        produces.add(Resource.SERVANT);</b>
+<b class="nc"><i>620</i>&nbsp;        price.add(Resource.STONE);</b>
+<b class="nc"><i>621</i>&nbsp;        price.add(Resource.STONE);</b>
+<b class="nc"><i>622</i>&nbsp;        price.add(Resource.STONE);</b>
+<b class="nc"><i>623</i>&nbsp;        price.add(Resource.STONE);</b>
+<b class="nc"><i>624</i>&nbsp;        price.add(Resource.STONE);</b>
+<b class="nc"><i>625</i>&nbsp;        price.add(Resource.STONE);</b>
+<i>626</i>&nbsp;
+<b class="nc"><i>627</i>&nbsp;        tmp = new ClientDevCard(&quot;devY301&quot;, Colors.YELLOW, 3, 9, Resource.cloneList(requires), Resource.cloneList(produces), Resource.cloneList(price));</b>
+<b class="nc"><i>628</i>&nbsp;        result.add(tmp);</b>
+<i>629</i>&nbsp;
+<b class="nc"><i>630</i>&nbsp;        requires.clear();</b>
+<b class="nc"><i>631</i>&nbsp;        produces.clear();</b>
+<b class="nc"><i>632</i>&nbsp;        price.clear();</b>
+<i>633</i>&nbsp;
+<i>634</i>&nbsp;        //devY302
+<b class="nc"><i>635</i>&nbsp;        requires.add(Resource.SHIELD);</b>
+<b class="nc"><i>636</i>&nbsp;        requires.add(Resource.SERVANT);</b>
+<b class="nc"><i>637</i>&nbsp;        produces.add(Resource.FAITH);</b>
+<b class="nc"><i>638</i>&nbsp;        produces.add(Resource.GOLD);</b>
+<b class="nc"><i>639</i>&nbsp;        produces.add(Resource.GOLD);</b>
+<b class="nc"><i>640</i>&nbsp;        produces.add(Resource.SHIELD);</b>
+<b class="nc"><i>641</i>&nbsp;        produces.add(Resource.SHIELD);</b>
+<b class="nc"><i>642</i>&nbsp;        price.add(Resource.STONE);</b>
+<b class="nc"><i>643</i>&nbsp;        price.add(Resource.STONE);</b>
+<b class="nc"><i>644</i>&nbsp;        price.add(Resource.STONE);</b>
+<b class="nc"><i>645</i>&nbsp;        price.add(Resource.STONE);</b>
+<b class="nc"><i>646</i>&nbsp;        price.add(Resource.STONE);</b>
+<b class="nc"><i>647</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<b class="nc"><i>648</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<i>649</i>&nbsp;
+<b class="nc"><i>650</i>&nbsp;        tmp = new ClientDevCard(&quot;devY302&quot;, Colors.YELLOW, 3, 10, Resource.cloneList(requires), Resource.cloneList(produces), Resource.cloneList(price));</b>
+<b class="nc"><i>651</i>&nbsp;        result.add(tmp);</b>
+<i>652</i>&nbsp;
+<b class="nc"><i>653</i>&nbsp;        requires.clear();</b>
+<b class="nc"><i>654</i>&nbsp;        produces.clear();</b>
+<b class="nc"><i>655</i>&nbsp;        price.clear();</b>
+<i>656</i>&nbsp;
+<i>657</i>&nbsp;        //devY303
+<b class="nc"><i>658</i>&nbsp;        requires.add(Resource.SHIELD);</b>
+<b class="nc"><i>659</i>&nbsp;        produces.add(Resource.FAITH);</b>
+<b class="nc"><i>660</i>&nbsp;        produces.add(Resource.FAITH);</b>
+<b class="nc"><i>661</i>&nbsp;        produces.add(Resource.FAITH);</b>
+<b class="nc"><i>662</i>&nbsp;        produces.add(Resource.SERVANT);</b>
+<b class="nc"><i>663</i>&nbsp;        price.add(Resource.STONE);</b>
+<b class="nc"><i>664</i>&nbsp;        price.add(Resource.STONE);</b>
+<b class="nc"><i>665</i>&nbsp;        price.add(Resource.STONE);</b>
+<b class="nc"><i>666</i>&nbsp;        price.add(Resource.STONE);</b>
+<b class="nc"><i>667</i>&nbsp;        price.add(Resource.STONE);</b>
+<b class="nc"><i>668</i>&nbsp;        price.add(Resource.STONE);</b>
+<b class="nc"><i>669</i>&nbsp;        price.add(Resource.STONE);</b>
+<i>670</i>&nbsp;
+<b class="nc"><i>671</i>&nbsp;        tmp = new ClientDevCard(&quot;devY303&quot;, Colors.YELLOW, 3, 11, Resource.cloneList(requires), Resource.cloneList(produces), Resource.cloneList(price));</b>
+<b class="nc"><i>672</i>&nbsp;        result.add(tmp);</b>
+<i>673</i>&nbsp;
+<b class="nc"><i>674</i>&nbsp;        requires.clear();</b>
+<b class="nc"><i>675</i>&nbsp;        produces.clear();</b>
+<b class="nc"><i>676</i>&nbsp;        price.clear();</b>
+<i>677</i>&nbsp;
+<i>678</i>&nbsp;        //devY304
+<b class="nc"><i>679</i>&nbsp;        requires.add(Resource.SHIELD);</b>
+<b class="nc"><i>680</i>&nbsp;        produces.add(Resource.FAITH);</b>
+<b class="nc"><i>681</i>&nbsp;        produces.add(Resource.FAITH);</b>
+<b class="nc"><i>682</i>&nbsp;        produces.add(Resource.STONE);</b>
+<b class="nc"><i>683</i>&nbsp;        produces.add(Resource.SERVANT);</b>
+<b class="nc"><i>684</i>&nbsp;        produces.add(Resource.SERVANT);</b>
+<b class="nc"><i>685</i>&nbsp;        produces.add(Resource.SERVANT);</b>
+<b class="nc"><i>686</i>&nbsp;        price.add(Resource.STONE);</b>
+<b class="nc"><i>687</i>&nbsp;        price.add(Resource.STONE);</b>
+<b class="nc"><i>688</i>&nbsp;        price.add(Resource.STONE);</b>
+<b class="nc"><i>689</i>&nbsp;        price.add(Resource.STONE);</b>
+<b class="nc"><i>690</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<b class="nc"><i>691</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<b class="nc"><i>692</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<b class="nc"><i>693</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<i>694</i>&nbsp;
+<b class="nc"><i>695</i>&nbsp;        tmp = new ClientDevCard(&quot;devY304&quot;, Colors.YELLOW, 3, 12, Resource.cloneList(requires), Resource.cloneList(produces), Resource.cloneList(price));</b>
+<b class="nc"><i>696</i>&nbsp;        result.add(tmp);</b>
+<i>697</i>&nbsp;
+<b class="nc"><i>698</i>&nbsp;        requires.clear();</b>
+<b class="nc"><i>699</i>&nbsp;        produces.clear();</b>
+<b class="nc"><i>700</i>&nbsp;        price.clear();</b>
+<i>701</i>&nbsp;
+<i>702</i>&nbsp;        //devB101
+<b class="nc"><i>703</i>&nbsp;        requires.add(Resource.SHIELD);</b>
+<b class="nc"><i>704</i>&nbsp;        produces.add(Resource.FAITH);</b>
+<b class="nc"><i>705</i>&nbsp;        price.add(Resource.GOLD);</b>
+<b class="nc"><i>706</i>&nbsp;        price.add(Resource.GOLD);</b>
+<i>707</i>&nbsp;
+<b class="nc"><i>708</i>&nbsp;        tmp = new ClientDevCard(&quot;devB101&quot;, Colors.BLUE, 1, 1, Resource.cloneList(requires), Resource.cloneList(produces), Resource.cloneList(price));</b>
+<b class="nc"><i>709</i>&nbsp;        result.add(tmp);</b>
+<i>710</i>&nbsp;
+<b class="nc"><i>711</i>&nbsp;        requires.clear();</b>
+<b class="nc"><i>712</i>&nbsp;        produces.clear();</b>
+<b class="nc"><i>713</i>&nbsp;        price.clear();</b>
+<i>714</i>&nbsp;
+<i>715</i>&nbsp;        //devB102
+<b class="nc"><i>716</i>&nbsp;        requires.add(Resource.SERVANT);</b>
+<b class="nc"><i>717</i>&nbsp;        produces.add(Resource.STONE);</b>
+<b class="nc"><i>718</i>&nbsp;        price.add(Resource.GOLD);</b>
+<b class="nc"><i>719</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<b class="nc"><i>720</i>&nbsp;        price.add(Resource.STONE);</b>
+<i>721</i>&nbsp;
+<b class="nc"><i>722</i>&nbsp;        tmp = new ClientDevCard(&quot;devB102&quot;, Colors.BLUE, 1, 2, Resource.cloneList(requires), Resource.cloneList(produces), Resource.cloneList(price));</b>
+<b class="nc"><i>723</i>&nbsp;        result.add(tmp);</b>
+<i>724</i>&nbsp;
+<b class="nc"><i>725</i>&nbsp;        requires.clear();</b>
+<b class="nc"><i>726</i>&nbsp;        produces.clear();</b>
+<b class="nc"><i>727</i>&nbsp;        price.clear();</b>
+<i>728</i>&nbsp;
+<i>729</i>&nbsp;        //devB103
+<b class="nc"><i>730</i>&nbsp;        requires.add(Resource.STONE);</b>
+<b class="nc"><i>731</i>&nbsp;        requires.add(Resource.STONE);</b>
+<b class="nc"><i>732</i>&nbsp;        produces.add(Resource.GOLD);</b>
+<b class="nc"><i>733</i>&nbsp;        produces.add(Resource.SERVANT);</b>
+<b class="nc"><i>734</i>&nbsp;        produces.add(Resource.SHIELD);</b>
+<b class="nc"><i>735</i>&nbsp;        price.add(Resource.GOLD);</b>
+<b class="nc"><i>736</i>&nbsp;        price.add(Resource.GOLD);</b>
+<b class="nc"><i>737</i>&nbsp;        price.add(Resource.GOLD);</b>
+<i>738</i>&nbsp;
+<b class="nc"><i>739</i>&nbsp;        tmp = new ClientDevCard(&quot;devB103&quot;, Colors.BLUE, 1, 3, Resource.cloneList(requires), Resource.cloneList(produces), Resource.cloneList(price));</b>
+<b class="nc"><i>740</i>&nbsp;        result.add(tmp);</b>
+<i>741</i>&nbsp;
+<b class="nc"><i>742</i>&nbsp;        requires.clear();</b>
+<b class="nc"><i>743</i>&nbsp;        produces.clear();</b>
+<b class="nc"><i>744</i>&nbsp;        price.clear();</b>
+<i>745</i>&nbsp;
+<i>746</i>&nbsp;        //devB104
+<b class="nc"><i>747</i>&nbsp;        requires.add(Resource.STONE);</b>
+<b class="nc"><i>748</i>&nbsp;        requires.add(Resource.SHIELD);</b>
+<b class="nc"><i>749</i>&nbsp;        produces.add(Resource.FAITH);</b>
+<b class="nc"><i>750</i>&nbsp;        produces.add(Resource.SERVANT);</b>
+<b class="nc"><i>751</i>&nbsp;        produces.add(Resource.SERVANT);</b>
+<b class="nc"><i>752</i>&nbsp;        price.add(Resource.GOLD);</b>
+<b class="nc"><i>753</i>&nbsp;        price.add(Resource.GOLD);</b>
+<b class="nc"><i>754</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<b class="nc"><i>755</i>&nbsp;        price.add(Resource.SERVANT);</b>
+<i>756</i>&nbsp;
+<b class="nc"><i>757</i>&nbsp;        tmp = new ClientDevCard(&quot;devB104&quot;, Colors.BLUE, 1, 4, Resource.cloneList(requires), Resource.cloneList(produces), Resource.cloneList(price));</b>
+<b class="nc"><i>758</i>&nbsp;        result.add(tmp);</b>
+<i>759</i>&nbsp;
+<b class="nc"><i>760</i>&nbsp;        requires.clear();</b>
+<b class="nc"><i>761</i>&nbsp;        produces.clear();</b>
+<b class="nc"><i>762</i>&nbsp;        price.clear();</b>
+<i>763</i>&nbsp;
+<i>764</i>&nbsp;        //devB201
+<b class="nc"><i>765</i>&nbsp;        requires.add(Resource.SERVANT);</b>
+<b class="nc"><i>766</i>&nbsp;        produces.add(Resource.FAITH);</b>
+<b class="nc"><i>767</i>&nbsp;        produces.add(Resource.FAITH);</b>
+<b class="nc"><i>768</i>&nbsp;        price.add(Resource.GOLD);</b>
+<b class="nc"><i>769</i>&nbsp;        price.add(Resource.GOLD);</b>
+<b class="nc"><i>770</i>&nbsp;        price.add(Resource.GOLD);</b>
+<b class="nc"><i>771</i>&nbsp;        price.add(Resource.GOLD);</b>
+<i>772</i>&nbsp;
+<b class="nc"><i>773</i>&nbsp;        tmp = new ClientDevCard(&quot;devB201&quot;, Colors.BLUE, 2, 5, Resource.cloneList(requires), Resource.cloneList(produces), Resource.cloneList(price));</b>
+<b class="nc"><i>774</i>&nbsp;        result.add(tmp);</b>
+<i>775</i>&nbsp;
+<b class="nc"><i>776</i>&nbsp;        requires.clear();</b>
+<b class="nc"><i>777</i>&nbsp;        produces.clear();</b>
+<b class="nc"><i>778</i>&nbsp;        price.clear();</b>
+<i>779</i>&nbsp;
+<i>780</i>&nbsp;        //devB202
+<b class="nc"><i>781</i>&nbsp;        requires.add(Resource.GOLD);</b>
+<b class="nc"><i>782</i>&nbsp;        requires.add(Resource.STONE);</b>
+<b class="nc"><i>783</i>&nbsp;        produces.add(Resource.SERVANT);</b>
+<b class="nc"><i>784</i>&nbsp;        produces.add(Resource.SERVANT);</b>
+<b class="nc"><i>785</i>&nbsp;        produces.add(Resource.SERVANT);</b>
+<b class="nc"><i>786</i>&nbsp;        price.add(Resource.GOLD);</b>
+<b class="nc"><i>787</i>&nbsp;        price.add(Resource.GOLD);</b>
+<b class="nc"><i>788</i>&nbsp;        price.add(Resource.GOLD);</b>
+<b class="nc"><i>789</i>&nbsp;        price.add(Resource.STONE);</b>
+<b class="nc"><i>790</i>&nbsp;        price.add(Resource.STONE);</b>
+<i>791</i>&nbsp;
+<b class="nc"><i>792</i>&nbsp;        tmp = new ClientDevCard(&quot;devB202&quot;, Colors.BLUE, 2, 6, Resource.cloneList(requires), Resource.cloneList(produces), Resource.cloneList(price));</b>
+<b class="nc"><i>793</i>&nbsp;        result.add(tmp);</b>
+<i>794</i>&nbsp;
+<b class="nc"><i>795</i>&nbsp;        requires.clear();</b>
+<b class="nc"><i>796</i>&nbsp;        produces.clear();</b>
+<b class="nc"><i>797</i>&nbsp;        price.clear();</b>
+<i>798</i>&nbsp;
+<i>799</i>&nbsp;        //devB203
+<b class="nc"><i>800</i>&nbsp;        requires.add(Resource.SERVANT);</b>
+<b class="nc"><i>801</i>&nbsp;        requires.add(Resource.SERVANT);</b>
+<b class="nc"><i>802</i>&nbsp;        produces.add(Resource.SHIELD);</b>
+<b class="nc"><i>803</i>&nbsp;        produces.add(Resource.SHIELD);</b>
+<b class="nc"><i>804</i>&nbsp;        produces.add(Resource.FAITH);</b>
+<b class="nc"><i>805</i>&nbsp;        produces.add(Resource.FAITH);</b>
+<b class="nc"><i>806</i>&nbsp;        price.add(Resource.GOLD);</b>
+<b class="nc"><i>807</i>&nbsp;        price.add(Resource.GOLD);</b>
+<b class="nc"><i>808</i>&nbsp;        price.add(Resource.GOLD);</b>
+<b class="nc"><i>809</i>&nbsp;        price.add(Resource.GOLD);</b>
+<b class="nc"><i>810</i>&nbsp;        price.add(Resource.GOLD);</b>
+<i>811</i>&nbsp;
+<b class="nc"><i>812</i>&nbsp;        tmp = new ClientDevCard(&quot;devB203&quot;, Colors.BLUE, 2, 7, Resource.cloneList(requires), Resource.cloneList(produces), Resource.cloneList(price));</b>
+<b class="nc"><i>813</i>&nbsp;        result.add(tmp);</b>
+<i>814</i>&nbsp;
+<b class="nc"><i>815</i>&nbsp;        requires.clear();</b>
+<b class="nc"><i>816</i>&nbsp;        produces.clear();</b>
+<b class="nc"><i>817</i>&nbsp;        price.clear();</b>
+<i>818</i>&nbsp;
+<i>819</i>&nbsp;        //devB204
+<b class="nc"><i>820</i>&nbsp;        requires.add(Resource.SERVANT);</b>
+<b class="nc"><i>821</i>&nbsp;        produces.add(Resource.STONE);</b>
+<b class="nc"><i>822</i>&nbsp;        produces.add(Resource.STONE);</b>
+<b class="nc"><i>823</i>&nbsp;        produces.add(Resource.FAITH);</b>
+<b class="nc"><i>824</i>&nbsp;        price.add(Resource.GOLD);</b>
+<b class="nc"><i>825</i>&nbsp;        price.add(Resource.GOLD);</b>
+<b class="nc"><i>826</i>&nbsp;        price.add(Resource.GOLD);</b>
+<b class="nc"><i>827</i>&nbsp;        price.add(Resource.STONE);</b>
+<b class="nc"><i>828</i>&nbsp;        price.add(Resource.STONE);</b>
+<b class="nc"><i>829</i>&nbsp;        price.add(Resource.STONE);</b>
+<i>830</i>&nbsp;
+<b class="nc"><i>831</i>&nbsp;        tmp = new ClientDevCard(&quot;devB204&quot;, Colors.BLUE, 2, 8, Resource.cloneList(requires), Resource.cloneList(produces), Resource.cloneList(price));</b>
+<b class="nc"><i>832</i>&nbsp;        result.add(tmp);</b>
+<i>833</i>&nbsp;
+<b class="nc"><i>834</i>&nbsp;        requires.clear();</b>
+<b class="nc"><i>835</i>&nbsp;        produces.clear();</b>
+<b class="nc"><i>836</i>&nbsp;        price.clear();</b>
+<i>837</i>&nbsp;
+<i>838</i>&nbsp;        //devB301
+<b class="nc"><i>839</i>&nbsp;        requires.add(Resource.SERVANT);</b>
+<b class="nc"><i>840</i>&nbsp;        requires.add(Resource.SERVANT);</b>
+<b class="nc"><i>841</i>&nbsp;        produces.add(Resource.SHIELD);</b>
+<b class="nc"><i>842</i>&nbsp;        produces.add(Resource.SHIELD);</b>
+<b class="nc"><i>843</i>&nbsp;        produces.add(Resource.SHIELD);</b>
+<b class="nc"><i>844</i>&nbsp;        produces.add(Resource.FAITH);</b>
+<b class="nc"><i>845</i>&nbsp;        produces.add(Resource.FAITH);</b>
+<b class="nc"><i>846</i>&nbsp;        price.add(Resource.GOLD);</b>
+<b class="nc"><i>847</i>&nbsp;        price.add(Resource.GOLD);</b>
+<b class="nc"><i>848</i>&nbsp;        price.add(Resource.GOLD);</b>
+<b class="nc"><i>849</i>&nbsp;        price.add(Resource.GOLD);</b>
+<b class="nc"><i>850</i>&nbsp;        price.add(Resource.GOLD);</b>
+<b class="nc"><i>851</i>&nbsp;        price.add(Resource.GOLD);</b>
+<i>852</i>&nbsp;
+<b class="nc"><i>853</i>&nbsp;        tmp = new ClientDevCard(&quot;devB301&quot;, Colors.BLUE, 3, 9, Resource.cloneList(requires), Resource.cloneList(produces), Resource.cloneList(price));</b>
+<b class="nc"><i>854</i>&nbsp;        result.add(tmp);</b>
+<i>855</i>&nbsp;
+<b class="nc"><i>856</i>&nbsp;        requires.clear();</b>
+<b class="nc"><i>857</i>&nbsp;        produces.clear();</b>
+<b class="nc"><i>858</i>&nbsp;        price.clear();</b>
+<i>859</i>&nbsp;
+<i>860</i>&nbsp;        //devB302
+<b class="nc"><i>861</i>&nbsp;        requires.add(Resource.GOLD);</b>
+<b class="nc"><i>862</i>&nbsp;        requires.add(Resource.SHIELD);</b>
+<b class="nc"><i>863</i>&nbsp;        produces.add(Resource.SERVANT);</b>
+<b class="nc"><i>864</i>&nbsp;        produces.add(Resource.SERVANT);</b>
+<b class="nc"><i>865</i>&nbsp;        produces.add(Resource.STONE);</b>
+<b class="nc"><i>866</i>&nbsp;        produces.add(Resource.STONE);</b>
+<b class="nc"><i>867</i>&nbsp;        produces.add(Resource.FAITH);</b>
+<b class="nc"><i>868</i>&nbsp;        price.add(Resource.GOLD);</b>
+<b class="nc"><i>869</i>&nbsp;        price.add(Resource.GOLD);</b>
+<b class="nc"><i>870</i>&nbsp;        price.add(Resource.GOLD);</b>
+<b class="nc"><i>871</i>&nbsp;        price.add(Resource.GOLD);</b>
+<b class="nc"><i>872</i>&nbsp;        price.add(Resource.GOLD);</b>
+<b class="nc"><i>873</i>&nbsp;        price.add(Resource.STONE);</b>
+<b class="nc"><i>874</i>&nbsp;        price.add(Resource.STONE);</b>
+<i>875</i>&nbsp;
+<b class="nc"><i>876</i>&nbsp;        tmp = new ClientDevCard(&quot;devB302&quot;, Colors.BLUE, 3, 10, Resource.cloneList(requires), Resource.cloneList(produces), Resource.cloneList(price));</b>
+<b class="nc"><i>877</i>&nbsp;        result.add(tmp);</b>
+<i>878</i>&nbsp;
+<b class="nc"><i>879</i>&nbsp;        requires.clear();</b>
+<b class="nc"><i>880</i>&nbsp;        produces.clear();</b>
+<b class="nc"><i>881</i>&nbsp;        price.clear();</b>
+<i>882</i>&nbsp;
+<i>883</i>&nbsp;        //devB303
+<b class="nc"><i>884</i>&nbsp;        requires.add(Resource.STONE);</b>
+<b class="nc"><i>885</i>&nbsp;        produces.add(Resource.SHIELD);</b>
+<b class="nc"><i>886</i>&nbsp;        produces.add(Resource.FAITH);</b>
+<b class="nc"><i>887</i>&nbsp;        produces.add(Resource.FAITH);</b>
+<b class="nc"><i>888</i>&nbsp;        produces.add(Resource.FAITH);</b>
+<b class="nc"><i>889</i>&nbsp;        price.add(Resource.GOLD);</b>
+<b class="nc"><i>890</i>&nbsp;        price.add(Resource.GOLD);</b>
+<b class="nc"><i>891</i>&nbsp;        price.add(Resource.GOLD);</b>
+<b class="nc"><i>892</i>&nbsp;        price.add(Resource.GOLD);</b>
+<b class="nc"><i>893</i>&nbsp;        price.add(Resource.GOLD);</b>
+<b class="nc"><i>894</i>&nbsp;        price.add(Resource.GOLD);</b>
+<b class="nc"><i>895</i>&nbsp;        price.add(Resource.GOLD);</b>
+<i>896</i>&nbsp;
+<b class="nc"><i>897</i>&nbsp;        tmp = new ClientDevCard(&quot;devB303&quot;, Colors.BLUE, 3, 11, Resource.cloneList(requires), Resource.cloneList(produces), Resource.cloneList(price));</b>
+<b class="nc"><i>898</i>&nbsp;        result.add(tmp);</b>
+<i>899</i>&nbsp;
+<b class="nc"><i>900</i>&nbsp;        requires.clear();</b>
+<b class="nc"><i>901</i>&nbsp;        produces.clear();</b>
+<b class="nc"><i>902</i>&nbsp;        price.clear();</b>
+<i>903</i>&nbsp;
+<i>904</i>&nbsp;        //devB304
+<b class="nc"><i>905</i>&nbsp;        requires.add(Resource.SERVANT);</b>
+<b class="nc"><i>906</i>&nbsp;        produces.add(Resource.SHIELD);</b>
+<b class="nc"><i>907</i>&nbsp;        produces.add(Resource.SHIELD);</b>
+<b class="nc"><i>908</i>&nbsp;        produces.add(Resource.SHIELD);</b>
+<b class="nc"><i>909</i>&nbsp;        produces.add(Resource.GOLD);</b>
+<b class="nc"><i>910</i>&nbsp;        price.add(Resource.GOLD);</b>
+<b class="nc"><i>911</i>&nbsp;        price.add(Resource.GOLD);</b>
+<b class="nc"><i>912</i>&nbsp;        price.add(Resource.GOLD);</b>
+<b class="nc"><i>913</i>&nbsp;        price.add(Resource.GOLD);</b>
+<b class="nc"><i>914</i>&nbsp;        price.add(Resource.STONE);</b>
+<b class="nc"><i>915</i>&nbsp;        price.add(Resource.STONE);</b>
+<b class="nc"><i>916</i>&nbsp;        price.add(Resource.STONE);</b>
+<b class="nc"><i>917</i>&nbsp;        price.add(Resource.STONE);</b>
+<i>918</i>&nbsp;
+<b class="nc"><i>919</i>&nbsp;        tmp = new ClientDevCard(&quot;devB304&quot;, Colors.BLUE, 3, 12, Resource.cloneList(requires), Resource.cloneList(produces), Resource.cloneList(price));</b>
+<b class="nc"><i>920</i>&nbsp;        result.add(tmp);</b>
+<i>921</i>&nbsp;
+<b class="nc"><i>922</i>&nbsp;        requires.clear();</b>
+<b class="nc"><i>923</i>&nbsp;        produces.clear();</b>
+<b class="nc"><i>924</i>&nbsp;        price.clear();</b>
+<b class="nc"><i>925</i>&nbsp;        return result;</b>
+<i>926</i>&nbsp;    }
+<i>927</i>&nbsp;
+<i>928</i>&nbsp;    /**
+<i>929</i>&nbsp;     * Static method used for generate an ArrayList containing all the defaults
+<i>930</i>&nbsp;     * clientLeaderCards  in the basic game settings.
+<i>931</i>&nbsp;     *
+<i>932</i>&nbsp;     * @return the ArrayList.
+<i>933</i>&nbsp;     */
+<i>934</i>&nbsp;    public static ArrayList&lt;ClientLeaderCard&gt; produceClientLeaderCard() {
+<b class="nc"><i>935</i>&nbsp;        ArrayList&lt;ClientLeaderCard&gt; result = new ArrayList&lt;&gt;();</b>
+<i>936</i>&nbsp;        //PROD01
+<b class="nc"><i>937</i>&nbsp;        ClientExtraProd tmp = new ClientExtraProd(4, Colors.BLUE, Resource.SERVANT, &quot;PROD01&quot;);</b>
+<b class="nc"><i>938</i>&nbsp;        result.add(tmp);</b>
+<i>939</i>&nbsp;
+<i>940</i>&nbsp;        //PROD02
+<b class="nc"><i>941</i>&nbsp;        ClientExtraProd tmp2 = new ClientExtraProd(4, Colors.GREEN, Resource.GOLD, &quot;PROD02&quot;);</b>
+<b class="nc"><i>942</i>&nbsp;        result.add(tmp2);</b>
+<i>943</i>&nbsp;
+<i>944</i>&nbsp;        //PROD03
+<b class="nc"><i>945</i>&nbsp;        ClientExtraProd tmp3 = new ClientExtraProd(4, Colors.PURPLE, Resource.STONE, &quot;PROD03&quot;);</b>
+<b class="nc"><i>946</i>&nbsp;        result.add(tmp3);</b>
+<i>947</i>&nbsp;
+<i>948</i>&nbsp;        //PROD03
+<b class="nc"><i>949</i>&nbsp;        ClientExtraProd tmp4 = new ClientExtraProd(4, Colors.YELLOW, Resource.SHIELD, &quot;PROD04&quot;);</b>
+<b class="nc"><i>950</i>&nbsp;        result.add(tmp4);</b>
+<i>951</i>&nbsp;
+<i>952</i>&nbsp;        //CNG01
+<b class="nc"><i>953</i>&nbsp;        ClientChangeRes cng1 = new ClientChangeRes(5, Colors.PURPLE, Colors.GREEN, Resource.GOLD, &quot;CNG01&quot;);</b>
+<b class="nc"><i>954</i>&nbsp;        result.add(cng1);</b>
+<i>955</i>&nbsp;
+<i>956</i>&nbsp;        //CNG02
+<b class="nc"><i>957</i>&nbsp;        ClientChangeRes cng2 = new ClientChangeRes(5, Colors.BLUE, Colors.YELLOW, Resource.STONE, &quot;CNG02&quot;);</b>
+<b class="nc"><i>958</i>&nbsp;        result.add(cng2);</b>
+<i>959</i>&nbsp;
+<i>960</i>&nbsp;        //CNG03
+<b class="nc"><i>961</i>&nbsp;        ClientChangeRes cng3 = new ClientChangeRes(5, Colors.GREEN, Colors.PURPLE, Resource.SHIELD, &quot;CNG03&quot;);</b>
+<b class="nc"><i>962</i>&nbsp;        result.add(cng3);</b>
+<i>963</i>&nbsp;
+<i>964</i>&nbsp;        //CNG04
+<b class="nc"><i>965</i>&nbsp;        ClientChangeRes cng4 = new ClientChangeRes(5, Colors.YELLOW, Colors.BLUE, Resource.SERVANT, &quot;CNG04&quot;);</b>
+<b class="nc"><i>966</i>&nbsp;        result.add(cng4);</b>
+<i>967</i>&nbsp;
+<i>968</i>&nbsp;        //DIS01
+<b class="nc"><i>969</i>&nbsp;        ClientDiscount dsn1 = new ClientDiscount(Colors.YELLOW, Colors.PURPLE, Resource.GOLD, 2, &quot;DIS01&quot;);</b>
+<b class="nc"><i>970</i>&nbsp;        result.add(dsn1);</b>
+<i>971</i>&nbsp;
+<i>972</i>&nbsp;        //DIS02
+<b class="nc"><i>973</i>&nbsp;        ClientDiscount dsn2 = new ClientDiscount(Colors.YELLOW, Colors.GREEN, Resource.SERVANT, 2, &quot;DIS02&quot;);</b>
+<b class="nc"><i>974</i>&nbsp;        result.add(dsn2);</b>
+<i>975</i>&nbsp;
+<i>976</i>&nbsp;        //DIS03
+<b class="nc"><i>977</i>&nbsp;        ClientDiscount dsn3 = new ClientDiscount(Colors.BLUE, Colors.PURPLE, Resource.SHIELD, 2, &quot;DIS03&quot;);</b>
+<b class="nc"><i>978</i>&nbsp;        result.add(dsn3);</b>
+<i>979</i>&nbsp;
+<i>980</i>&nbsp;        //DIS04
+<b class="nc"><i>981</i>&nbsp;        ClientDiscount dsn4 = new ClientDiscount(Colors.GREEN, Colors.BLUE, Resource.STONE, 2, &quot;DIS04&quot;);</b>
+<b class="nc"><i>982</i>&nbsp;        result.add(dsn4);</b>
+<i>983</i>&nbsp;
+<i>984</i>&nbsp;        //DEP01
+<b class="nc"><i>985</i>&nbsp;        ClientExtraDep dep1 = new ClientExtraDep(3, Resource.STONE, Resource.SERVANT, &quot;DEP01&quot;);</b>
+<b class="nc"><i>986</i>&nbsp;        result.add(dep1);</b>
+<i>987</i>&nbsp;
+<i>988</i>&nbsp;        //DEP02
+<b class="nc"><i>989</i>&nbsp;        ClientExtraDep dep2 = new ClientExtraDep(3, Resource.SHIELD, Resource.GOLD, &quot;DEP02&quot;);</b>
+<b class="nc"><i>990</i>&nbsp;        result.add(dep2);</b>
+<i>991</i>&nbsp;
+<i>992</i>&nbsp;        //DEP03
+<b class="nc"><i>993</i>&nbsp;        ClientExtraDep dep3 = new ClientExtraDep(3, Resource.SERVANT, Resource.SHIELD, &quot;DEP03&quot;);</b>
+<b class="nc"><i>994</i>&nbsp;        result.add(dep3);</b>
+<i>995</i>&nbsp;
+<i>996</i>&nbsp;        //DEP04
+<b class="nc"><i>997</i>&nbsp;        ClientExtraDep dep4 = new ClientExtraDep(3, Resource.GOLD, Resource.STONE, &quot;DEP04&quot;);</b>
+<b class="nc"><i>998</i>&nbsp;        result.add(dep4);</b>
+<i>999</i>&nbsp;
+<b class="nc"><i>1000</i>&nbsp;        return result;</b>
+<i>1001</i>&nbsp;    }
+<i>1002</i>&nbsp;}
+<i>1003</i>&nbsp;
+<i>1004</i>&nbsp;
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-07-02 00:02</div>
+</div>
+</body>
+</html>

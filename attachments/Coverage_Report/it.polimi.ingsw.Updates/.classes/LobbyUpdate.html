@@ -1,0 +1,124 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: LobbyUpdate</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">it.polimi.ingsw.Updates</a> ]
+</div>
+
+<h1>Coverage Summary for Class: LobbyUpdate (it.polimi.ingsw.Updates)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">LobbyUpdate</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 7)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package it.polimi.ingsw.Updates;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import it.polimi.ingsw.model.Player.Player;
+<i>4</i>&nbsp;import it.polimi.ingsw.controller.Game;
+<i>5</i>&nbsp;import it.polimi.ingsw.view.data.PlayerData;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;/**
+<i>8</i>&nbsp; * The {@link Update} sent before that the {@link Game} starts.
+<i>9</i>&nbsp; */
+<i>10</i>&nbsp;public class LobbyUpdate implements Update {
+<i>11</i>&nbsp;    private final String className;
+<i>12</i>&nbsp;    //Max number of players
+<i>13</i>&nbsp;    private int playerNum;
+<i>14</i>&nbsp;    private int maxPlayer;
+<i>15</i>&nbsp;    private String nickname;
+<i>16</i>&nbsp;
+<i>17</i>&nbsp;    /**
+<i>18</i>&nbsp;     * Instantiates a new {@link LobbyUpdate} setting the max numbers of the {@link Player}s in the {@link Game}
+<i>19</i>&nbsp;     * and the nickname of the last player who joined the game.
+<i>20</i>&nbsp;     *
+<i>21</i>&nbsp;     * @param nickName   the nick name
+<i>22</i>&nbsp;     * @param playerNum  the player num
+<i>23</i>&nbsp;     * @param maxPlayers the max players
+<i>24</i>&nbsp;     */
+<b class="nc"><i>25</i>&nbsp;    public LobbyUpdate(String nickName, int playerNum, int maxPlayers) {</b>
+<b class="nc"><i>26</i>&nbsp;        className = this.getClass().getName();</b>
+<b class="nc"><i>27</i>&nbsp;        this.nickname = nickName;</b>
+<b class="nc"><i>28</i>&nbsp;        this.maxPlayer = maxPlayers;</b>
+<b class="nc"><i>29</i>&nbsp;        this.playerNum = playerNum;</b>
+<i>30</i>&nbsp;    }
+<i>31</i>&nbsp;
+<i>32</i>&nbsp;    @Override
+<i>33</i>&nbsp;    public String getClassName() {
+<b class="nc"><i>34</i>&nbsp;        return className;</b>
+<i>35</i>&nbsp;    }
+<i>36</i>&nbsp;
+<i>37</i>&nbsp;    @Override
+<i>38</i>&nbsp;    public void handleUpdate(PlayerData data) {
+<b class="nc"><i>39</i>&nbsp;        data.getPrinter().printMessage(&quot;New game created with &quot; + maxPlayer + &quot; max players\n\rActually there are &quot; + playerNum + &quot; players in the lobby\n\rThe last one to join was &quot; + nickname);</b>
+<i>40</i>&nbsp;    }
+<i>41</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-07-02 00:02</div>
+</div>
+</body>
+</html>

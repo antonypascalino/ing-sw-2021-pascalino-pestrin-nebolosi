@@ -1,0 +1,145 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: TempBox</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">it.polimi.ingsw.model.Board</a> ]
+</div>
+
+<h1>Coverage Summary for Class: TempBox (it.polimi.ingsw.model.Board)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">TempBox</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/ 4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    93,8%
+  </span>
+  <span class="absValue">
+    (15/ 16)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package it.polimi.ingsw.model.Board;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import it.polimi.ingsw.model.Player.Player;
+<i>4</i>&nbsp;import it.polimi.ingsw.model.Table.Resource;
+<i>5</i>&nbsp;
+<i>6</i>&nbsp;import java.util.ArrayList;
+<i>7</i>&nbsp;import java.util.stream.Collectors;
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;/**
+<i>10</i>&nbsp; * Used to place all the {@link Resource} produced by the {@link Player} in the current turn.
+<i>11</i>&nbsp; * It is created to avoid the use of just-produced {@link Resource}s to activate other production powers.
+<i>12</i>&nbsp; */
+<i>13</i>&nbsp;public class TempBox {
+<i>14</i>&nbsp;    private ArrayList&lt;Resource&gt; tempRes;
+<i>15</i>&nbsp;    private StrongBox strongBox;
+<i>16</i>&nbsp;
+<i>17</i>&nbsp;
+<i>18</i>&nbsp;    /**
+<i>19</i>&nbsp;     * Instantiates a new {@link TempBox} adding the {@link StrongBox} references.
+<i>20</i>&nbsp;     *
+<i>21</i>&nbsp;     * @param strongBox the {@link StrongBox} to whom save the reference.
+<i>22</i>&nbsp;     */
+<b class="fc"><i>23</i>&nbsp;    public TempBox(StrongBox strongBox) {</b>
+<b class="fc"><i>24</i>&nbsp;        tempRes = new ArrayList&lt;&gt;();</b>
+<b class="fc"><i>25</i>&nbsp;        this.strongBox = strongBox;</b>
+<b class="fc"><i>26</i>&nbsp;    }</b>
+<i>27</i>&nbsp;
+<i>28</i>&nbsp;    /**
+<i>29</i>&nbsp;     * Add a single {@link Resource} to the {@link StrongBox}.
+<i>30</i>&nbsp;     *
+<i>31</i>&nbsp;     * @param res the {@link Resource} to add.
+<i>32</i>&nbsp;     */
+<i>33</i>&nbsp;    public void addResource(ArrayList&lt;Resource&gt; res)
+<i>34</i>&nbsp;    {
+<b class="fc"><i>35</i>&nbsp;        tempRes.addAll(res);</b>
+<b class="fc"><i>36</i>&nbsp;    }</b>
+<i>37</i>&nbsp;
+<i>38</i>&nbsp;    /**
+<i>39</i>&nbsp;     * Remove from the {@link TempBox} all the Faith points, counting and returning them.
+<i>40</i>&nbsp;     *
+<i>41</i>&nbsp;     * @return the number of Faith points produced by the {@link Player} during the turn.
+<i>42</i>&nbsp;     */
+<i>43</i>&nbsp;    public int filterFaithPoints() {
+<b class="fc"><i>44</i>&nbsp;        ArrayList&lt;Resource&gt; faithPoints = new ArrayList&lt;&gt;();</b>
+<b class="fc"><i>45</i>&nbsp;        for (Resource r : tempRes) {</b>
+<b class="fc"><i>46</i>&nbsp;            if (r.equals(Resource.FAITH)) {</b>
+<b class="nc"><i>47</i>&nbsp;                faithPoints.add(Resource.FAITH);</b>
+<i>48</i>&nbsp;            }
+<b class="fc"><i>49</i>&nbsp;        }</b>
+<b class="fc"><i>50</i>&nbsp;        tempRes = (ArrayList&lt;Resource&gt;) tempRes.stream().filter(r-&gt;  r!=Resource.FAITH).collect(Collectors.toList());</b>
+<b class="fc"><i>51</i>&nbsp;        return faithPoints.size();</b>
+<i>52</i>&nbsp;    }
+<i>53</i>&nbsp;
+<i>54</i>&nbsp;    /**
+<i>55</i>&nbsp;     * Move all the {@link Resource}s into the {@link StrongBox}.
+<i>56</i>&nbsp;     */
+<i>57</i>&nbsp;    public void moveToStrongBox(){
+<b class="fc"><i>58</i>&nbsp;        strongBox.addResource(tempRes);</b>
+<b class="fc"><i>59</i>&nbsp;        tempRes.clear();</b>
+<b class="fc"><i>60</i>&nbsp;    }</b>
+<i>61</i>&nbsp;}
+<i>62</i>&nbsp;
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-07-02 00:02</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>it.polimi.ingsw.server</OriginalElement>
+  <nodes>
+    <node x="547.0" y="149.0">it.polimi.ingsw.server.GameHolder</node>
+    <node x="199.0" y="0.0">it.polimi.ingsw.server.ConvertibleDeserializer</node>
+    <node x="0.0" y="193.0">it.polimi.ingsw.server.PingConnection</node>
+    <node x="586.6333333333332" y="712.0">it.polimi.ingsw.server.MultiEchoServer</node>
+    <node x="238.42916666666662" y="407.0">it.polimi.ingsw.server.ClientHandler</node>
+    <node x="597.4875" y="884.0">it.polimi.ingsw.server.Server</node>
+    <node x="233.0" y="183.0">it.polimi.ingsw.server.JsonReader</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="it.polimi.ingsw.server.ClientHandler" target="it.polimi.ingsw.server.GameHolder">
+      <point x="44.625" y="-127.5" />
+      <point x="402.0541666666666" y="367.0" />
+      <point x="569.3" y="367.0" />
+      <point x="-89.2" y="94.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.server.JsonReader" target="it.polimi.ingsw.server.ConvertibleDeserializer">
+      <point x="5.6843418860808015E-14" y="-60.0" />
+      <point x="0.0" y="49.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.server.PingConnection" target="it.polimi.ingsw.server.ClientHandler">
+      <point x="26.625" y="50.0" />
+      <point x="133.125" y="367.0" />
+      <point x="312.8041666666666" y="367.0" />
+      <point x="-44.625" y="-127.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.server.MultiEchoServer" target="it.polimi.ingsw.server.GameHolder">
+      <point x="56.0" y="-61.0" />
+      <point x="726.6333333333332" y="687.0" />
+      <point x="704.1333333333332" y="687.0" />
+      <point x="704.1333333333332" y="387.0" />
+      <point x="747.6999999999999" y="387.0" />
+      <point x="89.19999999999996" y="94.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.server.GameHolder" target="it.polimi.ingsw.server.ClientHandler">
+      <point x="0.0" y="94.0" />
+      <point x="658.5" y="387.0" />
+      <point x="461.5541666666666" y="387.0" />
+      <point x="104.125" y="-127.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.server.Server" target="it.polimi.ingsw.server.MultiEchoServer">
+      <point x="-36.75" y="-27.0" />
+      <point x="634.2375" y="859.0" />
+      <point x="628.6333333333332" y="859.0" />
+      <point x="-42.0" y="61.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.server.ClientHandler" target="it.polimi.ingsw.server.PingConnection">
+      <point x="-104.125" y="-127.5" />
+      <point x="253.30416666666662" y="387.0" />
+      <point x="26.625" y="387.0" />
+      <point x="-79.875" y="50.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.server.MultiEchoServer" target="it.polimi.ingsw.server.ClientHandler">
+      <point x="-56.0" y="-61.0" />
+      <point x="614.6333333333332" y="687.0" />
+      <point x="357.4291666666666" y="687.0" />
+      <point x="0.0" y="127.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.server.ClientHandler" target="it.polimi.ingsw.server.JsonReader">
+      <point x="14.875" y="-127.5" />
+      <point x="372.3041666666666" y="387.0" />
+      <point x="380.0" y="387.0" />
+      <point x="0.0" y="60.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="162.5" y="165.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

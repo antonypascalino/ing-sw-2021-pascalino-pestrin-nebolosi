@@ -1,0 +1,389 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: PlayerData</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">it.polimi.ingsw.view.data</a> ]
+</div>
+
+<h1>Coverage Summary for Class: PlayerData (it.polimi.ingsw.view.data)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PlayerData</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 44)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 56)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package it.polimi.ingsw.view.data;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import it.polimi.ingsw.controller.Request.MappedResource;
+<i>4</i>&nbsp;import it.polimi.ingsw.controller.Request.MarketResource;
+<i>5</i>&nbsp;import it.polimi.ingsw.controller.Request.Request;
+<i>6</i>&nbsp;import it.polimi.ingsw.controller.TurnState;
+<i>7</i>&nbsp;import it.polimi.ingsw.model.Table.Resource;
+<i>8</i>&nbsp;import it.polimi.ingsw.view.MainMenu;
+<i>9</i>&nbsp;import it.polimi.ingsw.view.Printer;
+<i>10</i>&nbsp;import it.polimi.ingsw.view.clientCards.ClientDevCard;
+<i>11</i>&nbsp;import it.polimi.ingsw.view.clientCards.ClientLeaderCard;
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;import java.util.ArrayList;
+<i>14</i>&nbsp;
+<i>15</i>&nbsp;
+<i>16</i>&nbsp;/**
+<i>17</i>&nbsp; * The type representing a player of the game, client side.
+<i>18</i>&nbsp; * &lt;p&gt;
+<i>19</i>&nbsp; * It is an abstract class used by almost every method that involves a player, client side.
+<i>20</i>&nbsp; * It is always related to an instantiable type of player through its &lt;em&gt;originalData&lt;/em&gt; attribute.
+<i>21</i>&nbsp; * Every method, when called, calls the relative &lt;em&gt;originalData&lt;/em&gt;&#39;s method which can be differently
+<i>22</i>&nbsp; * implemented based on the &lt;em&gt;originalData&lt;/em&gt;&#39;s type.
+<i>23</i>&nbsp; */
+<b class="nc"><i>24</i>&nbsp;public abstract class PlayerData {</b>
+<i>25</i>&nbsp;
+<i>26</i>&nbsp;    PlayerData originalData;
+<i>27</i>&nbsp;
+<i>28</i>&nbsp;    /**
+<i>29</i>&nbsp;     * Based on the action already done or not by the player in his turn,
+<i>30</i>&nbsp;     * return a list of all the action the player can still do.
+<i>31</i>&nbsp;     *
+<i>32</i>&nbsp;     * @return an ArrayList of {@link TurnState}
+<i>33</i>&nbsp;     */
+<i>34</i>&nbsp;    public ArrayList&lt;TurnState&gt; turnStateFilter() {
+<b class="nc"><i>35</i>&nbsp;        return originalData.turnStateFilter();</b>
+<i>36</i>&nbsp;    }
+<i>37</i>&nbsp;
+<b class="nc"><i>38</i>&nbsp;    public void setNickname(String newNickname){ originalData.setNickname(newNickname);}</b>
+<i>39</i>&nbsp;
+<i>40</i>&nbsp;    /**
+<i>41</i>&nbsp;     * Called when the player wants to produce: it, based on player&#39;s resource and production powers,
+<i>42</i>&nbsp;     * return all the production he can use to produce.
+<i>43</i>&nbsp;     * &lt;p&gt;
+<i>44</i>&nbsp;     * It is called after every single production, because, for example, the
+<i>45</i>&nbsp;     * player could use more then one production at the start of his turn but after using one of them
+<i>46</i>&nbsp;     * he couldn&#39;t use any more production.
+<i>47</i>&nbsp;     *
+<i>48</i>&nbsp;     * @param mapped an ArrayList of {@link MappedResource} containing all player&#39;s resources and their position.
+<i>49</i>&nbsp;     * @return the ArrayList of all the production&#39;s ID the player can use at the moment.
+<i>50</i>&nbsp;     */
+<i>51</i>&nbsp;    public ArrayList&lt;String&gt; slotCardsFilter(ArrayList&lt;MappedResource&gt; mapped) {
+<b class="nc"><i>52</i>&nbsp;        return originalData.slotCardsFilter(mapped);</b>
+<i>53</i>&nbsp;    }
+<i>54</i>&nbsp;
+<i>55</i>&nbsp;    /**
+<i>56</i>&nbsp;     * When the player has to use some resources, these are received as parameter and, for each of them, the method
+<i>57</i>&nbsp;     * search where the player has it, looking in all his deposits; finally he returns an ArrayList of {@link MappedResource}
+<i>58</i>&nbsp;     * containing all the resources needed and their location so the player can choose which ones to use.
+<i>59</i>&nbsp;     *
+<i>60</i>&nbsp;     * @param resources the resources needed to buy a development card or to produce.
+<i>61</i>&nbsp;     * @return the ArrayList of {@link MappedResource}s.
+<i>62</i>&nbsp;     */
+<i>63</i>&nbsp;    public ArrayList&lt;MappedResource&gt; createMappedRes(ArrayList&lt;Resource&gt; resources) {
+<b class="nc"><i>64</i>&nbsp;        return originalData.createMappedRes(resources);</b>
+<i>65</i>&nbsp;    }
+<i>66</i>&nbsp;
+<i>67</i>&nbsp;    /**
+<i>68</i>&nbsp;     * Gets all resources owned by the player specifying their location (using {@link MappedResource}s),
+<i>69</i>&nbsp;     * considering even the possible extra deposits.
+<i>70</i>&nbsp;     *
+<i>71</i>&nbsp;     * @return an ArrayList of {@link MappedResource}
+<i>72</i>&nbsp;     */
+<i>73</i>&nbsp;    public ArrayList&lt;MappedResource&gt; allResources() {
+<b class="nc"><i>74</i>&nbsp;        return originalData.allResources();</b>
+<i>75</i>&nbsp;    }
+<i>76</i>&nbsp;
+<i>77</i>&nbsp;    /**
+<i>78</i>&nbsp;     * Gets a {@link ClientDevCard} having the cardID received as parameter. It searches in player&#39;s allGameCards attribute.
+<i>79</i>&nbsp;     *
+<i>80</i>&nbsp;     * @param cardID the {@link ClientDevCard}&#39;s ID.
+<i>81</i>&nbsp;     * @return the {@link ClientDevCard}.
+<i>82</i>&nbsp;     */
+<i>83</i>&nbsp;    public ClientDevCard getCardFromID(String cardID) {
+<b class="nc"><i>84</i>&nbsp;        return originalData.getCardFromID(cardID);</b>
+<i>85</i>&nbsp;    }
+<i>86</i>&nbsp;
+<i>87</i>&nbsp;    /**
+<i>88</i>&nbsp;     * Gets a {@link ClientLeaderCard} having the cardID received as parameter. It searches in player&#39;s allGameCards attribute.
+<i>89</i>&nbsp;     *
+<i>90</i>&nbsp;     * @param cardID the {@link ClientLeaderCard}&#39;s ID.
+<i>91</i>&nbsp;     * @return the {@link ClientLeaderCard}.
+<i>92</i>&nbsp;     */
+<i>93</i>&nbsp;    public ClientLeaderCard getLeaderFromID(String cardID) {
+<b class="nc"><i>94</i>&nbsp;        return originalData.getLeaderFromID(cardID);</b>
+<i>95</i>&nbsp;    }
+<i>96</i>&nbsp;
+<i>97</i>&nbsp;    public Resource[][] getMarket() {
+<b class="nc"><i>98</i>&nbsp;        return originalData.getMarket();</b>
+<i>99</i>&nbsp;    }
+<i>100</i>&nbsp;
+<i>101</i>&nbsp;    /**
+<i>102</i>&nbsp;     * Called when the player takes resources from market.
+<i>103</i>&nbsp;     * &lt;p&gt;
+<i>104</i>&nbsp;     * First of all the obtained resources are filtered by the Faith points and by the
+<i>105</i>&nbsp;     * white marbles, if the player is a {@link ChangeResData} these ones are changed.
+<i>106</i>&nbsp;     * Then asks to the player in which levels he wants to put every resource or even he wants to discard some of them,
+<i>107</i>&nbsp;     * if there is no space the resource are automatically discarded.
+<i>108</i>&nbsp;     * Finally returns an ArrayList containing the resources and their destination in the WareHouse, or in an extra
+<i>109</i>&nbsp;     * deposit if the player is an {@link ExtraDepData}.
+<i>110</i>&nbsp;     *
+<i>111</i>&nbsp;     * @param res the resources gained from the market.
+<i>112</i>&nbsp;     * @return an ArrayList of {@link MarketResource}s.
+<i>113</i>&nbsp;     */
+<i>114</i>&nbsp;    public ArrayList&lt;MarketResource&gt; handleWarehouse(ArrayList&lt;Resource&gt; res) {
+<b class="nc"><i>115</i>&nbsp;        return originalData.handleWarehouse(res);</b>
+<i>116</i>&nbsp;    }
+<i>117</i>&nbsp;
+<i>118</i>&nbsp;    /**
+<i>119</i>&nbsp;     * Called when the player wants to buy a development card: it, based on player&#39;s resource
+<i>120</i>&nbsp;     * return all the development cards&#39; ID he can buy.
+<i>121</i>&nbsp;     * If the player is a {@link DiscountData} even the discount is considered.
+<i>122</i>&nbsp;     * &lt;p&gt;
+<i>123</i>&nbsp;     * @param mapped all player&#39;s resources and their location
+<i>124</i>&nbsp;     * @return all the development cards&#39; ID the player can buy.
+<i>125</i>&nbsp;     */
+<i>126</i>&nbsp;    public ArrayList&lt;String&gt; tableCardsFilter(ArrayList&lt;MappedResource&gt; mapped) {
+<b class="nc"><i>127</i>&nbsp;        return originalData.tableCardsFilter(mapped);</b>
+<i>128</i>&nbsp;    }
+<i>129</i>&nbsp;
+<i>130</i>&nbsp;    /**
+<i>131</i>&nbsp;     * When player buys a {@link ClientDevCard} this method shows him all the slots in which he can put the just bought
+<i>132</i>&nbsp;     * card; makes the player choose one of them and return it as Integer.
+<i>133</i>&nbsp;     *
+<i>134</i>&nbsp;     *
+<i>135</i>&nbsp;     * @param devID the bought {@link ClientDevCard}&#39;s ID.
+<i>136</i>&nbsp;     * @return the slot in which the player wants to put the card.
+<i>137</i>&nbsp;     */
+<i>138</i>&nbsp;    public Integer handleSlots(String devID) {
+<b class="nc"><i>139</i>&nbsp;        return originalData.handleSlots(devID);</b>
+<i>140</i>&nbsp;    }
+<i>141</i>&nbsp;
+<i>142</i>&nbsp;    /**
+<i>143</i>&nbsp;     * Gets all the deposits in which the player can puts resources takes from the market; if the player is
+<i>144</i>&nbsp;     * an {@link ExtraDepData} considers even the extra deposits.
+<i>145</i>&nbsp;     *
+<i>146</i>&nbsp;     * @return all the players&#39; deposits.
+<i>147</i>&nbsp;     */
+<i>148</i>&nbsp;    public ArrayList&lt;Resource[]&gt; getDeposits() {
+<b class="nc"><i>149</i>&nbsp;        return originalData.getDeposits();</b>
+<i>150</i>&nbsp;    }
+<i>151</i>&nbsp;
+<i>152</i>&nbsp;    /**
+<i>153</i>&nbsp;     * Used when the player wants to sort resources in his warehouse. It received the origin level from where the player
+<i>154</i>&nbsp;     * wants to start to move resources, shows to the player all the possible deposits in which can move those resources and make him
+<i>155</i>&nbsp;     * choose one of them. Finally return the number of the chosen level. If the player is an {@link ExtraDepData} even the
+<i>156</i>&nbsp;     * extra deposits are consider.
+<i>157</i>&nbsp;     *
+<i>158</i>&nbsp;     * @param origin the level from where the player wants to move resources.
+<i>159</i>&nbsp;     * @return the chosen level by the player to where puts the resources.
+<i>160</i>&nbsp;     */
+<i>161</i>&nbsp;    public int switchLevels(int origin) {
+<b class="nc"><i>162</i>&nbsp;        return originalData.switchLevels(origin);</b>
+<i>163</i>&nbsp;    }
+<i>164</i>&nbsp;
+<i>165</i>&nbsp;    /**
+<i>166</i>&nbsp;     * Gets, among the leader cards owned by the player, those ones that can be played at the moment.
+<i>167</i>&nbsp;     *
+<i>168</i>&nbsp;     * @return the array list with all playable leader cards&#39; ID.
+<i>169</i>&nbsp;     */
+<i>170</i>&nbsp;    public ArrayList&lt;String&gt; leaderCardsFilter() {
+<b class="nc"><i>171</i>&nbsp;        return originalData.leaderCardsFilter();</b>
+<i>172</i>&nbsp;    }
+<i>173</i>&nbsp;
+<i>174</i>&nbsp;    /**
+<i>175</i>&nbsp;     * Once it&#39;s player&#39;s turn, it clear the {@link TurnState}&#39;s list, so the player can start a new turn.
+<i>176</i>&nbsp;     */
+<i>177</i>&nbsp;    public void newTurn() {
+<b class="nc"><i>178</i>&nbsp;        originalData.newTurn();</b>
+<b class="nc"><i>179</i>&nbsp;    }</b>
+<i>180</i>&nbsp;
+<i>181</i>&nbsp;    /**
+<i>182</i>&nbsp;     * Once the player made all the choices, this method receive the {@link Request} relative to the action and
+<i>183</i>&nbsp;     * sends it to the server.
+<i>184</i>&nbsp;     *
+<i>185</i>&nbsp;     * @param request the {@link Request}.
+<i>186</i>&nbsp;     */
+<b class="nc"><i>187</i>&nbsp;    public void sendRequest(Request request) {originalData.sendRequest(request);}</b>
+<i>188</i>&nbsp;
+<i>189</i>&nbsp;    /**
+<i>190</i>&nbsp;     * If the player is an {@link ChangeResData}, changes all the empty resource in the ArrayList received as parameter,
+<i>191</i>&nbsp;     * if not returns the same resources received as parameters.
+<i>192</i>&nbsp;     *
+<i>193</i>&nbsp;     * @param res the resource to change, or not.
+<i>194</i>&nbsp;     * @return the possibly changed resource.
+<i>195</i>&nbsp;     */
+<i>196</i>&nbsp;    public ArrayList&lt;Resource&gt; changeEmpty(ArrayList&lt;Resource&gt; res) {
+<b class="nc"><i>197</i>&nbsp;        return originalData.changeEmpty(res);</b>
+<i>198</i>&nbsp;    }
+<i>199</i>&nbsp;
+<i>200</i>&nbsp;
+<i>201</i>&nbsp;    //All getters adn setters
+<i>202</i>&nbsp;    public ArrayList&lt;String&gt; getLeaders() {
+<b class="nc"><i>203</i>&nbsp;        return originalData.getLeaders();</b>
+<i>204</i>&nbsp;    }
+<i>205</i>&nbsp;
+<i>206</i>&nbsp;    public void setTurnStates(ArrayList&lt;TurnState&gt; turnStates) {
+<b class="nc"><i>207</i>&nbsp;        originalData.setTurnStates(turnStates);</b>
+<b class="nc"><i>208</i>&nbsp;    }</b>
+<i>209</i>&nbsp;
+<i>210</i>&nbsp;    public void setWareHouse(ArrayList&lt;Resource[]&gt; wareHouse) {
+<b class="nc"><i>211</i>&nbsp;        originalData.setWareHouse(wareHouse);</b>
+<b class="nc"><i>212</i>&nbsp;    }</b>
+<i>213</i>&nbsp;
+<i>214</i>&nbsp;    public void setStrongBox(ArrayList&lt;Resource&gt; strongBox) {
+<b class="nc"><i>215</i>&nbsp;        originalData.setStrongBox(strongBox);</b>
+<b class="nc"><i>216</i>&nbsp;    }</b>
+<i>217</i>&nbsp;
+<i>218</i>&nbsp;    public void setFaithPoints(int faithPoints) {
+<b class="nc"><i>219</i>&nbsp;        originalData.setFaithPoints(faithPoints);</b>
+<b class="nc"><i>220</i>&nbsp;    }</b>
+<i>221</i>&nbsp;
+<i>222</i>&nbsp;    public void setVictoryPoints(int victoryPoints) {
+<b class="nc"><i>223</i>&nbsp;        originalData.setVictoryPoints(victoryPoints);</b>
+<b class="nc"><i>224</i>&nbsp;    }</b>
+<i>225</i>&nbsp;
+<i>226</i>&nbsp;    public void setFrontCardsID(ArrayList&lt;String&gt; frontCardsID) {
+<b class="nc"><i>227</i>&nbsp;        originalData.setFrontCardsID(frontCardsID);</b>
+<b class="nc"><i>228</i>&nbsp;    }</b>
+<i>229</i>&nbsp;
+<i>230</i>&nbsp;    public void setLeadersID(ArrayList&lt;String&gt; leadersID) {
+<b class="nc"><i>231</i>&nbsp;        originalData.setLeadersID(leadersID);</b>
+<b class="nc"><i>232</i>&nbsp;    }</b>
+<i>233</i>&nbsp;
+<i>234</i>&nbsp;    public void setLeadersPlayedID(ArrayList&lt;String&gt; leadersPlayedID) {
+<b class="nc"><i>235</i>&nbsp;        originalData.setLeadersPlayedID(leadersPlayedID);</b>
+<b class="nc"><i>236</i>&nbsp;    }</b>
+<i>237</i>&nbsp;
+<i>238</i>&nbsp;    public String getPlayerID() {
+<b class="nc"><i>239</i>&nbsp;        return originalData.getPlayerID();</b>
+<i>240</i>&nbsp;    }
+<i>241</i>&nbsp;
+<i>242</i>&nbsp;    public ArrayList&lt;String&gt; getFrontTableCardsID() {
+<b class="nc"><i>243</i>&nbsp;        return originalData.getFrontTableCardsID();</b>
+<i>244</i>&nbsp;    }
+<i>245</i>&nbsp;
+<i>246</i>&nbsp;    public void setMarket(Resource[][] market) {
+<b class="nc"><i>247</i>&nbsp;        originalData.setMarket(market);</b>
+<b class="nc"><i>248</i>&nbsp;    }</b>
+<i>249</i>&nbsp;
+<i>250</i>&nbsp;    public void setFrontTableCardsID(ArrayList&lt;String&gt; frontTableCardsID) {
+<b class="nc"><i>251</i>&nbsp;        originalData.setFrontTableCardsID(frontTableCardsID);</b>
+<b class="nc"><i>252</i>&nbsp;    }</b>
+<i>253</i>&nbsp;
+<i>254</i>&nbsp;    public ArrayList&lt;OtherPlayerData&gt; getOtherPlayers(){
+<b class="nc"><i>255</i>&nbsp;        return originalData.getOtherPlayers();</b>
+<i>256</i>&nbsp;    }
+<i>257</i>&nbsp;
+<i>258</i>&nbsp;    public ArrayList&lt;Resource&gt; getStrongBox(){
+<b class="nc"><i>259</i>&nbsp;        return originalData.getStrongBox();</b>
+<i>260</i>&nbsp;    }
+<i>261</i>&nbsp;
+<i>262</i>&nbsp;    public int getFaithPoints() {
+<b class="nc"><i>263</i>&nbsp;        return originalData.getFaithPoints();</b>
+<i>264</i>&nbsp;    }
+<i>265</i>&nbsp;
+<i>266</i>&nbsp;    public int getVictoryPoints() {
+<b class="nc"><i>267</i>&nbsp;        return originalData.getVictoryPoints();</b>
+<i>268</i>&nbsp;    }
+<i>269</i>&nbsp;
+<i>270</i>&nbsp;    public ArrayList&lt;String&gt; getFrontCardsID() {
+<b class="nc"><i>271</i>&nbsp;        return originalData.getFrontCardsID();</b>
+<i>272</i>&nbsp;    }
+<i>273</i>&nbsp;
+<i>274</i>&nbsp;    public ArrayList&lt;String&gt; getLeadersID() {
+<b class="nc"><i>275</i>&nbsp;        return originalData.getLeadersID();</b>
+<i>276</i>&nbsp;    }
+<i>277</i>&nbsp;
+<i>278</i>&nbsp;    public ArrayList&lt;String&gt; getLeadersPlayedID() {
+<b class="nc"><i>279</i>&nbsp;        return originalData.getLeadersPlayedID();</b>
+<i>280</i>&nbsp;    }
+<i>281</i>&nbsp;
+<i>282</i>&nbsp;    public ArrayList&lt;String&gt; getAllDevID() {
+<b class="nc"><i>283</i>&nbsp;        return originalData.getAllDevID();</b>
+<i>284</i>&nbsp;    }
+<i>285</i>&nbsp;
+<i>286</i>&nbsp;    public Printer getPrinter() {
+<b class="nc"><i>287</i>&nbsp;        return originalData.getPrinter();</b>
+<i>288</i>&nbsp;    }
+<i>289</i>&nbsp;
+<i>290</i>&nbsp;    public int getGameID() {
+<b class="nc"><i>291</i>&nbsp;        return originalData.getGameID();</b>
+<i>292</i>&nbsp;    }
+<i>293</i>&nbsp;
+<i>294</i>&nbsp;    public void setGameID(int gameID) {
+<b class="nc"><i>295</i>&nbsp;        originalData.setGameID(gameID);</b>
+<b class="nc"><i>296</i>&nbsp;    }</b>
+<i>297</i>&nbsp;
+<i>298</i>&nbsp;    public MainMenu getMenu() {
+<b class="nc"><i>299</i>&nbsp;        return originalData.getMenu();</b>
+<i>300</i>&nbsp;    }
+<i>301</i>&nbsp;
+<i>302</i>&nbsp;    public ArrayList&lt;TurnState&gt; getTurnStates() {
+<b class="nc"><i>303</i>&nbsp;        return originalData.getTurnStates();</b>
+<i>304</i>&nbsp;    }
+<i>305</i>&nbsp;
+<i>306</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-07-02 00:02</div>
+</div>
+</body>
+</html>

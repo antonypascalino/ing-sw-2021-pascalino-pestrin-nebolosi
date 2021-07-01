@@ -1,0 +1,120 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: LeaderCard</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">it.polimi.ingsw.model.card</a> ]
+</div>
+
+<h1>Coverage Summary for Class: LeaderCard (it.polimi.ingsw.model.card)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">LeaderCard</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package it.polimi.ingsw.model.card;
+<i>2</i>&nbsp;import it.polimi.ingsw.Convertible;
+<i>3</i>&nbsp;import it.polimi.ingsw.model.Player.Player;
+<i>4</i>&nbsp;import it.polimi.ingsw.model.Table.Resource;
+<i>5</i>&nbsp;import it.polimi.ingsw.controller.Game;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;/**
+<i>8</i>&nbsp; * The interface implemented by all the leader cards.
+<i>9</i>&nbsp; * A leader card gives the {@link Player} new abilities he can use during a {@link Game}
+<i>10</i>&nbsp; */
+<i>11</i>&nbsp;public interface LeaderCard extends Convertible {
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;    /**
+<i>14</i>&nbsp;     * Set the {@link LeaderCard} to enable,
+<i>15</i>&nbsp;     * wrap the {@link Player} with a new player that correctly implements the
+<i>16</i>&nbsp;     * new abilities and adding him the right amount of victory points.
+<i>17</i>&nbsp;     */
+<i>18</i>&nbsp;    void playCard();
+<i>19</i>&nbsp;
+<i>20</i>&nbsp;    /**
+<i>21</i>&nbsp;     * Used to check if the {@link Player} has the requirements for playing a {@link LeaderCard} that he already owns.
+<i>22</i>&nbsp;     *
+<i>23</i>&nbsp;     * @return true if the {@link Player} has the requirements to play the {@link LeaderCard}, false otherwise.
+<i>24</i>&nbsp;     */
+<i>25</i>&nbsp;    boolean canBePlayed();
+<i>26</i>&nbsp;
+<i>27</i>&nbsp;    /**
+<i>28</i>&nbsp;     * Assign the {@link LeaderCard} to a {@link Player}.
+<i>29</i>&nbsp;     *
+<i>30</i>&nbsp;     * @param p the {@link Player} to whom assign the {@link LeaderCard}.
+<i>31</i>&nbsp;     */
+<i>32</i>&nbsp;    void assignTo(Player p);
+<i>33</i>&nbsp;
+<i>34</i>&nbsp;    /**
+<i>35</i>&nbsp;     * Check if the {@link LeaderCard} has been played by the {@link Player} or not.
+<i>36</i>&nbsp;     *
+<i>37</i>&nbsp;     * @return true if the {@link LeaderCard} has been played.
+<i>38</i>&nbsp;     */
+<i>39</i>&nbsp;    boolean isEnable();
+<i>40</i>&nbsp;
+<i>41</i>&nbsp;    /**
+<i>42</i>&nbsp;     * Compare two {@link LeaderCard}.
+<i>43</i>&nbsp;     *
+<i>44</i>&nbsp;     * @param compare the leader to compare.
+<i>45</i>&nbsp;     * @return true if the leadercard match, false otherwise.
+<i>46</i>&nbsp;     */
+<i>47</i>&nbsp;    boolean equals(LeaderCard compare);
+<i>48</i>&nbsp;
+<i>49</i>&nbsp;    /**
+<i>50</i>&nbsp;     * Gets the {@link LeaderCard}&#39;s ID.
+<i>51</i>&nbsp;     *
+<i>52</i>&nbsp;     * @return the {@link LeaderCard}&#39;s ID.
+<i>53</i>&nbsp;     */
+<i>54</i>&nbsp;    String getID();
+<i>55</i>&nbsp;
+<i>56</i>&nbsp;    /**
+<i>57</i>&nbsp;     * Sets the {@link Player} to this {@link LeaderCard}
+<i>58</i>&nbsp;     *
+<i>59</i>&nbsp;     * @param tmp the Player who has to be setted the card
+<i>60</i>&nbsp;     */
+<i>61</i>&nbsp;    void setPlayer(Player tmp);
+<i>62</i>&nbsp;
+<i>63</i>&nbsp;    /**
+<i>64</i>&nbsp;     * Gets a {@link Resource} that changes by the type of leaderCard:
+<i>65</i>&nbsp;     * for {@link ExtraDeposit} is the placeable,
+<i>66</i>&nbsp;     * for {@link ChangeResource} is the changeable,
+<i>67</i>&nbsp;     * for {@link Discount} is the discount
+<i>68</i>&nbsp;     * and for {@link ExtraProd} is the required resource for produce.
+<i>69</i>&nbsp;     *
+<i>70</i>&nbsp;     * @return the {@link Resource}.
+<i>71</i>&nbsp;     */
+<i>72</i>&nbsp;    Resource getPowerResource();
+<i>73</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-07-02 00:02</div>
+</div>
+</body>
+</html>

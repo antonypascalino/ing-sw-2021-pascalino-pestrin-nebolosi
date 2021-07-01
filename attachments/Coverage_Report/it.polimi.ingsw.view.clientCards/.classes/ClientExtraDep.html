@@ -1,0 +1,132 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: ClientExtraDep</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">it.polimi.ingsw.view.clientCards</a> ]
+</div>
+
+<h1>Coverage Summary for Class: ClientExtraDep (it.polimi.ingsw.view.clientCards)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ClientExtraDep</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 13)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package it.polimi.ingsw.view.clientCards;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import it.polimi.ingsw.controller.Request.MappedResource;
+<i>4</i>&nbsp;import it.polimi.ingsw.model.Table.Resource;
+<i>5</i>&nbsp;import it.polimi.ingsw.view.data.PlayerData;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;import java.util.ArrayList;
+<i>8</i>&nbsp;import java.util.Collections;
+<i>9</i>&nbsp;
+<i>10</i>&nbsp;/**
+<i>11</i>&nbsp; * The {@link ClientLeaderCard} that gives to the {@link PlayerData} an extra level in his warehouse.
+<i>12</i>&nbsp; * In that extra level the player can only place a single type of {@link Resource}.
+<i>13</i>&nbsp; */
+<i>14</i>&nbsp;public class ClientExtraDep extends ClientLeaderCard {
+<i>15</i>&nbsp;
+<i>16</i>&nbsp;    private Resource placeableRes;
+<i>17</i>&nbsp;    private Resource required;
+<i>18</i>&nbsp;
+<i>19</i>&nbsp;    /**
+<i>20</i>&nbsp;     * Instantiates a new Extra deposit {@link ClientLeaderCard}.
+<i>21</i>&nbsp;     *
+<i>22</i>&nbsp;     * @param victoryPoints the victory points the {@link ClientLeaderCard} gives the {@link PlayerData} when played.
+<i>23</i>&nbsp;     * @param required      the 5 required {@link Resource} the {@link PlayerData} has to own to play the {@link ClientLeaderCard}.
+<i>24</i>&nbsp;     * @param placeableRes  the {@link Resource} which can be placed in this extra level.
+<i>25</i>&nbsp;     * @param leaderID      the {@link ClientLeaderCard}&#39;s ID.
+<i>26</i>&nbsp;     */
+<i>27</i>&nbsp;    public ClientExtraDep(int victoryPoints, Resource required, Resource placeableRes, String leaderID) {
+<b class="nc"><i>28</i>&nbsp;        super(leaderID, victoryPoints, placeableRes);</b>
+<b class="nc"><i>29</i>&nbsp;        this.placeableRes = placeableRes;</b>
+<b class="nc"><i>30</i>&nbsp;        this.required = required;</b>
+<i>31</i>&nbsp;    }
+<i>32</i>&nbsp;
+<i>33</i>&nbsp;    public boolean canBePlayed(PlayerData data) {
+<b class="nc"><i>34</i>&nbsp;        ArrayList&lt;Resource&gt; allRes = new ArrayList&lt;&gt;();</b>
+<b class="nc"><i>35</i>&nbsp;        for (MappedResource mappedRes : data.allResources()) {</b>
+<b class="nc"><i>36</i>&nbsp;            allRes.add(mappedRes.getResource());</b>
+<b class="nc"><i>37</i>&nbsp;        }</b>
+<b class="nc"><i>38</i>&nbsp;        ArrayList&lt;Resource&gt; allDataRes = new ArrayList&lt;&gt;();</b>
+<b class="nc"><i>39</i>&nbsp;        for (MappedResource mappedRes : data.allResources()) {</b>
+<b class="nc"><i>40</i>&nbsp;            allDataRes.add(mappedRes.getResource());</b>
+<b class="nc"><i>41</i>&nbsp;        }</b>
+<b class="nc"><i>42</i>&nbsp;        return (Collections.frequency(allDataRes, required) &gt;= 5);</b>
+<i>43</i>&nbsp;
+<i>44</i>&nbsp;    }
+<i>45</i>&nbsp;
+<i>46</i>&nbsp;    public String toString() {
+<b class="nc"><i>47</i>&nbsp;        return &quot;Extra Deposit Leader Card:\nYou will have an Extra Deposit of 2 spaces in you Warehouse; in it you can deposit &quot; + placeableRes + &quot;S&quot; + &quot;\nTo play this card you need to have 5 &quot; + required + &quot;S&quot;;</b>
+<i>48</i>&nbsp;    }
+<i>49</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-07-02 00:02</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,226 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: ClientHandler</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">it.polimi.ingsw.server</a> ]
+</div>
+
+<h1>Coverage Summary for Class: ClientHandler (it.polimi.ingsw.server)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ClientHandler</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    60%
+  </span>
+  <span class="absValue">
+    (3/ 5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    40,4%
+  </span>
+  <span class="absValue">
+    (19/ 47)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package it.polimi.ingsw.server;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.google.gson.Gson;
+<i>4</i>&nbsp;import com.google.gson.JsonSyntaxException;
+<i>5</i>&nbsp;import it.polimi.ingsw.controller.Request.NewGameRequest;
+<i>6</i>&nbsp;import it.polimi.ingsw.controller.Request.PongRequest;
+<i>7</i>&nbsp;import it.polimi.ingsw.controller.Request.Request;
+<i>8</i>&nbsp;import it.polimi.ingsw.controller.Game;
+<i>9</i>&nbsp;import it.polimi.ingsw.Updates.*;
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;import java.io.BufferedReader;
+<i>12</i>&nbsp;import java.io.IOException;
+<i>13</i>&nbsp;import java.io.InputStreamReader;
+<i>14</i>&nbsp;import java.io.PrintWriter;
+<i>15</i>&nbsp;import java.net.Socket;
+<i>16</i>&nbsp;import java.net.SocketException;
+<i>17</i>&nbsp;import java.net.SocketTimeoutException;
+<i>18</i>&nbsp;
+<i>19</i>&nbsp;/**
+<i>20</i>&nbsp; * The type Client handler.
+<i>21</i>&nbsp; */
+<i>22</i>&nbsp;public class ClientHandler extends Thread {
+<i>23</i>&nbsp;
+<i>24</i>&nbsp;    private Socket socket;
+<i>25</i>&nbsp;    private BufferedReader in;
+<i>26</i>&nbsp;    private PrintWriter out;
+<i>27</i>&nbsp;    private GameHolder games;
+<i>28</i>&nbsp;    /**
+<i>29</i>&nbsp;     * The Player id.
+<i>30</i>&nbsp;     */
+<i>31</i>&nbsp;//Each clientHandler has a playerId so it&#39;s sure the requests comes from the right socket
+<i>32</i>&nbsp;    public String playerId;
+<i>33</i>&nbsp;    private Game thisGame; //Game to which the player is connected
+<i>34</i>&nbsp;    /**
+<i>35</i>&nbsp;     * The Json.
+<i>36</i>&nbsp;     */
+<i>37</i>&nbsp;    Gson json;
+<i>38</i>&nbsp;
+<i>39</i>&nbsp;    /**
+<i>40</i>&nbsp;     * Instantiates a new Client handler.
+<i>41</i>&nbsp;     *
+<i>42</i>&nbsp;     * @param socket the socket for this player
+<i>43</i>&nbsp;     * @param games  the game holder containing all the games
+<i>44</i>&nbsp;     * @throws IOException the io exception
+<i>45</i>&nbsp;     */
+<b class="fc"><i>46</i>&nbsp;    public ClientHandler(Socket socket, GameHolder games) throws IOException {</b>
+<b class="fc"><i>47</i>&nbsp;        json = new Gson();</b>
+<b class="fc"><i>48</i>&nbsp;        this.games = games;</b>
+<b class="fc"><i>49</i>&nbsp;        this.socket = socket;</b>
+<b class="fc"><i>50</i>&nbsp;        in = new BufferedReader(new InputStreamReader(socket.getInputStream()));</b>
+<b class="fc"><i>51</i>&nbsp;        out = new PrintWriter(socket.getOutputStream(), true);</b>
+<b class="fc"><i>52</i>&nbsp;        this.start();</b>
+<b class="fc"><i>53</i>&nbsp;    }</b>
+<i>54</i>&nbsp;
+<i>55</i>&nbsp;    /**
+<i>56</i>&nbsp;     * Sets player id, it&#39;s called by the GameHolder when it creates a new game
+<i>57</i>&nbsp;     *
+<i>58</i>&nbsp;     * @param playerId the player id
+<i>59</i>&nbsp;     */
+<i>60</i>&nbsp;    public void setPlayerId(String playerId) {
+<b class="nc"><i>61</i>&nbsp;        this.playerId = playerId;</b>
+<b class="nc"><i>62</i>&nbsp;    }</b>
+<i>63</i>&nbsp;
+<i>64</i>&nbsp;    /**
+<i>65</i>&nbsp;     * Keeps reading from the socket every update and doesn&#39;t handle any request that doesn&#39;t corrispond to the default
+<i>66</i>&nbsp;     * ones
+<i>67</i>&nbsp;     */
+<i>68</i>&nbsp;    @Override
+<i>69</i>&nbsp;    public void run() {
+<i>70</i>&nbsp;
+<b class="fc"><i>71</i>&nbsp;        PingConnection pingConnection = null;</b>
+<i>72</i>&nbsp;        try {
+<b class="fc"><i>73</i>&nbsp;            pingConnection = new PingConnection(this);</b>
+<b class="nc"><i>74</i>&nbsp;        } catch (IOException e) {</b>
+<b class="nc"><i>75</i>&nbsp;            e.printStackTrace();</b>
+<b class="fc"><i>76</i>&nbsp;        }</b>
+<b class="fc"><i>77</i>&nbsp;        Thread ping = new Thread(pingConnection);</b>
+<b class="fc"><i>78</i>&nbsp;        ping.start();</b>
+<i>79</i>&nbsp;
+<i>80</i>&nbsp;        try {
+<i>81</i>&nbsp;            while (true) {
+<b class="fc"><i>82</i>&nbsp;                socket.setSoTimeout(20000);</b>
+<b class="fc"><i>83</i>&nbsp;                String line = in.readLine();</b>
+<b class="nc"><i>84</i>&nbsp;                if (line != null) {</b>
+<i>85</i>&nbsp;                    Request request;
+<i>86</i>&nbsp;                    try{
+<b class="nc"><i>87</i>&nbsp;                         request = JsonReader.readSingleRequest(line);</b>
+<b class="nc"><i>88</i>&nbsp;                        if (request instanceof NewGameRequest) {</b>
+<b class="nc"><i>89</i>&nbsp;                            games.add(request, this);</b>
+<i>90</i>&nbsp;                        } else {
+<i>91</i>&nbsp;                            //If i receive a pong request ignore it
+<b class="nc"><i>92</i>&nbsp;                            if (!(request instanceof PongRequest)) {</b>
+<i>93</i>&nbsp;                                //check if the gameID is present
+<b class="nc"><i>94</i>&nbsp;                                System.out.println(&quot;Received &quot; + request);</b>
+<b class="nc"><i>95</i>&nbsp;                                games.get(request.getGameID()).notify(request);</b>
+<i>96</i>&nbsp;                            }
+<i>97</i>&nbsp;                        }
+<i>98</i>&nbsp;                    }
+<b class="nc"><i>99</i>&nbsp;                    catch(JsonSyntaxException e)</b>
+<i>100</i>&nbsp;                    {
+<i>101</i>&nbsp;                        //In case the request can&#39;t be translated don&#39;t do anything
+<b class="nc"><i>102</i>&nbsp;                    }</b>
+<i>103</i>&nbsp;
+<i>104</i>&nbsp;                }
+<b class="nc"><i>105</i>&nbsp;            }</b>
+<b class="nc"><i>106</i>&nbsp;        } catch (SocketException e) {</b>
+<b class="nc"><i>107</i>&nbsp;            System.err.println(e.getMessage());</b>
+<b class="nc"><i>108</i>&nbsp;            System.out.println(&quot;Player &quot; + playerId + &quot; disconnected&quot;);</b>
+<b class="nc"><i>109</i>&nbsp;            thisGame.notifyAllPlayers(new ConnectionErrorUpdate(playerId));</b>
+<b class="nc"><i>110</i>&nbsp;        } catch (SocketTimeoutException e) {</b>
+<b class="nc"><i>111</i>&nbsp;            System.err.println(e.getMessage());</b>
+<b class="nc"><i>112</i>&nbsp;            System.out.println(&quot;Player &quot; + playerId + &quot;disconnected&quot;);</b>
+<b class="nc"><i>113</i>&nbsp;            thisGame.notifyAllPlayers(new ConnectionErrorUpdate(playerId));</b>
+<b class="nc"><i>114</i>&nbsp;        } catch (IOException e) {</b>
+<b class="nc"><i>115</i>&nbsp;            e.printStackTrace();</b>
+<b class="nc"><i>116</i>&nbsp;        }</b>
+<b class="nc"><i>117</i>&nbsp;    }</b>
+<i>118</i>&nbsp;
+<i>119</i>&nbsp;    /**
+<i>120</i>&nbsp;     * Notify with an update every time a player edits the model.
+<i>121</i>&nbsp;     * Synchronized because it&#39;s used by both threads (one for the actual game and another one for checking the connection
+<i>122</i>&nbsp;     * status)
+<i>123</i>&nbsp;     * @param update the update
+<i>124</i>&nbsp;     */
+<i>125</i>&nbsp;    //
+<i>126</i>&nbsp;    public synchronized void notifyView(Update update) {
+<b class="fc"><i>127</i>&nbsp;        String message = json.toJson(update);</b>
+<b class="fc"><i>128</i>&nbsp;        out.println(message);</b>
+<b class="fc"><i>129</i>&nbsp;        out.flush();</b>
+<b class="fc"><i>130</i>&nbsp;    }</b>
+<i>131</i>&nbsp;
+<i>132</i>&nbsp;    /**
+<i>133</i>&nbsp;     * Sets game, it&#39;s called by the GameHolder when it creates a new game
+<i>134</i>&nbsp;     *
+<i>135</i>&nbsp;     * @param newGame the new game
+<i>136</i>&nbsp;     */
+<i>137</i>&nbsp;    public void setGame(Game newGame) {
+<b class="nc"><i>138</i>&nbsp;        thisGame = newGame;</b>
+<b class="nc"><i>139</i>&nbsp;    }</b>
+<i>140</i>&nbsp;}
+<i>141</i>&nbsp;
+<i>142</i>&nbsp;
+<i>143</i>&nbsp;
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-07-02 00:02</div>
+</div>
+</body>
+</html>

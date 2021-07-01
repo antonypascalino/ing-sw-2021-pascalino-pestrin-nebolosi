@@ -1,0 +1,259 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: SinglePlayerGame</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">it.polimi.ingsw.controller.SinglePlayer</a> ]
+</div>
+
+<h1>Coverage Summary for Class: SinglePlayerGame (it.polimi.ingsw.controller.SinglePlayer)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">SinglePlayerGame</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (12/ 12)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    91,2%
+  </span>
+  <span class="absValue">
+    (62/ 68)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package it.polimi.ingsw.controller.SinglePlayer;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import it.polimi.ingsw.controller.Request.InitialPlayersSetRequest;
+<i>4</i>&nbsp;import it.polimi.ingsw.controller.Request.Request;
+<i>5</i>&nbsp;import it.polimi.ingsw.controller.DefaultCreator;
+<i>6</i>&nbsp;import it.polimi.ingsw.controller.Game;
+<i>7</i>&nbsp;import it.polimi.ingsw.controller.TurnState;
+<i>8</i>&nbsp;import it.polimi.ingsw.model.Board.FaithPath;
+<i>9</i>&nbsp;import it.polimi.ingsw.Updates.*;
+<i>10</i>&nbsp;import it.polimi.ingsw.model.card.DevCard;
+<i>11</i>&nbsp;import it.polimi.ingsw.model.Player.Player;
+<i>12</i>&nbsp;import it.polimi.ingsw.model.Table.Table;
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;import java.util.ArrayList;
+<i>15</i>&nbsp;import java.util.Collections;
+<i>16</i>&nbsp;
+<i>17</i>&nbsp;/**
+<i>18</i>&nbsp; * The single player game in which a single player will challenge Lorenzo De Medici.
+<i>19</i>&nbsp; */
+<i>20</i>&nbsp;public class SinglePlayerGame extends Game {
+<i>21</i>&nbsp;    private FaithPath lorenzoPath;
+<i>22</i>&nbsp;    private ArrayList&lt;Token&gt; tokenList;
+<i>23</i>&nbsp;    private Player player;
+<i>24</i>&nbsp;    private Token lastToken;
+<i>25</i>&nbsp;
+<i>26</i>&nbsp;    /**
+<i>27</i>&nbsp;     * Instantiates a new Single player game.
+<i>28</i>&nbsp;     *
+<i>29</i>&nbsp;     * @param players the list of players which, in this case, will contain only one player.
+<i>30</i>&nbsp;     * @param cards   the {@link DevCard}s of the game.
+<i>31</i>&nbsp;     * @param gameId  the ID on the server of this particular game.
+<i>32</i>&nbsp;     */
+<i>33</i>&nbsp;    public SinglePlayerGame(ArrayList&lt;Player&gt; players, ArrayList&lt;DevCard&gt; cards, int gameId) {
+<b class="fc"><i>34</i>&nbsp;        super(players, cards, gameId, 1);</b>
+<b class="fc"><i>35</i>&nbsp;        player = players.get(0);</b>
+<b class="fc"><i>36</i>&nbsp;        table = new Table(DefaultCreator.produceDevCard());</b>
+<b class="fc"><i>37</i>&nbsp;        lorenzoPath = new FaithPath();</b>
+<b class="fc"><i>38</i>&nbsp;        tokenList = new ArrayList&lt;&gt;();</b>
+<b class="fc"><i>39</i>&nbsp;        createTokens();</b>
+<b class="fc"><i>40</i>&nbsp;        turnStates = new ArrayList&lt;&gt;();</b>
+<b class="fc"><i>41</i>&nbsp;    }</b>
+<i>42</i>&nbsp;
+<i>43</i>&nbsp;    /**
+<i>44</i>&nbsp;     * Create all the {@link Token}s of the {@link SinglePlayerGame}, shuffles them and create the stack of this game.
+<i>45</i>&nbsp;     */
+<i>46</i>&nbsp;    private void createTokens() {
+<b class="fc"><i>47</i>&nbsp;        Move1 move1 = new Move1();</b>
+<b class="fc"><i>48</i>&nbsp;        Move2 move2 = new Move2();</b>
+<b class="fc"><i>49</i>&nbsp;        DiscardCards discardCardPurple = new DiscardCards(&quot;PURPLE&quot;);</b>
+<b class="fc"><i>50</i>&nbsp;        DiscardCards discardCardYellow = new DiscardCards(&quot;YELLOW&quot;);</b>
+<b class="fc"><i>51</i>&nbsp;        DiscardCards discardCardGreen = new DiscardCards(&quot;GREEN&quot;);</b>
+<b class="fc"><i>52</i>&nbsp;        DiscardCards discardCardBlue = new DiscardCards(&quot;BLUE&quot;);</b>
+<b class="fc"><i>53</i>&nbsp;        tokenList.add(move1);</b>
+<b class="fc"><i>54</i>&nbsp;        tokenList.add(move2);</b>
+<b class="fc"><i>55</i>&nbsp;        tokenList.add(discardCardPurple);</b>
+<b class="fc"><i>56</i>&nbsp;        tokenList.add(discardCardYellow);</b>
+<b class="fc"><i>57</i>&nbsp;        tokenList.add(discardCardGreen);</b>
+<b class="fc"><i>58</i>&nbsp;        tokenList.add(discardCardBlue);</b>
+<b class="fc"><i>59</i>&nbsp;        Collections.shuffle(tokenList);</b>
+<b class="fc"><i>60</i>&nbsp;    }</b>
+<i>61</i>&nbsp;
+<i>62</i>&nbsp;    @Override
+<i>63</i>&nbsp;    public void changePlayer(Player original, Player newPlayer) {
+<b class="fc"><i>64</i>&nbsp;        player = newPlayer;</b>
+<b class="fc"><i>65</i>&nbsp;    }</b>
+<i>66</i>&nbsp;
+<i>67</i>&nbsp;    /**
+<i>68</i>&nbsp;     * Gets Lorenzo path.
+<i>69</i>&nbsp;     *
+<i>70</i>&nbsp;     * @return the Lorenzo&#39;s path
+<i>71</i>&nbsp;     */
+<i>72</i>&nbsp;    public FaithPath getLorenzoPath() {
+<b class="fc"><i>73</i>&nbsp;        return lorenzoPath;</b>
+<i>74</i>&nbsp;    }
+<i>75</i>&nbsp;
+<i>76</i>&nbsp;    @Override
+<i>77</i>&nbsp;    public Table getTable() {
+<b class="fc"><i>78</i>&nbsp;        return table;</b>
+<i>79</i>&nbsp;    }
+<i>80</i>&nbsp;
+<i>81</i>&nbsp;    /**
+<i>82</i>&nbsp;     * Gets the {@link Token}s stack.
+<i>83</i>&nbsp;     *
+<i>84</i>&nbsp;     * @return the token stack,
+<i>85</i>&nbsp;     */
+<i>86</i>&nbsp;    public ArrayList&lt;Token&gt; getTokenList() {
+<b class="fc"><i>87</i>&nbsp;        return tokenList;</b>
+<i>88</i>&nbsp;    }
+<i>89</i>&nbsp;
+<i>90</i>&nbsp;    /**
+<i>91</i>&nbsp;     * Draw a {@link Token} from the top of the stack and place it to the end.
+<i>92</i>&nbsp;     *
+<i>93</i>&nbsp;     * @return the {@link Token} just drawn.
+<i>94</i>&nbsp;     */
+<i>95</i>&nbsp;    public Token drawToken() {
+<b class="fc"><i>96</i>&nbsp;        Token result = tokenList.remove(0);</b>
+<b class="fc"><i>97</i>&nbsp;        tokenList.add(result);</b>
+<b class="fc"><i>98</i>&nbsp;        return result;</b>
+<i>99</i>&nbsp;    }
+<i>100</i>&nbsp;
+<i>101</i>&nbsp;    @Override
+<i>102</i>&nbsp;    public void notify(Request req) {
+<b class="fc"><i>103</i>&nbsp;        if (req.validRequest(turnStates)) {</b>
+<b class="fc"><i>104</i>&nbsp;            if (req.canBePlayed(player)) {</b>
+<b class="fc"><i>105</i>&nbsp;                turnStates.add(req.handle(player, this));</b>
+<b class="fc"><i>106</i>&nbsp;                if (turnStates.contains(TurnState.END_TURN)) {</b>
+<b class="fc"><i>107</i>&nbsp;                    lastToken = drawToken();</b>
+<b class="fc"><i>108</i>&nbsp;                    lastToken.activateEffect(this);</b>
+<b class="fc"><i>109</i>&nbsp;                    turnStates.clear();</b>
+<b class="fc"><i>110</i>&nbsp;                    notifyAllPlayers(createLorenzoUpdate());</b>
+<i>111</i>&nbsp;                }
+<b class="fc"><i>112</i>&nbsp;                if (!(req instanceof InitialPlayersSetRequest)) {</b>
+<b class="fc"><i>113</i>&nbsp;                    notifyAllPlayers(req.createUpdate(player, this));</b>
+<i>114</i>&nbsp;                }
+<b class="fc"><i>115</i>&nbsp;                if (player.getBoard().getSlot().getAllCards().size() == 7 || player.getBoard().getFaithPath().checkPopeSpace(3)) {</b>
+<b class="nc"><i>116</i>&nbsp;                    playerWins();</b>
+<i>117</i>&nbsp;                }
+<i>118</i>&nbsp;            } else {
+<b class="nc"><i>119</i>&nbsp;                Update error = new ErrorUpdate(&quot;You can&#39;t do that!&quot;, req.getPlayerID());</b>
+<b class="nc"><i>120</i>&nbsp;                notifyAllPlayers(error);</b>
+<b class="nc"><i>121</i>&nbsp;            }</b>
+<i>122</i>&nbsp;        } else {
+<b class="nc"><i>123</i>&nbsp;            Update error = new ErrorUpdate(&quot;You can&#39;t do this action in this moment!&quot;, req.getPlayerID());</b>
+<b class="nc"><i>124</i>&nbsp;            notifyAllPlayers(error);</b>
+<i>125</i>&nbsp;        }
+<b class="fc"><i>126</i>&nbsp;    }</b>
+<i>127</i>&nbsp;
+<i>128</i>&nbsp;    /**
+<i>129</i>&nbsp;     * Create an {@link Update} in which are contained all the modifies Lorenzo did during his turn.
+<i>130</i>&nbsp;     *
+<i>131</i>&nbsp;     * @return the {@link Update} just created.
+<i>132</i>&nbsp;     */
+<i>133</i>&nbsp;    private Update createLorenzoUpdate() {
+<b class="fc"><i>134</i>&nbsp;        return new LorenzoUpdate(lorenzoPath.getAdvancement(), player.getVictoryPoints(), table.getFrontIDs(), lastToken.announceAction(this), turnStates);</b>
+<i>135</i>&nbsp;    }
+<i>136</i>&nbsp;
+<i>137</i>&nbsp;    @Override
+<i>138</i>&nbsp;    public void fpAdvancement(int discardedSteps, int playerSteps) {
+<i>139</i>&nbsp;        //Lorenzo moves the same amount of discarded resources
+<b class="fc"><i>140</i>&nbsp;        if (discardedSteps != 0) {</b>
+<b class="fc"><i>141</i>&nbsp;            lorenzoPath.moveForward(discardedSteps);</b>
+<i>142</i>&nbsp;        }
+<i>143</i>&nbsp;        //The player moves as much as faith points are gained in their turn
+<b class="fc"><i>144</i>&nbsp;        if (playerSteps != 0) {</b>
+<b class="fc"><i>145</i>&nbsp;            player.getBoard().getFaithPath().moveForward(playerSteps);</b>
+<i>146</i>&nbsp;        }
+<i>147</i>&nbsp;        //Checks if either Lorenzo or the player reached the Pope Section
+<i>148</i>&nbsp;        // if so, CheckVaticanSection is called to assign the respective points
+<b class="fc"><i>149</i>&nbsp;        if (player.getBoard().getFaithPath().checkPopeSpace(currPopeSpace) || lorenzoPath.checkPopeSpace(currPopeSpace)) {</b>
+<b class="fc"><i>150</i>&nbsp;            player.getBoard().getFaithPath().checkVaticanSection(currPopeSpace);</b>
+<b class="fc"><i>151</i>&nbsp;            currPopeSpace++;</b>
+<b class="fc"><i>152</i>&nbsp;            this.fpAdvancement(0, 0); //Recursive call to check another pope space</b>
+<i>153</i>&nbsp;        }
+<b class="fc"><i>154</i>&nbsp;    }</b>
+<i>155</i>&nbsp;
+<i>156</i>&nbsp;    /**
+<i>157</i>&nbsp;     * In the case of Lorenzo win the game and the {@link Player} loses create an {@link Update} in which are contained all the game&#39;s results and send it to the player.
+<i>158</i>&nbsp;     */
+<i>159</i>&nbsp;    public void lorenzoWins() {
+<b class="fc"><i>160</i>&nbsp;        ArrayList&lt;PlayerVP&gt; playersVP = new ArrayList&lt;&gt;();</b>
+<b class="fc"><i>161</i>&nbsp;        playersVP.add(new PlayerVP(player.getNickName(), player.getVictoryPoints()));</b>
+<b class="fc"><i>162</i>&nbsp;        notifyAllPlayers(new SPEndgameUpdate(true, player.getVictoryPoints()));</b>
+<b class="fc"><i>163</i>&nbsp;    }</b>
+<i>164</i>&nbsp;
+<i>165</i>&nbsp;    /**
+<i>166</i>&nbsp;     * In the case of the Player win the game and the Lorenzo loses create an {@link Update} in which are contained all the game&#39;s results and send it to the player..
+<i>167</i>&nbsp;     */
+<i>168</i>&nbsp;    public void playerWins() {
+<i>169</i>&nbsp;        //Ends the match and tells the player who won
+<b class="fc"><i>170</i>&nbsp;        player.addVictoryPoints(player.getAllResources().size() / 5);</b>
+<b class="fc"><i>171</i>&nbsp;        player.getVictoryPoints();</b>
+<b class="fc"><i>172</i>&nbsp;        ArrayList&lt;PlayerVP&gt; playersVP = new ArrayList&lt;&gt;();</b>
+<b class="fc"><i>173</i>&nbsp;        playersVP.add(new PlayerVP(player.getNickName(), player.getVictoryPoints()));</b>
+<b class="fc"><i>174</i>&nbsp;        notifyAllPlayers(new SPEndgameUpdate(false, player.getVictoryPoints()));</b>
+<b class="fc"><i>175</i>&nbsp;    }</b>
+<i>176</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-07-02 00:02</div>
+</div>
+</body>
+</html>

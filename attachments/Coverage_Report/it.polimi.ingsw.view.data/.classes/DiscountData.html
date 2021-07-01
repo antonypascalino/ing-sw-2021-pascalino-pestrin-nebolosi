@@ -1,0 +1,173 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: DiscountData</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">it.polimi.ingsw.view.data</a> ]
+</div>
+
+<h1>Coverage Summary for Class: DiscountData (it.polimi.ingsw.view.data)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">DiscountData</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 39)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package it.polimi.ingsw.view.data;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import it.polimi.ingsw.controller.Request.MappedResource;
+<i>4</i>&nbsp;import it.polimi.ingsw.model.Table.Resource;
+<i>5</i>&nbsp;import it.polimi.ingsw.view.clientCards.*;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;import java.util.ArrayList;
+<i>8</i>&nbsp;import java.util.Collections;
+<i>9</i>&nbsp;
+<i>10</i>&nbsp;/**
+<i>11</i>&nbsp; * It&#39;s the player with the {@link ClientDiscount} {@link ClientLeaderCard} (it extends {@link PlayerData}).
+<i>12</i>&nbsp; */
+<i>13</i>&nbsp;public class DiscountData extends PlayerData {
+<i>14</i>&nbsp;    private ArrayList&lt;Resource&gt; discount;
+<i>15</i>&nbsp;
+<i>16</i>&nbsp;
+<i>17</i>&nbsp;    /**
+<i>18</i>&nbsp;     * Instantiates a new {@link DiscountData}.
+<i>19</i>&nbsp;     *
+<i>20</i>&nbsp;     * @param discount     the discount
+<i>21</i>&nbsp;     * @param originalData the original data
+<i>22</i>&nbsp;     */
+<b class="nc"><i>23</i>&nbsp;    public DiscountData(ArrayList&lt;Resource&gt; discount, PlayerData originalData) {</b>
+<b class="nc"><i>24</i>&nbsp;        this.discount = new ArrayList&lt;&gt;();</b>
+<b class="nc"><i>25</i>&nbsp;        if (originalData instanceof DiscountData) {</b>
+<b class="nc"><i>26</i>&nbsp;            this.discount.addAll(((DiscountData) originalData).getDiscount());</b>
+<b class="nc"><i>27</i>&nbsp;            ((DiscountData) originalData).getDiscount().clear();</b>
+<i>28</i>&nbsp;        }
+<b class="nc"><i>29</i>&nbsp;        this.originalData = originalData;</b>
+<b class="nc"><i>30</i>&nbsp;        this.discount.addAll(discount);</b>
+<b class="nc"><i>31</i>&nbsp;    }</b>
+<i>32</i>&nbsp;
+<i>33</i>&nbsp;
+<i>34</i>&nbsp;    /**
+<i>35</i>&nbsp;     * Needs to be overriden so it count the discount
+<i>36</i>&nbsp;     *
+<i>37</i>&nbsp;     * @return discounted
+<i>38</i>&nbsp;     */
+<i>39</i>&nbsp;    @Override
+<i>40</i>&nbsp;    public ClientDevCard getCardFromID(String cardID) {
+<b class="nc"><i>41</i>&nbsp;        ClientDevCard tmp = originalData.getCardFromID(cardID);</b>
+<b class="nc"><i>42</i>&nbsp;        ArrayList&lt;Resource&gt; newPrice = (ArrayList&lt;Resource&gt;) tmp.getPrice().clone();</b>
+<b class="nc"><i>43</i>&nbsp;        for (Resource res : discount)</b>
+<b class="nc"><i>44</i>&nbsp;            newPrice.remove(res);</b>
+<b class="nc"><i>45</i>&nbsp;        return new ClientDevCard(tmp.getCardID(), tmp.getColor(), tmp.getLevel(), tmp.getLevel(), tmp.getRequired(), tmp.getProduces(), newPrice);</b>
+<i>46</i>&nbsp;    }
+<i>47</i>&nbsp;
+<i>48</i>&nbsp;    @Override
+<i>49</i>&nbsp;    public ArrayList&lt;String&gt; tableCardsFilter(ArrayList&lt;MappedResource&gt; mapped) {
+<b class="nc"><i>50</i>&nbsp;        ArrayList&lt;String&gt; available = new ArrayList&lt;&gt;();</b>
+<b class="nc"><i>51</i>&nbsp;        ArrayList&lt;Integer&gt; cardLevel = new ArrayList&lt;&gt;(); // the levels of the cards which the player can buy</b>
+<b class="nc"><i>52</i>&nbsp;        cardLevel.add(1); //added because if there is no card I can&#39;t add its level+1</b>
+<b class="nc"><i>53</i>&nbsp;        ArrayList&lt;Resource&gt; allRes = new ArrayList&lt;&gt;();</b>
+<b class="nc"><i>54</i>&nbsp;        for (MappedResource m : mapped) {</b>
+<b class="nc"><i>55</i>&nbsp;            allRes.add(m.getResource());</b>
+<b class="nc"><i>56</i>&nbsp;        }</b>
+<b class="nc"><i>57</i>&nbsp;        for (String devCardID : getFrontCardsID()) {</b>
+<b class="nc"><i>58</i>&nbsp;            cardLevel.add(getCardFromID(devCardID).getLevel() + 1);</b>
+<b class="nc"><i>59</i>&nbsp;        }</b>
+<b class="nc"><i>60</i>&nbsp;        if (cardLevel.size() == 4) {</b>
+<b class="nc"><i>61</i>&nbsp;            cardLevel.remove(0);</b>
+<i>62</i>&nbsp;        }
+<i>63</i>&nbsp;        //For every resource i have to check if the occurrences match
+<b class="nc"><i>64</i>&nbsp;        for (String card : getFrontTableCardsID()) {</b>
+<b class="nc"><i>65</i>&nbsp;            boolean canBeBought = true;</b>
+<b class="nc"><i>66</i>&nbsp;            if (!cardLevel.contains(getCardFromID(card).getLevel())) {</b>
+<b class="nc"><i>67</i>&nbsp;                canBeBought = false;</b>
+<b class="nc"><i>68</i>&nbsp;                continue;</b>
+<i>69</i>&nbsp;            }
+<b class="nc"><i>70</i>&nbsp;            for (Resource res : getCardFromID(card).getPrice()) {</b>
+<i>71</i>&nbsp;                //Check if they have the same number of res for every type, if it doesn&#39;t have the resource remove them
+<b class="nc"><i>72</i>&nbsp;                if (Collections.frequency(allRes, res) &lt; Collections.frequency(getCardFromID(card).getPrice(), res)) {</b>
+<b class="nc"><i>73</i>&nbsp;                    canBeBought = false;</b>
+<b class="nc"><i>74</i>&nbsp;                    break;</b>
+<i>75</i>&nbsp;                }
+<b class="nc"><i>76</i>&nbsp;            }</b>
+<b class="nc"><i>77</i>&nbsp;            if (canBeBought) available.add(card);</b>
+<b class="nc"><i>78</i>&nbsp;        }</b>
+<b class="nc"><i>79</i>&nbsp;        return available;</b>
+<i>80</i>&nbsp;    }
+<i>81</i>&nbsp;
+<i>82</i>&nbsp;    /**
+<i>83</i>&nbsp;     * Gets discount.
+<i>84</i>&nbsp;     *
+<i>85</i>&nbsp;     * @return the discount
+<i>86</i>&nbsp;     */
+<i>87</i>&nbsp;    public ArrayList&lt;Resource&gt; getDiscount() {
+<b class="nc"><i>88</i>&nbsp;        return discount;</b>
+<i>89</i>&nbsp;    }
+<i>90</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-07-02 00:02</div>
+</div>
+</body>
+</html>

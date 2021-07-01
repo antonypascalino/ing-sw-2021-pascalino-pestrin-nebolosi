@@ -1,0 +1,76 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: Update</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">it.polimi.ingsw.Updates</a> ]
+</div>
+
+<h1>Coverage Summary for Class: Update (it.polimi.ingsw.Updates)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">Update</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package it.polimi.ingsw.Updates;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import it.polimi.ingsw.Convertible;
+<i>4</i>&nbsp;import it.polimi.ingsw.controller.Game;
+<i>5</i>&nbsp;import it.polimi.ingsw.view.data.PlayerData;
+<i>6</i>&nbsp;import it.polimi.ingsw.model.Player.Player;
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;/**
+<i>9</i>&nbsp; * The interface implemented by every update.
+<i>10</i>&nbsp; * &lt;p&gt;
+<i>11</i>&nbsp; * An update is an object created by the {@link Game} and sent by the {@link Player}s, server side,
+<i>12</i>&nbsp; * to the {@link PlayerData}s, client side.
+<i>13</i>&nbsp; * The Update contains the information about of what happened on the server; once it is received by the players,
+<i>14</i>&nbsp; * it modifies their status according to the information in itself. Some updates bring with them even a message to show.
+<i>15</i>&nbsp; */
+<i>16</i>&nbsp;public interface Update extends Convertible {
+<i>17</i>&nbsp;
+<i>18</i>&nbsp;    /**
+<i>19</i>&nbsp;     * Called by all the {@link PlayerData} on the client, so that it can modifies
+<i>20</i>&nbsp;     * themself according to wha was modified on the server.
+<i>21</i>&nbsp;     * &lt;p&gt;
+<i>22</i>&nbsp;     * The {@link Update} is handled in two different ways by the players based on
+<i>23</i>&nbsp;     * whether the update is relative to an action the player did himself or if the update involves an other player.
+<i>24</i>&nbsp;     *
+<i>25</i>&nbsp;     * @param data the playerData on which the update operates
+<i>26</i>&nbsp;     */
+<i>27</i>&nbsp;    void handleUpdate(PlayerData data);
+<i>28</i>&nbsp;
+<i>29</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-07-02 00:02</div>
+</div>
+</body>
+</html>

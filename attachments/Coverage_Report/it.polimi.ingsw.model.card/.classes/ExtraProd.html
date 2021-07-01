@@ -1,0 +1,196 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: ExtraProd</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">it.polimi.ingsw.model.card</a> ]
+</div>
+
+<h1>Coverage Summary for Class: ExtraProd (it.polimi.ingsw.model.card)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ExtraProd</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (11/ 11)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    94,7%
+  </span>
+  <span class="absValue">
+    (36/ 38)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package it.polimi.ingsw.model.card;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import it.polimi.ingsw.model.Player.ExtraProdPlayer;
+<i>4</i>&nbsp;import it.polimi.ingsw.model.Player.Player;
+<i>5</i>&nbsp;import it.polimi.ingsw.model.Table.Resource;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;import java.util.ArrayList;
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;/**
+<i>10</i>&nbsp; * The {@link LeaderCard} that gives to the {@link Player} an extra production power.
+<i>11</i>&nbsp; */
+<i>12</i>&nbsp;public class ExtraProd implements LeaderCard {
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;    private int victoryPoints;
+<i>15</i>&nbsp;    private boolean isEnable;
+<i>16</i>&nbsp;    private Player player;
+<i>17</i>&nbsp;    private String requires; //WHat it needs to be played
+<i>18</i>&nbsp;    private Resource prodResource;  //What it needs for producing
+<i>19</i>&nbsp;    private final String className;
+<i>20</i>&nbsp;    private String cardID;
+<i>21</i>&nbsp;
+<i>22</i>&nbsp;    /**
+<i>23</i>&nbsp;     * Instantiates a new Extra Production {@link LeaderCard} and set enable to false.
+<i>24</i>&nbsp;     *
+<i>25</i>&nbsp;     * @param victoryPoints the victory points the {@link LeaderCard} gives the {@link Player} when played.
+<i>26</i>&nbsp;     * @param requires      the color of a {@link DevCard} of level 2 needed to play the {@link LeaderCard}.
+<i>27</i>&nbsp;     * @param prodResource  the {@link DevCard} needed to use this production power.
+<i>28</i>&nbsp;     * @param cardID        the {@link LeaderCard}&#39;s ID.
+<i>29</i>&nbsp;     */
+<b class="fc"><i>30</i>&nbsp;    public ExtraProd(int victoryPoints, String requires, Resource prodResource, String cardID) {</b>
+<b class="fc"><i>31</i>&nbsp;        this.cardID = cardID;</b>
+<b class="fc"><i>32</i>&nbsp;        className = this.getClass().getName();</b>
+<b class="fc"><i>33</i>&nbsp;        this.prodResource = prodResource;</b>
+<b class="fc"><i>34</i>&nbsp;        this.requires = requires;</b>
+<b class="fc"><i>35</i>&nbsp;        this.victoryPoints = victoryPoints;</b>
+<b class="fc"><i>36</i>&nbsp;        isEnable = false;</b>
+<b class="fc"><i>37</i>&nbsp;    }</b>
+<i>38</i>&nbsp;
+<i>39</i>&nbsp;    @Override
+<i>40</i>&nbsp;    public void assignTo(Player player) {
+<b class="fc"><i>41</i>&nbsp;        this.player = player;</b>
+<b class="fc"><i>42</i>&nbsp;        player.addLeaderCard(this);</b>
+<b class="fc"><i>43</i>&nbsp;    }</b>
+<i>44</i>&nbsp;
+<i>45</i>&nbsp;    @Override
+<i>46</i>&nbsp;    public boolean isEnable() {
+<b class="fc"><i>47</i>&nbsp;        return isEnable;</b>
+<i>48</i>&nbsp;    }
+<i>49</i>&nbsp;
+<i>50</i>&nbsp;    @Override
+<i>51</i>&nbsp;    public boolean canBePlayed() {
+<b class="fc"><i>52</i>&nbsp;        if (isEnable) return false; //It can&#39;t be played twice</b>
+<b class="fc"><i>53</i>&nbsp;        for (DevCard card : player.getBoard().getSlot().getAllCards()) {</b>
+<b class="fc"><i>54</i>&nbsp;            if (card.getColor().equals(requires.toUpperCase()) &amp;&amp; card.getLevel() == 2) return true;</b>
+<b class="nc"><i>55</i>&nbsp;        }</b>
+<b class="nc"><i>56</i>&nbsp;        return false;</b>
+<i>57</i>&nbsp;    }
+<i>58</i>&nbsp;
+<i>59</i>&nbsp;    @Override
+<i>60</i>&nbsp;    public String getClassName() {
+<b class="fc"><i>61</i>&nbsp;        return className;</b>
+<i>62</i>&nbsp;    }
+<i>63</i>&nbsp;
+<i>64</i>&nbsp;    @Override
+<i>65</i>&nbsp;    public void playCard() {
+<b class="fc"><i>66</i>&nbsp;        if (canBePlayed()) {</b>
+<b class="fc"><i>67</i>&nbsp;            isEnable = true;</b>
+<b class="fc"><i>68</i>&nbsp;            player.addVictoryPoints(victoryPoints);</b>
+<b class="fc"><i>69</i>&nbsp;            Player tmp = new ExtraProdPlayer(player, prodResource, cardID);</b>
+<b class="fc"><i>70</i>&nbsp;            player.getGame().changePlayer(player, tmp);</b>
+<b class="fc"><i>71</i>&nbsp;            for (LeaderCard card : player.getLeaderCards()) {</b>
+<i>72</i>&nbsp;                //Do not change the reference on this card
+<b class="fc"><i>73</i>&nbsp;                if (!card.getID().equals(this.getID()))</b>
+<b class="fc"><i>74</i>&nbsp;                    card.setPlayer(tmp);</b>
+<b class="fc"><i>75</i>&nbsp;            }</b>
+<b class="fc"><i>76</i>&nbsp;            this.player = tmp;</b>
+<i>77</i>&nbsp;        }
+<b class="fc"><i>78</i>&nbsp;    }</b>
+<i>79</i>&nbsp;
+<i>80</i>&nbsp;    @Override
+<i>81</i>&nbsp;    public boolean equals(LeaderCard compare) {
+<b class="fc"><i>82</i>&nbsp;        return this.cardID.equals(compare.getID());</b>
+<i>83</i>&nbsp;
+<i>84</i>&nbsp;    }
+<i>85</i>&nbsp;
+<i>86</i>&nbsp;    @Override
+<i>87</i>&nbsp;    public String getID() {
+<b class="fc"><i>88</i>&nbsp;        return cardID;</b>
+<i>89</i>&nbsp;    }
+<i>90</i>&nbsp;
+<i>91</i>&nbsp;    @Override
+<i>92</i>&nbsp;    public void setPlayer(Player tmp) {
+<b class="fc"><i>93</i>&nbsp;        this.player = tmp;</b>
+<b class="fc"><i>94</i>&nbsp;    }</b>
+<i>95</i>&nbsp;
+<i>96</i>&nbsp;    /**
+<i>97</i>&nbsp;     * Get the {@link Resource} produced by this {@link ExtraProd}.
+<i>98</i>&nbsp;     *
+<i>99</i>&nbsp;     * @return the array list
+<i>100</i>&nbsp;     */
+<i>101</i>&nbsp;    public ArrayList&lt;Resource&gt; getProducedRes() {
+<b class="fc"><i>102</i>&nbsp;        ArrayList&lt;Resource&gt; temp = new ArrayList&lt;&gt;();</b>
+<b class="fc"><i>103</i>&nbsp;        temp.add(Resource.FAITH);</b>
+<b class="fc"><i>104</i>&nbsp;        temp.add(Resource.CHOICE);</b>
+<b class="fc"><i>105</i>&nbsp;        return temp;</b>
+<i>106</i>&nbsp;    }
+<i>107</i>&nbsp;
+<i>108</i>&nbsp;    @Override
+<i>109</i>&nbsp;    public Resource getPowerResource() {
+<b class="fc"><i>110</i>&nbsp;        return prodResource;</b>
+<i>111</i>&nbsp;    }
+<i>112</i>&nbsp;
+<i>113</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-07-02 00:02</div>
+</div>
+</body>
+</html>

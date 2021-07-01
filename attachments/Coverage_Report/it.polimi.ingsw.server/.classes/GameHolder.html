@@ -1,0 +1,228 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: GameHolder</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">it.polimi.ingsw.server</a> ]
+</div>
+
+<h1>Coverage Summary for Class: GameHolder (it.polimi.ingsw.server)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">GameHolder</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    50%
+  </span>
+  <span class="absValue">
+    (3/ 6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    11,3%
+  </span>
+  <span class="absValue">
+    (6/ 53)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package it.polimi.ingsw.server;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import it.polimi.ingsw.controller.Request.NewGameRequest;
+<i>4</i>&nbsp;import it.polimi.ingsw.controller.Request.Request;
+<i>5</i>&nbsp;import it.polimi.ingsw.controller.DefaultCreator;
+<i>6</i>&nbsp;import it.polimi.ingsw.controller.Game;
+<i>7</i>&nbsp;import it.polimi.ingsw.controller.SinglePlayer.SinglePlayerGame;
+<i>8</i>&nbsp;import it.polimi.ingsw.model.Player.BasicPlayer;
+<i>9</i>&nbsp;import it.polimi.ingsw.model.Player.Player;
+<i>10</i>&nbsp;import it.polimi.ingsw.Updates.ExistingPlayerUpdate;
+<i>11</i>&nbsp;import it.polimi.ingsw.Updates.LobbyUpdate;
+<i>12</i>&nbsp;import it.polimi.ingsw.Updates.Update;
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;import java.util.ArrayList;
+<i>15</i>&nbsp;
+<i>16</i>&nbsp;/**
+<i>17</i>&nbsp; * The lobby containing every game on the server
+<i>18</i>&nbsp; */
+<i>19</i>&nbsp;//This class is used so that the creation of a new game is synchronized
+<i>20</i>&nbsp;public class GameHolder {
+<i>21</i>&nbsp;    private ArrayList&lt;Game&gt; games;
+<i>22</i>&nbsp;
+<i>23</i>&nbsp;    /**
+<i>24</i>&nbsp;     * Instantiates a new Game holder.
+<i>25</i>&nbsp;     */
+<b class="fc"><i>26</i>&nbsp;    public GameHolder() {</b>
+<b class="fc"><i>27</i>&nbsp;        games = new ArrayList&lt;&gt;();</b>
+<b class="fc"><i>28</i>&nbsp;    }</b>
+<i>29</i>&nbsp;
+<i>30</i>&nbsp;    /**
+<i>31</i>&nbsp;     * Size the size of the games
+<i>32</i>&nbsp;     *
+<i>33</i>&nbsp;     * @return the int
+<i>34</i>&nbsp;     */
+<i>35</i>&nbsp;    public synchronized int size() {
+<b class="nc"><i>36</i>&nbsp;        return games.size();</b>
+<i>37</i>&nbsp;    }
+<i>38</i>&nbsp;
+<i>39</i>&nbsp;    /**
+<i>40</i>&nbsp;     * Get game.
+<i>41</i>&nbsp;     *
+<i>42</i>&nbsp;     * @param i the
+<i>43</i>&nbsp;     * @return the game
+<i>44</i>&nbsp;     */
+<i>45</i>&nbsp;    public synchronized Game get(int i) {
+<b class="fc"><i>46</i>&nbsp;        return games.get(i);</b>
+<i>47</i>&nbsp;    }
+<i>48</i>&nbsp;
+<i>49</i>&nbsp;    /**
+<i>50</i>&nbsp;     * Remove a game
+<i>51</i>&nbsp;     *
+<i>52</i>&nbsp;     * @param game the game
+<i>53</i>&nbsp;     */
+<i>54</i>&nbsp;    public synchronized void remove(Game game) {
+<b class="nc"><i>55</i>&nbsp;        games.remove(game);</b>
+<b class="nc"><i>56</i>&nbsp;    }</b>
+<i>57</i>&nbsp;
+<i>58</i>&nbsp;    /**
+<i>59</i>&nbsp;     * Add a game
+<i>60</i>&nbsp;     *
+<i>61</i>&nbsp;     * @param game the game
+<i>62</i>&nbsp;     */
+<i>63</i>&nbsp;    public synchronized void add(Game game) {
+<b class="fc"><i>64</i>&nbsp;        games.add(game);</b>
+<b class="fc"><i>65</i>&nbsp;    }</b>
+<i>66</i>&nbsp;
+<i>67</i>&nbsp;    /**
+<i>68</i>&nbsp;     * Adding a new player to an existing game or creating a new game
+<i>69</i>&nbsp;     *
+<i>70</i>&nbsp;     * @param request       the request used for creating a player and the new game
+<i>71</i>&nbsp;     * @param clientHandler the client handler
+<i>72</i>&nbsp;     */
+<i>73</i>&nbsp;    public synchronized void add(Request request, ClientHandler clientHandler) {
+<i>74</i>&nbsp;        //If there&#39;s no game on the server create the first one
+<b class="nc"><i>75</i>&nbsp;        Game lastGame = null;</b>
+<b class="nc"><i>76</i>&nbsp;        if (games.size() != 0)</b>
+<b class="nc"><i>77</i>&nbsp;            lastGame = games.get(games.size() - 1);</b>
+<i>78</i>&nbsp;        //If there&#39;s no game or the last one has reached the maximum player, it doesn&#39;t check it if games.size==0
+<i>79</i>&nbsp;        //Create a new game
+<b class="nc"><i>80</i>&nbsp;        if (games.size() == 0 || !(lastGame.getPlayers().size() &lt; lastGame.getMax())) {</b>
+<i>81</i>&nbsp;            int gameId;
+<b class="nc"><i>82</i>&nbsp;            if (games.size() != 0)</b>
+<b class="nc"><i>83</i>&nbsp;                gameId = games.get(games.size() - 1).getGameId() + 1;</b>
+<i>84</i>&nbsp;            else
+<b class="nc"><i>85</i>&nbsp;                gameId = 0;</b>
+<b class="nc"><i>86</i>&nbsp;            ArrayList&lt;Player&gt; tmp = new ArrayList&lt;&gt;();</b>
+<b class="nc"><i>87</i>&nbsp;            clientHandler.setPlayerId(((NewGameRequest) request).getNickname());</b>
+<b class="nc"><i>88</i>&nbsp;            Player newPlayer = new BasicPlayer(((NewGameRequest) request).getNickname(), clientHandler);</b>
+<b class="nc"><i>89</i>&nbsp;            tmp.add(newPlayer);</b>
+<i>90</i>&nbsp;            Game newGame;
+<i>91</i>&nbsp;            Update update;
+<b class="nc"><i>92</i>&nbsp;            if (((NewGameRequest) request).getPlayers() == 1) {</b>
+<b class="nc"><i>93</i>&nbsp;                newGame = new SinglePlayerGame(tmp, DefaultCreator.produceDevCard(), gameId);</b>
+<b class="nc"><i>94</i>&nbsp;                update = newGame.createNewGameUpdate();</b>
+<i>95</i>&nbsp;            } else {
+<i>96</i>&nbsp;                //If the client requires a number of player above 4, creates a game with 4 players
+<b class="nc"><i>97</i>&nbsp;                if(((NewGameRequest) request).getPlayers()&lt;=4 &amp;&amp; ((NewGameRequest) request).getPlayers() &gt;=2)</b>
+<b class="nc"><i>98</i>&nbsp;                    newGame = new Game(tmp, DefaultCreator.produceDevCard(), gameId, ((NewGameRequest) request).getPlayers());</b>
+<i>99</i>&nbsp;                else
+<b class="nc"><i>100</i>&nbsp;                    newGame = new Game(tmp, DefaultCreator.produceDevCard(), gameId, 4);</b>
+<b class="nc"><i>101</i>&nbsp;                update = new LobbyUpdate(((NewGameRequest) request).getNickname(), newGame.getPlayers().size(), ((NewGameRequest) request).getPlayers());</b>
+<i>102</i>&nbsp;
+<i>103</i>&nbsp;            }
+<b class="nc"><i>104</i>&nbsp;            clientHandler.setGame(newGame);</b>
+<b class="nc"><i>105</i>&nbsp;            newPlayer.setGame(newGame);</b>
+<b class="nc"><i>106</i>&nbsp;            newPlayer.setTable(newGame.getTable());</b>
+<b class="nc"><i>107</i>&nbsp;            games.add(newGame);</b>
+<b class="nc"><i>108</i>&nbsp;            System.out.println(&quot;Player &quot; + ((NewGameRequest) request).getNickname() + &quot; added to the new game &quot; + newGame.getGameId());</b>
+<b class="nc"><i>109</i>&nbsp;            newGame.notifyAllPlayers(update);</b>
+<b class="nc"><i>110</i>&nbsp;        }</b>
+<i>111</i>&nbsp;
+<i>112</i>&nbsp;        //If it hasn&#39;t already reached the maximum number of players
+<i>113</i>&nbsp;        //add the new player
+<i>114</i>&nbsp;        else {
+<i>115</i>&nbsp;            Update update;
+<i>116</i>&nbsp;            //If there&#39;s already a player with the new name return an error
+<b class="nc"><i>117</i>&nbsp;            for(Player p: lastGame.getPlayers())</b>
+<i>118</i>&nbsp;            {
+<b class="nc"><i>119</i>&nbsp;                if(p.getNickName().equals(((NewGameRequest) request).getNickname()))</b>
+<i>120</i>&nbsp;                {
+<b class="nc"><i>121</i>&nbsp;                    update = new ExistingPlayerUpdate();</b>
+<b class="nc"><i>122</i>&nbsp;                    clientHandler.notifyView(update);</b>
+<b class="nc"><i>123</i>&nbsp;                    return;</b>
+<i>124</i>&nbsp;                }
+<i>125</i>&nbsp;
+<b class="nc"><i>126</i>&nbsp;            }</b>
+<b class="nc"><i>127</i>&nbsp;            Player newPlayer = new BasicPlayer(((NewGameRequest) request).getNickname(), clientHandler);</b>
+<b class="nc"><i>128</i>&nbsp;            clientHandler.setPlayerId(newPlayer.getNickName());</b>
+<b class="nc"><i>129</i>&nbsp;            lastGame.addPlayer(newPlayer);</b>
+<b class="nc"><i>130</i>&nbsp;            clientHandler.setGame(lastGame);</b>
+<b class="nc"><i>131</i>&nbsp;            newPlayer.setTable(lastGame.getTable());</b>
+<b class="nc"><i>132</i>&nbsp;            newPlayer.setGame(lastGame);</b>
+<b class="nc"><i>133</i>&nbsp;            System.out.println(&quot;Player &quot; + ((NewGameRequest) request).getNickname() + &quot; added to game &quot; + lastGame.getGameId());</b>
+<i>134</i>&nbsp;
+<i>135</i>&nbsp;            //If the game has reached the max level of players with this new one
+<b class="nc"><i>136</i>&nbsp;            if (lastGame.getPlayers().size() == lastGame.getMax()) {</b>
+<b class="nc"><i>137</i>&nbsp;                update = lastGame.createNewGameUpdate();</b>
+<i>138</i>&nbsp;            } else {
+<b class="nc"><i>139</i>&nbsp;                System.out.println(&quot;Player &quot; + ((NewGameRequest) request).getNickname() + &quot; added to game &quot; + lastGame.getGameId());</b>
+<b class="nc"><i>140</i>&nbsp;                update = new LobbyUpdate(((NewGameRequest) request).getNickname(), lastGame.getPlayers().size(), ((NewGameRequest) request).getPlayers());</b>
+<i>141</i>&nbsp;            }
+<b class="nc"><i>142</i>&nbsp;            lastGame.notifyAllPlayers(update);</b>
+<i>143</i>&nbsp;        }
+<b class="nc"><i>144</i>&nbsp;    }</b>
+<i>145</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-07-02 00:02</div>
+</div>
+</body>
+</html>

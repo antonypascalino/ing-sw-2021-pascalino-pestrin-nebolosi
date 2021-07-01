@@ -1,0 +1,146 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: MultiEchoServer</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">it.polimi.ingsw.server</a> ]
+</div>
+
+<h1>Coverage Summary for Class: MultiEchoServer (it.polimi.ingsw.server)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">MultiEchoServer</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 17)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package it.polimi.ingsw.server;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import java.io.IOException;
+<i>4</i>&nbsp;import java.net.ServerSocket;
+<i>5</i>&nbsp;import java.net.Socket;
+<i>6</i>&nbsp;import java.util.concurrent.ExecutorService;
+<i>7</i>&nbsp;import java.util.concurrent.Executors;
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;/**
+<i>10</i>&nbsp; * The type Multi echo server.
+<i>11</i>&nbsp; */
+<i>12</i>&nbsp;public class MultiEchoServer {
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;    private int port;
+<i>15</i>&nbsp;
+<i>16</i>&nbsp;    //Array list used for handle different threads
+<i>17</i>&nbsp;    //Id of the lastPlayer who joined
+<i>18</i>&nbsp;    private GameHolder games;
+<i>19</i>&nbsp;
+<i>20</i>&nbsp;    /**
+<i>21</i>&nbsp;     * Instantiates a new Multi echo server.
+<i>22</i>&nbsp;     *
+<i>23</i>&nbsp;     * @param port the port
+<i>24</i>&nbsp;     */
+<b class="nc"><i>25</i>&nbsp;    public MultiEchoServer(int port) {</b>
+<b class="nc"><i>26</i>&nbsp;        this.port = port;</b>
+<i>27</i>&nbsp;    }
+<i>28</i>&nbsp;
+<i>29</i>&nbsp;    /**
+<i>30</i>&nbsp;     * Start server which is able to handle more client
+<i>31</i>&nbsp;     *
+<i>32</i>&nbsp;     * @throws IOException the io exception
+<i>33</i>&nbsp;     */
+<i>34</i>&nbsp;    public void startServer() throws IOException {
+<i>35</i>&nbsp;        //It creates threads when necessary, otherwise it re-uses existing one when possible
+<b class="nc"><i>36</i>&nbsp;        ExecutorService executor = Executors.newFixedThreadPool(10);</b>
+<i>37</i>&nbsp;        ServerSocket serverSocket;
+<b class="nc"><i>38</i>&nbsp;        games = new GameHolder();</b>
+<i>39</i>&nbsp;        try {
+<b class="nc"><i>40</i>&nbsp;            serverSocket = new ServerSocket(port);</b>
+<b class="nc"><i>41</i>&nbsp;            System.out.println(port);</b>
+<b class="nc"><i>42</i>&nbsp;        } catch (IOException e) {</b>
+<b class="nc"><i>43</i>&nbsp;            System.err.println(e.getMessage()); //port not available</b>
+<i>44</i>&nbsp;            return;
+<b class="nc"><i>45</i>&nbsp;        }</b>
+<b class="nc"><i>46</i>&nbsp;        System.out.println(&quot;Server ready&quot;);</b>
+<i>47</i>&nbsp;        while (true) {
+<i>48</i>&nbsp;            try {
+<b class="nc"><i>49</i>&nbsp;                Socket socket = serverSocket.accept();</b>
+<i>50</i>&nbsp;                //Create the new game id
+<i>51</i>&nbsp;                //lastPlayer = newPlayer(lastPlayer);
+<b class="nc"><i>52</i>&nbsp;                new ClientHandler(socket, games);</b>
+<b class="nc"><i>53</i>&nbsp;            } catch (IOException e) {</b>
+<b class="nc"><i>54</i>&nbsp;                break; //In case the serverSocket gets closed</b>
+<b class="nc"><i>55</i>&nbsp;            }</b>
+<i>56</i>&nbsp;        }
+<b class="nc"><i>57</i>&nbsp;        executor.shutdown();</b>
+<b class="nc"><i>58</i>&nbsp;        serverSocket.close();</b>
+<i>59</i>&nbsp;    }
+<i>60</i>&nbsp;
+<i>61</i>&nbsp;}
+<i>62</i>&nbsp;
+<i>63</i>&nbsp;
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-07-02 00:02</div>
+</div>
+</body>
+</html>
