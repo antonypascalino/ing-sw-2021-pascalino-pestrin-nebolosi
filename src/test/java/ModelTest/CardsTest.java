@@ -1,3 +1,5 @@
+package ModelTest;
+
 import it.polimi.ingsw.controller.DefaultCreator;
 import it.polimi.ingsw.model.Player.BasicPlayer;
 import it.polimi.ingsw.model.Player.Player;

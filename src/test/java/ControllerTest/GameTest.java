@@ -1,5 +1,6 @@
+package ControllerTest;
 
-    import it.polimi.ingsw.controller.Request.NewGameRequest;
+import it.polimi.ingsw.controller.Request.NewGameRequest;
     import it.polimi.ingsw.controller.Request.Request;
     import it.polimi.ingsw.server.ClientHandler;
     import it.polimi.ingsw.server.GameHolder;

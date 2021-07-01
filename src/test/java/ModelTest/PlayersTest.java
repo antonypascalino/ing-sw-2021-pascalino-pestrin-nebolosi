@@ -1,3 +1,5 @@
+package ModelTest;
+
 import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.server.ClientHandler;
 import it.polimi.ingsw.server.GameHolder;
