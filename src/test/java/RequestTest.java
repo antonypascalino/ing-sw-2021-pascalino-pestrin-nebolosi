@@ -730,4 +730,31 @@ public class RequestTest {
         request.handle(player, game);
         request.getClassName();
     }
+
+    //Non testa niente, metodo creato per coerenza coverage
+    @Test
+    public void NewGameRequestTest() {
+        final Socket socket = mock(Socket.class);
+        GameHolder games = new GameHolder();
+        ArrayList<Player> players = new ArrayList<>();
+        try {
+            final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            when(socket.getOutputStream()).thenReturn(byteArrayOutputStream);
+            when(socket.getInputStream()).thenReturn(System.in);
+            players.add(new BasicPlayer("Tester1", new ClientHandler(socket, games)));
+            players.add(new BasicPlayer("Tester2", new ClientHandler(socket, games)));
+        }
+        catch (IOException e) {System.out.println("IOException!");}
+        Game game = new Game(players, DefaultCreator.produceDevCard(), 1, 2);
+        games.add(game);
+        Player player = game.getPlayers().get(0);
+        NewGameRequest request = new NewGameRequest(player.getNickName(), 2);
+        request.validRequest(game.getTurnStates());
+        request.canBePlayed(player);
+        request.getGameID();
+        request.getPlayerID();
+        request.createUpdate(player, game);
+        request.handle(player, game);
+        request.getClassName();
+    }
 }

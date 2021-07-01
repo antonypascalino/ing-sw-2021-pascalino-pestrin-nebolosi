@@ -1,3 +1,4 @@
+import it.polimi.ingsw.controller.Game;
 import it.polimi.ingsw.server.ClientHandler;
 import it.polimi.ingsw.server.GameHolder;
 import it.polimi.ingsw.controller.DefaultCreator;
@@ -65,18 +66,18 @@ public class PlayersTest {
         assert !player.checkSpace(Resource.GOLD, 5);
         player.addResource(3, Resource.GOLD);
         player.addResource(1, Resource.GOLD);
-        assert !player.checkSwitch(6,1);
-        assert player.checkSwitch(2,1);
-        assert !player.checkSwitch(2,3);
-        assert player.checkSwitch(3,1);
+        assert !player.checkSwitch(6, 1);
+        assert player.checkSwitch(2, 1);
+        assert !player.checkSwitch(2, 3);
+        assert player.checkSwitch(3, 1);
         player.removeResource(Resource.GOLD, "extradeposit");
         player.addResource(0, Resource.GOLD);
         player.addResource(1, Resource.STONE);
-        player.switchLevels(0,1);
-        player.switchLevels(1,0);
-        player.switchLevels(0,3);
-        player.switchLevels(3,0);
-        player.removeResource(Resource.GOLD,"warehouse");
+        player.switchLevels(0, 1);
+        player.switchLevels(1, 0);
+        player.switchLevels(0, 3);
+        player.switchLevels(3, 0);
+        player.removeResource(Resource.GOLD, "warehouse");
         player.getAllResources();
         System.out.println(player.getDeposits());
         assert player.checkSpace(Resource.GOLD, 3);
@@ -120,48 +121,53 @@ public class PlayersTest {
             final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             when(socket.getOutputStream()).thenReturn(byteArrayOutputStream);
             when(socket.getInputStream()).thenReturn(System.in);
-            ClientHandler clientHandler = new ClientHandler(socket, games);
-            Player original = new BasicPlayer("Tester1", clientHandler);
-            players.add(original);
-            Player player = new ChangeResPlayer(original, Resource.GOLD);
-            player.getNickName();
-            player.getVictoryPoints();
-            player.getBoard();
-            player.getGame();
-            player.addLeaderCard(new ChangeResource(10, "BLUE","YELLOW", Resource.GOLD, "CNG01" ));
-            player.addVictoryPoints(5);
-            player.getLeaderCards();
-            player.getBoard().getSlot().placeCard(toAdd, 0);
-            player.produce("devG101");
-            player.checkSpace(Resource.GOLD, 2);
-
-            player.addResource(2, Resource.GOLD);
-            player.removeResource(Resource.GOLD, "strongbox");
-            player.getTable();
-            player.checkMarketRes(new ArrayList<Resource>(), new ArrayList<Resource>());
-            player.checkLevel(2);
-            player.getAllResources();
-            player.switchLevels(0, 1);
-            player.canBuy(DefaultCreator.produceDevCard().get(0), player.getAllResources());
-            player.getLeaderFromID("CNG01");
-            player.getProductionID();
-            player.setTable(new Table(DefaultCreator.produceDevCard()));
-            player.getLeadersID();
-            player.getDeposits();
-            player.checkSwitch(0,1);
-            player.notifyView(new ErrorUpdate("Error", "Tester1"));
-            Player player1 = new DiscountedPlayer(player, Resource.GOLD);
-            ArrayList<Resource> resources = new ArrayList<>();
-            ArrayList<Resource> resources1 = new ArrayList<>();
-            resources.add(Resource.GOLD);
-            resources.add(Resource.FAITH);
-            resources.add(Resource.STONE);
-            resources1.add(Resource.GOLD);
-            resources1.add(Resource.FAITH);
-            resources1.add(Resource.STONE);
-            player1.checkMarketRes(resources, resources1);
+            players.add(new BasicPlayer("Tester1", new ClientHandler(socket, games)));
+            players.add(new BasicPlayer("Tester2", new ClientHandler(socket, games)));
+        } catch (IOException e) {
+            System.out.println("IOException!");
         }
-        catch (IOException e) {System.out.println("IOException!");}
-    }
+        Game game = new Game(players, DefaultCreator.produceDevCard(), 1, 2);
+        games.add(game);
 
+        Player original = players.get(0);
+        players.add(original);
+        Player player = new ChangeResPlayer(original, Resource.GOLD);
+        player.getNickName();
+        player.getVictoryPoints();
+        player.getBoard();
+        player.getGame();
+        player.addLeaderCard(new ChangeResource(10, "BLUE", "YELLOW", Resource.GOLD, "CNG01"));
+        player.setGame(games.get(0));
+        player.addVictoryPoints(5);
+        player.getLeaderCards();
+        player.getBoard().getSlot().placeCard(toAdd, 0);
+        player.produce("devG101");
+        player.checkSpace(Resource.GOLD, 2);
+        player.addResource(2, Resource.GOLD);
+        player.removeResource(Resource.GOLD, "strongbox");
+        player.getTable();
+        player.checkMarketRes(new ArrayList<Resource>(), new ArrayList<Resource>());
+        player.checkLevel(2);
+        player.getAllResources();
+        player.switchLevels(0, 1);
+        player.canBuy(DefaultCreator.produceDevCard().get(0), player.getAllResources());
+        player.getLeaderFromID("CNG01");
+        player.getProductionID();
+        player.setTable(new Table(DefaultCreator.produceDevCard()));
+        player.getLeadersID();
+        player.getDeposits();
+        player.checkSwitch(0, 1);
+        player.notifyView(new ErrorUpdate("Error", "Tester1"));
+        Player player1 = new DiscountedPlayer(player, Resource.GOLD);
+        ArrayList<Resource> resources = new ArrayList<>();
+        ArrayList<Resource> resources1 = new ArrayList<>();
+        resources.add(Resource.GOLD);
+        resources.add(Resource.FAITH);
+        resources.add(Resource.STONE);
+        resources1.add(Resource.GOLD);
+        resources1.add(Resource.FAITH);
+        resources1.add(Resource.STONE);
+        player1.checkMarketRes(resources, resources1);
+    }
 }
+

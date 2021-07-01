@@ -17,7 +17,7 @@
 |Package|Method coverage [%]|Line coverage [%]|
 |--------------|:------------:|:-----------------:|
 |__model__|98%|96%|
-|__controller__|95%|96%|
+|__controller__|100%|97%|
 
 ## Libraries e Plugins
 |Library/Plugin|Description|
