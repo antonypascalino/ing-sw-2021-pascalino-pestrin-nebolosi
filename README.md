@@ -25,7 +25,7 @@ To see a more specific [coverage report](https://github.com/pasca99/ing-sw-2021-
 |Library/Plugin|Description|
 |--------------|-----------|
 |__maven__|tool to manage softwares based on Java and build automation|
-|__maven-shade-plugin__|plugin to create an uber-jar|
+|__maven-shade-plugin__|plugin to create two separate jar|
 |__gson__|plugin used to customize Json translation settings|
 |__junit__|framework dedicated to Java for unit testing|
 
