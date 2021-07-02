@@ -170,16 +170,19 @@ public class Printer {
                     System.out.println("[" + (i + 1) + "]" + " " + "warehouse level" + " " + (ints.get(i) + 1));
                     actions = i + 1;
                 }
-                if (canDiscard) System.out.println("[" + (actions + 1) + "] " + "Discard");
+                if (canDiscard) {
+                    actions++;
+                    System.out.println("[" + (actions) + "] " + "Discard");
+                }
             }
             System.out.println("Enter selection: ");
             selection = inputs.nextLine();
             try {
                 int index = Integer.parseInt(selection);
-                if (index > actions + 1 || index <= 0) {
+                if (index > actions || index <= 0) {
                     System.out.println("Invalid input!");
                 } else {
-                    if (index == actions + 1) return -1;
+                    if (canDiscard && index == actions) return -1;
                     return ints.get(index - 1);
                 }
             } catch (NumberFormatException e) {
