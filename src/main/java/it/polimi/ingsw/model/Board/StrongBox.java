@@ -16,6 +16,26 @@ public class StrongBox {
      */
     public StrongBox() {
         resources = new ArrayList<>();
+        resources.add(Resource.GOLD);
+        resources.add(Resource.GOLD);
+        resources.add(Resource.GOLD);
+        resources.add(Resource.GOLD);
+        resources.add(Resource.GOLD);
+        resources.add(Resource.SHIELD);
+        resources.add(Resource.SHIELD);
+        resources.add(Resource.SHIELD);
+        resources.add(Resource.SHIELD);
+        resources.add(Resource.SHIELD);
+        resources.add(Resource.STONE);
+        resources.add(Resource.STONE);
+        resources.add(Resource.STONE);
+        resources.add(Resource.STONE);
+        resources.add(Resource.STONE);
+        resources.add(Resource.SERVANT);
+        resources.add(Resource.SERVANT);
+        resources.add(Resource.SERVANT);
+        resources.add(Resource.SERVANT);
+        resources.add(Resource.SERVANT);
     }
 
     /**

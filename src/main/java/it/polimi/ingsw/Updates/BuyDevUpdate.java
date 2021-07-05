@@ -58,6 +58,7 @@ public class BuyDevUpdate implements Update {
         cardsID.remove("BASIC");
         data.setFrontTableCardsID(tableCardsID);
         if (playerID.equals(data.getPlayerID())) {
+            data.setVictoryPoints(victoryPoints);
             data.setTurnStates(turnStates);
             data.setWareHouse(wareHouse);
             data.setStrongBox(strongBox);
@@ -69,6 +70,7 @@ public class BuyDevUpdate implements Update {
                     p.setStrongBox(strongBox);
                     p.setSlotFrontCards(cardsID);
                     p.getWareHouse().clear();
+                    p.setVictoryPoints(victoryPoints);
                     for (Resource[] l : wareHouse) {
                         for (Resource r : l) {
                             p.getWareHouse().add(r);
